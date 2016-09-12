@@ -1,0 +1,6 @@
+framework module Pods_Feline_Finder {
+  umbrella header "Pods-Feline Finder-umbrella.h"
+
+  export *
+  module * { export * }
+}

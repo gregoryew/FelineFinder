@@ -1,0 +1,1472 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
+		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
+		C51C39031D723EFA008064EC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C51C39021D723EFA008064EC /* share.png */; };
+		C51EE1C31D7AD5D000747D8C /* PlayVideo.png in Resources */ = {isa = PBXBuildFile; fileRef = C51EE1C21D7AD5D000747D8C /* PlayVideo.png */; };
+		C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */; };
+		C527B1331B46E11100874272 /* PetFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527B1321B46E11100874272 /* PetFinderViewController.swift */; };
+		C527B1351B46E7DA00874272 /* string extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527B1341B46E7DA00874272 /* string extensions.swift */; };
+		C527B1371B48079F00874272 /* Savannah.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C527B1361B48079F00874272 /* Savannah.jpg */; };
+		C527B1391B4807F300874272 /* Savannah.html in Resources */ = {isa = PBXBuildFile; fileRef = C527B1381B4807F300874272 /* Savannah.html */; };
+		C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DECD1B51740000B631B8 /* FavoritesViewController.swift */; };
+		C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DECF1B51742800B631B8 /* SavedListsViewController.swift */; };
+		C539DED31B51797300B631B8 /* LikeSelected.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C539DED11B51797300B631B8 /* LikeSelected.jpg */; };
+		C539DED41B51797300B631B8 /* LikeUnselected.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C539DED21B51797300B631B8 /* LikeUnselected.jpg */; };
+		C539DED81B51C9E300B631B8 /* FavoriteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DED71B51C9E300B631B8 /* FavoriteTableCell.swift */; };
+		C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DEDF1B52486900B631B8 /* SavedSearches.swift */; };
+		C539DEE41B52786200B631B8 /* SavedListsTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DEE31B52786200B631B8 /* SavedListsTableCell.swift */; };
+		C53BC8A71B52DE0A0033FA7A /* SavedLists2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53BC8A61B52DE0A0033FA7A /* SavedLists2ViewController.swift */; };
+		C5411D5D1D61858000FFB128 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5411D5C1D61858000FFB128 /* InstructionsViewController.swift */; };
+		C5471BB41D67B01400F9A459 /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5471BA61D67B01400F9A459 /* main_bg.jpg */; };
+		C5471BB51D67B01400F9A459 /* CustomFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = C5471BA81D67B01400F9A459 /* CustomFooter.m */; };
+		C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = C5471BAA1D67B01400F9A459 /* CustomHeader.m */; };
+		C5471BB71D67B01400F9A459 /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C5471BAC1D67B01400F9A459 /* Common.m */; };
+		C5471BB81D67B01400F9A459 /* CoolTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5471BAE1D67B01400F9A459 /* CoolTableViewController.m */; };
+		C5471BBA1D67B01400F9A459 /* CustomCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C5471BB21D67B01400F9A459 /* CustomCellBackground.m */; };
+		C5471BC11D67B07D00F9A459 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C5471BBE1D67B07D00F9A459 /* Default.png */; };
+		C5471BC21D67B07D00F9A459 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5471BBF1D67B07D00F9A459 /* Default@2x.png */; };
+		C5471BC31D67B07D00F9A459 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5471BC01D67B07D00F9A459 /* Default-568h@2x.png */; };
+		C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */; };
+		C54FCA9D1B83AB6100D9524E /* Tuxedo.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA911B83AB6100D9524E /* Tuxedo.html */; };
+		C54FCA9E1B83AB6100D9524E /* Handsome_tuxedo_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA921B83AB6100D9524E /* Handsome_tuxedo_cat.jpg */; };
+		C54FCA9F1B83AB6100D9524E /* domestic_short-haired_cat.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA931B83AB6100D9524E /* domestic_short-haired_cat.html */; };
+		C54FCAA01B83AB6100D9524E /* Ragamuffin.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA941B83AB6100D9524E /* Ragamuffin.html */; };
+		C54FCAA11B83AB6100D9524E /* PixieBob.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA951B83AB6100D9524E /* PixieBob.html */; };
+		C54FCAA21B83AB6100D9524E /* Pantanal_Pixie-Bob.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA961B83AB6100D9524E /* Pantanal_Pixie-Bob.jpg */; };
+		C54FCAA31B83AB6100D9524E /* LaPerm.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA971B83AB6100D9524E /* LaPerm.html */; };
+		C54FCAA41B83AB6100D9524E /* Domestic_short-haired_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA981B83AB6100D9524E /* Domestic_short-haired_cat.jpg */; };
+		C54FCAA51B83AB6100D9524E /* domestic_long_hair.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA991B83AB6100D9524E /* domestic_long_hair.html */; };
+		C54FCAA61B83AB6100D9524E /* Imber-MHDomestic_Grey_Cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA9A1B83AB6100D9524E /* Imber-MHDomestic_Grey_Cat.jpg */; };
+		C54FCAA71B83AB6100D9524E /* Chausie.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA9B1B83AB6100D9524E /* Chausie.html */; };
+		C54FCAA81B83AB6100D9524E /* Burmillia.html in Resources */ = {isa = PBXBuildFile; fileRef = C54FCA9C1B83AB6100D9524E /* Burmillia.html */; };
+		C54FCAAC1B83AB9700D9524E /* LaPerm_tonk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCAA91B83AB9700D9524E /* LaPerm_tonk.jpg */; };
+		C54FCAAD1B83AB9700D9524E /* Ragamuffin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCAAA1B83AB9700D9524E /* Ragamuffin.jpg */; };
+		C54FCAAE1B83AB9700D9524E /* Female_Burmilla_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCAAB1B83AB9700D9524E /* Female_Burmilla_cat.jpg */; };
+		C54FCAB01B83AC7700D9524E /* Chausie_fugao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C54FCAAF1B83AC7700D9524E /* Chausie_fugao.jpg */; };
+		C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */; };
+		C5511C3B1B6EB3F400BE8610 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */; };
+		C5511C481B6EB73A00BE8610 /* attachment_to_people.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3C1B6EB73A00BE8610 /* attachment_to_people.gif */; };
+		C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3D1B6EB73A00BE8610 /* autonomy.gif */; };
+		C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3E1B6EB73A00BE8610 /* energy_level.gif */; };
+		C5511C4B1B6EB73A00BE8610 /* fitness.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3F1B6EB73A00BE8610 /* fitness.gif */; };
+		C5511C4C1B6EB73A00BE8610 /* Fun_Loving.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */; };
+		C5511C4D1B6EB73A00BE8610 /* good_with_pets.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C411B6EB73A00BE8610 /* good_with_pets.gif */; };
+		C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C421B6EB73A00BE8610 /* good_with_children.gif */; };
+		C5511C4F1B6EB73A00BE8610 /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C431B6EB73A00BE8610 /* grooming.gif */; };
+		C5511C501B6EB73A00BE8610 /* petting.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C441B6EB73A00BE8610 /* petting.gif */; };
+		C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C451B6EB73A00BE8610 /* talkative.gif */; };
+		C5511C521B6EB73A00BE8610 /* Thinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C461B6EB73A00BE8610 /* Thinking.gif */; };
+		C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C471B6EB73A00BE8610 /* TLC.gif */; };
+		C551260F1B226F13007D8CDF /* Birman.html in Resources */ = {isa = PBXBuildFile; fileRef = C551260E1B226F13007D8CDF /* Birman.html */; };
+		C55126121B22710A007D8CDF /* Bombay_femelle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126101B22710A007D8CDF /* Bombay_femelle.jpg */; };
+		C55126131B22710A007D8CDF /* Bombay.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126111B22710A007D8CDF /* Bombay.html */; };
+		C55126171B227396007D8CDF /* British_Shorthair_Assis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126161B227396007D8CDF /* British_Shorthair_Assis.jpg */; };
+		C551261B1B22749D007D8CDF /* BritishShorthair.html in Resources */ = {isa = PBXBuildFile; fileRef = C551261A1B22749D007D8CDF /* BritishShorthair.html */; };
+		C551261E1B22780D007D8CDF /* Burmese.html in Resources */ = {isa = PBXBuildFile; fileRef = C551261C1B22780D007D8CDF /* Burmese.html */; };
+		C551261F1B22780D007D8CDF /* Burmese_chocolate_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551261D1B22780D007D8CDF /* Burmese_chocolate_cat.jpg */; };
+		C55126221B227A7B007D8CDF /* Chartreux.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126201B227A7B007D8CDF /* Chartreux.html */; };
+		C55126231B227A7B007D8CDF /* Chat Chartreux.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C55126211B227A7B007D8CDF /* Chat Chartreux.JPG */; };
+		C55126271B227C4D007D8CDF /* Cornish Rex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126251B227C4D007D8CDF /* Cornish Rex.jpg */; };
+		C55126291B227D32007D8CDF /* CornishRex.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126281B227D32007D8CDF /* CornishRex.html */; };
+		C551262C1B24C5EA007D8CDF /* Cymric_Fond_Blanc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551262A1B24C5EA007D8CDF /* Cymric_Fond_Blanc.jpg */; };
+		C551262D1B24C5EA007D8CDF /* Cymric.html in Resources */ = {isa = PBXBuildFile; fileRef = C551262B1B24C5EA007D8CDF /* Cymric.html */; };
+		C55126311B24CA20007D8CDF /* DevonRex.png in Resources */ = {isa = PBXBuildFile; fileRef = C551262F1B24CA20007D8CDF /* DevonRex.png */; };
+		C55126331B24CAE5007D8CDF /* DevonRex.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126321B24CAE5007D8CDF /* DevonRex.html */; };
+		C55126361B24D690007D8CDF /* Exotic_Shorthair.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126341B24D690007D8CDF /* Exotic_Shorthair.jpg */; };
+		C55126371B24D690007D8CDF /* ExoticShorthair.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126351B24D690007D8CDF /* ExoticShorthair.html */; };
+		C551263A1B24DAE3007D8CDF /* Egyptain Mau.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126381B24DAE3007D8CDF /* Egyptain Mau.jpg */; };
+		C551263B1B24DAE3007D8CDF /* EgyptianMau.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126391B24DAE3007D8CDF /* EgyptianMau.html */; };
+		C551263E1B24DE35007D8CDF /* Havana_Brown_-_choco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551263C1B24DE35007D8CDF /* Havana_Brown_-_choco.jpg */; };
+		C551263F1B24DE35007D8CDF /* HavanaBrown.html in Resources */ = {isa = PBXBuildFile; fileRef = C551263D1B24DE35007D8CDF /* HavanaBrown.html */; };
+		C55126421B24E290007D8CDF /* Himalayan.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126401B24E290007D8CDF /* Himalayan.html */; };
+		C55126431B24E290007D8CDF /* Himlayan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126411B24E290007D8CDF /* Himlayan.jpg */; };
+		C55126461B24E3E4007D8CDF /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126441B24E3E4007D8CDF /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg */; };
+		C55126471B24E3E4007D8CDF /* JapaneseBobtail.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126451B24E3E4007D8CDF /* JapaneseBobtail.html */; };
+		C551264A1B24E759007D8CDF /* Javanese.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126481B24E759007D8CDF /* Javanese.jpg */; };
+		C551264B1B24E759007D8CDF /* Javanese.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126491B24E759007D8CDF /* Javanese.html */; };
+		C551264E1B24E978007D8CDF /* Korat.html in Resources */ = {isa = PBXBuildFile; fileRef = C551264C1B24E978007D8CDF /* Korat.html */; };
+		C551264F1B24E978007D8CDF /* Korat.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C551264D1B24E978007D8CDF /* Korat.JPG */; };
+		C55126521B24EB66007D8CDF /* Main Coon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126501B24EB66007D8CDF /* Main Coon.jpg */; };
+		C55126551B24EBA0007D8CDF /* MainCoon.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126541B24EBA0007D8CDF /* MainCoon.html */; };
+		C55126581B24EEFD007D8CDF /* Manx_cat_crouching.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126561B24EEFD007D8CDF /* Manx_cat_crouching.jpg */; };
+		C55126591B24EEFD007D8CDF /* Manx.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126571B24EEFD007D8CDF /* Manx.html */; };
+		C551265C1B24F9F7007D8CDF /* NorwegianForestCat.html in Resources */ = {isa = PBXBuildFile; fileRef = C551265A1B24F9F7007D8CDF /* NorwegianForestCat.html */; };
+		C551265D1B24F9F7007D8CDF /* Norwegian_Forest_Cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551265B1B24F9F7007D8CDF /* Norwegian_Forest_Cat.jpg */; };
+		C55126601B24FBF7007D8CDF /* Ocicat-Charan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551265E1B24FBF7007D8CDF /* Ocicat-Charan.jpg */; };
+		C55126611B24FBF7007D8CDF /* Ocicat.html in Resources */ = {isa = PBXBuildFile; fileRef = C551265F1B24FBF7007D8CDF /* Ocicat.html */; };
+		C55126641B24FD85007D8CDF /* Oriental_Shorthair_cat_Brandi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126621B24FD85007D8CDF /* Oriental_Shorthair_cat_Brandi.jpg */; };
+		C55126651B24FD85007D8CDF /* Oriental.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126631B24FD85007D8CDF /* Oriental.html */; };
+		C55126681B24FF82007D8CDF /* Persian_Cat_3_UK.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126661B24FF82007D8CDF /* Persian_Cat_3_UK.jpg */; };
+		C55126691B24FF82007D8CDF /* Persian.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126671B24FF82007D8CDF /* Persian.html */; };
+		C551266C1B250112007D8CDF /* Ragdoll.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551266A1B250112007D8CDF /* Ragdoll.jpg */; };
+		C551266D1B250112007D8CDF /* Ragdoll.html in Resources */ = {isa = PBXBuildFile; fileRef = C551266B1B250112007D8CDF /* Ragdoll.html */; };
+		C55126701B2502C8007D8CDF /* Russian_Blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C551266E1B2502C8007D8CDF /* Russian_Blue.jpg */; };
+		C55126711B2502C8007D8CDF /* RussianBlue.html in Resources */ = {isa = PBXBuildFile; fileRef = C551266F1B2502C8007D8CDF /* RussianBlue.html */; };
+		C55126741B25048E007D8CDF /* ScottishFold.html in Resources */ = {isa = PBXBuildFile; fileRef = C55126721B25048E007D8CDF /* ScottishFold.html */; };
+		C55126751B25048E007D8CDF /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C55126731B25048E007D8CDF /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg */; };
+		C556BD141B8011C60009EB95 /* Sphynx_Red.gif in Resources */ = {isa = PBXBuildFile; fileRef = C556BD131B8011C60009EB95 /* Sphynx_Red.gif */; };
+		C556BD161B8011E40009EB95 /* DevonRex.gif in Resources */ = {isa = PBXBuildFile; fileRef = C556BD151B8011E40009EB95 /* DevonRex.gif */; };
+		C556BD181B8011F70009EB95 /* Birman.gif in Resources */ = {isa = PBXBuildFile; fileRef = C556BD171B8011F70009EB95 /* Birman.gif */; };
+		C556BD1C1B80122A0009EB95 /* Savannah.gif in Resources */ = {isa = PBXBuildFile; fileRef = C556BD1B1B80122A0009EB95 /* Savannah.gif */; };
+		C556BD1E1B8015940009EB95 /* Persian.gif in Resources */ = {isa = PBXBuildFile; fileRef = C556BD1D1B8015940009EB95 /* Persian.gif */; };
+		C556BD211B8142D70009EB95 /* Bobtail.html in Resources */ = {isa = PBXBuildFile; fileRef = C556BD1F1B8142D70009EB95 /* Bobtail.html */; };
+		C556BD221B8142D70009EB95 /* BobtailFull.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C556BD201B8142D70009EB95 /* BobtailFull.jpg */; };
+		C556BD251B8149160009EB95 /* Munchkin.html in Resources */ = {isa = PBXBuildFile; fileRef = C556BD231B8149160009EB95 /* Munchkin.html */; };
+		C556BD261B8149160009EB95 /* Munchkin_shorthair_300.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C556BD241B8149160009EB95 /* Munchkin_shorthair_300.jpg */; };
+		C556BD291B814C780009EB95 /* Nebelung.html in Resources */ = {isa = PBXBuildFile; fileRef = C556BD271B814C780009EB95 /* Nebelung.html */; };
+		C556BD2A1B814C780009EB95 /* Nebelung.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C556BD281B814C780009EB95 /* Nebelung.jpg */; };
+		C556BD2D1B814EA50009EB95 /* SelkirkRex.html in Resources */ = {isa = PBXBuildFile; fileRef = C556BD2B1B814EA50009EB95 /* SelkirkRex.html */; };
+		C556BD2E1B814EA50009EB95 /* Selkirk_rex.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C556BD2C1B814EA50009EB95 /* Selkirk_rex.JPG */; };
+		C556BD311B81520A0009EB95 /* Snowshoe.html in Resources */ = {isa = PBXBuildFile; fileRef = C556BD2F1B81520A0009EB95 /* Snowshoe.html */; };
+		C556BD321B81520A0009EB95 /* SnowshoeFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C556BD301B81520A0009EB95 /* SnowshoeFace.jpg */; };
+		C55FC7051D6A9FA000F328F3 /* SavedList2TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55FC7041D6A9FA000F328F3 /* SavedList2TableCell.swift */; };
+		C56DA7371D78F9DB00524E53 /* FelineFinderBasePets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DA7361D78F9DB00524E53 /* FelineFinderBasePets.swift */; };
+		C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DA7381D79046500524E53 /* FelineFinderBaseSheltersAPI.swift */; };
+		C56DA73B1D790AD000524E53 /* RescuePetsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DA73A1D790AD000524E53 /* RescuePetsAPI.swift */; };
+		C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DA73C1D790B0F00524E53 /* RescueSheltersAPI.swift */; };
+		C56F90BB1B765E2300EEEBFA /* welcome_cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90BA1B765E2300EEEBFA /* welcome_cat.gif */; };
+		C56F90C71B766A4A00EEEBFA /* welcome_cat_1.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90BD1B766A4A00EEEBFA /* welcome_cat_1.png */; };
+		C56F90C81B766A4A00EEEBFA /* welcome_cat_2.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90BE1B766A4A00EEEBFA /* welcome_cat_2.png */; };
+		C56F90C91B766A4A00EEEBFA /* welcome_cat_3.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90BF1B766A4A00EEEBFA /* welcome_cat_3.png */; };
+		C56F90CA1B766A4A00EEEBFA /* welcome_cat_4.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90C01B766A4A00EEEBFA /* welcome_cat_4.png */; };
+		C56F90CB1B766A4A00EEEBFA /* welcome_cat_5.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90C11B766A4A00EEEBFA /* welcome_cat_5.png */; };
+		C56F90CC1B766A4A00EEEBFA /* welcome_cat_6.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90C21B766A4A00EEEBFA /* welcome_cat_6.png */; };
+		C56F90CD1B766A4A00EEEBFA /* welcome_cat_7.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90C31B766A4A00EEEBFA /* welcome_cat_7.png */; };
+		C56F90D41B7675CE00EEEBFA /* welcome_cat_8.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90D11B7675CE00EEEBFA /* welcome_cat_8.png */; };
+		C56F90D51B7675CE00EEEBFA /* welcome_cat_9.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90D21B7675CE00EEEBFA /* welcome_cat_9.png */; };
+		C56F90D61B7675CE00EEEBFA /* welcome_cat_10.png in Resources */ = {isa = PBXBuildFile; fileRef = C56F90D31B7675CE00EEEBFA /* welcome_cat_10.png */; };
+		C56F90D81B7795C600EEEBFA /* PetFinderFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F90D71B7795C600EEEBFA /* PetFinderFind.swift */; };
+		C56F90DA1B77966600EEEBFA /* ReselectableSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56F90D91B77966600EEEBFA /* ReselectableSegmentedControl.swift */; };
+		C56F90E41B7A110A00EEEBFA /* Norwegian_Forest_Cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90DF1B7A110A00EEEBFA /* Norwegian_Forest_Cat.gif */; };
+		C56F90E51B7A110A00EEEBFA /* Manx_cat_crouching.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90E01B7A110A00EEEBFA /* Manx_cat_crouching.gif */; };
+		C56F90E71B7A110A00EEEBFA /* American_Curl.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90E21B7A110A00EEEBFA /* American_Curl.gif */; };
+		C56F90E81B7A110A00EEEBFA /* Abyssinian.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90E31B7A110A00EEEBFA /* Abyssinian.gif */; };
+		C56F90EB1B7A12CE00EEEBFA /* Cornish Rex.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90EA1B7A12CE00EEEBFA /* Cornish Rex.gif */; };
+		C56F90ED1B7A152B00EEEBFA /* Chat_Chartreux.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90EC1B7A152B00EEEBFA /* Chat_Chartreux.gif */; };
+		C56F90EF1B7A179400EEEBFA /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90EE1B7A179400EEEBFA /* Unknown.gif */; };
+		C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F941BC02BD80023F353 /* SwiftyJSON.swift */; };
+		C5755F9C1BC02CB30023F353 /* RSTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F961BC02CB30023F353 /* RSTransaction.swift */; };
+		C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F971BC02CB30023F353 /* RSTransactionRequest.swift */; };
+		C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F981BC02CB30023F353 /* RSURLRequest.swift */; };
+		C5755F9F1BC02CB30023F353 /* RSUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F991BC02CB30023F353 /* RSUtilities.swift */; };
+		C5755FA01BC02CB30023F353 /* UIButton+RSNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F9A1BC02CB30023F353 /* UIButton+RSNetworking.swift */; };
+		C5755FA11BC02CB30023F353 /* UIImageView+RSNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F9B1BC02CB30023F353 /* UIImageView+RSNetworking.swift */; };
+		C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57F87DF1B4B664400DBA9D6 /* TitleScreenViewController.swift */; };
+		C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58367261D68047A001AFDD3 /* MasterViewTableCell.swift */; };
+		C583672B1D68315A001AFDD3 /* CoolButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C583672A1D68315A001AFDD3 /* CoolButton.m */; };
+		C58B456D1B2C96E500E03538 /* Qwill_Siamese_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B456B1B2C96E500E03538 /* Qwill_Siamese_cat.jpg */; };
+		C58B456E1B2C96E500E03538 /* Siamese.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B456C1B2C96E500E03538 /* Siamese.html */; };
+		C58B45711B2C990700E03538 /* Murmur's_Siberian_Cat_siberiano_golden.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B456F1B2C990700E03538 /* Murmur's_Siberian_Cat_siberiano_golden.jpg */; };
+		C58B45721B2C990700E03538 /* Siberian.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B45701B2C990700E03538 /* Siberian.html */; };
+		C58B45751B2CBCF300E03538 /* Kero_-_singapura_-_cropped.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B45731B2CBCF300E03538 /* Kero_-_singapura_-_cropped.jpg */; };
+		C58B45761B2CBCF300E03538 /* Singapura.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B45741B2CBCF300E03538 /* Singapura.html */; };
+		C58B45791B2CBEF500E03538 /* Somali.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B45771B2CBEF500E03538 /* Somali.jpg */; };
+		C58B457A1B2CBEF500E03538 /* Somali.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B45781B2CBEF500E03538 /* Somali.html */; };
+		C58B457D1B2CC02C00E03538 /* Sphynx_Red.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B457B1B2CC02C00E03538 /* Sphynx_Red.jpg */; };
+		C58B457E1B2CC02C00E03538 /* Sphynx.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B457C1B2CC02C00E03538 /* Sphynx.html */; };
+		C58B45821B2CC54600E03538 /* Tonkinese.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B45801B2CC54600E03538 /* Tonkinese.html */; };
+		C58B45881B2CC57800E03538 /* TurkishAngora.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B45841B2CC57800E03538 /* TurkishAngora.html */; };
+		C58B45891B2CC57800E03538 /* Turkish Van.png in Resources */ = {isa = PBXBuildFile; fileRef = C58B45851B2CC57800E03538 /* Turkish Van.png */; };
+		C58B458A1B2CC57800E03538 /* TurkishVan.html in Resources */ = {isa = PBXBuildFile; fileRef = C58B45861B2CC57800E03538 /* TurkishVan.html */; };
+		C58B458C1B2CC79400E03538 /* Turkish_Angora_Cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B458B1B2CC79300E03538 /* Turkish_Angora_Cat.jpg */; };
+		C58B458E1B2CC8BF00E03538 /* Tonkinese.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C58B458D1B2CC8BF00E03538 /* Tonkinese.JPG */; };
+		C58B45941B2CCAF300E03538 /* turkish_van.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C58B45931B2CCAF300E03538 /* turkish_van.jpg */; };
+		C58B45981B2D189A00E03538 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58B45971B2D189A00E03538 /* Questions.swift */; };
+		C58B459E1B2D457600E03538 /* QuestionEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58B459D1B2D457600E03538 /* QuestionEntry.swift */; };
+		C58B45A81B2DB19700E03538 /* BreedStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58B45A71B2DB19700E03538 /* BreedStatsViewController.swift */; };
+		C58B45AA1B2DE4D000E03538 /* BreedStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58B45A91B2DE4D000E03538 /* BreedStats.swift */; };
+		C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D21171B4849F2008E1B0B /* PetFinderPetsAPI.swift */; };
+		C58D21211B48B0F8008E1B0B /* PetFinderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D21201B48B0F8008E1B0B /* PetFinderTableCell.swift */; };
+		C58D21251B4902E6008E1B0B /* PetFinderViewDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D21241B4902E6008E1B0B /* PetFinderViewDetailController.swift */; };
+		C58D21271B4918C7008E1B0B /* PetFinderSheltersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C58D21261B4918C7008E1B0B /* PetFinderSheltersAPI.swift */; };
+		C58D212B1B496DCE008E1B0B /* CMMapLauncher.m in Sources */ = {isa = PBXBuildFile; fileRef = C58D212A1B496DCE008E1B0B /* CMMapLauncher.m */; };
+		C5933B1B1D6C012A00CFD62E /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5933B1A1D6C012A00CFD62E /* Globals.swift */; };
+		C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */; };
+		C5943AFB1D8248280088DE4D /* FilteringOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943AFA1D8248280088DE4D /* FilteringOptions.swift */; };
+		C5943AFD1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943AFC1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift */; };
+		C5943AFF1D825A4C0088DE4D /* FilterOptionsZipCodeCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943AFE1D825A4C0088DE4D /* FilterOptionsZipCodeCustomCellView.swift */; };
+		C5943B011D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943B001D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift */; };
+		C5943B031D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943B021D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift */; };
+		C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943B041D83B56C0088DE4D /* FilterOptionsListTableViewController.swift */; };
+		C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A159271B8A51CB00517915 /* DatabaseManager.swift */; };
+		C5A1592A1B8AB37500517915 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A159291B8AB37500517915 /* Favorites.swift */; };
+		C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A35E741B3F1469008708E7 /* VCMapView.swift */; };
+		C5B8F9991D68CC9D002EC03C /* website.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B8F9941D68CC9D002EC03C /* website.png */; };
+		C5B8F99B1D68CC9D002EC03C /* directions.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B8F9961D68CC9D002EC03C /* directions.png */; };
+		C5B8F99C1D68CC9D002EC03C /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B8F9971D68CC9D002EC03C /* phone.png */; };
+		C5B8F99D1D68CC9D002EC03C /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = C5B8F9981D68CC9D002EC03C /* email.png */; };
+		C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */; };
+		C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C5C506DC1B83DD1A0092BC00 /* CatFinder.db */; };
+		C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA433E1B33ADAF00CF7283 /* Breeders.m */; };
+		C5DA434C1B35D4A200CF7283 /* Media 13-04-13-713.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DA434B1B35D4A200CF7283 /* Media 13-04-13-713.xcassets */; };
+		C5DD62411D7BF68800CF0880 /* youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DD62401D7BF68800CF0880 /* youtube.png */; };
+		C5EE07E11D62302400EFAC2C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */; };
+		C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */; };
+		C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */; };
+		C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */; };
+		C5FB6EA81B2132EC007FFA36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6EA61B2132EC007FFA36 /* Main.storyboard */; };
+		C5FB6ED31B21337C007FFA36 /* American_Shorthair.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6EC51B21337C007FFA36 /* American_Shorthair.jpg */; };
+		C5FB6ED41B21337C007FFA36 /* AmericanShortHair.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6EC61B21337C007FFA36 /* AmericanShortHair.html */; };
+		C5FB6ED51B21337C007FFA36 /* AmericanWireHair.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6EC71B21337C007FFA36 /* AmericanWireHair.html */; };
+		C5FB6ED61B21337C007FFA36 /* American_Wirehair.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6EC81B21337C007FFA36 /* American_Wirehair.JPG */; };
+		C5FB6ED71B21337C007FFA36 /* Balinese.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6EC91B21337C007FFA36 /* Balinese.html */; };
+		C5FB6ED81B21337C007FFA36 /* Balinese-cat-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ECA1B21337C007FFA36 /* Balinese-cat-1.jpg */; };
+		C5FB6ED91B21337C007FFA36 /* Bengal.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ECB1B21337C007FFA36 /* Bengal.html */; };
+		C5FB6EDA1B21337C007FFA36 /* Bengal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ECC1B21337C007FFA36 /* Bengal.jpg */; };
+		C5FB6EDB1B21337C007FFA36 /* Birman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ECD1B21337C007FFA36 /* Birman.jpg */; };
+		C5FB6EDD1B21337C007FFA36 /* American_Curl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ECF1B21337C007FFA36 /* American_Curl.jpg */; };
+		C5FB6EDF1B21337C007FFA36 /* Abyssinian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ED11B21337C007FFA36 /* Abyssinian.jpg */; };
+		C5FB6EE01B21337C007FFA36 /* Abyssinian.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6ED21B21337C007FFA36 /* Abyssinian.html */; };
+		C5FB6EED1B213474007FFA36 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EE41B213474007FFA36 /* FMDatabase.m */; };
+		C5FB6EEE1B213474007FFA36 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EE61B213474007FFA36 /* FMResultSet.m */; };
+		C5FB6EEF1B213474007FFA36 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EE81B213474007FFA36 /* FMDatabaseQueue.m */; };
+		C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EEA1B213474007FFA36 /* FMDatabaseAdditions.m */; };
+		C5FB6EF11B213474007FFA36 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EEC1B213474007FFA36 /* FMDatabasePool.m */; };
+		C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EF61B213567007FFA36 /* BreedList.swift */; };
+		C5FB6EFC1B213C63007FFA36 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C5FB6EFB1B213C63007FFA36 /* libsqlite3.dylib */; };
+		C5FB6F071B2268CC007FFA36 /* AmericanCurl.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6F061B2268CC007FFA36 /* AmericanCurl.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C51C39021D723EFA008064EC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		C51EE1C21D7AD5D000747D8C /* PlayVideo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayVideo.png; sourceTree = "<group>"; };
+		C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		C527B1321B46E11100874272 /* PetFinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderViewController.swift; sourceTree = "<group>"; };
+		C527B1341B46E7DA00874272 /* string extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "string extensions.swift"; sourceTree = "<group>"; };
+		C527B1361B48079F00874272 /* Savannah.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Savannah.jpg; sourceTree = "<group>"; };
+		C527B1381B4807F300874272 /* Savannah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Savannah.html; sourceTree = "<group>"; };
+		C539DECD1B51740000B631B8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		C539DECF1B51742800B631B8 /* SavedListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedListsViewController.swift; sourceTree = "<group>"; };
+		C539DED11B51797300B631B8 /* LikeSelected.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LikeSelected.jpg; sourceTree = "<group>"; };
+		C539DED21B51797300B631B8 /* LikeUnselected.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LikeUnselected.jpg; sourceTree = "<group>"; };
+		C539DED71B51C9E300B631B8 /* FavoriteTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoriteTableCell.swift; sourceTree = "<group>"; };
+		C539DEDF1B52486900B631B8 /* SavedSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedSearches.swift; sourceTree = "<group>"; };
+		C539DEE31B52786200B631B8 /* SavedListsTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedListsTableCell.swift; sourceTree = "<group>"; };
+		C53BC8A61B52DE0A0033FA7A /* SavedLists2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedLists2ViewController.swift; sourceTree = "<group>"; };
+		C5411D5C1D61858000FFB128 /* InstructionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
+		C5471BA61D67B01400F9A459 /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
+		C5471BA71D67B01400F9A459 /* CustomFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFooter.h; sourceTree = "<group>"; };
+		C5471BA81D67B01400F9A459 /* CustomFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFooter.m; sourceTree = "<group>"; };
+		C5471BA91D67B01400F9A459 /* CustomHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHeader.h; sourceTree = "<group>"; };
+		C5471BAA1D67B01400F9A459 /* CustomHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeader.m; sourceTree = "<group>"; };
+		C5471BAB1D67B01400F9A459 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		C5471BAC1D67B01400F9A459 /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		C5471BAD1D67B01400F9A459 /* CoolTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolTableViewController.h; sourceTree = "<group>"; };
+		C5471BAE1D67B01400F9A459 /* CoolTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolTableViewController.m; sourceTree = "<group>"; };
+		C5471BB11D67B01400F9A459 /* CustomCellBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellBackground.h; sourceTree = "<group>"; };
+		C5471BB21D67B01400F9A459 /* CustomCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellBackground.m; sourceTree = "<group>"; };
+		C5471BBD1D67B07D00F9A459 /* CoolTable-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoolTable-Prefix.pch"; sourceTree = "<group>"; };
+		C5471BBE1D67B07D00F9A459 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C5471BBF1D67B07D00F9A459 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C5471BC01D67B07D00F9A459 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagePageViewController.swift; sourceTree = "<group>"; };
+		C54FCA911B83AB6100D9524E /* Tuxedo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Tuxedo.html; sourceTree = "<group>"; };
+		C54FCA921B83AB6100D9524E /* Handsome_tuxedo_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Handsome_tuxedo_cat.jpg; sourceTree = "<group>"; };
+		C54FCA931B83AB6100D9524E /* domestic_short-haired_cat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "domestic_short-haired_cat.html"; sourceTree = "<group>"; };
+		C54FCA941B83AB6100D9524E /* Ragamuffin.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Ragamuffin.html; sourceTree = "<group>"; };
+		C54FCA951B83AB6100D9524E /* PixieBob.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PixieBob.html; sourceTree = "<group>"; };
+		C54FCA961B83AB6100D9524E /* Pantanal_Pixie-Bob.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Pantanal_Pixie-Bob.jpg"; sourceTree = "<group>"; };
+		C54FCA971B83AB6100D9524E /* LaPerm.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = LaPerm.html; sourceTree = "<group>"; };
+		C54FCA981B83AB6100D9524E /* Domestic_short-haired_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Domestic_short-haired_cat.jpg"; sourceTree = "<group>"; };
+		C54FCA991B83AB6100D9524E /* domestic_long_hair.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = domestic_long_hair.html; sourceTree = "<group>"; };
+		C54FCA9A1B83AB6100D9524E /* Imber-MHDomestic_Grey_Cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Imber-MHDomestic_Grey_Cat.jpg"; sourceTree = "<group>"; };
+		C54FCA9B1B83AB6100D9524E /* Chausie.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chausie.html; sourceTree = "<group>"; };
+		C54FCA9C1B83AB6100D9524E /* Burmillia.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Burmillia.html; sourceTree = "<group>"; };
+		C54FCAA91B83AB9700D9524E /* LaPerm_tonk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LaPerm_tonk.jpg; sourceTree = "<group>"; };
+		C54FCAAA1B83AB9700D9524E /* Ragamuffin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ragamuffin.jpg; sourceTree = "<group>"; };
+		C54FCAAB1B83AB9700D9524E /* Female_Burmilla_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Female_Burmilla_cat.jpg; sourceTree = "<group>"; };
+		C54FCAAF1B83AC7700D9524E /* Chausie_fugao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Chausie_fugao.jpg; sourceTree = "<group>"; };
+		C5511C361B6EB3F400BE8610 /* FLAnimatedImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImage.h; sourceTree = "<group>"; };
+		C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
+		C5511C381B6EB3F400BE8610 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
+		C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
+		C5511C3C1B6EB73A00BE8610 /* attachment_to_people.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people.gif; sourceTree = "<group>"; };
+		C5511C3D1B6EB73A00BE8610 /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
+		C5511C3E1B6EB73A00BE8610 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
+		C5511C3F1B6EB73A00BE8610 /* fitness.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness.gif; sourceTree = "<group>"; };
+		C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving.gif; sourceTree = "<group>"; };
+		C5511C411B6EB73A00BE8610 /* good_with_pets.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets.gif; sourceTree = "<group>"; };
+		C5511C421B6EB73A00BE8610 /* good_with_children.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_children.gif; sourceTree = "<group>"; };
+		C5511C431B6EB73A00BE8610 /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
+		C5511C441B6EB73A00BE8610 /* petting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting.gif; sourceTree = "<group>"; };
+		C5511C451B6EB73A00BE8610 /* talkative.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative.gif; sourceTree = "<group>"; };
+		C5511C461B6EB73A00BE8610 /* Thinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Thinking.gif; sourceTree = "<group>"; };
+		C5511C471B6EB73A00BE8610 /* TLC.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TLC.gif; sourceTree = "<group>"; };
+		C551260E1B226F13007D8CDF /* Birman.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Birman.html; sourceTree = "<group>"; };
+		C55126101B22710A007D8CDF /* Bombay_femelle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bombay_femelle.jpg; sourceTree = "<group>"; };
+		C55126111B22710A007D8CDF /* Bombay.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bombay.html; sourceTree = "<group>"; };
+		C55126161B227396007D8CDF /* British_Shorthair_Assis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = British_Shorthair_Assis.jpg; sourceTree = "<group>"; };
+		C551261A1B22749D007D8CDF /* BritishShorthair.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BritishShorthair.html; sourceTree = "<group>"; };
+		C551261C1B22780D007D8CDF /* Burmese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Burmese.html; sourceTree = "<group>"; };
+		C551261D1B22780D007D8CDF /* Burmese_chocolate_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Burmese_chocolate_cat.jpg; sourceTree = "<group>"; };
+		C55126201B227A7B007D8CDF /* Chartreux.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Chartreux.html; sourceTree = "<group>"; };
+		C55126211B227A7B007D8CDF /* Chat Chartreux.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Chat Chartreux.JPG"; sourceTree = "<group>"; };
+		C55126251B227C4D007D8CDF /* Cornish Rex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Cornish Rex.jpg"; sourceTree = "<group>"; };
+		C55126281B227D32007D8CDF /* CornishRex.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = CornishRex.html; sourceTree = "<group>"; };
+		C551262A1B24C5EA007D8CDF /* Cymric_Fond_Blanc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cymric_Fond_Blanc.jpg; sourceTree = "<group>"; };
+		C551262B1B24C5EA007D8CDF /* Cymric.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Cymric.html; sourceTree = "<group>"; };
+		C551262F1B24CA20007D8CDF /* DevonRex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevonRex.png; sourceTree = "<group>"; };
+		C55126321B24CAE5007D8CDF /* DevonRex.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = DevonRex.html; sourceTree = "<group>"; };
+		C55126341B24D690007D8CDF /* Exotic_Shorthair.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Exotic_Shorthair.jpg; sourceTree = "<group>"; };
+		C55126351B24D690007D8CDF /* ExoticShorthair.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExoticShorthair.html; sourceTree = "<group>"; };
+		C55126381B24DAE3007D8CDF /* Egyptain Mau.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Egyptain Mau.jpg"; sourceTree = "<group>"; };
+		C55126391B24DAE3007D8CDF /* EgyptianMau.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EgyptianMau.html; sourceTree = "<group>"; };
+		C551263C1B24DE35007D8CDF /* Havana_Brown_-_choco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Havana_Brown_-_choco.jpg"; sourceTree = "<group>"; };
+		C551263D1B24DE35007D8CDF /* HavanaBrown.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = HavanaBrown.html; sourceTree = "<group>"; };
+		C55126401B24E290007D8CDF /* Himalayan.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Himalayan.html; sourceTree = "<group>"; };
+		C55126411B24E290007D8CDF /* Himlayan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Himlayan.jpg; sourceTree = "<group>"; };
+		C55126441B24E3E4007D8CDF /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg"; sourceTree = "<group>"; };
+		C55126451B24E3E4007D8CDF /* JapaneseBobtail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = JapaneseBobtail.html; sourceTree = "<group>"; };
+		C55126481B24E759007D8CDF /* Javanese.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Javanese.jpg; sourceTree = "<group>"; };
+		C55126491B24E759007D8CDF /* Javanese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Javanese.html; sourceTree = "<group>"; };
+		C551264C1B24E978007D8CDF /* Korat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Korat.html; sourceTree = "<group>"; };
+		C551264D1B24E978007D8CDF /* Korat.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Korat.JPG; sourceTree = "<group>"; };
+		C55126501B24EB66007D8CDF /* Main Coon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Main Coon.jpg"; sourceTree = "<group>"; };
+		C55126541B24EBA0007D8CDF /* MainCoon.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = MainCoon.html; sourceTree = "<group>"; };
+		C55126561B24EEFD007D8CDF /* Manx_cat_crouching.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Manx_cat_crouching.jpg; sourceTree = "<group>"; };
+		C55126571B24EEFD007D8CDF /* Manx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Manx.html; sourceTree = "<group>"; };
+		C551265A1B24F9F7007D8CDF /* NorwegianForestCat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = NorwegianForestCat.html; sourceTree = "<group>"; };
+		C551265B1B24F9F7007D8CDF /* Norwegian_Forest_Cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Norwegian_Forest_Cat.jpg; sourceTree = "<group>"; };
+		C551265E1B24FBF7007D8CDF /* Ocicat-Charan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Ocicat-Charan.jpg"; sourceTree = "<group>"; };
+		C551265F1B24FBF7007D8CDF /* Ocicat.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Ocicat.html; sourceTree = "<group>"; };
+		C55126621B24FD85007D8CDF /* Oriental_Shorthair_cat_Brandi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Oriental_Shorthair_cat_Brandi.jpg; sourceTree = "<group>"; };
+		C55126631B24FD85007D8CDF /* Oriental.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Oriental.html; sourceTree = "<group>"; };
+		C55126661B24FF82007D8CDF /* Persian_Cat_3_UK.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Persian_Cat_3_UK.jpg; sourceTree = "<group>"; };
+		C55126671B24FF82007D8CDF /* Persian.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Persian.html; sourceTree = "<group>"; };
+		C551266A1B250112007D8CDF /* Ragdoll.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ragdoll.jpg; sourceTree = "<group>"; };
+		C551266B1B250112007D8CDF /* Ragdoll.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Ragdoll.html; sourceTree = "<group>"; };
+		C551266E1B2502C8007D8CDF /* Russian_Blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Russian_Blue.jpg; sourceTree = "<group>"; };
+		C551266F1B2502C8007D8CDF /* RussianBlue.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = RussianBlue.html; sourceTree = "<group>"; };
+		C55126721B25048E007D8CDF /* ScottishFold.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ScottishFold.html; sourceTree = "<group>"; };
+		C55126731B25048E007D8CDF /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg"; sourceTree = "<group>"; };
+		C556BD131B8011C60009EB95 /* Sphynx_Red.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sphynx_Red.gif; sourceTree = "<group>"; };
+		C556BD151B8011E40009EB95 /* DevonRex.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DevonRex.gif; sourceTree = "<group>"; };
+		C556BD171B8011F70009EB95 /* Birman.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Birman.gif; sourceTree = "<group>"; };
+		C556BD1B1B80122A0009EB95 /* Savannah.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Savannah.gif; sourceTree = "<group>"; };
+		C556BD1D1B8015940009EB95 /* Persian.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Persian.gif; sourceTree = "<group>"; };
+		C556BD1F1B8142D70009EB95 /* Bobtail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bobtail.html; sourceTree = "<group>"; };
+		C556BD201B8142D70009EB95 /* BobtailFull.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = BobtailFull.jpg; sourceTree = "<group>"; };
+		C556BD231B8149160009EB95 /* Munchkin.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Munchkin.html; sourceTree = "<group>"; };
+		C556BD241B8149160009EB95 /* Munchkin_shorthair_300.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Munchkin_shorthair_300.jpg; sourceTree = "<group>"; };
+		C556BD271B814C780009EB95 /* Nebelung.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Nebelung.html; sourceTree = "<group>"; };
+		C556BD281B814C780009EB95 /* Nebelung.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Nebelung.jpg; sourceTree = "<group>"; };
+		C556BD2B1B814EA50009EB95 /* SelkirkRex.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SelkirkRex.html; sourceTree = "<group>"; };
+		C556BD2C1B814EA50009EB95 /* Selkirk_rex.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Selkirk_rex.JPG; sourceTree = "<group>"; };
+		C556BD2F1B81520A0009EB95 /* Snowshoe.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Snowshoe.html; sourceTree = "<group>"; };
+		C556BD301B81520A0009EB95 /* SnowshoeFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SnowshoeFace.jpg; sourceTree = "<group>"; };
+		C55FC7041D6A9FA000F328F3 /* SavedList2TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedList2TableCell.swift; sourceTree = "<group>"; };
+		C56DA7361D78F9DB00524E53 /* FelineFinderBasePets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FelineFinderBasePets.swift; sourceTree = "<group>"; };
+		C56DA7381D79046500524E53 /* FelineFinderBaseSheltersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FelineFinderBaseSheltersAPI.swift; sourceTree = "<group>"; };
+		C56DA73A1D790AD000524E53 /* RescuePetsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RescuePetsAPI.swift; sourceTree = "<group>"; };
+		C56DA73C1D790B0F00524E53 /* RescueSheltersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RescueSheltersAPI.swift; sourceTree = "<group>"; };
+		C56F90BA1B765E2300EEEBFA /* welcome_cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = welcome_cat.gif; sourceTree = "<group>"; };
+		C56F90BD1B766A4A00EEEBFA /* welcome_cat_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_1.png; sourceTree = "<group>"; };
+		C56F90BE1B766A4A00EEEBFA /* welcome_cat_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_2.png; sourceTree = "<group>"; };
+		C56F90BF1B766A4A00EEEBFA /* welcome_cat_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_3.png; sourceTree = "<group>"; };
+		C56F90C01B766A4A00EEEBFA /* welcome_cat_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_4.png; sourceTree = "<group>"; };
+		C56F90C11B766A4A00EEEBFA /* welcome_cat_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_5.png; sourceTree = "<group>"; };
+		C56F90C21B766A4A00EEEBFA /* welcome_cat_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_6.png; sourceTree = "<group>"; };
+		C56F90C31B766A4A00EEEBFA /* welcome_cat_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_7.png; sourceTree = "<group>"; };
+		C56F90D11B7675CE00EEEBFA /* welcome_cat_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_8.png; sourceTree = "<group>"; };
+		C56F90D21B7675CE00EEEBFA /* welcome_cat_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_9.png; sourceTree = "<group>"; };
+		C56F90D31B7675CE00EEEBFA /* welcome_cat_10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = welcome_cat_10.png; sourceTree = "<group>"; };
+		C56F90D71B7795C600EEEBFA /* PetFinderFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderFind.swift; sourceTree = "<group>"; };
+		C56F90D91B77966600EEEBFA /* ReselectableSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReselectableSegmentedControl.swift; sourceTree = "<group>"; };
+		C56F90DF1B7A110A00EEEBFA /* Norwegian_Forest_Cat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Norwegian_Forest_Cat.gif; sourceTree = "<group>"; };
+		C56F90E01B7A110A00EEEBFA /* Manx_cat_crouching.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Manx_cat_crouching.gif; sourceTree = "<group>"; };
+		C56F90E21B7A110A00EEEBFA /* American_Curl.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = American_Curl.gif; sourceTree = "<group>"; };
+		C56F90E31B7A110A00EEEBFA /* Abyssinian.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Abyssinian.gif; sourceTree = "<group>"; };
+		C56F90EA1B7A12CE00EEEBFA /* Cornish Rex.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Cornish Rex.gif"; sourceTree = "<group>"; };
+		C56F90EC1B7A152B00EEEBFA /* Chat_Chartreux.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Chat_Chartreux.gif; sourceTree = "<group>"; };
+		C56F90EE1B7A179400EEEBFA /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
+		C5755F941BC02BD80023F353 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		C5755F961BC02CB30023F353 /* RSTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTransaction.swift; sourceTree = "<group>"; };
+		C5755F971BC02CB30023F353 /* RSTransactionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTransactionRequest.swift; sourceTree = "<group>"; };
+		C5755F981BC02CB30023F353 /* RSURLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSURLRequest.swift; sourceTree = "<group>"; };
+		C5755F991BC02CB30023F353 /* RSUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSUtilities.swift; sourceTree = "<group>"; };
+		C5755F9A1BC02CB30023F353 /* UIButton+RSNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+RSNetworking.swift"; sourceTree = "<group>"; };
+		C5755F9B1BC02CB30023F353 /* UIImageView+RSNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+RSNetworking.swift"; sourceTree = "<group>"; };
+		C57F87DF1B4B664400DBA9D6 /* TitleScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScreenViewController.swift; sourceTree = "<group>"; };
+		C58367261D68047A001AFDD3 /* MasterViewTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewTableCell.swift; sourceTree = "<group>"; };
+		C58367291D68315A001AFDD3 /* CoolButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoolButton.h; sourceTree = "<group>"; };
+		C583672A1D68315A001AFDD3 /* CoolButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoolButton.m; sourceTree = "<group>"; };
+		C58B456B1B2C96E500E03538 /* Qwill_Siamese_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Qwill_Siamese_cat.jpg; sourceTree = "<group>"; };
+		C58B456C1B2C96E500E03538 /* Siamese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Siamese.html; sourceTree = "<group>"; };
+		C58B456F1B2C990700E03538 /* Murmur's_Siberian_Cat_siberiano_golden.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Murmur's_Siberian_Cat_siberiano_golden.jpg"; sourceTree = "<group>"; };
+		C58B45701B2C990700E03538 /* Siberian.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Siberian.html; sourceTree = "<group>"; };
+		C58B45731B2CBCF300E03538 /* Kero_-_singapura_-_cropped.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Kero_-_singapura_-_cropped.jpg"; sourceTree = "<group>"; };
+		C58B45741B2CBCF300E03538 /* Singapura.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Singapura.html; sourceTree = "<group>"; };
+		C58B45771B2CBEF500E03538 /* Somali.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Somali.jpg; sourceTree = "<group>"; };
+		C58B45781B2CBEF500E03538 /* Somali.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Somali.html; sourceTree = "<group>"; };
+		C58B457B1B2CC02C00E03538 /* Sphynx_Red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sphynx_Red.jpg; sourceTree = "<group>"; };
+		C58B457C1B2CC02C00E03538 /* Sphynx.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Sphynx.html; sourceTree = "<group>"; };
+		C58B45801B2CC54600E03538 /* Tonkinese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Tonkinese.html; sourceTree = "<group>"; };
+		C58B45841B2CC57800E03538 /* TurkishAngora.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TurkishAngora.html; sourceTree = "<group>"; };
+		C58B45851B2CC57800E03538 /* Turkish Van.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Turkish Van.png"; sourceTree = "<group>"; };
+		C58B45861B2CC57800E03538 /* TurkishVan.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = TurkishVan.html; sourceTree = "<group>"; };
+		C58B458B1B2CC79300E03538 /* Turkish_Angora_Cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Turkish_Angora_Cat.jpg; sourceTree = "<group>"; };
+		C58B458D1B2CC8BF00E03538 /* Tonkinese.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tonkinese.JPG; sourceTree = "<group>"; };
+		C58B45931B2CCAF300E03538 /* turkish_van.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = turkish_van.jpg; sourceTree = "<group>"; };
+		C58B45971B2D189A00E03538 /* Questions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
+		C58B459D1B2D457600E03538 /* QuestionEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionEntry.swift; path = ../QuestionEntry.swift; sourceTree = "<group>"; };
+		C58B45A71B2DB19700E03538 /* BreedStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedStatsViewController.swift; sourceTree = "<group>"; };
+		C58B45A91B2DE4D000E03538 /* BreedStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedStats.swift; sourceTree = "<group>"; };
+		C58D21171B4849F2008E1B0B /* PetFinderPetsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PetFinderPetsAPI.swift; path = ../PetFinderPetsAPI.swift; sourceTree = "<group>"; };
+		C58D211A1B48528B008E1B0B /* PetFinderConsts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PetFinderConsts.h; sourceTree = "<group>"; };
+		C58D21201B48B0F8008E1B0B /* PetFinderTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderTableCell.swift; sourceTree = "<group>"; };
+		C58D21241B4902E6008E1B0B /* PetFinderViewDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderViewDetailController.swift; sourceTree = "<group>"; };
+		C58D21261B4918C7008E1B0B /* PetFinderSheltersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderSheltersAPI.swift; sourceTree = "<group>"; };
+		C58D21291B496DCE008E1B0B /* CMMapLauncher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMapLauncher.h; sourceTree = "<group>"; };
+		C58D212A1B496DCE008E1B0B /* CMMapLauncher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMMapLauncher.m; sourceTree = "<group>"; };
+		C58D212C1B496DFB008E1B0B /* Feline Finder-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Feline Finder-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5933B1A1D6C012A00CFD62E /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADVSegmentedControl.swift; sourceTree = "<group>"; };
+		C5943AFA1D8248280088DE4D /* FilteringOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteringOptions.swift; sourceTree = "<group>"; };
+		C5943AFC1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsBreedCustomCellView.swift; sourceTree = "<group>"; };
+		C5943AFE1D825A4C0088DE4D /* FilterOptionsZipCodeCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsZipCodeCustomCellView.swift; sourceTree = "<group>"; };
+		C5943B001D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsSegmentedCustomCellView.swift; sourceTree = "<group>"; };
+		C5943B021D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsListCustomCellView.swift; sourceTree = "<group>"; };
+		C5943B041D83B56C0088DE4D /* FilterOptionsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		C5A159271B8A51CB00517915 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		C5A159291B8AB37500517915 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
+		C5A35E741B3F1469008708E7 /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapView.swift; sourceTree = "<group>"; };
+		C5B8F9941D68CC9D002EC03C /* website.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = website.png; sourceTree = "<group>"; };
+		C5B8F9961D68CC9D002EC03C /* directions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = directions.png; sourceTree = "<group>"; };
+		C5B8F9971D68CC9D002EC03C /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		C5B8F9981D68CC9D002EC03C /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
+		C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderPicturesViewController.swift; sourceTree = "<group>"; };
+		C5C506DC1B83DD1A0092BC00 /* CatFinder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = CatFinder.db; sourceTree = "<group>"; };
+		C5DA433E1B33ADAF00CF7283 /* Breeders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breeders.m; sourceTree = "<group>"; };
+		C5DA43441B343A8A00CF7283 /* Breeders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Breeders.h; sourceTree = "<group>"; };
+		C5DA434B1B35D4A200CF7283 /* Media 13-04-13-713.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Media 13-04-13-713.xcassets"; path = "../Media 13-04-13-713.xcassets"; sourceTree = "<group>"; };
+		C5DD62401D7BF68800CF0880 /* youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube.png; sourceTree = "<group>"; };
+		C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feline Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5FB6E9F1B2132EC007FFA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C5FB6EA71B2132EC007FFA36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C5FB6EB71B2132ED007FFA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5FB6EB81B2132ED007FFA36 /* Feline_FinderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feline_FinderTests.swift; sourceTree = "<group>"; };
+		C5FB6EC51B21337C007FFA36 /* American_Shorthair.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = American_Shorthair.jpg; sourceTree = "<group>"; };
+		C5FB6EC61B21337C007FFA36 /* AmericanShortHair.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AmericanShortHair.html; sourceTree = "<group>"; };
+		C5FB6EC71B21337C007FFA36 /* AmericanWireHair.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AmericanWireHair.html; sourceTree = "<group>"; };
+		C5FB6EC81B21337C007FFA36 /* American_Wirehair.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = American_Wirehair.JPG; sourceTree = "<group>"; };
+		C5FB6EC91B21337C007FFA36 /* Balinese.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Balinese.html; sourceTree = "<group>"; };
+		C5FB6ECA1B21337C007FFA36 /* Balinese-cat-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Balinese-cat-1.jpg"; sourceTree = "<group>"; };
+		C5FB6ECB1B21337C007FFA36 /* Bengal.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Bengal.html; sourceTree = "<group>"; };
+		C5FB6ECC1B21337C007FFA36 /* Bengal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Bengal.jpg; sourceTree = "<group>"; };
+		C5FB6ECD1B21337C007FFA36 /* Birman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Birman.jpg; sourceTree = "<group>"; };
+		C5FB6ECF1B21337C007FFA36 /* American_Curl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = American_Curl.jpg; sourceTree = "<group>"; };
+		C5FB6ED11B21337C007FFA36 /* Abyssinian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Abyssinian.jpg; sourceTree = "<group>"; };
+		C5FB6ED21B21337C007FFA36 /* Abyssinian.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Abyssinian.html; sourceTree = "<group>"; };
+		C5FB6EE11B213473007FFA36 /* Feline Finder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Feline Finder-Bridging-Header.h"; sourceTree = "<group>"; };
+		C5FB6EE21B213474007FFA36 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		C5FB6EE31B213474007FFA36 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		C5FB6EE41B213474007FFA36 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		C5FB6EE51B213474007FFA36 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		C5FB6EE61B213474007FFA36 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		C5FB6EE71B213474007FFA36 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		C5FB6EE81B213474007FFA36 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		C5FB6EE91B213474007FFA36 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		C5FB6EEA1B213474007FFA36 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		C5FB6EEB1B213474007FFA36 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		C5FB6EEC1B213474007FFA36 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		C5FB6EF61B213567007FFA36 /* BreedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedList.swift; sourceTree = "<group>"; };
+		C5FB6EFB1B213C63007FFA36 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		C5FB6F061B2268CC007FFA36 /* AmericanCurl.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AmericanCurl.html; sourceTree = "<group>"; };
+		D3B865EA89799CB466AD57B2 /* Pods-Feline Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Feline Finder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder.debug.xcconfig"; sourceTree = "<group>"; };
+		D6FA54B67E102A95B0571784 /* Pods-Feline Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Feline Finder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C5FB6E981B2132EC007FFA36 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5FB6EFC1B213C63007FFA36 /* libsqlite3.dylib in Frameworks */,
+				83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80C215F20C9D4AE4D20D5E97 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3B865EA89799CB466AD57B2 /* Pods-Feline Finder.debug.xcconfig */,
+				D6FA54B67E102A95B0571784 /* Pods-Feline Finder.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C5045DA31B9150E700A6663C /* RSNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				C5755F961BC02CB30023F353 /* RSTransaction.swift */,
+				C5755F971BC02CB30023F353 /* RSTransactionRequest.swift */,
+				C5755F981BC02CB30023F353 /* RSURLRequest.swift */,
+				C5755F991BC02CB30023F353 /* RSUtilities.swift */,
+				C5755F9A1BC02CB30023F353 /* UIButton+RSNetworking.swift */,
+				C5755F9B1BC02CB30023F353 /* UIImageView+RSNetworking.swift */,
+			);
+			name = RSNetworking;
+			sourceTree = "<group>";
+		};
+		C5471BA51D67AFD200F9A459 /* CoolTable */ = {
+			isa = PBXGroup;
+			children = (
+				C5471BBC1D67B04100F9A459 /* Supporting Files */,
+				C5471BA61D67B01400F9A459 /* main_bg.jpg */,
+				C5471BA71D67B01400F9A459 /* CustomFooter.h */,
+				C5471BA81D67B01400F9A459 /* CustomFooter.m */,
+				C5471BA91D67B01400F9A459 /* CustomHeader.h */,
+				C5471BAA1D67B01400F9A459 /* CustomHeader.m */,
+				C5471BAB1D67B01400F9A459 /* Common.h */,
+				C5471BAC1D67B01400F9A459 /* Common.m */,
+				C5471BAD1D67B01400F9A459 /* CoolTableViewController.h */,
+				C5471BAE1D67B01400F9A459 /* CoolTableViewController.m */,
+				C5471BB11D67B01400F9A459 /* CustomCellBackground.h */,
+				C5471BB21D67B01400F9A459 /* CustomCellBackground.m */,
+			);
+			name = CoolTable;
+			sourceTree = "<group>";
+		};
+		C5471BBC1D67B04100F9A459 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5471BBD1D67B07D00F9A459 /* CoolTable-Prefix.pch */,
+				C5471BBE1D67B07D00F9A459 /* Default.png */,
+				C5471BBF1D67B07D00F9A459 /* Default@2x.png */,
+				C5471BC01D67B07D00F9A459 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5511C251B6EAB4400BE8610 /* QuestionGIFs */ = {
+			isa = PBXGroup;
+			children = (
+				C5511C331B6EABFC00BE8610 /* HairType */,
+				C5511C341B6EAC0700BE8610 /* Size */,
+				C56F90E91B7A114100EEEBFA /* BodyTypes */,
+				C56F90BC1B766A2B00EEEBFA /* welcome */,
+				C5511C3C1B6EB73A00BE8610 /* attachment_to_people.gif */,
+				C56F90BA1B765E2300EEEBFA /* welcome_cat.gif */,
+				C5511C3D1B6EB73A00BE8610 /* autonomy.gif */,
+				C5511C3E1B6EB73A00BE8610 /* energy_level.gif */,
+				C5511C3F1B6EB73A00BE8610 /* fitness.gif */,
+				C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */,
+				C5511C411B6EB73A00BE8610 /* good_with_pets.gif */,
+				C5511C421B6EB73A00BE8610 /* good_with_children.gif */,
+				C5511C431B6EB73A00BE8610 /* grooming.gif */,
+				C5511C441B6EB73A00BE8610 /* petting.gif */,
+				C5511C451B6EB73A00BE8610 /* talkative.gif */,
+				C5511C461B6EB73A00BE8610 /* Thinking.gif */,
+				C5511C471B6EB73A00BE8610 /* TLC.gif */,
+			);
+			name = QuestionGIFs;
+			sourceTree = "<group>";
+		};
+		C5511C331B6EABFC00BE8610 /* HairType */ = {
+			isa = PBXGroup;
+			children = (
+				C556BD1D1B8015940009EB95 /* Persian.gif */,
+				C556BD171B8011F70009EB95 /* Birman.gif */,
+				C556BD151B8011E40009EB95 /* DevonRex.gif */,
+				C556BD131B8011C60009EB95 /* Sphynx_Red.gif */,
+			);
+			name = HairType;
+			sourceTree = "<group>";
+		};
+		C5511C341B6EAC0700BE8610 /* Size */ = {
+			isa = PBXGroup;
+			children = (
+				C556BD1B1B80122A0009EB95 /* Savannah.gif */,
+			);
+			name = Size;
+			sourceTree = "<group>";
+		};
+		C5511C351B6EB3B600BE8610 /* FLAnimatedImage */ = {
+			isa = PBXGroup;
+			children = (
+				C5511C361B6EB3F400BE8610 /* FLAnimatedImage.h */,
+				C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */,
+				C5511C381B6EB3F400BE8610 /* FLAnimatedImageView.h */,
+				C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */,
+			);
+			name = FLAnimatedImage;
+			sourceTree = "<group>";
+		};
+		C56F90BC1B766A2B00EEEBFA /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				C56F90BD1B766A4A00EEEBFA /* welcome_cat_1.png */,
+				C56F90BE1B766A4A00EEEBFA /* welcome_cat_2.png */,
+				C56F90BF1B766A4A00EEEBFA /* welcome_cat_3.png */,
+				C56F90C01B766A4A00EEEBFA /* welcome_cat_4.png */,
+				C56F90C11B766A4A00EEEBFA /* welcome_cat_5.png */,
+				C56F90C21B766A4A00EEEBFA /* welcome_cat_6.png */,
+				C56F90C31B766A4A00EEEBFA /* welcome_cat_7.png */,
+				C56F90D11B7675CE00EEEBFA /* welcome_cat_8.png */,
+				C56F90D21B7675CE00EEEBFA /* welcome_cat_9.png */,
+				C56F90D31B7675CE00EEEBFA /* welcome_cat_10.png */,
+			);
+			name = welcome;
+			sourceTree = "<group>";
+		};
+		C56F90E91B7A114100EEEBFA /* BodyTypes */ = {
+			isa = PBXGroup;
+			children = (
+				C56F90EE1B7A179400EEEBFA /* Unknown.gif */,
+				C56F90EC1B7A152B00EEEBFA /* Chat_Chartreux.gif */,
+				C56F90EA1B7A12CE00EEEBFA /* Cornish Rex.gif */,
+				C56F90DF1B7A110A00EEEBFA /* Norwegian_Forest_Cat.gif */,
+				C56F90E01B7A110A00EEEBFA /* Manx_cat_crouching.gif */,
+				C56F90E21B7A110A00EEEBFA /* American_Curl.gif */,
+				C56F90E31B7A110A00EEEBFA /* Abyssinian.gif */,
+			);
+			name = BodyTypes;
+			sourceTree = "<group>";
+		};
+		C58367281D683145001AFDD3 /* CoolButton */ = {
+			isa = PBXGroup;
+			children = (
+				C58367291D68315A001AFDD3 /* CoolButton.h */,
+				C583672A1D68315A001AFDD3 /* CoolButton.m */,
+			);
+			name = CoolButton;
+			sourceTree = "<group>";
+		};
+		C58D211B1B485AEC008E1B0B /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				C5755F941BC02BD80023F353 /* SwiftyJSON.swift */,
+			);
+			name = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		C58D21281B496DBD008E1B0B /* CMMapLauncher */ = {
+			isa = PBXGroup;
+			children = (
+				C58D21291B496DCE008E1B0B /* CMMapLauncher.h */,
+				C58D212A1B496DCE008E1B0B /* CMMapLauncher.m */,
+			);
+			name = CMMapLauncher;
+			sourceTree = "<group>";
+		};
+		C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = PetFinderContactOptions;
+			sourceTree = "<group>";
+		};
+		C5E4C9CE1B64328A00766717 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
+		C5FB6E921B2132EC007FFA36 = {
+			isa = PBXGroup;
+			children = (
+				C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */,
+				C5FB6EFB1B213C63007FFA36 /* libsqlite3.dylib */,
+				C5FB6E9C1B2132EC007FFA36 /* Products */,
+				C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */,
+				C5FB6EB51B2132ED007FFA36 /* Purrfect4U Tests */,
+				80C215F20C9D4AE4D20D5E97 /* Pods */,
+				E5CA01FAF8C849358B9DE90C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C5FB6E9C1B2132EC007FFA36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
+			isa = PBXGroup;
+			children = (
+				C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */,
+				C58367281D683145001AFDD3 /* CoolButton */,
+				C5471BA51D67AFD200F9A459 /* CoolTable */,
+				C5045DA31B9150E700A6663C /* RSNetworking */,
+				C5C506DC1B83DD1A0092BC00 /* CatFinder.db */,
+				C5511C351B6EB3B600BE8610 /* FLAnimatedImage */,
+				C5511C251B6EAB4400BE8610 /* QuestionGIFs */,
+				C58D212C1B496DFB008E1B0B /* Feline Finder-Bridging-Header.h */,
+				C58D21281B496DBD008E1B0B /* CMMapLauncher */,
+				C58D211B1B485AEC008E1B0B /* SwiftyJSON */,
+				C5DA434B1B35D4A200CF7283 /* Media 13-04-13-713.xcassets */,
+				C5E4C9CE1B64328A00766717 /* Stores */,
+				C5FB6EF51B213557007FFA36 /* Model */,
+				C5FB6EF21B21347D007FFA36 /* fmdb */,
+				C5FB6EC41B21335D007FFA36 /* HTML */,
+				C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */,
+				C58B459D1B2D457600E03538 /* QuestionEntry.swift */,
+				C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */,
+				C58367261D68047A001AFDD3 /* MasterViewTableCell.swift */,
+				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
+				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
+				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				C5933B1A1D6C012A00CFD62E /* Globals.swift */,
+				C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */,
+				C5411D5C1D61858000FFB128 /* InstructionsViewController.swift */,
+				C56F90D91B77966600EEEBFA /* ReselectableSegmentedControl.swift */,
+				C55FC7041D6A9FA000F328F3 /* SavedList2TableCell.swift */,
+				C53BC8A61B52DE0A0033FA7A /* SavedLists2ViewController.swift */,
+				C539DEE31B52786200B631B8 /* SavedListsTableCell.swift */,
+				C539DECF1B51742800B631B8 /* SavedListsViewController.swift */,
+				C539DED71B51C9E300B631B8 /* FavoriteTableCell.swift */,
+				C539DECD1B51740000B631B8 /* FavoritesViewController.swift */,
+				C57F87DF1B4B664400DBA9D6 /* TitleScreenViewController.swift */,
+				C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */,
+				C58D21201B48B0F8008E1B0B /* PetFinderTableCell.swift */,
+				C5943B041D83B56C0088DE4D /* FilterOptionsListTableViewController.swift */,
+				C5943AFC1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift */,
+				C5943B021D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift */,
+				C5943AFE1D825A4C0088DE4D /* FilterOptionsZipCodeCustomCellView.swift */,
+				C5943B001D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift */,
+				C56F90D71B7795C600EEEBFA /* PetFinderFind.swift */,
+				C527B1321B46E11100874272 /* PetFinderViewController.swift */,
+				C58D21241B4902E6008E1B0B /* PetFinderViewDetailController.swift */,
+				C58B45A71B2DB19700E03538 /* BreedStatsViewController.swift */,
+				C5A35E741B3F1469008708E7 /* VCMapView.swift */,
+				C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */,
+				C5FB6E9E1B2132EC007FFA36 /* Supporting Files */,
+			);
+			name = Purrfect4U;
+			path = "Feline Finder";
+			sourceTree = "<group>";
+		};
+		C5FB6E9E1B2132EC007FFA36 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB6E9F1B2132EC007FFA36 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5FB6EB51B2132ED007FFA36 /* Purrfect4U Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB6EB81B2132ED007FFA36 /* Feline_FinderTests.swift */,
+				C5FB6EB61B2132ED007FFA36 /* Supporting Files */,
+			);
+			name = "Purrfect4U Tests";
+			path = "Feline FinderTests";
+			sourceTree = SOURCE_ROOT;
+		};
+		C5FB6EB61B2132ED007FFA36 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C5FB6EB71B2132ED007FFA36 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C5FB6EC41B21335D007FFA36 /* HTML */ = {
+			isa = PBXGroup;
+			children = (
+				C5DD62401D7BF68800CF0880 /* youtube.png */,
+				C51EE1C21D7AD5D000747D8C /* PlayVideo.png */,
+				C51C39021D723EFA008064EC /* share.png */,
+				C5B8F9941D68CC9D002EC03C /* website.png */,
+				C5B8F9961D68CC9D002EC03C /* directions.png */,
+				C5B8F9971D68CC9D002EC03C /* phone.png */,
+				C5B8F9981D68CC9D002EC03C /* email.png */,
+				C54FCA911B83AB6100D9524E /* Tuxedo.html */,
+				C54FCA921B83AB6100D9524E /* Handsome_tuxedo_cat.jpg */,
+				C54FCA931B83AB6100D9524E /* domestic_short-haired_cat.html */,
+				C54FCA981B83AB6100D9524E /* Domestic_short-haired_cat.jpg */,
+				C54FCA941B83AB6100D9524E /* Ragamuffin.html */,
+				C54FCAAA1B83AB9700D9524E /* Ragamuffin.jpg */,
+				C54FCA951B83AB6100D9524E /* PixieBob.html */,
+				C54FCA961B83AB6100D9524E /* Pantanal_Pixie-Bob.jpg */,
+				C54FCA971B83AB6100D9524E /* LaPerm.html */,
+				C54FCAA91B83AB9700D9524E /* LaPerm_tonk.jpg */,
+				C54FCA991B83AB6100D9524E /* domestic_long_hair.html */,
+				C54FCA9A1B83AB6100D9524E /* Imber-MHDomestic_Grey_Cat.jpg */,
+				C54FCA9B1B83AB6100D9524E /* Chausie.html */,
+				C54FCAAF1B83AC7700D9524E /* Chausie_fugao.jpg */,
+				C54FCA9C1B83AB6100D9524E /* Burmillia.html */,
+				C54FCAAB1B83AB9700D9524E /* Female_Burmilla_cat.jpg */,
+				C556BD2F1B81520A0009EB95 /* Snowshoe.html */,
+				C556BD301B81520A0009EB95 /* SnowshoeFace.jpg */,
+				C556BD2B1B814EA50009EB95 /* SelkirkRex.html */,
+				C556BD2C1B814EA50009EB95 /* Selkirk_rex.JPG */,
+				C556BD271B814C780009EB95 /* Nebelung.html */,
+				C556BD281B814C780009EB95 /* Nebelung.jpg */,
+				C556BD231B8149160009EB95 /* Munchkin.html */,
+				C556BD241B8149160009EB95 /* Munchkin_shorthair_300.jpg */,
+				C556BD1F1B8142D70009EB95 /* Bobtail.html */,
+				C556BD201B8142D70009EB95 /* BobtailFull.jpg */,
+				C539DED11B51797300B631B8 /* LikeSelected.jpg */,
+				C539DED21B51797300B631B8 /* LikeUnselected.jpg */,
+				C527B1381B4807F300874272 /* Savannah.html */,
+				C527B1361B48079F00874272 /* Savannah.jpg */,
+				C58B45931B2CCAF300E03538 /* turkish_van.jpg */,
+				C58B458D1B2CC8BF00E03538 /* Tonkinese.JPG */,
+				C58B458B1B2CC79300E03538 /* Turkish_Angora_Cat.jpg */,
+				C58B45841B2CC57800E03538 /* TurkishAngora.html */,
+				C58B45851B2CC57800E03538 /* Turkish Van.png */,
+				C58B45861B2CC57800E03538 /* TurkishVan.html */,
+				C58B45801B2CC54600E03538 /* Tonkinese.html */,
+				C58B457B1B2CC02C00E03538 /* Sphynx_Red.jpg */,
+				C58B457C1B2CC02C00E03538 /* Sphynx.html */,
+				C58B45771B2CBEF500E03538 /* Somali.jpg */,
+				C58B45781B2CBEF500E03538 /* Somali.html */,
+				C58B45731B2CBCF300E03538 /* Kero_-_singapura_-_cropped.jpg */,
+				C58B45741B2CBCF300E03538 /* Singapura.html */,
+				C58B456F1B2C990700E03538 /* Murmur's_Siberian_Cat_siberiano_golden.jpg */,
+				C58B45701B2C990700E03538 /* Siberian.html */,
+				C58B456B1B2C96E500E03538 /* Qwill_Siamese_cat.jpg */,
+				C58B456C1B2C96E500E03538 /* Siamese.html */,
+				C55126721B25048E007D8CDF /* ScottishFold.html */,
+				C55126731B25048E007D8CDF /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg */,
+				C551266E1B2502C8007D8CDF /* Russian_Blue.jpg */,
+				C551266F1B2502C8007D8CDF /* RussianBlue.html */,
+				C551266A1B250112007D8CDF /* Ragdoll.jpg */,
+				C551266B1B250112007D8CDF /* Ragdoll.html */,
+				C55126661B24FF82007D8CDF /* Persian_Cat_3_UK.jpg */,
+				C55126671B24FF82007D8CDF /* Persian.html */,
+				C55126621B24FD85007D8CDF /* Oriental_Shorthair_cat_Brandi.jpg */,
+				C55126631B24FD85007D8CDF /* Oriental.html */,
+				C551265E1B24FBF7007D8CDF /* Ocicat-Charan.jpg */,
+				C551265F1B24FBF7007D8CDF /* Ocicat.html */,
+				C551265A1B24F9F7007D8CDF /* NorwegianForestCat.html */,
+				C551265B1B24F9F7007D8CDF /* Norwegian_Forest_Cat.jpg */,
+				C55126561B24EEFD007D8CDF /* Manx_cat_crouching.jpg */,
+				C55126571B24EEFD007D8CDF /* Manx.html */,
+				C55126541B24EBA0007D8CDF /* MainCoon.html */,
+				C55126501B24EB66007D8CDF /* Main Coon.jpg */,
+				C551264C1B24E978007D8CDF /* Korat.html */,
+				C551264D1B24E978007D8CDF /* Korat.JPG */,
+				C55126481B24E759007D8CDF /* Javanese.jpg */,
+				C55126491B24E759007D8CDF /* Javanese.html */,
+				C55126441B24E3E4007D8CDF /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg */,
+				C55126451B24E3E4007D8CDF /* JapaneseBobtail.html */,
+				C55126401B24E290007D8CDF /* Himalayan.html */,
+				C55126411B24E290007D8CDF /* Himlayan.jpg */,
+				C551263C1B24DE35007D8CDF /* Havana_Brown_-_choco.jpg */,
+				C551263D1B24DE35007D8CDF /* HavanaBrown.html */,
+				C55126381B24DAE3007D8CDF /* Egyptain Mau.jpg */,
+				C55126391B24DAE3007D8CDF /* EgyptianMau.html */,
+				C55126341B24D690007D8CDF /* Exotic_Shorthair.jpg */,
+				C55126351B24D690007D8CDF /* ExoticShorthair.html */,
+				C55126321B24CAE5007D8CDF /* DevonRex.html */,
+				C551262F1B24CA20007D8CDF /* DevonRex.png */,
+				C551262A1B24C5EA007D8CDF /* Cymric_Fond_Blanc.jpg */,
+				C551262B1B24C5EA007D8CDF /* Cymric.html */,
+				C55126281B227D32007D8CDF /* CornishRex.html */,
+				C55126251B227C4D007D8CDF /* Cornish Rex.jpg */,
+				C55126201B227A7B007D8CDF /* Chartreux.html */,
+				C55126211B227A7B007D8CDF /* Chat Chartreux.JPG */,
+				C551261C1B22780D007D8CDF /* Burmese.html */,
+				C551261D1B22780D007D8CDF /* Burmese_chocolate_cat.jpg */,
+				C55126161B227396007D8CDF /* British_Shorthair_Assis.jpg */,
+				C55126101B22710A007D8CDF /* Bombay_femelle.jpg */,
+				C55126111B22710A007D8CDF /* Bombay.html */,
+				C551260E1B226F13007D8CDF /* Birman.html */,
+				C5FB6EC51B21337C007FFA36 /* American_Shorthair.jpg */,
+				C551261A1B22749D007D8CDF /* BritishShorthair.html */,
+				C5FB6F061B2268CC007FFA36 /* AmericanCurl.html */,
+				C5FB6EC61B21337C007FFA36 /* AmericanShortHair.html */,
+				C5FB6EC71B21337C007FFA36 /* AmericanWireHair.html */,
+				C5FB6EC81B21337C007FFA36 /* American_Wirehair.JPG */,
+				C5FB6EC91B21337C007FFA36 /* Balinese.html */,
+				C5FB6ECA1B21337C007FFA36 /* Balinese-cat-1.jpg */,
+				C5FB6ECB1B21337C007FFA36 /* Bengal.html */,
+				C5FB6ECC1B21337C007FFA36 /* Bengal.jpg */,
+				C5FB6ECD1B21337C007FFA36 /* Birman.jpg */,
+				C5FB6ECF1B21337C007FFA36 /* American_Curl.jpg */,
+				C5FB6ED11B21337C007FFA36 /* Abyssinian.jpg */,
+				C5FB6ED21B21337C007FFA36 /* Abyssinian.html */,
+			);
+			name = HTML;
+			sourceTree = "<group>";
+		};
+		C5FB6EF21B21347D007FFA36 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				C527B1341B46E7DA00874272 /* string extensions.swift */,
+				C5FB6EE11B213473007FFA36 /* Feline Finder-Bridging-Header.h */,
+				C5FB6EE21B213474007FFA36 /* FMDB.h */,
+				C5FB6EE31B213474007FFA36 /* FMDatabase.h */,
+				C5FB6EE41B213474007FFA36 /* FMDatabase.m */,
+				C5FB6EE51B213474007FFA36 /* FMResultSet.h */,
+				C5FB6EE61B213474007FFA36 /* FMResultSet.m */,
+				C5FB6EE71B213474007FFA36 /* FMDatabaseQueue.h */,
+				C5FB6EE81B213474007FFA36 /* FMDatabaseQueue.m */,
+				C5FB6EE91B213474007FFA36 /* FMDatabaseAdditions.h */,
+				C5FB6EEA1B213474007FFA36 /* FMDatabaseAdditions.m */,
+				C5FB6EEB1B213474007FFA36 /* FMDatabasePool.h */,
+				C5FB6EEC1B213474007FFA36 /* FMDatabasePool.m */,
+			);
+			name = fmdb;
+			sourceTree = "<group>";
+		};
+		C5FB6EF51B213557007FFA36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5A159271B8A51CB00517915 /* DatabaseManager.swift */,
+				C5FB6EF61B213567007FFA36 /* BreedList.swift */,
+				C58B45971B2D189A00E03538 /* Questions.swift */,
+				C539DEDF1B52486900B631B8 /* SavedSearches.swift */,
+				C58B45A91B2DE4D000E03538 /* BreedStats.swift */,
+				C5DA433E1B33ADAF00CF7283 /* Breeders.m */,
+				C5DA43441B343A8A00CF7283 /* Breeders.h */,
+				C58D211A1B48528B008E1B0B /* PetFinderConsts.h */,
+				C5A159291B8AB37500517915 /* Favorites.swift */,
+				C5045DB01B9155C200A6663C /* Utilities.swift */,
+				C56DA7361D78F9DB00524E53 /* FelineFinderBasePets.swift */,
+				C58D21171B4849F2008E1B0B /* PetFinderPetsAPI.swift */,
+				C56DA73A1D790AD000524E53 /* RescuePetsAPI.swift */,
+				C56DA7381D79046500524E53 /* FelineFinderBaseSheltersAPI.swift */,
+				C58D21261B4918C7008E1B0B /* PetFinderSheltersAPI.swift */,
+				C56DA73C1D790B0F00524E53 /* RescueSheltersAPI.swift */,
+				C5943AFA1D8248280088DE4D /* FilteringOptions.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		E5CA01FAF8C849358B9DE90C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6EC26284065956E851429474 /* Pods_Feline_Finder.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C5FB6E9A1B2132EC007FFA36 /* Feline Finder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5FB6EBC1B2132ED007FFA36 /* Build configuration list for PBXNativeTarget "Feline Finder" */;
+			buildPhases = (
+				F5E33BEEA79C54CB2E3A0AAB /* [CP] Check Pods Manifest.lock */,
+				C5FB6E971B2132EC007FFA36 /* Sources */,
+				C5FB6E981B2132EC007FFA36 /* Frameworks */,
+				C5FB6E991B2132EC007FFA36 /* Resources */,
+				54E975B75D87E5CB1CC01029 /* [CP] Embed Pods Frameworks */,
+				AA93898996772BAF8552F225 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Feline Finder";
+			productName = "Feline Finder";
+			productReference = C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C5FB6E931B2132EC007FFA36 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Gregory Williams";
+				TargetAttributes = {
+					C5FB6E9A1B2132EC007FFA36 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = BVC6BMPCPP;
+					};
+				};
+			};
+			buildConfigurationList = C5FB6E961B2132EC007FFA36 /* Build configuration list for PBXProject "Feline Finder" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C5FB6E921B2132EC007FFA36;
+			productRefGroup = C5FB6E9C1B2132EC007FFA36 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C5FB6E9A1B2132EC007FFA36 /* Feline Finder */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C5FB6E991B2132EC007FFA36 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C58B457E1B2CC02C00E03538 /* Sphynx.html in Resources */,
+				C56F90CD1B766A4A00EEEBFA /* welcome_cat_7.png in Resources */,
+				C5FB6ED71B21337C007FFA36 /* Balinese.html in Resources */,
+				C556BD181B8011F70009EB95 /* Birman.gif in Resources */,
+				C56F90ED1B7A152B00EEEBFA /* Chat_Chartreux.gif in Resources */,
+				C539DED31B51797300B631B8 /* LikeSelected.jpg in Resources */,
+				C551264B1B24E759007D8CDF /* Javanese.html in Resources */,
+				C5FB6EDA1B21337C007FFA36 /* Bengal.jpg in Resources */,
+				C55126121B22710A007D8CDF /* Bombay_femelle.jpg in Resources */,
+				C55126551B24EBA0007D8CDF /* MainCoon.html in Resources */,
+				C58B45891B2CC57800E03538 /* Turkish Van.png in Resources */,
+				C5471BB41D67B01400F9A459 /* main_bg.jpg in Resources */,
+				C58B45941B2CCAF300E03538 /* turkish_van.jpg in Resources */,
+				C56F90E41B7A110A00EEEBFA /* Norwegian_Forest_Cat.gif in Resources */,
+				C56F90D51B7675CE00EEEBFA /* welcome_cat_9.png in Resources */,
+				C556BD161B8011E40009EB95 /* DevonRex.gif in Resources */,
+				C58B457D1B2CC02C00E03538 /* Sphynx_Red.jpg in Resources */,
+				C5511C501B6EB73A00BE8610 /* petting.gif in Resources */,
+				C56F90EB1B7A12CE00EEEBFA /* Cornish Rex.gif in Resources */,
+				C55126371B24D690007D8CDF /* ExoticShorthair.html in Resources */,
+				C5511C521B6EB73A00BE8610 /* Thinking.gif in Resources */,
+				C55126521B24EB66007D8CDF /* Main Coon.jpg in Resources */,
+				C556BD2D1B814EA50009EB95 /* SelkirkRex.html in Resources */,
+				C5B8F99D1D68CC9D002EC03C /* email.png in Resources */,
+				C5471BC31D67B07D00F9A459 /* Default-568h@2x.png in Resources */,
+				C54FCAA51B83AB6100D9524E /* domestic_long_hair.html in Resources */,
+				C55126681B24FF82007D8CDF /* Persian_Cat_3_UK.jpg in Resources */,
+				C5511C4F1B6EB73A00BE8610 /* grooming.gif in Resources */,
+				C58B456D1B2C96E500E03538 /* Qwill_Siamese_cat.jpg in Resources */,
+				C556BD1C1B80122A0009EB95 /* Savannah.gif in Resources */,
+				C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */,
+				C55126741B25048E007D8CDF /* ScottishFold.html in Resources */,
+				C556BD251B8149160009EB95 /* Munchkin.html in Resources */,
+				C551265C1B24F9F7007D8CDF /* NorwegianForestCat.html in Resources */,
+				C55126701B2502C8007D8CDF /* Russian_Blue.jpg in Resources */,
+				C56F90C81B766A4A00EEEBFA /* welcome_cat_2.png in Resources */,
+				C55126231B227A7B007D8CDF /* Chat Chartreux.JPG in Resources */,
+				C556BD2E1B814EA50009EB95 /* Selkirk_rex.JPG in Resources */,
+				C54FCAA41B83AB6100D9524E /* Domestic_short-haired_cat.jpg in Resources */,
+				C5FB6EA81B2132EC007FFA36 /* Main.storyboard in Resources */,
+				C556BD291B814C780009EB95 /* Nebelung.html in Resources */,
+				C54FCAA61B83AB6100D9524E /* Imber-MHDomestic_Grey_Cat.jpg in Resources */,
+				C551265D1B24F9F7007D8CDF /* Norwegian_Forest_Cat.jpg in Resources */,
+				C551264F1B24E978007D8CDF /* Korat.JPG in Resources */,
+				C5FB6ED41B21337C007FFA36 /* AmericanShortHair.html in Resources */,
+				C5FB6F071B2268CC007FFA36 /* AmericanCurl.html in Resources */,
+				C55126581B24EEFD007D8CDF /* Manx_cat_crouching.jpg in Resources */,
+				C55126691B24FF82007D8CDF /* Persian.html in Resources */,
+				C5B8F99B1D68CC9D002EC03C /* directions.png in Resources */,
+				C551263E1B24DE35007D8CDF /* Havana_Brown_-_choco.jpg in Resources */,
+				C58B45711B2C990700E03538 /* Murmur's_Siberian_Cat_siberiano_golden.jpg in Resources */,
+				C54FCA9D1B83AB6100D9524E /* Tuxedo.html in Resources */,
+				C54FCAA31B83AB6100D9524E /* LaPerm.html in Resources */,
+				C54FCAAC1B83AB9700D9524E /* LaPerm_tonk.jpg in Resources */,
+				C551261E1B22780D007D8CDF /* Burmese.html in Resources */,
+				C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */,
+				C56F90E51B7A110A00EEEBFA /* Manx_cat_crouching.gif in Resources */,
+				C54FCAA01B83AB6100D9524E /* Ragamuffin.html in Resources */,
+				C551264A1B24E759007D8CDF /* Javanese.jpg in Resources */,
+				C58B458E1B2CC8BF00E03538 /* Tonkinese.JPG in Resources */,
+				C56F90EF1B7A179400EEEBFA /* Unknown.gif in Resources */,
+				C5511C4D1B6EB73A00BE8610 /* good_with_pets.gif in Resources */,
+				C5FB6EDD1B21337C007FFA36 /* American_Curl.jpg in Resources */,
+				C54FCAA81B83AB6100D9524E /* Burmillia.html in Resources */,
+				C55126311B24CA20007D8CDF /* DevonRex.png in Resources */,
+				C56F90CB1B766A4A00EEEBFA /* welcome_cat_5.png in Resources */,
+				C54FCAAE1B83AB9700D9524E /* Female_Burmilla_cat.jpg in Resources */,
+				C51C39031D723EFA008064EC /* share.png in Resources */,
+				C58B45821B2CC54600E03538 /* Tonkinese.html in Resources */,
+				C55126611B24FBF7007D8CDF /* Ocicat.html in Resources */,
+				C56F90D41B7675CE00EEEBFA /* welcome_cat_8.png in Resources */,
+				C5FB6EDF1B21337C007FFA36 /* Abyssinian.jpg in Resources */,
+				C556BD2A1B814C780009EB95 /* Nebelung.jpg in Resources */,
+				C58B45721B2C990700E03538 /* Siberian.html in Resources */,
+				C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */,
+				C56F90D61B7675CE00EEEBFA /* welcome_cat_10.png in Resources */,
+				C58B458A1B2CC57800E03538 /* TurkishVan.html in Resources */,
+				C556BD311B81520A0009EB95 /* Snowshoe.html in Resources */,
+				C55126421B24E290007D8CDF /* Himalayan.html in Resources */,
+				C55126291B227D32007D8CDF /* CornishRex.html in Resources */,
+				C55126711B2502C8007D8CDF /* RussianBlue.html in Resources */,
+				C556BD261B8149160009EB95 /* Munchkin_shorthair_300.jpg in Resources */,
+				C5B8F9991D68CC9D002EC03C /* website.png in Resources */,
+				C551261B1B22749D007D8CDF /* BritishShorthair.html in Resources */,
+				C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */,
+				C551261F1B22780D007D8CDF /* Burmese_chocolate_cat.jpg in Resources */,
+				C551263A1B24DAE3007D8CDF /* Egyptain Mau.jpg in Resources */,
+				C58B458C1B2CC79400E03538 /* Turkish_Angora_Cat.jpg in Resources */,
+				C5DA434C1B35D4A200CF7283 /* Media 13-04-13-713.xcassets in Resources */,
+				C551263F1B24DE35007D8CDF /* HavanaBrown.html in Resources */,
+				C5FB6ED91B21337C007FFA36 /* Bengal.html in Resources */,
+				C55126591B24EEFD007D8CDF /* Manx.html in Resources */,
+				C55126431B24E290007D8CDF /* Himlayan.jpg in Resources */,
+				C55126461B24E3E4007D8CDF /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg in Resources */,
+				C551264E1B24E978007D8CDF /* Korat.html in Resources */,
+				C54FCAA71B83AB6100D9524E /* Chausie.html in Resources */,
+				C54FCAA21B83AB6100D9524E /* Pantanal_Pixie-Bob.jpg in Resources */,
+				C5FB6EDB1B21337C007FFA36 /* Birman.jpg in Resources */,
+				C55126361B24D690007D8CDF /* Exotic_Shorthair.jpg in Resources */,
+				C55126131B22710A007D8CDF /* Bombay.html in Resources */,
+				C54FCA9E1B83AB6100D9524E /* Handsome_tuxedo_cat.jpg in Resources */,
+				C5FB6ED51B21337C007FFA36 /* AmericanWireHair.html in Resources */,
+				C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */,
+				C5FB6ED61B21337C007FFA36 /* American_Wirehair.JPG in Resources */,
+				C556BD1E1B8015940009EB95 /* Persian.gif in Resources */,
+				C527B1371B48079F00874272 /* Savannah.jpg in Resources */,
+				C551260F1B226F13007D8CDF /* Birman.html in Resources */,
+				C54FCAAD1B83AB9700D9524E /* Ragamuffin.jpg in Resources */,
+				C54FCAB01B83AC7700D9524E /* Chausie_fugao.jpg in Resources */,
+				C5FB6EE01B21337C007FFA36 /* Abyssinian.html in Resources */,
+				C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */,
+				C55126751B25048E007D8CDF /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg in Resources */,
+				C58B457A1B2CBEF500E03538 /* Somali.html in Resources */,
+				C55126171B227396007D8CDF /* British_Shorthair_Assis.jpg in Resources */,
+				C5511C481B6EB73A00BE8610 /* attachment_to_people.gif in Resources */,
+				C56F90C91B766A4A00EEEBFA /* welcome_cat_3.png in Resources */,
+				C551263B1B24DAE3007D8CDF /* EgyptianMau.html in Resources */,
+				C5EE07E11D62302400EFAC2C /* Default-568h@2x.png in Resources */,
+				C58B45751B2CBCF300E03538 /* Kero_-_singapura_-_cropped.jpg in Resources */,
+				C5FB6ED31B21337C007FFA36 /* American_Shorthair.jpg in Resources */,
+				C5471BC11D67B07D00F9A459 /* Default.png in Resources */,
+				C54FCAA11B83AB6100D9524E /* PixieBob.html in Resources */,
+				C55126271B227C4D007D8CDF /* Cornish Rex.jpg in Resources */,
+				C5B8F99C1D68CC9D002EC03C /* phone.png in Resources */,
+				C5DD62411D7BF68800CF0880 /* youtube.png in Resources */,
+				C551266D1B250112007D8CDF /* Ragdoll.html in Resources */,
+				C556BD321B81520A0009EB95 /* SnowshoeFace.jpg in Resources */,
+				C58B45881B2CC57800E03538 /* TurkishAngora.html in Resources */,
+				C56F90E71B7A110A00EEEBFA /* American_Curl.gif in Resources */,
+				C527B1391B4807F300874272 /* Savannah.html in Resources */,
+				C58B456E1B2C96E500E03538 /* Siamese.html in Resources */,
+				C56F90CC1B766A4A00EEEBFA /* welcome_cat_6.png in Resources */,
+				C55126651B24FD85007D8CDF /* Oriental.html in Resources */,
+				C56F90CA1B766A4A00EEEBFA /* welcome_cat_4.png in Resources */,
+				C556BD141B8011C60009EB95 /* Sphynx_Red.gif in Resources */,
+				C551262D1B24C5EA007D8CDF /* Cymric.html in Resources */,
+				C56F90BB1B765E2300EEEBFA /* welcome_cat.gif in Resources */,
+				C55126331B24CAE5007D8CDF /* DevonRex.html in Resources */,
+				C55126471B24E3E4007D8CDF /* JapaneseBobtail.html in Resources */,
+				C539DED41B51797300B631B8 /* LikeUnselected.jpg in Resources */,
+				C56F90C71B766A4A00EEEBFA /* welcome_cat_1.png in Resources */,
+				C56F90E81B7A110A00EEEBFA /* Abyssinian.gif in Resources */,
+				C556BD211B8142D70009EB95 /* Bobtail.html in Resources */,
+				C551262C1B24C5EA007D8CDF /* Cymric_Fond_Blanc.jpg in Resources */,
+				C55126641B24FD85007D8CDF /* Oriental_Shorthair_cat_Brandi.jpg in Resources */,
+				C55126221B227A7B007D8CDF /* Chartreux.html in Resources */,
+				C51EE1C31D7AD5D000747D8C /* PlayVideo.png in Resources */,
+				C5511C4C1B6EB73A00BE8610 /* Fun_Loving.gif in Resources */,
+				C55126601B24FBF7007D8CDF /* Ocicat-Charan.jpg in Resources */,
+				C54FCA9F1B83AB6100D9524E /* domestic_short-haired_cat.html in Resources */,
+				C58B45761B2CBCF300E03538 /* Singapura.html in Resources */,
+				C551266C1B250112007D8CDF /* Ragdoll.jpg in Resources */,
+				C5511C4B1B6EB73A00BE8610 /* fitness.gif in Resources */,
+				C5FB6ED81B21337C007FFA36 /* Balinese-cat-1.jpg in Resources */,
+				C5471BC21D67B07D00F9A459 /* Default@2x.png in Resources */,
+				C58B45791B2CBEF500E03538 /* Somali.jpg in Resources */,
+				C556BD221B8142D70009EB95 /* BobtailFull.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		54E975B75D87E5CB1CC01029 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA93898996772BAF8552F225 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5E33BEEA79C54CB2E3A0AAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C5FB6E971B2132EC007FFA36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */,
+				C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */,
+				C5755F9F1BC02CB30023F353 /* RSUtilities.swift in Sources */,
+				C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */,
+				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
+				C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */,
+				C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */,
+				C58D212B1B496DCE008E1B0B /* CMMapLauncher.m in Sources */,
+				C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */,
+				C5471BB51D67B01400F9A459 /* CustomFooter.m in Sources */,
+				C5471BBA1D67B01400F9A459 /* CustomCellBackground.m in Sources */,
+				C5943AFB1D8248280088DE4D /* FilteringOptions.swift in Sources */,
+				C5045DB11B9155C200A6663C /* Utilities.swift in Sources */,
+				C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */,
+				C5943AFD1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift in Sources */,
+				C58B45A81B2DB19700E03538 /* BreedStatsViewController.swift in Sources */,
+				C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */,
+				C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */,
+				C539DED81B51C9E300B631B8 /* FavoriteTableCell.swift in Sources */,
+				C5511C3B1B6EB3F400BE8610 /* FLAnimatedImageView.m in Sources */,
+				C5755FA11BC02CB30023F353 /* UIImageView+RSNetworking.swift in Sources */,
+				C5A1592A1B8AB37500517915 /* Favorites.swift in Sources */,
+				C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */,
+				C5755F9C1BC02CB30023F353 /* RSTransaction.swift in Sources */,
+				C58B45981B2D189A00E03538 /* Questions.swift in Sources */,
+				C5943AFF1D825A4C0088DE4D /* FilterOptionsZipCodeCustomCellView.swift in Sources */,
+				C583672B1D68315A001AFDD3 /* CoolButton.m in Sources */,
+				C58B45AA1B2DE4D000E03538 /* BreedStats.swift in Sources */,
+				C58D21251B4902E6008E1B0B /* PetFinderViewDetailController.swift in Sources */,
+				C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */,
+				C539DEE41B52786200B631B8 /* SavedListsTableCell.swift in Sources */,
+				C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */,
+				C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */,
+				C5FB6EED1B213474007FFA36 /* FMDatabase.m in Sources */,
+				C56F90D81B7795C600EEEBFA /* PetFinderFind.swift in Sources */,
+				C5FB6EEE1B213474007FFA36 /* FMResultSet.m in Sources */,
+				C55FC7051D6A9FA000F328F3 /* SavedList2TableCell.swift in Sources */,
+				C5943B031D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift in Sources */,
+				C5FB6EF11B213474007FFA36 /* FMDatabasePool.m in Sources */,
+				C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */,
+				C5943B011D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift in Sources */,
+				C56DA7371D78F9DB00524E53 /* FelineFinderBasePets.swift in Sources */,
+				C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */,
+				C58D21271B4918C7008E1B0B /* PetFinderSheltersAPI.swift in Sources */,
+				C5471BB71D67B01400F9A459 /* Common.m in Sources */,
+				C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */,
+				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,
+				C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */,
+				C5933B1B1D6C012A00CFD62E /* Globals.swift in Sources */,
+				C53BC8A71B52DE0A0033FA7A /* SavedLists2ViewController.swift in Sources */,
+				C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */,
+				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
+				C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */,
+				C58D21211B48B0F8008E1B0B /* PetFinderTableCell.swift in Sources */,
+				C56F90DA1B77966600EEEBFA /* ReselectableSegmentedControl.swift in Sources */,
+				C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */,
+				C5755FA01BC02CB30023F353 /* UIButton+RSNetworking.swift in Sources */,
+				C5471BB81D67B01400F9A459 /* CoolTableViewController.m in Sources */,
+				C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */,
+				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
+				C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */,
+				C56DA73B1D790AD000524E53 /* RescuePetsAPI.swift in Sources */,
+				C58B459E1B2D457600E03538 /* QuestionEntry.swift in Sources */,
+				C5FB6EEF1B213474007FFA36 /* FMDatabaseQueue.m in Sources */,
+				C527B1351B46E7DA00874272 /* string extensions.swift in Sources */,
+				C5411D5D1D61858000FFB128 /* InstructionsViewController.swift in Sources */,
+				C527B1331B46E11100874272 /* PetFinderViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C5FB6EA61B2132EC007FFA36 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C5FB6EA71B2132EC007FFA36 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C5FB6EBA1B2132ED007FFA36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C5FB6EBB1B2132ED007FFA36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C5FB6EBD1B2132ED007FFA36 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3B865EA89799CB466AD57B2 /* Pods-Feline Finder.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
+				INFOPLIST_FILE = "Feline Finder/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
+				PRODUCT_NAME = "Feline Finder";
+				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
+				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C5FB6EBE1B2132ED007FFA36 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6FA54B67E102A95B0571784 /* Pods-Feline Finder.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
+				INFOPLIST_FILE = "Feline Finder/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
+				PRODUCT_NAME = "Feline Finder";
+				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C5FB6E961B2132EC007FFA36 /* Build configuration list for PBXProject "Feline Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5FB6EBA1B2132ED007FFA36 /* Debug */,
+				C5FB6EBB1B2132ED007FFA36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5FB6EBC1B2132ED007FFA36 /* Build configuration list for PBXNativeTarget "Feline Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5FB6EBD1B2132ED007FFA36 /* Debug */,
+				C5FB6EBE1B2132ED007FFA36 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C5FB6E931B2132EC007FFA36 /* Project object */;
+}
