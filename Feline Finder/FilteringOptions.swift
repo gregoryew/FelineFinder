@@ -60,7 +60,11 @@ class filterOption {
             if display != "" {
                 display = display.chopSuffix(2)
             } else {
-                display = "Any"
+                if classification == .saves {
+                    display = "None"
+                } else {
+                    display = "Any"
+                }
             }
         } else {
             if choosenValue != -1 {
@@ -82,16 +86,73 @@ enum catClassification: Int {
     case compatibility
     case personality
     case physical
+    case breed
+    case saves
 }
 
 class filterOptionsList {
+    var savesOption: filterOption?
+    var saves: [(displayName: String?, search: String?, value: Int?)] = []
+    var breedOption: filterOption?
+    var notBreedOption: filterOption?
+    var breedChoices: [(displayName: String?, search: String?, value: Int?)] = []
     var filteringOptions: [filterOption] = []
     var adminList: [filterOption] = []
     var compatibilityList: [filterOption] = []
     var personalityList: [filterOption] = []
     var physicalList: [filterOption] = []
-    func load() {
+    func load(tv: UITableView) {
         if filteringOptions.count > 0 {return}
+
+        var saveList: [(FilterID: Int, FilterName: String)] = []
+        DatabaseManager.sharedInstance.fetchFilterOptions() { (filterNames) -> Void in
+            saveList = filterNames
+            var i = 0
+            for s in saveList {
+                self.saves.append((displayName: s.FilterName, search: String(s.FilterID), value: i))
+                i += 1
+            }
+            self.filteringOptions.append(filterOption(n: "Saved Searches", f: "", d: false, c:.saves, l: true, o: self.saves))
+            
+            self.classify()
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                tv.reloadData()
+            })
+        }
+        
+        //breed
+        var breedsList: Dictionary<String, [Breed]> = [:]
+        DatabaseManager.sharedInstance.fetchBreeds(false) { (breeds) -> Void in
+            breedsList = breeds
+            var i = 0
+            let titles: [String] = breedsList.keys.sort{$0 < $1}
+            for t in titles {
+                var data = breedsList[t]
+                var j = 0
+                while j < data!.count {
+                    let b = data![j]
+                    self.breedChoices.append((displayName: b.BreedName, search: String(b.RescueBreedID), value: i))
+                    i += 1
+                    j += 1
+                }
+            }
+            
+            self.breedChoices.append((displayName: "Any", search: "0", value: self.breedChoices.count))
+            
+            self.filteringOptions.append(filterOption(n: "Breed", f: "animalPrimaryBreedID", d: false, c:.breed, l: true, o: self.breedChoices))
+            
+            self.filteringOptions.append(filterOption(n: "Not These", f: "animalPrimaryBreedID", d: false, c:.breed, l: true, o: self.breedChoices))
+            
+            self.classify()
+
+            dispatch_async(dispatch_get_main_queue(), {
+                tv.reloadData()
+            })
+            
+        }
+        
+        
         //admin
         filteringOptions.append(filterOption(n: "Adoption pending", f: "animalAdoptionPending", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
         filteringOptions.append(filterOption(n: "Courtesy", f: "animalCourtesy", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
@@ -116,7 +177,7 @@ class filterOptionsList {
         filteringOptions.append(filterOption(n: "Seniors", f: "animalOKForSeniors", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Adults", f: "animalOKWithAdults", d: false, c: .compatibility, o: [(displayName: "All", search: "All", value: 0),(displayName: "Men Only", search: "Men Only", value: 1),(displayName: "Women Only", search: "Women Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Farm Animals", f: "animalOKWithFarmAnimals", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "OK with kids", f: "animalOKWithKids", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 0),(displayName: "Any", search: "Any", value: 1)]))
+        filteringOptions.append(filterOption(n: "OK with kids", f: "animalOKWithKids", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
         filteringOptions.append(filterOption(n: "Older kids only", f: "animalOlderKidsOnly", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Owner experience needed", f: "animalOwnerExperience", d: false, c: .compatibility, o: [(displayName: "None", search: "None", value: 0),(displayName: "Species", search: "Species", value: 1),(displayName: "Breed", search: "Breed", value: 2),(displayName: "Any", search: "Any", value: 3)]))
         
@@ -182,6 +243,16 @@ class filterOptionsList {
         physicalList = []
         for o in filteringOptions {
             switch o.classification {
+            case .breed:
+                if o.name == "Breed" {
+                    breedOption = o
+                } else {
+                    notBreedOption = o
+                }
+                break
+            case .saves:
+                savesOption = o
+                break
             case .admin:
                 adminList.append(o)
                 break
@@ -203,6 +274,7 @@ class filterOptionsList {
     func getFilters() -> [filter] {
         var filters: [filter] = []
         for o in filteringOptions {
+            if o.classification == .saves {continue}
             if o.list == true {
                 var choosenValues: [String] = []
                 for c in o.choosenListValues {
@@ -214,7 +286,11 @@ class filterOptionsList {
                         i += 1
                     }
                 }
-                if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName!, "operation": "equals", "criteria": choosenValues])}
+                if o.name == "Not These" { //Breeds to filter out
+                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName!, "operation": "notequals", "criteria": choosenValues])}
+                } else {
+                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName!, "operation": "equals", "criteria": choosenValues])}
+                }
             } else {
                 if o.choosenValue != o.options.count - 1 && o.choosenValue != -1 {
                     for opt in o.options {
@@ -228,8 +304,14 @@ class filterOptionsList {
         return filters
     }
     
-    func storeFilters() {
-        
+    func storeFilters(saveID: Int, saveName: String) {
+        DatabaseManager.sharedInstance.saveFilterOptions(saveID, name: saveName, filterOptions: self)
+    }
+    
+    func retrieveSavedFilterValues(savedID: Int, filterOptions: filterOptionsList, choosenListValues: [Int]) {
+        DatabaseManager.sharedInstance.fetchFFilterOptions(savedID, filterOptions: filterOptions, completion: {(filterOption) -> Void in filterOptions.filteringOptions = filterOption
+            filterOptions.filteringOptions[0].choosenListValues = choosenListValues
+            })
     }
     
     func displayFilter() -> String {
@@ -244,7 +326,7 @@ class filterOptionsList {
                         } else {
                             display += " ● " + opt.search!
                         }
-                    } else if opt.value! == o.choosenValue && !o.display! {
+                    } else if opt.value! == o.choosenValue && !o.display! && o.classification != .saves {
                         showOptions = true
                     }
                 }

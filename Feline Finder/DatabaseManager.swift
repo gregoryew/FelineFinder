@@ -571,4 +571,103 @@ class DatabaseManager {
             completion(favorites: favoritesDict, keys: keysArray)
         }
     }
+    
+    func fetchFilterOptions(completion: (filterNames: [(FilterID: Int, FilterName: String)]) -> Void) {
+        
+        var filterNames: [(FilterID: Int, FilterName: String)] = []
+        
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase!) -> Void in
+            
+            let querySQL = "SELECT FilterNameID, Name FROM PetListFilter"
+            
+            if let results = db.executeQuery(querySQL, withArgumentsInArray: []) {
+                while results.next() == true {
+                    let FilterNameID = results.intForColumn("FilterNameID")
+                    let FilterName = results.stringForColumn("Name")
+                    filterNames.append((FilterID: Int(FilterNameID), FilterName: FilterName))
+                }
+                results.close()
+            } else {
+                self.presentDBErrorMessage(db.lastErrorMessage())
+            }
+            completion(filterNames: filterNames)
+        }
+    }
+    
+    func fetchFFilterOptions(filterID: Int, filterOptions: filterOptionsList, completion: (filterOptions: [filterOption]) -> Void) {
+        
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase!) -> Void in
+            
+            let querySQL = "SELECT FilterName, FilterValue FROM PetListFilterDetails where NameID = ?"
+            
+            for o in filterOptions.filteringOptions {
+                o.choosenValue = o.optionsArray().count - 1
+                o.choosenListValues = []
+            }
+            
+            if let results = db.executeQuery(querySQL, withArgumentsInArray: [filterID]) {
+                
+                while results.next() == true {
+                    let FilterName = results.stringForColumn("FilterName")
+                    let FilterValue = results.stringForColumn("FilterValue")
+                    print("\(FilterName)=\(FilterValue)")
+                    for o in filterOptions.filteringOptions {
+                        if o.name == FilterName {
+                            if o.list == true {
+                                if FilterValue != "" {
+                                    o.choosenListValues = FilterValue.componentsSeparatedByString(",").map{Int($0)!}
+                                    print(o.choosenListValues)
+                                } else {
+                                    o.choosenListValues = []
+                                }
+                                break
+                            } else {
+                                o.choosenValue = Int(FilterValue)
+                                print(o.choosenValue)
+                                break
+                            }
+                        }
+                    }
+                }
+                results.close()
+                completion(filterOptions: filterOptions.filteringOptions)
+            } else {
+                self.presentDBErrorMessage(db.lastErrorMessage())
+            }
+        }
+    }
+    
+    func saveFilterOptions(oldNameID: Int, name: String, filterOptions: filterOptionsList) -> Void {
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase!) -> Void in
+            if oldNameID != 0 {
+                if (!db.executeUpdate("DELETE FROM PetListFilterDetails WHERE FilterID = ?", withArgumentsInArray: [oldNameID])){
+                    self.presentDBErrorMessage(db.lastErrorMessage())
+                }
+                if (!db.executeUpdate("DELETE FROM PetListFilter WHERE FilterNameID = ?", withArgumentsInArray: [oldNameID])) {
+                    self.presentDBErrorMessage(db.lastErrorMessage())
+                }
+            }
+            if (!db.executeUpdate("INSERT INTO PetListFilter (Name) VALUES (?)", withArgumentsInArray: [name])) {
+                self.presentDBErrorMessage(db.lastErrorMessage())
+            }
+            if let results = db.executeQuery("SELECT MAX(FilterNameID) MaxNameID FROM PetListFilter", withArgumentsInArray: []) {
+                while results.next() == true {
+                    NameID = Int(results.intForColumn("MaxNameID"))
+                }
+                results.close()
+            }
+            for o in filterOptions.filteringOptions {
+                var FilterValue: String = ""
+                if o.classification == .saves {continue}
+                if o.list == true {
+                    FilterValue = o.choosenListValues.map{String($0)}.joinWithSeparator(",")
+                } else {
+                    FilterValue = String(o.choosenValue!)
+                }
+                if (!db.executeUpdate("INSERT INTO PetListFilterDetails(NameID, FilterName, FilterValue) Values(?,?,?)", withArgumentsInArray: [NameID, o.name!, FilterValue])) {
+                    self.presentDBErrorMessage(db.lastErrorMessage())
+                }
+            }
+        }
+    }
 }

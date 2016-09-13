@@ -13,6 +13,7 @@ var imageCache = [String:UIImage]()  //This is a global image cache
 var zipCode: String = ""
 var editWhichQuestionGlobal: Int = 0
 var filterOptions: filterOptionsList = filterOptionsList()
+var NameID: Int = 0
 
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.

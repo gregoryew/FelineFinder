@@ -25,25 +25,13 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             alert.message = "Please enter a valid zip code."
             alert.addButtonWithTitle("OK")
             alert.show()
+        } else {
+            performSegueWithIdentifier("PetFinderList", sender: nil)
         }
-    performSegueWithIdentifier("PetFinderList", sender: nil)
     }
-    
     
     var breed: Breed?
     var zipCodeTextField: UITextField?
-    
-    @IBAction func FindTouchUp(sender: AnyObject) {
-        zipCode = zipCodeTextField!.text!
-        if validateZipCode(zipCode) == false {
-            let alert = UIAlertView()
-            alert.title = "Invalid Zip Code"
-            alert.message = "Please enter a valid zip code."
-            alert.addButtonWithTitle("OK")
-            alert.show()
-        }
-        PetFinderBreeds[self.breed!.BreedName] = nil
-    }
     
     override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
         var proceed = true
@@ -59,9 +47,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        filterOptions.load()
-        
-        blurImage(UIImage(named: "Devon Rex")!)
+        filterOptions.load(self.tableView)
         
         self.tableView.backgroundView = nil
         self.tableView.backgroundColor = UIColor.clearColor()
@@ -70,24 +56,6 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
-    }
-    
-    func blurImage(image2: UIImage) {
-        /*
-        let imageView = UIImageView(image: image2)
-        imageView.frame = view.bounds
-        imageView.contentMode = .ScaleToFill
-        
-        view.addSubview(imageView)
-        
-        let blurEffect = UIBlurEffect(style: .Dark)
-        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.frame = imageView.bounds
-        view.addSubview(blurredEffectView)
-        
-        self.view.sendSubviewToBack(blurredEffectView)
-        self.view.sendSubviewToBack(imageView)
-        */
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -100,13 +68,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("segue=\(segue.identifier)")
         if segue.identifier == "goToPetFinderList" {
             (segue.destinationViewController as! PetFinderViewController).breed = breed
         } else if segue.identifier == "chooseFilterOptions" {
             (segue.destinationViewController as! FilterOptionsListTableViewController).filterOpt = opt
         }
-
     }
     
     func validateZipCode(zipCode: String) -> Bool {
@@ -146,16 +112,18 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "Breeds"
+            return "Saves"
         case 1:
-            return "Location"
+            return "Breeds"
         case 2:
-            return "Administrative"
+            return "Location"
         case 3:
-            return "Compatiblity"
+            return "Administrative"
         case 4:
-            return "Personality"
+            return "Compatiblity"
         case 5:
+            return "Personality"
+        case 6:
             return "Physical"
         default:
             return ""
@@ -169,23 +137,33 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {
-            return 1
-        } else if section == 1 {
+            if filterOptions.savesOption != nil {
+                return 1
+            } else {
+                return 0
+            }
+        } else if section == 1 {  //Breed
+            if filterOptions.breedOption != nil {
+                return 2
+            } else {
+                return 0
+            }
+        } else if section == 2 {
             return 1
         } else {
             switch section {
-            case 2:
-                return filterOptions.adminList.count
             case 3:
-                return filterOptions.compatibilityList.count
+                return filterOptions.adminList.count
             case 4:
-                return filterOptions.personalityList.count
+                return filterOptions.compatibilityList.count
             case 5:
+                return filterOptions.personalityList.count
+            case 6:
                 return filterOptions.physicalList.count
             default:
                 return 0
@@ -198,16 +176,24 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         var opt: filterOption?
         
         switch indexPath.section {
-        case 2:
+        case 0:
+            opt = filterOptions.savesOption
+        case 1:
+            if indexPath.row == 0 {
+                opt = filterOptions.breedOption
+            } else {
+                opt = filterOptions.notBreedOption
+            }
+        case 3:
             opt = filterOptions.adminList[indexPath.row]
             break
-        case 3:
+        case 4:
             opt = filterOptions.compatibilityList[indexPath.row]
             break
-        case 4:
+        case 5:
             opt = filterOptions.personalityList[indexPath.row]
             break
-        case 5:
+        case 6:
             opt = filterOptions.physicalList[indexPath.row]
             break
         default:
@@ -215,23 +201,34 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         }
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("breeds", forIndexPath: indexPath) as! FilterOptionsBreedTableCell
-            cell.breedLabel.text = "All Breeeds"
+            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! FilterOptionsListTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.ListName.text = opt!.name
+            cell.ListValue.text = opt?.getDisplayValues()
             return cell
         } else if indexPath.section == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! FilterOptionsListTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.ListName.text = opt!.name
+            cell.ListValue.text = opt?.getDisplayValues()
+            return cell
+        } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCellWithIdentifier("zipCode", forIndexPath: indexPath) as! FilterOptionsZipCodeTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             cell.ZipCodeTextbox.delegate = self
             cell.ZipCodeTextbox.text = zipCode
             zipCodeTextField = cell.ZipCodeTextbox
             return cell
-        } else if indexPath.section >= 2 {
+        } else if indexPath.section >= 3 {
             if opt!.list == true {
                 let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! FilterOptionsListTableCell
+                cell.selectionStyle = UITableViewCellSelectionStyle.None
                 cell.ListName.text = opt!.name
                 cell.ListValue.text = opt?.getDisplayValues()
                 return cell
             } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("options", forIndexPath: indexPath) as! FilterOptionsSegmentedTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.None
             cell.OptionLabel.text = opt!.name
             cell.OptionSegmentedControl.items = opt!.optionsArray()
             cell.OptionSegmentedControl.font = UIFont(name: "Avenir-Black", size: 12)
@@ -243,7 +240,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             return cell
             }
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! UITableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath)
             return cell
         }
     }
@@ -255,18 +252,26 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     var opt: filterOption?
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section >= 2 {
+        if indexPath.section != 2 {
             switch indexPath.section {
-            case 2:
+            case 0:
+                opt = filterOptions.savesOption
+            case 1:
+                if indexPath.row == 0 {
+                    opt = filterOptions.breedOption
+                } else {
+                    opt = filterOptions.notBreedOption
+                }
+            case 3:
                 opt = filterOptions.adminList[indexPath.row]
                 break
-            case 3:
+            case 4:
                 opt = filterOptions.compatibilityList[indexPath.row]
                 break
-            case 4:
+            case 5:
                 opt = filterOptions.personalityList[indexPath.row]
                 break
-            case 5:
+            case 6:
                 opt = filterOptions.physicalList[indexPath.row]
                 break
             default:
@@ -284,6 +289,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     {
         let sourceViewController = sender.sourceViewController as! FilterOptionsListTableViewController
         var i = 0
+        if sourceViewController.filterOpt?.classification == .saves {
+            if sourceViewController.filterOpt?.choosenListValues.count > 0 {
+                filterOptions.retrieveSavedFilterValues((sourceViewController.filterOpt?.choosenListValues[0])!, filterOptions: filterOptions, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
+            }
+        }
         for o in filterOptions.filteringOptions {
             if sourceViewController.filterOpt?.name == o.name {
                 filterOptions.filteringOptions[i].choosenListValues = (sourceViewController.filterOpt?.choosenListValues)!

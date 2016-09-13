@@ -89,7 +89,7 @@
                     <navigationItem key="navigationItem" title="Favorites" id="KHI-PB-7lh">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="h4I-hp-aw0">
                             <connections>
-                                <segue destination="kCY-R1-8TB" kind="unwind" unwindAction="unwindToMainMenu:" id="Pfd-pe-AUu"/>
+                                <segue destination="kCY-R1-8TB" kind="unwind" unwindAction="unwindToMainMenu:" id="Y8c-0w-hjX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -812,11 +812,19 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                     <navigationItem key="navigationItem" title="Choose Filter Options Below" id="BhV-lr-F3Z">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="1Hj-Yo-56M">
                             <connections>
-                                <segue destination="W78-wG-aw4" kind="unwind" unwindAction="unwindToPetFinderFind:" id="KaK-ui-uIW"/>
+                                <segue destination="W78-wG-aw4" kind="unwind" identifier="backToFilterOptions" unwindAction="unwindToPetFinderFind:" id="KaK-ui-uIW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="J2b-aF-AhW">
+                            <connections>
+                                <action selector="SavedTapped:" destination="yv5-4F-iXG" id="x4C-xo-3e3"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="SavedButton" destination="J2b-aF-AhW" id="Q86-Jc-vG6"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIM-LP-PAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W78-wG-aw4" userLabel="Exit" sceneMemberID="exit"/>
@@ -828,20 +836,11 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
             <objects>
                 <tableViewController title="Search Options" id="5gS-ot-fmD" customClass="PetFinderFindViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xhD-Ic-Gh1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pub-f0-Okw" customClass="CoolButton">
-                            <rect key="frame" x="0.0" y="268" width="600" height="44"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Filter Now"/>
-                            <connections>
-                                <action selector="FindTouchUp:" destination="5gS-ot-fmD" eventType="touchUpInside" id="1fP-AZ-OC8"/>
-                                <segue destination="s2r-t9-rDq" kind="show" identifier="goToPetFinderList" id="abX-93-yIb"/>
-                            </connections>
-                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="breeds" id="mds-Z3-iJP" customClass="FilterOptionsBreedTableCell" customModule="Feline_Finder" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
@@ -1318,6 +1317,7 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                         <segue destination="xo1-ks-5p1" kind="show" identifier="Pictures" id="iMN-ln-jcJ"/>
                         <segue destination="Pgk-2I-sPu" kind="unwind" identifier="PetFinderList" unwindAction="unwindToPetFinderList:" id="bGy-gU-0J4"/>
                         <segue destination="k09-Um-yzz" kind="show" identifier="ShowYouTubeVideo" id="Fal-Tj-B92"/>
+                        <segue destination="Pgk-2I-sPu" kind="unwind" identifier="Favorites" unwindAction="unwindToFavorites:" id="ZXP-He-6op"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50h-Fn-fJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1413,11 +1413,11 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
         <image name="video" width="67" height="67"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BoR-nW-Ot0"/>
         <segue reference="7lL-yt-dAb"/>
-        <segue reference="Nnk-IO-fqN"/>
+        <segue reference="BoR-nW-Ot0"/>
         <segue reference="IKf-o4-oeB"/>
-        <segue reference="abX-93-yIb"/>
+        <segue reference="Nnk-IO-fqN"/>
+        <segue reference="rhn-6v-7tz"/>
         <segue reference="yE9-jw-UjG"/>
         <segue reference="K0M-oz-np6"/>
     </inferredMetricsTieBreakers>

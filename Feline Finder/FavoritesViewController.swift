@@ -14,16 +14,31 @@ class FavoritesViewController: UITableViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        Favorites.loaded = false
+        Favorites.Favorites.removeAll()
+        Favorites.breedKeys.removeAll()
+        Favorites.LoadFavorites()
         
+        Favorites.assignStatus(self.tableView) { () -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView.reloadData()
+            })
+        }
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
     }
     
     @IBAction func unwindToFavorites(sender: UIStoryboardSegue)
     {
+        Favorites.loaded = false
+        Favorites.Favorites.removeAll()
+        Favorites.breedKeys.removeAll()
+        Favorites.LoadFavorites()
+        
         Favorites.assignStatus(self.tableView) { () -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()})
+                self.tableView.reloadData()
+            })
         }
     }
     
@@ -183,16 +198,6 @@ class FavoritesViewController: UITableViewController {
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        Favorites.loaded = false
-        Favorites.Favorites.removeAll()
-        Favorites.breedKeys.removeAll()
-        Favorites.LoadFavorites()
-        
-        Favorites.assignStatus(self.tableView) { () -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                self.tableView.reloadData()
-            })
-        }
         self.navigationController?.setToolbarHidden(true, animated:true);
     }
     

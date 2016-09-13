@@ -31,8 +31,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     @IBAction func BackTapped(sender: AnyObject) {
         if whichSegue == "Favorites" {
-            //performSegueWithIdentifier("Favorites", sender: nil)
-            navigationController!.popViewControllerAnimated(true)
+            performSegueWithIdentifier("Favorites", sender: nil)
+            //navigationController!.popViewControllerAnimated(true)
         } else {
             performSegueWithIdentifier("PetFinderList", sender: nil)
         }
