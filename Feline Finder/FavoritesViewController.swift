@@ -20,7 +20,7 @@ class FavoritesViewController: UITableViewController {
         Favorites.LoadFavorites()
         
         Favorites.assignStatus(self.tableView) { () -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         }
@@ -28,7 +28,7 @@ class FavoritesViewController: UITableViewController {
         self.tableView.backgroundView = background;
     }
     
-    @IBAction func unwindToFavorites(sender: UIStoryboardSegue)
+    @IBAction func unwindToFavorites(_ sender: UIStoryboardSegue)
     {
         Favorites.loaded = false
         Favorites.Favorites.removeAll()
@@ -36,13 +36,13 @@ class FavoritesViewController: UITableViewController {
         Favorites.LoadFavorites()
         
         Favorites.assignStatus(self.tableView) { () -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool
     {
         if Utilities.isNetworkAvailable() {
             return true
@@ -51,22 +51,22 @@ class FavoritesViewController: UITableViewController {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if (segue.identifier == "petFinderDetail") {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let favoritePet = Favorites[indexPath.section, indexPath.row]
-                (segue.destinationViewController as! PetFinderViewDetailController).petID = favoritePet.petID
-                (segue.destinationViewController as! PetFinderViewDetailController).petName = favoritePet.petName
-                (segue.destinationViewController as! PetFinderViewDetailController).whichSegue = "Favorites"
-                (segue.destinationViewController as! PetFinderViewDetailController).favoriteType = favoritePet.FavoriteDataSource
+                (segue.destination as! PetFinderViewDetailController).petID = favoritePet.petID
+                (segue.destination as! PetFinderViewDetailController).petName = favoritePet.petName
+                (segue.destination as! PetFinderViewDetailController).whichSegue = "Favorites"
+                (segue.destination as! PetFinderViewDetailController).favoriteType = favoritePet.FavoriteDataSource
             }
         }
     }
     
     // MARK: - Table View
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         if Favorites.totalBreeds == 0 {
             return 1
@@ -75,7 +75,7 @@ class FavoritesViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if Favorites.totalBreeds == 0 {
             return 1
@@ -84,7 +84,7 @@ class FavoritesViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String
     {
         if Favorites.totalBreeds == 0 {
             return ""
@@ -93,9 +93,9 @@ class FavoritesViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! FavoriteTableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! FavoriteTableCell
         
         //cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
         
@@ -109,30 +109,30 @@ class FavoritesViewController: UITableViewController {
         //    cell.selectedBackgroundView = selectedBackgroundCell
         //}
         
-        cell.accessoryType = .None
+        cell.accessoryType = .none
         
-        cell.CatName!.backgroundColor = UIColor.clearColor()
-        cell.CatName!.highlightedTextColor = UIColor.whiteColor()
-        cell.CatName!.textColor = UIColor.whiteColor()
-        cell.CatName!.font = UIFont.boldSystemFontOfSize(14.0)
+        cell.CatName!.backgroundColor = UIColor.clear
+        cell.CatName!.highlightedTextColor = UIColor.white
+        cell.CatName!.textColor = UIColor.white
+        cell.CatName!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         if Favorites.totalBreeds == 0 {
             cell.CatName!.text = "None yet. To add one tap a heart."
-            cell.CatImage.hidden = true
-            cell.detailTextLabel!.hidden = true
+            cell.CatImage.isHidden = true
+            cell.detailTextLabel!.isHidden = true
             return cell
         }
         
-        cell.CatImage.hidden = false
+        cell.CatImage.isHidden = false
         //cell.detailTextLabel!.hidden = false
         
         let favorite = Favorites[indexPath.section, indexPath.row]
         
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         
         cell.lastCell = indexPath.row == Favorites.countBreedsInSection(indexPath.section) - 1
         
-        let imgURL = NSURL(string: favorite.imageName)
+        let imgURL = URL(string: favorite.imageName)
         
         var name = favorite.petName
         if favorite.Status != "" {
@@ -142,9 +142,9 @@ class FavoritesViewController: UITableViewController {
         cell.CatName!.text = name
         //cell.detailTextLabel!.font = cell.detailTextLabel!.font.fontWithSize(11)
         if favorite.Status.hasPrefix("Adopt") {
-            cell.CatName!.textColor = UIColor.redColor()
+            cell.CatName!.textColor = UIColor.red
         } else {
-            cell.CatName!.textColor = UIColor.whiteColor()
+            cell.CatName!.textColor = UIColor.white
         }
         //cell.detailTextLabel!.text = favorite.Status
         
@@ -153,55 +153,56 @@ class FavoritesViewController: UITableViewController {
         if let img = imageCache[favorite.imageName] {
             cell.CatImage?.image = img
         } else {
-            let request: NSURLRequest = NSURLRequest(URL: imgURL!)
-            let mainQueue = NSOperationQueue.mainQueue()
-            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-                if error == nil {
-                    // Convert the downloaded data in to a UIImage object
-                    let image = UIImage(data: data!)
-                    // Update the cell
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? FavoriteTableCell {
-                            cellToUpdate.CatImage?.image = image
-                        }
-                    })
-                } else {
-                    print("Error: \(error!.localizedDescription)")
-                }
-            })
+            let request: URLRequest = URLRequest(url: imgURL!)
+            //let mainQueue = NSOperationQueue.mainQueue()
+            //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+                    if error == nil {
+                        // Convert the downloaded data in to a UIImage object
+                        let image = UIImage(data: data!)
+                        // Update the cell
+                        DispatchQueue.main.async(execute: {
+                            if let cellToUpdate = tableView.cellForRow(at: indexPath) as? FavoriteTableCell {
+                                cellToUpdate.CatImage?.image = image
+                            }
+                        })
+                    } else {
+                        print("Error: \(error!.localizedDescription)")
+                    }
+                }).resume()
         }
 
         return cell
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)
     {
-        self.performSegueWithIdentifier("petFinderDetail", sender: nil)
+        self.performSegue(withIdentifier: "petFinderDetail", sender: nil)
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // Return false if you do not want the specified item to be editable.
         return false
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true);

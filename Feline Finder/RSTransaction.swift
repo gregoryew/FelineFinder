@@ -9,13 +9,13 @@
 import Foundation
 
 enum RSTransactionType {
-    case GET
-    case POST
-    case UNKNOWN
+    case get
+    case post
+    case unknown
 }
 
 class RSTransaction: NSObject {
-    var transactionType = RSTransactionType.UNKNOWN
+    var transactionType = RSTransactionType.unknown
     var baseURL: String
     var path: String
     var parameters : [String:String]
@@ -32,19 +32,19 @@ class RSTransaction: NSObject {
     }
     
     
-    private func removeSlashFromEndOfString(string: String) -> String
+    fileprivate func removeSlashFromEndOfString(_ string: String) -> String
     {
         if string.hasSuffix("/") {
-            return string.substringToIndex(string.endIndex.predecessor())
+            return string.substring(to: string.characters.index(before: string.endIndex))
         } else {
             return string
         }
         
     }
     
-    private func removeSlashFromStartOfString(string : String) -> String {
+    fileprivate func removeSlashFromStartOfString(_ string : String) -> String {
         if string.hasPrefix("/") {
-            return string.substringFromIndex(string.startIndex.successor())
+            return string.substring(from: string.characters.index(after: string.startIndex))
         } else {
             return string
         }

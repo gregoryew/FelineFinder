@@ -29,16 +29,16 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     var shouldLoadWeb = false
     var whichSegue = ""
     
-    @IBAction func BackTapped(sender: AnyObject) {
+    @IBAction func BackTapped(_ sender: AnyObject) {
         if whichSegue == "Favorites" {
-            performSegueWithIdentifier("Favorites", sender: nil)
+            performSegue(withIdentifier: "Favorites", sender: nil)
             //navigationController!.popViewControllerAnimated(true)
         } else {
-            performSegueWithIdentifier("PetFinderList", sender: nil)
+            performSegue(withIdentifier: "PetFinderList", sender: nil)
         }
     }
     
-    @IBAction func favoriteTouchUp(sender: UIBarButtonItem) {
+    @IBAction func favoriteTouchUp(_ sender: UIBarButtonItem) {
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
             Favorites.removeFavorite(petID!, dataSource: favoriteType)
             favoriteBtn.image = UIImage(named: "Like")
@@ -50,13 +50,13 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         }
     }
     
-    @IBAction func unwindToPetFinderDetail(sender: UIStoryboardSegue)
+    @IBAction func unwindToPetFinderDetail(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.favoriteType = .RescueGroup
@@ -64,28 +64,28 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         //if timer != nil {timer!.invalidate()}
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         print("Webview fail with error \(error)");
     }
     
     var emailAddress: [String] = [String]()
     
     func getDrivingDirections(latitude lat: Double, longitude lng: Double, name n: String) {
-        if CMMapLauncher.isMapAppInstalled(CMMapApp.AppleMaps)
+        if CMMapLauncher.isMapAppInstalled(CMMapApp.appleMaps)
         {
             let shelter: CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lng);
             let CCMShelter: CMMapPoint = CMMapPoint(coordinate: shelter)
             CCMShelter.name = n
-            CMMapLauncher.launchMapApp(CMMapApp.AppleMaps, forDirectionsTo: CCMShelter)
+            CMMapLauncher.launch(CMMapApp.appleMaps, forDirectionsTo: CCMShelter)
         }
     }
     
-    func parseStreetAddress(s: String) -> NSString {
-        var sa: String = s.stringByReplacingOccurrencesOfString(".", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        sa = sa.stringByReplacingOccurrencesOfString(" ", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        sa = sa.uppercaseString
+    func parseStreetAddress(_ s: String) -> NSString {
+        var sa: String = s.replacingOccurrences(of: ".", with: "", options: NSString.CompareOptions.literal, range: nil)
+        sa = sa.replacingOccurrences(of: " ", with: "", options: NSString.CompareOptions.literal, range: nil)
+        sa = sa.uppercased()
         var s2 = sa as NSString
-        s2 = s2.substringWithRange(NSRange(location: 0, length: 5))
+        s2 = s2.substring(with: NSRange(location: 0, length: 5)) as NSString
         return s2
     }
     
@@ -120,31 +120,32 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         }
     }
     
-    func loadImage(imgURL: String) {
-        let request: NSURLRequest = NSURLRequest(URL: NSURL(string: imgURL)!)
-        let mainQueue = NSOperationQueue.mainQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+    func loadImage(_ imgURL: String) {
+        let request: URLRequest = URLRequest(url: URL(string: imgURL)!)
+        //let mainQueue = NSOperationQueue.mainQueue()
+        //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+        _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if error == nil {
                 self.images.append(UIImage(data: data!)!)
             } else {
                 print("Error: \(error!.localizedDescription)")
             }
-        })
+        }).resume()
     }
     
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         var errors = 0
         var imageCache: [UIImage] = []
         var r: Bool = false
-        let u: String = request.URL!.relativeString!
+        let u: String = request.url!.relativeString
         if (u.hasPrefix("mailto:")) {
-            let index1 = u.startIndex.advancedBy(7)
-            let email: String = u.substringFromIndex(index1)
+            let index1 = u.characters.index(u.startIndex, offsetBy: 7)
+            let email: String = u.substring(from: index1)
             emailAddress = [String]()
             emailAddress.append(email)
             let mailComposeViewController = configuredMailComposeViewController()
             if MFMailComposeViewController.canSendMail() {
-                self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+                self.present(mailComposeViewController, animated: true, completion: nil)
             } else {
                 self.showSendMailErrorAlert()
             }
@@ -159,10 +160,10 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             r = true
         }
         else if (u.hasSuffix("Pictures")) {
-            self.performSegueWithIdentifier("Pictures", sender: nil)
+            self.performSegue(withIdentifier: "Pictures", sender: nil)
         }
         else if (u.hasSuffix("Video")) {
-            self.performSegueWithIdentifier("ShowYouTubeVideo", sender: nil)
+            self.performSegue(withIdentifier: "ShowYouTubeVideo", sender: nil)
         }
         else if (u.hasSuffix("Share")) {
                 let imgs: [String] = pet!.getAllImagesOfACertainSize("pn")
@@ -185,26 +186,27 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                     address += "\r\n\r\nAddress:\r\n\(s!.name)\r\n\(address)"
                 }
                 for url in imgs {
-                    let imgURL = NSURL(string: url)
-                    let request: NSURLRequest = NSURLRequest(URL: imgURL!)
-                    let mainQueue = NSOperationQueue.mainQueue()
-                    NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                    let imgURL = URL(string: url)
+                    let request: URLRequest = URLRequest(url: imgURL!)
+                    _ = OperationQueue.main
+                    //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+                    _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
                         if error == nil {
                             // Convert the downloaded data in to a UIImage object
                             let image = UIImage(data: data!)
                             // Update the cell
                             imageCache.append(image!)
                             if imageCache.count + errors == imgs.count {
-                                dispatch_async(dispatch_get_main_queue(), {
+                                DispatchQueue.main.async(execute: {
                                     self.vc = UIActivityViewController(activityItems: imageCache + ["About \(self.pet!.name)\r\n\(self.pet!.description) \(address) \r\n\r\nContact Info\r\n\(self.s!.email)\r\n\(self.s!.phone)" ], applicationActivities: [])
                                     //presentViewController(vc!, animated: true, completion: nil)
-                                    if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone {
-                                        self.presentViewController(self.vc!, animated: true, completion: nil)
+                                    if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
+                                        self.present(self.vc!, animated: true, completion: nil)
                                         self.loaded = false
                                     }
                                     else {
-                                        let popup: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
-                                        popup.presentPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+                                        //let popup: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
+                                        //popup.presentPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
                                         self.loaded = false
                                     }
                                     self.loaded = true
@@ -213,14 +215,14 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                         } else {
                             errors += 1
                         }
-                    })
+                    }).resume()
                 }
         }
         else if (u.hasPrefix("tel:")) {
             
             let p: String = s!.phone
             
-            var u: NSURL?
+            var u: URL?
             
             var str: String = ""
             var num: Int = 0
@@ -248,21 +250,21 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             }
             str = "tel:\(str)"
             //println("phone=\(str)")
-            if let url = NSURL(string: str) {
+            if let url = URL(string: str) {
                 u = url
             } else {
                 return true
             }
-            let actionSheetController: UIAlertController = UIAlertController(title: "Call \(s!.name)?", message: "Do you want to call \(s!.name) at \(s!.phone) now?", preferredStyle: .ActionSheet)
+            let actionSheetController: UIAlertController = UIAlertController(title: "Call \(s!.name)?", message: "Do you want to call \(s!.name) at \(s!.phone) now?", preferredStyle: .actionSheet)
             
             //Create and add the Cancel action
-            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
                 //Just dismiss the action sheet
             }
             actionSheetController.addAction(cancelAction)
             //Create and add first option action
-            let callAction: UIAlertAction = UIAlertAction(title: "Call", style: .Default) { action -> Void in
-                UIApplication.sharedApplication().openURL(u!)
+            let callAction: UIAlertAction = UIAlertAction(title: "Call", style: .default) { action -> Void in
+                UIApplication.shared.openURL(u!)
             }
             actionSheetController.addAction(callAction)
             
@@ -270,7 +272,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             actionSheetController.popoverPresentationController?.sourceView = webView.superview;
             
             //Present the AlertController
-            self.presentViewController(actionSheetController, animated: true, completion: nil)
+            self.present(actionSheetController, animated: true, completion: nil)
         }
         //else if navigationType == UIWebViewNavigationType.LinkClicked {
         //    UIApplication.sharedApplication().openURL(request.URL!)
@@ -281,16 +283,16 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                 r = true
                 shouldLoadWeb = false
             } else {
-                let actionSheetController: UIAlertController = UIAlertController(title: "Copy URL to Clipboard?", message: "Sorry but I cannot go to outside websites.  Should I copy the URL to your clipboard and then you can paste it in a web browser?", preferredStyle: .ActionSheet)
+                let actionSheetController: UIAlertController = UIAlertController(title: "Copy URL to Clipboard?", message: "Sorry but I cannot go to outside websites.  Should I copy the URL to your clipboard and then you can paste it in a web browser?", preferredStyle: .actionSheet)
                 
                 //Create and add the Cancel action
-                let cancelAction: UIAlertAction = UIAlertAction(title: "No", style: .Cancel) { action -> Void in
+                let cancelAction: UIAlertAction = UIAlertAction(title: "No", style: .cancel) { action -> Void in
                     //Just dismiss the action sheet
                 }
                 actionSheetController.addAction(cancelAction)
                 //Create and add first option action
-                let callAction: UIAlertAction = UIAlertAction(title: "Yes", style: .Default) { action -> Void in
-                    UIPasteboard.generalPasteboard().string = (request.URL!.absoluteString ?? "")
+                let callAction: UIAlertAction = UIAlertAction(title: "Yes", style: .default) { action -> Void in
+                    UIPasteboard.general.string = (request.url!.absoluteString ?? "")
                 }
                 actionSheetController.addAction(callAction)
                 
@@ -298,7 +300,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                 actionSheetController.popoverPresentationController?.sourceView = webView.superview;
                 
                 //Present the AlertController
-                self.presentViewController(actionSheetController, animated: true, completion: nil)
+                self.present(actionSheetController, animated: true, completion: nil)
 
                 r = false
             }
@@ -319,23 +321,22 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     }
 
     func showSendMailErrorAlert() {
-        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
-        sendMailErrorAlert.show()
+        Utilities.displayAlert("Could Not Send Email", errorMessage: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
     }
 
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         print("Webview started Loading")
     }
 
-    func webViewDidFinishLoad(webView: UIWebView) {
-        print("Webview did finish load")
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print("Webview did finish loadss")
     }
     
-    func configureView(p: Pet, s: shelter) -> String {
+    func configureView(_ p: Pet, s: shelter) -> String {
         var contact: String
         shouldLoadWeb = true
         var b: String = ""
@@ -349,11 +350,14 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         }
         var o: String = ""
         for o2 in p.options {
+            if o2 == "" {
+                continue
+            }
             if (o == "") {
-                o = "\(o2)"
+                o = "<IMG SRC=\"catpaws.png\" width=\"30\" valign=\"middle\">\(o2)</br>"
             }
             else {
-                o = "\(o) • \(o2)"
+                o = "\(o) <IMG SRC=\"catpaws.png\" width=\"30\" valign=\"middle\">\(o2)</br>"
             }
         }
         var imagesHTML: String = ""
@@ -430,7 +434,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             w = 100
             rowspan = 2
             tableWidth = 300
-        } else if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone {
+        } else if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
             pictures = p.getAllImagesOfACertainSize("pn")
             w = 150
             rowspan = 2
@@ -465,20 +469,34 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             born = "<h1><Born \(p.birthdate)/h1>"
         }
         
-        let htmlString = "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #abcde1} a.visited, a.hover {color: #1abcde;} </style></header><body><table width=\"\(tableWidth)\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><h3><b>Meet \(p.name)</b></h3>\(born)<h1>\(p.status)</h1><h2>\(c), \(st)</h2></td><td rowspan=\"\(rowspan)\" valign=\"middle\" align=\"right\">\(picture)</td></tr><tr><td valign=\"bottsom\"><b><h2>GENERAL INFORMATION</h2></b></td></tr><tr><td colspan=\"2\"><h1>\(b)</br>\(p.age) • \(p.sex) • \(p.size)</br>\(o)</h1></td></tr></table></td></tr><tr><td><h2>CONTACT</h2><h1>\(s.name)</br>\(s.address1)</br>\(c), \(s.state) \(s.zipCode)</h1><center><table><tr><td width = \"83\"><a href=\"launchLocation\"><IMG SRC=\"directions.png\" width=\"40\"></a></td><td width=\"83\"><a href=\"tel:\(s.phone)\"><IMG SRC=\"phone.png\" width=\"40\"></a></td><td width=\"83\"><a href=\"mailto:\(s.email)\"><IMG SRC=\"email.png\" width=\"40\"></a></td><td width=\"83\"><a href=\"Share\"><IMG SRC=\"share.png\" width=\"40\"></a></td>\(videos)</tr></table></h1></center></td></tr><tr><td><h2>DESCRIPTION</h2><h1><p style=\"word-wrap: break-word;\">\(p.description)</p></h1></td></tr><tr><td></td></tr><tr><td><h2>DISCLAIMER</h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></body></html>"
+        var options = ""
+        if b != "" {
+            options += "<IMG SRC=\"catpaws.png\" width=\"30\" valign=\"middle\">\(b)</br>"
+        }
+        if p.age != "" {
+            options += "<IMG SRC=\"catpaws.png\" width=\"30\" valign=\"middle\">\(p.age)</br>"
+        }
+        if p.sex != "" {
+            options += "<IMG SRC=\"catpaws.png\" width=\"30\" valign=\"middle\">\(p.sex)</br>"
+        }
+        if p.size != "" {
+            options += "<IMG SRC=\"catpaws.png\" width=\"30\" valign=\"middle\">\(p.size)</br>"
+        }
+        
+        let htmlString = "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #abcde1} a.visited, a.hover {color: #1abcde;} </style></header><body><table width=\"\(tableWidth)\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><h3><b>Meet \(p.name)</b></h3>\(born)<h1>\(p.status)</h1><h2>\(c), \(st)</h2></td><td rowspan=\"\(rowspan)\" valign=\"middle\" align=\"right\">\(picture)</td></tr></table><b><center><h2>GENERAL INFORMATION</h2></center></b><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(s.name)</br>\(s.address1)</br>\(c), \(s.state) \(s.zipCode)</h1><center><table><tr><td width = \"83\"><a href=\"launchLocation\"><IMG SRC=\"directions.png\" width=\"40\"></a></td><td width=\"83\"><a href=\"tel:\(s.phone)\"><IMG SRC=\"phone.png\" width=\"40\"></a></td><td width=\"83\"><a href=\"mailto:\(s.email)\"><IMG SRC=\"email.png\" width=\"40\"></a></td><td width=\"83\"><a href=\"Share\"><IMG SRC=\"share.png\" width=\"40\"></a></td>\(videos)</tr></table></h1></center></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><h1><p style=\"word-wrap: break-word;\">\(p.description)</p></h1></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></body></html>"
         return htmlString
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.delegate = self
-        webView.dataDetectorTypes = UIDataDetectorTypes.Link
+        webView.dataDetectorTypes = UIDataDetectorTypes.link
     }
     
     var currentIndex = 0
-    var timer: NSTimer?
+    var timer: Timer?
     
-    func removeViewWithTag(tag: Int) {
+    func removeViewWithTag(_ tag: Int) {
         if let viewWithTag = view.viewWithTag(tag) {
             print("Tag 100")
             viewWithTag.removeFromSuperview()
@@ -488,24 +506,24 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         }
     }
     
-    func blurImage(image2: UIImage) {
+    func blurImage(_ image2: UIImage) {
         let imageView = UIImageView(image: image2)
         removeViewWithTag(998)
         removeViewWithTag(999)
         imageView.frame = view.bounds
-        imageView.contentMode = .ScaleToFill
+        imageView.contentMode = .scaleToFill
         imageView.tag = 998
     
         view.addSubview(imageView)
     
-        let blurEffect = UIBlurEffect(style: .Dark)
+        let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
         blurredEffectView.frame = imageView.bounds
         blurredEffectView.tag = 999
         view.addSubview(blurredEffectView)
     
-        self.view.sendSubviewToBack(blurredEffectView)
-        self.view.sendSubviewToBack(imageView)
+        self.view.sendSubview(toBack: blurredEffectView)
+        self.view.sendSubview(toBack: imageView)
     /*
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: #selector(PetFinderViewDetailController.getImage), userInfo: nil, repeats: true)
@@ -516,7 +534,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     func getImage() {
         var url = ""
         if imageURLs.count == 0 {
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
             self.blurImage(UIImage(named: "Devon Rex")!)
                 })
             return
@@ -525,25 +543,26 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             url = imageURLs[currentIndex]
         }
         
-        let imgURL = NSURL(string: url)
+        let imgURL = URL(string: url)
         print(url)
-        let request: NSURLRequest = NSURLRequest(URL: imgURL!)
-        let mainQueue = NSOperationQueue.mainQueue()
-        NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+        let request: URLRequest = URLRequest(url: imgURL!)
+        //let mainQueue = NSOperationQueue.mainQueue()
+        //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+        _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if error == nil {
                 // Convert the downloaded data in to a UIImage object
                 let image = UIImage(data: data!)
                 // Update the cell
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.blurImage(image!)
                 })
             }
-        })
+        }).resume()
     }
     
     var imageURLs:[String] = []
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         self.navigationController?.setToolbarHidden(true, animated:true)
@@ -564,8 +583,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         
         pl.loadSinglePet(petID!, completion: { (pet) -> Void in
             sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
-                let path = NSBundle.mainBundle().bundlePath;
-                let sBaseURL = NSURL.fileURLWithPath(path);
+                let path = Bundle.main.bundlePath;
+                let sBaseURL = URL(fileURLWithPath: path);
                 self.s = shelter
                 self.pet = pet
                 let htmlString = self.configureView(pet, s: shelter);
@@ -576,13 +595,13 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         })
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Pictures") {
-            (segue.destinationViewController as! PetFinderPicturesViewController).breedName = ""
-            (segue.destinationViewController as! PetFinderPicturesViewController).petData = pet!
+            (segue.destination as! PetFinderPicturesViewController).breedName = ""
+            (segue.destination as! PetFinderPicturesViewController).petData = pet!
             
         } else if (segue.identifier == "ShowYouTubeVideo") {
-            (segue.destinationViewController as! YouTubeViewController).youtubeid = pet!.videos[0].videoID
+            (segue.destination as! YouTubeViewController).youtubeid = pet!.videos[0].videoID
         }
     }
 }

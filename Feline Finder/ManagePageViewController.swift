@@ -48,7 +48,7 @@ class ManagePageViewController: UIPageViewController {
             let viewControllers = [viewController]
             // 2
             setViewControllers(viewControllers,
-                               direction: .Forward,
+                               direction: .forward,
                                animated: false,
                                completion: nil)
         }
@@ -57,44 +57,44 @@ class ManagePageViewController: UIPageViewController {
         //self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
-    @IBAction func GoBackTapped(sender: AnyObject) {
+    @IBAction func GoBackTapped(_ sender: AnyObject) {
         if whichSegueGlobal == "Edit" {
-            performSegueWithIdentifier("Choices", sender: nil)
+            performSegue(withIdentifier: "Choices", sender: nil)
         } else {
-            performSegueWithIdentifier("MainMenu", sender: nil)
+            performSegue(withIdentifier: "MainMenu", sender: nil)
         }
     }
     
-    func viewQuestionEntry(index: Int) -> QuestionEntryViewController? {
+    func viewQuestionEntry(_ index: Int) -> QuestionEntryViewController? {
         if let storyboard = storyboard,
-            page = storyboard.instantiateViewControllerWithIdentifier("QuestionEntryViewController") as? QuestionEntryViewController {
+            let page = storyboard.instantiateViewController(withIdentifier: "QuestionEntryViewController") as? QuestionEntryViewController {
             page.currentQuestion = index
             return page
         }
         return nil
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Summary" {
             questionList.writeAnswers()
-            (segue.destinationViewController as! SavedListsViewController).whichSegue = "Summary"
+            (segue.destination as! SavedListsViewController).whichSegue = "Summary"
         }
     }
     
-    @IBAction func SummaryTapped(sender: AnyObject) {
-    performSegueWithIdentifier("Summary", sender: nil)
+    @IBAction func SummaryTapped(_ sender: AnyObject) {
+    performSegue(withIdentifier: "Summary", sender: nil)
     }
 }
 
 //MARK: implementation of UIPageViewControllerDataSource
 extension ManagePageViewController: UIPageViewControllerDataSource {
     // 1
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let viewController = viewController as? QuestionEntryViewController {
             var index = viewController.currentQuestion
             guard index != NSNotFound && index != 0 else { return nil }
@@ -106,15 +106,15 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
     }
     
     // 2
-    func pageViewController(pageViewController: UIPageViewController,
-                            viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         if let viewController = viewController as? QuestionEntryViewController {
             var index = viewController.currentQuestion
             guard index != NSNotFound else { return nil }
             index = index + 1
             if viewController.currentQuestion + 1 == questionList.count {
-                self.performSegueWithIdentifier("Summary", sender: nil)
+                self.performSegue(withIdentifier: "Summary", sender: nil)
                 return nil
             }
             self.title = questionList.Questions[index].Name
@@ -137,7 +137,7 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
     */
  
     // MARK: UIPageControl
-    func presentationCountForPageViewController(pageViewController: UIPageViewController) -> Int {
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
         // 1
         return questionList.count
     }

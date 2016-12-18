@@ -7,33 +7,55 @@
 //
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     
     
-    @IBAction func clearTapped(sender: AnyObject) {
+    @IBAction func clearTapped(_ sender: AnyObject) {
         filterOptions.reset()
         self.tableView.reloadData()
     }
     
-    @IBAction func DoneTapped(sender: AnyObject) {
+    @IBAction func DoneTapped(_ sender: AnyObject) {
+        bnGlobal = ""
+        zipCodeGlobal = ""
         PetFinderBreeds[self.breed!.BreedName] = nil
         zipCode = zipCodeTextField!.text!
         if validateZipCode(zipCode) == false {
-            let alert = UIAlertView()
-            alert.title = "Invalid Zip Code"
-            alert.message = "Please enter a valid zip code."
-            alert.addButtonWithTitle("OK")
-            alert.show()
+            Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
         } else {
-            performSegueWithIdentifier("PetFinderList", sender: nil)
+            performSegue(withIdentifier: "PetFinderList", sender: nil)
         }
     }
     
     var breed: Breed?
     var zipCodeTextField: UITextField?
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
         var proceed = true
         if validateZipCode(zipCode) == false {
             proceed = false
@@ -50,51 +72,51 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         filterOptions.load(self.tableView)
         
         self.tableView.backgroundView = nil
-        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.backgroundColor = UIColor.clear
 
     }
     
-    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.backgroundColor = UIColor.clearColor()
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor.clear
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToPetFinderList" {
-            (segue.destinationViewController as! PetFinderViewController).breed = breed
+            (segue.destination as! PetFinderViewController).breed = breed
         } else if segue.identifier == "chooseFilterOptions" {
-            (segue.destinationViewController as! FilterOptionsListTableViewController).filterOpt = opt
+            (segue.destination as! FilterOptionsListTableViewController).filterOpt = opt
         }
     }
     
-    func validateZipCode(zipCode: String) -> Bool {
+    func validateZipCode(_ zipCode: String) -> Bool {
         var validZipCode: Bool = false
         
-        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
-        let DBPath:NSString = documentsPath.stringByAppendingString("/CatFinder.db") as String
+        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as AnyObject
+        let DBPath:NSString = documentsPath.appending("/CatFinder.db") as NSString
         
         let contactDB = FMDatabase(path: DBPath as String)
         
-        if contactDB.open() {
+        if (contactDB?.open())! {
             
             var querySQL: String = ""
             var c: Int32 = 0
             
             querySQL = "SELECT Count(*) c FROM ZipCodes WHERE PostalCode = ?"
       
-            let results: FMResultSet? = contactDB.executeQuery(querySQL,
-                withArgumentsInArray: [zipCode])
+            let results: FMResultSet? = contactDB?.executeQuery(querySQL,
+                withArgumentsIn: [zipCode])
             
             while results?.next() == true {
-                c = results!.intForColumn("c")
+                c = results!.int(forColumn: "c")
                 if c == 0 {
                     validZipCode = false
                 }
@@ -102,14 +124,14 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                     validZipCode = true
                 }
             }
-            contactDB.close()
+            contactDB?.close()
         } else {
-            print("Error: \(contactDB.lastErrorMessage())")
+            print("Error: \(contactDB?.lastErrorMessage())")
         }
         return validZipCode
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
             return "Saves"
@@ -130,17 +152,17 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 7
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0 {
             if filterOptions.savesOption != nil {
                 return 1
@@ -171,7 +193,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
         var opt: filterOption?
         
@@ -201,57 +223,60 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         }
         
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! FilterOptionsListTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.ListName.text = opt!.name
-            cell.ListValue.text = opt?.getDisplayValues()
+            if opt?.options.count > 0
+            {cell.ListValue.text = opt?.options[(opt?.choosenValue)!].0}
+            else
+            {cell.ListValue.text = "Touch Here To Save..."}
             return cell
         } else if indexPath.section == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! FilterOptionsListTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.ListName.text = opt!.name
             cell.ListValue.text = opt?.getDisplayValues()
             return cell
         } else if indexPath.section == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("zipCode", forIndexPath: indexPath) as! FilterOptionsZipCodeTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            let cell = tableView.dequeueReusableCell(withIdentifier: "zipCode", for: indexPath) as! FilterOptionsZipCodeTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.ZipCodeTextbox.delegate = self
             cell.ZipCodeTextbox.text = zipCode
             zipCodeTextField = cell.ZipCodeTextbox
             return cell
         } else if indexPath.section >= 3 {
             if opt!.list == true {
-                let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath) as! FilterOptionsListTableCell
-                cell.selectionStyle = UITableViewCellSelectionStyle.None
+                let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
+                cell.selectionStyle = UITableViewCellSelectionStyle.none
                 cell.ListName.text = opt!.name
                 cell.ListValue.text = opt?.getDisplayValues()
                 return cell
             } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("options", forIndexPath: indexPath) as! FilterOptionsSegmentedTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.None
+            let cell = tableView.dequeueReusableCell(withIdentifier: "options", for: indexPath) as! FilterOptionsSegmentedTableCell
+            cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.OptionLabel.text = opt!.name
             cell.OptionSegmentedControl.items = opt!.optionsArray()
             cell.OptionSegmentedControl.font = UIFont(name: "Avenir-Black", size: 12)
             cell.OptionSegmentedControl.borderColor = UIColor(white: 1.0, alpha: 0.3)
             cell.OptionSegmentedControl.selectedIndex = opt!.choosenValue!
             cell.OptionSegmentedControl.tag = indexPath.row
-            cell.OptionSegmentedControl.addTarget(self, action: #selector(PetFinderFindViewController.segmentValueChanged(_:)), forControlEvents: .ValueChanged)
+            cell.OptionSegmentedControl.addTarget(self, action: #selector(PetFinderFindViewController.segmentValueChanged(_:)), for: .valueChanged)
             cell.OptionSegmentedControl.tag = opt!.sequence
             return cell
             }
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("list", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath)
             return cell
         }
     }
     
-    func segmentValueChanged(sender: AnyObject?) {
+    func segmentValueChanged(_ sender: AnyObject?) {
         filterOptions.filteringOptions[sender!.tag].choosenValue = sender!.selectedIndex
     }
     
     var opt: filterOption?
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section != 2 {
             switch indexPath.section {
             case 0:
@@ -280,18 +305,18 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             //opt = filterOptions.filteringOptions[indexPath.row]
             let list = opt!.list
             if list == true {
-                performSegueWithIdentifier("chooseFilterOptions", sender: nil)
+                performSegue(withIdentifier: "chooseFilterOptions", sender: nil)
             }
         }
     }
     
-    @IBAction func unwindToPetFinderFind(sender: UIStoryboardSegue)
+    @IBAction func unwindToPetFinderFind(_ sender: UIStoryboardSegue)
     {
-        let sourceViewController = sender.sourceViewController as! FilterOptionsListTableViewController
+        let sourceViewController = sender.source as! FilterOptionsListTableViewController
         var i = 0
         if sourceViewController.filterOpt?.classification == .saves {
             if sourceViewController.filterOpt?.choosenListValues.count > 0 {
-                filterOptions.retrieveSavedFilterValues((sourceViewController.filterOpt?.choosenListValues[0])!, filterOptions: filterOptions, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
+                filterOptions.retrieveSavedFilterValues((opt?.options[(sourceViewController.filterOpt?.choosenListValues[0])!].2)!, filterOptions: filterOptions, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
             }
         }
         for o in filterOptions.filteringOptions {
@@ -300,7 +325,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             }
             i += 1
         }
-        self.tableView.reloadData()
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
         // Pull any data from the view controller which initiated the unwind segue.
     }
 

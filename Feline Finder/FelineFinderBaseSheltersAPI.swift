@@ -14,7 +14,7 @@ var Shelters = RescueGroupShelterList()
 var PetFinderShelters = PetFinderShelterList()
 
 struct shelter {
-    let dateCreated = NSDate()
+    let dateCreated = Date()
     let id: String
     let name: String
     let address1: String
@@ -48,16 +48,16 @@ struct shelter {
 class ShelterList {
     var loading: Bool = true
     var sh = [String: shelter]()
-    var dateCreated = NSDate()
+    var dateCreated = Date()
     var lastOffset: String = ""
     
     var count: Int {
         return sh.count
     }
     
-    func loadSingleShelter(shelterID: String, completion: (shelter) -> Void) -> Void {
+    func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void  {
     }
     
-    func loadShelters(zc: String) {
+    func loadShelters(_ zc: String) {
      }
 }

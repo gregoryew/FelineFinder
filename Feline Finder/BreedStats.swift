@@ -23,7 +23,7 @@ struct BreedStats {
         HighRange = highRange
         Value = value
     }
-    static func getDescription(d: String, p: Double) -> String {
+    static func getDescription(_ d: String, p: Double) -> String {
         var v: String = ""
         switch d {
         case "Build":
@@ -62,7 +62,7 @@ struct BreedStats {
 class BreedStatList {
     var breedStats = [BreedStats]()
     
-    func getDescription(d: String, p: Double) -> String {
+    func getDescription(_ d: String, p: Double) -> String {
         var v: String = ""
         switch d {
         case "Build":
@@ -97,13 +97,13 @@ class BreedStatList {
         return v
     }
     
-    func getBreedStatList(breedID: Int, percentageMatch: Double) {
-        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
-        let DBPath:NSString = documentsPath.stringByAppendingString("/CatFinder.db") as String
+    func getBreedStatList(_ breedID: Int, percentageMatch: Double) {
+        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as AnyObject
+        let DBPath:NSString = documentsPath.appending("/CatFinder.db") as NSString
         
         let contactDB = FMDatabase(path: DBPath as String)
             
-        if contactDB.open() {
+        if (contactDB?.open())! {
             breedStats = [];
                 
             var querySQL: String = ""
@@ -114,22 +114,22 @@ class BreedStatList {
                 querySQL = "SELECT BreedID, TraitShortDesc, c, l, h from BreedTraitValuesViewAnswers where BreedID = ?"
             }
             
-            let results: FMResultSet? = contactDB.executeQuery(querySQL,
-                withArgumentsInArray: [breedID])
+            let results: FMResultSet? = contactDB?.executeQuery(querySQL,
+                withArgumentsIn: [breedID])
             
-            print("Error: \(contactDB.lastErrorMessage())")
+            print("Error: \(contactDB?.lastErrorMessage())")
             
             while results?.next() == true {
-                let i = results?.intForColumn("BreedID")
-                let d = results?.stringForColumn("TraitShortDesc")
-                let p = results?.doubleForColumn("c")
+                let i = results?.int(forColumn: "BreedID")
+                let d = results?.string(forColumn: "TraitShortDesc")
+                let p = results?.double(forColumn: "c")
                 var l: Double
                 var h: Double
                 var v: String
                 v = getDescription(d!, p: p!)
                 if percentageMatch != -1 {
-                    l = results!.doubleForColumn("l")
-                    h = results!.doubleForColumn("h")
+                    l = results!.double(forColumn: "l")
+                    h = results!.double(forColumn: "h")
                 } else {
                     l = 0
                     h = 0
@@ -137,7 +137,7 @@ class BreedStatList {
                 let breedStat = BreedStats(id: i!, desc: d!, percent: p!, lowRange: l, highRange: h, value: v);
                 breedStats.append(breedStat);
             }
-            contactDB.close()
+            contactDB?.close()
             /*
             for (var i = 0; i < breedStats.count; ++i)
             {
@@ -145,7 +145,7 @@ class BreedStatList {
             }
             */
         } else {
-            print("Error: \(contactDB.lastErrorMessage())")
+            print("Error: \(contactDB?.lastErrorMessage())")
         }
     }
 }

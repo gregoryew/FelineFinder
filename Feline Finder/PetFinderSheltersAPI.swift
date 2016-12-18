@@ -9,13 +9,13 @@
 import Foundation
 
 class PetFinderShelterList: ShelterList {
-    override func loadSingleShelter(shelterID: String, completion: (shelter) -> Void) -> Void {
+    override func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void {
         super.loadSingleShelter(shelterID, completion: completion)
         if let s = sh[shelterID] {
             print("shelter in cache = |\(shelterID)|")
             //Supposed to refresh the PetFinder data every 24 hours
-            let hoursSinceCreation = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: s.dateCreated, toDate: NSDate(), options: []).hour
-            if hoursSinceCreation < 24 {
+            let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: s.dateCreated as Date, to: Date(), options: []).hour
+            if hoursSinceCreation! < 24 {
                 print("returning cached shelter = |\(shelterID)|")
                 completion(s)
                 return
@@ -23,9 +23,9 @@ class PetFinderShelterList: ShelterList {
         }
         
         if Utilities.isNetworkAvailable() {
-            let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.GET, baseURL: Utilities.petFinderAPIURL(), path: "shelter.get", parameters: ["key" :Utilities.apiKey(), "id":shelterID, "format":"json"])
+            let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.get, baseURL: Utilities.petFinderAPIURL(), path: "shelter.get", parameters: ["key" :Utilities.apiKey(), "id":shelterID, "format":"json"])
             let rsRequest: RSTransactionRequest = RSTransactionRequest()
-            rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
+            rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : URLResponse!, responseData: Data!, error: NSError!) -> Void in
                 if error == nil {
                     var json = JSON(data: responseData)
                     let s = json[ShelterTags.PETFINDER_TAG][ShelterTags.SHELTER_TAG]
@@ -38,26 +38,26 @@ class PetFinderShelterList: ShelterList {
                     Utilities.displayAlert("Error Retrieving Shelter Data", errorMessage: error.description)
                     print("Error : \(error)")
                 }
-            })
+            } as! RSTransactionRequest.dataFromRSTransactionCompletionClosure)
         }
     }
     
-    override func loadShelters(zc: String) {
+    override func loadShelters(_ zc: String) {
         super.loadShelters(zc)
         //var s: shelter?
         var i = 0
         
         loading = true
         
-        dateCreated = NSDate()
+        dateCreated = Date()
         
         if (Utilities.isNetworkAvailable() == false) {
             return
         }
      
-        let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.GET, baseURL: Utilities.petFinderAPIURL(), path: "shelter.find", parameters: ["key" :Utilities.apiKey(), "location":zc, "format":"json"])
+        let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.get, baseURL: Utilities.petFinderAPIURL(), path: "shelter.find", parameters: ["key" :Utilities.apiKey(), "location":zc, "format":"json"])
         let rsRequest: RSTransactionRequest = RSTransactionRequest()
-        rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : NSURLResponse!, responseData: NSData!, error: NSError!) ->
+        rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : URLResponse!, responseData: Data!, error: NSError!) ->
             Void in
             if error == nil {
                 var json = JSON(data: responseData)
@@ -79,10 +79,10 @@ class PetFinderShelterList: ShelterList {
                 Utilities.displayAlert("Error Retrieving Shelter Data", errorMessage: error.description)
                 print("Error : \(error)")
             }
-        })
+        } as! RSTransactionRequest.dataFromRSTransactionCompletionClosure)
     }
     
-    func addValue(tagName: String, value: JSON) -> String
+    func addValue(_ tagName: String, value: JSON) -> String
     {
         if let v = value[tagName][ShelterTags.T_TAG].string {
             return v
@@ -91,7 +91,7 @@ class PetFinderShelterList: ShelterList {
         }
     }
     
-    func createShelter(s: JSON) -> shelter {
+    func createShelter(_ s: JSON) -> shelter {
         let id = addValue(ShelterTags.ID_TAG, value: s)
         let name = addValue(ShelterTags.NAME_TAG, value: s)
         let address1 = addValue(ShelterTags.ADRESS1_TAG, value: s)

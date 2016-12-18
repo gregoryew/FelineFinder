@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     subscript (i: Int) -> Character {
-        let index1 = self.startIndex.advancedBy(i)
+        let index1 = self.characters.index(self.startIndex, offsetBy: i)
         //let index = self.startIndex.advanceBy(i)
         return self[index1]
     }
@@ -21,19 +21,20 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        let index1 = self.startIndex.advancedBy(r.startIndex)
-        let index2 = self.startIndex.advancedBy(r.endIndex)
-        return substringWithRange(index1...index2)
+        let index1 = self.characters.index(self.startIndex, offsetBy: r.lowerBound)
+        let index2 = self.characters.index(self.startIndex, offsetBy: r.upperBound)
+        let range = index1..<index2
+        return substring(with: range)
         //return substringWithRange(Range(start: index1, end: index2))
     }
     
     func URLEncodedString() -> String? {
-        let customAllowedSet =  NSCharacterSet.URLQueryAllowedCharacterSet()
-        let escapedString = self.stringByAddingPercentEncodingWithAllowedCharacters(customAllowedSet)
+        let customAllowedSet =  CharacterSet.urlQueryAllowed
+        let escapedString = self.addingPercentEncoding(withAllowedCharacters: customAllowedSet)
         return escapedString
     }
     
-    static func queryStringFromParameters(parameters: Dictionary<String,String>) -> String? {
+    static func queryStringFromParameters(_ parameters: Dictionary<String,String>) -> String? {
         if (parameters.count == 0)
         {
             return nil
@@ -59,7 +60,7 @@ extension String {
     
     var isNumber : Bool {
             get{
-                return !self.isEmpty && self.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet) == nil
+                return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
         }
     }
 }

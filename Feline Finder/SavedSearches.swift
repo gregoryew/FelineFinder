@@ -64,7 +64,7 @@ class SavedSeachesList {
         }
     }
     
-    func saveSearches(answers: Bool, ID: Int, SearchName: String) -> Int {
+    func saveSearches(_ answers: Bool, ID: Int, SearchName: String) -> Int {
         var rID: Int = 0
         DatabaseManager.sharedInstance.savedSearches(answers, ID: ID, SearchName: SearchName, SDS: self[ID].SavedSearchDetails) { (rowID) -> Void in
             rID = rowID
@@ -79,7 +79,7 @@ class SavedSeachesList {
         loaded = false
     }
     
-    func loadSearches(answers: Bool) {
+    func loadSearches(_ answers: Bool) {
         loaded = false
         
         //var sn: String?

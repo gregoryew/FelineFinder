@@ -46,7 +46,7 @@ struct Question {
         ImageName = image
     }
     
-    mutating func setAnswer(choiceID: Int) {
+    mutating func setAnswer(_ choiceID: Int) {
         var j = 0
         var k = 0
         
@@ -93,11 +93,11 @@ class QuestionList {
         }
     }
 
-    func getAnswer(index: Int) -> Choice {
+    func getAnswer(_ index: Int) -> Choice {
         return Questions[index].getAnswer()
     }
     
-    func setAnswer(index: Int, choiceID: Int) {
+    func setAnswer(_ index: Int, choiceID: Int) {
         var q: Int = 0
         var i = 0
         while i < Questions.count {
@@ -110,7 +110,7 @@ class QuestionList {
         Questions[q].setAnswer(choiceID)
     }
     
-    func readAnswers(id: Int) {
+    func readAnswers(_ id: Int) {
         DatabaseManager.sharedInstance.readAnswers(Questions, id: id)
     }
     

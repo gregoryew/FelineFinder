@@ -11,40 +11,40 @@ import Foundation
 class RescuePetList: PetList {
     var resultStart: Int = 0
     var resultLimit: Int = 25
-    override func loadSinglePet(petID: String, completion: (Pet) -> Void) -> Void {
+    override func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
         super.loadSinglePet(petID, completion: completion)
         if let p2 = PetsGlobal[petID] {
             //Supposed to refresh the PetFinder data every 24 hours
-            let hoursSinceCreation = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: p2.dateCreated, toDate: NSDate(), options: []).hour
-            if hoursSinceCreation < 24 {
+            let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: p2.dateCreated as Date, to: Date(), options: []).hour
+            if hoursSinceCreation! < 24 && p2.description != "" {
                 completion(p2)
                 return
             }
         }
         
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"100", "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": splitPetID(petID)]], "fields": ["animalID","animalOrgID","animalAltered","animalBreed","animalDeclawed","animalDescription","animalDescriptionPlain","animalGeneralAge","animalGeneralSizePotential","animalHousetrained","animalLocation","animalLocationCoordinates","animalLocationDistance","animalName","animalSpecialneeds","animalSpecialneedsDescription","animalOKWithAdults","animalOKWithCats","animalOKWithDogs","animalOKWithKids","animalPrimaryBreed","animalRescueID","animalSex","animalSizePotential","animalUpdatedDate","animalPictures","animalVideoUrls","animalUptodate","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending","animalBirthdate", "animalBirthdateExact"]]]
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"100", "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": splitPetID(petID)]], "fields": ["animalID","animalOrgID","animalAltered","animalBreed","animalDeclawed","animalDescription","animalDescriptionPlain","animalGeneralAge","animalGeneralSizePotential","animalHousetrained","animalLocation","animalLocationCoordinates","animalLocationDistance","animalName","animalSpecialneeds","animalSpecialneedsDescription","animalOKWithAdults","animalOKWithCats","animalOKWithDogs","animalOKWithKids","animalPrimaryBreed","animalRescueID","animalSex","animalSizePotential","animalUpdatedDate","animalPictures","animalVideoUrls","animalUptodate","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending","animalBirthdate", "animalBirthdateExact",      "animalApartment", "animalYardRequired","animalIndoorOutdoor","animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds"]]] as [String : Any]
         
         if Utilities.isNetworkAvailable() {
             do {
                 
-                let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
                 
-                let myURL = NSURL(string: "https://api.rescuegroups.org/http/v2.json")!
-                let request = NSMutableURLRequest(URL: myURL)
-                request.HTTPMethod = "POST"
+                let myURL = URL(string: "https://api.rescuegroups.org/http/v2.json")!
+                let request = NSMutableURLRequest(url: myURL)
+                request.httpMethod = "POST"
                 
                 request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
                 request.setValue("application/json", forHTTPHeaderField: "Accept")
                 
-                request.HTTPBody = jsonData
-                let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+                request.httpBody = jsonData
+                let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
                     data, response, error in
                     if error != nil {
                         print("Get Error")
                     } else {
                         //var error:NSError?
                         do {
-                            let jsonObj:AnyObject =  try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                            let jsonObj:AnyObject =  try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
                             
                             if let dict = jsonObj as? [String: AnyObject] {
                                 for (key, data) in dict {
@@ -62,17 +62,24 @@ class RescuePetList: PetList {
                             print(error.localizedDescription)
                         }
                     }
-                }
+                }) 
                 task.resume() } catch { }
             }
     }
     
-    override func loadPets(tv: UITableView, bn: Breed, zipCode: String, completion: (p: PetList) -> Void) -> Void {
+    override func loadPets(_ tv: UITableView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
         super.loadPets(tv, bn: bn, zipCode: zipCode, completion: completion)
+        
+        if zipCodeGlobal == zipCode  && bnGlobal == bn.BreedName {
+            return
+        } else {
+            zipCodeGlobal = zipCode
+            bnGlobal = bn.BreedName
+        }
         
         loading = true
         
-        dateCreated = NSDate() //Reset the cache time
+        dateCreated = Date() //Reset the cache time
         
         if (Utilities.isNetworkAvailable() == false) {
             return
@@ -80,45 +87,44 @@ class RescuePetList: PetList {
         
         var filters:[filter] = []
         
-        filters.append(["fieldName": "animalStatus", "operation": "notequals", "criteria": "Adopted"])
-        filters.append(["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"])
-        filters.append(["fieldName": "animalLocationDistance", "operation": "radius", "criteria": "3000"])
-        filters.append(["fieldName": "animalLocation", "operation": "equals", "criteria": zipCode])
+        filters.append(["fieldName": "animalStatus" as AnyObject, "operation": "notequals" as AnyObject, "criteria": "Adopted" as AnyObject])
+        filters.append(["fieldName": "animalSpecies" as AnyObject, "operation": "equals" as AnyObject, "criteria": "cat" as AnyObject])
+        filters.append(["fieldName": "animalLocationDistance" as AnyObject, "operation": "radius" as AnyObject, "criteria": "3000" as AnyObject])
+        filters.append(["fieldName": "animalLocation" as AnyObject, "operation": "equals" as AnyObject, "criteria": zipCode as AnyObject])
         if bn.BreedName != "All Breeds" {
             if bn.RescueBreedID == "" {
                 print(bn.BreedName)
-                filters.append(["fieldName": "animalPrimaryBreed", "operation": "contains", "criteria": bn.BreedName])
+                filters.append(["fieldName": "animalPrimaryBreed" as AnyObject, "operation": "contains" as AnyObject, "criteria": bn.BreedName as AnyObject])
             } else {
                 print(bn.RescueBreedID)
-                filters.append(["fieldName": "animalPrimaryBreedID", "operation": "equals", "criteria": bn.RescueBreedID])
+                filters.append(["fieldName": "animalPrimaryBreedID" as AnyObject, "operation": "equals" as AnyObject, "criteria": bn.RescueBreedID as AnyObject])
             }
         }
         filters += filterOptions.getFilters()
         print(String(resultStart))
         print(String(resultLimit))
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalOrgID", "animalAltered", "animalBreed", "animalDeclawed", "animalDescriptionPlain","animalGeneralAge","animalGeneralSizePotential","animalHousetrained","animalLocation","animalLocationCoordinates","animalLocationDistance","animalName","animalSpecialneeds","animalSpecialneedsDescription","animalOKWithAdults","animalOKWithCats","animalOKWithDogs","animalOKWithKids","animalPrimaryBreed","animalRescueID","animalSex","animalSizePotential","animalUpdatedDate","animalPictures","animalVideoUrls","animalUptodate","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending","animalBirthdate", "animalBirthdateExact"]]]
-        
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalOrgID", "animalAltered", "animalBreed", "animalDeclawed", "animalGeneralAge", "animalGeneralSizePotential", "animalHousetrained", "animalLocation", "animalLocationCoordinates", "animalLocationDistance", "animalName", "animalSpecialneeds", "animalOKWithAdults", "animalOKWithCats", "animalOKWithDogs", "animalOKWithKids", "animalPrimaryBreed", "animalRescueID", "animalSex", "animalSizePotential", "animalUpdatedDate", "animalPictures","animalVideoUrls", "animalUptodate", "animalStatus", "animalAdoptedDate", "animalAvailableDate", "animalAdoptionPending", "animalBirthdate", "animalBirthdateExact", "animalApartment", "animalYardRequired", "animalIndoorOutdoor", "animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds"]]] as [String : Any]
         do {
             
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
-            let myURL = NSURL(string: "https://api.rescuegroups.org/http/v2.json")!
-            let request = NSMutableURLRequest(URL: myURL)
-            request.HTTPMethod = "POST"
+            let myURL = URL(string: "https://api.rescuegroups.org/http/v2.json")!
+            let request = NSMutableURLRequest(url: myURL)
+            request.httpMethod = "POST"
             
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
-            request.HTTPBody = jsonData
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
                 data, response, error in
                 if error != nil {
                     print("Get Error")
-                    Utilities.displayAlert("Sorry There Was A Problem", errorMessage: error!.description)
+                    Utilities.displayAlert("Sorry There Was A Problem", errorMessage: error! as! String)
                 } else {
                     //var error:NSError?
                     do {
-                        let jsonObj:AnyObject =  try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        let jsonObj:AnyObject =  try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
                         if let dict = jsonObj as? [String: AnyObject] {
                             for (key, data) in dict {
                                 if key == "data" {
@@ -135,18 +141,18 @@ class RescuePetList: PetList {
                         self.resultStart += self.resultLimit
                         self.assignDistances()
                         self.loading = false
-                        completion(p: self)
+                        completion(self)
                     } catch let error as NSError {
                         // error handling
                         Utilities.displayAlert("Sorry There Was A Problem", errorMessage: error.description)
                         print(error.localizedDescription)
                     }
                 }
-            }
+            }) 
             task.resume() } catch { }
     }
     
-    func validateDouble(d: AnyObject) -> Double {
+    func validateDouble(_ d: AnyObject) -> Double {
         var data: Double
         if d is Double {
             data = d as! Double
@@ -156,7 +162,7 @@ class RescuePetList: PetList {
         return data
     }
     
-    func validateValue(d: AnyObject) -> String {
+    func validateValue(_ d: AnyObject) -> String {
         var data: String
         if d is String {
             data = d as! String
@@ -166,7 +172,7 @@ class RescuePetList: PetList {
         return data
     }
     
-    func createPet(p: AnyObject) -> Pet {
+    func createPet(_ p: AnyObject) -> Pet {
         var petID: String?
         var name: String?
         var breeds: Set<String> = Set<String>()
@@ -186,38 +192,63 @@ class RescuePetList: PetList {
         var animalAvailableDate: String?
         var animalAdoptionPending: String?
         var animalBirthdate: String?
-        var animalBirthdateExact: String?
+        description = ""
+        //var animalBirthdateExact: String?
         if let dict = p as? [String: AnyObject] {
             for (key, data) in dict {
                 switch key {
                 case "animalOKWithDogs" : options = hasOption(validateValue(data), option1: "OK With Dogs", option2: "Not OK With Dogs", options: options)
-                    case "animalPrimaryBreed": breeds.insert(validateValue(data))
-                    case "animalUpdatedDate": lastUpdated = validateValue(data)
-                    case "animalID": petID = validateValue(data)
-                    case "animalAltered": options = hasOption(validateValue(data), option1: "Spayed/Neutered", option2: "Not Spayed/Neutered", options: options)
-                    case "animalOKWithAdults": options = hasOption(validateValue(data), option1: "OK With Adults", option2: "Not OK With Adults",  options: options)
-                    case "animalDescriptionPlain": description = validateValue(data)
+                case "animalPrimaryBreed": breeds.insert(validateValue(data))
+                case "animalUpdatedDate": lastUpdated = validateValue(data)
+                case "animalID": petID = validateValue(data)
+                case "animalAltered": options = hasOption(validateValue(data), option1: "Spayed/Neutered", option2: "Not Spayed/Neutered", options: options)
+                case "animalOKWithAdults": options = hasOption(validateValue(data), option1: "OK With Adults", option2: "Not OK With Adults",  options: options)
+                case "animalDescriptionPlain": description = validateValue(data)
                 case "animalSpecialneeds": options = hasOption((data as? String)!, option1: "Has Special Needs", option2: "Does not have special needs", options: options)
                     //case "animalBreed": options.insert(data as! String)
                 case "animalOKWithCats": options = hasOption(validateValue(data), option1: "OK With Cats", option2: "Not OK with Cats", options: options)
                     case "animalOrgID": sID = validateValue(data)
                 case "animalHousetrained": options = hasOption(validateValue(data), option1: "House Trained", option2: "Not House Trained", options: options)
                 case "animalOKWithKids": options = hasOption(validateValue(data), option1: "Good with Kids", option2: "Not Good with Kids", options: options)
-                    case "animalGeneralAge": age = validateValue(data)
-                    case "animalSex": sex = validateValue(data)
-                    case "animalGeneralSizePotential": size = validateValue(data)
-                    case "animalName": name = validateValue(data)
-                    case "animalPictures": pictures = parsePictures(data)
-                    case "animalVideoUrls": videos = parseVideos(data)
+                case "animalGeneralAge": age = validateValue(data)
+                case "animalSex": sex = validateValue(data)
+                case "animalGeneralSizePotential": size = validateValue(data)
+                case "animalName": name = validateValue(data)
+                case "animalPictures": pictures = parsePictures(data)
+                case "animalVideoUrls": videos = parseVideos(data)
                 case "animalLocationDistance": distance = validateDouble(data)
-                    case "animalDeclawed": options = hasOption(validateValue(data), option1: "Declawed", option2: "Has claws",options: options)
+                case "animalDeclawed": options = hasOption(validateValue(data), option1: "Declawed", option2: "Has claws",options: options)
                 case "animalUptodate": options = hasOption(validateValue(data), option1: "Uptodate", option2: "Not Uptodate", options: options)
                 case "animalStatus": animalStatus = validateValue(data)
                 case "animalAdoptedDate": animalAdoptedDate = validateValue(data)
                 case "animalAvailableDate": animalAvailableDate = validateValue(data)
                 case "animalAdoptionPending": animalAdoptionPending = validateValue(data)
                 case "animalBirthdate": animalBirthdate = validateValue(data)
-                case "animalBirthdateExact": animalBirthdateExact = validateValue(data)
+                //case "animalBirthdateExact": animalBirthdateExact = validateValue(data)
+                case "animalApartment": options = hasOption(validateValue(data), option1: "OK with apartment", option2: "Not OK with apartment", options: options)
+                case "animalYardRequired": options = hasOption(validateValue(data), option1: "Requires yard", option2: "Does not require yard", options: options)
+                case "animalNoCold": options = hasOption(validateValue(data), option1: "Cold Sensitive", option2: "Not Cold Sensitive", options: options)
+                case "animalNoHeat": options = hasOption(validateValue(data), option1: "Heat Sensitive", option2: "Not Heat Sensitive", options: options)
+                case "animalOKForSeniors": options = hasOption(validateValue(data), option1: "OK for Seniors", option2: "Not for Seniors", options: options)
+                case "animalYardRequired": options = hasOption(validateValue(data), option1: "Yard Required", option2: "Yard Not Required", options: options)
+                case "animalAffectionate": options = hasOption(validateValue(data), option1: "Affectionate", option2: "Not Affectionate", options: options)
+                case "animalCratetrained": options = hasOption(validateValue(data), option1: "Crate Trained", option2: "Not Crate Trained", options: options)
+                case "animalEagerToPlease": options = hasOption(validateValue(data), option1: "Eager to Please", option2: "Not Eager to Please", options: options)
+                case "animalEscapes": options = hasOption(validateValue(data), option1: "Escapes", option2: "Does not Escape", options: options)
+                case "animalEventempered": options = hasOption(validateValue(data), option1: "Eventempered", option2: "Not Eventempered", options: options)
+                case "animalFetches": options = hasOption(validateValue(data), option1: "Fetches", option2: "Does not Fetch", options: options)
+                case "animalGentle": options = hasOption(validateValue(data), option1: "Gentle", option2: "Not Gentle", options: options)
+                case "animalGoodInCar": options = hasOption(validateValue(data), option1: "Good In Car", option2: "Not Good In Car", options: options)
+                case "animalGoofy": options = hasOption(validateValue(data), option1: "Goofy", option2: "Not Goofy", options: options)
+                case "animalHousetrained": options = hasOption(validateValue(data), option1: "Housetrained", option2: "Not Housetrained", options: options)
+                case "animalIndependent": options = hasOption(validateValue(data), option1: "Independent", option2: "Not Independent", options: options)
+                case "animalIntelligent": options = hasOption(validateValue(data), option1: "Intelligent", option2: "Not Intelligent", options: options)
+                case "animalLap": options = hasOption(validateValue(data), option1: "Lap", option2: "Not Lap", options: options)
+                case "animalLeashtrained": options = hasOption(validateValue(data), option1: "Lease Trained", option2: "Not Lease Trained", options: options)
+                case "animalNeedsCompanionAnimal": options = hasOption(validateValue(data), option1: "Needs Companion Animal", option2: "No Companion Animal", options: options)
+                case "animalObedient": options = hasOption(validateValue(data), option1: "Obedient", option2: "Not Obedient", options: options)
+                case "animalPlayful": options = hasOption(validateValue(data), option1: "Playful", option2: "Not Playful", options: options)
+                case "animalPredatory": options = hasOption(validateValue(data), option1: "Predatory", option2: "Not Predatory", options: options)
                 default: break
                 }
             }
@@ -236,7 +267,7 @@ class RescuePetList: PetList {
     }
 }
 
-func hasOption(optionValue: String, option1:  String, option2: String, options: Set<String>) -> Set<String> {
+func hasOption(_ optionValue: String, option1:  String, option2: String, options: Set<String>) -> Set<String> {
     var opts = Set<String>()
     opts = options
     if optionValue == "Yes" {
@@ -247,10 +278,10 @@ func hasOption(optionValue: String, option1:  String, option2: String, options: 
     return opts
 }
 
-func parsePictures(data: AnyObject) -> [picture] {
+func parsePictures(_ data: AnyObject) -> [picture] {
     var pictures: [picture] = [picture]()
     var id = 1
-    var d: AnyObject?
+    var d: Any?
     var i = 0
     
     while i < data.count {
@@ -271,7 +302,7 @@ func parsePictures(data: AnyObject) -> [picture] {
     return pictures
 }
 
-func parsePicture(id: Int, data: AnyObject) -> picture {
+func parsePicture(_ id: Int, data: AnyObject) -> picture {
     var type: String?
     var url: String?
     if let dict = data as? [String: AnyObject] {
@@ -287,7 +318,7 @@ func parsePicture(id: Int, data: AnyObject) -> picture {
 }
 
 
-func convert(size: String) -> String {
+func convert(_ size: String) -> String {
     var s = ""
     switch size {
         case "Large": s = "x"
@@ -298,21 +329,21 @@ func convert(size: String) -> String {
     return s
 }
 
-func parseVideos(data: AnyObject) -> [video] {
+func parseVideos(_ data: AnyObject) -> [video] {
     var videos: [video] = [video]()
     var i = 0
-    var d: AnyObject?
+    var d: Any?
     while i < data.count {
         d = data[i]
         if let dict = d as? [String: AnyObject] {
-            videos.append(parseVideo(dict))
+            videos.append(parseVideo(dict as AnyObject))
         }
         i += 1
     }
     return videos
 }
 
-func parseVideo(data: AnyObject) -> video {
+func parseVideo(_ data: AnyObject) -> video {
     var mediaID: String?
     var mediaOrder: String?
     var urlThumbnail: String?

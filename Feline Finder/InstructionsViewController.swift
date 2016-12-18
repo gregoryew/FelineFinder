@@ -12,12 +12,12 @@ class InstructionsViewController: UIViewController {
     
     @IBOutlet weak var InstructionTextView: UITextView!
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        InstructionTextView.setContentOffset(CGPointZero, animated: false)
+        InstructionTextView.setContentOffset(CGPoint.zero, animated: false)
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true);

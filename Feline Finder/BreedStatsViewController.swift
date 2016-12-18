@@ -13,7 +13,7 @@ class BreedStatsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var whichSeque: String = ""
-    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "")
+    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "")
     var breedStat: BreedStats = BreedStats(id: 0, desc: "", percent: 0, lowRange: 0, highRange: 0, value: "")
     var breedStats: [BreedStats] = []
     var frameWidth = 0
@@ -39,32 +39,32 @@ class BreedStatsViewController: UIViewController {
         }
         
         
-        self.scrollView.backgroundColor = UIColor.grayColor()
+        self.scrollView.backgroundColor = UIColor.gray
         
     }
     
-    @IBAction func unwindToPetFinderPictureViewer(sender: UIStoryboardSegue)
+    @IBAction func unwindToPetFinderPictureViewer(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.setGradientBackground()
         self.displayStats()
     }
     
     func setGradientBackground() {
-        let colorTop =  UIColor.darkGrayColor().CGColor
-        let colorBottom = UIColor.lightGrayColor().CGColor
+        let colorTop =  UIColor.darkGray.cgColor
+        let colorBottom = UIColor.lightGray.cgColor
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [ colorTop, colorBottom]
         gradientLayer.locations = [ 0.0, 1.0]
         var h = CGFloat(((breedStats.count + 1) * distance) + startpoint + 60)
         if self.view.frame.height > h {h = self.view.frame.height}
-        let rect = CGRectMake(0, -60, self.view.frame.width, h)
+        let rect = CGRect(x: 0, y: -60, width: self.view.frame.width, height: h)
         gradientLayer.frame = rect
         
         self.scrollView.layer.addSublayer(gradientLayer)
@@ -86,16 +86,16 @@ class BreedStatsViewController: UIViewController {
         
         let pos = CGPoint(x:20,y:0)
         let lbl = UILabel()
-        lbl.frame = CGRectMake(pos.x, pos.y - 60, 400, 18)
-        lbl.font = lbl.font.fontWithSize(10)
-        lbl.textColor = UIColor.whiteColor()
+        lbl.frame = CGRect(x: pos.x, y: pos.y - 60, width: 400, height: 18)
+        lbl.font = lbl.font.withSize(10)
+        lbl.textColor = UIColor.white
         lbl.text = "Legend: Red = Actual ⎟ Pin = Your Preference"
         scrollView.addSubview(lbl)
         
         for breedStat in breedStats {
             i += 1;
             var c: Int = 1
-            if (i > breedStats.count / 2) && UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation) {
+            if (i > breedStats.count / 2) && UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
                 c = 2
             }
             if breedStat.Value == "" {
@@ -108,9 +108,9 @@ class BreedStatsViewController: UIViewController {
 
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
-            (segue.destinationViewController as! DetailViewController).breed = breed
+            (segue.destination as! DetailViewController).breed = breed
         }
         /*
         else if (segue.identifier == "breederList") {
@@ -122,7 +122,7 @@ class BreedStatsViewController: UIViewController {
         */
         else if (segue.identifier == "petFinder") {
             let b = self.breed as Breed?
-            (segue.destinationViewController as! PetFinderViewController).breed = b!
+            (segue.destination as! PetFinderViewController).breed = b!
         }
     }
     
@@ -135,9 +135,9 @@ class BreedStatsViewController: UIViewController {
         let pos = CGPoint(x:20,y:Int(row*distance)+startpoint - 105)
         //first label settings
         let lbl = UILabel()
-        lbl.frame = CGRectMake(pos.x, pos.y - 14, 200, 18)
-        lbl.textColor = UIColor.whiteColor()
-        lbl.font = lbl.font.fontWithSize(15)
+        lbl.frame = CGRect(x: pos.x, y: pos.y - 14, width: 200, height: 18)
+        lbl.textColor = UIColor.white
+        lbl.font = lbl.font.withSize(15)
         lbl.text = "\(label): \(valDesc)"
         scrollView.addSubview(lbl)
     }
@@ -148,21 +148,21 @@ class BreedStatsViewController: UIViewController {
         let end = CGPoint(x:Int(val*onePart),y:Int(row*distance)+startpoint - 105)
         //first label settings
         let lbl = UILabel()
-        lbl.frame = CGRectMake(start.x, start.y - 25, 200, 18)
-        lbl.font = lbl.font.fontWithSize(15)
+        lbl.frame = CGRect(x: start.x, y: start.y - 25, width: 200, height: 18)
+        lbl.font = lbl.font.withSize(15)
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
-            lbl.textColor = UIColor.lightGrayColor()
+            lbl.textColor = UIColor.lightGray
         }
-        lbl.textColor = UIColor.whiteColor()
+        lbl.textColor = UIColor.white
         lbl.text = name
         scrollView.addSubview(lbl)
         
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
             let lightRed  = UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
-            drawLine(startpoint: start, endpoint: end,linecolor: lightRed.CGColor,linewidth:15.0)
+            drawLine(startpoint: start, endpoint: end,linecolor: lightRed.cgColor,linewidth:15.0)
         } else {
             //red part of line
-            drawLine(startpoint: start, endpoint: end,linecolor: UIColor.redColor().CGColor,linewidth:15.0)
+            drawLine(startpoint: start, endpoint: end,linecolor: UIColor.red.cgColor,linewidth:15.0)
         }
         
         //gray part of line
@@ -170,15 +170,15 @@ class BreedStatsViewController: UIViewController {
         let nstart = CGPoint(x:Int(val*onePart),y:Int(row*distance)+startpoint - 105)
         let nend = CGPoint(x:Int(nextpt),y:Int(row*distance)+startpoint - 105)
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
-            drawLine(startpoint: nstart, endpoint: nend,linecolor: UIColor.lightGrayColor().CGColor,linewidth:15.0)
+            drawLine(startpoint: nstart, endpoint: nend,linecolor: UIColor.lightGray.cgColor,linewidth:15.0)
         } else {
-            drawLine(startpoint: nstart, endpoint: nend, linecolor: UIColor.grayColor().CGColor,linewidth:15.0)
+            drawLine(startpoint: nstart, endpoint: nend, linecolor: UIColor.gray.cgColor,linewidth:15.0)
         }
         
         if !((l == 0.0) && (h == 100.0)) && (dr == true) {
             let myLayer = CALayer()
-            let myImage = UIImage(named: "pushPin")?.CGImage
-            myLayer.frame = CGRectMake(self.view.frame.width + 30, CGFloat(start.y) - 27.0, 30.0, 30.0)
+            let myImage = UIImage(named: "pushPin")?.cgImage
+            myLayer.frame = CGRect(x: self.view.frame.width + 30, y: CGFloat(start.y) - 27.0, width: 30.0, height: 30.0)
             myLayer.contents = myImage
             scrollView.layer.addSublayer(myLayer)
             let animation = CABasicAnimation(keyPath: "position.x")
@@ -186,8 +186,8 @@ class BreedStatsViewController: UIViewController {
             animation.toValue = CGFloat(l * onePart)
             animation.repeatCount = 1
             animation.duration = 0.5
-            myLayer.addAnimation(animation, forKey: "position.x")
-            myLayer.frame = CGRectMake(CGFloat(l * onePart), CGFloat(start.y) - 27.0, 30.0, 30.0)
+            myLayer.add(animation, forKey: "position.x")
+            myLayer.frame = CGRect(x: CGFloat(l * onePart), y: CGFloat(start.y) - 27.0, width: 30.0, height: 30.0)
         }
     }
     
@@ -195,11 +195,11 @@ class BreedStatsViewController: UIViewController {
     func drawLine(startpoint start:CGPoint, endpoint end:CGPoint, linecolor color: CGColor , linewidth widthline:CGFloat){
         
         let path = UIBezierPath()
-        path.moveToPoint(start)
-        path.addLineToPoint(end)
+        path.move(to: start)
+        path.addLine(to: end)
         
         let shapeLayer = CAShapeLayer()
-        shapeLayer.path = path.CGPath
+        shapeLayer.path = path.cgPath
         shapeLayer.strokeColor = color
         shapeLayer.lineWidth = widthline
         
@@ -207,13 +207,13 @@ class BreedStatsViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true);
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true);

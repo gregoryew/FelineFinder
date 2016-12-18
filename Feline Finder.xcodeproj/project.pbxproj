@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */; };
+		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51C39031D723EFA008064EC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C51C39021D723EFA008064EC /* share.png */; };
 		C51EE1C31D7AD5D000747D8C /* PlayVideo.png in Resources */ = {isa = PBXBuildFile; fileRef = C51EE1C21D7AD5D000747D8C /* PlayVideo.png */; };
 		C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */; };
+		C525E3671D896733005123C4 /* FelineFinderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525E3661D896733005123C4 /* FelineFinderDetailViewController.swift */; };
+		C525E3691D896D4B005123C4 /* OptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C525E3681D896D4B005123C4 /* OptionsTableViewCell.swift */; };
 		C527B1331B46E11100874272 /* PetFinderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527B1321B46E11100874272 /* PetFinderViewController.swift */; };
 		C527B1351B46E7DA00874272 /* string extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C527B1341B46E7DA00874272 /* string extensions.swift */; };
 		C527B1371B48079F00874272 /* Savannah.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C527B1361B48079F00874272 /* Savannah.jpg */; };
 		C527B1391B4807F300874272 /* Savannah.html in Resources */ = {isa = PBXBuildFile; fileRef = C527B1381B4807F300874272 /* Savannah.html */; };
+		C53775E21DE28C9700BD4D41 /* catpaws.png in Resources */ = {isa = PBXBuildFile; fileRef = C53775E11DE28C9700BD4D41 /* catpaws.png */; };
 		C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DECD1B51740000B631B8 /* FavoritesViewController.swift */; };
 		C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C539DECF1B51742800B631B8 /* SavedListsViewController.swift */; };
 		C539DED31B51797300B631B8 /* LikeSelected.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C539DED11B51797300B631B8 /* LikeSelected.jpg */; };
@@ -236,15 +241,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwinkleImage.png; sourceTree = "<group>"; };
+		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51C39021D723EFA008064EC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		C51EE1C21D7AD5D000747D8C /* PlayVideo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayVideo.png; sourceTree = "<group>"; };
 		C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		C525E3661D896733005123C4 /* FelineFinderDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FelineFinderDetailViewController.swift; sourceTree = "<group>"; };
+		C525E3681D896D4B005123C4 /* OptionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OptionsTableViewCell.swift; path = ../OptionsTableViewCell.swift; sourceTree = "<group>"; };
 		C527B1321B46E11100874272 /* PetFinderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderViewController.swift; sourceTree = "<group>"; };
 		C527B1341B46E7DA00874272 /* string extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "string extensions.swift"; sourceTree = "<group>"; };
 		C527B1361B48079F00874272 /* Savannah.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Savannah.jpg; sourceTree = "<group>"; };
 		C527B1381B4807F300874272 /* Savannah.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Savannah.html; sourceTree = "<group>"; };
+		C53775E11DE28C9700BD4D41 /* catpaws.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catpaws.png; sourceTree = "<group>"; };
 		C539DECD1B51740000B631B8 /* FavoritesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C539DECF1B51742800B631B8 /* SavedListsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedListsViewController.swift; sourceTree = "<group>"; };
 		C539DED11B51797300B631B8 /* LikeSelected.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = LikeSelected.jpg; sourceTree = "<group>"; };
@@ -704,7 +714,8 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
-				C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */,
+				462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */,
+				4632471B1E037D17000039FF /* Twinkle.swift */,
 				C58367281D683145001AFDD3 /* CoolButton */,
 				C5471BA51D67AFD200F9A459 /* CoolTable */,
 				C5045DA31B9150E700A6663C /* RSNetworking */,
@@ -720,8 +731,11 @@
 				C5FB6EF21B21347D007FFA36 /* fmdb */,
 				C5FB6EC41B21335D007FFA36 /* HTML */,
 				C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */,
+				C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */,
 				C58B459D1B2D457600E03538 /* QuestionEntry.swift */,
 				C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */,
+				C525E3661D896733005123C4 /* FelineFinderDetailViewController.swift */,
+				C525E3681D896D4B005123C4 /* OptionsTableViewCell.swift */,
 				C58367261D68047A001AFDD3 /* MasterViewTableCell.swift */,
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
@@ -786,12 +800,13 @@
 			isa = PBXGroup;
 			children = (
 				C5DD62401D7BF68800CF0880 /* youtube.png */,
-				C51EE1C21D7AD5D000747D8C /* PlayVideo.png */,
+				C53775E11DE28C9700BD4D41 /* catpaws.png */,
 				C51C39021D723EFA008064EC /* share.png */,
-				C5B8F9941D68CC9D002EC03C /* website.png */,
 				C5B8F9961D68CC9D002EC03C /* directions.png */,
 				C5B8F9971D68CC9D002EC03C /* phone.png */,
 				C5B8F9981D68CC9D002EC03C /* email.png */,
+				C51EE1C21D7AD5D000747D8C /* PlayVideo.png */,
+				C5B8F9941D68CC9D002EC03C /* website.png */,
 				C54FCA911B83AB6100D9524E /* Tuxedo.html */,
 				C54FCA921B83AB6100D9524E /* Handsome_tuxedo_cat.jpg */,
 				C54FCA931B83AB6100D9524E /* domestic_short-haired_cat.html */,
@@ -986,12 +1001,13 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Gregory Williams";
 				TargetAttributes = {
 					C5FB6E9A1B2132EC007FFA36 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = BVC6BMPCPP;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -1047,6 +1063,7 @@
 				C55126681B24FF82007D8CDF /* Persian_Cat_3_UK.jpg in Resources */,
 				C5511C4F1B6EB73A00BE8610 /* grooming.gif in Resources */,
 				C58B456D1B2C96E500E03538 /* Qwill_Siamese_cat.jpg in Resources */,
+				462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */,
 				C556BD1C1B80122A0009EB95 /* Savannah.gif in Resources */,
 				C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */,
 				C55126741B25048E007D8CDF /* ScottishFold.html in Resources */,
@@ -1147,6 +1164,7 @@
 				C556BD321B81520A0009EB95 /* SnowshoeFace.jpg in Resources */,
 				C58B45881B2CC57800E03538 /* TurkishAngora.html in Resources */,
 				C56F90E71B7A110A00EEEBFA /* American_Curl.gif in Resources */,
+				C53775E21DE28C9700BD4D41 /* catpaws.png in Resources */,
 				C527B1391B4807F300874272 /* Savannah.html in Resources */,
 				C58B456E1B2C96E500E03538 /* Siamese.html in Resources */,
 				C56F90CC1B766A4A00EEEBFA /* welcome_cat_6.png in Resources */,
@@ -1247,6 +1265,7 @@
 				C5943AFB1D8248280088DE4D /* FilteringOptions.swift in Sources */,
 				C5045DB11B9155C200A6663C /* Utilities.swift in Sources */,
 				C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */,
+				C525E3691D896D4B005123C4 /* OptionsTableViewCell.swift in Sources */,
 				C5943AFD1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift in Sources */,
 				C58B45A81B2DB19700E03538 /* BreedStatsViewController.swift in Sources */,
 				C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */,
@@ -1278,6 +1297,7 @@
 				C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */,
 				C58D21271B4918C7008E1B0B /* PetFinderSheltersAPI.swift in Sources */,
 				C5471BB71D67B01400F9A459 /* Common.m in Sources */,
+				4632471C1E037D17000039FF /* Twinkle.swift in Sources */,
 				C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */,
 				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,
 				C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */,
@@ -1287,6 +1307,7 @@
 				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
 				C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */,
 				C58D21211B48B0F8008E1B0B /* PetFinderTableCell.swift in Sources */,
+				C525E3671D896733005123C4 /* FelineFinderDetailViewController.swift in Sources */,
 				C56F90DA1B77966600EEEBFA /* ReselectableSegmentedControl.swift in Sources */,
 				C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */,
 				C5755FA01BC02CB30023F353 /* UIButton+RSNetworking.swift in Sources */,
@@ -1330,8 +1351,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1375,8 +1398,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1395,6 +1420,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1403,12 +1429,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D3B865EA89799CB466AD57B2 /* Pods-Feline Finder.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1419,6 +1448,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1427,12 +1457,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6FA54B67E102A95B0571784 /* Pods-Feline Finder.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1441,6 +1474,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

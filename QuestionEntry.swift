@@ -21,8 +21,8 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     
     @IBOutlet weak var FLAnimatedGIF: FLAnimatedImageView!
     
-    @IBAction func SummaryTouchUpInside(sender: AnyObject) {
-        self.performSegueWithIdentifier("Summary", sender: nil)
+    @IBAction func SummaryTouchUpInside(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "Summary", sender: nil)
     }
     
     //var questionList: QuestionList = QuestionList();
@@ -42,7 +42,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     };
     */
     
-    @IBAction func PageChange(sender: AnyObject) {
+    @IBAction func PageChange(_ sender: AnyObject) {
         //currentQuestion = PageNumbers.currentPage
         //displayQuestion()
     }
@@ -53,13 +53,13 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
         displayQuestion()
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         //self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         //self.navigationController?.setToolbarHidden(false, animated:true);
@@ -99,22 +99,22 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     */
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1;
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         //println(questionList.Questions.count)
         question = questionList.Questions[currentQuestion];
         return question.Choices.count;
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         question = questionList.Questions[currentQuestion];
         return question.Choices[row].Name
     }
     
-    func setPicture( answerNumber: Int, fromPicker: Bool = false) {
+    func setPicture( _ answerNumber: Int, fromPicker: Bool = false) {
         var _answerNumber = answerNumber
         var i = 0
         while i < questionList.Questions[currentQuestion].Choices.count {
@@ -143,7 +143,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             default:
                 gifName = "Unknown"
             }
-            let gif = try! NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(gifName, ofType: "gif")!, options: .DataReadingMappedIfSafe)
+            let gif = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: gifName, ofType: "gif")!), options: .mappedIfSafe)
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
         } else if currentQuestion == 13 {
@@ -164,7 +164,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             default:
                 gifName = "Unknown"
             }
-            let gif = try! NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(gifName, ofType: "gif")!, options: .DataReadingMappedIfSafe)
+            let gif = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: gifName, ofType: "gif")!), options: .mappedIfSafe)
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
             
@@ -180,13 +180,13 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             default:
                 gifName = "Unknown"
             }
-            let gif = try! NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(gifName, ofType: "gif")!, options: .DataReadingMappedIfSafe)
+            let gif = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: gifName, ofType: "gif")!), options: .mappedIfSafe)
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
         }
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         setPicture(row, fromPicker: true)
     }
@@ -209,16 +209,16 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             setPicture(Int(answer.Order))
         } else {
             gifName = questionList.Questions[currentQuestion].ImageName
-            let gif = try! NSData(contentsOfFile: NSBundle.mainBundle().pathForResource(gifName, ofType: "gif")!, options: .DataReadingMappedIfSafe)
+            let gif = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: gifName, ofType: "gif")!), options: .mappedIfSafe)
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Summary" {
             questionList.writeAnswers()
-            (segue.destinationViewController as! SavedListsViewController).whichSegue = "Summary"
+            (segue.destination as! SavedListsViewController).whichSegue = "Summary"
         }
     }
 }

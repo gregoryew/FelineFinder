@@ -17,25 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var warningShown: Bool = false
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         pathToFile()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AppDelegate.rotated), name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         return true
     }
     
     func sharedInstance() -> AppDelegate{
-        return UIApplication.sharedApplication().delegate as! AppDelegate
+        return UIApplication.shared.delegate as! AppDelegate
     }
     
     func rotated()
     {
-        if(UIDeviceOrientationIsLandscape(UIDevice.currentDevice().orientation))
+        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {
             //println("landscape")
         }
         
-        if(UIDeviceOrientationIsPortrait(UIDevice.currentDevice().orientation))
+        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
         {
             //println("Portrait")
         }
@@ -44,66 +44,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func pathToFile(){
         var c = 0
 
-        let filemanager = NSFileManager.defaultManager()
-        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
-        let destinationPath:NSString = documentsPath.stringByAppendingString("/CatFinder.db")
-        if (!filemanager.fileExistsAtPath(destinationPath as String) ) {
-            let fileForCopy = NSBundle.mainBundle().pathForResource("CatFinder",ofType:"db")
+        let filemanager = FileManager.default
+        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as AnyObject
+        let destinationPath:NSString = documentsPath.appending("/CatFinder.db") as NSString
+        if (!filemanager.fileExists(atPath: destinationPath as String) ) {
+            let fileForCopy = Bundle.main.path(forResource: "CatFinder",ofType:"db")
             do {
-                try filemanager.copyItemAtPath(fileForCopy!,toPath:destinationPath as String)
+                try filemanager.copyItem(atPath: fileForCopy!,toPath:destinationPath as String)
             } catch {
                 print (error)
             }
         } else {
-            DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase!) -> Void in
+            DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
                 let querySQL = "SELECT count(*) c FROM sqlite_master WHERE type='table' AND name='Version' COLLATE NOCASE"
-                if let results = db.executeQuery(querySQL, withArgumentsInArray: []) {
+                if let results = db?.executeQuery(querySQL, withArgumentsIn: []) {
                     while results.next() == true {
-                        c = Int(results.intForColumn("c"));
+                        c = Int(results.int(forColumn: "c"));
                     }
                     results.close()
                 }
             }
             
             if (c == 0) {
-                let fileForCopy = NSBundle.mainBundle().pathForResource("CatFinder",ofType:"db")
+                let fileForCopy = Bundle.main.path(forResource: "CatFinder",ofType:"db")
                 do {
-                    try filemanager.copyItemAtPath(fileForCopy!,toPath:destinationPath as String)
+                    try filemanager.copyItem(atPath: fileForCopy!,toPath:destinationPath as String)
                 } catch {
                     print (error)
                 }
             } else {
                 if upgradeDB() {
-                    let oldFileForCopy = documentsPath.stringByAppendingString("/CatFinderOld.db")
-                    DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase!) -> Void in
-                        if (!db.executeStatements("ATTACH DATABASE \"\(oldFileForCopy)\" AS OLD")) {
+                    let oldFileForCopy = documentsPath.appending("/CatFinderOld.db")
+                    DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
+                        if (!(db?.executeStatements("ATTACH DATABASE \"\(oldFileForCopy)\" AS OLD"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("DELETE FROM Favorites")) {
+                        if (!(db?.executeStatements("DELETE FROM Favorites"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("DELETE FROM SavedSearch")) {
+                        if (!(db?.executeStatements("DELETE FROM SavedSearch"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("DELETE FROM SavedSearchDetail")) {
+                        if (!(db?.executeStatements("DELETE FROM SavedSearchDetail"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Favorites'")) {
+                        if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Favorites'"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='SavedSearch'")) {
+                        if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='SavedSearch'"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='SavedSearchDetail'")) {
+                        if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='SavedSearchDetail'"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("INSERT INTO Favorites(PetID, PetName, ImageName, Breed, DataSource) SELECT PetID, PetName, ImageName, Breed, 'PetFinder' FROM OLD.Favorites")) {
+                        if (!(db?.executeStatements("INSERT INTO Favorites(PetID, PetName, ImageName, Breed, DataSource) SELECT PetID, PetName, ImageName, Breed, 'PetFinder' FROM OLD.Favorites"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("INSERT INTO SavedSearch SELECT * FROM OLD.SavedSearch")) {
+                        if (!(db?.executeStatements("INSERT INTO SavedSearch SELECT * FROM OLD.SavedSearch"))!) {
                             print("Error")
                         }
-                        if (!db.executeStatements("INSERT INTO SavedSearchDetail SELECT * FROM OLD.SavedSearchDetail")) {
+                        if (!(db?.executeStatements("INSERT INTO SavedSearchDetail SELECT * FROM OLD.SavedSearchDetail"))!) {
                             print("Error")
                         }
                     }
@@ -116,24 +116,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var copyOverDB = false
         let currentVersion = version()
         var destinationPath2 : NSString = ""
-        let filemanager = NSFileManager.defaultManager()
-        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
-        let destinationPath:NSString = documentsPath.stringByAppendingString("/CatFinder.db")
-        if (!filemanager.fileExistsAtPath(destinationPath as String) ) {
-            let fileForCopy = NSBundle.mainBundle().pathForResource("CatFinder",ofType:"db")
+        let filemanager = FileManager.default
+        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as AnyObject
+        let destinationPath:NSString = documentsPath.appending("/CatFinder.db") as NSString
+        if (!filemanager.fileExists(atPath: destinationPath as String) ) {
+            let fileForCopy = Bundle.main.path(forResource: "CatFinder",ofType:"db")
             do {
-                try filemanager.copyItemAtPath(fileForCopy!,toPath:destinationPath as String)
+                try filemanager.copyItem(atPath: fileForCopy!,toPath:destinationPath as String)
             } catch {
                 print (error)
             }
             copyOverDB = false
          } else {
             var hasOldVersion = false
-            DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase!) -> Void in
+            DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
                 let querySQL = "select VersionNumber from Version"
-                if let results = db.executeQuery(querySQL, withArgumentsInArray: []) {
+                if let results = db?.executeQuery(querySQL, withArgumentsIn: []) {
                     while results.next() == true {
-                        let dbVersion = results.stringForColumn("VersionNumber");
+                        let dbVersion = results.string(forColumn: "VersionNumber");
                         if currentVersion != dbVersion {
                             hasOldVersion = true
                         }
@@ -143,21 +143,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             if hasOldVersion {
                 do {
-                    destinationPath2 = documentsPath.stringByAppendingString("/CatFinderOld.db")
-                    let docsPathDB = documentsPath.stringByAppendingString("/CatFinder.db")
-                    if filemanager.fileExistsAtPath(destinationPath2 as String) {
+                    destinationPath2 = documentsPath.appending("/CatFinderOld.db") as NSString
+                    let docsPathDB = documentsPath.appending("/CatFinder.db")
+                    if filemanager.fileExists(atPath: destinationPath2 as String) {
                         do {
-                            try filemanager.removeItemAtPath(destinationPath2 as String)
+                            try filemanager.removeItem(atPath: destinationPath2 as String)
                         }
                         catch let error as NSError {
                             print("Ooops! Something went wrong: \(error)")
                         }
                     }
-                    try filemanager.moveItemAtPath(docsPathDB, toPath: destinationPath2 as String)
-                    let fileForCopy = NSBundle.mainBundle().pathForResource("CatFinder",ofType:"db")
+                    try filemanager.moveItem(atPath: docsPathDB, toPath: destinationPath2 as String)
+                    let fileForCopy = Bundle.main.path(forResource: "CatFinder",ofType:"db")
                     do {
                         DatabaseManager.sharedInstance.dbQueue!.close()
-                        try filemanager.copyItemAtPath(fileForCopy!,toPath:destinationPath as String)
+                        try filemanager.copyItem(atPath: fileForCopy!,toPath:destinationPath as String)
                         DatabaseManager.sharedInstance.dbQueue = FMDatabaseQueue(path: destinationPath as String)
                     } catch {
                         print ("Ooops! Something went wrong: \(error)")
@@ -175,12 +175,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func version() -> String {
-        let dictionary = NSBundle.mainBundle().infoDictionary!
+        let dictionary = Bundle.main.infoDictionary!
         let version = dictionary["CFBundleShortVersionString"] as! String
         let build = dictionary["CFBundleVersion"] as! String
         return "\(version) build \(build)"
     }
 
+    /*
     func showWarning() {
         if warningShown == false {
             let alert = UIAlertView()
@@ -191,26 +192,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             warningShown = true
         }
     }
+ */
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         warningShown = false
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 

@@ -12,11 +12,11 @@ import CoreLocation
 
 class PetFinderViewController: UITableViewController, CLLocationManagerDelegate {
     
-    @IBAction func backButtonTapped(sender: AnyObject) {
+    @IBAction func backButtonTapped(_ sender: AnyObject) {
         if breed?.BreedName == "All Breeds" {
-            performSegueWithIdentifier("MainMenu", sender: nil)
+            performSegue(withIdentifier: "MainMenu", sender: nil)
         } else {
-            performSegueWithIdentifier("MasterView", sender: nil)
+            performSegue(withIdentifier: "MasterView", sender: nil)
         }
     }
     
@@ -52,13 +52,13 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         }
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         setFilterDisplay()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if breed!.BreedName == "All Breeds" {
             self.navigationController?.setToolbarHidden(true, animated:true);
@@ -67,7 +67,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true);
     }
@@ -91,7 +91,8 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         }
     }
     
-    @IBAction func Refresh(sender: UIRefreshControl) {
+    @IBAction func Refresh(_ sender: UIRefreshControl) {
+        zipCodeGlobal = ""
         PetFinderBreeds[self.breed!.BreedName] = nil
         self.loadPets()
         self.tableView.reloadData()
@@ -99,7 +100,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
     }
     
     
-    @IBAction func unwindToPetFinderList(sender: UIStoryboardSegue)
+    @IBAction func unwindToPetFinderList(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         setFilterDisplay()
@@ -107,17 +108,15 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         // Pull any data from the view controller which initiated the unwind segue.
     }
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if (zipCode != "") {return}
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if (zipCode != "") {
+            return
+        }
         self.locationManager!.stopUpdatingLocation()
         if let loc = manager.location {
             CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error)->Void in
                 if (error != nil) {
-                    let alert = UIAlertView()
-                    alert.title = "Alert"
-                    alert.message = "Reverse geocoder failed with error" + error!.localizedDescription
-                    alert.addButtonWithTitle("Sorry")
-                    alert.show()
+                    Utilities.displayAlert("Alert", errorMessage: "Reverse geocoder failed with error " + error!.localizedDescription)
                     //println("Reverse geocoder failed with error" + error.localizedDescription)
                     return
                 }
@@ -127,15 +126,13 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
                         let pm = validPlacemark
                         zipCode = pm.postalCode!
                         self.setFilterDisplay()
+                        print("locationManager")
+                        if (zipCode != "") {
+                            self.loadPets()
+                        }
                     }
-                    print("locationManager")
-                    self.loadPets()
                 } else {
-                    let alert = UIAlertView()
-                    alert.title = "Alert"
-                    alert.message = "Problem with the data received from geocoder"
-                    alert.addButtonWithTitle("Sorry")
-                    alert.show()
+                    Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
                     //println("Problem with the data received from geocoder")
                 }
             })
@@ -153,7 +150,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
  
         let date = self.pets?.dateCreated
         
-        let hoursSinceCreation: Int = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: date!, toDate: NSDate(), options: []).hour
+        let hoursSinceCreation: Int = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: date! as Date, to: Date(), options: []).hour!
         
         var b = false
         
@@ -171,24 +168,24 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
             self.pets!.loadPets(self.tableView, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
                 self.pets = petList
                 self.totalRow = -1
-                self.titles = self.pets!.distances.keys.sort{ $0 < $1 }
+                self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
                 PetFinderBreeds[self.breed!.BreedName] = self.pets
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         } else {
             self.totalRow = -1
-            self.titles = self.pets!.distances.keys.sort{ $0 < $1 }
+            self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
             self.tableView.reloadData()
         }
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error while updating location \(error.localizedDescription)")
     }
     
-    func totalRows(p: PetList) -> Int {
+    func totalRows(_ p: PetList) -> Int {
         var total = 0
         var i = 0
         if totalRow == -1 {
@@ -201,17 +198,17 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         return totalRow
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         var t = 0
         if let p = self.pets {
             if p.loading || self.pets!.distances.count == 0 {
@@ -224,21 +221,21 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         return t
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
         var t = ""
         if let p = self.pets {
             if p.loading || self.pets!.distances.count == 0 {
                 t = ""
             } else {
-                t = titles[section].stringByTrimmingCharactersInSet(
-                    NSCharacterSet.whitespaceAndNewlineCharacterSet()
+                t = titles[section].trimmingCharacters(
+                    in: CharacterSet.whitespacesAndNewlines
                 )
             }
         }
         return t
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         var c = 0
         
         if let p = self.pets {
@@ -257,9 +254,9 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         return c
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PetFinderCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! PetFinderCell
         
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
@@ -272,21 +269,21 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         }
         
         
-        cell.CatNameLabel!.highlightedTextColor = UIColor.whiteColor()
-        cell.CatNameLabel!.textColor = UIColor.whiteColor()
-        cell.CatNameLabel!.font = UIFont.boldSystemFontOfSize(14.0)
+        cell.CatNameLabel!.highlightedTextColor = UIColor.white
+        cell.CatNameLabel!.textColor = UIColor.white
+        cell.CatNameLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
-        cell.CatNameLabel!.backgroundColor = UIColor.clearColor()
-        cell.CatNameLabel!.highlightedTextColor = UIColor.blackColor()
-        cell.activityIndicator.hidden = true
+        cell.CatNameLabel!.backgroundColor = UIColor.clear
+        cell.CatNameLabel!.highlightedTextColor = UIColor.black
+        cell.activityIndicator.isHidden = true
         cell.activityIndicator.stopAnimating()
-        cell.accessoryType = .None
+        cell.accessoryType = .none
         if titles.count == 0 || self.pets!.count == 0 {
            if pets!.loading {
-                cell.CatImage?.hidden = true
+                cell.CatImage?.isHidden = true
                 cell.CatNameLabel.text = "Loading please wait..."
                 cell.activityIndicator.startAnimating()
-                cell.activityIndicator.hidden = false
+                cell.activityIndicator.isHidden = false
                 return cell
             }
             else if self.pets!.count == 0 {
@@ -296,13 +293,13 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         }
         
         //cell.accessoryView!.hidden = false
-        cell.accessoryType = .DisclosureIndicator
-        cell.CatImage?.hidden = false
+        cell.accessoryType = .disclosureIndicator
+        cell.CatImage?.isHidden = false
         cell.lastCell = indexPath.row == self.pets!.distances[titles[indexPath.section]]!.count - 1
         //((CustomCellBackground *)cell.selectedBackgroundView).lastCell = indexPath.row == self.thingsToLearn.count - 1;
         
         let lastSectionIndex = tableView.numberOfSections - 1
-        let lastRowIndex = tableView.numberOfRowsInSection(lastSectionIndex) - 1
+        let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         if (indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex) && totalRows(self.pets!) % 25 == 0 {
             cell.CatNameLabel!.text = "More..."
             cell.CatImage?.image = UIImage(named: "cat")
@@ -313,12 +310,12 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         
         let urlString = petData.getImage(1, size: "pnt")
         
-        let imgURL = NSURL(string: urlString)
+        let imgURL = URL(string: urlString)
         
         if petData.videos.count > 0 {
-            cell.hasVideo.hidden = false
+            cell.hasVideo.isHidden = false
         } else {
-            cell.hasVideo.hidden = true
+            cell.hasVideo.isHidden = true
         }
         
         cell.CatNameLabel!.text = petData.name
@@ -329,48 +326,49 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
             cell.CatImage?.image = img
         }
         else {
-            let request: NSURLRequest = NSURLRequest(URL: imgURL!)
-            let mainQueue = NSOperationQueue.mainQueue()
-            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+            let request: URLRequest = URLRequest(url: imgURL!)
+            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
                     // Update the cell
-                    dispatch_async(dispatch_get_main_queue(), {
-                        if let cellToUpdate = tableView.cellForRowAtIndexPath(indexPath) as? PetFinderCell {
+                    DispatchQueue.main.async(execute: {
+                        if let cellToUpdate = tableView.cellForRow(at: indexPath) as? PetFinderCell {
                                 cellToUpdate.CatImage?.image = image
                             }
-            })
-            }
-            else {
-                print("Error: \(error!.localizedDescription)")
-            }
-            })
+                    })
+                }
+                else {
+                    print("Error: \(error!.localizedDescription)")
+                }
+            }).resume()
         }
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedCell: PetFinderCell = tableView.cellForRowAtIndexPath(indexPath) as! PetFinderCell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCell: PetFinderCell = tableView.cellForRow(at: indexPath) as! PetFinderCell
         if selectedCell.CatNameLabel.text == "More..." {
+            zipCodeGlobal = ""
+            bnGlobal = ""
             self.pets!.loadPets(self.tableView, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
                 self.totalRow = -1
                 self.pets = petList
-                self.titles = self.pets!.distances.keys.sort{ $0 < $1 }
+                self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
                 PetFinderBreeds[self.breed!.BreedName] = self.pets
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
         }
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
         var proceed = true
-        if identifier == "petFinderDetail" {
+        if identifier == "felineFinderDetail" {
             let indexPath = tableView.indexPathForSelectedRow;
-            let currentCell = tableView.cellForRowAtIndexPath(indexPath!)! as! PetFinderCell;
+            let currentCell = tableView.cellForRow(at: indexPath!)! as! PetFinderCell;
             if currentCell.CatNameLabel.text == "More..."  || currentCell.CatNameLabel.text == "Loading please wait..." || currentCell.CatNameLabel.text == "There is no data." {
                 proceed = false
             }
@@ -378,27 +376,27 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         return proceed
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("segue=\(segue.identifier)")
         if segue.identifier == "searchOptions" {
-            (segue.destinationViewController as! PetFinderFindViewController).breed = breed
+            (segue.destination as! PetFinderFindViewController).breed = breed
         }
         else if segue.identifier == "BreedStats" {
-            (segue.destinationViewController as! BreedStatsViewController).whichSeque = "BreedList"
+            (segue.destination as! BreedStatsViewController).whichSeque = "BreedList"
             let b = self.breed as Breed?
-            (segue.destinationViewController as! BreedStatsViewController).breed = b!
+            (segue.destination as! BreedStatsViewController).breed = b!
         }
         else if (segue.identifier == "showDetail") {
             let b = self.breed as Breed?
-            (segue.destinationViewController as! DetailViewController).breed = b!
+            (segue.destination as! DetailViewController).breed = b!
         }
-        else if segue.identifier == "petFinderDetail" {
+        else if segue.identifier == "felineFinderDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
-                (segue.destinationViewController as! PetFinderViewDetailController).pet = petData
-                (segue.destinationViewController as! PetFinderViewDetailController).petID = petData.petID
-                (segue.destinationViewController as! PetFinderViewDetailController).petName = petData.name
-                (segue.destinationViewController as! PetFinderViewDetailController).breedName = breed!.BreedName
+                (segue.destination as! PetFinderViewDetailController).pet = petData
+                (segue.destination as! PetFinderViewDetailController).petID = petData.petID
+                (segue.destination as! PetFinderViewDetailController).petName = petData.name
+                (segue.destination as! PetFinderViewDetailController).breedName = breed!.BreedName
             }
         }
     }

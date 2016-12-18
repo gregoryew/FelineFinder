@@ -35,7 +35,7 @@ struct video {
 }
 
 struct Pet {
-    var dateCreated = NSDate()
+    var dateCreated = Date()
     var petID: String
     var shelterID: String
     var name: String
@@ -94,7 +94,7 @@ struct Pet {
     }
 
     
-    func getImage(idNum: Int, size: String) -> String {
+    func getImage(_ idNum: Int, size: String) -> String {
         for img: picture in media {
             if img.idnum == idNum && img.size == size {
                 return img.URL
@@ -103,7 +103,7 @@ struct Pet {
         return ""
     }
     
-    func getAllImagesOfACertainSize(size: String) -> [String] {
+    func getAllImagesOfACertainSize(_ size: String) -> [String] {
         var images: [String] = []
         for img: picture in media {
             if img.size == size {
@@ -121,19 +121,19 @@ class PetList {
     var Pets = [Pet]()
     var pet: Pet!
     var lastOffset: String = ""
-    var dateCreated = NSDate()
+    var dateCreated = Date()
     var loading: Bool = true
     var distances: Dictionary<String, [Pet]> = [:]
     
-    func splitPetID(petID: String) -> String {
-        return petID.componentsSeparatedByString("_")[0]
+    func splitPetID(_ petID: String) -> String {
+        return petID.components(separatedBy: "_")[0]
     }
     
     var count: Int {
         return Pets.count
     }
     
-    func loadSinglePet(petID: String, completion: (Pet) -> Void) -> Void {
+    func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
     }
     
     subscript(index: Int) -> Pet {
@@ -181,6 +181,7 @@ class PetList {
         }
     }
     
-    func loadPets(tv: UITableView, bn: Breed, zipCode: String, completion: (p: PetList) -> Void) -> Void {
+    func loadPets(_ tv: UITableView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
     }
+
 }

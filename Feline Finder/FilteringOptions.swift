@@ -101,7 +101,7 @@ class filterOptionsList {
     var compatibilityList: [filterOption] = []
     var personalityList: [filterOption] = []
     var physicalList: [filterOption] = []
-    func load(tv: UITableView) {
+    func load(_ tv: UITableView) {
         if filteringOptions.count > 0 {return}
 
         var saveList: [(FilterID: Int, FilterName: String)] = []
@@ -116,7 +116,7 @@ class filterOptionsList {
             
             self.classify()
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 tv.reloadData()
             })
         }
@@ -126,7 +126,7 @@ class filterOptionsList {
         DatabaseManager.sharedInstance.fetchBreeds(false) { (breeds) -> Void in
             breedsList = breeds
             var i = 0
-            let titles: [String] = breedsList.keys.sort{$0 < $1}
+            let titles: [String] = breedsList.keys.sorted{$0 < $1}
             for t in titles {
                 var data = breedsList[t]
                 var j = 0
@@ -146,7 +146,7 @@ class filterOptionsList {
             
             self.classify()
 
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 tv.reloadData()
             })
             
@@ -185,7 +185,7 @@ class filterOptionsList {
         filteringOptions.append(filterOption(n: "Activity Level", f: "animalActivityLevel", d: false, c: .personality, l: true, o: [(displayName: "Not Active", search: "Not Active", value: 0),(displayName: "Slightly Active", search: "Slightly Active", value: 1),(displayName: "Moderately Active", search: "Moderately Active", value: 2),(displayName: "Highly Active", search: "Highly Active", value: 3),(displayName: "Any", search: "Any", value: 4)]))
         filteringOptions.append(filterOption(n: "Energy level", f: "animalEnergyLevel", d: false,  c: .personality, l: true, o: [(displayName: "Low", search: "Low", value: 0),(displayName: "Moderate", search: "Moderate", value: 1),(displayName: "High", search: "High", value: 2), (displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Exercise Needs", f: "animalExerciseNeeds", d: false,  c: .personality,l: true, o: [(displayName: "Not Required", search: "Not Required", value: 0),(displayName: "Low", search: "Low", value: 1),(displayName: "Moderate", search: "Moderate", value: 2),(displayName: "High", search: "High", value: 3),(displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Act with New People", f: "animalNewPeople", d: false,  c: .personality, l: true, o: [(displayName: "Cautious", search: "Cautious", value: 0),(displayName: "Friendly", search: "Friendly", value: 1),(displayName: "Protective", search: "Protective", value: 2),(displayName: "Aggressive", search: "Aggressive", value: 3),(displayName: "Any", search: "Any", value: 4)]))
+        filteringOptions.append(filterOption(n: "New People", f: "animalNewPeople", d: false,  c: .personality, l: true, o: [(displayName: "Cautious", search: "Cautious", value: 0),(displayName: "Friendly", search: "Friendly", value: 1),(displayName: "Protective", search: "Protective", value: 2),(displayName: "Aggressive", search: "Aggressive", value: 3),(displayName: "Any", search: "Any", value: 4)]))
         filteringOptions.append(filterOption(n: "Obedience training", f: "animalObedienceTraining", d: false,  c: .personality, l: true, o: [(displayName: "Needs Training", search: "Needs Training", value: 0),(displayName: "Has Basic Training", search: "Has Basic Training", value: 1),(displayName: "Well Trained", search: "Well Trained", value: 2),(displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Likes to vocalize", f: "animalVocal", d: false,  c: .personality, l: true, o: [(displayName: "Quiet", search: "Quiet", value: 0),(displayName: "Some", search: "Some", value: 1),(displayName: "Lots", search: "Lots", value: 2), (displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Affectionate", f: "animalAffectionate", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
@@ -287,15 +287,15 @@ class filterOptionsList {
                     }
                 }
                 if o.name == "Not These" { //Breeds to filter out
-                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName!, "operation": "notequals", "criteria": choosenValues])}
+                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "notequals" as AnyObject, "criteria": choosenValues as AnyObject])}
                 } else {
-                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName!, "operation": "equals", "criteria": choosenValues])}
+                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": choosenValues as AnyObject])}
                 }
             } else {
                 if o.choosenValue != o.options.count - 1 && o.choosenValue != -1 {
                     for opt in o.options {
                         if opt.value == o.choosenValue {
-                            filters.append(["fieldName": o.fieldName!, "operation": "equals", "criteria": opt.search!])
+                            filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": opt.search! as AnyObject])
                         }
                     }
                 }
@@ -304,11 +304,11 @@ class filterOptionsList {
         return filters
     }
     
-    func storeFilters(saveID: Int, saveName: String) {
+    func storeFilters(_ saveID: Int, saveName: String) {
         DatabaseManager.sharedInstance.saveFilterOptions(saveID, name: saveName, filterOptions: self)
     }
     
-    func retrieveSavedFilterValues(savedID: Int, filterOptions: filterOptionsList, choosenListValues: [Int]) {
+    func retrieveSavedFilterValues(_ savedID: Int, filterOptions: filterOptionsList, choosenListValues: [Int]) {
         DatabaseManager.sharedInstance.fetchFFilterOptions(savedID, filterOptions: filterOptions, completion: {(filterOption) -> Void in filterOptions.filteringOptions = filterOption
             filterOptions.filteringOptions[0].choosenListValues = choosenListValues
             })

@@ -8,42 +8,42 @@
 
 import Foundation
 class RescueGroupShelterList: ShelterList {
-    override func loadSingleShelter(shelterID: String, completion: (shelter) -> Void) -> Void {
+    override func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void {
         super.loadSingleShelter(shelterID, completion: completion)
         if let s = sh[shelterID] {
             print("shelter in cache = |\(shelterID)|")
             //Supposed to refresh the PetFinder data every 24 hours
-            let hoursSinceCreation = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: s.dateCreated, toDate: NSDate(), options: []).hour
-            if hoursSinceCreation < 24 {
+            let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: s.dateCreated as Date, to: Date(), options: []).hour
+            if hoursSinceCreation! < 24 {
                 print("returning cached shelter = |\(shelterID)|")
                 completion(s)
                 return
             }
         }
         
-        let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgPostalCode","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]]
+        let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgPostalCode","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
         
         do {
             
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
             var cachedShelter: shelter?
             
-            let myURL = NSURL(string: "https://api.rescuegroups.org/http/v2.json")!
-            let request = NSMutableURLRequest(URL: myURL)
-            request.HTTPMethod = "POST"
+            let myURL = URL(string: "https://api.rescuegroups.org/http/v2.json")!
+            let request = NSMutableURLRequest(url: myURL)
+            request.httpMethod = "POST"
             
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
-            request.HTTPBody = jsonData
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
                 data, response, error in
                 if error != nil {
                     print("Get Error")
                 } else {
                     do {
-                        let jsonObj:AnyObject =  try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        let jsonObj:AnyObject =  try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
                         
                         if let dict = jsonObj as? [String: AnyObject] {
                             for (key, data) in dict {
@@ -63,12 +63,12 @@ class RescueGroupShelterList: ShelterList {
                         print(error.localizedDescription)
                     }
                 }
-            }
+            }) 
             task.resume()
         } catch { }
     }
     
-    func vaidateValue(d: AnyObject) -> String {
+    func vaidateValue(_ d: AnyObject) -> String {
         var data: String = ""
         if d is String {
             data = d as! String
@@ -78,7 +78,7 @@ class RescueGroupShelterList: ShelterList {
         return data
     }
     
-    func createShelter(s: AnyObject) -> shelter {
+    func createShelter(_ s: AnyObject) -> shelter {
         var id: String = ""
         var name: String = "'"
         var address1: String = ""

@@ -10,21 +10,22 @@ import Foundation
 import UIKit
 
 class PetFinderPetList: PetList {
-    override func loadSinglePet(petID: String, completion: (Pet) -> Void) -> Void {
+/*
+    override func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
         super.loadSinglePet(petID, completion: completion)
         if let p2 = PetsGlobal[petID] {
             //Supposed to refresh the PetFinder data every 24 hours
-            let hoursSinceCreation = NSCalendar.currentCalendar().components(NSCalendarUnit.Hour, fromDate: p2.dateCreated, toDate: NSDate(), options: []).hour
-            if hoursSinceCreation < 24 {
+            let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: p2.dateCreated as Date, to: Date(), options: []).hour
+            if hoursSinceCreation! < 24 {
                 completion(p2)
                 return
             }
         }
         
         if Utilities.isNetworkAvailable() {
-            let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.GET, baseURL: Utilities.petFinderAPIURL(), path: "pet.get", parameters: ["key" : Utilities.apiKey(), "id":splitPetID(petID), "format":"json"])
+            let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.get, baseURL: Utilities.petFinderAPIURL(), path: "pet.get", parameters: ["key" : Utilities.apiKey(), "id":splitPetID(petID), "format":"json"])
             let rsRequest: RSTransactionRequest = RSTransactionRequest()
-            rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : NSURLResponse!, responseData: NSData!, error: NSError!) -> Void in
+            rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : URLResponse!, responseData: Data!, error: NSError!) -> Void in
                 if error == nil {
                     var json = JSON(data: responseData)
                     let p = json[PetTags.PETFINDER_TAG][PetTags.PET_TAG]
@@ -36,18 +37,19 @@ class PetFinderPetList: PetList {
                     Utilities.displayAlert("Error Retrieving Pet Data", errorMessage: error.description)
                     print("Error : \(error)")
                 }
-            })
+            } as! RSTransactionRequest.dataFromRSTransactionCompletionClosure as! RSTransactionRequest.dataFromRSTransactionCompletionClosure as! RSTransactionRequest.dataFromRSTransactionCompletionClosure)
         }
     }
     
-    override func loadPets(tv: UITableView, bn: Breed, zipCode: String, completion: (p: PetList) -> Void) -> Void {
+    override func loadPets(_ tv: UITableView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
+        
         super.loadPets(tv, bn: bn, zipCode: zipCode, completion: completion)
         var params = [String: String]()
         var i = 0
         
         loading = true
         
-        dateCreated = NSDate() //Reset the cache time
+        dateCreated = Date() //Reset the cache time
         
         if (Utilities.isNetworkAvailable() == false) {
             return
@@ -55,9 +57,9 @@ class PetFinderPetList: PetList {
         
         params = addParams(bn.BreedName, zipCode: zipCode)
         
-        let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.GET, baseURL: Utilities.petFinderAPIURL(), path: "pet.find", parameters: params)
+        let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.get, baseURL: Utilities.petFinderAPIURL(), path: "pet.find", parameters: params)
         let rsRequest: RSTransactionRequest = RSTransactionRequest()
-        rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : NSURLResponse!, responseData: NSData!, error: NSError!) ->
+        rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : URLResponse!, responseData: Data!, error: NSError!) ->
             Void in
             if error == nil {
                 var json = JSON(data: responseData)
@@ -105,9 +107,9 @@ class PetFinderPetList: PetList {
         })
     }
     
-    func addParams(bn: String, zipCode: String) -> [String: String] {
+    func addParams(_ bn: String, zipCode: String) -> [String: String] {
         
-        let bn2 = bn.stringByReplacingOccurrencesOfString("\n", withString: "")
+        let bn2 = bn.replacingOccurrences(of: "\n", with: "")
         
         var params: [String: String]
         
@@ -164,7 +166,7 @@ class PetFinderPetList: PetList {
         return params
     }
     
-    func decodeOption(optName: String) -> String {
+    func decodeOption(_ optName: String) -> String {
         switch optName {
             case "altered": return "Spayed / Neutered"
             case "noClaws": return "No Claws"
@@ -179,7 +181,7 @@ class PetFinderPetList: PetList {
         }
     }
     
-    func createPet(p: JSON) -> Pet {
+    func createPet(_ p: JSON) -> Pet {
         var petID: String?
         var name: String?
         var breeds: Set<String> = Set<String>()
@@ -356,4 +358,5 @@ struct PetTags {
     static let ATSIZE_TAG = "@size"
     static let CONTACT_TAG = "contact"
     static let ZIP_TAG = "zip"
+*/
 }

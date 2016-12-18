@@ -34,35 +34,35 @@ class PetFinderPicturesViewController: UIViewController {
         self.imageURLs = (self.petData.getAllImagesOfACertainSize("x"))
         var errors = 0
         for url in self.imageURLs {
-            let imgURL = NSURL(string: url)
-            let request: NSURLRequest = NSURLRequest(URL: imgURL!)
-            let mainQueue = NSOperationQueue.mainQueue()
-            NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+            let imgURL = URL(string: url)
+            let request: URLRequest = URLRequest(url: imgURL!)
+            //let mainQueue = NSOperationQueue.mainQueue()
+            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
                     // Update the cell
                     self.images[url] = image
                     if self.images.count + errors == self.imageURLs.count {
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         self.setupView()
                     })
                     }
                 } else {
                     errors += 1
                 }
-            })
+            }).resume()
         }
     }
     
     func setupView() {
-        swipeLeftRec.direction = .Left
+        swipeLeftRec.direction = .left
         swipeLeftRec.addTarget(self, action: #selector(PetFinderPicturesViewController.swipeUp))
-        swipeDownRec.direction = .Down
+        swipeDownRec.direction = .down
         swipeDownRec.addTarget(self, action: #selector(PetFinderPicturesViewController.swipeDown))
-        swipeUpRec.direction = .Up
+        swipeUpRec.direction = .up
         swipeUpRec.addTarget(self, action: #selector(PetFinderPicturesViewController.swipeUp))
-        swipeRightRec.direction = .Right
+        swipeRightRec.direction = .right
         swipeRightRec.addTarget(self, action: #selector(PetFinderPicturesViewController.swipeDown))
         
         container.addGestureRecognizer(swipeLeftRec)
@@ -71,21 +71,21 @@ class PetFinderPicturesViewController: UIViewController {
         container.addGestureRecognizer(swipeDownRec)
         
         // set container frame and add to the screen
-        self.container.frame = CGRectMake(0, 0, self.view.bounds.width, self.view.bounds.height - 20)
+        self.container.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height - 20)
         self.view.addSubview(container)
-        self.pageControl.frame = CGRectMake(0, self.view.bounds.height - 20, self.view.bounds.width, 20)
+        self.pageControl.frame = CGRect(x: 0, y: self.view.bounds.height - 20, width: self.view.bounds.width, height: 20)
         self.pageControl.currentPage = 1
         self.pageControl.numberOfPages = self.imageURLs.count
-        self.pageControl.backgroundColor = UIColor.blackColor()
-        self.pageControl.tintColor = UIColor.lightGrayColor()
-        self.pageControl.currentPageIndicatorTintColor = UIColor.whiteColor()
+        self.pageControl.backgroundColor = UIColor.black
+        self.pageControl.tintColor = UIColor.lightGray
+        self.pageControl.currentPageIndicatorTintColor = UIColor.white
         self.view.addSubview(self.pageControl)
         
         // set background colors
-        self.redSquare.backgroundColor = UIColor.blackColor()
-        self.blueSquare.backgroundColor = UIColor.blackColor()
-        self.outerRedSquare.backgroundColor = UIColor.blackColor()
-        self.outerBlueSquare.backgroundColor = UIColor.blackColor()
+        self.redSquare.backgroundColor = UIColor.black
+        self.blueSquare.backgroundColor = UIColor.black
+        self.outerRedSquare.backgroundColor = UIColor.black
+        self.outerBlueSquare.backgroundColor = UIColor.black
         
         // set red square frame up
         // we want the blue square to have the same position as redSquare
@@ -107,7 +107,7 @@ class PetFinderPicturesViewController: UIViewController {
         self.container.addSubview(self.redSquare)
     }
     
-    func getActualSizeInPixels(i: UIImage) -> CGRect {
+    func getActualSizeInPixels(_ i: UIImage) -> CGRect {
         let w = i.size.width * i.scale
         let h = i.size.height * i.scale
         let cw = self.container.frame.width
@@ -129,9 +129,9 @@ class PetFinderPicturesViewController: UIViewController {
         let views = (frontView: self.outerRedSquare, backView: self.outerBlueSquare)
         
         // set a transition style
-        let transitionOptions = UIViewAnimationOptions.TransitionCurlUp
+        let transitionOptions = UIViewAnimationOptions.transitionCurlUp
         
-        UIView.transitionWithView(self.container, duration: 1.0, options: transitionOptions, animations: {
+        UIView.transition(with: self.container, duration: 1.0, options: transitionOptions, animations: {
             // remove the front object...
             views.frontView.removeFromSuperview()
             
@@ -156,9 +156,9 @@ class PetFinderPicturesViewController: UIViewController {
         let views = (frontView: self.outerRedSquare, backView: self.outerBlueSquare)
         
         // set a transition style
-        let transitionOptions = UIViewAnimationOptions.TransitionCurlDown
+        let transitionOptions = UIViewAnimationOptions.transitionCurlDown
         
-        UIView.transitionWithView(self.container, duration: 1.0, options: transitionOptions, animations: {
+        UIView.transition(with: self.container, duration: 1.0, options: transitionOptions, animations: {
             // remove the front object...
             views.frontView.removeFromSuperview()
             
@@ -171,13 +171,13 @@ class PetFinderPicturesViewController: UIViewController {
         })
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true)
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true)

@@ -8,6 +8,30 @@
 
 import Foundation
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class FilterOptionsListTableViewController: UITableViewController {
     
@@ -16,55 +40,55 @@ class FilterOptionsListTableViewController: UITableViewController {
     @IBOutlet weak var SavedButton: UIBarButtonItem!
     
     func removeTextFieldObserver() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: self.txtfld)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: self.txtfld)
     }
     
     //hold this reference in your class
     weak var AddAlertSaveAction: UIAlertAction?
     
     //handler
-    func handleTextFieldTextDidChangeNotification(notification: NSNotification) {
+    func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
         let textField = notification.object as! UITextField
         
         // Enforce a minimum length of >= 1 for secure text alerts.
-        AddAlertSaveAction!.enabled = textField.text?.characters.count >= 1
+        AddAlertSaveAction!.isEnabled = textField.text?.characters.count >= 1
     }
     
-    @IBAction func SavedTapped(sender: AnyObject) {
-        let alertController = UIAlertController(title: "Search Name", message: "Please enter the name of the search", preferredStyle: .Alert)
+    @IBAction func SavedTapped(_ sender: AnyObject) {
+        let alertController = UIAlertController(title: "Search Name", message: "Please enter the name of the search", preferredStyle: .alert)
         
         // Add the text field with handler
-        alertController.addTextFieldWithConfigurationHandler { textField in
+        alertController.addTextField { textField in
             //listen for changes
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: UITextFieldTextDidChangeNotification, object: textField)
+            NotificationCenter.default.addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
             
             textField.text = SearchTitle
             self.txtfld = textField
             
             // Create the actions.
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
                 NSLog("Cancel Button Pressed");
                 self.removeTextFieldObserver()
             }
             
-            let otherAction = UIAlertAction(title: "Save", style: .Default) { action in
+            let otherAction = UIAlertAction(title: "Save", style: .default) { action in
                 NSLog("Save Button Pressed");
                 let n = self.txtfld.text
                 self.removeTextFieldObserver()
                 filterOptions.storeFilters(0, saveName: n!)
                 let c = filterOptions.filteringOptions[0].options.count + 1
                 filterOptions.filteringOptions[0].options.append((displayName: n!, search: String(NameID), value: c))
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }
             
             // disable the 'save' button (otherAction) initially
             if SearchTitle.characters.count == 0 {
-                otherAction.enabled = false
+                otherAction.isEnabled = false
             } else {
-                otherAction.enabled = true
+                otherAction.isEnabled = true
             }
             
             // save the other action to toggle the enabled/disabled state when the text changed.
@@ -75,7 +99,7 @@ class FilterOptionsListTableViewController: UITableViewController {
             alertController.addAction(otherAction)
         }
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     var filterOpt: filterOption?
@@ -87,86 +111,86 @@ class FilterOptionsListTableViewController: UITableViewController {
         self.tableView.backgroundView = background;
         if filterOpt?.classification == .saves {
             SavedButton.title = "Save"
-            SavedButton.enabled = true
+            SavedButton.isEnabled = true
         } else {
             SavedButton.title = ""
-            SavedButton.enabled = false
+            SavedButton.isEnabled = false
         }
     }
     
-    @IBAction func unwindToFilterOptionList(sender: UIStoryboardSegue)
+    @IBAction func unwindToFilterOptionList(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String?, sender: AnyObject?) -> Bool
+    override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool
     {
         return true
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
     }
     
     // MARK: - Table View
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return filterOpt!.options.count
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String
     {
         return (filterOpt?.name)!
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel!.text = filterOpt?.optionsArray()[indexPath.row]
         if filterOpt?.classification == .saves {return cell}
         if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
-            cell.accessoryType = .Checkmark
+            cell.accessoryType = .checkmark
         } else {
-            cell.accessoryType = .None
+            cell.accessoryType = .none
         }
         return cell
     }
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if filterOpt?.classification == .saves {
-            filterOpt?.choosenListValues = []
-            filterOpt?.choosenListValues.append(indexPath.row)
-            performSegueWithIdentifier("backToFilterOptions", sender: nil)
+            filterOpt?.choosenValue = indexPath.row
+            //filterOpt?.choosenListValues.append(indexPath.row)
+            performSegue(withIdentifier: "backToFilterOptions", sender: nil)
         } else if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             filterOpt?.choosenListValues = (filterOpt?.choosenListValues.filter(){$0 != indexPath.row})!
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .None
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
         } else {
             filterOpt?.choosenListValues.append(indexPath.row)
-            tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = .Checkmark
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
         }
         return indexPath
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // Return false if you do not want the specified item to be editable.
         return false
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
 

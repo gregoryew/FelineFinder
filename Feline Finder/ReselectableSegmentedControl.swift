@@ -11,14 +11,14 @@ import Foundation
 class ReselectableSegmentedControl: UISegmentedControl {
     @IBInspectable var allowReselection: Bool = true
     
-    override func touchesEnded(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>?, with event: UIEvent?) {
         let previousSelectedSegmentIndex = self.selectedSegmentIndex
-        super.touchesEnded(touches!, withEvent: event)
+        super.touchesEnded(touches!, with: event)
         if allowReselection && previousSelectedSegmentIndex == self.selectedSegmentIndex {
             if let touch = touches!.first as UITouch? {
-                let touchLocation = touch.locationInView(self)
-                if CGRectContainsPoint(bounds, touchLocation) {
-                    self.sendActionsForControlEvents(.ValueChanged)
+                let touchLocation = touch.location(in: self)
+                if bounds.contains(touchLocation) {
+                    self.sendActions(for: .valueChanged)
                 }
             }
         }

@@ -11,6 +11,8 @@ import Foundation
 var whichSegueGlobal = ""
 var imageCache = [String:UIImage]()  //This is a global image cache
 var zipCode: String = ""
+var zipCodeGlobal: String = ""
+var bnGlobal: String = ""
 var editWhichQuestionGlobal: Int = 0
 var filterOptions: filterOptionsList = filterOptionsList()
 var NameID: Int = 0
@@ -65,8 +67,8 @@ public extension UIDevice {
     public var type: Model {
         var systemInfo = utsname()
         uname(&systemInfo)
-        let modelCode = withUnsafeMutablePointer(&systemInfo.machine) {
-            ptr in String.fromCString(UnsafePointer<CChar>(ptr))
+        let modelCode = withUnsafeMutablePointer(to: &systemInfo.machine) {
+            ptr in String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
         }
         var modelMap : [ String : Model ] = [
             "i386"      : .simulator,
@@ -113,7 +115,7 @@ public extension UIDevice {
             "iPhone8,2" : .iPhone6Splus
         ]
         
-        if let model = modelMap[String.fromCString(modelCode!)!] {
+        if let model = modelMap[modelCode] {
             return model
         }
         return Model.unrecognized
@@ -122,12 +124,12 @@ public extension UIDevice {
 
 extension String
 {
-    func chopPrefix(count: Int = 1) -> String {
-        return self.substringFromIndex(self.startIndex.advancedBy(count))
+    func chopPrefix(_ count: Int = 1) -> String {
+        return self.substring(from: self.characters.index(self.startIndex, offsetBy: count))
     }
     
-    func chopSuffix(count: Int = 1) -> String {
-        return self.substringToIndex(self.endIndex.advancedBy(-count))
+    func chopSuffix(_ count: Int = 1) -> String {
+        return self.substring(to: self.characters.index(self.endIndex, offsetBy: -count))
     }
 }
 
@@ -135,8 +137,8 @@ class CustomSegue: UIStoryboardSegue {
     override func perform() {
         //self.sourceViewController.presentViewController(self.destinationViewController as! UIViewController, animated: false, completion: nil)
         
-        let sourceViewController = self.sourceViewController
-        let destinationController = self.destinationViewController
+        let sourceViewController = self.source
+        let destinationController = self.destination
         let navigationController = sourceViewController.navigationController
         
         // Get a changeable copy of the stack
@@ -146,7 +148,7 @@ class CustomSegue: UIStoryboardSegue {
         if navigationController != nil {
             if navigationController!.viewControllers.count != 0 {
                 var controllerStack: [UIViewController] = navigationController!.viewControllers
-                let sourceIndex = controllerStack.indexOf(sourceViewController)!
+                let sourceIndex = controllerStack.index(of: sourceViewController)!
                 controllerStack[sourceIndex] = destinationController
                 // Assign the updated stack with animation
                 navigationController!.setViewControllers(controllerStack, animated:true)

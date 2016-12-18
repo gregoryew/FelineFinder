@@ -8,33 +8,31 @@
 
 import UIKit
 
+/*
 extension UIButton {
-    func setButtonImageForURL(urlStr: String, placeHolder: UIImage, state: UIControlState) -> Void{
-        self.setBackgroundImage(placeHolder, forState:state)
+    func setButtonImageForURL(_ urlStr: String, placeHolder: UIImage, state: UIControlState) -> Void{
+        self.setBackgroundImage(placeHolder, for:state)
         setButtonImageForURL(urlStr,state: state)
     }
     
-    func setButtonImageForURL(urlStr: String, state: UIControlState) -> Void {
-        let url = NSURL(string: urlStr)
+    func setButtonImageForURL(_ urlStr: String, state: UIControlState) -> Void {
+        let url = URL(string: urlStr)
         let client = RSURLRequest()
-        client.imageFromURL(url!, completionHandler: {(response : NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
-            self.setBackgroundImage(image, forState:state)
-
-        })
+        client.imageFromURL(url!, completionHandler: {(response : URLResponse!, image: UIImage!, error: NSError!) -> Void in
+            self.setBackgroundImage(image, for:state)
+            
+        } as! RSURLRequest.imageFromURLCompletionClosure)
     }
  
+    func setButtonImageForRSTransaction(_ transaction:RSTransaction, placeHolder: UIImage, state: UIControlState) -> Void {
+        self.setBackgroundImage(placeHolder, for:state)
+        setButtonImageForRSTransaction(transaction, state: state)
+    }
+    
     func setButtonImageForRSTransaction(transaction:RSTransaction, placeHolder: UIImage, state: UIControlState) -> Void {
         self.setBackgroundImage(placeHolder, forState:state)
         setButtonImageForRSTransaction(transaction, state: state)
     }
-    
-    func setButtonImageForRSTransaction(transaction:RSTransaction, state: UIControlState) -> Void {
-        let RSRequest = RSTransactionRequest();
-        
-        RSRequest.imageFromRSTransaction(transaction, completionHandler: {(response: NSURLResponse!, image: UIImage!, error: NSError!) -> Void in
-            self.setBackgroundImage(image, forState:state)
-        })
-        
-    }
 
 }
+*/

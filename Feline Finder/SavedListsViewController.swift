@@ -8,6 +8,30 @@
 
 import Foundation
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l >= r
+  default:
+    return !(lhs < rhs)
+  }
+}
+
 
 class SavedListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -15,11 +39,11 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBOutlet weak var GoBackButton: UIButton!
     
-    @IBAction func goBackTapped(sender: AnyObject) {
+    @IBAction func goBackTapped(_ sender: AnyObject) {
         if whichSegue == "ShowList" {
-            performSegueWithIdentifier("SavedLists2", sender: nil)
+            performSegue(withIdentifier: "SavedLists2", sender: nil)
         } else {
-            performSegueWithIdentifier("MainMenu", sender: nil)
+            performSegue(withIdentifier: "MainMenu", sender: nil)
         }
     }
     
@@ -28,7 +52,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     var whichSavedList: Int = 0
     var txtfld: UITextField = UITextField()
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:false);
         whichSegueGlobal = ""
@@ -53,7 +77,11 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
 
             tableView.reloadData()
        }
-        tableView.setContentOffset(CGPointZero, animated:true)
+        tableView.setContentOffset(CGPoint.zero, animated:true)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        GoBackButton.twinkle()
     }
     
     override func viewDidLoad() {
@@ -66,34 +94,34 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.backgroundView = background;
     }
     
-    @IBAction func ResultsTouchUpInside(sender: AnyObject) {
-        self.performSegueWithIdentifier("results", sender: nil)
+    @IBAction func ResultsTouchUpInside(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "results", sender: nil)
     }
     
     //hold this reference in your class
     weak var AddAlertSaveAction: UIAlertAction?
     
-    @IBAction func SaveQueryTouchUpInside(sender: AnyObject) {
+    @IBAction func SaveQueryTouchUpInside(_ sender: AnyObject) {
         //Create the AlertController
             
-            let alertController = UIAlertController(title: "Search Name", message: "Please enter the name of the search", preferredStyle: .Alert)
+            let alertController = UIAlertController(title: "Search Name", message: "Please enter the name of the search", preferredStyle: .alert)
             
             // Add the text field with handler
-            alertController.addTextFieldWithConfigurationHandler { textField in
+            alertController.addTextField { textField in
                 //listen for changes
                 
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: UITextFieldTextDidChangeNotification, object: textField)
+            NotificationCenter.default.addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
                 
             textField.text = SearchTitle
             self.txtfld = textField
                 
             // Create the actions.
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { action in
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
                 NSLog("Cancel Button Pressed");
                  self.removeTextFieldObserver()
             }
             
-            let otherAction = UIAlertAction(title: "Save", style: .Default) { action in
+            let otherAction = UIAlertAction(title: "Save", style: .default) { action in
                 NSLog("Save Button Pressed");
                 let ss = SavedSearches[0]
                 let ans: Bool = (self.whichSegue == "Summary" ? true : false)
@@ -105,7 +133,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
                 SavedSearches2.loadSearches(false)
                 self.removeTextFieldObserver()
                 SearchTitle = n!
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
                 //self.tableView.reloadData()
@@ -113,9 +141,9 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         
             // disable the 'save' button (otherAction) initially
             if SearchTitle.characters.count == 0 {
-                otherAction.enabled = false
+                otherAction.isEnabled = false
             } else {
-                otherAction.enabled = true
+                otherAction.isEnabled = true
             }
             
             // save the other action to toggle the enabled/disabled state when the text changed.
@@ -126,49 +154,49 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             alertController.addAction(otherAction)
         }
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     func removeTextFieldObserver() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UITextFieldTextDidChangeNotification, object: self.txtfld)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: self.txtfld)
     }
     
     //handler
-    func handleTextFieldTextDidChangeNotification(notification: NSNotification) {
+    func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
         let textField = notification.object as! UITextField
         
         // Enforce a minimum length of >= 1 for secure text alerts.
-        AddAlertSaveAction!.enabled = textField.text?.characters.count >= 1
+        AddAlertSaveAction!.isEnabled = textField.text?.characters.count >= 1
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SavedSearches[section].SavedSearchDetails.count
     }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return SearchTitle
     }
     
-    func getDateFromString(date: String?) -> NSDate? {
+    func getDateFromString(_ date: String?) -> Date? {
         if let date1 = date {
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             //dateFormatter.timeZone = NSTimeZone(name: "UTC")
-            let date: NSDate? = dateFormatter.dateFromString(date1)
+            let date: Date? = dateFormatter.date(from: date1)
             return date!
         }
         return nil
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SavedListsTableCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SavedListsTableCell
         
-        cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
@@ -180,43 +208,43 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             cell.selectedBackgroundView = selectedBackgroundCell
         }
         
-        cell.textLabel!.backgroundColor = UIColor.clearColor()
-        cell.textLabel!.highlightedTextColor = UIColor.whiteColor()
-        cell.textLabel!.textColor = UIColor.whiteColor()
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
+        cell.textLabel!.backgroundColor = UIColor.clear
+        cell.textLabel!.highlightedTextColor = UIColor.white
+        cell.textLabel!.textColor = UIColor.white
+        cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         if SavedSearches[indexPath.section].SavedSearchDetails.count == 0 {
             cell.textLabel!.text = "None saved yet.  Save some questions."
-            cell.accessoryView!.hidden = true
+            cell.accessoryView!.isHidden = true
             return cell
         }
         
         //cell.accessoryView!.hidden = false
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         cell.lastCell = indexPath.row == SavedSearches[indexPath.section].SavedSearchDetails.count - 1
         
         let ss = SavedSearches[indexPath.section].SavedSearchDetails[indexPath.row]
         
-        cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
         cell.textLabel!.text = "\(ss.Question): \(ss.Choice)"
         
         return cell
     }
     
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return false
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         whichQuestion = indexPath.row
-        self.performSegueWithIdentifier("Edit", sender: nil)
+        self.performSegue(withIdentifier: "Edit", sender: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "results" {
-            (segue.destinationViewController as! MasterViewController).whichSeque = "results"
+            (segue.destination as! MasterViewController).whichSeque = "results"
         }
         else if segue.identifier == "Edit" {
             whichSegueGlobal = "Edit"
@@ -224,23 +252,23 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         }
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true);
     }
     
-    @IBAction func unwindToChoicesViewController(sender: UIStoryboardSegue)
+    @IBAction func unwindToChoicesViewController(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.

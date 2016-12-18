@@ -60,10 +60,20 @@
 + (NSString *)urlEncode:(NSString *)queryParam {
     // Encode all the reserved characters, per RFC 3986
     // (<http://www.ietf.org/rfc/rfc3986.txt>)
-    NSString *newString = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)queryParam, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
     
-    if (newString) {
-        return newString;
+    NSCharacterSet * queryKVSet = [NSCharacterSet
+                                   characterSetWithCharactersInString:@":/?&=;+!@#$()',*"
+                                   ].invertedSet;
+    
+    NSString * value = queryParam;
+    NSString * valueSafe = [value
+                            stringByAddingPercentEncodingWithAllowedCharacters:queryKVSet
+                            ];
+    
+//    NSString *newString = (__bridge_transfer NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (__bridge CFStringRef)queryParam, NULL, (CFStringRef)@"!*'();:@&=+$,/?%#[]", kCFStringEncodingUTF8);
+    
+    if (valueSafe) {
+        return valueSafe;
     }
     
     return @"";

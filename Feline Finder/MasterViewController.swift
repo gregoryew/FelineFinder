@@ -11,20 +11,20 @@ import UIKit
 class MasterViewController: UITableViewController {
 
     var breeds: Dictionary<String, [Breed]> = [:]
-    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0");
+    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "");
     var whichSeque: String = ""
-    var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0")
+    var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "")
     var titles:[String] = []
     
-    @IBAction func goBackTapped(sender: AnyObject) {
+    @IBAction func goBackTapped(_ sender: AnyObject) {
         if whichSeque == "results" {
-            performSegueWithIdentifier("Choices", sender: nil)
+            performSegue(withIdentifier: "Choices", sender: nil)
         } else {
-            performSegueWithIdentifier("MainMenu", sender: nil)
+            performSegue(withIdentifier: "MainMenu", sender: nil)
         }
     }
     
-    @IBAction func unwindToMasterView(sender: UIStoryboardSegue)
+    @IBAction func unwindToMasterView(_ sender: UIStoryboardSegue)
     {
         /*
         if sender.sourceViewController is PetFinderViewController {
@@ -49,9 +49,9 @@ class MasterViewController: UITableViewController {
         if (whichSeque == "results")
         {
             DatabaseManager.sharedInstance.fetchBreeds(true) { (breeds) -> Void in
-                self.titles = breeds.keys.sort{ $0 < $1 }
+                self.titles = breeds.keys.sorted{ $0 < $1 }
                 self.breeds = breeds
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
                 
@@ -60,9 +60,9 @@ class MasterViewController: UITableViewController {
         }
         else {
             DatabaseManager.sharedInstance.fetchBreeds(false) { (breeds) -> Void in
-                self.titles = breeds.keys.sort{ $0 < $1 }
+                self.titles = breeds.keys.sorted{ $0 < $1 }
                 self.breeds = breeds
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
                 self.title = "Breeds"
@@ -77,28 +77,28 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Segues
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let breed = breeds[titles[indexPath.section]]![indexPath.row]
-            (segue.destinationViewController as! DetailViewController).breed = breed
+            (segue.destination as! DetailViewController).breed = breed
             }
         }
     }
 
     // MARK: - Table View
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return self.titles.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionTitle = titles[section]
         return breeds[sectionTitle]!.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = (tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! MasterViewCell)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = (tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MasterViewCell)
 
         let breed = breeds[titles[indexPath.section]]![indexPath.row]
         
@@ -114,12 +114,12 @@ class MasterViewController: UITableViewController {
             cell.selectedBackgroundView = selectedBackgroundCell
         }
         
-        cell.CatNameLabel.backgroundColor = UIColor.clearColor()
-        cell.CatNameLabel.highlightedTextColor = UIColor.whiteColor()
-        cell.CatNameLabel.textColor = UIColor.whiteColor()
-        cell.CatNameLabel.font = UIFont.boldSystemFontOfSize(14.0)
+        cell.CatNameLabel.backgroundColor = UIColor.clear
+        cell.CatNameLabel.highlightedTextColor = UIColor.white
+        cell.CatNameLabel.textColor = UIColor.white
+        cell.CatNameLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
         
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         //cell.accessoryView!.hidden = false
         cell.lastCell = indexPath.row == self.breeds[titles[indexPath.section]]!.count - 1
         //((CustomCellBackground *)cell.selectedBackgroundView).lastCell = indexPath.row == self.thingsToLearn.count - 1;
@@ -139,19 +139,19 @@ class MasterViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        let trimmedString = titles[section].stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+        let trimmedString = titles[section].trimmingCharacters(
+            in: CharacterSet.whitespacesAndNewlines
         )
         return trimmedString
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         breedStat = breeds[titles[indexPath.section]]![indexPath.row]
-        self.performSegueWithIdentifier("BreedStats", sender: nil)
+        self.performSegue(withIdentifier: "BreedStats", sender: nil)
     }
     
-    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
         if whichSeque != "results" {
             return titles
         } else {
@@ -159,39 +159,39 @@ class MasterViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         if whichSeque != "results" {
             let temp = titles as NSArray
-            return temp.indexOfObject(title)
+            return temp.index(of: title)
         } else {
             return 0
         }
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return false
     }
 
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true);
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
 

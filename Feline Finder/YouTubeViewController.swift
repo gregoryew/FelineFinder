@@ -16,7 +16,7 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //let h = self.navigationController!.navigationBar.frame.height
         //let r = CGRectMake(0, h, self.view.bounds.width, self.view.bounds.height - h)
@@ -33,17 +33,17 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
     }
 */
  
-    func playerReady(videoPlayer: YouTubePlayerView) {
+    func playerReady(_ videoPlayer: YouTubePlayerView) {
         videoPlayer.play()
     }
     
-    func playerStateChanged(videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
+    func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
         if playerState == YouTubePlayerState.Ended {
-            performSegueWithIdentifier("back", sender: nil)
+            performSegue(withIdentifier: "back", sender: nil)
         }
     }
     
-    func playerQualityChanged(videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
+    func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
         
     }
 }

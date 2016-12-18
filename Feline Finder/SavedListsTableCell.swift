@@ -18,26 +18,26 @@ class SavedListsTableCell: UITableViewCell {
     
     @IBOutlet weak var QuestionChoice: UILabel!
     
-    @IBAction func EditTouchUpInside(sender: AnyObject) {
+    @IBAction func EditTouchUpInside(_ sender: AnyObject) {
         //println("Editting")
         ssview?.whichQuestion = whichQuestion
-        ssview?.performSegueWithIdentifier("Edit", sender: nil)
+        ssview?.performSegue(withIdentifier: "Edit", sender: nil)
     }
     
-    @IBAction func ResultsTouchUpInside(sender: AnyObject) {
+    @IBAction func ResultsTouchUpInside(_ sender: AnyObject) {
         //println("Results")
-        ssview?.performSegueWithIdentifier("results", sender: nil)
+        ssview?.performSegue(withIdentifier: "results", sender: nil)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    override func drawRect(rect: CGRect) {
+    override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         
         let whiteColor = UIColor(red:1.0, green:1.0, blue:1.0, alpha:1.0)
@@ -46,40 +46,40 @@ class SavedListsTableCell: UITableViewCell {
         
         let paperRect = self.bounds
         
-        if (self.selected) {
-            drawLinearGradient(context, paperRect, lightGrayColor.CGColor, separatorColor.CGColor)
+        if (self.isSelected) {
+            drawLinearGradient(context, paperRect, lightGrayColor.cgColor, separatorColor.cgColor)
         } else {
-            drawLinearGradient(context, paperRect, whiteColor.CGColor, lightGrayColor.CGColor)
+            drawLinearGradient(context, paperRect, whiteColor.cgColor, lightGrayColor.cgColor)
         }
         
-        drawLinearGradient(context, paperRect, whiteColor.CGColor, lightGrayColor.CGColor)
+        drawLinearGradient(context, paperRect, whiteColor.cgColor, lightGrayColor.cgColor)
         
         var strokeRect = paperRect
         strokeRect.size.height -= 1
         strokeRect = rectFor1PxStroke(strokeRect)
         
-        CGContextSetStrokeColorWithColor(context, whiteColor.CGColor)
+        context!.setStrokeColor(whiteColor.cgColor)
         
-        CGContextSetLineWidth(context, 1.0)
-        CGContextStrokeRect(context, strokeRect)
+        context!.setLineWidth(1.0)
+        context!.stroke(strokeRect)
         
-        let startPoint = CGPointMake(paperRect.origin.x, paperRect.origin.y + paperRect.size.height - 1)
-        let endPoint = CGPointMake(paperRect.origin.x + paperRect.size.width - 1, paperRect.origin.y + paperRect.size.height - 1)
+        let startPoint = CGPoint(x: paperRect.origin.x, y: paperRect.origin.y + paperRect.size.height - 1)
+        let endPoint = CGPoint(x: paperRect.origin.x + paperRect.size.width - 1, y: paperRect.origin.y + paperRect.size.height - 1)
         
         if (!self.lastCell) {
-            draw1PxStroke(context, startPoint, endPoint, separatorColor.CGColor)
+            draw1PxStroke(context, startPoint, endPoint, separatorColor.cgColor)
         } else {
-            CGContextSetStrokeColorWithColor(context, whiteColor.CGColor)
-            CGContextSetLineWidth(context, 1.0)
+            context!.setStrokeColor(whiteColor.cgColor)
+            context!.setLineWidth(1.0)
             
-            let pointA = CGPointMake(paperRect.origin.x, paperRect.origin.y + paperRect.size.height - 1)
-            let pointB = CGPointMake(paperRect.origin.x, paperRect.origin.y)
-            let pointC = CGPointMake(paperRect.origin.x + paperRect.size.width - 1, paperRect.origin.y)
-            let pointD = CGPointMake(paperRect.origin.x + paperRect.size.width - 1, paperRect.origin.y + paperRect.size.height - 1)
+            let pointA = CGPoint(x: paperRect.origin.x, y: paperRect.origin.y + paperRect.size.height - 1)
+            let pointB = CGPoint(x: paperRect.origin.x, y: paperRect.origin.y)
+            let pointC = CGPoint(x: paperRect.origin.x + paperRect.size.width - 1, y: paperRect.origin.y)
+            let pointD = CGPoint(x: paperRect.origin.x + paperRect.size.width - 1, y: paperRect.origin.y + paperRect.size.height - 1)
             
-            draw1PxStroke(context, pointA, pointB, whiteColor.CGColor)
-            draw1PxStroke(context, pointB, pointC, whiteColor.CGColor)
-            draw1PxStroke(context, pointC, pointD, whiteColor.CGColor)
+            draw1PxStroke(context, pointA, pointB, whiteColor.cgColor)
+            draw1PxStroke(context, pointB, pointC, whiteColor.cgColor)
+            draw1PxStroke(context, pointC, pointD, whiteColor.cgColor)
         }
     }
 }

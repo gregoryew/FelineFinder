@@ -11,21 +11,21 @@ import UIKit
 
 class TitleScreenViewController: UIViewController {
     
-    var timer = NSTimer()
+    var timer = Timer()
     var counter = 0
     
     @IBOutlet var background: UIView!
     
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     
-    @IBAction func unwindToMainMenu(sender: UIStoryboardSegue)
+    @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.
     }
     
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //background.frame = CGRectMake(0, 0, background.frame.width, background.frame.height)
         /*
@@ -45,7 +45,7 @@ class TitleScreenViewController: UIViewController {
         background.backgroundColor = UIColor.blackColor()
         */
         if let viewWithTag = background.viewWithTag(999) {
-            viewWithTag.sendSubviewToBack(self.view)
+            viewWithTag.sendSubview(toBack: self.view)
         } else {
             print("No!")
         }
@@ -56,36 +56,36 @@ class TitleScreenViewController: UIViewController {
         //timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: #selector(TitleScreenViewController.doAnimation), userInfo: nil, repeats: true)
     }
     
-    @IBAction func AdoptACat(sender: AnyObject) {
-        performSegueWithIdentifier("AdoptACat", sender: nil)
+    @IBAction func AdoptACat(_ sender: AnyObject) {
+        performSegue(withIdentifier: "AdoptACat", sender: nil)
     }
     
-    @IBAction func FindACatTouchUpInside(sender: AnyObject) {
+    @IBAction func FindACatTouchUpInside(_ sender: AnyObject) {
         if questionList.count == 0 {
-            self.performSegueWithIdentifier("QuestionEntry", sender: nil)
+            self.performSegue(withIdentifier: "QuestionEntry", sender: nil)
             return
         }
         
-        let alertController = UIAlertController(title: "New Search?", message: "Do you want a new search or to keep the existing one?", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "New Search?", message: "Do you want a new search or to keep the existing one?", preferredStyle: .alert)
         
         // Create the actions.
-        let newAction = UIAlertAction(title: "New", style: .Cancel) { action in
+        let newAction = UIAlertAction(title: "New", style: .cancel) { action in
             NSLog("New Button Pressed");
             questionList = QuestionList()
             questionList.getQuestions()
             SearchTitle = "SUMMARY"
-            self.performSegueWithIdentifier("QuestionEntry", sender: nil)
+            self.performSegue(withIdentifier: "QuestionEntry", sender: nil)
         }
         
-        let existingAction = UIAlertAction(title: "Existing", style: .Default) { action in
-            self.performSegueWithIdentifier("QuestionEntry", sender: nil)
+        let existingAction = UIAlertAction(title: "Existing", style: .default) { action in
+            self.performSegue(withIdentifier: "QuestionEntry", sender: nil)
         }
         
         // Add the actions.
         alertController.addAction(newAction)
         alertController.addAction(existingAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
     /*
@@ -115,7 +115,7 @@ class TitleScreenViewController: UIViewController {
     }
     */
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -135,10 +135,10 @@ class TitleScreenViewController: UIViewController {
     }
     */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AdoptACat" {
-            let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "");
-            (segue.destinationViewController as! PetFinderViewController).breed = breed
+            let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "");
+            (segue.destination as! PetFinderViewController).breed = breed
         }
      }
 }

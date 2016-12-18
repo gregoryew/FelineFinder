@@ -14,13 +14,13 @@ var WhichSavedList: Int = 0
 var SearchTitle: String = ""
 
 class SavedLists2ViewController: UITableViewController {
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             DatabaseManager.sharedInstance.deleteSearch(Int(SavedSearches2[indexPath.row].SavedSearchID))
-            SavedSearches2.ss.removeValueForKey(SavedSearches2[indexPath.row].SavedSearchID)
-            SavedSearches2.ssd.removeAtIndex(indexPath.row)
-            SavedSearches2.keys.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:UITableViewRowAnimation.Fade)
+            SavedSearches2.ss.removeValue(forKey: SavedSearches2[indexPath.row].SavedSearchID)
+            SavedSearches2.ssd.remove(at: indexPath.row)
+            SavedSearches2.keys.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with:UITableViewRowAnimation.fade)
         }
     }
     
@@ -29,18 +29,18 @@ class SavedLists2ViewController: UITableViewController {
         if (SavedSearches2.loaded == false) {
             SavedSearches2.loadSearches(false)
         }
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
         self.navigationController?.setToolbarHidden(false, animated:true);
     }
     
-    override func setEditing(editing: Bool, animated: Bool) {
+    override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
     }
     
@@ -54,37 +54,37 @@ class SavedLists2ViewController: UITableViewController {
     }
     */
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SavedSearches2.count
     }
     
-    func getDateFromString(date: String?) -> NSDate? {
+    func getDateFromString(_ date: String?) -> Date? {
         if let date1 = date {
-            let dateFormatter = NSDateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             //dateFormatter.timeZone = NSTimeZone(name: "UTC")
-            let date: NSDate? = dateFormatter.dateFromString(date1)
+            let date: Date? = dateFormatter.date(from: date1)
             return date!
         }
         return nil
     }
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         return ""
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! SavedLists2TableCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SavedLists2TableCell
         
-        cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
-        cell.backgroundColor = UIColor.clearColor()
+        cell.backgroundColor = UIColor.clear
         
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
@@ -96,46 +96,46 @@ class SavedLists2ViewController: UITableViewController {
             cell.selectedBackgroundView = selectedBackgroundCell
         }
         
-        cell.accessoryType = .DisclosureIndicator
+        cell.accessoryType = .disclosureIndicator
         
         cell.textLabel!.text = SavedSearches2[indexPath.row].Title
-        cell.textLabel!.highlightedTextColor = UIColor.whiteColor()
-        cell.textLabel!.textColor = UIColor.whiteColor()
-        cell.textLabel!.font = UIFont.boldSystemFontOfSize(14.0)
+        cell.textLabel!.highlightedTextColor = UIColor.white
+        cell.textLabel!.textColor = UIColor.white
+        cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         return cell
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         WhichSavedList = Int(SavedSearches2[indexPath.row].SavedSearchID)
         SearchTitle = SavedSearches2[indexPath.row].Title
-        self.performSegueWithIdentifier("ShowList", sender: nil)
+        self.performSegue(withIdentifier: "ShowList", sender: nil)
     }
     
-    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.titleLabel.text = "Saved Searches"
         return header
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "ShowList") {
-            (segue.destinationViewController as! SavedListsViewController).whichSavedList = WhichSavedList
+            (segue.destination as! SavedListsViewController).whichSavedList = WhichSavedList
             print("WhichSavedList=\(WhichSavedList)")
-            (segue.destinationViewController as! SavedListsViewController).whichSegue = "ShowList"
+            (segue.destination as! SavedListsViewController).whichSegue = "ShowList"
         }
     }
     
-    @IBAction func unwindToSavedLists2ViewController(sender: UIStoryboardSegue)
+    @IBAction func unwindToSavedLists2ViewController(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.

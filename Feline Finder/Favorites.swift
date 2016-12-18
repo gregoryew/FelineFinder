@@ -54,43 +54,43 @@ class FavoritesList {
             }
             i += 1
         }
-        breedKeys = breedKeys.sort { $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
+        breedKeys = breedKeys.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
     }
     
-    func assignStatus(tv: UITableView, completion: () -> Void) {
+    func assignStatus(_ tv: UITableView, completion: @escaping () -> Void) {
         
         var i = 0
         var catIDs: [String] = []
         while i < keys.count {
             if !self[i].petID.hasSuffix("_PetFinder") {
-                catIDs.append(self[i].petID.componentsSeparatedByString("_")[0])
+                catIDs.append(self[i].petID.components(separatedBy: "_")[0])
             }
             i += 1
         }
         
         if catIDs.count == 0 {return}
         
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":String(catIDs.count), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": catIDs]], "fields": ["animalID","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending"]]]
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":String(catIDs.count), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": catIDs]], "fields": ["animalID","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending"]]] as [String : Any]
         
         do {
             
-            let jsonData = try NSJSONSerialization.dataWithJSONObject(json, options: .PrettyPrinted)
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
             
-            let myURL = NSURL(string: "https://api.rescuegroups.org/http/v2.json")!
-            let request = NSMutableURLRequest(URL: myURL)
-            request.HTTPMethod = "POST"
+            let myURL = URL(string: "https://api.rescuegroups.org/http/v2.json")!
+            let request = NSMutableURLRequest(url: myURL)
+            request.httpMethod = "POST"
             
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
-            request.HTTPBody = jsonData
-            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            request.httpBody = jsonData
+            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
                 data, response, error in
                 if error != nil {
                     print("Get Error")
                 } else {
                     do {
-                        let jsonObj:AnyObject =  try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0)) as! NSDictionary
+                        let jsonObj:AnyObject =  try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
                         
                         if let dict = jsonObj as? [String: AnyObject] {
                             for (key, data) in dict {
@@ -137,12 +137,12 @@ class FavoritesList {
                         print(error.localizedDescription)
                     }
                 }
-            }
+            }) 
             task.resume()
         } catch { }
     }
     
-    func countBreedsInSection(section: Int) -> Int {
+    func countBreedsInSection(_ section: Int) -> Int {
         let b = breedKeys[section]
         let b2 = breeds[b]
         return b2!.count
@@ -171,15 +171,15 @@ class FavoritesList {
         return Favorites.count
     }
     
-    func checkPetID(petID: String, ds: DataSource) -> String {
+    func checkPetID(_ petID: String, ds: DataSource) -> String {
         var pID: String = petID
-        if pID.rangeOfString("_") == nil {
+        if pID.range(of: "_") == nil {
             pID = pID + "_" +  ds.rawValue
         }
         return pID
     }
     
-    func addFavorite(petID: String, f: Favorite) {
+    func addFavorite(_ petID: String, f: Favorite) {
         let pID = checkPetID(petID, ds: f.FavoriteDataSource)
         Favorites[pID] = f
         
@@ -192,14 +192,14 @@ class FavoritesList {
         calcualateBreeds()
     }
     
-    func removeFavorite(petID: String, dataSource: DataSource) {
+    func removeFavorite(_ petID: String, dataSource: DataSource) {
         let pID = checkPetID(petID, ds: dataSource)
-        Favorites.removeValueForKey(pID)
+        Favorites.removeValue(forKey: pID)
         var i = 0
         
         while i < keys.count {
             if (keys[i] == pID) {
-                keys.removeAtIndex(i)
+                keys.remove(at: i)
             }
             i += 1
         }
@@ -209,7 +209,7 @@ class FavoritesList {
         calcualateBreeds()
     }
     
-    func isFavorite(petID: String, dataSource: DataSource) -> Bool {
+    func isFavorite(_ petID: String, dataSource: DataSource) -> Bool {
         let pID = checkPetID(petID, ds: dataSource)
         if let _ = Favorites[pID] {
             return true
