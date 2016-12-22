@@ -122,7 +122,7 @@ class BreedStatsViewController: UIViewController {
         */
         else if (segue.identifier == "petFinder") {
             let b = self.breed as Breed?
-            (segue.destination as! PetFinderViewController).breed = b!
+            (segue.destination as! AdoptableCatsViewController).breed = b!
         }
     }
     

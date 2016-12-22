@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46241D481E07041300997D4C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D471E07041300997D4C /* GradientView.swift */; };
+		46241D4A1E07046400997D4C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D491E07046400997D4C /* CollectionViewCell.swift */; };
+		46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */; };
+		46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */; };
 		462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */; };
 		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
+		463ABE321E0B23D2003A0A43 /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 463ABE311E0B23D2003A0A43 /* Unknown.gif */; };
+		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51C39031D723EFA008064EC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C51C39021D723EFA008064EC /* share.png */; };
@@ -156,7 +162,6 @@
 		C56F90E81B7A110A00EEEBFA /* Abyssinian.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90E31B7A110A00EEEBFA /* Abyssinian.gif */; };
 		C56F90EB1B7A12CE00EEEBFA /* Cornish Rex.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90EA1B7A12CE00EEEBFA /* Cornish Rex.gif */; };
 		C56F90ED1B7A152B00EEEBFA /* Chat_Chartreux.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90EC1B7A152B00EEEBFA /* Chat_Chartreux.gif */; };
-		C56F90EF1B7A179400EEEBFA /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = C56F90EE1B7A179400EEEBFA /* Unknown.gif */; };
 		C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F941BC02BD80023F353 /* SwiftyJSON.swift */; };
 		C5755F9C1BC02CB30023F353 /* RSTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F961BC02CB30023F353 /* RSTransaction.swift */; };
 		C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5755F971BC02CB30023F353 /* RSTransactionRequest.swift */; };
@@ -241,8 +246,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46241D471E07041300997D4C /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		46241D491E07046400997D4C /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewController.swift; sourceTree = "<group>"; };
+		46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderViewCollectionReusableView.swift; sourceTree = "<group>"; };
 		462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwinkleImage.png; sourceTree = "<group>"; };
 		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
+		463ABE311E0B23D2003A0A43 /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
+		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51C39021D723EFA008064EC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -398,7 +409,6 @@
 		C56F90E31B7A110A00EEEBFA /* Abyssinian.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Abyssinian.gif; sourceTree = "<group>"; };
 		C56F90EA1B7A12CE00EEEBFA /* Cornish Rex.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "Cornish Rex.gif"; sourceTree = "<group>"; };
 		C56F90EC1B7A152B00EEEBFA /* Chat_Chartreux.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Chat_Chartreux.gif; sourceTree = "<group>"; };
-		C56F90EE1B7A179400EEEBFA /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
 		C5755F941BC02BD80023F353 /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		C5755F961BC02CB30023F353 /* RSTransaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTransaction.swift; sourceTree = "<group>"; };
 		C5755F971BC02CB30023F353 /* RSTransactionRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSTransactionRequest.swift; sourceTree = "<group>"; };
@@ -639,7 +649,7 @@
 		C56F90E91B7A114100EEEBFA /* BodyTypes */ = {
 			isa = PBXGroup;
 			children = (
-				C56F90EE1B7A179400EEEBFA /* Unknown.gif */,
+				463ABE311E0B23D2003A0A43 /* Unknown.gif */,
 				C56F90EC1B7A152B00EEEBFA /* Chat_Chartreux.gif */,
 				C56F90EA1B7A12CE00EEEBFA /* Cornish Rex.gif */,
 				C56F90DF1B7A110A00EEEBFA /* Norwegian_Forest_Cat.gif */,
@@ -714,6 +724,7 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
+				46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */,
 				462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */,
 				4632471B1E037D17000039FF /* Twinkle.swift */,
 				C58367281D683145001AFDD3 /* CoolButton */,
@@ -733,6 +744,7 @@
 				C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */,
 				C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */,
 				C58B459D1B2D457600E03538 /* QuestionEntry.swift */,
+				46241D471E07041300997D4C /* GradientView.swift */,
 				C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */,
 				C525E3661D896733005123C4 /* FelineFinderDetailViewController.swift */,
 				C525E3681D896D4B005123C4 /* OptionsTableViewCell.swift */,
@@ -740,6 +752,9 @@
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */,
+				46241D491E07046400997D4C /* CollectionViewCell.swift */,
+				46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */,
 				C5933B1A1D6C012A00CFD62E /* Globals.swift */,
 				C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */,
 				C5411D5C1D61858000FFB128 /* InstructionsViewController.swift */,
@@ -1095,7 +1110,6 @@
 				C54FCAA01B83AB6100D9524E /* Ragamuffin.html in Resources */,
 				C551264A1B24E759007D8CDF /* Javanese.jpg in Resources */,
 				C58B458E1B2CC8BF00E03538 /* Tonkinese.JPG in Resources */,
-				C56F90EF1B7A179400EEEBFA /* Unknown.gif in Resources */,
 				C5511C4D1B6EB73A00BE8610 /* good_with_pets.gif in Resources */,
 				C5FB6EDD1B21337C007FFA36 /* American_Curl.jpg in Resources */,
 				C54FCAA81B83AB6100D9524E /* Burmillia.html in Resources */,
@@ -1148,6 +1162,7 @@
 				C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */,
 				C55126751B25048E007D8CDF /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg in Resources */,
 				C58B457A1B2CBEF500E03538 /* Somali.html in Resources */,
+				463ABE321E0B23D2003A0A43 /* Unknown.gif in Resources */,
 				C55126171B227396007D8CDF /* British_Shorthair_Assis.jpg in Resources */,
 				C5511C481B6EB73A00BE8610 /* attachment_to_people.gif in Resources */,
 				C56F90C91B766A4A00EEEBFA /* welcome_cat_3.png in Resources */,
@@ -1253,9 +1268,11 @@
 			files = (
 				C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */,
 				C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */,
+				46241D4A1E07046400997D4C /* CollectionViewCell.swift in Sources */,
 				C5755F9F1BC02CB30023F353 /* RSUtilities.swift in Sources */,
 				C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */,
 				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
+				46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */,
 				C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */,
 				C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */,
 				C58D212B1B496DCE008E1B0B /* CMMapLauncher.m in Sources */,
@@ -1292,6 +1309,7 @@
 				C5943B031D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift in Sources */,
 				C5FB6EF11B213474007FFA36 /* FMDatabasePool.m in Sources */,
 				C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */,
+				46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */,
 				C5943B011D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift in Sources */,
 				C56DA7371D78F9DB00524E53 /* FelineFinderBasePets.swift in Sources */,
 				C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */,
@@ -1302,6 +1320,7 @@
 				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,
 				C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */,
 				C5933B1B1D6C012A00CFD62E /* Globals.swift in Sources */,
+				46241D481E07041300997D4C /* GradientView.swift in Sources */,
 				C53BC8A71B52DE0A0033FA7A /* SavedLists2ViewController.swift in Sources */,
 				C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */,
 				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
@@ -1315,6 +1334,7 @@
 				C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */,
 				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
 				C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */,
+				46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */,
 				C56DA73B1D790AD000524E53 /* RescuePetsAPI.swift in Sources */,
 				C58B459E1B2D457600E03538 /* QuestionEntry.swift in Sources */,
 				C5FB6EEF1B213474007FFA36 /* FMDatabaseQueue.m in Sources */,
@@ -1357,7 +1377,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1404,7 +1425,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;

@@ -88,6 +88,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if (!(db?.executeStatements("DELETE FROM SavedSearchDetail"))!) {
                             print("Error")
                         }
+                        if (!(db?.executeStatements("DELETE FROM PetListFilterDetails"))!) {
+                            print("Error")
+                        }
+                        if (!(db?.executeStatements("DELETE FROM PetListFilter"))!) {
+                            print("Error")
+                        }
                         if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='Favorites'"))!) {
                             print("Error")
                         }
@@ -97,6 +103,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='SavedSearchDetail'"))!) {
                             print("Error")
                         }
+                        if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='PetListFilterDetails'"))!) {
+                            print("Error")
+                        }
+                        if (!(db?.executeStatements("UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='PetListFilter'"))!) {
+                            print("Error")
+                        }
                         if (!(db?.executeStatements("INSERT INTO Favorites(PetID, PetName, ImageName, Breed, DataSource) SELECT PetID, PetName, ImageName, Breed, 'PetFinder' FROM OLD.Favorites"))!) {
                             print("Error")
                         }
@@ -104,6 +116,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("Error")
                         }
                         if (!(db?.executeStatements("INSERT INTO SavedSearchDetail SELECT * FROM OLD.SavedSearchDetail"))!) {
+                            print("Error")
+                        }
+                        if (!(db?.executeStatements("INSERT INTO PetListFilter SELECT * FROM OLD.PetListFilter"))!) {
+                            print("Error")
+                        }
+                        if (!(db?.executeStatements("INSERT INTO PetListFilterDetails SELECT * FROM OLD.PetListFilterDetails"))!) {
                             print("Error")
                         }
                     }

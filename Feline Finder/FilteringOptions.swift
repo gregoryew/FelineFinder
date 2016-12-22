@@ -112,7 +112,7 @@ class filterOptionsList {
                 self.saves.append((displayName: s.FilterName, search: String(s.FilterID), value: i))
                 i += 1
             }
-            self.filteringOptions.append(filterOption(n: "Saved Searches", f: "", d: false, c:.saves, l: true, o: self.saves))
+            self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: true, o: self.saves))
             
             self.classify()
             
@@ -142,7 +142,7 @@ class filterOptionsList {
             
             self.filteringOptions.append(filterOption(n: "Breed", f: "animalPrimaryBreedID", d: false, c:.breed, l: true, o: self.breedChoices))
             
-            self.filteringOptions.append(filterOption(n: "Not These", f: "animalPrimaryBreedID", d: false, c:.breed, l: true, o: self.breedChoices))
+            self.filteringOptions.append(filterOption(n: "Not These", f: "animalPrimaryBreedIDNot", d: false, c:.breed, l: true, o: self.breedChoices))
             
             self.classify()
 
@@ -287,7 +287,7 @@ class filterOptionsList {
                     }
                 }
                 if o.name == "Not These" { //Breeds to filter out
-                    if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "notequals" as AnyObject, "criteria": choosenValues as AnyObject])}
+                    if choosenValues.count != 0 {filters.append(["fieldName": "animalPrimaryBreedID" as AnyObject, "operation": "notequals" as AnyObject, "criteria": choosenValues as AnyObject])}
                 } else {
                     if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": choosenValues as AnyObject])}
                 }
@@ -308,9 +308,12 @@ class filterOptionsList {
         DatabaseManager.sharedInstance.saveFilterOptions(saveID, name: saveName, filterOptions: self)
     }
     
-    func retrieveSavedFilterValues(_ savedID: Int, filterOptions: filterOptionsList, choosenListValues: [Int]) {
-        DatabaseManager.sharedInstance.fetchFFilterOptions(savedID, filterOptions: filterOptions, completion: {(filterOption) -> Void in filterOptions.filteringOptions = filterOption
-            filterOptions.filteringOptions[0].choosenListValues = choosenListValues
+    //func retrieveSavedFilterValues(_ savedID: Int, filterOptions: filterOptionsList, choosenListValues: [Int]) {
+
+    func retrieveSavedFilterValues(_ savedID: Int, filterOptions: filterOptionsList) {
+        DatabaseManager.sharedInstance.fetchFFilterOptions(savedID, filterOptions: filterOptions, completion: {(filterOption) -> Void in
+            filterOptions.filteringOptions = filterOption
+            filterOptions.filteringOptions[0].choosenListValues = filterOption[0].choosenListValues
             })
     }
     

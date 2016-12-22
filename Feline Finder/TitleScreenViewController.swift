@@ -138,7 +138,7 @@ class TitleScreenViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AdoptACat" {
             let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "");
-            (segue.destination as! PetFinderViewController).breed = breed
+            (segue.destination as! AdoptableCatsViewController).breed = breed
         }
      }
 }

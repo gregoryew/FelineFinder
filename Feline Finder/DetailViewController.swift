@@ -36,8 +36,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
             //let autoplay = networkType == RSUtilities.ConnectionType.WIFINETWORK ? "autoplay=1&" : ""
             return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:16px;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\"></iframe></center><br/><h1>DESCRIPTION<h1><h5>\(desc)</h4></body></html>"
         } else {
-            return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:16px;} </style></header><body><br/><center><img src=\"\(b.FullSizedPicture)\" style=\"box-shadow:10px 10px 5px black\" width=\"250\"><br/><br/><br/><iframe width=\"280\" height=\"158\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?rel=0&amp;showinfo=0\" frameborder=\"0\" allowfullscreen></iframe></center><br/><h1>DESCRIPTION<h1><h5>\(desc)</h4></body></html>"
-            
+            return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:16px;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"200\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\"></iframe></center><br/><h1>DESCRIPTION<h1><h5>\(desc)</h4></body></html>"
         }
     }
 
@@ -100,7 +99,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
         }
         else if (segue.identifier == "petFinder") {
             let b = self.breed as Breed?
-            (segue.destination as! PetFinderViewController).breed = b!
+            (segue.destination as! AdoptableCatsViewController).breed = b!
         }
     }
     

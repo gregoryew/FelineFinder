@@ -19,7 +19,7 @@ class MasterViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+    /*
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -69,5 +69,5 @@ class MasterViewCell: UITableViewCell {
             draw1PxStroke(context, pointC, pointD, whiteColor.cgColor)
         }
     }
-    
+    */
 }

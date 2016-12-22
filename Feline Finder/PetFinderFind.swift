@@ -226,7 +226,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.ListName.text = opt!.name
-            if opt?.options.count > 0
+            if opt?.options.count > 0 && (opt?.choosenValue)! >= 0
             {cell.ListValue.text = opt?.options[(opt?.choosenValue)!].0}
             else
             {cell.ListValue.text = "Touch Here To Save..."}
@@ -315,8 +315,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         let sourceViewController = sender.source as! FilterOptionsListTableViewController
         var i = 0
         if sourceViewController.filterOpt?.classification == .saves {
-            if sourceViewController.filterOpt?.choosenListValues.count > 0 {
-                filterOptions.retrieveSavedFilterValues((opt?.options[(sourceViewController.filterOpt?.choosenListValues[0])!].2)!, filterOptions: filterOptions, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
+            if (sourceViewController.filterOpt?.choosenValue)! >= 0 {
+                filterOptions.retrieveSavedFilterValues(((sourceViewController.filterOpt?.choosenValue)! + 1), filterOptions: filterOptions) //, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
             }
         }
         for o in filterOptions.filteringOptions {

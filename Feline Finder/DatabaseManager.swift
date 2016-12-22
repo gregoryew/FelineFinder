@@ -659,7 +659,7 @@ class DatabaseManager {
             }
             for o in filterOptions.filteringOptions {
                 var FilterValue: String = ""
-                if o.classification == .saves {continue}
+                if o.classification == .saves {o.choosenListValues.append(NameID)}
                 if o.list == true {
                     FilterValue = o.choosenListValues.map{String($0)}.joined(separator: ",")
                 } else {

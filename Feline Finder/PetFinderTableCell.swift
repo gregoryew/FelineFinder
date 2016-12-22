@@ -27,6 +27,7 @@ class PetFinderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    /*
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         
@@ -72,5 +73,5 @@ class PetFinderCell: UITableViewCell {
             draw1PxStroke(context, pointC, pointD, whiteColor.cgColor)
         }
     }
-    
+    */
 }

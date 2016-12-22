@@ -104,6 +104,7 @@ class MasterViewController: UITableViewController {
         
         //cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
         
+        /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
             cell.backgroundView = backgroundCell
@@ -113,6 +114,9 @@ class MasterViewController: UITableViewController {
             let selectedBackgroundCell = CustomCellBackground()
             cell.selectedBackgroundView = selectedBackgroundCell
         }
+        */
+        
+        cell.backgroundColor = UIColor.black
         
         cell.CatNameLabel.backgroundColor = UIColor.clear
         cell.CatNameLabel.highlightedTextColor = UIColor.white
@@ -187,6 +191,8 @@ class MasterViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

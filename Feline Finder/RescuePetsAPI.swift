@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class RescuePetList: PetList {
-    var resultStart: Int = 0
-    var resultLimit: Int = 25
+
+    //var resultLimit: Int = 100
     override func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
         super.loadSinglePet(petID, completion: completion)
         if let p2 = PetsGlobal[petID] {
@@ -67,8 +68,8 @@ class RescuePetList: PetList {
             }
     }
     
-    override func loadPets(_ tv: UITableView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
-        super.loadPets(tv, bn: bn, zipCode: zipCode, completion: completion)
+    override func loadPets(_ cv: UICollectionView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
+        super.loadPets(cv, bn: bn, zipCode: zipCode, completion: completion)
         
         if zipCodeGlobal == zipCode  && bnGlobal == bn.BreedName {
             return
@@ -103,7 +104,10 @@ class RescuePetList: PetList {
         filters += filterOptions.getFilters()
         print(String(resultStart))
         print(String(resultLimit))
+        /*
         let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalOrgID", "animalAltered", "animalBreed", "animalDeclawed", "animalGeneralAge", "animalGeneralSizePotential", "animalHousetrained", "animalLocation", "animalLocationCoordinates", "animalLocationDistance", "animalName", "animalSpecialneeds", "animalOKWithAdults", "animalOKWithCats", "animalOKWithDogs", "animalOKWithKids", "animalPrimaryBreed", "animalRescueID", "animalSex", "animalSizePotential", "animalUpdatedDate", "animalPictures","animalVideoUrls", "animalUptodate", "animalStatus", "animalAdoptedDate", "animalAvailableDate", "animalAdoptionPending", "animalBirthdate", "animalBirthdateExact", "animalApartment", "animalYardRequired", "animalIndoorOutdoor", "animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds"]]] as [String : Any]
+        */
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls",]]] as [String : Any]
         do {
             
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
@@ -214,8 +218,8 @@ class RescuePetList: PetList {
                 case "animalSex": sex = validateValue(data)
                 case "animalGeneralSizePotential": size = validateValue(data)
                 case "animalName": name = validateValue(data)
-                case "animalPictures": pictures = parsePictures(data)
-                case "animalVideoUrls": videos = parseVideos(data)
+                case "animalPictures": pictures = parsePictures(data as! [AnyObject])
+                case "animalVideoUrls": videos = parseVideos(data as! [AnyObject])
                 case "animalLocationDistance": distance = validateDouble(data)
                 case "animalDeclawed": options = hasOption(validateValue(data), option1: "Declawed", option2: "Has claws",options: options)
                 case "animalUptodate": options = hasOption(validateValue(data), option1: "Uptodate", option2: "Not Uptodate", options: options)
@@ -261,7 +265,7 @@ class RescuePetList: PetList {
         } else if animalStatus == "Available" {
             status = animalStatus! + " " + animalAvailableDate!
         }
-
+        
         let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, lu: lastUpdated!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!)
         return p
     }
@@ -278,14 +282,14 @@ func hasOption(_ optionValue: String, option1:  String, option2: String, options
     return opts
 }
 
-func parsePictures(_ data: AnyObject) -> [picture] {
+func parsePictures(_ data: [AnyObject]) -> [picture] {
     var pictures: [picture] = [picture]()
     var id = 1
     var d: Any?
     var i = 0
     
-    while i < data.count {
-        d = data[i]
+    while i < (data as [AnyObject]).count {
+        d = data[i] as! [String: AnyObject]
         if let dict = d as? [String: AnyObject] {
             for (key, data2) in dict {
                 switch key {
@@ -329,7 +333,7 @@ func convert(_ size: String) -> String {
     return s
 }
 
-func parseVideos(_ data: AnyObject) -> [video] {
+func parseVideos(_ data: [AnyObject]) -> [video] {
     var videos: [video] = [video]()
     var i = 0
     var d: Any?

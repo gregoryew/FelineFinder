@@ -161,11 +161,11 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         if hoursSinceCreation > 24 {
             b = true
         }
-        
+        /*
         if b == true
         {
             self.tableView.reloadData()
-            self.pets!.loadPets(self.tableView, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
+            self.pets!.loadPets(self.collectionView, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
                 self.pets = petList
                 self.totalRow = -1
                 self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
@@ -179,6 +179,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
             self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
             self.tableView.reloadData()
         }
+        */
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -346,7 +347,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         
         return cell
     }
-    
+    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell: PetFinderCell = tableView.cellForRow(at: indexPath) as! PetFinderCell
         if selectedCell.CatNameLabel.text == "More..." {
@@ -363,7 +364,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
             }
         }
     }
-    
+    */
     override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool {
         var proceed = true
         if identifier == "felineFinderDetail" {

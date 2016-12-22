@@ -16,9 +16,14 @@
     if ((self = [super initWithCoder:aDecoder])) {
         self.opaque = NO;
         self.backgroundColor = [UIColor clearColor];
+        _hue = 0.737254901960784;
+        _saturation = 0.885;
+        _brightness = 0.445;
+        /*
         _hue = 0.61087864637374878;
         _saturation = 0.80334728956222534;
         _brightness = 0.61506277322769165;
+        */
     }
     return self;
 }

@@ -53,6 +53,8 @@ struct Pet {
     var videos = [video]()
     var status: String = ""
     var birthdate: String = ""
+    var row = 0
+    var section = 0
     init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, lu: String, m2: [picture], s3: String, z: String, dis: Double) {
         petID = pID
         name = n
@@ -124,6 +126,16 @@ class PetList {
     var dateCreated = Date()
     var loading: Bool = true
     var distances: Dictionary<String, [Pet]> = [:]
+    var resultStart: Int = 0
+    var resultLimit: Int = 0
+    
+    init() {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            resultLimit = 100
+        } else {
+            resultLimit = 25
+        }
+    }
     
     func splitPetID(_ petID: String) -> String {
         return petID.components(separatedBy: "_")[0]
@@ -145,21 +157,18 @@ class PetList {
     func assignDistances() {
         var distanceLabel: String = ""
         var i = 0
+        var r = 0
+        var s = 0
         
         distances.removeAll()
+        //self.Pets.sort(by: {$0.distance < $1.distance})
         while i < self.Pets.count {
             switch (self.Pets[i].distance) {
             case 0..<5:
                 distanceLabel = "         Within about 5 miles"
-            case 5..<10:
-                distanceLabel = "        Within about 10 miles"
-            case 10..<20:
-                distanceLabel = "       Within about 20 miles"
-            case 20..<30:
-                distanceLabel = "      Within about 30 miles"
-            case 30..<40:
-                distanceLabel = "     Within about 40 miles"
-            case 40..<50:
+            case 5..<25:
+                distanceLabel = "       Within about 25 miles"
+            case 25..<50:
                 distanceLabel = "    Within about 50 miles"
             case 50..<75:
                 distanceLabel = "   Within about 75 miles"
@@ -170,18 +179,27 @@ class PetList {
             }
             
             if var dist = distances[distanceLabel] {
+                self.Pets[i].row = r
+                self.Pets[i].section = s
                 dist.append(self.Pets[i])
                 distances[distanceLabel] = dist
             } else {
+                r = 0
+                if i != 0 {
+                    s += 1
+                }
+                self.Pets[i].row = r
+                self.Pets[i].section = s
                 var dist: [Pet] = []
                 dist.append(self.Pets[i])
                 distances[distanceLabel] = dist
             }
+            r += 1
             i += 1
         }
     }
     
-    func loadPets(_ tv: UITableView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
+    func loadPets(_ cv: UICollectionView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
     }
 
 }

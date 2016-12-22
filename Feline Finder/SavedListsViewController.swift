@@ -197,7 +197,9 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SavedListsTableCell
         
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        cell.backgroundColor = UIColor.black
         
+        /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
             cell.backgroundView = backgroundCell
@@ -207,6 +209,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             let selectedBackgroundCell = CustomCellBackground()
             cell.selectedBackgroundView = selectedBackgroundCell
         }
+        */
         
         cell.textLabel!.backgroundColor = UIColor.clear
         cell.textLabel!.highlightedTextColor = UIColor.white
@@ -254,6 +257,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
