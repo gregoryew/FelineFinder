@@ -193,8 +193,9 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func displayQuestion() {
         if ((currentQuestion < 0) || (currentQuestion >= questionList.Questions.count)) {return}
-        self.navigationItem.title = questionList.Questions[currentQuestion].Name;
-        QuestionLabel.text = "Question \(currentQuestion + 1) out of \(questionList.Questions.count) \r\n\r\n" + questionList.Questions[currentQuestion].Description;
+        //self.navigationItem.title = questionList.Questions[currentQuestion].Name;
+        let title = questionList.Questions[currentQuestion].Name
+        QuestionLabel.text = "\(title)\r\nQuestion \(currentQuestion + 1) out of \(questionList.Questions.count)\r\n\r\n" + questionList.Questions[currentQuestion].Description;
         AnswerPicker.reloadAllComponents()
         PageNumbers.currentPage = currentQuestion
         let answer = questionList.getAnswer(currentQuestion)

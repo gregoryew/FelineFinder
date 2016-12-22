@@ -21,11 +21,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     let handlerDelay = 1.5
     
     var breed: Breed?
-    var pets: PetList?
+    var pets: RescuePetList?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
     var locationManager: CLLocationManager?
     var titles:[String] = []
     var totalRow = 0
+    var times = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,42 +85,25 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             let delayTime = DispatchTime.now() + Double(Int64(self.handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.collectionView?.infiniteScrollingView.stopAnimating()
-                let c = self.pets?.count
                 zipCodeGlobal = ""
+                
+                repeat {
                 self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
-                    self.pets = petList
+                    self.pets = petList as? RescuePetList
                     self.totalRow = -1
                     self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
                     PetFinderBreeds[self.breed!.BreedName] = self.pets
-                    /*
-                    self.collectionView?.performBatchUpdates({ () -> Void in
-                                var n = c!
-                                let priorSection = self.pets?[n - 1].section
-                                var currentSection = self.pets?[n].section
-                                if currentSection != priorSection {
-                                    currentSection = -1
-                                }
-                                while n < self.pets!.count {
-                                    self.collectionView!.insertItems(at: [IndexPath(row: (self.pets?[n].row)!, section: (self.pets?[n].section)!)])
-                                    if currentSection != self.pets?[n].section {
-                                        //self.collectionView!.insertSections(IndexSet(integer: currentSection!))
-                                        self.collectionView!.insertSections(NSIndexSet(index: currentSection!) as IndexSet)
-                                        currentSection = self.pets?[n].section
-                                    }
-                                    n += 1
-                                }
-
-                                
-                            })
-                    */
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
-                }
+                self.times += 1
             }
+            
+                } while self.pets?.status != "ok" && self.pets?.status != "warning" && self.times < 3
         }
-        collectionView?.infiniteScrollingView.color = UIColor.white
+        self.collectionView?.infiniteScrollingView.color = UIColor.white
 
+        }
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -232,7 +216,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         if let p = PetFinderBreeds[self.breed!.BreedName]
         {
-            self.pets = p
+            self.pets = p as! RescuePetList
         }
         
         let date = self.pets?.dateCreated
@@ -253,7 +237,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         {
             self.collectionView?.reloadData()
             self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
-                self.pets = petList
+                self.pets = petList as! RescuePetList
                 self.totalRow = -1
                 self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
                 PetFinderBreeds[self.breed!.BreedName] = self.pets

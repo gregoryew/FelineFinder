@@ -586,9 +586,19 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         
         self.title = "\(petName!)"
         
+        /*
         let pl: PetList = (favoriteType == .PetFinder ? PetFinderPetList() : RescuePetList())
         let sl: ShelterList = (favoriteType == .PetFinder ? PetFinderShelters : Shelters)
+        */
         
+        let pl = RescuePetList()
+        let sl = Shelters
+        
+        var times = 0
+        
+        pl.status = ""
+        
+        repeat {
         pl.loadSinglePet(petID!, completion: { (pet) -> Void in
             sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
                 let path = Bundle.main.bundlePath;
@@ -601,6 +611,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                 self.getImage()
             })
         })
+        times += 1
+        } while pl.status != "ok" && pl.status != "warning" && times < 3
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

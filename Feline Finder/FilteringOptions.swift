@@ -353,5 +353,6 @@ class filterOptionsList {
                 o.choosenListValues = []
             }
         }
+        currentFilterSave = "Touch Here To Save..."
     }
 }

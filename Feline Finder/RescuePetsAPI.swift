@@ -11,6 +11,8 @@ import UIKit
 
 class RescuePetList: PetList {
 
+    var status = ""
+    
     //var resultLimit: Int = 100
     override func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
         super.loadSinglePet(petID, completion: completion)
@@ -49,7 +51,9 @@ class RescuePetList: PetList {
                             
                             if let dict = jsonObj as? [String: AnyObject] {
                                 for (key, data) in dict {
-                                    if key == "data" {
+                                    if key == "status" {
+                                        self.status = data as! String
+                                    } else if key == "data" {
                                         for (_, data2) in (data as? [String: AnyObject])! {
                                             let cachedPet = self.createPet(data2)
                                             PetsGlobal[cachedPet.petID] = cachedPet
@@ -131,7 +135,10 @@ class RescuePetList: PetList {
                         let jsonObj:AnyObject =  try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
                         if let dict = jsonObj as? [String: AnyObject] {
                             for (key, data) in dict {
-                                if key == "data" {
+                                if key == "status" {
+                                    self.status = data as! String
+                                    print("Status = |\(self.status)|")
+                                } else if key == "data" {
                                     if let d = data as? [String: AnyObject] {
                                         for (_, data2) in d {
                                             let cachedPet = self.createPet(data2)
@@ -253,6 +260,27 @@ class RescuePetList: PetList {
                 case "animalObedient": options = hasOption(validateValue(data), option1: "Obedient", option2: "Not Obedient", options: options)
                 case "animalPlayful": options = hasOption(validateValue(data), option1: "Playful", option2: "Not Playful", options: options)
                 case "animalPredatory": options = hasOption(validateValue(data), option1: "Predatory", option2: "Not Predatory", options: options)
+                    
+                    
+                    
+                case "animalIndoorOutdoor": if (data as! String) != "" {options = hasOption(validateValue(data), option1: data as! String, option2: "", options: options)}
+                case "animalActivityLevel": if (data as! String) != "" {options = hasOption(validateValue(data), option1: data as! String, option2: "", options: options)}
+                case "animalEnergyLevel": if (data as! String) != "" {options = hasOption(validateValue(data), option1: data as! String, option2: "", options: options)}
+                case "animalExerciseNeeds": if (data as! String) != "" {options = hasOption(validateValue(data), option1: data as! String, option2: "", options: options)}
+                case "animalNewPeople": if (data as! String) != "" {options = hasOption(validateValue(data), option1: data as! String, option2: "", options: options)}
+                case "animalVocal": if (data as! String) != "" {options = hasOption(validateValue(data), option1: data as! String, option2: "", options: options)}
+                case "animalTimid": options = hasOption(validateValue(data), option1: "Timid", option2: "Not Timid", options: options)
+                case "animalCoatLength": options = hasOption(validateValue(data), option1: " coat length", options: options)
+                case "animalEyeColor": options = hasOption(validateValue(data), option1: " eyes", options: options)
+                case "animalGroomingNeeds": options = hasOption(validateValue(data), option1: " grooming needs", options: options)
+                case "animalShedding": options = hasOption(validateValue(data), option1: " shedding", options: options)
+                case "animalTailType": options = hasOption(validateValue(data), option1: " tail", options: options)
+                case "animalColor": options = hasOption(validateValue(data), option1: " color coat", options: options)
+                case "animalHearingImpaired": options = hasOption(validateValue(data), option1: "Hearing Impaired", option2: "Not Hearing Imparied", options: options)
+                case "animalHypoallergenic": options = hasOption(validateValue(data), option1: "Hypoallergenic", option2: "Not Hypoallergenic", options: options)
+                case "animalMicrochipped": options = hasOption(validateValue(data), option1: "Microchipped", option2: "Not Microchipped", options: options)
+                case "animalOngoingMedical": options = hasOption(validateValue(data), option1: "Has Ongoing Medical Needs", option2: "Does Not Have Ongoing Medical Needs", options: options)
+                case "animalSpecialDiet": options = hasOption(validateValue(data), option1: "Has A Special Diet", option2: "Does Not Have A Special Diet", options: options)
                 default: break
                 }
             }
@@ -278,6 +306,15 @@ func hasOption(_ optionValue: String, option1:  String, option2: String, options
         opts.insert(option1)
     } else if optionValue == "No" {
         opts.insert(option2)
+    }
+    return opts
+}
+
+func hasOption(_ optionValue: String, option1:  String, options: Set<String>) -> Set<String> {
+    var opts = Set<String>()
+    opts = options
+    if optionValue != "" {
+        opts.insert("\(optionValue) \(option1)")
     }
     return opts
 }

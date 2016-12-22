@@ -226,10 +226,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
             cell.selectionStyle = UITableViewCellSelectionStyle.none
             cell.ListName.text = opt!.name
-            if opt?.options.count > 0 && (opt?.choosenValue)! >= 0
-            {cell.ListValue.text = opt?.options[(opt?.choosenValue)!].0}
-            else
-            {cell.ListValue.text = "Touch Here To Save..."}
+            cell.ListValue.text = currentFilterSave
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell

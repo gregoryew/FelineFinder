@@ -84,8 +84,9 @@ class SavedLists2ViewController: UITableViewController {
         
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
-        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor.black
         
+        /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
             cell.backgroundView = backgroundCell
@@ -95,6 +96,7 @@ class SavedLists2ViewController: UITableViewController {
             let selectedBackgroundCell = CustomCellBackground()
             cell.selectedBackgroundView = selectedBackgroundCell
         }
+        */
         
         cell.accessoryType = .disclosureIndicator
         
@@ -119,6 +121,8 @@ class SavedLists2ViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.titleLabel.text = "Saved Searches"
         return header
     }

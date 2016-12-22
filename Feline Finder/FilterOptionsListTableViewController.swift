@@ -75,6 +75,7 @@ class FilterOptionsListTableViewController: UITableViewController {
             let otherAction = UIAlertAction(title: "Save", style: .default) { action in
                 NSLog("Save Button Pressed");
                 let n = self.txtfld.text
+                currentFilterSave = n!
                 self.removeTextFieldObserver()
                 filterOptions.storeFilters(0, saveName: n!)
                 let c = filterOptions.filteringOptions[0].options.count + 1
@@ -166,6 +167,8 @@ class FilterOptionsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if filterOpt?.classification == .saves {
             filterOpt?.choosenValue = indexPath.row
+            let cell = tableView.cellForRow(at: indexPath)
+            currentFilterSave = (cell?.textLabel?.text)!
             //filterOpt?.choosenListValues.append(indexPath.row)
             performSegue(withIdentifier: "backToFilterOptions", sender: nil)
         } else if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {

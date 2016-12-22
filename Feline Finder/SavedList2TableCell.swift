@@ -19,6 +19,7 @@ class SavedLists2TableCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    /*
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -68,4 +69,5 @@ class SavedLists2TableCell: UITableViewCell {
             draw1PxStroke(context, pointC, pointD, whiteColor.cgColor)
         }
     }
+ */
 }

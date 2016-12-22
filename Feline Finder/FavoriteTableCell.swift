@@ -21,10 +21,13 @@ class FavoriteTableCell: UITableViewCell {
         super.awakeFromNib()
     }
     
+    /*
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    */
     
+    /*
     override func draw(_ rect: CGRect) {
         let context = UIGraphicsGetCurrentContext()
         
@@ -70,6 +73,7 @@ class FavoriteTableCell: UITableViewCell {
             draw1PxStroke(context, pointC, pointD, whiteColor.cgColor)
         }
     }
+ */
     
 }
 

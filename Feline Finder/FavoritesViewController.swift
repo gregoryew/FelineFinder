@@ -30,21 +30,13 @@ class FavoritesViewController: UITableViewController {
     
     @IBAction func unwindToFavorites(_ sender: UIStoryboardSegue)
     {
-        Favorites.loaded = false
-        Favorites.Favorites.removeAll()
-        Favorites.breedKeys.removeAll()
-        Favorites.LoadFavorites()
-        
-        Favorites.assignStatus(self.tableView) { () -> Void in
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-        }
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool
     {
-        if Utilities.isNetworkAvailable() {
+        if Favorites.totalBreeds == 0 && identifier == "felineFinderDetail" {
+            return false
+        } else if Utilities.isNetworkAvailable() {
             return true
         } else {
             return false
@@ -53,7 +45,7 @@ class FavoritesViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if (segue.identifier == "petFinderDetail") {
+        if (segue.identifier == "felineFinderDetail") {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let favoritePet = Favorites[indexPath.section, indexPath.row]
                 (segue.destination as! PetFinderViewDetailController).petID = favoritePet.petID
@@ -99,10 +91,12 @@ class FavoritesViewController: UITableViewController {
         
         //cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
         
+        /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
             cell.backgroundView = backgroundCell
         }
+        */
         
         //if ((cell.selectedBackgroundView is CustomCellBackground) == false) {
         //    let selectedBackgroundCell = CustomCellBackground()
@@ -111,15 +105,16 @@ class FavoritesViewController: UITableViewController {
         
         cell.accessoryType = .none
         
-        cell.CatName!.backgroundColor = UIColor.clear
-        cell.CatName!.highlightedTextColor = UIColor.white
+        cell.backgroundColor = UIColor.black
+        cell.CatName!.backgroundColor = UIColor.black
+        //cell.CatName!.highlightedTextColor = UIColor.white
         cell.CatName!.textColor = UIColor.white
         cell.CatName!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         if Favorites.totalBreeds == 0 {
             cell.CatName!.text = "None yet. To add one tap a heart."
             cell.CatImage.isHidden = true
-            cell.detailTextLabel!.isHidden = true
+            //cell.detailTextLabel!.isHidden = true
             return cell
         }
         
@@ -177,7 +172,7 @@ class FavoritesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath)
     {
-        self.performSegue(withIdentifier: "petFinderDetail", sender: nil)
+        self.performSegue(withIdentifier: "felineFinderDetail", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
@@ -188,6 +183,8 @@ class FavoritesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -200,6 +197,20 @@ class FavoritesViewController: UITableViewController {
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:true);
+        Favorites.loaded = false
+        Favorites.Favorites.removeAll()
+        Favorites.breedKeys.removeAll()
+        Favorites.LoadFavorites()
+        
+        DispatchQueue.main.async{
+            self.tableView.reloadData()
+        }
+        
+        Favorites.assignStatus(self.tableView) { () -> Void in
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)

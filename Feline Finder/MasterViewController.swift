@@ -81,7 +81,8 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let breed = breeds[titles[indexPath.section]]![indexPath.row]
-            (segue.destination as! DetailViewController).breed = breed
+                (segue.destination as! DetailViewController).breed = breed
+                filterOptions.reset()
             }
         }
     }

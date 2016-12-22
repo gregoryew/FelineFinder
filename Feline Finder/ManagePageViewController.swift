@@ -41,7 +41,7 @@ class ManagePageViewController: UIPageViewController {
             questionList.getQuestions()
         }
         
-        self.title = questionList.Questions[0].Name
+        self.title = ""
         
         // 1
         if let viewController = viewQuestionEntry(currentIndex ?? 0) {
@@ -99,7 +99,8 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
             var index = viewController.currentQuestion
             guard index != NSNotFound && index != 0 else { return nil }
             index = index - 1
-            self.title = questionList.Questions[index].Name
+            self.title = ""
+            //
             return viewQuestionEntry(index)
         }
         return nil
@@ -117,9 +118,8 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
                 self.performSegue(withIdentifier: "Summary", sender: nil)
                 return nil
             }
-            self.title = questionList.Questions[index].Name
             guard index != questionList.count else {return nil}
-            
+            self.title = ""
             /*
             let vc = viewQuestionEntry(index)
             vc!.view.frame = viewController.view.bounds
