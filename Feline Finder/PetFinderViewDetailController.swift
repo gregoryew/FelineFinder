@@ -282,7 +282,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             if shouldLoadWeb == true {
                 r = true
                 shouldLoadWeb = false
-            } else {
+            } else if navigationType == UIWebViewNavigationType.linkClicked{
                 let actionSheetController: UIAlertController = UIAlertController(title: "Copy URL to Clipboard?", message: "Sorry but I cannot go to outside websites.  Should I copy the URL to your clipboard and then you can paste it in a web browser?", preferredStyle: .actionSheet)
                 
                 //Create and add the Cancel action

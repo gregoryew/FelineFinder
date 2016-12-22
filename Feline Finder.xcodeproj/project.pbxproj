@@ -14,6 +14,7 @@
 		462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */; };
 		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
 		463ABE321E0B23D2003A0A43 /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 463ABE311E0B23D2003A0A43 /* Unknown.gif */; };
+		463B28E31E0C168D001DF7D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
@@ -253,6 +254,7 @@
 		462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwinkleImage.png; sourceTree = "<group>"; };
 		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
 		463ABE311E0B23D2003A0A43 /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
+		463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -752,6 +754,7 @@
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */,
 				46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */,
 				46241D491E07046400997D4C /* CollectionViewCell.swift */,
 				46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */,
@@ -1122,6 +1125,7 @@
 				C56F90D41B7675CE00EEEBFA /* welcome_cat_8.png in Resources */,
 				C5FB6EDF1B21337C007FFA36 /* Abyssinian.jpg in Resources */,
 				C556BD2A1B814C780009EB95 /* Nebelung.jpg in Resources */,
+				463B28E31E0C168D001DF7D6 /* LaunchScreen.storyboard in Resources */,
 				C58B45721B2C990700E03538 /* Siberian.html in Resources */,
 				C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */,
 				C56F90D61B7675CE00EEEBFA /* welcome_cat_10.png in Resources */,
@@ -1453,7 +1457,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
@@ -1481,7 +1484,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BVC6BMPCPP;

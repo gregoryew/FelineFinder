@@ -404,16 +404,16 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tgn-Dr-muM">
                                 <rect key="frame" x="25" y="20" width="974" height="1262"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">Welcome to Feline Finder
+                                <mutableString key="text">Welcome to Feline Finder
 By: Gregory E Williams
 
-Feline Finder is designed to help make suggestions about what kind of breed of cat you might enjoy.  It will then show you some of the cats that are available to adopt.  These cats and shelters are not affiliated with this app.  This app uses PetFinder information to display these cats to you but is not affiliated with PetFinder.
+Feline Finder is designed to help make suggestions about what kind of breed of cat you might enjoy.  It will then show you some of the cats that are available to adopt.  These cats and shelters are not affiliated with this app.  This app uses RescueGroups.org information to display these cats to you but is not affiliated with RescueGroups.org.
 
-To start finding a cat breed that might be appropriate for you, please touch "Find a Cat" on the title screen.   The app will then ask you a series of questions about what kind of cat you would like.  Choose an option from the list of choices and then swipe from right to left.  Once you are done the app will display a summary of your choices.  If you want to change an answer just touch the row and you will go to that question.  You can click on the icon in the top right of the title bar to go back to the summary. and you can tap the results button of the bottom of the summary screen to see a list of possible breeds suggesting which breeds may be best for you in order.
+To start finding a cat breed that might be appropriate for you, please touch the magnifying glass on the title screen.   The app will then ask you a series of questions about what kind of cat you would like.  Choose an option from the list of choices and then swipe from right to left.  Once you are done the app will display a summary of your choices.  If you want to change an answer just touch the row and you will go to that question.  You can click on the icon in the top right of the title bar to go back to the summary. and you can tap the results button of the bottom of the summary screen to see a list of possible breeds suggesting which breeds may be best for you in order.
 
-Tap a breed and you will be taken to a screen with three buttons on the bottom.  The first button on the bottom shows a screen with a description of the breed.  The second button shows you the qualities of the breed and which if you answered the questions where your answer lies on the bar with a push pin.  The third button shows cats available to adopt.  Note you can filter the list by tapping on the magnification glass button on the top right of the title bar.  If not enough cats are displayed and you see a option at the bottom of the list that says "more" tap on that and if there are additional cats to see they will appear below.
-
-Once you tap a cat you will see a description of the cat and various options to choose to get in touch with the shelter.  Just tap the appropriate hyperlink to either call, get driving directions, email, or share.  Some of these options may not be present depending on what contact information a particular shelter provides.
+Tap a breed and you will be taken to a screen with three buttons on the bottom.  The first button on the bottom shows a screen with a description of the breed and youtube video.  The second button shows you the qualities of the breed and which if you answered the questions where your preference lies on the bar with a push pin.  The third button shows cats available to adopt.  Note you can filter the list by tapping on the magnification glass button on the top right of the title bar.
+ If you see an icon of a video camera on a picture of a cat that means it has a youtube video of the cat.  To see the video just tap that cat and scroll down to where you see the video camera and tap it. 
+Once you tap a cat you will see a description of the cat and various options to choose to get in touch with the shelter.  Just tap the appropriate hyperlink to either call, get driving directions, email, youtube, or share.  Some of these options may not be present depending on what contact information a particular shelter provides.
 
 When you are viewing a particular cat and you want to keep track of the cat just tap the heart button on the top right of the title bar of the screen displaying the cat.  If the heart is hollow then the cat is not choosen as a favorite.  If the heart is full then this cat is a favorite.  On the title screen you can go to a listing of your favorites and tap them to see a favorite.
 
@@ -421,7 +421,7 @@ From the title screen you can also just see all the cats in an alphabetticaly li
 
 Also you can go directly to the list of all cat breeds to adopt startng with the ones closest to you.
 
-Also, you can save your answers from the question summary list by clicking the disk icon and entering a name to save under.  These saved list of answers can be seen by clicking on the "Saved Lists" button accessible from the title screen.
+You can save your answers from the question summary list by clicking the disk icon and entering a name to save undera as well.  These saved list of answers can be seen by tapping on the disk icon button accessible from the title screen.
 
 I hope you find a cat that is purrfect for you!
 
@@ -442,7 +442,7 @@ SwiftyJSON: https://github.com/SwiftyJSON/SwiftyJSON/blob/master/LICENSE
 
 fmdb: https://github.com/ccgus/fmdb
 
-PetFinder REST API: https://www.petfinder.com/developers/api-key
+RescueGroups.org HTTP API: https://www.rescuegroups.org.
 
 Graphics:
 
@@ -450,7 +450,7 @@ The Noun Project: https://thenounproject.com
 
 GIFGIFS: http://gifgifs.com/terms/
 
-Cat Descriptions and pictures: https://www.wikipedia.org</string>
+Cat Descriptions and pictures: https://www.wikipedia.org</mutableString>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>

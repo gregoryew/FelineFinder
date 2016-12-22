@@ -86,7 +86,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
     
     func setFilterDisplay() {
         if let navigationBar = self.navigationController?.navigationBar {
-            let filter = "Zip:\(zipCode) Filter:\(filterOptions.displayFilter())"
+            let filter = "Zip:\(zipCode)"
             navigationBar.topItem!.prompt = filter
         }
     }
