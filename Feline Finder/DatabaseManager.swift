@@ -624,7 +624,7 @@ class DatabaseManager {
                                 break
                             } else {
                                 o.choosenValue = Int(FilterValue!)
-                                print(o.choosenValue)
+                                print(o.choosenValue ?? 0)
                                 break
                             }
                         }

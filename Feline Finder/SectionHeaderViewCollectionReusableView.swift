@@ -12,5 +12,7 @@ class SectionHeaderViewCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var SectionHeaderLabel: UILabel!
     
     @IBOutlet weak var SectionImage: UIImageView!
+    
+    @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
         
 }

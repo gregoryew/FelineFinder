@@ -70,7 +70,7 @@ class RSURLRequest: NSObject {
             } else {
                 resultDictionary[self.dictKey] = ""
             }
-            handler(response,resultDictionary.copy() as! NSDictionary,error)
+            handler(response,resultDictionary.copy() as? NSDictionary,error)
             
         } as! RSURLRequest.dataFromURLCompletionClosure)
     }
@@ -84,7 +84,7 @@ class RSURLRequest: NSObject {
             }
             
             let image = UIImage(data: responseData)
-            handler(response,image?.copy() as! UIImage,error)
+            handler(response,image?.copy() as? UIImage,error)
         } as! RSURLRequest.dataFromURLCompletionClosure)
     }
     

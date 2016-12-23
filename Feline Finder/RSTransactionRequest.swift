@@ -107,7 +107,7 @@ class RSTransactionRequest: NSObject {
             } else {
                 resultDictionary[self.dictKey] = ""
             }
-            handler(response,resultDictionary.copy() as! NSDictionary,error)
+            handler(response,resultDictionary.copy() as? NSDictionary,error)
         } as! (URLResponse?, Data?, NSError?) -> Void)
     }
     

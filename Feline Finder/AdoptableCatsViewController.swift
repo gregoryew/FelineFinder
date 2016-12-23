@@ -86,7 +86,6 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.collectionView?.infiniteScrollingView.stopAnimating()
                 zipCodeGlobal = ""
-                
                 repeat {
                 self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
                     self.pets = petList as? RescuePetList
@@ -96,10 +95,13 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
-                self.times += 1
-            }
-            
-                } while self.pets?.status != "ok" && self.pets?.status != "warning" && self.times < 3
+                    self.times += 1
+                    if self.pets?.status == "error" {
+                        zipCodeGlobal = ""
+                    }
+                }
+            } while self.pets?.status != "ok" && self.pets?.status != "warning" && self.times < 3
+            self.times = 0
         }
         self.collectionView?.infiniteScrollingView.color = UIColor.white
 
@@ -110,6 +112,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     {
         super.viewWillAppear(animated)
         setFilterDisplay()
+        if PetFinderBreeds[self.breed!.BreedName] != nil {
+            if PetFinderBreeds[self.breed!.BreedName]?.count == 0 {
+                PetFinderBreeds[self.breed!.BreedName] = nil
+                zipCodeGlobal = ""
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -216,7 +224,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         if let p = PetFinderBreeds[self.breed!.BreedName]
         {
-            self.pets = p as! RescuePetList
+            self.pets = p as? RescuePetList
         }
         
         let date = self.pets?.dateCreated
@@ -237,7 +245,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         {
             self.collectionView?.reloadData()
             self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
-                self.pets = petList as! RescuePetList
+                self.pets = petList as? RescuePetList
                 self.totalRow = -1
                 self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
                 PetFinderBreeds[self.breed!.BreedName] = self.pets
@@ -306,10 +314,26 @@ extension AdoptableCatsViewController {
     
         if self.pets?.loading == false && titles.count == 0 {
             sectionHeaderView.SectionHeaderLabel.text = "Please broaden the search."
+            if sectionHeaderView.ActivityIndicator.isAnimating {
+                sectionHeaderView.ActivityIndicator.stopAnimating()
+                sectionHeaderView.ActivityIndicator.isHidden = true
+                sectionHeaderView.SectionImage.isHidden = false
+            }
             return sectionHeaderView
         } else if self.pets?.loading == true {
+            if !sectionHeaderView.ActivityIndicator.isAnimating {
+                sectionHeaderView.ActivityIndicator.isHidden = false
+                sectionHeaderView.SectionImage.isHidden = true
+                sectionHeaderView.ActivityIndicator.startAnimating()
+            }
             sectionHeaderView.SectionHeaderLabel.text = "Please wait while the cats are loading..."
             return sectionHeaderView
+        }
+        
+        if sectionHeaderView.ActivityIndicator.isAnimating {
+            sectionHeaderView.ActivityIndicator.stopAnimating()
+            sectionHeaderView.ActivityIndicator.isHidden = true
+            sectionHeaderView.SectionImage.isHidden = false
         }
         
         switch titles[indexPath.section] {

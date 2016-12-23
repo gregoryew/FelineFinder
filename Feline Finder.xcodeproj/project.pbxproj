@@ -1026,6 +1026,7 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = BVC6BMPCPP;
 						LastSwiftMigration = 0810;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1381,10 +1382,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1429,10 +1431,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1458,7 +1461,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
@@ -1470,6 +1474,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
+				PROVISIONING_PROFILE = "771e179a-f84a-4981-a624-efa02b2761e6";
+				PROVISIONING_PROFILE_SPECIFIER = "Cat Apps Development 2";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1485,7 +1491,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Gregory Williams (BVC6BMPCPP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
@@ -1497,6 +1504,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
+				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
+				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

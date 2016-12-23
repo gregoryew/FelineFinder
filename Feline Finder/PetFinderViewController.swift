@@ -140,7 +140,8 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
     }
     
     func loadPets() {
-        self.pets! = RescuePetList()
+    
+        /*self.pets! = RescuePetList()
         //self.pets! = PetFinderPetList()
         
         if let p = PetFinderBreeds[self.breed!.BreedName]
@@ -180,6 +181,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
             self.tableView.reloadData()
         }
         */
+ */
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
