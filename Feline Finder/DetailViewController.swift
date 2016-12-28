@@ -25,18 +25,14 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
     }
     
     func generateDisplay(_ b: Breed) -> String {
-        var desc = b.Description.replacingOccurrences(of: "References", with: "</h5><h4>References", options: NSString.CompareOptions.literal, range: nil)
-        desc = desc.replacingOccurrences(of: "\n", with: "<br/>", options: NSString.CompareOptions.literal, range: nil)
+        //var desc = b.Description.replacingOccurrences(of: "References", with: "</h5><h4>References", options: NSString.CompareOptions.literal, range: nil)
+        //desc = desc.replacingOccurrences(of: "\n", with: "<br/>", options: NSString.CompareOptions.literal, range: nil)
+        var desc = b.Description
         desc = desc.replacingOccurrences(of: "\n", with: "<br/>", options: NSString.CompareOptions.literal, range: nil)
         if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
-            //var networkType = RSUtilities.ConnectionType.NONETWORK
-            //if (RSUtilities.isNetworkAvailable("google.com")) {
-            //    networkType = RSUtilities.networkConnectionType("google.com")
-            //}
-            //let autoplay = networkType == RSUtilities.ConnectionType.WIFINETWORK ? "autoplay=1&" : ""
-            return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:16px;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\"></iframe></center><br/><h1>DESCRIPTION<h1><h5>\(desc)</h4></body></html>"
+            return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:12px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:8px;} div { width: 100%; height: 425px; border: thin solid black; overflow-x: scroll; overflow-y: scroll;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"auto6yplay\"></iframe></center><br/><div><h1>DESCRIPTION</h1><h3>\(desc)</h3></div></body></html>"
         } else {
-            return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:16px;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"200\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\"></iframe></center><br/><h1>DESCRIPTION<h1><h5>\(desc)</h4></body></html>"
+            return "<!DOCTYPE html><html><header><style>h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px; height: 2px; margin-bottom: 0px; } h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px; height: 2px; margin-bottom: 0px; } h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:12px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:8px;}</style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"200\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\"></iframe></center><br/><h1>DESCRIPTION</h1><br/><h3>\(desc)</h3></body></html>"
         }
     }
 

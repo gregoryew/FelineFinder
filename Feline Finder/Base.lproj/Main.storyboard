@@ -495,9 +495,9 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k46-zm-z9l">
-                                <rect key="frame" x="21" y="10" width="982" height="38.5"/>
+                                <rect key="frame" x="21" y="30" width="982" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="200" id="A2X-p9-Hs0"/>
+                                    <constraint firstAttribute="height" constant="200" id="A2X-p9-Hs0"/>
                                 </constraints>
                                 <string key="text">How much care and attention can you give your cat on a daily basis?  On one end of the spectrum some cats need lots of care and attention and others require very little.  How much time and attention are you willing to give?</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -526,7 +526,7 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                                 </connections>
                             </pageControl>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFJ-Cf-ifQ">
-                                <rect key="frame" x="357" y="58.5" width="310" height="120"/>
+                                <rect key="frame" x="357" y="240" width="310" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="I5V-Vf-En8"/>
                                     <constraint firstAttribute="width" constant="310" id="ibj-f3-pK6"/>
@@ -537,7 +537,7 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                                 </connections>
                             </pickerView>
                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="lKE-X2-lX1" customClass="FLAnimatedImageView">
-                                <rect key="frame" x="398" y="188.5" width="228" height="1056.5"/>
+                                <rect key="frame" x="398" y="370" width="228" height="875"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="228" id="vXQ-yl-WD8"/>
@@ -557,13 +557,14 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                             <constraint firstAttribute="trailingMargin" secondItem="oEc-fi-h7I" secondAttribute="trailing" constant="-16" id="X9r-PY-7IV"/>
                             <constraint firstItem="oEc-fi-h7I" firstAttribute="top" secondItem="g3b-7c-Eyu" secondAttribute="bottom" constant="2" id="bWn-n2-ADQ"/>
                             <constraint firstAttribute="centerX" secondItem="VFJ-Cf-ifQ" secondAttribute="centerX" id="dX8-hB-5IV"/>
-                            <constraint firstItem="k46-zm-z9l" firstAttribute="top" secondItem="Iw2-hq-AsD" secondAttribute="bottom" constant="10" id="nKi-Ma-0hZ"/>
+                            <constraint firstItem="k46-zm-z9l" firstAttribute="top" secondItem="Iw2-hq-AsD" secondAttribute="bottom" constant="30" id="nKi-Ma-0hZ"/>
                             <constraint firstAttribute="centerX" secondItem="k46-zm-z9l" secondAttribute="centerX" id="qc4-7J-6Ln"/>
                             <constraint firstItem="fPf-Dm-TFY" firstAttribute="top" secondItem="oEc-fi-h7I" secondAttribute="bottom" constant="10" id="qxb-Qm-fqg"/>
                             <constraint firstItem="VFJ-Cf-ifQ" firstAttribute="top" secondItem="k46-zm-z9l" secondAttribute="bottom" constant="10" id="sTq-Aj-DlH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="k46-zm-z9l" secondAttribute="trailing" constant="1" id="wjX-uT-XVS"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="First Please Answer Some Questions" id="rdd-dm-HFs"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
@@ -1233,7 +1234,7 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
                         <viewControllerLayoutGuide type="top" id="Vtb-ZZ-dRQ" propertyAccessControl="none"/>
                         <viewControllerLayoutGuide type="bottom" id="Ivp-wN-A98"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="Sfa-4h-d5n">
+                    <view key="view" contentMode="scaleToFill" id="Sfa-4h-d5n">
                         <rect key="frame" x="0.0" y="64" width="1024" height="1302"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -1315,7 +1316,7 @@ Cat Descriptions and pictures: https://www.wikipedia.org</string>
         <scene sceneID="dUm-vj-pts">
             <objects>
                 <collectionViewController id="9Ce-aR-hIR" customClass="AdoptableCatsViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Iau-WG-o6L">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Iau-WG-o6L">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1322"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
