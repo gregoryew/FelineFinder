@@ -14,5 +14,10 @@ class SectionHeaderViewCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var SectionImage: UIImageView!
     
     @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
-        
+    
+    override func prepareForReuse() {
+        SectionImage.image = nil
+        ActivityIndicator.isHidden = true
+        SectionHeaderLabel.text = ""
+    }
 }

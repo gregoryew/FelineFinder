@@ -10,7 +10,7 @@ import Foundation
 
 class PetFinderPicturesViewController: UIViewController {
     
-    var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", lu: "", m2: [], s3: "", z: "", dis: 0.0)
+    var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0)
     var breedName: String = ""
     var imageURLs:[String] = []
     var images: Dictionary<String, UIImage> = [:]

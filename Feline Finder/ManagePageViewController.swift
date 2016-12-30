@@ -88,6 +88,7 @@ class ManagePageViewController: UIPageViewController {
     @IBAction func SummaryTapped(_ sender: AnyObject) {
     performSegue(withIdentifier: "Summary", sender: nil)
     }
+    
 }
 
 //MARK: implementation of UIPageViewControllerDataSource

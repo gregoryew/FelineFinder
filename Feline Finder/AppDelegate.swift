@@ -20,7 +20,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         pathToFile()
+        
+        zipCode = UserDefaults.standard.string(forKey: "zipCode") ?? ""
+        
+        let rescueGroupsLastQueriedString = UserDefaults.standard.string(forKey: "rescueGroupsLastQueriedString") ?? ""
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        
+        var minusAYearAgo = DateComponents()
+        minusAYearAgo.year = -1
+        let userCalendar = Calendar.current
+        updated = userCalendar.date(byAdding: minusAYearAgo, to: Date())!
+        
+        if rescueGroupsLastQueriedString == "" {
+            let d = dateFormatter.string(from: updated)
+            UserDefaults.standard.set(d, forKey: "rescueGroupsLastQueriedString")
+        } else {
+            rescueGroupsLastQueried = dateFormatter.date(from: rescueGroupsLastQueriedString)!
+        }
+        
+        distance = UserDefaults.standard.string(forKey: "distance") ?? ""
+        
+        if distance == "" {
+            distance = "3000"
+            UserDefaults.standard.set(distance, forKey: "distance")
+        }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        
         return true
     }
     

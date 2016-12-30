@@ -56,6 +56,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
+        view.layoutSubviews()
         //self.navigationController?.setToolbarHidden(true, animated:true);
     }
     

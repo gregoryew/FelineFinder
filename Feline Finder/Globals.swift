@@ -17,6 +17,10 @@ var editWhichQuestionGlobal: Int = 0
 var filterOptions: filterOptionsList = filterOptionsList()
 var NameID: Int = 0
 var currentFilterSave: String = "Touch Here To Save..."
+var sortFilter: String = "animalLocationDistance"
+var distance = "3000"
+var updated = Date()
+var rescueGroupsLastQueried = Date()
 
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.

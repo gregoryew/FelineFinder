@@ -88,6 +88,7 @@ enum catClassification: Int {
     case physical
     case breed
     case saves
+    case sort
 }
 
 class filterOptionsList {
@@ -101,6 +102,7 @@ class filterOptionsList {
     var compatibilityList: [filterOption] = []
     var personalityList: [filterOption] = []
     var physicalList: [filterOption] = []
+    var sortByList: [filterOption] = []
     func load(_ tv: UITableView) {
         if filteringOptions.count > 0 {return}
 
@@ -153,6 +155,12 @@ class filterOptionsList {
         }
         
         
+        //sort
+        filteringOptions.append(filterOption(n: "Sort By", f: "sortBy", d: false, c:.sort, o: [(displayName: "Most Recent", search: "No", value: 1), (displayName: "Distance", search: "animalLocationDistance", value: 0)]))
+        filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [(displayName: "5", search: "5", value: 0), (displayName: "20", search: "20", value: 1), (displayName: "50", search: "50", value: 2), (displayName: "100", search: "100", value: 3), (displayName: "200", search: "200", value: 4), (displayName: "Any", search: "Any", value: 5)]))
+        filteringOptions.append(filterOption(n: "Updated Since", f: "date", d: false, c:.sort, o: [(displayName: "Day", search: "0", value: 0), (displayName: "Week", search: "Week", value: 1), (displayName: "Month", search: "Month", value: 2), (displayName: "Year", search: "Year", value: 3), (displayName: "Any", search: "Any", value: 4)]))
+
+        
         //admin
         filteringOptions.append(filterOption(n: "Adoption pending", f: "animalAdoptionPending", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
         filteringOptions.append(filterOption(n: "Courtesy", f: "animalCourtesy", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
@@ -162,7 +170,7 @@ class filterOptionsList {
         filteringOptions.append(filterOption(n: "Up-to-date", f: "animalUptodate", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
         
         //compatibiity
-        filteringOptions.append(filterOption(n: "Apartment OK", f: "animalApartment", d: false,            c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
+        filteringOptions.append(filterOption(n: "Apartment OK", f: "animalApartment", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Requires a Yard", f: "animalYardRequired", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
         filteringOptions.append(filterOption(n: "Indoor/Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Cold sensitive", f: "animalNoCold", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
@@ -241,6 +249,7 @@ class filterOptionsList {
         compatibilityList = []
         personalityList = []
         physicalList = []
+        sortByList = []
         for o in filteringOptions {
             switch o.classification {
             case .breed:
@@ -249,22 +258,19 @@ class filterOptionsList {
                 } else {
                     notBreedOption = o
                 }
-                break
             case .saves:
                 savesOption = o
-                break
             case .admin:
                 adminList.append(o)
-                break
             case .compatibility:
                 compatibilityList.append(o)
-                break
             case .personality:
                 personalityList.append(o)
-                break
             case .physical:
                 physicalList.append(o)
-                break
+            case .sort:
+                sortByList.append(o)
+            default: break
             }
             o.sequence = s
             s += 1
@@ -275,6 +281,14 @@ class filterOptionsList {
         var filters: [filter] = []
         for o in filteringOptions {
             if o.classification == .saves {continue}
+            if o.fieldName == "sortBy" {
+                if o.choosenValue! == 0 {
+                    sortFilter = "animalUpdatedDate"
+                } else {
+                    sortFilter = "animalLocationDistance"
+                }
+                continue
+            }
             if o.list == true {
                 var choosenValues: [String] = []
                 for c in o.choosenListValues {
@@ -292,10 +306,54 @@ class filterOptionsList {
                     if choosenValues.count != 0 {filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": choosenValues as AnyObject])}
                 }
             } else {
-                if o.choosenValue != o.options.count - 1 && o.choosenValue != -1 {
+                if (o.choosenValue == o.options.count - 1 || o.choosenValue == -1) {
+                    if o.fieldName == "distance" {
+                        distance = "3000" //If any distance choosen then default to largest value
+                    } else if o.fieldName == "date" {
+                        updated = Date()
+                    }
+                } else if o.choosenValue != o.options.count - 1 && o.choosenValue != -1 {
                     for opt in o.options {
                         if opt.value == o.choosenValue {
-                            filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": opt.search! as AnyObject])
+                            if o.fieldName == "distance" {
+                                distance = opt.search!
+                            } else if o.fieldName == "date" {
+                                var minus = DateComponents()
+                                switch o.choosenValue! {
+                                case 0: //Day
+                                    minus.day = -1
+                                case 1: //Week
+                                    minus.day = -7
+                                case 2: //Month
+                                    minus.month = -1
+                                case 3: //Year
+                                    minus.year = -1
+                                default:
+                                    minus.year = -1
+                                }
+                                
+                                let userCalendar = Calendar.current
+                                
+                                updated = userCalendar.date(byAdding: minus, to: Date())!
+                                
+                                /*
+                                if o.choosenValue! != 3 {
+                                    updated = userCalendar.date(byAdding: minus, to: Date())!
+                                } else {
+                                    updated = rescueGroupsLastQueried
+                                    rescueGroupsLastQueried = Date()
+                                    UserDefaults.standard.set(rescueGroupsLastQueried, forKey: "rescueGroupsLastQueriedString")
+                                }
+                                */
+                                
+                                let dateFormatter = DateFormatter()
+                                dateFormatter.dateFormat = "MM/dd/yyyy"
+                                let d = dateFormatter.string(from: updated)
+                                
+                                filters.append(["fieldName": "animalUpdatedDate" as AnyObject, "operation": "greaterthan" as AnyObject, "criteria": d as AnyObject])
+                            } else {
+                                filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": opt.search! as AnyObject])
+                            }
                         }
                     }
                 }

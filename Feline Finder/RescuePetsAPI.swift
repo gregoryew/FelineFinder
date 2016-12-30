@@ -92,9 +92,12 @@ class RescuePetList: PetList {
         
         var filters:[filter] = []
         
+        filters += filterOptions.getFilters()
+        
         filters.append(["fieldName": "animalStatus" as AnyObject, "operation": "notequals" as AnyObject, "criteria": "Adopted" as AnyObject])
         filters.append(["fieldName": "animalSpecies" as AnyObject, "operation": "equals" as AnyObject, "criteria": "cat" as AnyObject])
-        filters.append(["fieldName": "animalLocationDistance" as AnyObject, "operation": "radius" as AnyObject, "criteria": "3000" as AnyObject])
+        filters.append(["fieldName": "animalLocationDistance" as AnyObject, "operation": "radius" as AnyObject, "criteria": distance as AnyObject])
+        print("Distance=\(distance)")
         filters.append(["fieldName": "animalLocation" as AnyObject, "operation": "equals" as AnyObject, "criteria": zipCode as AnyObject])
         if bn.BreedName != "All Breeds" {
             if bn.RescueBreedID == "" {
@@ -105,13 +108,21 @@ class RescuePetList: PetList {
                 filters.append(["fieldName": "animalPrimaryBreedID" as AnyObject, "operation": "equals" as AnyObject, "criteria": bn.RescueBreedID as AnyObject])
             }
         }
-        filters += filterOptions.getFilters()
         print(String(resultStart))
         print(String(resultLimit))
+        print("filters=\(filters)")
         /*
         let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalOrgID", "animalAltered", "animalBreed", "animalDeclawed", "animalGeneralAge", "animalGeneralSizePotential", "animalHousetrained", "animalLocation", "animalLocationCoordinates", "animalLocationDistance", "animalName", "animalSpecialneeds", "animalOKWithAdults", "animalOKWithCats", "animalOKWithDogs", "animalOKWithKids", "animalPrimaryBreed", "animalRescueID", "animalSex", "animalSizePotential", "animalUpdatedDate", "animalPictures","animalVideoUrls", "animalUptodate", "animalStatus", "animalAdoptedDate", "animalAvailableDate", "animalAdoptionPending", "animalBirthdate", "animalBirthdateExact", "animalApartment", "animalYardRequired", "animalIndoorOutdoor", "animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds"]]] as [String : Any]
         */
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls",]]] as [String : Any]
+        var order = "desc"
+        if sortFilter == "animalLocationDistance" {
+            order = "asc"
+        }
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls"]]] as [String : Any]
+
+        /*
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalUpdatedDate,animalLocationDistance", "resultOrder": "desc,asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls",]]] as [String : Any]
+        */
         do {
             
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
@@ -192,7 +203,6 @@ class RescuePetList: PetList {
         var size: String?
         var options: Set<String> = Set<String>()
         var description: String?
-        var lastUpdated: String?
         var distance: Double = 0.0
         var pictures: [picture] = [picture]()
         var videos: [video] = [video]()
@@ -203,6 +213,7 @@ class RescuePetList: PetList {
         var animalAvailableDate: String?
         var animalAdoptionPending: String?
         var animalBirthdate: String?
+        var lastUpdated = Date()
         description = ""
         //var animalBirthdateExact: String?
         if let dict = p as? [String: AnyObject] {
@@ -210,7 +221,11 @@ class RescuePetList: PetList {
                 switch key {
                 case "animalOKWithDogs" : options = hasOption(validateValue(data), option1: "OK With Dogs", option2: "Not OK With Dogs", options: options)
                 case "animalPrimaryBreed": breeds.insert(validateValue(data))
-                case "animalUpdatedDate": lastUpdated = validateValue(data)
+                case "animalUpdatedDate":
+                    let dateFormatter2 = DateFormatter()
+                    dateFormatter2.dateFormat = "MM/dd/yyyy hh:mm a"
+                    lastUpdated = dateFormatter2.date(from: validateValue(data))!
+                    print(lastUpdated)
                 case "animalID": petID = validateValue(data)
                 case "animalAltered": options = hasOption(validateValue(data), option1: "Spayed/Neutered", option2: "Not Spayed/Neutered", options: options)
                 case "animalOKWithAdults": options = hasOption(validateValue(data), option1: "OK With Adults", option2: "Not OK With Adults",  options: options)
@@ -294,7 +309,7 @@ class RescuePetList: PetList {
             status = animalStatus! + " " + animalAvailableDate!
         }
         
-        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, lu: lastUpdated!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!)
+        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated)
         return p
     }
 }

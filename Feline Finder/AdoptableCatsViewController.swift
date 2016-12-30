@@ -203,6 +203,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                     if let validPlacemark = placemarks?[0] {
                         let pm = validPlacemark
                         zipCode = pm.postalCode!
+                        UserDefaults.standard.set(zipCode, forKey: "zipCode")
                         self.setFilterDisplay()
                         print("locationManager")
                         if (zipCode != "") {
@@ -338,11 +339,18 @@ extension AdoptableCatsViewController {
         
         switch titles[indexPath.section] {
         case "         Within about 5 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_walk")
-        case "       Within about 25 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bike")
+        case "       Within about 20 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bike")
         case "    Within about 50 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bike_faster")
-        case "   Within about 75 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bus")
-        case "  Within about 100 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_car")
-        case " Over 100 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_plane")
+        case "   Within about 100 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bus")
+        case "  Within about 200 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_car")
+        case " Over 200 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_plane")
+ 
+        case "     Updated Today": sectionHeaderView.SectionImage.image = UIImage(named: "time_day")
+        case "    Updated Within A Week": sectionHeaderView.SectionImage.image = UIImage(named: "time_week")
+        case "   Updated Within A Month": sectionHeaderView.SectionImage.image = UIImage(named: "time_month")
+        case "  Updated Within A Year": sectionHeaderView.SectionImage.image = UIImage(named: "time_year")
+        case " Updated Over A Year Ago": sectionHeaderView.SectionImage.image = UIImage(named: "time_over_a_year")
+
         default: sectionHeaderView.SectionImage.image = UIImage(named: "")
         }
         sectionHeaderView.SectionHeaderLabel.text = titles[indexPath.section]
@@ -388,8 +396,10 @@ extension AdoptableCatsViewController {
         cell.CatNameLabel.text = petData.name
         
         if urlString == "" {
+            cell.CatImager?.image = UIImage(named: "Cat-51")
             return cell
         }
+        
         
         let imgURL = URL(string: urlString!)
         
@@ -410,6 +420,11 @@ extension AdoptableCatsViewController {
                     })
                 }
                 else {
+                    DispatchQueue.main.async(execute: {
+                        if let cellToUpdate = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
+                            cellToUpdate.CatImager?.image = UIImage(named: "Cat-50")
+                        }
+                    })
                     print("Error: \(error!.localizedDescription)")
                 }
             }).resume()

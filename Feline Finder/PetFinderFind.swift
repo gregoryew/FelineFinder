@@ -48,6 +48,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         if validateZipCode(zipCode) == false {
             Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
         } else {
+            UserDefaults.standard.set(zipCode, forKey: "zipCode")
             performSegue(withIdentifier: "PetFinderList", sender: nil)
         }
     }
@@ -140,12 +141,14 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         case 2:
             return "Location"
         case 3:
-            return "Administrative"
+            return "Sort By"
         case 4:
-            return "Compatiblity"
+            return "Administrative"
         case 5:
-            return "Personality"
+            return "Compatiblity"
         case 6:
+            return "Personality"
+        case 7:
             return "Physical"
         default:
             return ""
@@ -159,7 +162,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 7
+        return 8
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -180,12 +183,14 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         } else {
             switch section {
             case 3:
-                return filterOptions.adminList.count
+                return filterOptions.sortByList.count
             case 4:
-                return filterOptions.compatibilityList.count
+                return filterOptions.adminList.count
             case 5:
-                return filterOptions.personalityList.count
+                return filterOptions.compatibilityList.count
             case 6:
+                return filterOptions.personalityList.count
+            case 7:
                 return filterOptions.physicalList.count
             default:
                 return 0
@@ -207,17 +212,15 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                 opt = filterOptions.notBreedOption
             }
         case 3:
-            opt = filterOptions.adminList[indexPath.row]
-            break
+            opt = filterOptions.sortByList[indexPath.row]
         case 4:
-            opt = filterOptions.compatibilityList[indexPath.row]
-            break
+            opt = filterOptions.adminList[indexPath.row]
         case 5:
-            opt = filterOptions.personalityList[indexPath.row]
-            break
+            opt = filterOptions.compatibilityList[indexPath.row]
         case 6:
+            opt = filterOptions.personalityList[indexPath.row]
+        case 7:
             opt = filterOptions.physicalList[indexPath.row]
-            break
         default:
             break
         }
@@ -285,15 +288,17 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                     opt = filterOptions.notBreedOption
                 }
             case 3:
+                opt = filterOptions.sortByList[indexPath.row]
+            case 4:
                 opt = filterOptions.adminList[indexPath.row]
                 break
-            case 4:
+            case 5:
                 opt = filterOptions.compatibilityList[indexPath.row]
                 break
-            case 5:
+            case 6:
                 opt = filterOptions.personalityList[indexPath.row]
                 break
-            case 6:
+            case 7:
                 opt = filterOptions.physicalList[indexPath.row]
                 break
             default:

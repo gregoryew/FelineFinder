@@ -46,7 +46,7 @@ struct Pet {
     var size: String //["S","M","L","XL"]
     var options: Set<String> //["specialNeeds", "noDogs", "noCats", "noKids", "noClaws", "hasShots", "houseBroken", "altered"]
     var description: String = ""
-    var lastUpdated: String = ""
+    var lastUpdated: Date = Date()
     var zipCode: String = ""
     var distance: Double = 0
     var media = [picture]()
@@ -55,7 +55,7 @@ struct Pet {
     var birthdate: String = ""
     var row = 0
     var section = 0
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, lu: String, m2: [picture], s3: String, z: String, dis: Double) {
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], s3: String, z: String, dis: Double) {
         petID = pID
         name = n
         breeds = b
@@ -65,7 +65,6 @@ struct Pet {
         size = s2
         options = o
         description = d
-        lastUpdated = lu
         media = m2
         shelterID = s3
         zipCode = z
@@ -73,9 +72,10 @@ struct Pet {
         videos = []
         status = ""
         birthdate = ""
+        lastUpdated = Date()
     }
 
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, lu: String, m2: [picture], v: [video], s3: String, z: String, dis: Double, stat: String, bd: String) {
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], v: [video], s3: String, z: String, dis: Double, stat: String, bd: String, upd: Date) {
         petID = pID
         name = n
         breeds = b
@@ -85,7 +85,6 @@ struct Pet {
         size = s2
         options = o
         description = d
-        lastUpdated = lu
         media = m2
         shelterID = s3
         zipCode = z
@@ -93,6 +92,7 @@ struct Pet {
         videos = v
         status = stat
         birthdate = bd
+        lastUpdated = upd
     }
 
     
@@ -155,34 +155,55 @@ class PetList {
     }
     
     func assignDistances() {
-        var distanceLabel: String = ""
+        var label: String = ""
         var i = 0
         var r = 0
         var s = 0
+        let d = Double(distance)
         
         distances.removeAll()
-        //self.Pets.sort(by: {$0.distance < $1.distance})
+        
         while i < self.Pets.count {
-            switch (self.Pets[i].distance) {
-            case 0..<5:
-                distanceLabel = "         Within about 5 miles"
-            case 5..<25:
-                distanceLabel = "       Within about 25 miles"
-            case 25..<50:
-                distanceLabel = "    Within about 50 miles"
-            case 50..<75:
-                distanceLabel = "   Within about 75 miles"
-            case 75..<100:
-                distanceLabel = "  Within about 100 miles"
-            default:
-                distanceLabel = " Over 100 miles"
+            if sortFilter == "animalLocationDistance" {
+                if self.Pets[i].distance >= d! {
+                    i += 1
+                    continue
+                }
+                print(self.Pets[i].distance)
+                switch (self.Pets[i].distance) {
+                case 0..<5:
+                    label = "         Within about 5 miles"
+                case 5..<20:
+                    label = "       Within about 20 miles"
+                case 20..<50:
+                    label = "    Within about 50 miles"
+                case 50..<100:
+                    label = "   Within about 100 miles"
+                case 100..<200:
+                    label = "  Within about 200 miles"
+                default:
+                    label = " Over 200 miles"
+                }
+            } else {
+                switch (calicuateDaysBetweenTwoDates(start: self.Pets[i].lastUpdated, end: Date())) {
+                case 0...1:
+                    label = "     Updated Today"
+                case 2...8:
+                    label = "    Updated Within A Week"
+                case 9...30:
+                    label = "   Updated Within A Month"
+                case 31...365:
+                    label = "  Updated Within A Year"
+                default:
+                    label = " Updated Over A Year Ago"
+                }
             }
             
-            if var dist = distances[distanceLabel] {
+            if var dist = distances[label] {
                 self.Pets[i].row = r
                 self.Pets[i].section = s
                 dist.append(self.Pets[i])
-                distances[distanceLabel] = dist
+                distances[label] = dist
             } else {
                 r = 0
                 if i != 0 {
@@ -192,7 +213,7 @@ class PetList {
                 self.Pets[i].section = s
                 var dist: [Pet] = []
                 dist.append(self.Pets[i])
-                distances[distanceLabel] = dist
+                distances[label] = dist
             }
             r += 1
             i += 1
@@ -201,5 +222,16 @@ class PetList {
     
     func loadPets(_ cv: UICollectionView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
     }
-
+    
+    private func calicuateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
+        
+        let currentCalendar = Calendar.current
+        guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {
+            return 0
+        }
+        guard let end = currentCalendar.ordinality(of: .day, in: .era, for: end) else {
+            return 0
+        }
+        return end - start
+    }
 }
