@@ -18,7 +18,8 @@ struct Breed {
     var FullSizedPicture: String
     var RescueBreedID: String
     var YouTubeURL: String
-    init (id: Int32, name: String, url: String, picture: String, percentMatch: Int32, desc: String, fullPict: String, rbID: String, youTubeURL: String) {
+    var cats101VideoURL: String = ""
+    init (id: Int32, name: String, url: String, picture: String, percentMatch: Int32, desc: String, fullPict: String, rbID: String, youTubeURL: String, cats101: String) {
         BreedID = id
         BreedName = name
         BreedHTMLURL = url
@@ -28,6 +29,7 @@ struct Breed {
         FullSizedPicture = fullPict
         RescueBreedID = rbID
         YouTubeURL = youTubeURL
+        cats101VideoURL = cats101
     }
 }
 

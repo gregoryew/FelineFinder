@@ -163,7 +163,7 @@ class PetList {
         
         distances.removeAll()
         
-        while i < self.Pets.count {
+         while i < self.Pets.count {
             if sortFilter == "animalLocationDistance" {
                 if self.Pets[i].distance >= d! {
                     i += 1

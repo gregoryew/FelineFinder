@@ -15,6 +15,7 @@
 		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
 		463ABE321E0B23D2003A0A43 /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 463ABE311E0B23D2003A0A43 /* Unknown.gif */; };
 		463B28E31E0C168D001DF7D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */; };
+		46DD5DBF1E25E3BC00E79D53 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
@@ -242,7 +243,6 @@
 		C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EEA1B213474007FFA36 /* FMDatabaseAdditions.m */; };
 		C5FB6EF11B213474007FFA36 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EEC1B213474007FFA36 /* FMDatabasePool.m */; };
 		C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EF61B213567007FFA36 /* BreedList.swift */; };
-		C5FB6EFC1B213C63007FFA36 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C5FB6EFB1B213C63007FFA36 /* libsqlite3.dylib */; };
 		C5FB6F071B2268CC007FFA36 /* AmericanCurl.html in Resources */ = {isa = PBXBuildFile; fileRef = C5FB6F061B2268CC007FFA36 /* AmericanCurl.html */; };
 /* End PBXBuildFile section */
 
@@ -255,6 +255,11 @@
 		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
 		463ABE311E0B23D2003A0A43 /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
 		463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		46DD5DB41E25DE6700E79D53 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		46DD5DB61E25DEAD00E79D53 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsqlite3.dylib; sourceTree = "<group>"; };
+		46DD5DBA1E25E22F00E79D53 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
+		46DD5DBC1E25E2BB00E79D53 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -506,7 +511,6 @@
 		C5FB6EEB1B213474007FFA36 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
 		C5FB6EEC1B213474007FFA36 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
 		C5FB6EF61B213567007FFA36 /* BreedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedList.swift; sourceTree = "<group>"; };
-		C5FB6EFB1B213C63007FFA36 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		C5FB6F061B2268CC007FFA36 /* AmericanCurl.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = AmericanCurl.html; sourceTree = "<group>"; };
 		D3B865EA89799CB466AD57B2 /* Pods-Feline Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Feline Finder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder.debug.xcconfig"; sourceTree = "<group>"; };
 		D6FA54B67E102A95B0571784 /* Pods-Feline Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Feline Finder.release.xcconfig"; path = "Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder.release.xcconfig"; sourceTree = "<group>"; };
@@ -517,7 +521,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5FB6EFC1B213C63007FFA36 /* libsqlite3.dylib in Frameworks */,
+				46DD5DBF1E25E3BC00E79D53 /* libsqlite3.0.tbd in Frameworks */,
 				83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -706,7 +710,6 @@
 			isa = PBXGroup;
 			children = (
 				C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */,
-				C5FB6EFB1B213C63007FFA36 /* libsqlite3.dylib */,
 				C5FB6E9C1B2132EC007FFA36 /* Products */,
 				C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */,
 				C5FB6EB51B2132ED007FFA36 /* Purrfect4U Tests */,
@@ -983,6 +986,11 @@
 		E5CA01FAF8C849358B9DE90C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */,
+				46DD5DBC1E25E2BB00E79D53 /* libz.tbd */,
+				46DD5DBA1E25E22F00E79D53 /* libz.1.2.8.tbd */,
+				46DD5DB61E25DEAD00E79D53 /* libsqlite3.dylib */,
+				46DD5DB41E25DE6700E79D53 /* libsqlite3.tbd */,
 				6EC26284065956E851429474 /* Pods_Feline_Finder.framework */,
 			);
 			name = Frameworks;
@@ -1261,7 +1269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

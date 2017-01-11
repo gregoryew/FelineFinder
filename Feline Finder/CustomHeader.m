@@ -32,6 +32,8 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.shadowColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
         _titleLabel.shadowOffset = CGSizeMake(0, -1);
+        _titleLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
+        _titleLabel.bounds = CGRectMake(0, 0, _titleLabel.bounds.size.height, _titleLabel.bounds.size.width);
         [self addSubview:_titleLabel];
         _lightColor = [UIColor colorWithRed:105.0f/255.0f green:179.0f/255.0f blue:216.0f/255.0f alpha:1.0];
         _darkColor = [UIColor colorWithRed:21.0/255.0 green:92.0/255.0 blue:136.0/255.0 alpha:1.0];
@@ -50,7 +52,7 @@
     CGFloat paperMargin = 0.0;
     self.paperRect = CGRectMake(paperMargin, CGRectGetMaxY(self.coloredBoxRect), self.bounds.size.width-paperMargin*2, self.bounds.size.height-CGRectGetMaxY(self.coloredBoxRect));
     
-    self.titleLabel.frame = self.coloredBoxRect;
+    self.titleLabel.frame = CGRectMake(0, 0, self.coloredBoxRect.size.width, 30);
 }
 
 // Replace drawRect with the following
@@ -58,8 +60,8 @@
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    UIColor * whiteColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
-    UIColor * shadowColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:0.5];
+    UIColor * whiteColor = [UIColor colorWithRed:0.51 green:0.73 blue:0.84 alpha:1.0];
+    UIColor * shadowColor = [UIColor colorWithRed:0.51 green:0.73 blue:0.84 alpha:1.0];
     
     CGContextSetFillColorWithColor(context, whiteColor.CGColor);
     CGContextFillRect(context, _paperRect);

@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         distance = UserDefaults.standard.string(forKey: "distance") ?? ""
         
         if distance == "" {
-            distance = "3000"
+            distance = "4000"
             UserDefaults.standard.set(distance, forKey: "distance")
         }
         

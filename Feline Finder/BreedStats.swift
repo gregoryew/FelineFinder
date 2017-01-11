@@ -53,6 +53,13 @@ struct BreedStats {
             case 3: v = "Biggish"
             default: v = ""
             }
+        case "In/Outdoors":
+            switch p {
+            case 1: v = "Indoor"
+            case 2: v = "Both"
+            case 3: v = "Outdoor"
+            default: v = ""
+            }
         default: v = ""
         }
         return v
@@ -90,6 +97,13 @@ class BreedStatList {
             case 1: v = "Small"
             case 2: v = "Average"
             case 3: v = "Biggish"
+            default: v = ""
+            }
+        case "In/Outdoors":
+            switch p {
+            case 1: v = "Indoor"
+            case 2: v = "Both"
+            case 3: v = "Outdoor"
             default: v = ""
             }
         default: v = ""

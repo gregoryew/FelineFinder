@@ -305,7 +305,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         let lastRowIndex = tableView.numberOfRows(inSection: lastSectionIndex) - 1
         if (indexPath.section == lastSectionIndex && indexPath.row == lastRowIndex) && totalRows(self.pets!) % 25 == 0 {
             cell.CatNameLabel!.text = "More..."
-            cell.CatImage?.image = UIImage(named: "cat")
+            cell.CatImage?.image = UIImage(named: "Cat")
             return cell
         }
         
@@ -323,7 +323,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         
         cell.CatNameLabel!.text = petData.name
         
-        cell.CatImage?.image = UIImage(named: "cat")
+        cell.CatImage?.image = UIImage(named: "Cat")
         
         if let img = imageCache[urlString] {
             cell.CatImage?.image = img

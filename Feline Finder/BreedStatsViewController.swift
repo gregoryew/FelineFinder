@@ -13,7 +13,7 @@ class BreedStatsViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var whichSeque: String = ""
-    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "")
+    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "")
     var breedStat: BreedStats = BreedStats(id: 0, desc: "", percent: 0, lowRange: 0, highRange: 0, value: "")
     var breedStats: [BreedStats] = []
     var frameWidth = 0

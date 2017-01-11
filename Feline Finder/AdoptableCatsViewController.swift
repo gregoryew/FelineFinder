@@ -396,7 +396,7 @@ extension AdoptableCatsViewController {
         cell.CatNameLabel.text = petData.name
         
         if urlString == "" {
-            cell.CatImager?.image = UIImage(named: "Cat-51")
+            cell.CatImager?.image = UIImage(named: "NoCatImage")
             return cell
         }
         
@@ -422,7 +422,7 @@ extension AdoptableCatsViewController {
                 else {
                     DispatchQueue.main.async(execute: {
                         if let cellToUpdate = collectionView.cellForItem(at: indexPath) as? CollectionViewCell {
-                            cellToUpdate.CatImager?.image = UIImage(named: "Cat-50")
+                            cellToUpdate.CatImager?.image = UIImage(named: "NoCatImage")
                         }
                     })
                     print("Error: \(error!.localizedDescription)")

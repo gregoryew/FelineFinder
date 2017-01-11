@@ -172,7 +172,7 @@ class filterOptionsList {
         //compatibiity
         filteringOptions.append(filterOption(n: "Apartment OK", f: "animalApartment", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Requires a Yard", f: "animalYardRequired", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Indoor/Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
+        filteringOptions.append(filterOption(n: "In /Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Cold sensitive", f: "animalNoCold", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Heat sensitive", f: "animalNoHeat", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "OK with dogs", f: "animalOKWithDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
@@ -308,7 +308,7 @@ class filterOptionsList {
             } else {
                 if (o.choosenValue == o.options.count - 1 || o.choosenValue == -1) {
                     if o.fieldName == "distance" {
-                        distance = "3000" //If any distance choosen then default to largest value
+                        distance = "4000" //If any distance choosen then default to largest value
                     } else if o.fieldName == "date" {
                         updated = Date()
                     }

@@ -17,7 +17,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     
     @IBOutlet weak var PageNumbers: UIPageControl!
     
-    @IBOutlet weak var GIFWidth: NSLayoutConstraint!
+    //@IBOutlet weak var GIFWidth: NSLayoutConstraint!
     
     @IBOutlet weak var FLAnimatedGIF: FLAnimatedImageView!
     

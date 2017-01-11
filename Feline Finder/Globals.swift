@@ -18,7 +18,7 @@ var filterOptions: filterOptionsList = filterOptionsList()
 var NameID: Int = 0
 var currentFilterSave: String = "Touch Here To Save..."
 var sortFilter: String = "animalLocationDistance"
-var distance = "3000"
+var distance = "4000"
 var updated = Date()
 var rescueGroupsLastQueried = Date()
 

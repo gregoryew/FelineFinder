@@ -128,7 +128,7 @@ class SavedLists2ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 30
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
