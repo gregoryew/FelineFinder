@@ -32,9 +32,9 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         var desc = b.Description
         desc = desc.replacingOccurrences(of: "\n", with: "<br/>", options: NSString.CompareOptions.literal, range: nil)
         if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
-            return "<!DOCTYPE html><html><header><style>a {color: white} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:12px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:8px;} div { width: 100%; height: 425px; border: thin solid black; overflow-x: scroll; overflow-y: scroll;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"auto6yplay\"></iframe></center><br/><div><h3>You can watch the YouTube video above and also watch the Cats 101 www.AnimalPlanet.com video link for <a href=\"\(b.cats101VideoURL)\">\(b.BreedName)</a></h3><h1>DESCRIPTION</h1><h3>\(desc)</h3></div></body></html>"
+            return "<!DOCTYPE html><html><header><style>a {color: white} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:12px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:8px;} div { width: 100%; height: 425px; border: thin solid black; overflow-x: scroll; overflow-y: scroll;} </style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"400\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"auto6yplay\"></iframe></center><br/><h3>You can watch the YouTube video above and also watch the Cats 101 AnimalPlanet video link for <a href=\"\(b.cats101VideoURL)\">\(b.BreedName)</a></h3><h1>DESCRIPTION</h1><div><h3>\(desc)</h3></div></body></html>"
         } else {
-            return "<!DOCTYPE html><html><header><style>a {color: white} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px; height: 2px; margin-bottom: 0px; } h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px; height: 2px; margin-bottom: 0px; } h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:12px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:8px;}</style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"200\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\"></iframe></center><br/><h3>You can watch the YouTube video above and also watch the Cats 101 www.AnimalPlanet.com video link for <a href=\"\(b.cats101VideoURL)\">\(b.BreedName)</a></h3><h1>DESCRIPTION</h1><br/><h3>\(desc)</h3></body></html>"
+            return "<!DOCTYPE html><html><header><style>a {color: white} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px; height: 2px; margin-bottom: 0px; } h2 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px; height: 2px; margin-bottom: 0px; } h3 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:12px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} h5 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:8px;}</style></header><body><br/><center><iframe allowtransparency=\"true\" width=\"100%\" height=\"200\" src=\"https://www.youtube.com/embed/\(b.YouTubeURL)?autoplay=1\" frameborder=\"0\" autoplay=\"autoplay\" webkit-playsinline></iframe></center><br/><h3>You can watch the YouTube video above and also watch the Cats 101 AnimalPlanet video link for <a href=\"\(b.cats101VideoURL)\">\(b.BreedName)</a></h3><h1>DESCRIPTION</h1><br/><h3>\(desc)</h3></body></html>"
         }
     }
 
@@ -59,8 +59,13 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
         self.webView.delegate = self
+        self.webView.allowsInlineMediaPlayback = true
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        webView.loadHTMLString("", baseURL: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,8 +92,6 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        webView.loadHTMLString("", baseURL: nil)
-        self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

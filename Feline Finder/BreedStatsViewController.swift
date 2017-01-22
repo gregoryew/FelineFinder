@@ -88,8 +88,8 @@ class BreedStatsViewController: UIViewController {
         let lbl = UILabel()
         lbl.frame = CGRect(x: pos.x, y: pos.y - 60, width: 400, height: 18)
         lbl.font = lbl.font.withSize(10)
-        lbl.textColor = UIColor.white
-        lbl.text = "Legend: Red = Actual ⎟ Pin = Your Preference"
+        lbl.textColor = UIColor.yellow
+        lbl.text = "Legend: Purple = Actual ⎟ Pin = Your Preference"
         scrollView.addSubview(lbl)
         
         for breedStat in breedStats {
@@ -102,7 +102,7 @@ class BreedStatsViewController: UIViewController {
                 drawlines(rowNumber:i, columnNumber: c, percent:breedStat.Percent, linename:breedStat.TraitShortDesc, lowRange: breedStat.LowRange, highRange: breedStat.HighRange, drawRange: dr)
             }
             else {
-                drawLabel(rowNumber:i, lineLabel:breedStat.TraitShortDesc, lineValue:breedStat.Value)
+                drawLabel(rowNumber:i, lineLabel:breedStat.TraitShortDesc, lineValue:breedStat.Value, lowRange: Int(breedStat.LowRange), highRange: Int(breedStat.HighRange))
             }
         }
 
@@ -131,12 +131,28 @@ class BreedStatsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func drawLabel(rowNumber row: Int, lineLabel label: String, lineValue valDesc: String) {
+    func drawLabel(rowNumber row: Int, lineLabel label: String, lineValue valDesc: String, lowRange lr: Int, highRange hr: Int) {
         let pos = CGPoint(x:20,y:Int(row*distance)+startpoint - 105)
         //first label settings
         let lbl = UILabel()
         lbl.frame = CGRect(x: pos.x, y: pos.y - 14, width: 200, height: 18)
-        lbl.textColor = UIColor.white
+        var doesntMatter = false
+        switch row {
+        case 9: //In-Out Door
+            if lr == 0 && hr == 3 {doesntMatter = true}
+        case 14: //Build
+            if lr == 1 && hr == 7 {doesntMatter = true}
+        case 15: //Hair
+            if lr == 1 && hr == 7 {doesntMatter = true}
+        case 16: //Size
+            if lr == 1 && hr == 4 {doesntMatter = true}
+        default: doesntMatter = false
+        }
+        if doesntMatter {
+            lbl.textColor = UIColor.lightGray
+        } else {
+            lbl.textColor = UIColor.yellow
+        }
         lbl.font = lbl.font.withSize(15)
         lbl.text = "\(label): \(valDesc)"
         scrollView.addSubview(lbl)
@@ -152,17 +168,18 @@ class BreedStatsViewController: UIViewController {
         lbl.font = lbl.font.withSize(15)
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
             lbl.textColor = UIColor.lightGray
+        } else {
+            lbl.textColor = UIColor.yellow
         }
-        lbl.textColor = UIColor.white
         lbl.text = name
         scrollView.addSubview(lbl)
         
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
-            let lightRed  = UIColor(red: 1, green: 0, blue: 0, alpha: 0.25)
-            drawLine(startpoint: start, endpoint: end,linecolor: lightRed.cgColor,linewidth:15.0)
+            let lightRed  = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+            drawLine(startpoint: start, endpoint: end, linecolor: lightRed.cgColor, linewidth:15.0)
         } else {
             //red part of line
-            drawLine(startpoint: start, endpoint: end,linecolor: UIColor.red.cgColor,linewidth:15.0)
+            drawLine(startpoint: start, endpoint: end,linecolor: UIColor.purple.cgColor,linewidth:15.0)
         }
         
         //gray part of line

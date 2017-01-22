@@ -224,7 +224,6 @@
 		C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C5C506DC1B83DD1A0092BC00 /* CatFinder.db */; };
 		C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA433E1B33ADAF00CF7283 /* Breeders.m */; };
 		C5DD62411D7BF68800CF0880 /* youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DD62401D7BF68800CF0880 /* youtube.png */; };
-		C5EE07E11D62302400EFAC2C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */; };
 		C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */; };
 		C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */; };
 		C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */; };
@@ -486,7 +485,6 @@
 		C5DA433E1B33ADAF00CF7283 /* Breeders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breeders.m; sourceTree = "<group>"; };
 		C5DA43441B343A8A00CF7283 /* Breeders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Breeders.h; sourceTree = "<group>"; };
 		C5DD62401D7BF68800CF0880 /* youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube.png; sourceTree = "<group>"; };
-		C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feline Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5FB6E9F1B2132EC007FFA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -718,7 +716,6 @@
 		C5FB6E921B2132EC007FFA36 = {
 			isa = PBXGroup;
 			children = (
-				C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */,
 				464E39D31E33A42B005577ED /* Media.xcassets */,
 				C5FB6E9C1B2132EC007FFA36 /* Products */,
 				C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */,
@@ -1194,7 +1191,6 @@
 				C5511C481B6EB73A00BE8610 /* attachment_to_people.gif in Resources */,
 				C56F90C91B766A4A00EEEBFA /* welcome_cat_3.png in Resources */,
 				C551263B1B24DAE3007D8CDF /* EgyptianMau.html in Resources */,
-				C5EE07E11D62302400EFAC2C /* Default-568h@2x.png in Resources */,
 				C58B45751B2CBCF300E03538 /* Kero_-_singapura_-_cropped.jpg in Resources */,
 				C5FB6ED31B21337C007FFA36 /* American_Shorthair.jpg in Resources */,
 				C5471BC11D67B07D00F9A459 /* Default.png in Resources */,

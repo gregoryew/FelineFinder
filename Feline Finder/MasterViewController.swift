@@ -41,10 +41,14 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         super.awakeFromNib()
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
-
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
         
@@ -70,6 +74,9 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
                 self.title = "Breeds"
             }
         }
+        
+        self.navigationController?.setToolbarHidden(true, animated:false);
+        self.setNeedsStatusBarAppearanceUpdate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -204,7 +211,8 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        //self.navigationController?.setToolbarHidden(true, animated:true);
+        self.navigationController?.setToolbarHidden(true, animated:false);
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillDisappear(_ animated: Bool)
