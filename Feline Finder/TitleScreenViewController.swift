@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class TitleScreenViewController: UIViewController {
+class TitleScreenViewController: UIViewController, ModalTransitionDelegate, NavgationTransitionable {
     
     var timer = Timer()
     var counter = 0
@@ -23,7 +25,6 @@ class TitleScreenViewController: UIViewController {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.
     }
-    
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -51,7 +52,7 @@ class TitleScreenViewController: UIViewController {
         }
         
         self.navigationController?.setToolbarHidden(true, animated: false)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
 
         //timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: #selector(TitleScreenViewController.doAnimation), userInfo: nil, repeats: true)
     }
@@ -62,7 +63,9 @@ class TitleScreenViewController: UIViewController {
     
     @IBAction func FindACatTouchUpInside(_ sender: AnyObject) {
         if questionList.count == 0 {
-            self.performSegue(withIdentifier: "QuestionEntry", sender: nil)
+            let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
+            search.viewDidLoad()
+            self.navigationController?.tr_pushViewController(search, method: TRPushTransitionMethod.fade, completion: {})
             return
         }
         
@@ -74,11 +77,15 @@ class TitleScreenViewController: UIViewController {
             questionList = QuestionList()
             questionList.getQuestions()
             SearchTitle = "SUMMARY"
-            self.performSegue(withIdentifier: "QuestionEntry", sender: nil)
+            let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
+            search.viewDidLoad()
+            self.navigationController?.tr_pushViewController(search, method: TRPushTransitionMethod.fade, completion: {})
         }
         
         let existingAction = UIAlertAction(title: "Existing", style: .default) { action in
-            self.performSegue(withIdentifier: "QuestionEntry", sender: nil)
+            let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
+            search.viewDidLoad()
+            self.navigationController?.tr_pushViewController(search, method: TRPushTransitionMethod.fade, completion: {})
         }
         
         // Add the actions.
@@ -106,18 +113,17 @@ class TitleScreenViewController: UIViewController {
         
     }
     
-    /*
-    override func viewWillAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
+        navigationItem.prompt = ""
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: false)
+        //self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
@@ -136,9 +142,60 @@ class TitleScreenViewController: UIViewController {
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /*
         if segue.identifier == "AdoptACat" {
             let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
             (segue.destination as! AdoptableCatsViewController).breed = breed
         }
+        */
      }
+    
+    @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var breedsButton: UIButton!
+    @IBOutlet weak var favoritesButton: UIButton!
+    @IBOutlet weak var savedSearchesButton: UIButton!
+    @IBOutlet weak var adoptCats: UIButton!
+   
+    @IBAction func searchTapped(_ sender: Any) {
+    }
+    
+    @IBAction func breedsTapped(_ sender: Any) {
+        let master = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedList") as! MasterViewController
+        master.viewDidLoad()
+        navigationController?.tr_pushViewController(master, method: TRPushTransitionMethod.fade, completion: {})
+    }
+    
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    
+    @IBAction func favoritesTapped(_ sender: Any) {
+        let favorites = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as! FavoritesViewController
+        navigationController?.tr_pushViewController(favorites, method: TRPushTransitionMethod.fadeTest, completion: {})
+        //navigationController?.tr_pushViewController(favorites, method: .Custom(FadeTransitionAnimatin()))
+    }
+    
+    func modalViewControllerDismiss(callbackData data: Any?) {
+        tr_dismissViewController()
+    }
+    
+    @IBAction func savedSearchesTapped(_ sender: Any) {
+        let savedSearches = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedLists") as! SavedLists2ViewController
+        navigationController?.tr_pushViewController(savedSearches, method: TRPushTransitionMethod.fade)
+    }
+
+    @IBAction func adoptCatsTapped(_ sender: Any) {
+        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        adoptACat.breed = breed
+        navigationController?.tr_pushViewController(adoptACat, method: TRPushTransitionMethod.fade)
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    func pop() {
+        _ = navigationController?.tr_popViewController()
+    }
 }

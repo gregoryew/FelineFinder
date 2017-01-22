@@ -15,7 +15,12 @@
 		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
 		463ABE321E0B23D2003A0A43 /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 463ABE311E0B23D2003A0A43 /* Unknown.gif */; };
 		463B28E31E0C168D001DF7D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */; };
+		464E39D41E33A42B005577ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 464E39D31E33A42B005577ED /* Media.xcassets */; };
+		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
+		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
+		46D537911E34B7230006498B /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378F1E34B7230006498B /* ImageCardView.swift */; };
 		46DD5DBF1E25E3BC00E79D53 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */; };
+		46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
@@ -218,7 +223,6 @@
 		C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */; };
 		C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C5C506DC1B83DD1A0092BC00 /* CatFinder.db */; };
 		C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA433E1B33ADAF00CF7283 /* Breeders.m */; };
-		C5DA434C1B35D4A200CF7283 /* Media 13-04-13-713.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5DA434B1B35D4A200CF7283 /* Media 13-04-13-713.xcassets */; };
 		C5DD62411D7BF68800CF0880 /* youtube.png in Resources */ = {isa = PBXBuildFile; fileRef = C5DD62401D7BF68800CF0880 /* youtube.png */; };
 		C5EE07E11D62302400EFAC2C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */; };
 		C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */; };
@@ -251,15 +255,21 @@
 		46241D491E07046400997D4C /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewController.swift; sourceTree = "<group>"; };
 		46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderViewCollectionReusableView.swift; sourceTree = "<group>"; };
+		4626663D1E34714800D4C7AE /* FaveButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaveButton.h; sourceTree = "<group>"; };
 		462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwinkleImage.png; sourceTree = "<group>"; };
 		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
 		463ABE311E0B23D2003A0A43 /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
 		463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		464E39D31E33A42B005577ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
+		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
+		46D5378F1E34B7230006498B /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
 		46DD5DB41E25DE6700E79D53 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		46DD5DB61E25DEAD00E79D53 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsqlite3.dylib; sourceTree = "<group>"; };
 		46DD5DBA1E25E22F00E79D53 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
 		46DD5DBC1E25E2BB00E79D53 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -475,7 +485,6 @@
 		C5C506DC1B83DD1A0092BC00 /* CatFinder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = CatFinder.db; sourceTree = "<group>"; };
 		C5DA433E1B33ADAF00CF7283 /* Breeders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breeders.m; sourceTree = "<group>"; };
 		C5DA43441B343A8A00CF7283 /* Breeders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Breeders.h; sourceTree = "<group>"; };
-		C5DA434B1B35D4A200CF7283 /* Media 13-04-13-713.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = "Media 13-04-13-713.xcassets"; path = "../Media 13-04-13-713.xcassets"; sourceTree = "<group>"; };
 		C5DD62401D7BF68800CF0880 /* youtube.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = youtube.png; sourceTree = "<group>"; };
 		C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feline Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -710,6 +719,7 @@
 			isa = PBXGroup;
 			children = (
 				C5EE07E01D62302400EFAC2C /* Default-568h@2x.png */,
+				464E39D31E33A42B005577ED /* Media.xcassets */,
 				C5FB6E9C1B2132EC007FFA36 /* Products */,
 				C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */,
 				C5FB6EB51B2132ED007FFA36 /* Purrfect4U Tests */,
@@ -729,6 +739,10 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
+				46D5378E1E34B7230006498B /* CardAnimationView.swift */,
+				46D5378F1E34B7230006498B /* ImageCardView.swift */,
+				46D5378C1E34B70C0006498B /* UICardContainerView.swift */,
+				4626663D1E34714800D4C7AE /* FaveButton.h */,
 				46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */,
 				462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */,
 				4632471B1E037D17000039FF /* Twinkle.swift */,
@@ -741,7 +755,6 @@
 				C58D212C1B496DFB008E1B0B /* Feline Finder-Bridging-Header.h */,
 				C58D21281B496DBD008E1B0B /* CMMapLauncher */,
 				C58D211B1B485AEC008E1B0B /* SwiftyJSON */,
-				C5DA434B1B35D4A200CF7283 /* Media 13-04-13-713.xcassets */,
 				C5E4C9CE1B64328A00766717 /* Stores */,
 				C5FB6EF51B213557007FFA36 /* Model */,
 				C5FB6EF21B21347D007FFA36 /* fmdb */,
@@ -757,6 +770,7 @@
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */,
 				463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */,
 				46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */,
 				46241D491E07046400997D4C /* CollectionViewCell.swift */,
@@ -1071,6 +1085,7 @@
 				C5FB6EDA1B21337C007FFA36 /* Bengal.jpg in Resources */,
 				C55126121B22710A007D8CDF /* Bombay_femelle.jpg in Resources */,
 				C55126551B24EBA0007D8CDF /* MainCoon.html in Resources */,
+				464E39D41E33A42B005577ED /* Media.xcassets in Resources */,
 				C58B45891B2CC57800E03538 /* Turkish Van.png in Resources */,
 				C5471BB41D67B01400F9A459 /* main_bg.jpg in Resources */,
 				C58B45941B2CCAF300E03538 /* turkish_van.jpg in Resources */,
@@ -1150,7 +1165,6 @@
 				C551261F1B22780D007D8CDF /* Burmese_chocolate_cat.jpg in Resources */,
 				C551263A1B24DAE3007D8CDF /* Egyptain Mau.jpg in Resources */,
 				C58B458C1B2CC79400E03538 /* Turkish_Angora_Cat.jpg in Resources */,
-				C5DA434C1B35D4A200CF7283 /* Media 13-04-13-713.xcassets in Resources */,
 				C551263F1B24DE35007D8CDF /* HavanaBrown.html in Resources */,
 				C5FB6ED91B21337C007FFA36 /* Bengal.html in Resources */,
 				C55126591B24EEFD007D8CDF /* Manx.html in Resources */,
@@ -1296,6 +1310,7 @@
 				C5045DB11B9155C200A6663C /* Utilities.swift in Sources */,
 				C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */,
 				C525E3691D896D4B005123C4 /* OptionsTableViewCell.swift in Sources */,
+				46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */,
 				C5943AFD1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift in Sources */,
 				C58B45A81B2DB19700E03538 /* BreedStatsViewController.swift in Sources */,
 				C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */,
@@ -1331,6 +1346,7 @@
 				4632471C1E037D17000039FF /* Twinkle.swift in Sources */,
 				C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */,
 				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,
+				46D537911E34B7230006498B /* ImageCardView.swift in Sources */,
 				C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */,
 				C5933B1B1D6C012A00CFD62E /* Globals.swift in Sources */,
 				46241D481E07041300997D4C /* GradientView.swift in Sources */,
@@ -1343,9 +1359,11 @@
 				C56F90DA1B77966600EEEBFA /* ReselectableSegmentedControl.swift in Sources */,
 				C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */,
 				C5755FA01BC02CB30023F353 /* UIButton+RSNetworking.swift in Sources */,
+				46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */,
 				C5471BB81D67B01400F9A459 /* CoolTableViewController.m in Sources */,
 				C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */,
 				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
+				46D537901E34B7230006498B /* CardAnimationView.swift in Sources */,
 				C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */,
 				46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */,
 				C56DA73B1D790AD000524E53 /* RescuePetsAPI.swift in Sources */,

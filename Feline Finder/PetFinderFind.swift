@@ -34,6 +34,8 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var clear: UIBarButtonItem!
+    @IBOutlet weak var importQuestions: UIBarButtonItem!
     
     @IBAction func clearTapped(_ sender: AnyObject) {
         filterOptions.reset()
@@ -41,9 +43,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func DoneTapped(_ sender: AnyObject) {
+        PetFinderBreeds[bnGlobal] = nil
         bnGlobal = ""
         zipCodeGlobal = ""
-        PetFinderBreeds[self.breed!.BreedName] = nil
         zipCode = zipCodeTextField!.text!
         if validateZipCode(zipCode) == false {
             Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
@@ -51,6 +53,26 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             UserDefaults.standard.set(zipCode, forKey: "zipCode")
             performSegue(withIdentifier: "PetFinderList", sender: nil)
         }
+    }
+    
+    @IBAction func importQuestions(_ sender: Any) {
+        let alert = UIAlertController(title: "Import", message: "Do you want to import your current answers, choose a saved answers, new, or cancel?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Current", style: UIAlertActionStyle.default, handler: { action in filterOptions.importQuestions()
+            self.tableView.reloadData()}))
+        alert.addAction(UIAlertAction(title: "Saved", style: UIAlertActionStyle.default, handler: {action in
+            cameFromFiltering = true
+            questionList = QuestionList()
+            questionList.getQuestions()
+            SearchTitle = "SUMMARY"
+            self.performSegue(withIdentifier: "importFromSaved", sender: nil)}))
+        alert.addAction(UIAlertAction(title: "New", style: UIAlertActionStyle.default, handler: {action in
+            cameFromFiltering = true
+            questionList = QuestionList()
+            questionList.getQuestions()
+            SearchTitle = "SUMMARY"
+            self.performSegue(withIdentifier: "answerQuestions", sender: nil)}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     var breed: Breed?
@@ -72,13 +94,21 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         
         filterOptions.load(self.tableView)
         
+        if cameFromFiltering {
+            filterOptions.importQuestions()
+            self.tableView.reloadData()
+            cameFromFiltering = false
+        }
+        
         self.tableView.backgroundView = nil
-        self.tableView.backgroundColor = UIColor.clear
+        self.tableView.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
 
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
+        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -157,6 +187,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -250,6 +282,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                 cell.selectionStyle = UITableViewCellSelectionStyle.none
                 cell.ListName.text = opt!.name
                 cell.ListValue.text = opt?.getDisplayValues()
+                if (opt?.imported)! {
+                    cell.ListName.textColor = UIColor.green
+                } else {
+                    cell.ListName.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+                }
                 return cell
             } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "options", for: indexPath) as! FilterOptionsSegmentedTableCell
@@ -262,6 +299,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             cell.OptionSegmentedControl.tag = indexPath.row
             cell.OptionSegmentedControl.addTarget(self, action: #selector(PetFinderFindViewController.segmentValueChanged(_:)), for: .valueChanged)
             cell.OptionSegmentedControl.tag = opt!.sequence
+            if (opt?.imported)! {
+                cell.OptionLabel.textColor = UIColor.green
+            } else {
+                cell.OptionLabel.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+            }
             return cell
             }
         } else {

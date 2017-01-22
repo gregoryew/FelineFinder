@@ -155,6 +155,7 @@ class FilterOptionsListTableViewController: UITableViewController {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel!.text = filterOpt?.optionsArray()[indexPath.row]
+        cell.textLabel!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
         if filterOpt?.classification == .saves {return cell}
         if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             cell.accessoryType = .checkmark
@@ -189,6 +190,8 @@ class FilterOptionsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

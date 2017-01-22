@@ -12,6 +12,7 @@ import UIKit
 
 class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
     var youtubeid: String?
+    var videoPlayer: YouTubePlayerView?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -20,10 +21,10 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
         super.viewWillAppear(animated)
         //let h = self.navigationController!.navigationBar.frame.height
         //let r = CGRectMake(0, h, self.view.bounds.width, self.view.bounds.height - h)
-        let videoPlayer = YouTubePlayerView(frame: self.view.frame)
-        self.view.addSubview(videoPlayer)
-        videoPlayer.loadVideoID(youtubeid!)
-        videoPlayer.delegate = self
+        videoPlayer = YouTubePlayerView(frame: self.view.frame)
+        self.view.addSubview(videoPlayer!)
+        videoPlayer?.loadVideoID(youtubeid!)
+        videoPlayer?.delegate = self
     }
     
 /*
@@ -45,5 +46,9 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
     
     func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        videoPlayer?.stop()
     }
 }

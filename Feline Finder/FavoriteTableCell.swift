@@ -17,9 +17,23 @@ class FavoriteTableCell: UITableViewCell {
     
     var lastCell: Bool = false
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func draw(_ rect: CGRect) {
+        //CatImage.layer.cornerRadius = CatImage.frame.size.width / 2
+        //CatImage.layer.masksToBounds = true
+        //CatImage.clipsToBounds = true
+        CatImage.contentMode = .scaleAspectFill
+        applyPlainShadow(view: CatImage)
     }
+    
+    func applyPlainShadow(view: UIView) {
+        let layer = view.layer
+        
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 10, height: 10)
+        layer.shadowOpacity = 0.5
+        layer.shadowRadius = 5
+    }
+ 
     
     /*
     override func setSelected(_ selected: Bool, animated: Bool) {

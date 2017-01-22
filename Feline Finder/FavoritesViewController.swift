@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class FavoritesViewController: UITableViewController {
+class FavoritesViewController: UITableViewController, NavgationTransitionable {
     
     override func viewDidLoad()
     {
@@ -104,11 +106,15 @@ class FavoritesViewController: UITableViewController {
         //}
         
         cell.accessoryType = .none
-        
-        cell.backgroundColor = UIColor.black
-        cell.CatName!.backgroundColor = UIColor.black
+        /*
+        cell.backgroundColor = UIColor.darkGray
+        cell.CatName!.backgroundColor = UIColor.darkGray
         //cell.CatName!.highlightedTextColor = UIColor.white
         cell.CatName!.textColor = UIColor.white
+        */
+        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        cell.CatName!.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        cell.CatName!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
         cell.CatName!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         if Favorites.totalBreeds == 0 {
@@ -139,7 +145,8 @@ class FavoritesViewController: UITableViewController {
         if favorite.Status.hasPrefix("Adopt") {
             cell.CatName!.textColor = UIColor.red
         } else {
-            cell.CatName!.textColor = UIColor.white
+            //cell.CatName!.textColor = UIColor.white
+            cell.CatName!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
         }
         //cell.detailTextLabel!.text = favorite.Status
         
@@ -183,8 +190,10 @@ class FavoritesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
-        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        //header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        //header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -196,7 +205,7 @@ class FavoritesViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:true);
+        //self.navigationController?.setToolbarHidden(true, animated:false);
         Favorites.loaded = false
         Favorites.Favorites.removeAll()
         Favorites.breedKeys.removeAll()
@@ -218,4 +227,11 @@ class FavoritesViewController: UITableViewController {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true);
     }
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+
+    @IBAction func backTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
+
 }

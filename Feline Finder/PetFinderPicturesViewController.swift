@@ -5,10 +5,19 @@
 //  Created by Gregory Williams on 8/20/16.
 //  Copyright © 2016 Gregory Williams. All rights reserved.
 //
-
+import UIKit
 import Foundation
 
-class PetFinderPicturesViewController: UIViewController {
+protocol SDECardSource{
+    var cardCount: Int {get set}
+    func cardImageAtIndex(_ index:Int) -> UIImage?
+}
+
+enum panScrollDirection{
+    case up, down
+}
+
+class PetFinderPicturesViewController: UIViewController, CardContainerDataSource {
     
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0)
     var breedName: String = ""
@@ -30,7 +39,17 @@ class PetFinderPicturesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.title = petData.name
+        self.navigationItem.prompt = "Swipe down to see next up for previous"
+        self.title = petData.name
+        
+        cardContainerView.clipsToBounds = false
+        view.addSubview(cardContainerView)
+        view.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 3/4, constant: 0))
+        cardContainerView.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .height, relatedBy: .equal, toItem: cardContainerView, attribute: .width, multiplier: 1, constant: 0))
+        view.layoutIfNeeded()
+        
         self.imageURLs = (self.petData.getAllImagesOfACertainSize("x"))
         var errors = 0
         for url in self.imageURLs {
@@ -45,7 +64,8 @@ class PetFinderPicturesViewController: UIViewController {
                     self.images[url] = image
                     if self.images.count + errors == self.imageURLs.count {
                     DispatchQueue.main.async(execute: {
-                        self.setupView()
+                        //self.setupView()
+                    self.cardContainerView.dataSource = self
                     })
                     }
                 } else {
@@ -55,6 +75,47 @@ class PetFinderPicturesViewController: UIViewController {
         }
     }
     
+    let cardContainerView = UICardContainerView()
+    
+    //MARK: Card Container Data Source
+    func numberOfCardsForCardContainerView(_ cardContainerView: UICardContainerView) -> Int{
+        return imageURLs.count
+    }
+    func cardContainerView(_ cardContainerView: UICardContainerView, imageForCardAtIndex index: Int) -> UIImage?{
+        return index < imageURLs.count ? images[imageURLs[index]] : nil
+    }
+    
+    //MARK: Action Method
+    /*
+    @IBAction func flipUp(_ sender: AnyObject) {
+        cardContainerView.slideUp()
+    }
+    
+    @IBAction func flipDown(_ sender: AnyObject) {
+        cardContainerView.slideDown()
+    }
+    */
+    
+    /*
+    @IBAction func insertACard(_ sender: AnyObject) {
+        imageURLs.insert(.Batman, at: 1)
+        cardContainerView.insertCardAtIndex(1)
+    }
+    */
+    
+    /*
+    @IBAction func deleteACard(_ sender: AnyObject) {
+        imageURLs.remove(at: 1)
+        cardContainerView.deleteCardAtIndex(1)
+    }
+    */
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        cardContainerView.respondsToSizeChange()
+    }
+    
+    /*
     func setupView() {
         swipeLeftRec.direction = .left
         swipeLeftRec.addTarget(self, action: #selector(PetFinderPicturesViewController.swipeUp))
@@ -170,6 +231,7 @@ class PetFinderPicturesViewController: UIViewController {
                 // .once the animation has completed
         })
     }
+ */
     
     override func viewWillAppear(_ animated: Bool)
     {

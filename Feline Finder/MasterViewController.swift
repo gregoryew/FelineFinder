@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, NavgationTransitionable {
 
     var breeds: Dictionary<String, [Breed]> = [:]
     var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"");
@@ -77,6 +79,7 @@ class MasterViewController: UITableViewController {
     
     // MARK: - Segues
 
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
@@ -86,8 +89,23 @@ class MasterViewController: UITableViewController {
             }
         }
     }
+    */
 
     // MARK: - Table View
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let indexPath = self.tableView.indexPathForSelectedRow {
+            guard let cell: MasterViewCell = tableView.cellForRow(at: indexPath) as? MasterViewCell else {
+                return }
+            let breed = breeds[titles[indexPath.section]]![indexPath.row]
+            let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
+            details.breed = breed
+            //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.omni(keyView: cell), completion: {})
+            //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.blixt(keyView: cell.CatImage,  to: CGRect(x: self.view.frame.width - cell.CatImage.frame.width, y: 80, width: cell.CatImage.frame.width, height: cell.CatImage.frame.height)), completion: {})
+            navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.page, completion: {})
+            filterOptions.reset()
+        }
+    }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return self.titles.count
@@ -117,12 +135,17 @@ class MasterViewController: UITableViewController {
         }
         */
         
-        cell.backgroundColor = UIColor.black
+        //cell.backgroundColor = UIColor.white
+        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
         
         cell.CatNameLabel.backgroundColor = UIColor.clear
-        cell.CatNameLabel.highlightedTextColor = UIColor.white
-        cell.CatNameLabel.textColor = UIColor.white
-        cell.CatNameLabel.font = UIFont.boldSystemFont(ofSize: 14.0)
+        /*
+        cell.CatNameLabel.highlightedTextColor = UIColor.black
+        cell.CatNameLabel.textColor = UIColor.black
+        */
+        cell.CatNameLabel.highlightedTextColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.CatNameLabel.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.CatNameLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         cell.accessoryType = .disclosureIndicator
         //cell.accessoryView!.hidden = false
@@ -181,19 +204,23 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:true);
+        //self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:true);
+        //self.navigationController?.setToolbarHidden(false, animated:true);
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        /*
         header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        */
+        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -202,5 +229,10 @@ class MasterViewController: UITableViewController {
         return 30
     }
 
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    @IBAction func backTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
 }
 

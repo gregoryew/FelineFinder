@@ -555,7 +555,8 @@ class DatabaseManager {
                     let ImageName = results.string(forColumn: "ImageName")
                     let breed = results.string(forColumn: "Breed")
                     let DS = results.string(forColumn: "DataSource")
-                    let DSEnum: DataSource = (DS == "PetFinder" ? .PetFinder : .RescueGroup)
+                    //let DSEnum: DataSource = (DS == "PetFinder" ? .PetFinder : .RescueGroup)
+                    let DSEnum: DataSource = .RescueGroup
                     PetID = self.checkPetID(PetID!, ds: DSEnum)
                     if (!_keys.contains(PetID!)) {
                         _keys.append(PetID!)

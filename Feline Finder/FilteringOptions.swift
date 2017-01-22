@@ -18,6 +18,7 @@ class filterOption {
     var sequence: Int = 0
     var options: [(displayName: String?, search: String?, value: Int?)] = []
     var choosenListValues:[Int] = []
+    var imported: Bool = false
     
     init (n: String, f: String, d: Bool, c: catClassification, o: [(displayName: String?, search: String?, value: Int?)]) {
         name = n
@@ -172,7 +173,7 @@ class filterOptionsList {
         //compatibiity
         filteringOptions.append(filterOption(n: "Apartment OK", f: "animalApartment", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Requires a Yard", f: "animalYardRequired", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "In /Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
+        filteringOptions.append(filterOption(n: "In/Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Cold sensitive", f: "animalNoCold", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Heat sensitive", f: "animalNoHeat", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "OK with dogs", f: "animalOKWithDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
@@ -222,6 +223,7 @@ class filterOptionsList {
         //physical
         filteringOptions.append(filterOption(n: "Age", f: "animalGeneralAge", d: true, c: .physical, l: true, o: [(displayName: "Baby", search: "Baby", value: 0),(displayName: "Young", search: "Young", value: 1),(displayName: "Adult", search: "Adult", value: 2), (displayName: "Senior", search: "Senior", value: 3), (displayName: "Any", search: "Any", value: 4)]))
         filteringOptions.append(filterOption(n: "Sex", f: "animalSex", d: true, c: .physical, l: true, o: [(displayName: "Male", search: "Male", value: 0),(displayName: "Female", search: "Female", value: 1),(displayName: "Any", search: "Any", value: 2)]))
+        filteringOptions.append(filterOption(n: "Size", f: "animalGeneralSizePotential", d: true, c: .physical, l: true, o: [(displayName: "Small", search: "Small", value: 0),(displayName: "Medium", search: "Medium", value: 1),(displayName: "Large", search: "Large", value: 2),(displayName: "X-Large", search: "X-Large", value: 3),(displayName: "Any", search: "Any", value: 4)]))
         filteringOptions.append(filterOption(n: "Coat Length", f: "animalCoatLength", d: false, c: .physical, l: true, o: [(displayName: "Short", search: "Short", value: 0),(displayName: "Medium", search: "Medium", value: 1),(displayName: "Long", search: "Long", value: 2), (displayName: "Any", search: "Any", value: 3)]))
         filteringOptions.append(filterOption(n: "Ear type", f: "animalEarType", d: false, c: .physical, l: true, o: [(displayName: "Cropped", search: "Cropped", value: 0),(displayName: "Droopy", search: "Droopy", value: 1),(displayName: "Erect", search: "Erect", value: 2),(displayName: "Long", search: "Long", value: 3),(displayName: "Missing", search: "Missing", value: 4),(displayName: "Notched", search: "Notched", value: 5),(displayName: "Rose", search: "Rose", value: 6),(displayName:         "Semi-erect", search: "Semi-erect", value: 7),(displayName: "Tipped", search: "Tipped", value: 8),(displayName: "Natural/Uncropped", search: "Natural/Uncropped", value: 9),(displayName: "Any", search: "Any", value: 10)]))
         filteringOptions.append(filterOption(n: "Eye color", f: "animalEyeColor", d: false, c: .physical, l: true, o: [(displayName: "Black", search: "Black", value: 0),(displayName: "Blue", search: "Blue", value: 1),(displayName: "Blue-brown", search: "Blue-brown", value: 2),(displayName: "Brown", search: "Brown", value: 3),(displayName: "Copper", search: "Copper", value: 4),(displayName: "Gold", search: "Gold", value: 5),(displayName: "Gray", search: "Gray", value: 6),(displayName: "Green", search: "Green", value: 7),(displayName: "Hazlenut", search: "Hazlenut", value: 8),(displayName: "Mixed", search: "Mixed", value: 9),(displayName: "Pink", search: "Pink", value: 10),(displayName: "Yellow", search: "Yellow", value: 11),(displayName: "Any", search: "Any", value: 12)]))
@@ -404,13 +406,177 @@ class filterOptionsList {
         return display
     }
     
+    func setFilter(name: String, value: [Int]) {
+        for f in filteringOptions {
+            if f.fieldName == name {
+                if f.list! {
+                    f.choosenListValues = value
+                } else {
+                    f.choosenValue = value[0]
+                }
+                f.imported = true
+            }
+        }
+    }
+    
+    func importQuestions() {
+        var filterName: String = ""
+        filterOptions.reset()
+        for q in questionList.Questions {
+            if q.getAnswer().Name == "Doesn't Matter" {
+                continue
+            }
+            switch q.QuestionID {
+            case 3: //Energy Level
+                filterName = "animalEnergyLevel"
+                switch q.getAnswer().LowRange {
+                case 1: //Lazy
+                    setFilter(name: filterName, value: [0])
+                case 2, 3: //Moderate, Medium
+                    setFilter(name: filterName, value: [1])
+                case 4, 5: //High
+                    setFilter(name: filterName, value: [2])
+                default: break
+                }
+            case 1: //Fun Loving
+                filterName = "animalPlayful"
+                switch q.getAnswer().LowRange {
+                case 3, 4, 5: //
+                    setFilter(name: filterName, value: [0])
+                default:
+                    setFilter(name: filterName, value: [1])
+                }
+            case 5: //Talkative
+                filterName = "animalVocal"
+                switch q.getAnswer().LowRange {
+                case 1: //Mostly Silent
+                    setFilter(name: filterName, value: [0])
+                case 2, 3: //Talk a bit, average
+                    setFilter(name: filterName, value: [1])
+                case 4, 5: //Somewhat Talkative, Chatty Cathy
+                    setFilter(name: filterName, value: [2])
+                default: break
+                }
+            case 6: //Handling
+                filterName = "animalTimid"
+                switch q.getAnswer().LowRange {
+                case 1, 2:
+                    setFilter(name: filterName, value: [0]) //Timid Shy Yes
+                default: break
+                }
+            case 7: //Intelligence
+                filterName = "animalIntelligent"
+                switch q.getAnswer().LowRange {
+                case 3, 4, 5:
+                    setFilter(name: filterName, value: [0]) //Intelligent Yes
+                default: break
+                }
+            case 8: //Indoors/Outdoors
+                filterName = "animalIndoorOutdoor"
+                switch q.getAnswer().LowRange {
+                case 1: //Indoors
+                    setFilter(name: filterName, value: [0]) //Indoors
+                case 2: //Both
+                    setFilter(name: filterName, value: [1]) //Both
+                case 3: //Outdoors
+                    setFilter(name: filterName, value: [2]) //Outdoors
+                default: break
+            }
+            case 15: //Health
+                filterName = "animalGeneralAge"
+                switch q.getAnswer().LowRange {
+                case 5: //Longest
+                    setFilter(name: filterName, value: [0]) //Baby
+                case 4: //Above Average
+                    setFilter(name: filterName, value: [1]) //Young
+                case 3: //Average
+                    setFilter(name: filterName, value: [2]) //Adult
+                case 2, 1: //Below Average, Shortest
+                    setFilter(name: filterName, value: [3]) //Senior
+                default: break
+                }
+            case 9: //Grooming
+                filterName = "animalGroomingNeeds"
+                switch q.getAnswer().LowRange {
+                case 1: //Not Required
+                    setFilter(name: filterName, value: [0]) //Not required
+                case 2: //A little
+                    setFilter(name: filterName, value: [1]) //Low
+                case 3, 4: //Average, Some
+                    setFilter(name: filterName, value: [2]) //Moderate
+                case 5: //High
+                    setFilter(name: filterName, value: [3]) //High
+                default: break
+                }
+            case 10: //Ok with pets
+                switch q.getAnswer().LowRange {
+                case 1: //Doesn't tolerate pets
+                    setFilter(name: "animalOKWithCats", value: [1])
+                    setFilter(name: "animalOKWithDogs", value: [1])
+                case 2: //Tolerates Them
+                    setFilter(name: "animalOKWithCats", value: [1])
+                    setFilter(name: "animalOKWithDogs", value: [1])
+                case 3, 4: //
+                    setFilter(name: "animalOKWithCats", value: [0])
+                    setFilter(name: "animalOKWithDogs", value: [0])
+                case 5: //
+                    setFilter(name: "animalOKWithCats", value: [0])
+                    setFilter(name: "animalOKWithDogs", value: [0])
+                default: break
+            }
+            case 11: //OK With Children
+                switch q.getAnswer().LowRange {
+                case 1: //Doesn't tolerate
+                    setFilter(name: "animalOKWithKids", value: [1])
+                    setFilter(name: "animalOlderKidsOnly", value: [0])
+                case 2, 3: //Tolerates, Average
+                    setFilter(name: "animalOKWithKids", value: [0])
+                    setFilter(name: "animalOlderKidsOnly", value: [0])
+                case 4, 5: //well, Very Well
+                    setFilter(name: "animalOKWithKids", value: [0])
+                    setFilter(name: "animalOlderKidsOnly", value: [1])
+                default: break
+                }
+            case 13: //Hair Type
+                filterName = "animalCoatLength"
+                switch q.getAnswer().LowRange {
+                case 1: //Hairless
+                    break //This does not match anything
+                case 2, 3: //Short, Rex
+                    setFilter(name: filterName, value: [0]) //Short
+                case 4: //Medium
+                    setFilter(name: filterName, value: [1]) //Medium
+                case 5: //Long Hair
+                    setFilter(name: filterName, value: [2]) //Long
+                case 6: //Long/Short Hair
+                    setFilter(name: filterName, value: [0, 2]) //Long Short Hair
+                default: break
+                }
+            case 14: //Size
+                filterName = "animalGeneralSizePotential"
+                switch q.getAnswer().LowRange {
+                case 1: //Small
+                    setFilter(name: filterName, value: [0]) //Small
+                case 2: //Average
+                    setFilter(name: filterName, value: [1]) //Medium
+                case 3: //Biggish
+                    setFilter(name: filterName, value: [2, 3]) //Large
+                default: break
+                }
+            default: break
+            }
+        }
+        classify()
+    }
+    
     func reset() {
         for o in filteringOptions {
             o.choosenValue = o.optionsArray().count - 1
             if o.list == true {
                 o.choosenListValues = []
             }
+            o.imported = false
         }
-        currentFilterSave = "Touch Here To Save..."
+        currentFilterSave = "Touch Here To Load/Save..."
     }
 }

@@ -97,20 +97,22 @@ class RescuePetList: PetList {
         filters.append(["fieldName": "animalStatus" as AnyObject, "operation": "notequals" as AnyObject, "criteria": "Adopted" as AnyObject])
         filters.append(["fieldName": "animalSpecies" as AnyObject, "operation": "equals" as AnyObject, "criteria": "cat" as AnyObject])
         filters.append(["fieldName": "animalLocationDistance" as AnyObject, "operation": "radius" as AnyObject, "criteria": distance as AnyObject])
-        print("Distance=\(distance)")
+        //print("Distance=\(distance)")
         filters.append(["fieldName": "animalLocation" as AnyObject, "operation": "equals" as AnyObject, "criteria": zipCode as AnyObject])
         if bn.BreedName != "All Breeds" {
             if bn.RescueBreedID == "" {
-                print(bn.BreedName)
+                //print(bn.BreedName)
                 filters.append(["fieldName": "animalPrimaryBreed" as AnyObject, "operation": "contains" as AnyObject, "criteria": bn.BreedName as AnyObject])
             } else {
-                print(bn.RescueBreedID)
+                //print(bn.RescueBreedID)
                 filters.append(["fieldName": "animalPrimaryBreedID" as AnyObject, "operation": "equals" as AnyObject, "criteria": bn.RescueBreedID as AnyObject])
             }
         }
+        /*
         print(String(resultStart))
         print(String(resultLimit))
         print("filters=\(filters)")
+        */
         /*
         let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalOrgID", "animalAltered", "animalBreed", "animalDeclawed", "animalGeneralAge", "animalGeneralSizePotential", "animalHousetrained", "animalLocation", "animalLocationCoordinates", "animalLocationDistance", "animalName", "animalSpecialneeds", "animalOKWithAdults", "animalOKWithCats", "animalOKWithDogs", "animalOKWithKids", "animalPrimaryBreed", "animalRescueID", "animalSex", "animalSizePotential", "animalUpdatedDate", "animalPictures","animalVideoUrls", "animalUptodate", "animalStatus", "animalAdoptedDate", "animalAvailableDate", "animalAdoptionPending", "animalBirthdate", "animalBirthdateExact", "animalApartment", "animalYardRequired", "animalIndoorOutdoor", "animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds"]]] as [String : Any]
         */

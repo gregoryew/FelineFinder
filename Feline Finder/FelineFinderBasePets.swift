@@ -169,7 +169,7 @@ class PetList {
                     i += 1
                     continue
                 }
-                print(self.Pets[i].distance)
+                //print(self.Pets[i].distance)
                 switch (self.Pets[i].distance) {
                 case 0..<5:
                     label = "         Within about 5 miles"

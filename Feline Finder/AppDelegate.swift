@@ -18,6 +18,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var warningShown: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UINavigationBar.appearance().barTintColor = UIColor.white //yellow
+        UINavigationBar.appearance().tintColor = UIColor.darkGray
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)]
+        
+        // set up your background color view
+        let colorView = UIView()
+        colorView.backgroundColor = UIColor.blue
+        
+        // use UITableViewCell.appearance() to configure
+        // the default appearance of all UITableViewCells in your app
+        UITableViewCell.appearance().selectedBackgroundView = colorView
+        
+        //setStatusBarBackgroundColor(color: UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0))
+        
         // Override point for customization after application launch.
         pathToFile()
         
@@ -49,7 +63,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
+        
+        
         return true
+    }
+    
+    func setStatusBarBackgroundColor(color: UIColor) {
+        
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        
+        statusBar.backgroundColor = color
     }
     
     func sharedInstance() -> AppDelegate{

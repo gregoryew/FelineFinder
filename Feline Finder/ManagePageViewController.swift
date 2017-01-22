@@ -22,9 +22,14 @@
 
 import UIKit
 import Foundation
+import TransitionTreasury
+import TransitionAnimation
 
-class ManagePageViewController: UIPageViewController {
+
+class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     var currentIndex: Int!
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +67,15 @@ class ManagePageViewController: UIPageViewController {
     }
     
     @IBAction func GoBackTapped(_ sender: AnyObject) {
+        _ = navigationController?.tr_popViewController()
+
+        /*
         if whichSegueGlobal == "Edit" {
             performSegue(withIdentifier: "Choices", sender: nil)
         } else {
             performSegue(withIdentifier: "MainMenu", sender: nil)
         }
+        */
     }
     
     func viewQuestionEntry(_ index: Int) -> QuestionEntryViewController? {

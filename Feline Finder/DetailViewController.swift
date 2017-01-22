@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class DetailViewController: UIViewController, UIWebViewDelegate {
+class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransitionable {
 
     @IBOutlet weak var webView: UIWebView!
     
@@ -85,6 +87,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
+        webView.loadHTMLString("", baseURL: nil)
         self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
@@ -106,5 +109,11 @@ class DetailViewController: UIViewController, UIWebViewDelegate {
         } else {
             return true
         }
+    }
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    @IBAction func back(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
     }
 }

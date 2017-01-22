@@ -11,11 +11,21 @@ import UIKit
 import MessageUI
 import MapKit
 import Social
+import FaveButton
 
-class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate {
+func color(_ rgbColor: Int) -> UIColor{
+    return UIColor(
+        red:   CGFloat((rgbColor & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbColor & 0x00FF00) >> 8 ) / 255.0,
+        blue:  CGFloat((rgbColor & 0x0000FF) >> 0 ) / 255.0,
+        alpha: CGFloat(1.0)
+    )
+}
+
+class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate {
     
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var favoriteBtn: UIBarButtonItem!
+    @IBOutlet weak var favoriteBtn: FaveButton?
     
     var loaded: Bool = false
     var petID: String?
@@ -38,6 +48,24 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         }
     }
     
+    let colors = [
+        DotColors(first: color(0x7DC2F4), second: color(0xE2264D)),
+        DotColors(first: color(0xF8CC61), second: color(0x9BDFBA)),
+        DotColors(first: color(0xAF90F4), second: color(0x90D1F9)),
+        DotColors(first: color(0xE9A966), second: color(0xF8C852)),
+        DotColors(first: color(0xF68FA7), second: color(0xF6A2B8))
+    ]
+    
+    func faveButton(_ faveButton: FaveButton, didSelected selected: Bool){
+        if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
+            Favorites.removeFavorite(petID!, dataSource: favoriteType)
+        } else {
+            let urlString = pet!.getImage(1, size: "pnt")
+            Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: breedName!, d: favoriteType, s: ""))
+        }
+    }
+    
+    /*
     @IBAction func favoriteTouchUp(_ sender: UIBarButtonItem) {
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
             Favorites.removeFavorite(petID!, dataSource: favoriteType)
@@ -48,6 +76,14 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: breedName!, d: favoriteType, s: ""))
             favoriteBtn.image = UIImage(named: "LikeFilled")
         }
+    }
+    */
+    
+    func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
+        if faveButton === favoriteBtn{
+            return colors
+        }
+        return nil
     }
     
     @IBAction func unwindToPetFinderDetail(_ sender: UIStoryboardSegue)
@@ -333,6 +369,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     }
 
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        webView.stringByEvaluatingJavaScript(from: "window.scroll(0,0)")
         print("Webview did finish loadss")
     }
     
@@ -501,8 +538,10 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("\(webView.frame)")
         webView.delegate = self
         webView.dataDetectorTypes = UIDataDetectorTypes.link
+        favoriteBtn?.delegate = self
     }
     
     var currentIndex = 0
@@ -575,17 +614,16 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     var imageURLs:[String] = []
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         
-        self.navigationController?.setToolbarHidden(true, animated:true)
+        self.navigationController?.setToolbarHidden(true, animated:false)
         
         if (!Favorites.loaded) {Favorites.LoadFavorites()}
         
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
-            favoriteBtn.image = UIImage(named: "LikeFilled")
-        }
-        else {
-            favoriteBtn.image = UIImage(named: "Like")
+            favoriteBtn?.isSelected = true
+        } else {
+            favoriteBtn?.isSelected = false
         }
         
         self.title = "\(petName!)"

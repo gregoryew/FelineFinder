@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -32,24 +34,32 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-class SavedListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SavedListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NavgationTransitionable {
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var GoBackButton: UIButton!
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
+        
+        _ = navigationController?.tr_popViewController()
+        
+        //navigationController?.popViewController(animated: true)
+        //dismiss(animated: true, completion: nil)
+        /*
         if whichSegue == "ShowList" {
             performSegue(withIdentifier: "SavedLists2", sender: nil)
         } else {
             performSegue(withIdentifier: "MainMenu", sender: nil)
         }
+        */
     }
     
     var whichSegue: String = ""
     var whichQuestion: Int = 0
     var whichSavedList: Int = 0
     var txtfld: UITextField = UITextField()
+    var chosenBreed: Breed?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -76,10 +86,17 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
 
             tableView.reloadData()
        }
-        tableView.setContentOffset(CGPoint.zero, animated:true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //self.view.updateConstraintsIfNeeded()
+        //tableView.reloadData()
+        //tableView.setContentOffset(CGPoint.zero, animated:true)
+        print(tableView.frame)
+        if tableView.frame.origin.y == 20 {
+            tableView.frame = tableView.frame.offsetBy(dx: 0, dy: 45)
+        }
         GoBackButton.twinkle()
     }
     
@@ -93,8 +110,20 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.backgroundView = background;
     }
     
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    
     @IBAction func ResultsTouchUpInside(_ sender: AnyObject) {
-        self.performSegue(withIdentifier: "results", sender: nil)
+        if cameFromFiltering {
+            self.performSegue(withIdentifier: "filtering", sender: nil)
+        } else {
+            cameFromFiltering = false
+            let masterList = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedList") as! MasterViewController
+            if let b = chosenBreed {
+                masterList.breed = b
+            }
+            masterList.whichSeque = "results"
+            navigationController?.tr_pushViewController(masterList, method: TRPushTransitionMethod.fade, completion: {})
+        }
     }
     
     //hold this reference in your class
@@ -196,8 +225,10 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SavedListsTableCell
         
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
-        cell.backgroundColor = UIColor.black
-        
+        /*
+        cell.backgroundColor = UIColor.darkGray
+        */
+        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
         /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
@@ -210,9 +241,15 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         }
         */
         
+        /*
         cell.textLabel!.backgroundColor = UIColor.clear
         cell.textLabel!.highlightedTextColor = UIColor.white
         cell.textLabel!.textColor = UIColor.white
+        */
+        cell.textLabel!.backgroundColor = UIColor.clear
+        cell.textLabel!.highlightedTextColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.textLabel!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+
         cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         if SavedSearches[indexPath.section].SavedSearchDetails.count == 0 {
@@ -245,10 +282,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "results" {
-            (segue.destination as! MasterViewController).whichSeque = "results"
-        }
-        else if segue.identifier == "Edit" {
+        if segue.identifier == "Edit" {
             whichSegueGlobal = "Edit"
             editWhichQuestionGlobal = whichQuestion
         }
@@ -256,8 +290,12 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
+        /*
         header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        */
+        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -270,6 +308,12 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     {
         super.viewWillDisappear(animated)
         self.navigationController?.setToolbarHidden(false, animated:true);
+    }
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    @IBAction func backTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
     }
     
     @IBAction func unwindToChoicesViewController(_ sender: UIStoryboardSegue)

@@ -9,6 +9,7 @@
 import Foundation
 
 var whichSegueGlobal = ""
+var cameFromFiltering = false
 var imageCache = [String:UIImage]()  //This is a global image cache
 var zipCode: String = ""
 var zipCodeGlobal: String = ""
@@ -16,7 +17,7 @@ var bnGlobal: String = ""
 var editWhichQuestionGlobal: Int = 0
 var filterOptions: filterOptionsList = filterOptionsList()
 var NameID: Int = 0
-var currentFilterSave: String = "Touch Here To Save..."
+var currentFilterSave: String = "Touch Here To Load/Save..."
 var sortFilter: String = "animalLocationDistance"
 var distance = "4000"
 var updated = Date()

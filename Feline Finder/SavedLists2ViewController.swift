@@ -8,12 +8,14 @@
 
 import Foundation
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
 var SavedSearches2: SavedSeachesList = SavedSeachesList()
 var WhichSavedList: Int = 0
 var SearchTitle: String = ""
 
-class SavedLists2ViewController: UITableViewController {
+class SavedLists2ViewController: UITableViewController, NavgationTransitionable {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             DatabaseManager.sharedInstance.deleteSearch(Int(SavedSearches2[indexPath.row].SavedSearchID))
@@ -84,7 +86,7 @@ class SavedLists2ViewController: UITableViewController {
         
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
-        cell.backgroundColor = UIColor.black
+        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
         
         /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
@@ -101,8 +103,8 @@ class SavedLists2ViewController: UITableViewController {
         cell.accessoryType = .disclosureIndicator
         
         cell.textLabel!.text = SavedSearches2[indexPath.row].Title
-        cell.textLabel!.highlightedTextColor = UIColor.white
-        cell.textLabel!.textColor = UIColor.white
+        cell.textLabel!.highlightedTextColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.textLabel!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
         cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         return cell
@@ -113,16 +115,24 @@ class SavedLists2ViewController: UITableViewController {
         return true
     }
     
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         WhichSavedList = Int(SavedSearches2[indexPath.row].SavedSearchID)
         SearchTitle = SavedSearches2[indexPath.row].Title
-        self.performSegue(withIdentifier: "ShowList", sender: nil)
+        let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Selections") as! SavedListsViewController
+        savedLists.whichSavedList = WhichSavedList
+        savedLists.whichSegue = "ShowList"
+        //savedLists.viewDidLoad()
+        //savedLists.tableView.reloadData()
+        navigationController?.tr_pushViewController(savedLists, method: TRPushTransitionMethod.fade, completion: {})
+        //self.performSegue(withIdentifier: "ShowList", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
-        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
+        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
         header.titleLabel.text = "Saved Searches"
         return header
     }
@@ -143,5 +153,11 @@ class SavedLists2ViewController: UITableViewController {
     {
         //let sourceViewController = sender.sourceViewController
         // Pull any data from the view controller which initiated the unwind segue.
+    }
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    @IBAction func backTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
     }
 }

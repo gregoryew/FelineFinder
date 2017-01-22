@@ -3,9 +3,10 @@
 
 target 'Feline Finder' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
+   use_frameworks!
 
   # Pods for Feline Finder
       pod 'YouTubePlayer'
-
+      pod 'TransitionAnimation'
+      pod 'FaveButton', '~> 2.0.3'
 end

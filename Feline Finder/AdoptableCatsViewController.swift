@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate {
+class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable {
 
     @IBAction func backButtonTapped(_ sender: AnyObject) {
         if breed?.BreedName == "All Breeds" {
@@ -28,6 +30,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     var totalRow = 0
     var times = 0
     
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    @IBAction func backTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,9 +43,9 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         var width: CGFloat = 0.0
         if UIDevice.current.userInterfaceIdiom == .pad {
-            width = collectionView!.frame.width / 6.0
-        } else {
             width = collectionView!.frame.width / 3.0
+        } else {
+            width = collectionView!.frame.width / 2.0
         }
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         layout.itemSize = CGSize(width: width, height: width)
@@ -100,6 +108,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                         zipCodeGlobal = ""
                     }
                 }
+            print("Status = \(self.pets?.status) Times = \(self.times)")
             } while self.pets?.status != "ok" && self.pets?.status != "warning" && self.times < 3
             self.times = 0
         }
@@ -245,13 +254,38 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         if b == true
         {
             self.collectionView?.reloadData()
+            zipCodeGlobal = ""
+            bnGlobal = ""
             self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
                 self.pets = petList as? RescuePetList
-                self.totalRow = -1
-                self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
-                PetFinderBreeds[self.breed!.BreedName] = self.pets
-                DispatchQueue.main.async {
-                   self.collectionView?.reloadData()
+                if self.pets?.status == "ok" {
+                    self.totalRow = -1
+                    self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
+                    PetFinderBreeds[self.breed!.BreedName] = self.pets
+                    DispatchQueue.main.async {
+                        self.collectionView?.reloadData()
+                    }
+                } else {
+                    zipCodeGlobal = ""
+                    bnGlobal = ""
+                    sleep(1)
+                    self.pets!.resultStart = 0
+                    self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
+                        self.pets = petList as? RescuePetList
+                        if self.pets?.status == "ok" {
+                            self.totalRow = -1
+                            self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
+                            PetFinderBreeds[self.breed!.BreedName] = self.pets
+                            DispatchQueue.main.async {
+                                self.collectionView?.reloadData()
+                            }
+                        } else {
+                            self.pets?.loading = false
+                            DispatchQueue.main.async {
+                                self.collectionView?.reloadData()
+                            }
+                        }
+                    }
                 }
             }
         } else {
