@@ -228,7 +228,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         /*
         cell.backgroundColor = UIColor.darkGray
         */
-        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        cell.backgroundColor = lightBackground
         /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
             let backgroundCell = CustomCellBackground()
@@ -247,8 +247,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         cell.textLabel!.textColor = UIColor.white
         */
         cell.textLabel!.backgroundColor = UIColor.clear
-        cell.textLabel!.highlightedTextColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
-        cell.textLabel!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.textLabel!.highlightedTextColor = darkTextColor
+        cell.textLabel!.textColor = textColor
 
         cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
@@ -294,8 +294,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         */
-        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
-        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
+        header.lightColor = lightBackground
+        header.darkColor = darkBackground
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

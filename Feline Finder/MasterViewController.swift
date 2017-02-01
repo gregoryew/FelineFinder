@@ -143,15 +143,15 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         */
         
         //cell.backgroundColor = UIColor.white
-        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        cell.backgroundColor = lightBackground
         
         cell.CatNameLabel.backgroundColor = UIColor.clear
         /*
         cell.CatNameLabel.highlightedTextColor = UIColor.black
         cell.CatNameLabel.textColor = UIColor.black
         */
-        cell.CatNameLabel.highlightedTextColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
-        cell.CatNameLabel.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.CatNameLabel.highlightedTextColor = textColor
+        cell.CatNameLabel.textColor = textColor
         cell.CatNameLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         cell.accessoryType = .disclosureIndicator
@@ -227,8 +227,8 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         */
-        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
-        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
+        header.lightColor = lightBackground
+        header.darkColor = darkBackground
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

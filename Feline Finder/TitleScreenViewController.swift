@@ -65,7 +65,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         if questionList.count == 0 {
             let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
             search.viewDidLoad()
-            self.navigationController?.tr_pushViewController(search, method: TRPushTransitionMethod.fade, completion: {})
+            self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
             return
         }
         
@@ -79,13 +79,13 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
             SearchTitle = "SUMMARY"
             let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
             search.viewDidLoad()
-            self.navigationController?.tr_pushViewController(search, method: TRPushTransitionMethod.fade, completion: {})
+            self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
         }
         
         let existingAction = UIAlertAction(title: "Existing", style: .default) { action in
             let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
             search.viewDidLoad()
-            self.navigationController?.tr_pushViewController(search, method: TRPushTransitionMethod.fade, completion: {})
+            self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
         }
         
         // Add the actions.
@@ -162,14 +162,20 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     @IBAction func breedsTapped(_ sender: Any) {
         let master = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedList") as! MasterViewController
         master.viewDidLoad()
-        navigationController?.tr_pushViewController(master, method: TRPushTransitionMethod.fade, completion: {})
+        navigationController?.tr_pushViewController(master, method: DemoTransition.CIZoom(transImage: transitionImage.list), completion: {})
     }
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func favoritesTapped(_ sender: Any) {
+        
+        //let f = view.superview?.window?.rootViewController?.view.frame
+        //let zoomedRect = CGRect(x: (f?.minX)!, y: (f?.minY)!, width: (f?.width)! * 4, height: (f?.height)! * 4)
+        
+        //favoritesButton.zoom(zoomedRect: zoomedRect)
         let favorites = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as! FavoritesViewController
-        navigationController?.tr_pushViewController(favorites, method: TRPushTransitionMethod.fadeTest, completion: {})
+        favorites.viewDidLoad()
+        navigationController?.tr_pushViewController(favorites, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
         //navigationController?.tr_pushViewController(favorites, method: .Custom(FadeTransitionAnimatin()))
     }
     
@@ -179,14 +185,14 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     
     @IBAction func savedSearchesTapped(_ sender: Any) {
         let savedSearches = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedLists") as! SavedLists2ViewController
-        navigationController?.tr_pushViewController(savedSearches, method: TRPushTransitionMethod.fade)
+        navigationController?.tr_pushViewController(savedSearches, method: DemoTransition.CIZoom(transImage: transitionImage.save))
     }
 
     @IBAction func adoptCatsTapped(_ sender: Any) {
         let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
         adoptACat.breed = breed
-        navigationController?.tr_pushViewController(adoptACat, method: TRPushTransitionMethod.fade)
+        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
 
     override var prefersStatusBarHidden: Bool {

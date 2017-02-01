@@ -16,6 +16,22 @@
 		463ABE321E0B23D2003A0A43 /* Unknown.gif in Resources */ = {isa = PBXBuildFile; fileRef = 463ABE311E0B23D2003A0A43 /* Unknown.gif */; };
 		463B28E31E0C168D001DF7D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */; };
 		464E39D41E33A42B005577ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 464E39D31E33A42B005577ED /* Media.xcassets */; };
+		467C97C21E3FF34E007C7A08 /* heartMask.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97C11E3FF34E007C7A08 /* heartMask.jpg */; };
+		467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */; };
+		467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */; };
+		467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */; };
+		467C97CC1E4003A5007C7A08 /* background3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97CB1E4003A5007C7A08 /* background3.jpg */; };
+		467C97CE1E4009D8007C7A08 /* coolcatMask.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97CD1E4009D8007C7A08 /* coolcatMask.jpg */; };
+		467C97D21E402CB1007C7A08 /* saveMask.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97CF1E402CB1007C7A08 /* saveMask.jpg */; };
+		467C97D31E402CB1007C7A08 /* listMask.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97D01E402CB1007C7A08 /* listMask.jpg */; };
+		467C97D41E402CB1007C7A08 /* searchMask.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97D11E402CB1007C7A08 /* searchMask.jpg */; };
+		467C97D61E403E27007C7A08 /* SearchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 467C97D51E403E27007C7A08 /* SearchScreen.png */; };
+		467C97DA1E4041BC007C7A08 /* coolcatscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 467C97D71E4041BC007C7A08 /* coolcatscreen.png */; };
+		467C97DB1E4041BC007C7A08 /* breedsscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 467C97D81E4041BC007C7A08 /* breedsscreen.png */; };
+		467C97DC1E4041BC007C7A08 /* titlescreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 467C97D91E4041BC007C7A08 /* titlescreen.png */; };
+		467C97DE1E40458A007C7A08 /* breedsscreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97DD1E40458A007C7A08 /* breedsscreen.jpg */; };
+		467C97E01E404642007C7A08 /* SearchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97DF1E404642007C7A08 /* SearchScreen.jpg */; };
+		467C97E21E414F99007C7A08 /* background4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97E11E414F99007C7A08 /* background4.jpg */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
 		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
 		46D537911E34B7230006498B /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378F1E34B7230006498B /* ImageCardView.swift */; };
@@ -260,6 +276,22 @@
 		463ABE311E0B23D2003A0A43 /* Unknown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Unknown.gif; sourceTree = "<group>"; };
 		463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		464E39D31E33A42B005577ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		467C97C11E3FF34E007C7A08 /* heartMask.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = heartMask.jpg; sourceTree = "<group>"; };
+		467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIZoomAnimation.swift; sourceTree = "<group>"; };
+		467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipAnimation.swift; sourceTree = "<group>"; };
+		467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionImageView.swift; sourceTree = "<group>"; };
+		467C97CB1E4003A5007C7A08 /* background3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background3.jpg; sourceTree = "<group>"; };
+		467C97CD1E4009D8007C7A08 /* coolcatMask.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coolcatMask.jpg; sourceTree = "<group>"; };
+		467C97CF1E402CB1007C7A08 /* saveMask.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = saveMask.jpg; sourceTree = "<group>"; };
+		467C97D01E402CB1007C7A08 /* listMask.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = listMask.jpg; sourceTree = "<group>"; };
+		467C97D11E402CB1007C7A08 /* searchMask.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = searchMask.jpg; sourceTree = "<group>"; };
+		467C97D51E403E27007C7A08 /* SearchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchScreen.png; sourceTree = "<group>"; };
+		467C97D71E4041BC007C7A08 /* coolcatscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coolcatscreen.png; sourceTree = "<group>"; };
+		467C97D81E4041BC007C7A08 /* breedsscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = breedsscreen.png; sourceTree = "<group>"; };
+		467C97D91E4041BC007C7A08 /* titlescreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titlescreen.png; sourceTree = "<group>"; };
+		467C97DD1E40458A007C7A08 /* breedsscreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = breedsscreen.jpg; sourceTree = "<group>"; };
+		467C97DF1E404642007C7A08 /* SearchScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SearchScreen.jpg; sourceTree = "<group>"; };
+		467C97E11E414F99007C7A08 /* background4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background4.jpg; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
 		46D5378F1E34B7230006498B /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
@@ -536,6 +568,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		467C97961E3EA85B007C7A08 /* Transition Animations */ = {
+			isa = PBXGroup;
+			children = (
+				467C97E11E414F99007C7A08 /* background4.jpg */,
+				467C97DF1E404642007C7A08 /* SearchScreen.jpg */,
+				467C97DD1E40458A007C7A08 /* breedsscreen.jpg */,
+				467C97D71E4041BC007C7A08 /* coolcatscreen.png */,
+				467C97D81E4041BC007C7A08 /* breedsscreen.png */,
+				467C97D91E4041BC007C7A08 /* titlescreen.png */,
+				467C97D51E403E27007C7A08 /* SearchScreen.png */,
+				467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */,
+				467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */,
+				467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */,
+				467C97CF1E402CB1007C7A08 /* saveMask.jpg */,
+				467C97D01E402CB1007C7A08 /* listMask.jpg */,
+				467C97D11E402CB1007C7A08 /* searchMask.jpg */,
+				467C97C11E3FF34E007C7A08 /* heartMask.jpg */,
+				467C97CB1E4003A5007C7A08 /* background3.jpg */,
+				467C97CD1E4009D8007C7A08 /* coolcatMask.jpg */,
+			);
+			name = "Transition Animations";
+			sourceTree = "<group>";
+		};
 		80C215F20C9D4AE4D20D5E97 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -736,6 +791,7 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
+				467C97961E3EA85B007C7A08 /* Transition Animations */,
 				46D5378E1E34B7230006498B /* CardAnimationView.swift */,
 				46D5378F1E34B7230006498B /* ImageCardView.swift */,
 				46D5378C1E34B70C0006498B /* UICardContainerView.swift */,
@@ -1080,9 +1136,11 @@
 				C539DED31B51797300B631B8 /* LikeSelected.jpg in Resources */,
 				C551264B1B24E759007D8CDF /* Javanese.html in Resources */,
 				C5FB6EDA1B21337C007FFA36 /* Bengal.jpg in Resources */,
+				467C97D21E402CB1007C7A08 /* saveMask.jpg in Resources */,
 				C55126121B22710A007D8CDF /* Bombay_femelle.jpg in Resources */,
 				C55126551B24EBA0007D8CDF /* MainCoon.html in Resources */,
 				464E39D41E33A42B005577ED /* Media.xcassets in Resources */,
+				467C97DA1E4041BC007C7A08 /* coolcatscreen.png in Resources */,
 				C58B45891B2CC57800E03538 /* Turkish Van.png in Resources */,
 				C5471BB41D67B01400F9A459 /* main_bg.jpg in Resources */,
 				C58B45941B2CCAF300E03538 /* turkish_van.jpg in Resources */,
@@ -1099,6 +1157,7 @@
 				C5B8F99D1D68CC9D002EC03C /* email.png in Resources */,
 				C5471BC31D67B07D00F9A459 /* Default-568h@2x.png in Resources */,
 				C54FCAA51B83AB6100D9524E /* domestic_long_hair.html in Resources */,
+				467C97CC1E4003A5007C7A08 /* background3.jpg in Resources */,
 				C55126681B24FF82007D8CDF /* Persian_Cat_3_UK.jpg in Resources */,
 				C5511C4F1B6EB73A00BE8610 /* grooming.gif in Resources */,
 				C58B456D1B2C96E500E03538 /* Qwill_Siamese_cat.jpg in Resources */,
@@ -1129,6 +1188,7 @@
 				C54FCAA31B83AB6100D9524E /* LaPerm.html in Resources */,
 				C54FCAAC1B83AB9700D9524E /* LaPerm_tonk.jpg in Resources */,
 				C551261E1B22780D007D8CDF /* Burmese.html in Resources */,
+				467C97D31E402CB1007C7A08 /* listMask.jpg in Resources */,
 				C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */,
 				C56F90E51B7A110A00EEEBFA /* Manx_cat_crouching.gif in Resources */,
 				C54FCAA01B83AB6100D9524E /* Ragamuffin.html in Resources */,
@@ -1139,6 +1199,7 @@
 				C54FCAA81B83AB6100D9524E /* Burmillia.html in Resources */,
 				C55126311B24CA20007D8CDF /* DevonRex.png in Resources */,
 				C56F90CB1B766A4A00EEEBFA /* welcome_cat_5.png in Resources */,
+				467C97D41E402CB1007C7A08 /* searchMask.jpg in Resources */,
 				C54FCAAE1B83AB9700D9524E /* Female_Burmilla_cat.jpg in Resources */,
 				C51C39031D723EFA008064EC /* share.png in Resources */,
 				C58B45821B2CC54600E03538 /* Tonkinese.html in Resources */,
@@ -1149,6 +1210,7 @@
 				463B28E31E0C168D001DF7D6 /* LaunchScreen.storyboard in Resources */,
 				C58B45721B2C990700E03538 /* Siberian.html in Resources */,
 				C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */,
+				467C97DC1E4041BC007C7A08 /* titlescreen.png in Resources */,
 				C56F90D61B7675CE00EEEBFA /* welcome_cat_10.png in Resources */,
 				C58B458A1B2CC57800E03538 /* TurkishVan.html in Resources */,
 				C556BD311B81520A0009EB95 /* Snowshoe.html in Resources */,
@@ -1160,10 +1222,12 @@
 				C551261B1B22749D007D8CDF /* BritishShorthair.html in Resources */,
 				C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */,
 				C551261F1B22780D007D8CDF /* Burmese_chocolate_cat.jpg in Resources */,
+				467C97CE1E4009D8007C7A08 /* coolcatMask.jpg in Resources */,
 				C551263A1B24DAE3007D8CDF /* Egyptain Mau.jpg in Resources */,
 				C58B458C1B2CC79400E03538 /* Turkish_Angora_Cat.jpg in Resources */,
 				C551263F1B24DE35007D8CDF /* HavanaBrown.html in Resources */,
 				C5FB6ED91B21337C007FFA36 /* Bengal.html in Resources */,
+				467C97C21E3FF34E007C7A08 /* heartMask.jpg in Resources */,
 				C55126591B24EEFD007D8CDF /* Manx.html in Resources */,
 				C55126431B24E290007D8CDF /* Himlayan.jpg in Resources */,
 				C55126461B24E3E4007D8CDF /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg in Resources */,
@@ -1177,6 +1241,9 @@
 				C5FB6ED51B21337C007FFA36 /* AmericanWireHair.html in Resources */,
 				C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */,
 				C5FB6ED61B21337C007FFA36 /* American_Wirehair.JPG in Resources */,
+				467C97E01E404642007C7A08 /* SearchScreen.jpg in Resources */,
+				467C97DB1E4041BC007C7A08 /* breedsscreen.png in Resources */,
+				467C97D61E403E27007C7A08 /* SearchScreen.png in Resources */,
 				C556BD1E1B8015940009EB95 /* Persian.gif in Resources */,
 				C527B1371B48079F00874272 /* Savannah.jpg in Resources */,
 				C551260F1B226F13007D8CDF /* Birman.html in Resources */,
@@ -1211,7 +1278,9 @@
 				C556BD141B8011C60009EB95 /* Sphynx_Red.gif in Resources */,
 				C551262D1B24C5EA007D8CDF /* Cymric.html in Resources */,
 				C56F90BB1B765E2300EEEBFA /* welcome_cat.gif in Resources */,
+				467C97E21E414F99007C7A08 /* background4.jpg in Resources */,
 				C55126331B24CAE5007D8CDF /* DevonRex.html in Resources */,
+				467C97DE1E40458A007C7A08 /* breedsscreen.jpg in Resources */,
 				C55126471B24E3E4007D8CDF /* JapaneseBobtail.html in Resources */,
 				C539DED41B51797300B631B8 /* LikeUnselected.jpg in Resources */,
 				C56F90C71B766A4A00EEEBFA /* welcome_cat_1.png in Resources */,
@@ -1327,6 +1396,7 @@
 				C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */,
 				C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */,
 				C5FB6EED1B213474007FFA36 /* FMDatabase.m in Sources */,
+				467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */,
 				C56F90D81B7795C600EEEBFA /* PetFinderFind.swift in Sources */,
 				C5FB6EEE1B213474007FFA36 /* FMResultSet.m in Sources */,
 				C55FC7051D6A9FA000F328F3 /* SavedList2TableCell.swift in Sources */,
@@ -1339,6 +1409,7 @@
 				C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */,
 				C58D21271B4918C7008E1B0B /* PetFinderSheltersAPI.swift in Sources */,
 				C5471BB71D67B01400F9A459 /* Common.m in Sources */,
+				467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */,
 				4632471C1E037D17000039FF /* Twinkle.swift in Sources */,
 				C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */,
 				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,
@@ -1351,6 +1422,7 @@
 				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
 				C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */,
 				C58D21211B48B0F8008E1B0B /* PetFinderTableCell.swift in Sources */,
+				467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */,
 				C525E3671D896733005123C4 /* FelineFinderDetailViewController.swift in Sources */,
 				C56F90DA1B77966600EEEBFA /* ReselectableSegmentedControl.swift in Sources */,
 				C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */,

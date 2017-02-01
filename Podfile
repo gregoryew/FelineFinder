@@ -7,6 +7,6 @@ target 'Feline Finder' do
 
   # Pods for Feline Finder
       pod 'YouTubePlayer'
-      pod 'TransitionAnimation'
+      pod 'TransitionAnimation', :git => 'https://github.com/gregoryew/TransitionTreasury.git'
       pod 'FaveButton', '~> 2.0.3'
 end

@@ -7,6 +7,43 @@
 //
 
 import Foundation
+import TransitionTreasury
+import TransitionAnimation
+
+enum DemoTransition {
+    case FadePush
+    case TwitterPresent
+    case SlideTabBar
+    case CIZoom(transImage: transitionImage)
+    case Flip
+    //case Zoom(startingRect: CGRect, endingRect: CGRect)
+}
+
+extension DemoTransition: TransitionAnimationable {
+    func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
+        switch self {
+        case .FadePush:
+            return FadeTransitionAnimation()
+        case .TwitterPresent :
+            return TwitterTransitionAnimation()
+        case .SlideTabBar :
+            return SlideTransitionAnimation()
+        case let .CIZoom(transitionImage) :
+            return CIZoomAnimation(transImage: transitionImage)
+        case .Flip :
+            return FlipAnimation()
+        //case let .Zoom(startingRect, endingRect):
+        //    return ZoomAnimation(startingRect: startingRect, endingRect: endingRect)
+        }
+    }
+}
+
+let textColor = UIColor.black //UIColor(red: 255/255, green: 243/255, blue: 0/255, alpha: 1)
+let darkTextColor = UIColor.black //UIColor(red: 154/255, green: 217/255, blue: 47/255, alpha: 1)
+let lightBackground = UIColor.white //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
+let darkBackground = UIColor.gray //UIColor(red: 128/255, green: 74/255, blue: 187/255, alpha: 1)
+//let darkBackground = UIColor(red: 0, green: 0, blue: 131/255, alpha: 1)
+let hiliteColor = UIColor.darkGray //UIColor.cyan
 
 var whichSegueGlobal = ""
 var cameFromFiltering = false

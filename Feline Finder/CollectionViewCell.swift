@@ -20,7 +20,7 @@ class CollectionViewCell: UICollectionViewCell {
     }
     
     override func draw(_ rect: CGRect) {
-        CatImager.contentMode = .scaleAspectFit
+        CatImager.contentMode = .scaleAspectFill
         applyPlainShadow(view: CatImager)
     }
     

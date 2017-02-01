@@ -190,8 +190,8 @@ class FilterOptionsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
-        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
+        header.lightColor = lightBackground
+        header.darkColor = darkBackground
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

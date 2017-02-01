@@ -1,12 +1,30 @@
 PODS:
+  - FaveButton (2.0.3)
+  - TransitionAnimation (4.0.0):
+    - TransitionTreasury (~> 4.0)
+  - TransitionTreasury (4.0.0)
   - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
+  - FaveButton (~> 2.0.3)
+  - TransitionAnimation (from `https://github.com/gregoryew/TransitionTreasury.git`)
   - YouTubePlayer
 
+EXTERNAL SOURCES:
+  TransitionAnimation:
+    :git: https://github.com/gregoryew/TransitionTreasury.git
+
+CHECKOUT OPTIONS:
+  TransitionAnimation:
+    :commit: f196de5f93bb634a6ae9ff565906d70d59e95164
+    :git: https://github.com/gregoryew/TransitionTreasury.git
+
 SPEC CHECKSUMS:
+  FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
+  TransitionAnimation: 4e9acd93e9d5358057899535e5d17b010c5718e7
+  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: f9e6984301122440c24ba213dc704b8f92389782
+PODFILE CHECKSUM: 11c2b65ed9e66738af40e5844cc997e2da082916
 
 COCOAPODS: 1.2.0.beta.3

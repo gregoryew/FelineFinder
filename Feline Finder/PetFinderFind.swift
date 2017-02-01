@@ -101,14 +101,14 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         }
         
         self.tableView.backgroundView = nil
-        self.tableView.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        self.tableView.backgroundColor = lightBackground
 
         self.navigationController?.setToolbarHidden(true, animated: false)
         
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        cell.backgroundColor = lightBackground
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -187,8 +187,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
-        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
+        header.lightColor = lightBackground
+        header.darkColor = darkBackground
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -285,7 +285,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                 if (opt?.imported)! {
                     cell.ListName.textColor = UIColor.green
                 } else {
-                    cell.ListName.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+                    cell.ListName.textColor = textColor
                 }
                 return cell
             } else {

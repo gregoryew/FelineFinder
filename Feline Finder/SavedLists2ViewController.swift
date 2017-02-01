@@ -86,7 +86,7 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
         
-        cell.backgroundColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+        cell.backgroundColor = lightBackground
         
         /*
         if ((cell.backgroundView is CustomCellBackground) == false) {
@@ -103,8 +103,8 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         cell.accessoryType = .disclosureIndicator
         
         cell.textLabel!.text = SavedSearches2[indexPath.row].Title
-        cell.textLabel!.highlightedTextColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
-        cell.textLabel!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.textLabel!.highlightedTextColor = UIColor.brown
+        cell.textLabel!.textColor = textColor
         cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         return cell
@@ -131,8 +131,8 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
-        header.darkColor = UIColor(red:0.157, green:0.082, blue:0.349, alpha:1.0)
+        header.lightColor = lightBackground
+        header.darkColor = darkBackground
         header.titleLabel.text = "Saved Searches"
         return header
     }

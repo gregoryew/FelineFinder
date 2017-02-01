@@ -12,6 +12,8 @@ import MessageUI
 import MapKit
 import Social
 import FaveButton
+import TransitionTreasury
+import TransitionAnimation
 
 func color(_ rgbColor: Int) -> UIColor{
     return UIColor(
@@ -22,11 +24,12 @@ func color(_ rgbColor: Int) -> UIColor{
     )
 }
 
-class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate {
+class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate, NavgationTransitionable {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var favoriteBtn: FaveButton?
     
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     var loaded: Bool = false
     var petID: String?
     var petName: String?

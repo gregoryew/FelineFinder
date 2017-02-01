@@ -36,13 +36,13 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="Wbq-FX-vPi" customClass="FavoriteTableCell" customModule="Feline_Finder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wbq-FX-vPi" id="u60-Yz-jyo">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pBK-FK-5iN">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pBK-FK-5iN">
                                             <rect key="frame" x="12" y="15" width="90" height="68.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="90" id="Dxc-th-Np0"/>
@@ -74,7 +74,6 @@
                                 <connections>
                                     <outlet property="CatImage" destination="pBK-FK-5iN" id="9xn-CJ-KWq"/>
                                     <outlet property="CatName" destination="mdh-g9-QMF" id="dqf-De-RaJ"/>
-                                    <segue destination="I13-hk-Lpk" kind="show" identifier="felineFinderDetail" id="042-eS-rMQ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -114,14 +113,14 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="2" indentationWidth="10" reuseIdentifier="Cell" textLabel="34j-iH-osT" style="IBUITableViewCellStyleDefault" id="9r8-R9-1Uy" customClass="SavedListsTableCell" customModule="Feline_Finder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9r8-R9-1Uy" id="qS8-3s-4wS">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="34j-iH-osT">
-                                                    <rect key="frame" x="35" y="0.0" width="305" height="43.5"/>
+                                                    <rect key="frame" x="35" y="0.0" width="305" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -201,38 +200,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" tag="999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ffbackground-1" translatesAutoresizingMaskIntoConstraints="NO" id="h3r-a0-Iut">
-                                <rect key="frame" x="-4" y="0.0" width="383" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pj9-SN-Z96">
                                 <rect key="frame" x="-8" y="437" width="387" height="230"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ToW-3j-RQd">
-                                        <rect key="frame" x="0.0" y="0.0" width="387" height="95"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="387" height="100"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Mq-Vs-vXR">
-                                                <rect key="frame" x="66.5" y="0.0" width="255" height="95"/>
+                                                <rect key="frame" x="66" y="0.0" width="255" height="100"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1T-di-ObF" userLabel="Favorites">
-                                                        <rect key="frame" x="170" y="0.0" width="85" height="95"/>
-                                                        <state key="normal" image="fffavorite"/>
+                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uL9-De-f4a" userLabel="FindACat">
+                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="100"/>
+                                                        <state key="normal" image="ffsearch"/>
                                                         <connections>
-                                                            <action selector="favoritesTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="7yl-wV-VlL"/>
+                                                            <action selector="FindACatTouchUpInside:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="M2H-IF-XJL"/>
+                                                            <action selector="searchTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="21F-gx-OWd"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Q4-VY-f3B" userLabel="ListsOfCats">
-                                                        <rect key="frame" x="85" y="0.0" width="85" height="95"/>
+                                                        <rect key="frame" x="85" y="0.0" width="85" height="100"/>
                                                         <state key="normal" image="fflist-1"/>
                                                         <connections>
                                                             <action selector="breedsTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="peO-eA-6gi"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uL9-De-f4a" userLabel="FindACat">
-                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="95"/>
-                                                        <state key="normal" image="ffsearch"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1T-di-ObF" userLabel="Favorites">
+                                                        <rect key="frame" x="170" y="0.0" width="85" height="100"/>
+                                                        <state key="normal" image="fffavorite"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="favorites"/>
+                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <action selector="FindACatTouchUpInside:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="M2H-IF-XJL"/>
-                                                            <action selector="searchTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="21F-gx-OWd"/>
+                                                            <action selector="favoritesTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="7yl-wV-VlL"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -266,23 +268,23 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5RB-Ww-tcY">
-                                        <rect key="frame" x="0.0" y="95" width="387" height="95"/>
+                                        <rect key="frame" x="0.0" y="100" width="387" height="100"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kQb-eN-ZyR">
-                                                <rect key="frame" x="105.5" y="0.0" width="176" height="95"/>
+                                                <rect key="frame" x="106" y="0.0" width="176" height="100"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-eq-dNV" userLabel="SavedLists">
-                                                        <rect key="frame" x="0.0" y="0.0" width="88" height="95"/>
-                                                        <state key="normal" image="ffsave-1"/>
-                                                        <connections>
-                                                            <action selector="savedSearchesTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="eZF-pN-6JZ"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NJK-cK-63q" userLabel="AdoptACat">
-                                                        <rect key="frame" x="88" y="0.0" width="88" height="95"/>
+                                                        <rect key="frame" x="88" y="0.0" width="88" height="100"/>
                                                         <state key="normal" image="ffadopt"/>
                                                         <connections>
                                                             <action selector="adoptCatsTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="owl-PA-Nyc"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uql-eq-dNV" userLabel="SavedLists">
+                                                        <rect key="frame" x="0.0" y="0.0" width="88" height="100"/>
+                                                        <state key="normal" image="ffsave-1"/>
+                                                        <connections>
+                                                            <action selector="savedSearchesTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="eZF-pN-6JZ"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -311,10 +313,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fji-RQ-P9P">
-                                        <rect key="frame" x="0.0" y="190" width="387" height="40"/>
+                                        <rect key="frame" x="0.0" y="200" width="387" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tEu-Og-6t6">
-                                                <rect key="frame" x="360" y="9" width="22" height="22"/>
+                                                <rect key="frame" x="360" y="-1" width="22" height="22"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <segue destination="rvS-4u-hM0" kind="show" id="t2M-ia-WOn"/>
@@ -330,7 +332,7 @@
                                             <constraint firstAttribute="height" constant="40" identifier="bottomMargin" id="DhR-cM-pui" userLabel="bottomMargin">
                                                 <variation key="widthClass=compact" constant="35"/>
                                                 <variation key="heightClass=compact-widthClass=compact" constant="20"/>
-                                                <variation key="heightClass=regular-widthClass=compact" constant="40"/>
+                                                <variation key="heightClass=regular-widthClass=compact" constant="30"/>
                                                 <variation key="heightClass=regular-widthClass=regular" constant="120"/>
                                             </constraint>
                                         </constraints>
@@ -362,18 +364,18 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="h3r-a0-Iut" firstAttribute="leading" secondItem="Gfj-ph-6gR" secondAttribute="leadingMargin" constant="-20" id="6Q6-av-Uo8"/>
+                            <constraint firstAttribute="trailing" secondItem="h3r-a0-Iut" secondAttribute="trailing" id="6yN-Zv-bAF"/>
                             <constraint firstItem="pj9-SN-Z96" firstAttribute="leading" secondItem="Gfj-ph-6gR" secondAttribute="leadingMargin" constant="-24" id="HfZ-c5-ebZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h3r-a0-Iut" secondAttribute="trailing" constant="-20" id="LDn-Gb-uaQ"/>
+                            <constraint firstItem="h3r-a0-Iut" firstAttribute="leading" secondItem="Gfj-ph-6gR" secondAttribute="leading" id="SLZ-M5-qka"/>
+                            <constraint firstItem="fJU-Dg-yBs" firstAttribute="top" secondItem="h3r-a0-Iut" secondAttribute="bottom" id="XJD-EK-Oca"/>
                             <constraint firstItem="fJU-Dg-yBs" firstAttribute="top" secondItem="pj9-SN-Z96" secondAttribute="bottom" id="YvU-xX-7gK"/>
-                            <constraint firstItem="fJU-Dg-yBs" firstAttribute="top" secondItem="h3r-a0-Iut" secondAttribute="bottom" id="hha-hN-VQz"/>
-                            <constraint firstItem="h3r-a0-Iut" firstAttribute="top" secondItem="Gfj-ph-6gR" secondAttribute="topMargin" id="tdS-u9-nTK"/>
+                            <constraint firstItem="h3r-a0-Iut" firstAttribute="top" secondItem="moh-TR-dPy" secondAttribute="bottom" id="tse-wi-9fc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="pj9-SN-Z96" secondAttribute="trailing" constant="-20" id="w15-VH-6CA"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="5ru-Ba-9LD"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -381,14 +383,14 @@
                         <outlet property="background" destination="Gfj-ph-6gR" id="UW4-eA-gcU"/>
                         <outlet property="bottomMargin" destination="DhR-cM-pui" id="Rak-jd-nyX"/>
                         <outlet property="breedsButton" destination="2Q4-VY-f3B" id="QZJ-AB-MEq"/>
-                        <outlet property="favoritesButton" destination="U1T-di-ObF" id="fwq-Xj-62Q"/>
+                        <outlet property="favoritesButton" destination="U1T-di-ObF" id="4wq-lc-hbb"/>
                         <outlet property="savedSearchesButton" destination="Uql-eq-dNV" id="2zp-yT-h6R"/>
                         <outlet property="searchButton" destination="uL9-De-f4a" id="gBv-SB-E8t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pN6-sC-rdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="778" y="-51"/>
+            <point key="canvasLocation" x="776.79999999999995" y="-51.724137931034484"/>
         </scene>
         <!--About Feline Finder-->
         <scene sceneID="02g-sJ-7eq">
@@ -624,18 +626,18 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </view>
                     <toolbarItems>
                         <barButtonItem image="Cat-50" id="4Tu-bH-z7S">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="Ah7-4n-0Wa" kind="show" identifier="showDetail" id="37K-yQ-f0Z"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7Ao-8C-bkk"/>
                         <barButtonItem image="Statistics Filled-50" id="fu1-52-wHV">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="p1a-a1-XVn"/>
                         <barButtonItem image="cat_footprint" id="5gy-1H-C21">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="9Ce-aR-hIR" kind="show" identifier="petFinder" id="ImW-lV-RL8"/>
                             </connections>
@@ -663,16 +665,16 @@ Thanks to the members of PhillyCocoa for their great help and support </string
         <scene sceneID="Exg-O4-bVk">
             <objects>
                 <tableViewController storyboardIdentifier="BreedList" id="Wyb-u5-6WS" customClass="MasterViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="120" sectionHeaderHeight="18" sectionFooterHeight="18" id="xZK-YC-S4U">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="xZK-YC-S4U">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexColor" red="0.99607843137254903" green="0.98039215686274506" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="ya3-sZ-8Zt" customClass="MasterViewCell" customModule="Feline_Finder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ya3-sZ-8Zt" id="iET-NF-lP9">
                                     <rect key="frame" x="0.0" y="0.0" width="342" height="100"/>
@@ -767,18 +769,18 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems>
                         <barButtonItem title="Item" image="Cat Filled-50" id="Kdh-CI-H7h">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FvZ-lo-hbI"/>
                         <barButtonItem image="Statistics-50" id="SNE-X0-QvJ">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="G3p-bv-llh" kind="show" identifier="BreedStats" id="OMO-Bi-Wpq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="XOY-F6-FI3"/>
                         <barButtonItem image="cat_footprint" id="iUw-xt-6aH">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="9Ce-aR-hIR" kind="show" identifier="petFinder" id="cLM-Np-udd"/>
                             </connections>
@@ -809,11 +811,11 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yFg-fx-wpq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="G4n-LG-qQ5">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -821,8 +823,9 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="G4n-LG-qQ5" id="IP3-R3-ftd">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -830,16 +833,16 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                             <outlet property="delegate" destination="yv5-4F-iXG" id="8bS-cK-r6V"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="P0v-4U-NvQ"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Choose Filter Options Below" id="BhV-lr-F3Z">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="1Hj-Yo-56M">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="W78-wG-aw4" kind="unwind" identifier="backToFilterOptions" unwindAction="unwindToPetFinderFind:" id="KaK-ui-uIW"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="J2b-aF-AhW">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="SavedTapped:" destination="yv5-4F-iXG" id="x4C-xo-3e3"/>
                             </connections>
@@ -863,7 +866,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="breeds" id="mds-Z3-iJP" customClass="FilterOptionsBreedTableCell" customModule="Feline_Finder" customModuleProvider="target">
@@ -879,7 +882,6 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                                 <constraint firstAttribute="width" constant="100" id="HcK-pe-sAD"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0pG-eA-g9I">
@@ -889,7 +891,6 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                                 <constraint firstAttribute="height" constant="25" id="4lM-5J-EBd"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -923,7 +924,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                                 <constraint firstAttribute="height" constant="21.5" id="Mdo-JW-JCK"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jqt-7p-8hc">
@@ -969,7 +970,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                                 <constraint firstAttribute="height" constant="21.5" id="coV-te-t8f"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1003,13 +1004,11 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                                 <constraint firstAttribute="width" constant="100" id="VHh-dj-8Gs"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TF1-pZ-486">
                                             <rect key="frame" x="119" y="11" width="212" height="22"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1039,18 +1038,20 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </tableView>
                     <navigationItem key="navigationItem" title="Filter Options" id="XXF-lE-gad">
                         <barButtonItem key="leftBarButtonItem" title="Search" id="w1a-1t-JV2">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="DoneTapped:" destination="5gS-ot-fmD" id="wKU-iO-94C"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="trash" id="F8h-uq-YYt">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="clearTapped:" destination="5gS-ot-fmD" id="y74-R7-tzQ"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="import" style="plain" id="lCL-fK-iMg" userLabel="Import">
-                                <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="importQuestions:" destination="5gS-ot-fmD" id="PTo-jO-snw"/>
                                 </connections>
@@ -1079,7 +1080,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                         <viewControllerLayoutGuide type="bottom" id="iuU-KW-wF0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qP7-Rs-0Z2">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -1108,10 +1109,10 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                         <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="f38-sf-9yl">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f38-sf-9yl" id="pFW-Or-PSf">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GF4-AL-ZnL">
@@ -1269,17 +1270,17 @@ Thanks to the members of PhillyCocoa for their great help and support </string
         <!--Pet Finder View Detail Controller-->
         <scene sceneID="oRm-pO-xWM">
             <objects>
-                <viewController id="I13-hk-Lpk" customClass="PetFinderViewDetailController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FelineDetail" id="I13-hk-Lpk" customClass="PetFinderViewDetailController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vtb-ZZ-dRQ" propertyAccessControl="none"/>
                         <viewControllerLayoutGuide type="bottom" id="Ivp-wN-A98"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Sfa-4h-d5n">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="94" width="375" height="573"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xha-aL-8rJ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </webView>
@@ -1310,8 +1311,9 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                         <state key="normal" title="Button" image="heart"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1364,7 +1366,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Iau-WG-o6L">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="scrollIndicatorInsets" minX="1" minY="1" maxX="1" maxY="1"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Rsg-we-tq4">
                             <size key="itemSize" width="200" height="200"/>
@@ -1380,23 +1382,22 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ae0-HS-m8h">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ae0-HS-m8h">
                                             <rect key="frame" x="15" y="7" width="170" height="141"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5QK-gj-OjF">
                                             <rect key="frame" x="0.0" y="163" width="200" height="20"/>
-                                            <color key="backgroundColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="200" id="QgO-Rv-maE"/>
                                                 <constraint firstAttribute="height" constant="20" id="XDe-on-VOR"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BUq-1y-WBy">
                                             <rect key="frame" x="0.0" y="183" width="200" height="10"/>
-                                            <color key="backgroundColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="10" id="Vu9-CI-ywN"/>
                                             </constraints>
@@ -1439,9 +1440,8 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WER-1d-F35">
                                     <rect key="frame" x="68" y="8" width="692" height="34"/>
-                                    <color key="backgroundColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.99607843139999996" green="0.98039215690000003" blue="0.3411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iwU-eC-mdr">
@@ -1457,7 +1457,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                     </constraints>
                                 </activityIndicatorView>
                             </subviews>
-                            <color key="backgroundColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="iwU-eC-mdr" firstAttribute="top" secondItem="LAf-xe-Y3A" secondAttribute="top" id="2Rb-9H-sAN"/>
                                 <constraint firstItem="WER-1d-F35" firstAttribute="leading" secondItem="LAf-xe-Y3A" secondAttribute="leadingMargin" constant="60" id="5Gb-BR-JNa"/>
@@ -1484,32 +1484,32 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </collectionView>
                     <toolbarItems>
                         <barButtonItem image="Cat-50" id="Rol-xn-6IJ">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Ah7-4n-0Wa" kind="show" identifier="showDetail" id="akO-1F-tnd"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="kGf-12-QNB"/>
                         <barButtonItem image="Statistics-50" id="fM5-g5-Dru">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="G3p-bv-llh" kind="show" identifier="BreedStats" id="c8d-6J-J8p"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="tK3-IA-9eh"/>
                         <barButtonItem image="cat_footprint_filled-512" id="s9h-ht-buD">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="CfJ-4g-VLY">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="bKC-Fy-S0a">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="backButtonTapped:" destination="9Ce-aR-hIR" id="Eq9-in-Kuu"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="weX-CI-Xo5">
-                            <color key="tintColor" red="0.53725490200000003" green="0.41176470590000003" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="5gS-ot-fmD" kind="show" identifier="searchOptions" id="mDL-5T-cbq"/>
                             </connections>
@@ -1599,7 +1599,7 @@ INFORMATION</string>
                                                 <rect key="frame" x="0.0" y="10" width="343" height="28"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="55K-6x-ewh" id="izo-cj-WKi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="27.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA1-NG-7Nr">
@@ -1751,10 +1751,10 @@ INFORMATION</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="VQF-UG-HYj" customClass="SavedLists2TableCell" customModule="Feline_Finder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQF-UG-HYj" id="WXi-bN-KqD">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1793,6 +1793,7 @@ INFORMATION</string>
         <image name="cat_footprint_filled-512" width="30" height="30"/>
         <image name="directions" width="40" height="40"/>
         <image name="email" width="40" height="40"/>
+        <image name="favorites" width="120" height="120"/>
         <image name="ffadopt" width="120" height="120"/>
         <image name="ffbackground-1" width="556" height="940"/>
         <image name="fffavorite" width="120" height="120"/>
@@ -1808,13 +1809,13 @@ INFORMATION</string>
         <image name="youtube.png" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c8d-6J-J8p"/>
-        <segue reference="cLM-Np-udd"/>
         <segue reference="akO-1F-tnd"/>
+        <segue reference="cLM-Np-udd"/>
         <segue reference="v06-zE-Gal"/>
+        <segue reference="c8d-6J-J8p"/>
         <segue reference="mDL-5T-cbq"/>
         <segue reference="iMN-ln-jcJ"/>
         <segue reference="TXq-ma-S0a"/>
-        <segue reference="zqS-YE-Ck4"/>
+        <segue reference="B7s-gb-5fq"/>
     </inferredMetricsTieBreakers>
 </document>

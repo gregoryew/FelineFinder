@@ -41,6 +41,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         self.collectionView?.delegate = self
         
+        self.collectionView?.backgroundColor = lightBackground
+        
         var width: CGFloat = 0.0
         if UIDevice.current.userInterfaceIdiom == .pad {
             width = collectionView!.frame.width / 3.0

@@ -88,8 +88,8 @@ class BreedStatsViewController: UIViewController {
         let lbl = UILabel()
         lbl.frame = CGRect(x: pos.x, y: pos.y - 60, width: 400, height: 18)
         lbl.font = lbl.font.withSize(10)
-        lbl.textColor = UIColor.yellow
-        lbl.text = "Legend: Purple = Actual ⎟ Pin = Your Preference"
+        lbl.textColor = textColor
+        lbl.text = "Legend: Yellow = Actual ⎟ Pin = Your Preference"
         scrollView.addSubview(lbl)
         
         for breedStat in breedStats {
@@ -149,9 +149,9 @@ class BreedStatsViewController: UIViewController {
         default: doesntMatter = false
         }
         if doesntMatter {
-            lbl.textColor = UIColor.lightGray
+            lbl.textColor = darkTextColor
         } else {
-            lbl.textColor = UIColor.yellow
+            lbl.textColor = textColor
         }
         lbl.font = lbl.font.withSize(15)
         lbl.text = "\(label): \(valDesc)"
@@ -167,19 +167,19 @@ class BreedStatsViewController: UIViewController {
         lbl.frame = CGRect(x: start.x, y: start.y - 25, width: 200, height: 18)
         lbl.font = lbl.font.withSize(15)
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
-            lbl.textColor = UIColor.lightGray
+            lbl.textColor = darkTextColor
         } else {
-            lbl.textColor = UIColor.yellow
+            lbl.textColor = textColor
         }
         lbl.text = name
         scrollView.addSubview(lbl)
         
         if ((l == 0.0) && (h == 100.0) && (dr == true)) {
-            let lightRed  = UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0)
+            let lightRed  = textColor
             drawLine(startpoint: start, endpoint: end, linecolor: lightRed.cgColor, linewidth:15.0)
         } else {
             //red part of line
-            drawLine(startpoint: start, endpoint: end,linecolor: UIColor.purple.cgColor,linewidth:15.0)
+            drawLine(startpoint: start, endpoint: end,linecolor: darkBackground.cgColor,linewidth:15.0)
         }
         
         //gray part of line
