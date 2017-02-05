@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class BreedStatsViewController: UIViewController {
+class BreedStatsViewController: UIViewController, NavgationTransitionable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     var whichSeque: String = ""
     var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "")
     var breedStat: BreedStats = BreedStats(id: 0, desc: "", percent: 0, lowRange: 0, highRange: 0, value: "")
@@ -24,6 +27,21 @@ class BreedStatsViewController: UIViewController {
     let distance=35
     
     var offSet = 20
+    
+    @IBAction func detailsTapped(_ sender: Any) {
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
+        details.breed = globalBreed!
+        navigationController?.tr_pushViewController(details, method: DemoTransition.Slide(direction: DIRECTION.left))
+    }
+    
+    @IBAction func adoptACatTapped(_ sender: Any) {
+        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
+        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.Slide(direction: DIRECTION.right))
+    }
+    
+    @IBAction func goBack(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +59,6 @@ class BreedStatsViewController: UIViewController {
         
         self.scrollView.backgroundColor = UIColor.gray
         
-    }
-    
-    @IBAction func unwindToPetFinderPictureViewer(_ sender: UIStoryboardSegue)
-    {
-        //let sourceViewController = sender.sourceViewController
-        // Pull any data from the view controller which initiated the unwind segue.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -106,24 +118,6 @@ class BreedStatsViewController: UIViewController {
             }
         }
 
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            (segue.destination as! DetailViewController).breed = breed
-        }
-        /*
-        else if (segue.identifier == "breederList") {
-            (segue.destinationViewController as! BreedersViewController).breed = breed
-        }
-        else if (segue.identifier == "BreederMap") {
-            (segue.destinationViewController as! MapViewController).breed = breed
-        }
-        */
-        else if (segue.identifier == "petFinder") {
-            let b = self.breed as Breed?
-            (segue.destination as! AdoptableCatsViewController).breed = b!
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -227,13 +221,12 @@ class BreedStatsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:true);
+        self.navigationController?.setToolbarHidden(false, animated:false);
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:true);
+        self.navigationController?.setToolbarHidden(true, animated:false);
     }
-
 }

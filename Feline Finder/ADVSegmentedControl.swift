@@ -31,19 +31,19 @@ import UIKit
         }
     }
     
-    @IBInspectable var unselectedLabelColor : UIColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0) {
+    @IBInspectable var unselectedLabelColor : UIColor = UIColor.gray {
         didSet {
             setSelectedColors()
         }
     }
     
-    @IBInspectable var thumbColor : UIColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0){
+    @IBInspectable var thumbColor : UIColor = UIColor.gray {
         didSet {
             setSelectedColors()
         }
     }
     
-    @IBInspectable var borderColor : UIColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0) {
+    @IBInspectable var borderColor : UIColor = UIColor.gray {
         didSet {
             layer.borderColor = borderColor.cgColor
         }

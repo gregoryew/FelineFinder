@@ -107,6 +107,7 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
             let breed = breeds[titles[indexPath.section]]![indexPath.row]
             let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
             details.breed = breed
+            globalBreed = breed
             //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.omni(keyView: cell), completion: {})
             //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.blixt(keyView: cell.CatImage,  to: CGRect(x: self.view.frame.width - cell.CatImage.frame.width, y: 80, width: cell.CatImage.frame.width, height: cell.CatImage.frame.height)), completion: {})
             navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.page, completion: {})
@@ -183,6 +184,7 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
         breedStat = breeds[titles[indexPath.section]]![indexPath.row]
+        globalBreed = breedStat
         self.performSegue(withIdentifier: "BreedStats", sender: nil)
     }
     
@@ -227,8 +229,8 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         */
-        header.lightColor = lightBackground
-        header.darkColor = darkBackground
+        header.lightColor = UIColor.blue
+        header.darkColor = UIColor.darkGray
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

@@ -308,7 +308,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
     {
         super.viewWillDisappear(animated)
         self.favoriteType = .RescueGroup
-        self.navigationController?.setToolbarHidden(false, animated:true)
+        self.navigationController?.setToolbarHidden(false, animated:false)
     }
     
     var emailAddress: [String] = [String]()
@@ -338,7 +338,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.navigationController?.setToolbarHidden(true, animated:true)
+        self.navigationController?.setToolbarHidden(true, animated:false)
         
         if (!Favorites.loaded) {Favorites.LoadFavorites()}
         

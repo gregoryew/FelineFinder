@@ -16,6 +16,21 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     
     var breed: Breed?
     
+    @IBAction func BreedStatsTapped(_ sender: Any) {
+        let breedStats = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedStats") as! BreedStatsViewController
+        breedStats.breed = globalBreed!
+        navigationController?.tr_pushViewController(breedStats, method: DemoTransition.Slide(direction: DIRECTION.right))
+    }
+    
+    @IBAction func AdoptACatTapped(_ sender: Any) {
+        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
+        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.Slide(direction: DIRECTION.right))
+    }
+    
+    @IBAction func goBack(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
+    
     func configureView() {
         let b = self.breed as Breed?
         self.title = b!.BreedName
@@ -86,7 +101,10 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:true);
+        self.navigationController?.setToolbarHidden(false, animated:false)
+        self.configureView()
+        self.webView.delegate = self
+        self.webView.allowsInlineMediaPlayback = true
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -99,10 +117,10 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
             let b = self.breed as Breed?
             (segue.destination as! BreedStatsViewController).breed = b!
         }
-        else if (segue.identifier == "petFinder") {
-            let b = self.breed as Breed?
-            (segue.destination as! AdoptableCatsViewController).breed = b!
-        }
+        //else if (segue.identifier == "petFinder") {
+        //    let b = self.breed as Breed?
+        //    (segue.destination as! AdoptableCatsViewController).breed = b!
+        //}
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {

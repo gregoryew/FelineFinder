@@ -63,7 +63,7 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setToolbarHidden(true, animated:true);
+        self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     @IBAction func GoBackTapped(_ sender: AnyObject) {

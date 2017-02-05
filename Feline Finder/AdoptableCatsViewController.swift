@@ -13,16 +13,11 @@ import TransitionAnimation
 class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable {
 
     @IBAction func backButtonTapped(_ sender: AnyObject) {
-        if breed?.BreedName == "All Breeds" {
-            performSegue(withIdentifier: "MainMenu", sender: nil)
-        } else {
-            performSegue(withIdentifier: "MasterView", sender: nil)
-        }
+        _ = navigationController?.tr_popViewController()
     }
     
     let handlerDelay = 1.5
     
-    var breed: Breed?
     var pets: RescuePetList?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
     var locationManager: CLLocationManager?
@@ -34,6 +29,24 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
+    }
+    
+    @IBAction func searchOptions(_ sender: Any) {
+        let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
+        PetFinderFind.breed = globalBreed
+        navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
+    }
+    
+    @IBAction func detailsTapped(_ sender: Any) {
+        let Details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
+        Details.breed = globalBreed
+        navigationController?.tr_pushViewController(Details, method: DemoTransition.Slide(direction: DIRECTION.left))
+    }
+    
+    @IBAction func breedStats(_ sender: Any) {
+        let BreedStats = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedStats") as! BreedStatsViewController
+        BreedStats.breed = globalBreed!
+        navigationController?.tr_pushViewController(BreedStats, method: DemoTransition.Slide(direction: DIRECTION.left))
     }
     
     override func viewDidLoad() {
@@ -64,7 +77,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         //self.pets = PetFinderPetList()
         self.pets = RescuePetList()
         
-        self.navigationItem.title = "\(breed!.BreedName)"
+        self.navigationItem.title = "\(globalBreed!.BreedName)"
         if (zipCode != "")
         {
             self.loadPets()
@@ -97,11 +110,11 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                 self.collectionView?.infiniteScrollingView.stopAnimating()
                 zipCodeGlobal = ""
                 repeat {
-                self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
+                self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
                     self.pets = petList as? RescuePetList
                     self.totalRow = -1
                     self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
-                    PetFinderBreeds[self.breed!.BreedName] = self.pets
+                    PetFinderBreeds[(globalBreed?.BreedName)!] = self.pets
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
@@ -123,51 +136,46 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     {
         super.viewWillAppear(animated)
         setFilterDisplay()
-        if PetFinderBreeds[self.breed!.BreedName] != nil {
-            if PetFinderBreeds[self.breed!.BreedName]?.count == 0 {
-                PetFinderBreeds[self.breed!.BreedName] = nil
+        if PetFinderBreeds[(globalBreed?.BreedName)!] != nil {
+            if (PetFinderBreeds[(globalBreed?.BreedName)!]?.count)! == 0 {
+                PetFinderBreeds[(globalBreed?.BreedName)!] = nil
                 zipCodeGlobal = ""
             }
         }
+        if viewPopped {loadPets(); viewPopped = false}
     }
     
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("segue=\(segue.identifier)")
         if segue.identifier == "searchOptions" {
-            (segue.destination as! PetFinderFindViewController).breed = breed
+            (segue.destination as! PetFinderFindViewController).breed = globalBreed
         }
         else if segue.identifier == "BreedStats" {
             (segue.destination as! BreedStatsViewController).whichSeque = "BreedList"
-            let b = self.breed as Breed?
+            let b = globalBreed as Breed?
             (segue.destination as! BreedStatsViewController).breed = b!
         }
         else if (segue.identifier == "showDetail") {
-            let b = self.breed as Breed?
+            let b = globalBreed as Breed?
             (segue.destination as! DetailViewController).breed = b!
         }
-        else if segue.identifier == "MasterToDetail" {
-            if let indexPath = self.collectionView?.indexPathsForSelectedItems?[0] {
-                let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
-                (segue.destination as! PetFinderViewDetailController).pet = petData
-                (segue.destination as! PetFinderViewDetailController).petID = petData.petID
-                (segue.destination as! PetFinderViewDetailController).petName = petData.name
-                (segue.destination as! PetFinderViewDetailController).breedName = breed!.BreedName
-            }
-        }
     }
+    */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if breed!.BreedName == "All Breeds" {
-            self.navigationController?.setToolbarHidden(true, animated:true);
+        if globalBreed!.BreedName == "All Breeds" {
+            self.navigationController?.setToolbarHidden(true, animated:false);
         } else {
-            self.navigationController?.setToolbarHidden(false, animated:true);
+            self.navigationController?.setToolbarHidden(false, animated:false);
         }
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
         
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:true);
+        self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     override func didReceiveMemoryWarning() {
@@ -184,7 +192,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     func Refresh() {
         zipCodeGlobal = ""
-        PetFinderBreeds[self.breed!.BreedName] = nil
+        PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         self.loadPets()
         self.collectionView?.reloadData()
     }
@@ -234,7 +242,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         self.pets! = RescuePetList()
         //self.pets! = PetFinderPetList()
         
-        if let p = PetFinderBreeds[self.breed!.BreedName]
+        if let p = PetFinderBreeds[(globalBreed?.BreedName)!]
         {
             self.pets = p as? RescuePetList
         }
@@ -258,12 +266,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             self.collectionView?.reloadData()
             zipCodeGlobal = ""
             bnGlobal = ""
-            self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
+            self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
                 self.pets = petList as? RescuePetList
                 if self.pets?.status == "ok" {
                     self.totalRow = -1
                     self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
-                    PetFinderBreeds[self.breed!.BreedName] = self.pets
+                    PetFinderBreeds[(globalBreed?.BreedName)!] = self.pets
                     DispatchQueue.main.async {
                         self.collectionView?.reloadData()
                     }
@@ -272,12 +280,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                     bnGlobal = ""
                     sleep(1)
                     self.pets!.resultStart = 0
-                    self.pets!.loadPets(self.collectionView!, bn: self.breed!, zipCode: zipCode) { (petList) -> Void in
+                    self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
                         self.pets = petList as? RescuePetList
                         if self.pets?.status == "ok" {
                             self.totalRow = -1
                             self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
-                            PetFinderBreeds[self.breed!.BreedName] = self.pets
+                            PetFinderBreeds[(globalBreed?.BreedName)!] = self.pets
                             DispatchQueue.main.async {
                                 self.collectionView?.reloadData()
                             }
@@ -343,6 +351,17 @@ extension AdoptableCatsViewController {
             }
         }
         return c
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
+    {
+        let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
+        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FelineDetail") as! PetFinderViewDetailController
+        FelineDetail.pet = petData
+        FelineDetail.petID = petData.petID
+        FelineDetail.petName = petData.name
+        FelineDetail.breedName = globalBreed!.BreedName
+        navigationController?.tr_pushViewController(FelineDetail, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

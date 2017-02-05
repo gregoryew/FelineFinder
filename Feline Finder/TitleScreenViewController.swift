@@ -28,23 +28,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //background.frame = CGRectMake(0, 0, background.frame.width, background.frame.height)
-        /*
-        let img = UIImageView(image: UIImage(named: "background"))
-        img.contentMode = .ScaleToFill
-        if UIDevice().type != .iPhone6S {
-            img.frame = CGRectMake(0, 0, background.frame.width, background.frame.height - 5)
-        }
-        img.tag = 999
-        if let viewWithTag = background.viewWithTag(999) {
-            viewWithTag.removeFromSuperview()
-        } else {
-            print("No!")
-        }
-        background.addSubview(img)
-        background.sendSubviewToBack(img)
-        background.backgroundColor = UIColor.blackColor()
-        */
+
         if let viewWithTag = background.viewWithTag(999) {
             viewWithTag.sendSubview(toBack: self.view)
         } else {
@@ -54,7 +38,6 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
-        //timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: #selector(TitleScreenViewController.doAnimation), userInfo: nil, repeats: true)
     }
     
     @IBAction func AdoptACat(_ sender: AnyObject) {
@@ -95,22 +78,9 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         present(alertController, animated: true, completion: nil)
     }
     
-    /*
-    @IBAction func WarningTouchUpInside(sender: AnyObject) {
-        let alert = UIAlertView()
-        alert.title = "Alert"
-        alert.message = "This App is provided as is without any guarantees or warranty.  In association with the production Gregory Edward Williams makes no warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, of title, or of noninfringment of third party rights.  Use of the product by a user is at the user's risk."
-        alert.addButtonWithTitle("Understood")
-        alert.show()
-    }
-    */
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bottomMargin.constant = 5
-        
-        //timer = NSTimer.scheduledTimerWithTimeInterval(0.25, target: self, selector: #selector(TitleScreenViewController.doAnimation), userInfo: nil, repeats: true)
-        
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -126,29 +96,6 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         //self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
-    
-    /*
-    func doAnimation() {
-        if counter == 10
-        {
-            timer.invalidate()
-        }
-        else {
-            counter += 1
-            welcomeImage.image = UIImage(named: "welcome_cat_\(counter).png")
-        }
-        
-    }
-    */
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        /*
-        if segue.identifier == "AdoptACat" {
-            let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
-            (segue.destination as! AdoptableCatsViewController).breed = breed
-        }
-        */
-     }
     
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var breedsButton: UIButton!
@@ -168,15 +115,10 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func favoritesTapped(_ sender: Any) {
-        
-        //let f = view.superview?.window?.rootViewController?.view.frame
-        //let zoomedRect = CGRect(x: (f?.minX)!, y: (f?.minY)!, width: (f?.width)! * 4, height: (f?.height)! * 4)
-        
-        //favoritesButton.zoom(zoomedRect: zoomedRect)
+
         let favorites = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as! FavoritesViewController
         favorites.viewDidLoad()
         navigationController?.tr_pushViewController(favorites, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
-        //navigationController?.tr_pushViewController(favorites, method: .Custom(FadeTransitionAnimatin()))
     }
     
     func modalViewControllerDismiss(callbackData data: Any?) {
@@ -191,7 +133,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     @IBAction func adoptCatsTapped(_ sender: Any) {
         let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
-        adoptACat.breed = breed
+        globalBreed = breed
         navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
 

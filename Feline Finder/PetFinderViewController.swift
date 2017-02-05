@@ -61,15 +61,15 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if breed!.BreedName == "All Breeds" {
-            self.navigationController?.setToolbarHidden(true, animated:true);
+            self.navigationController?.setToolbarHidden(true, animated:false);
         } else {
-            self.navigationController?.setToolbarHidden(false, animated:true);
+            self.navigationController?.setToolbarHidden(false, animated:false);
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:true);
+        self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     /*

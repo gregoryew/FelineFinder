@@ -16,6 +16,7 @@ enum DemoTransition {
     case SlideTabBar
     case CIZoom(transImage: transitionImage)
     case Flip
+    case Slide(direction: DIRECTION)
     //case Zoom(startingRect: CGRect, endingRect: CGRect)
 }
 
@@ -32,6 +33,8 @@ extension DemoTransition: TransitionAnimationable {
             return CIZoomAnimation(transImage: transitionImage)
         case .Flip :
             return FlipAnimation()
+        case let .Slide(dir) :
+            return SlideAnimation(direction: dir)
         //case let .Zoom(startingRect, endingRect):
         //    return ZoomAnimation(startingRect: startingRect, endingRect: endingRect)
         }
@@ -41,9 +44,11 @@ extension DemoTransition: TransitionAnimationable {
 let textColor = UIColor.black //UIColor(red: 255/255, green: 243/255, blue: 0/255, alpha: 1)
 let darkTextColor = UIColor.black //UIColor(red: 154/255, green: 217/255, blue: 47/255, alpha: 1)
 let lightBackground = UIColor.white //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
-let darkBackground = UIColor.gray //UIColor(red: 128/255, green: 74/255, blue: 187/255, alpha: 1)
+let darkBackground = UIColor.blue //UIColor(red: 128/255, green: 74/255, blue: 187/255, alpha: 1)
+let headerLightColor = UIColor.blue
+let headerDarkColor = UIColor.darkGray
 //let darkBackground = UIColor(red: 0, green: 0, blue: 131/255, alpha: 1)
-let hiliteColor = UIColor.darkGray //UIColor.cyan
+let hiliteColor = UIColor.lightGray //UIColor.cyan
 
 var whichSegueGlobal = ""
 var cameFromFiltering = false
@@ -59,6 +64,8 @@ var sortFilter: String = "animalLocationDistance"
 var distance = "4000"
 var updated = Date()
 var rescueGroupsLastQueried = Date()
+var viewPopped = false
+var globalBreed: Breed?
 
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.

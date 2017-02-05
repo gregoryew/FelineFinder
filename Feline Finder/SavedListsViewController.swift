@@ -294,8 +294,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
         */
-        header.lightColor = lightBackground
-        header.darkColor = darkBackground
+        header.lightColor = headerLightColor
+        header.darkColor = headerDarkColor
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -307,7 +307,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:true);
+        self.navigationController?.setToolbarHidden(false, animated:false);
     }
     
     var tr_pushTransition: TRNavgationTransitionDelegate?

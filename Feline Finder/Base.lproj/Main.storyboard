@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uhP-hr-JSJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="uhP-hr-JSJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,10 +36,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell autoresizesSubviews="NO" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="100" id="Wbq-FX-vPi" customClass="FavoriteTableCell" customModule="Feline_Finder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wbq-FX-vPi" id="u60-Yz-jyo">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pBK-FK-5iN">
@@ -84,12 +84,15 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Favorites" id="KHI-PB-7lh">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="h4I-hp-aw0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="kCY-R1-8TB" kind="unwind" unwindAction="unwindToMainMenu:" id="Y8c-0w-hjX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JbO-c3-tDg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="kCY-R1-8TB" userLabel="Exit" sceneMemberID="exit"/>
@@ -113,14 +116,14 @@
                                 <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationLevel="2" indentationWidth="10" reuseIdentifier="Cell" textLabel="34j-iH-osT" style="IBUITableViewCellStyleDefault" id="9r8-R9-1Uy" customClass="SavedListsTableCell" customModule="Feline_Finder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9r8-R9-1Uy" id="qS8-3s-4wS">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="34j-iH-osT">
-                                                    <rect key="frame" x="35" y="0.0" width="305" height="43"/>
+                                                    <rect key="frame" x="35" y="0.0" width="305" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -162,11 +165,13 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Selections" id="RF5-zc-czi">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="2oc-Kq-Wv3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="goBackTapped:" destination="MrL-lO-yTp" id="eva-v0-2Hj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="Save As Filled" id="Iqv-tD-Kub">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="SaveQueryTouchUpInside:" destination="MrL-lO-yTp" id="Uf8-RE-0G6"/>
                             </connections>
@@ -603,7 +608,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
         <!--Breed Stats View Controller-->
         <scene sceneID="Fnz-cZ-cmY">
             <objects>
-                <viewController id="G3p-bv-llh" customClass="BreedStatsViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="breedStats" id="G3p-bv-llh" customClass="BreedStatsViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zgg-ol-UMc"/>
                         <viewControllerLayoutGuide type="bottom" id="Npu-qF-D4z"/>
@@ -626,27 +631,28 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </view>
                     <toolbarItems>
                         <barButtonItem image="Cat-50" id="4Tu-bH-z7S">
-                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="Ah7-4n-0Wa" kind="show" identifier="showDetail" id="37K-yQ-f0Z"/>
+                                <action selector="detailsTapped:" destination="G3p-bv-llh" id="SEA-MI-IxJ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="7Ao-8C-bkk"/>
                         <barButtonItem image="Statistics Filled-50" id="fu1-52-wHV">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="p1a-a1-XVn"/>
                         <barButtonItem image="cat_footprint" id="5gy-1H-C21">
-                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="9Ce-aR-hIR" kind="show" identifier="petFinder" id="ImW-lV-RL8"/>
+                                <action selector="adoptACatTapped:" destination="G3p-bv-llh" id="jjw-br-16m"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" prompt="Tap Icons for Info, Stats and Adoption" id="JNQ-wu-mZg">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="7i2-P2-tal">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="qUu-pq-2ZK" kind="unwind" unwindAction="unwindToMasterView:" id="nA8-l0-S8h"/>
+                                <action selector="goBack:" destination="G3p-bv-llh" id="q7L-UD-dZX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -657,9 +663,8 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HcB-cH-32W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="qUu-pq-2ZK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3275.625" y="-64.436619718309856"/>
+            <point key="canvasLocation" x="3781" y="-195"/>
         </scene>
         <!--Breeds-->
         <scene sceneID="Exg-O4-bVk">
@@ -717,7 +722,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </tableView>
                     <navigationItem key="navigationItem" title="Breeds" prompt="Tap On The Breed You Want More Info About" id="K0s-UU-1da">
                         <barButtonItem key="leftBarButtonItem" image="back-1" style="plain" id="hLU-8L-hrS">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="goBackTapped:" destination="Wyb-u5-6WS" id="Ab6-S1-DB3"/>
                             </connections>
@@ -769,27 +774,28 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <toolbarItems>
                         <barButtonItem title="Item" image="Cat Filled-50" id="Kdh-CI-H7h">
-                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="FvZ-lo-hbI"/>
                         <barButtonItem image="Statistics-50" id="SNE-X0-QvJ">
-                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="G3p-bv-llh" kind="show" identifier="BreedStats" id="OMO-Bi-Wpq"/>
+                                <action selector="BreedStatsTapped:" destination="Ah7-4n-0Wa" id="R4W-k8-Tfa"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="XOY-F6-FI3"/>
                         <barButtonItem image="cat_footprint" id="iUw-xt-6aH">
-                            <color key="tintColor" red="0.0039215686269999999" green="0.6588235294" blue="0.73725490199999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="9Ce-aR-hIR" kind="show" identifier="petFinder" id="cLM-Np-udd"/>
+                                <action selector="AdoptACatTapped:" destination="Ah7-4n-0Wa" id="Swy-zF-XEf"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Title" prompt="Tap Icons for Info, Stats and Adoption" id="E0r-TJ-HmN">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="66a-bf-0n0">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="back:" destination="Ah7-4n-0Wa" id="jSh-sv-HRB"/>
+                                <action selector="goBack:" destination="Ah7-4n-0Wa" id="7fO-lD-O0P"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -802,20 +808,20 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2238.75" y="5.28169014084507"/>
+            <point key="canvasLocation" x="3070" y="-196"/>
         </scene>
         <!--Choose An Option Below-->
         <scene sceneID="b8n-aw-2Bj">
             <objects>
-                <tableViewController title="Choose An Option Below" id="yv5-4F-iXG" customClass="FilterOptionsListTableViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="listOptions" title="Choose An Option Below" id="yv5-4F-iXG" customClass="FilterOptionsListTableViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yFg-fx-wpq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="sectionIndexTrackingBackgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexTrackingBackgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="G4n-LG-qQ5">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
@@ -856,12 +862,12 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cIM-LP-PAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="W78-wG-aw4" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-358.5" y="1518"/>
+            <point key="canvasLocation" x="-1550" y="1526"/>
         </scene>
         <!--Search Options-->
         <scene sceneID="5Es-mT-ram">
             <objects>
-                <tableViewController title="Search Options" id="5gS-ot-fmD" customClass="PetFinderFindViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PetFinderFind" title="Search Options" id="5gS-ot-fmD" customClass="PetFinderFindViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xhD-Ic-Gh1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1038,20 +1044,20 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </tableView>
                     <navigationItem key="navigationItem" title="Filter Options" id="XXF-lE-gad">
                         <barButtonItem key="leftBarButtonItem" title="Search" id="w1a-1t-JV2">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="DoneTapped:" destination="5gS-ot-fmD" id="wKU-iO-94C"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="trash" id="F8h-uq-YYt">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="clearTapped:" destination="5gS-ot-fmD" id="y74-R7-tzQ"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="import" style="plain" id="lCL-fK-iMg" userLabel="Import">
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <barButtonItem enabled="NO" title="Item" style="plain" id="lCL-fK-iMg" userLabel="Import">
+                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="importQuestions:" destination="5gS-ot-fmD" id="PTo-jO-snw"/>
                                 </connections>
@@ -1060,16 +1066,14 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <segue destination="Ywi-UW-0n8" kind="unwind" identifier="PetFinderList" unwindAction="unwindToPetFinderList:" id="r1z-CH-JwI"/>
                         <segue destination="yv5-4F-iXG" kind="show" identifier="chooseFilterOptions" id="QM2-5k-qiR"/>
                         <segue destination="AZH-fF-sN6" kind="show" identifier="answerQuestions" id="B7s-gb-5fq"/>
                         <segue destination="2EY-km-FCN" kind="show" identifier="importFromSaved" id="vM1-te-ezc"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7Y-bv-Xll" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Ywi-UW-0n8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="422.4609375" y="1512.298682284041"/>
+            <point key="canvasLocation" x="-72" y="1526"/>
         </scene>
         <!--You Tube Videos-->
         <scene sceneID="NeA-em-A1X">
@@ -1109,10 +1113,10 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                         <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="f38-sf-9yl">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f38-sf-9yl" id="pFW-Or-PSf">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GF4-AL-ZnL">
@@ -1193,18 +1197,16 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </tableView>
                     <toolbarItems>
                         <barButtonItem image="Cat-50" id="qV0-QB-LWJ">
-                            <connections>
-                                <segue destination="Ah7-4n-0Wa" kind="show" identifier="showDetail" id="yE9-jw-UjG"/>
-                            </connections>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="8ve-KG-kO2"/>
                         <barButtonItem image="Statistics-50" id="DJc-z0-E2g">
-                            <connections>
-                                <segue destination="G3p-bv-llh" kind="show" identifier="BreedStats" id="K0M-oz-np6"/>
-                            </connections>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2px-ZQ-ATk"/>
-                        <barButtonItem image="cat_footprint_filled-512" id="znj-wF-dCP"/>
+                        <barButtonItem image="cat_footprint_filled-512" id="znj-wF-dCP">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="ibi-MA-0AX">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="Rvu-Po-Aya">
@@ -1239,19 +1241,21 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                 <pageViewController storyboardIdentifier="Search" automaticallyAdjustsScrollViewInsets="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="none" id="AZH-fF-sN6" customClass="ManagePageViewController" customModule="Feline_Finder" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Questions" id="jhG-iv-CO4">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="kXk-ls-gC8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="GoBackTapped:" destination="AZH-fF-sN6" id="Stu-1u-MGq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" id="14O-d7-3gW">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mcy-hZ-Ked">
-                                <rect key="frame" x="718" y="7" width="30" height="30"/>
+                                <rect key="frame" x="329" y="7" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="List1"/>
                                 <connections>
                                     <action selector="SummaryTapped:" destination="AZH-fF-sN6" eventType="touchUpInside" id="da0-3f-TZG"/>
                                 </connections>
                             </button>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -1363,10 +1367,10 @@ Thanks to the members of PhillyCocoa for their great help and support </string
         <scene sceneID="dUm-vj-pts">
             <objects>
                 <collectionViewController storyboardIdentifier="adoptACat" id="9Ce-aR-hIR" customClass="AdoptableCatsViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Iau-WG-o6L">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="980"/>
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Iau-WG-o6L">
+                        <rect key="frame" x="0.0" y="94" width="768" height="886"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="scrollIndicatorInsets" minX="1" minY="1" maxX="1" maxY="1"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Rsg-we-tq4">
                             <size key="itemSize" width="200" height="200"/>
@@ -1430,7 +1434,6 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                     <outlet property="CatImager" destination="Ae0-HS-m8h" id="BMS-3z-NLf"/>
                                     <outlet property="CatNameLabel" destination="5QK-gj-OjF" id="sDm-fS-Y46"/>
                                     <outlet property="Video" destination="0lm-1H-iZZ" id="690-jM-fbI"/>
-                                    <segue destination="I13-hk-Lpk" kind="show" identifier="MasterToDetail" id="v06-zE-Gal"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -1484,16 +1487,16 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </collectionView>
                     <toolbarItems>
                         <barButtonItem image="Cat-50" id="Rol-xn-6IJ">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="Ah7-4n-0Wa" kind="show" identifier="showDetail" id="akO-1F-tnd"/>
+                                <action selector="detailsTapped:" destination="9Ce-aR-hIR" id="UDr-AX-cQm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="kGf-12-QNB"/>
                         <barButtonItem image="Statistics-50" id="fM5-g5-Dru">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="G3p-bv-llh" kind="show" identifier="BreedStats" id="c8d-6J-J8p"/>
+                                <action selector="breedStats:" destination="9Ce-aR-hIR" id="3Oj-br-7u9"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="tK3-IA-9eh"/>
@@ -1503,243 +1506,26 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="CfJ-4g-VLY">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="bKC-Fy-S0a">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="backButtonTapped:" destination="9Ce-aR-hIR" id="Eq9-in-Kuu"/>
+                                <action selector="backTapped:" destination="9Ce-aR-hIR" id="BQ5-eW-b8b"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="weX-CI-Xo5">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="5gS-ot-fmD" kind="show" identifier="searchOptions" id="mDL-5T-cbq"/>
+                                <action selector="searchOptions:" destination="9Ce-aR-hIR" id="guM-cU-hE5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
-                    <connections>
-                        <segue destination="aY0-iY-ecn" kind="unwind" identifier="MasterView" unwindAction="unwindToMasterView:" id="Aev-RE-RfY"/>
-                        <segue destination="aY0-iY-ecn" kind="unwind" identifier="MainMenu" unwindAction="unwindToMainMenu:" id="bhG-gW-VBq"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oMj-8U-Qoo" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="aY0-iY-ecn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="239.84375" y="2491.9921875"/>
-        </scene>
-        <!--Feline Finder Detail-->
-        <scene sceneID="1cT-jk-nmi">
-            <objects>
-                <viewController id="qce-Wc-oKU" customClass="FelineFinderDetailViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="uKa-hS-eaU"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ldc-EW-9ZP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="4uk-CG-JKD">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="0mY-Ts-g1y">
-                                <rect key="frame" x="16" y="74" width="343" height="583"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="3uc-Zf-xHg">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="140"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="14" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P7C-aH-Pci">
-                                                <rect key="frame" x="0.0" y="0.0" width="171.5" height="140"/>
-                                                <string key="text">Meet Gizmo
-Available  Animal Sanctuary Society
-PO BOX 24
-Mt. Laurel, NJ 08054
-
-GENERAL
-INFORMATION</string>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" alignment="center" spacing="27" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9dm-0y-Nc1">
-                                                <rect key="frame" x="171.5" y="0.0" width="171.5" height="140"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Korat" translatesAutoresizingMaskIntoConstraints="NO" id="his-6x-Dde">
-                                                        <rect key="frame" x="36" y="0.0" width="99.5" height="100"/>
-                                                    </imageView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJY-aB-AV7">
-                                                        <rect key="frame" x="28" y="110" width="115.5" height="30"/>
-                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                        <state key="normal" title="Pictures...">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="PicturesTappedWithSender:" destination="qce-Wc-oKU" eventType="touchUpInside" id="66c-3s-oSE"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="iJY-aB-AV7" firstAttribute="leading" secondItem="9dm-0y-Nc1" secondAttribute="leading" constant="28" id="Ccf-b8-Rus"/>
-                                                    <constraint firstItem="his-6x-Dde" firstAttribute="leading" secondItem="9dm-0y-Nc1" secondAttribute="leading" constant="36" id="EpQ-qt-pbf"/>
-                                                </constraints>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="26" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="2qx-7j-52B">
-                                        <rect key="frame" x="0.0" y="149" width="343" height="128"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="gyX-OL-zhM"/>
-                                        </constraints>
-                                        <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="sectionIndexBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="sectionIndexTrackingBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="28" id="55K-6x-ewh" customClass="OptionsTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="10" width="343" height="28"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="55K-6x-ewh" id="izo-cj-WKi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nA1-NG-7Nr">
-                                                            <rect key="frame" x="8" y="8" width="327" height="20"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="20" id="TDY-4a-vrj"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <constraints>
-                                                        <constraint firstAttribute="trailingMargin" secondItem="nA1-NG-7Nr" secondAttribute="trailing" id="dKU-PN-xES"/>
-                                                        <constraint firstItem="nA1-NG-7Nr" firstAttribute="leading" secondItem="izo-cj-WKi" secondAttribute="leadingMargin" id="nJF-uz-icG"/>
-                                                        <constraint firstItem="nA1-NG-7Nr" firstAttribute="top" secondItem="izo-cj-WKi" secondAttribute="topMargin" id="sNj-CJ-laZ"/>
-                                                    </constraints>
-                                                </tableViewCellContentView>
-                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <connections>
-                                                    <outlet property="optionTextLabel" destination="nA1-NG-7Nr" id="bz1-et-2ZO"/>
-                                                </connections>
-                                            </tableViewCell>
-                                        </prototypes>
-                                    </tableView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hzo-5C-tSD">
-                                        <rect key="frame" x="0.0" y="286" width="343" height="40"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zxf-C3-pqM">
-                                                <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="3fh-Td-v7b"/>
-                                                </constraints>
-                                                <state key="normal" image="directions"/>
-                                                <connections>
-                                                    <action selector="DirectionsTappedWithSender:" destination="qce-Wc-oKU" eventType="touchUpInside" id="2m9-ao-out"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hg-IQ-bU5">
-                                                <rect key="frame" x="75" y="0.0" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="eJY-d8-GOc"/>
-                                                </constraints>
-                                                <state key="normal" image="phone"/>
-                                                <connections>
-                                                    <action selector="PhoneTappedWithSender:" destination="qce-Wc-oKU" eventType="touchUpInside" id="XGD-Rw-j8h"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KPB-Al-Vi7">
-                                                <rect key="frame" x="150" y="0.0" width="43" height="40"/>
-                                                <state key="normal" image="email"/>
-                                                <connections>
-                                                    <action selector="EmailTappedWithSender:" destination="qce-Wc-oKU" eventType="touchUpInside" id="px0-0b-ogR"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qy2-nj-nCl">
-                                                <rect key="frame" x="228" y="0.0" width="40" height="40"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="40" id="QxP-e5-dqq"/>
-                                                </constraints>
-                                                <state key="normal" image="share"/>
-                                                <connections>
-                                                    <action selector="ShareTappedWithSender:" destination="qce-Wc-oKU" eventType="touchUpInside" id="Olh-1n-AhZ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xio-b6-Lfy">
-                                                <rect key="frame" x="303" y="0.0" width="40" height="40"/>
-                                                <state key="normal" image="youtube"/>
-                                                <connections>
-                                                    <action selector="YouTubeTappedWithSender:" destination="qce-Wc-oKU" eventType="touchUpInside" id="dMh-dp-lhG"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="xio-b6-Lfy" firstAttribute="leading" secondItem="Qy2-nj-nCl" secondAttribute="trailing" constant="35" id="KW6-Rn-Ig0"/>
-                                            <constraint firstItem="KPB-Al-Vi7" firstAttribute="centerX" secondItem="Hzo-5C-tSD" secondAttribute="centerX" id="gxZ-VP-OnK"/>
-                                        </constraints>
-                                    </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="244" verticalCompressionResistancePriority="746" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8aW-2B-eWK">
-                                        <rect key="frame" x="0.0" y="335" width="343" height="248"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <string key="text">Lorem gregoryew@gmail.com www.gamespot.com ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="3uc-Zf-xHg" firstAttribute="centerX" secondItem="2qx-7j-52B" secondAttribute="centerX" id="37v-Oa-1vh"/>
-                                    <constraint firstItem="2qx-7j-52B" firstAttribute="trailing" secondItem="8aW-2B-eWK" secondAttribute="trailing" id="Ci3-kf-vtH"/>
-                                    <constraint firstItem="2qx-7j-52B" firstAttribute="centerX" secondItem="Hzo-5C-tSD" secondAttribute="centerX" id="pBw-dF-q7y"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="0mY-Ts-g1y" firstAttribute="trailing" secondItem="4uk-CG-JKD" secondAttribute="trailingMargin" id="5SQ-in-dES"/>
-                            <constraint firstItem="0mY-Ts-g1y" firstAttribute="leading" secondItem="4uk-CG-JKD" secondAttribute="leadingMargin" id="8nt-HJ-RU2"/>
-                            <constraint firstItem="0mY-Ts-g1y" firstAttribute="top" secondItem="uKa-hS-eaU" secondAttribute="bottom" constant="10" id="HAw-wa-PTU"/>
-                            <constraint firstItem="Ldc-EW-9ZP" firstAttribute="top" secondItem="0mY-Ts-g1y" secondAttribute="bottom" constant="10" id="HTk-EJ-bI2"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Feline Finder Detail" id="E1l-3D-SZR">
-                        <barButtonItem key="leftBarButtonItem" image="back-1" id="J0Z-sX-YkX">
-                            <connections>
-                                <action selector="BackButtonTappedWithSender:" destination="qce-Wc-oKU" id="tjI-F5-fuy"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="Like" id="K6c-MA-qQw">
-                            <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="FavoriteTappedWithSender:" destination="qce-Wc-oKU" id="d9s-Ij-G6m"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="BackBtn" destination="J0Z-sX-YkX" id="7D6-7T-ZII"/>
-                        <outlet property="DescriptionTextView" destination="8aW-2B-eWK" id="mYW-Ou-Ewi"/>
-                        <outlet property="DirectionsButton" destination="zxf-C3-pqM" id="8Q3-M9-gjR"/>
-                        <outlet property="EmailButton" destination="KPB-Al-Vi7" id="Nwv-6G-mYi"/>
-                        <outlet property="FavoriteBtn" destination="K6c-MA-qQw" id="BtD-RW-Cfk"/>
-                        <outlet property="HeaderLabel" destination="P7C-aH-Pci" id="dFl-va-uMJ"/>
-                        <outlet property="OptionsTableView" destination="2qx-7j-52B" id="8X5-4U-efO"/>
-                        <outlet property="PhoneButton" destination="2hg-IQ-bU5" id="6ur-W5-Qpq"/>
-                        <outlet property="Picture" destination="his-6x-Dde" id="dMl-Of-DIS"/>
-                        <outlet property="ShareButton" destination="Qy2-nj-nCl" id="eqz-iA-JQB"/>
-                        <outlet property="YouTubeVideo" destination="xio-b6-Lfy" id="MLx-kI-JfH"/>
-                        <segue destination="k09-Um-yzz" kind="show" identifier="ShowYouTubeVideo" id="13S-ZT-vCo"/>
-                        <segue destination="xo1-ks-5p1" kind="show" identifier="Pictures" id="fb1-Rf-Vny"/>
-                        <segue destination="u7V-iV-1Sg" kind="unwind" identifier="Favorites" unwindAction="unwindToFavoritesWithSender:" id="Q3c-vQ-ASD"/>
-                        <segue destination="u7V-iV-1Sg" kind="unwind" identifier="PetFinderList" unwindAction="unwindToPetFinderListWithSender:" id="aLr-NS-qJx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kvx-Cn-IUK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="u7V-iV-1Sg" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1922" y="2682"/>
+            <point key="canvasLocation" x="152" y="2650"/>
         </scene>
         <!--Saved Lists-->
         <scene sceneID="jTW-RZ-5Dw">
@@ -1751,10 +1537,10 @@ INFORMATION</string>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" id="VQF-UG-HYj" customClass="SavedLists2TableCell" customModule="Feline_Finder" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQF-UG-HYj" id="WXi-bN-KqD">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -1766,12 +1552,15 @@ INFORMATION</string>
                     </tableView>
                     <navigationItem key="navigationItem" title="Saved Lists" id="bo7-Md-pLJ">
                         <barButtonItem key="leftBarButtonItem" image="back-1" id="kFH-O6-St8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="09O-cM-g6s" kind="unwind" unwindAction="unwindToMainMenu:" id="gb7-MF-YBR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4PZ-Bm-u79" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="09O-cM-g6s" userLabel="Exit" sceneMemberID="exit"/>
@@ -1782,8 +1571,6 @@ INFORMATION</string>
     <resources>
         <image name="Cat Filled-50" width="32" height="32"/>
         <image name="Cat-50" width="32" height="32"/>
-        <image name="Korat" width="100" height="100"/>
-        <image name="Like" width="30" height="30"/>
         <image name="List1" width="30" height="30"/>
         <image name="Save As Filled" width="30" height="30"/>
         <image name="Statistics Filled-50" width="32" height="32"/>
@@ -1791,8 +1578,6 @@ INFORMATION</string>
         <image name="back-1" width="35" height="35"/>
         <image name="cat_footprint" width="30" height="30"/>
         <image name="cat_footprint_filled-512" width="30" height="30"/>
-        <image name="directions" width="40" height="40"/>
-        <image name="email" width="40" height="40"/>
         <image name="favorites" width="120" height="120"/>
         <image name="ffadopt" width="120" height="120"/>
         <image name="ffbackground-1" width="556" height="940"/>
@@ -1801,21 +1586,10 @@ INFORMATION</string>
         <image name="ffsave-1" width="120" height="120"/>
         <image name="ffsearch" width="120" height="120"/>
         <image name="heart" width="128" height="128"/>
-        <image name="import" width="44" height="44"/>
-        <image name="phone" width="40" height="40"/>
-        <image name="share" width="40" height="40"/>
         <image name="video" width="67" height="67"/>
-        <image name="youtube" width="40" height="40"/>
         <image name="youtube.png" width="200" height="200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="akO-1F-tnd"/>
-        <segue reference="cLM-Np-udd"/>
-        <segue reference="v06-zE-Gal"/>
-        <segue reference="c8d-6J-J8p"/>
-        <segue reference="mDL-5T-cbq"/>
-        <segue reference="iMN-ln-jcJ"/>
-        <segue reference="TXq-ma-S0a"/>
         <segue reference="B7s-gb-5fq"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -33,9 +35,10 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-class FilterOptionsListTableViewController: UITableViewController {
+class FilterOptionsListTableViewController: UITableViewController, NavgationTransitionable {
     
     var txtfld: UITextField = UITextField()
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBOutlet weak var SavedButton: UIBarButtonItem!
     
@@ -155,7 +158,7 @@ class FilterOptionsListTableViewController: UITableViewController {
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel!.text = filterOpt?.optionsArray()[indexPath.row]
-        cell.textLabel!.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+        cell.textLabel!.textColor = textColor
         if filterOpt?.classification == .saves {return cell}
         if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             cell.accessoryType = .checkmark
@@ -190,8 +193,8 @@ class FilterOptionsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = lightBackground
-        header.darkColor = darkBackground
+        header.lightColor = headerLightColor
+        header.darkColor = headerDarkColor
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }

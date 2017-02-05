@@ -20,8 +20,11 @@ class RescueGroupShelterList: ShelterList {
                 return
             }
         }
-        
+        /*
         let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgPostalCode","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
+        */
+        let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
+
         
         do {
             
@@ -46,6 +49,15 @@ class RescueGroupShelterList: ShelterList {
                         let jsonObj:AnyObject =  try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as! NSDictionary
                         
                         if let dict = jsonObj as? [String: AnyObject] {
+                            for (key, data) in dict {
+                                if key == "foundRows" {
+                                    let rows = (data as? Int)
+                                    if rows == 0 {
+                                        completion(shelter(i: "ERROR", n: "", a1: "", a2: "", c: "", s: "", z: "", lat: 0.0, lng: 0.0, c2: "", p: "", f: "", e: ""))
+                                        return
+                                    }
+                                }
+                            }
                             for (key, data) in dict {
                                 if key == "data" {
                                     for (_, data2) in (data as? [String: AnyObject])! {

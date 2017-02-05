@@ -32,6 +32,7 @@
 		467C97DE1E40458A007C7A08 /* breedsscreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97DD1E40458A007C7A08 /* breedsscreen.jpg */; };
 		467C97E01E404642007C7A08 /* SearchScreen.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97DF1E404642007C7A08 /* SearchScreen.jpg */; };
 		467C97E21E414F99007C7A08 /* background4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467C97E11E414F99007C7A08 /* background4.jpg */; };
+		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
 		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
 		46D537911E34B7230006498B /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378F1E34B7230006498B /* ImageCardView.swift */; };
@@ -292,6 +293,7 @@
 		467C97DD1E40458A007C7A08 /* breedsscreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = breedsscreen.jpg; sourceTree = "<group>"; };
 		467C97DF1E404642007C7A08 /* SearchScreen.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SearchScreen.jpg; sourceTree = "<group>"; };
 		467C97E11E414F99007C7A08 /* background4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background4.jpg; sourceTree = "<group>"; };
+		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
 		46D5378F1E34B7230006498B /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
@@ -587,6 +589,7 @@
 				467C97C11E3FF34E007C7A08 /* heartMask.jpg */,
 				467C97CB1E4003A5007C7A08 /* background3.jpg */,
 				467C97CD1E4009D8007C7A08 /* coolcatMask.jpg */,
+				46CF47E61E42E179004615AD /* SlideAnimation.swift */,
 			);
 			name = "Transition Animations";
 			sourceTree = "<group>";
@@ -1364,6 +1367,7 @@
 				C5755F9F1BC02CB30023F353 /* RSUtilities.swift in Sources */,
 				C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */,
 				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
+				46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */,
 				46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */,
 				C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */,
 				C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */,

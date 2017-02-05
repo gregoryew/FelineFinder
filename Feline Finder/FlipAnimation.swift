@@ -23,7 +23,7 @@ class FlipAnimation: NSObject, TRViewControllerAnimatedTransitioning {
     var toVC: UIViewController?
     
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 3.0
+        return 1.0
     }
     
     public init(status: TransitionStatus = .push) {
@@ -37,11 +37,8 @@ class FlipAnimation: NSObject, TRViewControllerAnimatedTransitioning {
         toVC = transitionContext.viewController(forKey: UITransitionContextViewControllerKey.to)
         containView = transitionContext.containerView
         
-        //toVC?.view.frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        
         containView?.addSubview(fromVC!.view)
         containView?.addSubview(toVC!.view)
-        //toVC!.view.layer.opacity = 0
         
         if transitionStatus == .push {
         UIView.transition(from: (fromVC?.view)!, to: (toVC?.view)!, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)

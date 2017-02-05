@@ -99,7 +99,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     {
         super.viewWillDisappear(animated)
         self.favoriteType = .RescueGroup
-        self.navigationController?.setToolbarHidden(false, animated:true)
+        self.navigationController?.setToolbarHidden(false, animated:false)
         //if timer != nil {timer!.invalidate()}
     }
     
@@ -646,6 +646,9 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         repeat {
         pl.loadSinglePet(petID!, completion: { (pet) -> Void in
             sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
+                if shelter.id == "ERROR" {
+                    Utilities.displayAlert("Shelter Not Found", errorMessage: "Sorry the shelter has not been found or an error occurred.  Please press the back button and try another cat or again try later.")
+                }
                 let path = Bundle.main.bundlePath;
                 let sBaseURL = URL(fileURLWithPath: path);
                 self.s = shelter

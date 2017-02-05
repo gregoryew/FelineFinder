@@ -18,13 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var warningShown: Bool = false
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        UINavigationBar.appearance().barTintColor = UIColor.gray //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
-        UINavigationBar.appearance().tintColor = UIColor.darkGray
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:textColor]
+        UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
+        UINavigationBar.appearance().tintColor = UIColor.lightGray
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
         
         // set up your background color view
         let colorView = UIView()
-        colorView.backgroundColor = hiliteColor
+        colorView.backgroundColor = UIColor.lightGray
         
         // use UITableViewCell.appearance() to configure
         // the default appearance of all UITableViewCells in your app

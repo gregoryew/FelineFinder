@@ -164,8 +164,8 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = lightBackground
-        header.darkColor = darkBackground
+        header.lightColor = headerLightColor
+        header.darkColor = headerDarkColor
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -198,7 +198,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable {
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:false);
+        self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     var tr_pushTransition: TRNavgationTransitionDelegate?

@@ -7,6 +7,9 @@
 //
 
 import Foundation
+import TransitionTreasury
+import TransitionAnimation
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -31,8 +34,9 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
-class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
+class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, NavgationTransitionable {
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBOutlet weak var clear: UIBarButtonItem!
     @IBOutlet weak var importQuestions: UIBarButtonItem!
@@ -51,7 +55,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
         } else {
             UserDefaults.standard.set(zipCode, forKey: "zipCode")
-            performSegue(withIdentifier: "PetFinderList", sender: nil)
+            viewPopped = true
+            _ = navigationController?.tr_popViewController()
+            
         }
     }
     
@@ -187,8 +193,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = lightBackground
-        header.darkColor = darkBackground
+        header.lightColor = headerLightColor
+        header.darkColor = headerDarkColor
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
@@ -283,7 +289,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                 cell.ListName.text = opt!.name
                 cell.ListValue.text = opt?.getDisplayValues()
                 if (opt?.imported)! {
-                    cell.ListName.textColor = UIColor.green
+                    cell.ListName.textColor = UIColor.red
                 } else {
                     cell.ListName.textColor = textColor
                 }
@@ -300,9 +306,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             cell.OptionSegmentedControl.addTarget(self, action: #selector(PetFinderFindViewController.segmentValueChanged(_:)), for: .valueChanged)
             cell.OptionSegmentedControl.tag = opt!.sequence
             if (opt?.imported)! {
-                cell.OptionLabel.textColor = UIColor.green
+                cell.OptionLabel.textColor = UIColor.red
             } else {
-                cell.OptionLabel.textColor = UIColor(red:0.996, green:0.980, blue:0.341, alpha:1.0)
+                cell.OptionLabel.textColor = textColor
             }
             return cell
             }
@@ -349,7 +355,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             //opt = filterOptions.filteringOptions[indexPath.row]
             let list = opt!.list
             if list == true {
-                performSegue(withIdentifier: "chooseFilterOptions", sender: nil)
+                let listOptions = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "listOptions") as! FilterOptionsListTableViewController
+                listOptions.filterOpt = opt
+                navigationController?.tr_pushViewController(listOptions, method: DemoTransition.Slide(direction: DIRECTION.left))
             }
         }
     }

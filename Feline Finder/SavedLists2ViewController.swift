@@ -34,7 +34,7 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
-        self.navigationController?.setToolbarHidden(false, animated:true);
+        self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -131,8 +131,8 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        header.lightColor = lightBackground
-        header.darkColor = darkBackground
+        header.lightColor = headerLightColor
+        header.darkColor = headerDarkColor
         header.titleLabel.text = "Saved Searches"
         return header
     }
