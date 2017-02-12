@@ -11,8 +11,10 @@ import UIKit
 import MessageUI
 import MapKit
 import Social
+import TransitionTreasury
+import TransitionAnimation
 
-class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
+class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NavgationTransitionable {
     
     var petID: String?
     var petName: String?
@@ -39,14 +41,9 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var FavoriteBtn: UIBarButtonItem!
     @IBOutlet weak var BackBtn: UIBarButtonItem!
 
-    @IBAction func BackButtonTapped(_ sender: AnyObject) {
-        if whichSegue == "Favorites" {
-            performSegue(withIdentifier: "Favorites", sender: nil)
-            //navigationController!.popViewControllerAnimated(true)
-        } else {
-            performSegue(withIdentifier: "PetFinderList", sender: nil)
-        }
-    }
+    var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+
     
     @IBAction func FavoriteTapped(_ sender: AnyObject) {
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {

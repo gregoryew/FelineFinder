@@ -40,10 +40,6 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
 
     }
     
-    @IBAction func AdoptACat(_ sender: AnyObject) {
-        performSegue(withIdentifier: "AdoptACat", sender: nil)
-    }
-    
     @IBAction func FindACatTouchUpInside(_ sender: AnyObject) {
         if questionList.count == 0 {
             let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController

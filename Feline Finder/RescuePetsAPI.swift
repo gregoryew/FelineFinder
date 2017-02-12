@@ -51,6 +51,15 @@ class RescuePetList: PetList {
                             
                             if let dict = jsonObj as? [String: AnyObject] {
                                 for (key, data) in dict {
+                                    if key == "foundRows" {
+                                        if data as! Int == 0 {
+                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", m2: [], s3: "", z: "", dis: 0))
+                                            return
+                                        }
+                                    }
+                                }
+                                
+                                for (key, data) in dict {
                                     if key == "status" {
                                         self.status = data as! String
                                     } else if key == "data" {

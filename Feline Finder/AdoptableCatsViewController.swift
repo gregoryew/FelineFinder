@@ -10,7 +10,7 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable {
+class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable, ModalTransitionDelegate {
 
     @IBAction func backButtonTapped(_ sender: AnyObject) {
         _ = navigationController?.tr_popViewController()
@@ -26,9 +26,10 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     var times = 0
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func backTapped(_ sender: Any) {
-        _ = navigationController?.tr_popViewController()
+        _ = navigationController?.tr_popToRootViewController()
     }
     
     @IBAction func searchOptions(_ sender: Any) {
@@ -39,13 +40,11 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     @IBAction func detailsTapped(_ sender: Any) {
         let Details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
-        Details.breed = globalBreed
         navigationController?.tr_pushViewController(Details, method: DemoTransition.Slide(direction: DIRECTION.left))
     }
     
     @IBAction func breedStats(_ sender: Any) {
         let BreedStats = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedStats") as! BreedStatsViewController
-        BreedStats.breed = globalBreed!
         navigationController?.tr_pushViewController(BreedStats, method: DemoTransition.Slide(direction: DIRECTION.left))
     }
     
@@ -74,7 +73,6 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             // Fallback on earlier versions
         }
 
-        //self.pets = PetFinderPetList()
         self.pets = RescuePetList()
         
         self.navigationItem.title = "\(globalBreed!.BreedName)"
@@ -144,24 +142,6 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         }
         if viewPopped {loadPets(); viewPopped = false}
     }
-    
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("segue=\(segue.identifier)")
-        if segue.identifier == "searchOptions" {
-            (segue.destination as! PetFinderFindViewController).breed = globalBreed
-        }
-        else if segue.identifier == "BreedStats" {
-            (segue.destination as! BreedStatsViewController).whichSeque = "BreedList"
-            let b = globalBreed as Breed?
-            (segue.destination as! BreedStatsViewController).breed = b!
-        }
-        else if (segue.identifier == "showDetail") {
-            let b = globalBreed as Breed?
-            (segue.destination as! DetailViewController).breed = b!
-        }
-    }
-    */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -361,7 +341,11 @@ extension AdoptableCatsViewController {
         FelineDetail.petID = petData.petID
         FelineDetail.petName = petData.name
         FelineDetail.breedName = globalBreed!.BreedName
-        navigationController?.tr_pushViewController(FelineDetail, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        FelineDetail.modalDelegate = self
+        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: FelineDetail)
+        tr_presentViewController(navEditorViewController, method: TRPresentTransitionMethod.fade, completion: {
+            print("Present finished.")
+        })
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -440,13 +424,6 @@ extension AdoptableCatsViewController {
         }
         
         let urlString: String? = petData.getImage(1, size: "pnt")
-        /*
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            urlString = petData.getImage(1, size: "pn")
-        } else {
-            urlString = petData.getImage(1, size: "pnt")
-        }
-        */
         
         cell.CatNameLabel.text = petData.name
         
@@ -488,15 +465,3 @@ extension AdoptableCatsViewController {
         return cell
     }
 }
-
-// MARK: UICollectionViewDelegate
-/*
-extension AdoptableCatsViewController {
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let pet = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
-        performSegue(withIdentifier: "MasterToDetail", sender: pet)
-    }
-    
-}
-*/

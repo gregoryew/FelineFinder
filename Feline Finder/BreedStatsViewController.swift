@@ -16,7 +16,6 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
     var whichSeque: String = ""
-    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "")
     var breedStat: BreedStats = BreedStats(id: 0, desc: "", percent: 0, lowRange: 0, highRange: 0, value: "")
     var breedStats: [BreedStats] = []
     var frameWidth = 0
@@ -28,34 +27,18 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
     
     var offSet = 20
     
-    @IBAction func detailsTapped(_ sender: Any) {
-        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
-        details.breed = globalBreed!
-        navigationController?.tr_pushViewController(details, method: DemoTransition.Slide(direction: DIRECTION.left))
-    }
-    
-    @IBAction func adoptACatTapped(_ sender: Any) {
-        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
-        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.Slide(direction: DIRECTION.right))
-    }
-    
-    @IBAction func goBack(_ sender: Any) {
-        _ = navigationController?.tr_popViewController()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = breed.BreedName
+        self.navigationItem.title = globalBreed?.BreedName
         
         frameWidth = (Int(self.view.frame.width) - 40)
         onePart = Double(frameWidth) / Double(100)
         
         
-        DatabaseManager.sharedInstance.fetchBreedStatList(Int(breed.BreedID), percentageMatch: Double(breed.PercentMatch)) { (BreedStats) -> Void in
+        DatabaseManager.sharedInstance.fetchBreedStatList(Int((globalBreed?.BreedID)!), percentageMatch: Double((globalBreed?.PercentMatch)!)) { (BreedStats) -> Void in
             self.breedStats = BreedStats
         }
-        
         
         self.scrollView.backgroundColor = UIColor.gray
         
@@ -74,10 +57,10 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [ colorTop, colorBottom]
         gradientLayer.locations = [ 0.0, 1.0]
-        var h = CGFloat(((breedStats.count + 1) * distance) + startpoint + 60)
-        if self.view.frame.height > h {h = self.view.frame.height}
-        let rect = CGRect(x: 0, y: -60, width: self.view.frame.width, height: h)
-        gradientLayer.frame = rect
+        //var h = CGFloat(((breedStats.count + 1) * distance) + startpoint + 60)
+        //if self.view.frame.height > h {h = self.view.frame.height}
+        //let rect = CGRect(x: 0, y: -60, width: self.view.frame.width, height: h)
+        //gradientLayer.frame = rect
         
         self.scrollView.layer.addSublayer(gradientLayer)
     }
@@ -88,7 +71,7 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
         
         var dr: Bool = false
         
-        if breed.PercentMatch != -1 {
+        if globalBreed?.PercentMatch != -1 {
             dr = true
         }
         
@@ -101,7 +84,7 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
         lbl.frame = CGRect(x: pos.x, y: pos.y - 60, width: 400, height: 18)
         lbl.font = lbl.font.withSize(10)
         lbl.textColor = textColor
-        lbl.text = "Legend: Yellow = Actual ⎟ Pin = Your Preference"
+        lbl.text = "Legend: Blue = Actual ⎟ Pin = Your Preference"
         scrollView.addSubview(lbl)
         
         for breedStat in breedStats {
@@ -202,7 +185,6 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
         }
     }
     
-    
     func drawLine(startpoint start:CGPoint, endpoint end:CGPoint, linecolor color: CGColor , linewidth widthline:CGFloat){
         
         let path = UIBezierPath()
@@ -218,15 +200,4 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
         
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:false);
-    }
-    
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:false);
-    }
 }

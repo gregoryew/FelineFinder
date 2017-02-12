@@ -122,6 +122,10 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         }
     }
     
+    @IBAction func backTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
+    
     @IBAction func unwindToFilterOptionList(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController

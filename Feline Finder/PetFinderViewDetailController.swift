@@ -24,12 +24,15 @@ func color(_ rgbColor: Int) -> UIColor{
     )
 }
 
-class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate, NavgationTransitionable {
+class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate {
+    
+    weak var modalDelegate: ModalViewControllerDelegate?
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var favoriteBtn: FaveButton?
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    //var tr_pushTransition: TRNavgationTransitionDelegate?
+    
     var loaded: Bool = false
     var petID: String?
     var petName: String?
@@ -42,13 +45,11 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     var shouldLoadWeb = false
     var whichSegue = ""
     
+    @IBOutlet weak var Navigation: UINavigationItem!
+    
     @IBAction func BackTapped(_ sender: AnyObject) {
-        if whichSegue == "Favorites" {
-            performSegue(withIdentifier: "Favorites", sender: nil)
-            //navigationController!.popViewControllerAnimated(true)
-        } else {
-            performSegue(withIdentifier: "PetFinderList", sender: nil)
-        }
+        //_ = navigationController?.tr_popViewController()
+        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
     }
     
     let colors = [
@@ -89,18 +90,10 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         return nil
     }
     
-    @IBAction func unwindToPetFinderDetail(_ sender: UIStoryboardSegue)
-    {
-        //let sourceViewController = sender.sourceViewController
-        // Pull any data from the view controller which initiated the unwind segue.
-    }
-    
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         self.favoriteType = .RescueGroup
-        self.navigationController?.setToolbarHidden(false, animated:false)
-        //if timer != nil {timer!.invalidate()}
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
@@ -199,10 +192,17 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             r = true
         }
         else if (u.hasSuffix("Pictures")) {
-            self.performSegue(withIdentifier: "Pictures", sender: nil)
+            let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
+            pictures.petData = pet!
+            navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
         }
         else if (u.hasSuffix("Video")) {
-            self.performSegue(withIdentifier: "ShowYouTubeVideo", sender: nil)
+            let youTube = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "YouTube") as! YouTubeViewController
+            
+            youTube.youtubeid = pet?.videos[0].videoID
+                
+                navigationController?.tr_pushViewController(youTube, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+
         }
         else if (u.hasSuffix("Share")) {
                 let imgs: [String] = pet!.getAllImagesOfACertainSize("pn")
@@ -541,6 +541,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.navigationController?.setNavigationBarHidden(false, animated: false)
         print("\(webView.frame)")
         webView.delegate = self
         webView.dataDetectorTypes = UIDataDetectorTypes.link
@@ -619,7 +621,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setToolbarHidden(true, animated:false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         if (!Favorites.loaded) {Favorites.LoadFavorites()}
         
@@ -645,9 +647,16 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         
         repeat {
         pl.loadSinglePet(petID!, completion: { (pet) -> Void in
+            if pet.petID == "ERROR" {
+                DispatchQueue.main.async { [unowned self] in
+                    let ac = UIAlertController(title: "Sorry Cat Not Found", message: "Sorry the cat has not been found or an errro occurred.  Please press the back button and try another cat or try again later.", preferredStyle: .alert)
+                    ac.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(ac, animated: true)
+                }
+            } else {
             sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
                 if shelter.id == "ERROR" {
-                    Utilities.displayAlert("Shelter Not Found", errorMessage: "Sorry the shelter has not been found or an error occurred.  Please press the back button and try another cat or again try later.")
+                    Utilities.displayAlert("Shelter Not Found", errorMessage: "Sorry the shelter has not been found or an error occurred.  Please press the back button and try another cat or try again later.")
                 }
                 let path = Bundle.main.bundlePath;
                 let sBaseURL = URL(fileURLWithPath: path);
@@ -658,6 +667,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                 self.imageURLs = (self.pet?.getAllImagesOfACertainSize("x"))!
                 self.getImage()
             })
+            }
         })
         times += 1
         } while pl.status != "ok" && pl.status != "warning" && times < 3
@@ -665,7 +675,6 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "Pictures") {
-            (segue.destination as! PetFinderPicturesViewController).breedName = ""
             (segue.destination as! PetFinderPicturesViewController).petData = pet!
             
         } else if (segue.identifier == "ShowYouTubeVideo") {

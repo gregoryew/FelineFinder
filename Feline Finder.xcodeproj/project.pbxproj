@@ -39,6 +39,7 @@
 		46DD5DBF1E25E3BC00E79D53 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */; };
 		46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
+		46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51C39031D723EFA008064EC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C51C39021D723EFA008064EC /* share.png */; };
@@ -304,6 +305,7 @@
 		46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
+		46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51C39021D723EFA008064EC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -829,6 +831,7 @@
 				46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */,
 				463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */,
 				46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */,
+				46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */,
 				46241D491E07046400997D4C /* CollectionViewCell.swift */,
 				46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */,
 				C5933B1A1D6C012A00CFD62E /* Globals.swift */,
@@ -1414,6 +1417,7 @@
 				C58D21271B4918C7008E1B0B /* PetFinderSheltersAPI.swift in Sources */,
 				C5471BB71D67B01400F9A459 /* Common.m in Sources */,
 				467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */,
+				46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */,
 				4632471C1E037D17000039FF /* Twinkle.swift in Sources */,
 				C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */,
 				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,

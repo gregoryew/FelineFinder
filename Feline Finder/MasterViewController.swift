@@ -19,28 +19,9 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     var titles:[String] = []
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
-        if whichSeque == "results" {
-            performSegue(withIdentifier: "Choices", sender: nil)
-        } else {
-            performSegue(withIdentifier: "MainMenu", sender: nil)
-        }
+        _ = navigationController?.tr_popViewController()
     }
-    
-    @IBAction func unwindToMasterView(_ sender: UIStoryboardSegue)
-    {
-        /*
-        if sender.sourceViewController is PetFinderViewController {
-            let sourceViewController = sender.sourceViewController as! PetFinderViewController
-            sourceViewController.removeFilterLabel()
-        }
-        */
-        // Pull any data from the view controller which initiated the unwind segue.
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
+ 
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -75,8 +56,6 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
             }
         }
         
-        self.navigationController?.setToolbarHidden(true, animated:false);
-        self.setNeedsStatusBarAppearanceUpdate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -84,32 +63,13 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - Segues
-
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = self.tableView.indexPathForSelectedRow {
-                let breed = breeds[titles[indexPath.section]]![indexPath.row]
-                (segue.destination as! DetailViewController).breed = breed
-                filterOptions.reset()
-            }
-        }
-    }
-    */
-
-    // MARK: - Table View
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             guard let cell: MasterViewCell = tableView.cellForRow(at: indexPath) as? MasterViewCell else {
                 return }
             let breed = breeds[titles[indexPath.section]]![indexPath.row]
-            let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
-            details.breed = breed
+            let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedTabBar") as! BreedTabBarControllerViewController
             globalBreed = breed
-            //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.omni(keyView: cell), completion: {})
-            //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.blixt(keyView: cell.CatImage,  to: CGRect(x: self.view.frame.width - cell.CatImage.frame.width, y: 80, width: cell.CatImage.frame.width, height: cell.CatImage.frame.height)), completion: {})
             navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.page, completion: {})
             filterOptions.reset()
         }
@@ -128,40 +88,16 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         let cell = (tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MasterViewCell)
 
         let breed = breeds[titles[indexPath.section]]![indexPath.row]
-        
-        //cell.textLabel?.font = UIFont.systemFontOfSize(14.0)
-        
-        /*
-        if ((cell.backgroundView is CustomCellBackground) == false) {
-            let backgroundCell = CustomCellBackground()
-            cell.backgroundView = backgroundCell
-        }
-        
-        if ((cell.selectedBackgroundView is CustomCellBackground) == false) {
-            let selectedBackgroundCell = CustomCellBackground()
-            cell.selectedBackgroundView = selectedBackgroundCell
-        }
-        */
-        
-        //cell.backgroundColor = UIColor.white
+ 
         cell.backgroundColor = lightBackground
         
         cell.CatNameLabel.backgroundColor = UIColor.clear
-        /*
-        cell.CatNameLabel.highlightedTextColor = UIColor.black
-        cell.CatNameLabel.textColor = UIColor.black
-        */
         cell.CatNameLabel.highlightedTextColor = textColor
         cell.CatNameLabel.textColor = textColor
         cell.CatNameLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         
         cell.accessoryType = .disclosureIndicator
-        //cell.accessoryView!.hidden = false
         cell.lastCell = indexPath.row == self.breeds[titles[indexPath.section]]!.count - 1
-        //((CustomCellBackground *)cell.selectedBackgroundView).lastCell = indexPath.row == self.thingsToLearn.count - 1;
-        
-        //let lastSectionIndex = tableView.numberOfSections - 1
-        //let lastRowIndex = tableView.numberOfRowsInSection(lastSectionIndex) - 1
         
         if (breed.PercentMatch != -1) {
             cell.CatNameLabel.text = "\(breed.PercentMatch)% \(breed.BreedName)"
@@ -213,22 +149,15 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:false);
-        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        //self.navigationController?.setToolbarHidden(false, animated:true);
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        /*
-        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
-        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
-        */
         header.lightColor = UIColor.blue
         header.darkColor = UIColor.darkGray
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
@@ -240,9 +169,5 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     }
 
     var tr_pushTransition: TRNavgationTransitionDelegate?
-    
-    @IBAction func backTapped(_ sender: Any) {
-        _ = navigationController?.tr_popViewController()
-    }
 }
 

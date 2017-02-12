@@ -115,12 +115,14 @@ class FavoritesList {
                                                     }
                                                 }
                                                 if petID != "" {
-                                                    if adoptionPending == "Yes" {
-                                                        self.Favorites[petID + "_RescueGroup"]!.Status = "Adoption Pending"
-                                                    } else if status == "Adopted" {
-                                                        self.Favorites[petID + "_RescueGroup"]!.Status = status + " " + adoptedDate
-                                                    } else if status == "Available" {
-                                                        self.Favorites[petID + "_RescueGroup"]!.Status = status + " " + availableDate
+                                                    if var FavoriteStatus = self.Favorites[petID + "_RescueGroup"] {
+                                                        if adoptionPending == "Yes" {
+                                                            FavoriteStatus.Status = "Adoption Pending"
+                                                        } else if status == "Adopted" {
+                                                            FavoriteStatus.Status = status + " " + adoptedDate
+                                                        } else if status == "Available" {
+                                                            FavoriteStatus.Status = status + " " + availableDate
+                                                        }
                                                     }
                                                 }
                                             }

@@ -44,15 +44,6 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         
         _ = navigationController?.tr_popViewController()
         
-        //navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
-        /*
-        if whichSegue == "ShowList" {
-            performSegue(withIdentifier: "SavedLists2", sender: nil)
-        } else {
-            performSegue(withIdentifier: "MainMenu", sender: nil)
-        }
-        */
     }
     
     var whichSegue: String = ""
@@ -90,9 +81,6 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //self.view.updateConstraintsIfNeeded()
-        //tableView.reloadData()
-        //tableView.setContentOffset(CGPoint.zero, animated:true)
         print(tableView.frame)
         if tableView.frame.origin.y == 20 {
             tableView.frame = tableView.frame.offsetBy(dx: 0, dy: 45)
@@ -225,27 +213,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SavedListsTableCell
         
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
-        /*
-        cell.backgroundColor = UIColor.darkGray
-        */
         cell.backgroundColor = lightBackground
-        /*
-        if ((cell.backgroundView is CustomCellBackground) == false) {
-            let backgroundCell = CustomCellBackground()
-            cell.backgroundView = backgroundCell
-        }
-        
-        if ((cell.selectedBackgroundView is CustomCellBackground) == false) {
-            let selectedBackgroundCell = CustomCellBackground()
-            cell.selectedBackgroundView = selectedBackgroundCell
-        }
-        */
-        
-        /*
-        cell.textLabel!.backgroundColor = UIColor.clear
-        cell.textLabel!.highlightedTextColor = UIColor.white
-        cell.textLabel!.textColor = UIColor.white
-        */
         cell.textLabel!.backgroundColor = UIColor.clear
         cell.textLabel!.highlightedTextColor = darkTextColor
         cell.textLabel!.textColor = textColor
@@ -258,7 +226,6 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             return cell
         }
         
-        //cell.accessoryView!.hidden = false
         cell.accessoryType = .disclosureIndicator
         cell.lastCell = indexPath.row == SavedSearches[indexPath.section].SavedSearchDetails.count - 1
         
@@ -290,10 +257,6 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
-        /*
-        header.lightColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
-        header.darkColor = UIColor(red:0.51, green:0.73, blue:0.84, alpha:1.0)
-        */
         header.lightColor = headerLightColor
         header.darkColor = headerDarkColor
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
@@ -304,23 +267,9 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         return 30
     }
     
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:false);
-    }
-    
     var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
-    }
-    
-    @IBAction func unwindToChoicesViewController(_ sender: UIStoryboardSegue)
-    {
-        //let sourceViewController = sender.sourceViewController
-        // Pull any data from the view controller which initiated the unwind segue.
-        //GoBackButton.frame = CGRectMake(-4.0, 560.0, 328.0, 38.0)
-        //print(GoBackButton.frame)
     }
 }

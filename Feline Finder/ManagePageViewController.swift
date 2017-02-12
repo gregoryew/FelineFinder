@@ -68,14 +68,6 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     
     @IBAction func GoBackTapped(_ sender: AnyObject) {
         _ = navigationController?.tr_popViewController()
-
-        /*
-        if whichSegueGlobal == "Edit" {
-            performSegue(withIdentifier: "Choices", sender: nil)
-        } else {
-            performSegue(withIdentifier: "MainMenu", sender: nil)
-        }
-        */
     }
     
     func viewQuestionEntry(_ index: Int) -> QuestionEntryViewController? {
@@ -87,15 +79,15 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
         return nil
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Summary" {
-            questionList.writeAnswers()
-            (segue.destination as! SavedListsViewController).whichSegue = "Summary"
-        }
+    func gotoSummary() {
+        questionList.writeAnswers()
+        let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
+        savedLists.whichSegue = "Summary"
+        navigationController?.tr_pushViewController(savedLists, method: DemoTransition.Slide(direction: DIRECTION.right))
     }
     
     @IBAction func SummaryTapped(_ sender: AnyObject) {
-    performSegue(withIdentifier: "Summary", sender: nil)
+        gotoSummary()
     }
     
 }
@@ -125,51 +117,19 @@ extension ManagePageViewController: UIPageViewControllerDataSource {
             guard index != NSNotFound else { return nil }
             index = index + 1
             if viewController.currentQuestion + 1 == questionList.count {
-                self.performSegue(withIdentifier: "Summary", sender: nil)
+                gotoSummary()
                 return nil
             }
             guard index != questionList.count else {return nil}
             self.title = ""
-            /*
-            let vc = viewQuestionEntry(index)
-            vc!.view.frame = viewController.view.bounds
-            return vc
-            */
             return viewQuestionEntry(index)
         }
         return nil
     }
-    
-    /*
-    func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        return 2
-    }
-    */
  
     // MARK: UIPageControl
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         // 1
         return questionList.count
     }
-    
-    //func presentationIndexForPageViewController(pageViewController: UIPageViewController) -> Int {
-        // 2
-    //    return currentIndex ?? 0
-    //}
-    
-    /*
-    func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        
-        var index = (viewController as PageContentViewController).pageIndex!
-        if(index <= 0){
-            return nil
-        }
-        index--
-        
-        // Setting up the new view's frame
-        var newVC = self.viewControllerAtIndex(index)
-        newVC.view.frame = self.pageViewController.view.bounds
-        return newVC
-    }
-    */
 }

@@ -68,7 +68,7 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
         if transitionStatus == TransitionStatus.push {
             let fromImage: UIImage?
             if fromVC is TitleScreenViewController {
-                fromImage = UIImage(named: "titlescreen.png")
+                fromImage = UIImage(named: "title.png")
             } else {
                 fromImage = UIImage.imageWithView(view: (fromVC?.view)!)
             }

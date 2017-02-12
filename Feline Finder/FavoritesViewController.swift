@@ -11,7 +11,9 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class FavoritesViewController: UITableViewController, NavgationTransitionable {
+class FavoritesViewController: UITableViewController, NavgationTransitionable, ModalTransitionDelegate {
+    
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     override func viewDidLoad()
     {
@@ -152,8 +154,13 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable {
             felineDetail.petName = favoritePet.petName
             felineDetail.whichSegue = "Favorites"
             felineDetail.favoriteType = favoritePet.FavoriteDataSource
+            felineDetail.modalDelegate = self
+            let navEditorViewController: UINavigationController = UINavigationController(rootViewController: felineDetail)
+            tr_presentViewController(navEditorViewController, method: TRPresentTransitionMethod.fade, completion: {
+                print("Present finished.")
+                })
         }
-        navigationController?.tr_pushViewController(felineDetail, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
+        //navigationController?.tr_pushViewController(felineDetail, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool

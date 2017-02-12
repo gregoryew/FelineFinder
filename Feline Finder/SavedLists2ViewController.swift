@@ -46,16 +46,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         tableView.reloadData()
     }
     
-    /*
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if SavedSearches2.count == 0 {
-            return 0
-        } else {
-            return 1
-        }
-    }
-    */
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return SavedSearches2.count
     }
@@ -64,7 +54,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         if let date1 = date {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            //dateFormatter.timeZone = NSTimeZone(name: "UTC")
             let date: Date? = dateFormatter.date(from: date1)
             return date!
         }
@@ -88,18 +77,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         
         cell.backgroundColor = lightBackground
         
-        /*
-        if ((cell.backgroundView is CustomCellBackground) == false) {
-            let backgroundCell = CustomCellBackground()
-            cell.backgroundView = backgroundCell
-        }
-        
-        if ((cell.selectedBackgroundView is CustomCellBackground) == false) {
-            let selectedBackgroundCell = CustomCellBackground()
-            cell.selectedBackgroundView = selectedBackgroundCell
-        }
-        */
-        
         cell.accessoryType = .disclosureIndicator
         
         cell.textLabel!.text = SavedSearches2[indexPath.row].Title
@@ -120,13 +97,10 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         WhichSavedList = Int(SavedSearches2[indexPath.row].SavedSearchID)
         SearchTitle = SavedSearches2[indexPath.row].Title
-        let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Selections") as! SavedListsViewController
+        let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
         savedLists.whichSavedList = WhichSavedList
         savedLists.whichSegue = "ShowList"
-        //savedLists.viewDidLoad()
-        //savedLists.tableView.reloadData()
         navigationController?.tr_pushViewController(savedLists, method: TRPushTransitionMethod.fade, completion: {})
-        //self.performSegue(withIdentifier: "ShowList", sender: nil)
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -139,20 +113,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "ShowList") {
-            (segue.destination as! SavedListsViewController).whichSavedList = WhichSavedList
-            print("WhichSavedList=\(WhichSavedList)")
-            (segue.destination as! SavedListsViewController).whichSegue = "ShowList"
-        }
-    }
-    
-    @IBAction func unwindToSavedLists2ViewController(_ sender: UIStoryboardSegue)
-    {
-        //let sourceViewController = sender.sourceViewController
-        // Pull any data from the view controller which initiated the unwind segue.
     }
     
     var tr_pushTransition: TRNavgationTransitionDelegate?

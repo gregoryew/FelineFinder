@@ -9,17 +9,16 @@
 import Foundation
 import UIKit
 import CoreLocation
+import TransitionTreasury
+import TransitionAnimation
 
-class PetFinderViewController: UITableViewController, CLLocationManagerDelegate {
+class PetFinderViewController: UITableViewController, CLLocationManagerDelegate, NavgationTransitionable {
     
     @IBAction func backButtonTapped(_ sender: AnyObject) {
-        if breed?.BreedName == "All Breeds" {
-            performSegue(withIdentifier: "MainMenu", sender: nil)
-        } else {
-            performSegue(withIdentifier: "MasterView", sender: nil)
-        }
+        _ = navigationController?.tr_popViewController()
     }
     
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     var breed: Breed?
     var pets: PetList?
@@ -387,12 +386,14 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
         else if segue.identifier == "BreedStats" {
             (segue.destination as! BreedStatsViewController).whichSeque = "BreedList"
             let b = self.breed as Breed?
-            (segue.destination as! BreedStatsViewController).breed = b!
+            //(segue.destination as! BreedStatsViewController).breed = b!
         }
+        /*
         else if (segue.identifier == "showDetail") {
             let b = self.breed as Breed?
             (segue.destination as! DetailViewController).breed = b!
         }
+        */
         else if segue.identifier == "felineFinderDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]

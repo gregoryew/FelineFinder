@@ -9,13 +9,22 @@
 import Foundation
 import YouTubePlayer
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
+
+class YouTubeViewController: UIViewController, YouTubePlayerDelegate, NavgationTransitionable {
     var youtubeid: String?
     var videoPlayer: YouTubePlayerView?
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func doneTapped(_ sender: Any) {
+         _ = navigationController?.tr_popViewController()
+    }
+    
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -26,13 +35,6 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
         videoPlayer?.loadVideoID(youtubeid!)
         videoPlayer?.delegate = self
     }
-    
-/*
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-*/
  
     func playerReady(_ videoPlayer: YouTubePlayerView) {
         videoPlayer.play()
@@ -40,7 +42,7 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
         if playerState == YouTubePlayerState.Ended {
-            performSegue(withIdentifier: "back", sender: nil)
+            _ = navigationController?.tr_popViewController()
         }
     }
     

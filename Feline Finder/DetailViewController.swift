@@ -14,8 +14,9 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
 
     @IBOutlet weak var webView: UIWebView!
     
-    var breed: Breed?
+    //var breed: Breed?
     
+    /*
     @IBAction func BreedStatsTapped(_ sender: Any) {
         let breedStats = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedStats") as! BreedStatsViewController
         breedStats.breed = globalBreed!
@@ -28,22 +29,20 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     }
     
     @IBAction func goBack(_ sender: Any) {
-        _ = navigationController?.tr_popViewController()
+        _ = navigationController?.tr_popToRootViewController()
     }
+    */
     
     func configureView() {
-        let b = self.breed as Breed?
-        self.title = b!.BreedName
-        let htmlString = generateDisplay(b!)
+        self.title = globalBreed?.BreedName
+        let htmlString = generateDisplay(globalBreed!)
         let path = Bundle.main.bundlePath;
         let sBaseURL = URL(fileURLWithPath: path);
-        blurImage(UIImage(named: (b?.FullSizedPicture)!)!)
+        blurImage(UIImage(named: (globalBreed?.FullSizedPicture)!)!)
         self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
     }
     
     func generateDisplay(_ b: Breed) -> String {
-        //var desc = b.Description.replacingOccurrences(of: "References", with: "</h5><h4>References", options: NSString.CompareOptions.literal, range: nil)
-        //desc = desc.replacingOccurrences(of: "\n", with: "<br/>", options: NSString.CompareOptions.literal, range: nil)
         var desc = b.Description
         desc = desc.replacingOccurrences(of: "\n", with: "<br/>", options: NSString.CompareOptions.literal, range: nil)
         if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad {
@@ -101,10 +100,11 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated:false)
+        //self.navigationController?.setToolbarHidden(false, animated:false)
         self.configureView()
         self.webView.delegate = self
         self.webView.allowsInlineMediaPlayback = true
+        self.tabBarController?.navigationItem.title = globalBreed?.BreedName
     }
     
     override func viewWillDisappear(_ animated: Bool)
@@ -112,6 +112,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         super.viewWillDisappear(animated)
     }
     
+    /*
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "BreedStats" {
             let b = self.breed as Breed?
@@ -122,6 +123,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         //    (segue.destination as! AdoptableCatsViewController).breed = b!
         //}
     }
+    */
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         if navigationType == UIWebViewNavigationType.linkClicked {
@@ -133,8 +135,9 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     }
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
-    
+    /*
     @IBAction func back(_ sender: Any) {
-        _ = navigationController?.tr_popViewController()
+        _ = navigationController?.tr_popToRootViewController()
     }
+    */
 }

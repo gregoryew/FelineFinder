@@ -41,6 +41,22 @@ extension DemoTransition: TransitionAnimationable {
     }
 }
 
+extension UINavigationController {
+    
+    func viewControllerWithClass(_ aClass: AnyClass) -> UIViewController? {
+        
+        for vc in self.viewControllers {
+            
+            if vc.isMember(of: aClass) {
+                
+                return vc
+            }
+        }
+        
+        return nil
+    }
+}
+
 let textColor = UIColor.black //UIColor(red: 255/255, green: 243/255, blue: 0/255, alpha: 1)
 let darkTextColor = UIColor.black //UIColor(red: 154/255, green: 217/255, blue: 47/255, alpha: 1)
 let lightBackground = UIColor.white //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
