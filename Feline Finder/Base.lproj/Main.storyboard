@@ -233,7 +233,7 @@
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1T-di-ObF" userLabel="Favorites">
                                                         <rect key="frame" x="170" y="0.0" width="85" height="100"/>
-                                                        <state key="normal" image="fffavorites"/>
+                                                        <state key="normal" image="fffavorites2"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="favorites"/>
                                                         </userDefinedRuntimeAttributes>
@@ -1656,9 +1656,9 @@ Thanks to the members of PhillyCocoa for their great help and support </string
         <image name="cat_footprint_filled-512" width="30" height="30"/>
         <image name="favorites" width="120" height="120"/>
         <image name="ffadoptacat" width="120" height="120"/>
-        <image name="ffbackground" width="556" height="940"/>
+        <image name="ffbackground" width="1669" height="2819"/>
         <image name="ffbreeds" width="120" height="120"/>
-        <image name="fffavorites" width="120" height="120"/>
+        <image name="fffavorites2" width="120" height="120"/>
         <image name="ffsave" width="120" height="120"/>
         <image name="ffsearch" width="120" height="120"/>
         <image name="heart" width="128" height="128"/>

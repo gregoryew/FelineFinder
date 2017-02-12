@@ -40,6 +40,7 @@
 		46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */; };
+		46E7EC2D1E50D0020041666F /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E7EC2C1E50D0020041666F /* title.png */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51C39031D723EFA008064EC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C51C39021D723EFA008064EC /* share.png */; };
@@ -306,6 +307,7 @@
 		46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedTabBarControllerViewController.swift; sourceTree = "<group>"; };
+		46E7EC2C1E50D0020041666F /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51C39021D723EFA008064EC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				467C97DF1E404642007C7A08 /* SearchScreen.jpg */,
 				467C97DD1E40458A007C7A08 /* breedsscreen.jpg */,
 				467C97D71E4041BC007C7A08 /* coolcatscreen.png */,
+				46E7EC2C1E50D0020041666F /* title.png */,
 				467C97D81E4041BC007C7A08 /* breedsscreen.png */,
 				467C97D91E4041BC007C7A08 /* titlescreen.png */,
 				467C97D51E403E27007C7A08 /* SearchScreen.png */,
@@ -1176,6 +1179,7 @@
 				C55126701B2502C8007D8CDF /* Russian_Blue.jpg in Resources */,
 				C56F90C81B766A4A00EEEBFA /* welcome_cat_2.png in Resources */,
 				C55126231B227A7B007D8CDF /* Chat Chartreux.JPG in Resources */,
+				46E7EC2D1E50D0020041666F /* title.png in Resources */,
 				C556BD2E1B814EA50009EB95 /* Selkirk_rex.JPG in Resources */,
 				C54FCAA41B83AB6100D9524E /* Domestic_short-haired_cat.jpg in Resources */,
 				C5FB6EA81B2132EC007FFA36 /* Main.storyboard in Resources */,

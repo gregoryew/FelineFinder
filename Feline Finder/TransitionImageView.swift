@@ -47,17 +47,17 @@ class TransitionImageView: UIImageView {
         
         //topImage = UIImage(named: "HeartMask.jpg")
         switch transImage {
-        case .cat: topImage = UIImage(named: "coolcatMask.jpg")
-        case .heart: topImage = UIImage(named: "heartMask.jpg")
-        case .list: topImage = UIImage(named: "listMask.jpg")
-        case .save: topImage = UIImage(named: "saveMask.jpg")
-        case .search: topImage = UIImage(named: "searchMask.jpg")
-        case .zoom: topImage = UIImage(named: "zoomMask.jpg")
+        case .cat: maskImage = UIImage(named: "coolcatMask.jpg")
+        case .heart: maskImage = UIImage(named: "heartMask.jpg")
+        case .list: maskImage = UIImage(named: "listMask.jpg")
+        case .save: maskImage = UIImage(named: "saveMask.jpg")
+        case .search: maskImage = UIImage(named: "searchMask.jpg")
+        case .zoom: maskImage = UIImage(named: "zoomMask.jpg")
         }
         outputSize = topImage?.size
         bottomImage = UIImage(named: "background3.jpg")
         
-        
+        topImage = maskImage
         guard let image = image, let toImage = toImage  else {
             fatalError("You need to have set an image, provide a new image and a mask to fire up a transition")
         }
