@@ -26,7 +26,7 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
     
     open var percentTransition: UIPercentDrivenInteractiveTransition?
     
-    private var currentImage: TransitionImageView?
+    private var currentImage: TransitionImageView2?
     
     private var transImage: transitionImage?
     
@@ -67,22 +67,18 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
         
         if transitionStatus == TransitionStatus.push {
             let fromImage: UIImage?
-            if fromVC is TitleScreenViewController {
-                fromImage = UIImage(named: "title.png")
-            } else {
-                fromImage = UIImage.imageWithView(view: (fromVC?.view)!)
-            }
-        
-            let img = UIImage(named: "background4.jpg")
+
+            fromImage = UIImage.imageWithView(view: (fromVC?.view)!)
 
             let container = transitionContext.containerView
-            currentImage?.tag = 1
-            currentImage = TransitionImageView()
+            currentImage = TransitionImageView2()
             currentImage?.frame = (fromVC?.view.frame)!
             currentImage?.image = fromImage
             container.addSubview(currentImage!)
             
-            currentImage?.transitionToImage(toImage: img, transContext: transitionContext, vc: toVC!, transImage: transImage!)
+            fromVC?.view.alpha = 0.0
+            
+            currentImage?.transitionToImage(toImage: fromImage, transContext: transitionContext, vc: toVC!, ti: transImage!)
         } else {
             toVC!.view.layer.opacity = 0
             UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveEaseInOut, animations: {
@@ -102,8 +98,7 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
 
 extension UIImage {
     class func imageWithView(view: UIView) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, 0.0)
-        //UIGraphicsBeginImageContext(view.bounds.size)
+        UIGraphicsBeginImageContextWithOptions(UIScreen.main.bounds.size, false, 2.0)
         view.layer.render(in: UIGraphicsGetCurrentContext()!)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext();

@@ -41,6 +41,8 @@
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */; };
 		46E7EC2D1E50D0020041666F /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 46E7EC2C1E50D0020041666F /* title.png */; };
+		46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2E1E50DC380041666F /* Transistion.swift */; };
+		46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51C39031D723EFA008064EC /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = C51C39021D723EFA008064EC /* share.png */; };
@@ -308,6 +310,8 @@
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		46E7EC2C1E50D0020041666F /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		46E7EC2E1E50DC380041666F /* Transistion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transistion.swift; sourceTree = "<group>"; };
+		46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewTabController.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51C39021D723EFA008064EC /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
@@ -595,6 +599,7 @@
 				467C97CB1E4003A5007C7A08 /* background3.jpg */,
 				467C97CD1E4009D8007C7A08 /* coolcatMask.jpg */,
 				46CF47E61E42E179004615AD /* SlideAnimation.swift */,
+				46E7EC2E1E50DC380041666F /* Transistion.swift */,
 			);
 			name = "Transition Animations";
 			sourceTree = "<group>";
@@ -833,6 +838,7 @@
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
 				46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */,
 				463B28E21E0C168D001DF7D6 /* LaunchScreen.storyboard */,
+				46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */,
 				46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */,
 				46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */,
 				46241D491E07046400997D4C /* CollectionViewCell.swift */,
@@ -1376,6 +1382,7 @@
 				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
 				46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */,
 				46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */,
+				46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */,
 				C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */,
 				C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */,
 				C58D212B1B496DCE008E1B0B /* CMMapLauncher.m in Sources */,
@@ -1450,6 +1457,7 @@
 				C58B459E1B2D457600E03538 /* QuestionEntry.swift in Sources */,
 				C5FB6EEF1B213474007FFA36 /* FMDatabaseQueue.m in Sources */,
 				C527B1351B46E7DA00874272 /* string extensions.swift in Sources */,
+				46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */,
 				C5411D5D1D61858000FFB128 /* InstructionsViewController.swift in Sources */,
 				C527B1331B46E11100874272 /* PetFinderViewController.swift in Sources */,
 			);

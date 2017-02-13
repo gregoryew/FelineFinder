@@ -34,9 +34,10 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, NavgationTransitionable {
+class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, NavgationTransitionable, ModalTransitionDelegate {
     
     var tr_pushTransition: TRNavgationTransitionDelegate?
+    var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBOutlet weak var clear: UIBarButtonItem!
     @IBOutlet weak var importQuestions: UIBarButtonItem!
@@ -54,10 +55,10 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         if validateZipCode(zipCode) == false {
             Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
         } else {
+            sourceViewController = nil
             UserDefaults.standard.set(zipCode, forKey: "zipCode")
             viewPopped = true
             _ = navigationController?.tr_popViewController()
-            
         }
     }
     
@@ -357,9 +358,34 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
             if list == true {
                 let listOptions = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "listOptions") as! FilterOptionsListTableViewController
                 listOptions.filterOpt = opt
+                sourceViewController = listOptions
                 navigationController?.tr_pushViewController(listOptions, method: DemoTransition.Slide(direction: DIRECTION.left))
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if sourceViewController == nil {return}
+        
+        //let sourceViewController = sender.source as! FilterOptionsListTableViewController
+        var i = 0
+        if sourceViewController?.filterOpt?.classification == .saves {
+            if (sourceViewController?.filterOpt?.choosenValue)! >= 0 {
+                filterOptions.retrieveSavedFilterValues(((sourceViewController?.filterOpt?.choosenValue)! + 1), filterOptions: filterOptions) //, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
+            }
+        }
+        for o in filterOptions.filteringOptions {
+            if sourceViewController?.filterOpt?.name == o.name {
+                filterOptions.filteringOptions[i].choosenListValues = (sourceViewController?.filterOpt?.choosenListValues)!
+            }
+            i += 1
+        }
+        
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
     
     @IBAction func unwindToPetFinderFind(_ sender: UIStoryboardSegue)

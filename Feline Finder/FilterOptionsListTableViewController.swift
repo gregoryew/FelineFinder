@@ -42,6 +42,8 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
     
     @IBOutlet weak var SavedButton: UIBarButtonItem!
     
+    
+    
     func removeTextFieldObserver() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: self.txtfld)
     }
@@ -178,7 +180,8 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             let cell = tableView.cellForRow(at: indexPath)
             currentFilterSave = (cell?.textLabel?.text)!
             //filterOpt?.choosenListValues.append(indexPath.row)
-            performSegue(withIdentifier: "backToFilterOptions", sender: nil)
+            //performSegue(withIdentifier: "backToFilterOptions", sender: nil)
+            _ = navigationController?.tr_popViewController()
         } else if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             filterOpt?.choosenListValues = (filterOpt?.choosenListValues.filter(){$0 != indexPath.row})!
             tableView.cellForRow(at: indexPath)?.accessoryType = .none

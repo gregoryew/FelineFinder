@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import TransitionTreasury
+import TransitionAnimation
 
-class InstructionsViewController: UIViewController {
+class InstructionsViewController: UIViewController, NavgationTransitionable {
     
     @IBOutlet weak var InstructionTextView: UITextView!
+    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -22,4 +25,9 @@ class InstructionsViewController: UIViewController {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:false);
     }
+    
+    @IBAction func goBackTapped(_ sender: Any) {
+        _ = navigationController?.tr_popViewController()
+    }
+    
 }

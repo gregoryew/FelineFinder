@@ -132,6 +132,11 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         globalBreed = breed
         navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
+    
+    @IBAction func instructionsTapped(_ sender: Any) {
+        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "instructions") as! InstructionsViewController
+        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.list))
+    }
 
     override var prefersStatusBarHidden: Bool {
         return true

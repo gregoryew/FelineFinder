@@ -403,7 +403,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         var imagesHTML: String = ""
         var imageHTML: String = ""
         for img2 in p.media {
-            if img2.size == "x" {
+            if img2.size == "pn" {
                 imageHTML = "<img src=\"\(img2.URL)\" width=300 style=\"margin:0px auto;display:block\"/>"
                 loadImage(img2.URL)
                 if imagesHTML == "" {
