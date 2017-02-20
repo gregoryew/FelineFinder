@@ -57,76 +57,81 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             tableView.deleteRows(at: [indexPath], with: .fade)
             filterOptions.reset()
             currentFilterSave = "Touch Here To Load/Save..."
-            SavedButton.isEnabled = true
         }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
-        SavedButton.isEnabled = false
-    }
-    
-    func removeTextFieldObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: self.txtfld)
+        SavedButton.isEnabled = !editing
     }
     
     //hold this reference in your class
     weak var AddAlertSaveAction: UIAlertAction?
     
-    //handler
-    func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
-        let textField = notification.object as! UITextField
-        
-        // Enforce a minimum length of >= 1 for secure text alerts.
-        AddAlertSaveAction!.isEnabled = textField.text?.characters.count >= 1
-    }
+    var n = ""
     
     @IBAction func SavedTapped(_ sender: AnyObject) {
+        promptUserForSaveName()
+    }
+
+    func saveFilter(name: String, overwrite: Bool, existingSaveID: Int) {
+        currentFilterSave = name
+        if overwrite {
+            filterOptions.deleteSavedFilterValues(existingSaveID)
+        }
+        filterOptions.storeFilters(0, saveName: name)
+        let c = filterOptions.filteringOptions[0].options.count + 1
+        filterOptions.filteringOptions[0].options.append((displayName: name, search: String(NameID), value: c))
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func promptUserForSaveName() {
         let alertController = UIAlertController(title: "Search Name", message: "Please enter the name of the search", preferredStyle: .alert)
         
         // Add the text field with handler
         alertController.addTextField { textField in
-            //listen for changes
-            
-            NotificationCenter.default.addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
-            
-            textField.text = SearchTitle
-            self.txtfld = textField
-            
-            // Create the actions.
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
-                NSLog("Cancel Button Pressed");
-                self.removeTextFieldObserver()
+            if currentFilterSave != "Touch Here To Load/Save..." {
+                textField.text = currentFilterSave
+            } else {
+                textField.text = ""
             }
+            self.txtfld = textField
+        }
             
-            let otherAction = UIAlertAction(title: "Save", style: .default) { action in
-                NSLog("Save Button Pressed");
-                let n = self.txtfld.text
-                currentFilterSave = n!
-                self.removeTextFieldObserver()
-                filterOptions.storeFilters(0, saveName: n!)
-                let c = filterOptions.filteringOptions[0].options.count + 1
-                filterOptions.filteringOptions[0].options.append((displayName: n!, search: String(NameID), value: c))
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+        // Create the actions.
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { action in
+            NSLog("Cancel Button Pressed");
+        }
+            
+        let otherAction = UIAlertAction(title: "Save", style: .default) { action in
+            NSLog("Save Button Pressed");
+            self.n = self.txtfld.text!
+            var duplicate = false
+            for s in filterOptions.filteringOptions[0].options {
+                if s.displayName == self.n {
+                    duplicate = true
+                    let alert = UIAlertController(title: "Overwrite Existing?", message: "A filter by this name already exists.  Do you want to overwrite or enter another name", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.destructive, handler: {action in
+                        self.saveFilter(name: self.n, overwrite: true, existingSaveID: Int(s.search!)!)}))
+                    alert.addAction(UIAlertAction(title: "Enter Another", style: UIAlertActionStyle.default, handler: {
+                        action in
+                        self.promptUserForSaveName()
+                    }))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
-            
-            // disable the 'save' button (otherAction) initially
-            if SearchTitle.characters.count == 0 {
-                otherAction.isEnabled = false
-            } else {
-                otherAction.isEnabled = true
-            }
-            
-            // save the other action to toggle the enabled/disabled state when the text changed.
-            self.AddAlertSaveAction = otherAction
-            
-            // Add the actions.
-            alertController.addAction(cancelAction)
-            alertController.addAction(otherAction)
+            if !duplicate {self.saveFilter(name: self.n, overwrite: false, existingSaveID: -1)}
         }
+        
+        // save the other action to toggle the enabled/disabled state when the text changed.
+        self.AddAlertSaveAction = otherAction
+            
+        // Add the actions.
+        alertController.addAction(cancelAction)
+        alertController.addAction(otherAction)
         
         present(alertController, animated: true, completion: nil)
     }

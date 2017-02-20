@@ -14,6 +14,7 @@ import TransitionAnimation
 class FavoritesViewController: UITableViewController, NavgationTransitionable, ModalTransitionDelegate {
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
+    var statuses:[String: Favorite] = [:]
     
     override func viewDidLoad()
     {
@@ -23,19 +24,23 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         Favorites.breedKeys.removeAll()
         Favorites.LoadFavorites()
         
+        /*
         Favorites.assignStatus(self.tableView) { () -> Void in
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         }
+        */
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
         
+        /*
         Favorites.assignStatus(self.tableView) { () -> Void in
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         }
+        */
     }
     
     @IBAction func unwindToFavorites(_ sender: UIStoryboardSegue)
@@ -108,17 +113,19 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         
         let imgURL = URL(string: favorite.imageName)
         
+        cell.CatName!.textColor = textColor
+        
         var name = favorite.petName
-        if favorite.Status != "" {
-            name += " (" + favorite.Status + ")"
+        if let status = self.statuses[favorite.petID]?.Status {
+            if status != "" {name += " (" + status + ")"}
+            if (status.hasPrefix("Adopt")) {
+                cell.CatName!.textColor = UIColor.red
+            } else {
+                cell.CatName!.textColor = textColor
+            }
         }
         
         cell.CatName!.text = name
-        if favorite.Status.hasPrefix("Adopt") {
-            cell.CatName!.textColor = UIColor.red
-        } else {
-            cell.CatName!.textColor = textColor
-        }
         
         cell.CatImage?.image = UIImage(named: "Cat-50")
         
@@ -192,15 +199,13 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         Favorites.breedKeys.removeAll()
         Favorites.LoadFavorites()
         
-        DispatchQueue.main.async{
-            self.tableView.reloadData()
+        Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
+            self.statuses = Stats
         }
         
-        Favorites.assignStatus(self.tableView) { () -> Void in
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-        }
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool)

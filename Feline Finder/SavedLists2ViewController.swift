@@ -22,7 +22,13 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
             SavedSearches2.ss.removeValue(forKey: SavedSearches2[indexPath.row].SavedSearchID)
             SavedSearches2.ssd.remove(at: indexPath.row)
             SavedSearches2.keys.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with:UITableViewRowAnimation.fade)
+            if SavedSearches2.count > 0 {
+                tableView.deleteRows(at: [indexPath], with:UITableViewRowAnimation.fade)
+            } else {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -47,6 +53,7 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if SavedSearches2.count == 0 {return 1}
         return SavedSearches2.count
     }
     
@@ -77,6 +84,14 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         
         cell.backgroundColor = lightBackground
         
+        if SavedSearches2.count == 0 {
+            cell.textLabel!.text = "To save a search do one from title screen."
+            cell.textLabel!.highlightedTextColor = UIColor.brown
+            cell.textLabel!.textColor = textColor
+            cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
+            return cell
+        }
+        
         cell.accessoryType = .disclosureIndicator
         
         cell.textLabel!.text = SavedSearches2[indexPath.row].Title
@@ -89,12 +104,17 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        if SavedSearches2.count == 0 {
+            return false
+        } else {
+            return true
+        }
     }
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if SavedSearches2.count == 0 {return}
         WhichSavedList = Int(SavedSearches2[indexPath.row].SavedSearchID)
         SearchTitle = SavedSearches2[indexPath.row].Title
         let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController

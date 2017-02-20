@@ -148,13 +148,16 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     }
     
     func setFilterDisplay() {
-        if let navigationBar = self.navigationController?.navigationBar {
-            let filter = "Zip:\(zipCode)"
-            navigationBar.topItem!.prompt = filter
-            if currentFilterSave != "Touch Here To Load/Save..." {
-                navigationItem.title = currentFilterSave
+        let promptString = "Zip:\(zipCode)"
+        navigationItem.prompt = promptString
+        if currentFilterSave != "Touch Here To Load/Save..." {
+            navigationItem.title = currentFilterSave
+        } else {
+            let breeds = filterOptions.breedOption?.getDisplayValues() ?? ""
+            if ((breeds.contains(",")) || breeds == "") {
+                navigationItem.title = "Multiple Breeds"
             } else {
-                navigationItem.title = "All Breeds"
+                navigationItem.title = breeds
             }
         }
     }

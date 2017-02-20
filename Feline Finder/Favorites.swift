@@ -57,7 +57,7 @@ class FavoritesList {
         breedKeys = breedKeys.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
     }
     
-    func assignStatus(_ tv: UITableView, completion: @escaping () -> Void) {
+    func assignStatus(_ tv: UITableView, completion: @escaping (_ favorites: [String: Favorite]) -> Void) {
         
         var i = 0
         var catIDs: [String] = []
@@ -117,11 +117,11 @@ class FavoritesList {
                                                 if petID != "" {
                                                     if var FavoriteStatus = self.Favorites[petID + "_RescueGroup"] {
                                                         if adoptionPending == "Yes" {
-                                                            FavoriteStatus.Status = "Adoption Pending"
+                                                            self.Favorites[petID + "_RescueGroup"]?.Status = "Adoption Pending"
                                                         } else if status == "Adopted" {
-                                                            FavoriteStatus.Status = status + " " + adoptedDate
+                                                            self.Favorites[petID + "_RescueGroup"]?.Status = status + " " + adoptedDate
                                                         } else if status == "Available" {
-                                                            FavoriteStatus.Status = status + " " + availableDate
+                                                            self.Favorites[petID + "_RescueGroup"]?.Status = status + " " + availableDate
                                                         }
                                                     }
                                                 }
@@ -132,7 +132,7 @@ class FavoritesList {
                             }
                         }
                         
-                        completion()
+                        completion(self.Favorites)
                         
                     } catch let error as NSError {
                         // error handling
