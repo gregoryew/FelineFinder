@@ -42,6 +42,13 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
     
     @IBOutlet weak var SavedButton: UIBarButtonItem!
     
+    @IBAction func ClearTapped(_ sender: Any) {
+        filterOpt?.choosenListValues = []
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
@@ -50,12 +57,14 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             tableView.deleteRows(at: [indexPath], with: .fade)
             filterOptions.reset()
             currentFilterSave = "Touch Here To Load/Save..."
+            SavedButton.isEnabled = true
         }
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         tableView.setEditing(editing, animated: animated)
+        SavedButton.isEnabled = false
     }
     
     func removeTextFieldObserver() {

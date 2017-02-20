@@ -501,7 +501,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                         <viewControllerLayoutGuide type="bottom" id="pLy-ba-KLX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="900-8n-fca">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SM8-TU-Auo">
@@ -516,7 +516,7 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                             <constraint firstItem="SM8-TU-Auo" firstAttribute="leading" secondItem="900-8n-fca" secondAttribute="leading" id="vAJ-MB-J1b"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stats" image="Statistics-50" selectedImage="Statistics Filled-50" id="7sp-NH-1t6"/>
+                    <tabBarItem key="tabBarItem" title="Stats" image="bar-empty" selectedImage="bar-filled" id="7sp-NH-1t6"/>
                     <connections>
                         <outlet property="scrollView" destination="SM8-TU-Auo" id="OKK-2q-nq3"/>
                     </connections>
@@ -572,10 +572,13 @@ Thanks to the members of PhillyCocoa for their great help and support </string
             <objects>
                 <tabBarController storyboardIdentifier="breedTabBar" id="bit-8N-nO4" customClass="BreedTabBarControllerViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="E8W-Fk-z0Z">
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="E8W-Fk-z0Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="vcS-bD-tc2" kind="relationship" relationship="viewControllers" id="CQt-5D-IZq"/>
@@ -921,8 +924,11 @@ Thanks to the members of PhillyCocoa for their great help and support </string
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="edit" id="hC2-8s-CiD">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="trash" id="hC2-8s-CiD">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="ClearTapped:" destination="yv5-4F-iXG" id="S1O-IT-6Ky"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1708,6 +1714,8 @@ Thanks to the members of PhillyCocoa for their great help and support </string
         <image name="Statistics Filled-50" width="32" height="32"/>
         <image name="Statistics-50" width="32" height="32"/>
         <image name="back-1" width="35" height="35"/>
+        <image name="bar-empty" width="25" height="25"/>
+        <image name="bar-filled" width="25" height="25"/>
         <image name="cat_footprint" width="30" height="30"/>
         <image name="cat_footprint_filled-512" width="30" height="30"/>
         <image name="directions" width="40" height="40"/>
