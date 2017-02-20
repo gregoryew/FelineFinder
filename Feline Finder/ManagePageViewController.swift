@@ -67,7 +67,8 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     }
     
     @IBAction func GoBackTapped(_ sender: AnyObject) {
-        _ = navigationController?.tr_popViewController()
+        //_ = navigationController?.tr_popViewController()
+        _ = navigationController?.tr_popToRootViewController()
     }
     
     func viewQuestionEntry(_ index: Int) -> QuestionEntryViewController? {

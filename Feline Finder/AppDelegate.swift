@@ -35,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         pathToFile()
         
-        zipCode = UserDefaults.standard.string(forKey: "zipCode") ?? ""
+        //zipCode = UserDefaults.standard.string(forKey: "zipCode") ?? ""
+        zipCode = ""
         
         let rescueGroupsLastQueriedString = UserDefaults.standard.string(forKey: "rescueGroupsLastQueriedString") ?? ""
         

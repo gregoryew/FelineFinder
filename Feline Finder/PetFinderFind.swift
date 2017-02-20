@@ -44,6 +44,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     
     @IBAction func clearTapped(_ sender: AnyObject) {
         filterOptions.reset()
+        currentFilterSave = "Touch Here To Load/Save..."
         self.tableView.reloadData()
     }
     
@@ -56,7 +57,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
             Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
         } else {
             sourceViewController = nil
-            UserDefaults.standard.set(zipCode, forKey: "zipCode")
+            //UserDefaults.standard.set(zipCode, forKey: "zipCode")
             viewPopped = true
             _ = navigationController?.tr_popViewController()
         }
@@ -373,7 +374,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         var i = 0
         if sourceViewController?.filterOpt?.classification == .saves {
             if (sourceViewController?.filterOpt?.choosenValue)! >= 0 {
-                filterOptions.retrieveSavedFilterValues(((sourceViewController?.filterOpt?.choosenValue)! + 1), filterOptions: filterOptions) //, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
+                filterOptions.retrieveSavedFilterValues((sourceViewController?.filterOpt?.choosenValue)!, filterOptions: filterOptions) //, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
             }
         }
         for o in filterOptions.filteringOptions {

@@ -42,7 +42,21 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
     
     @IBOutlet weak var SavedButton: UIBarButtonItem!
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Delete the row from the data source
+            let index = Int(filterOptions.filteringOptions[0].options[indexPath.row].search!) ?? 0
+            filterOptions.deleteSavedFilterValues(index)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            filterOptions.reset()
+            currentFilterSave = "Touch Here To Load/Save..."
+        }
+    }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        tableView.setEditing(editing, animated: animated)
+    }
     
     func removeTextFieldObserver() {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: self.txtfld)
@@ -118,6 +132,7 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         if filterOpt?.classification == .saves {
             SavedButton.title = "Save"
             SavedButton.isEnabled = true
+            self.navigationItem.rightBarButtonItem = self.editButtonItem
         } else {
             SavedButton.title = ""
             SavedButton.isEnabled = false
@@ -176,7 +191,8 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if filterOpt?.classification == .saves {
-            filterOpt?.choosenValue = indexPath.row
+            filterOpt?.choosenValue = Int((filterOpt?.options[indexPath.row].search)!)
+            //indexPath.row
             let cell = tableView.cellForRow(at: indexPath)
             currentFilterSave = (cell?.textLabel?.text)!
             //filterOpt?.choosenListValues.append(indexPath.row)
@@ -195,7 +211,7 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         // Return false if you do not want the specified item to be editable.
-        return false
+        return true
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

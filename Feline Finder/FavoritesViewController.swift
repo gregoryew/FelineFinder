@@ -149,6 +149,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
     {
         let felineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FelineDetail") as! PetFinderViewDetailController
         if let indexPath = self.tableView.indexPathForSelectedRow {
+            if Favorites.count == 0 {return}
             let favoritePet = Favorites[indexPath.section, indexPath.row]
             felineDetail.petID = favoritePet.petID
             felineDetail.petName = favoritePet.petName

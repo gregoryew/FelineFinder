@@ -575,6 +575,17 @@ class DatabaseManager {
         }
     }
     
+    func deleteFilterOptions(savedID: Int) -> Void {
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
+            if (!(db?.executeUpdate("DELETE FROM PetListFilterDetails WHERE NameID = ?", withArgumentsIn: [savedID]))!) {
+                self.presentDBErrorMessage((db?.lastErrorMessage())!)
+            }
+            if (!(db?.executeUpdate("DELETE FROM PetListFilter WHERE FilterNameID = ?", withArgumentsIn: [savedID]))!) {
+                self.presentDBErrorMessage((db?.lastErrorMessage())!)
+            }
+        }
+    }
+    
     func fetchFilterOptions(_ completion: @escaping (_ filterNames: [(FilterID: Int, FilterName: String)]) -> Void) {
         
         var filterNames: [(FilterID: Int, FilterName: String)] = []

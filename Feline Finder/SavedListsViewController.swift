@@ -42,7 +42,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
         
-        _ = navigationController?.tr_popViewController()
+        _ = navigationController?.tr_popToRootViewController()
         
     }
     

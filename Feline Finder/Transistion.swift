@@ -12,13 +12,14 @@ import CoreImage
 
 class TransitionImageView2: UIImageView {
     
-    @IBInspectable var duration: Double = 1.0
+    @IBInspectable var duration: Double = 0.5
     
     private var transitionStartTime: CFTimeInterval = 0.0
     private var transitionTimer: Timer?
     
     weak var transitionContext: UIViewControllerContextTransitioning?
     weak var viewc: UIViewController?
+    weak var viewf: UIViewController?
     
     var i: CGFloat = 0.0
     var bottomImage: UIImage?
@@ -26,7 +27,7 @@ class TransitionImageView2: UIImageView {
     var transImage: transitionImage?
     var bezierPath: UIBezierPath?
     
-    func transitionToImage(toImage: UIImage?, transContext: UIViewControllerContextTransitioning?, vc: UIViewController, ti: transitionImage) {
+    func transitionToImage(toImage: UIImage?, transContext: UIViewControllerContextTransitioning?, vc: UIViewController, ti: transitionImage, fromVC: UIViewController) {
         outputSize = CGSize(width: 10, height: 10)
         bottomImage = toImage
  
@@ -37,6 +38,7 @@ class TransitionImageView2: UIImageView {
         self.transImage = ti
         
         viewc = vc
+        viewf = fromVC
         
         transitionContext = transContext
         
@@ -229,11 +231,17 @@ class TransitionImageView2: UIImageView {
         
         let rect = CGRect(x: (self.center.x / 2) - (newSize.width / 2),  y:(self.center.y / 2) - (newSize.height / 2), width: newSize.width, height: newSize.height)
         
+        let strokeColor = UIColor(red: 0.000, green: 0.000, blue: 0.000, alpha: 1.000)
+        
         let bp = bezierPath?.fit(into: rect).moveCenter(to: self.center)
         
         context?.addPath((bp?.cgPath)!)
         context?.clip()
         context?.clear((bp?.bounds)!)
+        
+        strokeColor.setStroke()
+        bp?.lineWidth = 5.0
+        bp?.stroke()
         
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -252,6 +260,7 @@ class TransitionImageView2: UIImageView {
             for vc in (self.transitionContext?.containerView.subviews)! {
                 if vc is TransitionImageView2 {
                     vc.removeFromSuperview()
+                    viewf?.view.alpha = 1
                 }
             }
             self.transitionContext?.completeTransition(true)

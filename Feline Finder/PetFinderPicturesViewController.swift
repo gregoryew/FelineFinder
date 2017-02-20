@@ -38,6 +38,9 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     let pageControl = UIPageControl()
     var currentIndex = 0
     
+    //let imgDownArrow = UIImageView.init(image: UIImage(named: "downarrow"))
+    let imgDownArrow = UIImageView()
+    
     var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBAction func doneTapped(_ sender: Any) {
@@ -82,14 +85,34 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        view.addSubview(imgDownArrow)
+        let ypos = cardContainerView.bounds.origin.y + cardContainerView.frame.size.height + 200
+        imgDownArrow.frame = CGRect(x: cardContainerView.frame.center.x, y: ypos, width: 100, height: 100)
+        imgDownArrow.image = UIImage(named: "DownArrow")
+        view.layoutIfNeeded()
+    }
+    
     let cardContainerView = UICardContainerView()
     
     //MARK: Card Container Data Source
     func numberOfCardsForCardContainerView(_ cardContainerView: UICardContainerView) -> Int{
         return imageURLs.count
     }
+    
     func cardContainerView(_ cardContainerView: UICardContainerView, imageForCardAtIndex index: Int) -> UIImage?{
         return index < imageURLs.count ? images[imageURLs[index]] : nil
+    }
+    
+    func cardIndexChanged(_ currentHeadCardIndex: Int) {
+        if currentHeadCardIndex == 0 {
+            imgDownArrow.image = UIImage(named: "DownArrow")
+        } else if currentHeadCardIndex >= imageURLs.count - 1 {
+            imgDownArrow.image = UIImage(named: "UpArrow")
+        } else {
+            imgDownArrow.image = UIImage(named: "DoubleArrow")
+        }
     }
     
     override func viewDidLayoutSubviews() {

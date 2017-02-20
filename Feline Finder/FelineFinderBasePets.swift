@@ -135,6 +135,19 @@ class PetList {
         } else {
             resultLimit = 25
         }
+        
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.UIApplicationDidReceiveMemoryWarning,
+            object: nil, queue: OperationQueue.main) { notification in
+                self.Pets.removeAll(keepingCapacity: false)
+                imageCache.removeAll(keepingCapacity: false)
+                PetFinderBreeds.removeAll()
+                PetsGlobal.removeAll()
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIApplicationDidReceiveMemoryWarning, object: nil)
     }
     
     func splitPetID(_ petID: String) -> String {

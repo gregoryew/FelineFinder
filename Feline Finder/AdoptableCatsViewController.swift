@@ -134,28 +134,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     {
         super.viewWillAppear(animated)
         setFilterDisplay()
-        if PetFinderBreeds[(globalBreed?.BreedName)!] != nil {
-            if (PetFinderBreeds[(globalBreed?.BreedName)!]?.count)! == 0 {
-                PetFinderBreeds[(globalBreed?.BreedName)!] = nil
-                zipCodeGlobal = ""
-            }
+        if viewPopped {
+            PetFinderBreeds[(globalBreed?.BreedName)!] = nil
+            zipCodeGlobal = ""
+            loadPets()
+            viewPopped = false
         }
-        if viewPopped {loadPets(); viewPopped = false}
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if globalBreed!.BreedName == "All Breeds" {
-            self.navigationController?.setToolbarHidden(true, animated:false);
-        } else {
-            self.navigationController?.setToolbarHidden(false, animated:false);
-        }
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-        
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     override func didReceiveMemoryWarning() {
@@ -167,6 +151,11 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         if let navigationBar = self.navigationController?.navigationBar {
             let filter = "Zip:\(zipCode)"
             navigationBar.topItem!.prompt = filter
+            if currentFilterSave != "Touch Here To Load/Save..." {
+                navigationItem.title = currentFilterSave
+            } else {
+                navigationItem.title = "All Breeds"
+            }
         }
     }
     
@@ -202,7 +191,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                     if let validPlacemark = placemarks?[0] {
                         let pm = validPlacemark
                         zipCode = pm.postalCode!
-                        UserDefaults.standard.set(zipCode, forKey: "zipCode")
+                        //UserDefaults.standard.set(zipCode, forKey: "zipCode")
                         self.setFilterDisplay()
                         print("locationManager")
                         if (zipCode != "") {

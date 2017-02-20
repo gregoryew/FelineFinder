@@ -11,6 +11,7 @@ import UIKit
 public protocol CardContainerDataSource{
     func numberOfCardsForCardContainerView(_ cardContainerView: UICardContainerView) -> Int
     func cardContainerView(_ cardContainerView: UICardContainerView, imageForCardAtIndex: Int) -> UIImage?
+    func cardIndexChanged(_ cardIndex: Int)
 }
 
 private class UICardView: UIView {
@@ -207,6 +208,7 @@ open class UICardContainerView: UIView {
         let delayTime2 = DispatchTime.now() + Double(Int64(duration * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         DispatchQueue.main.asyncAfter(deadline: delayTime2, execute: {
             self.currentHeadCardIndex -= 1
+            self.dataSource?.cardIndexChanged(self.currentHeadCardIndex)
             self.visibleCardQueue.insert(self.previousHeadCard!, at: 0)
             self.layoutVisibleCardViews()
         })
@@ -401,6 +403,7 @@ open class UICardContainerView: UIView {
     fileprivate func finishLastworkAfterSlideDown(_ headCard: UICardView){
         headCard.layer.zPosition = CGFloat(101)
         currentHeadCardIndex += 1
+        self.dataSource?.cardIndexChanged(self.currentHeadCardIndex)
         visibleCardQueue.removeFirst()
         backupCardQueue.append(headCard)
         
@@ -558,6 +561,7 @@ open class UICardContainerView: UIView {
                         }, completion: {_ in
                     })
                     self.currentHeadCardIndex -= 1
+                    self.dataSource?.cardIndexChanged(self.currentHeadCardIndex)
                     self.visibleCardQueue.insert(self.previousHeadCard!, at: 0)
                     self.layoutVisibleCardViews()
                 }else{

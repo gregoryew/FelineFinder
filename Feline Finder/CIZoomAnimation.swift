@@ -36,7 +36,7 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
     
     open var interacting: Bool = false
     
-    var duration: Double = 1.0
+    var duration: Double = 0.5
     
     var containView: UIView?
     var fromVC: UIViewController?
@@ -46,7 +46,7 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
     private var transitionTimer: Timer?
     
     open func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 1.0
+        return 0.5
     }
     
     public init(transImage: transitionImage, status: TransitionStatus = .push) {
@@ -75,13 +75,14 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
             currentImage?.frame = (fromVC?.view.frame)!
             currentImage?.image = fromImage
             container.addSubview(currentImage!)
-            
+        
             fromVC?.view.alpha = 0.0
-            
-            currentImage?.transitionToImage(toImage: fromImage, transContext: transitionContext, vc: toVC!, ti: transImage!)
+        
+            currentImage?.transitionToImage(toImage: fromImage, transContext: transitionContext, vc: toVC!, ti: transImage!, fromVC: fromVC!)
         } else {
             toVC!.view.layer.opacity = 0
             UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, options: .curveEaseInOut, animations: {
+                self.toVC!.view.alpha = 1
                 self.toVC!.view.layer.opacity = 1
             }){ finished in
                 transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
