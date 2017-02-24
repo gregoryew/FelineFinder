@@ -24,23 +24,15 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         Favorites.breedKeys.removeAll()
         Favorites.LoadFavorites()
         
-        /*
-        Favorites.assignStatus(self.tableView) { () -> Void in
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-        }
-        */
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
         
-        /*
-        Favorites.assignStatus(self.tableView) { () -> Void in
+        Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
+            self.statuses = Stats
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         }
-        */
     }
     
     @IBAction func unwindToFavorites(_ sender: UIStoryboardSegue)

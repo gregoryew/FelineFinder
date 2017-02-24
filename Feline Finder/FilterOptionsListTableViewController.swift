@@ -85,6 +85,15 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         filterOptions.filteringOptions[0].options.append((displayName: name, search: String(NameID), value: c))
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            let indexPath = IndexPath(row: self.filterOpt!.options.count - 1, section: 0);
+            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
+            self.filterOpt?.choosenValue = Int((self.filterOpt?.options[self.filterOpt!.options.count - 1].search)!)
+            //indexPath.row
+            let cell = self.tableView.cellForRow(at: indexPath)
+            currentFilterSave = (cell?.textLabel?.text)!
+            //filterOpt?.choosenListValues.append(indexPath.row)
+            //performSegue(withIdentifier: "backToFilterOptions", sender: nil)
+            _ = self.navigationController?.tr_popViewController()
         }
     }
     

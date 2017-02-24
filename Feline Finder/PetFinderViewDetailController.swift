@@ -31,6 +31,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var favoriteBtn: FaveButton?
     
+    
     @IBOutlet weak var youTube: UIBarButtonItem!
     @IBOutlet weak var pictures: UIBarButtonItem!
     
@@ -43,6 +44,16 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     @IBAction func directionsTapped(_ sender: Any) {
         self.loadCoordinate(sh: s!)
+    }
+
+    @IBAction func FavoriteTapped(_ sender: Any) {
+        if favorited {
+            print("NOT FAVORITED")
+            favorited = false
+        } else {
+            favorited = true
+            print("FAVORITED")
+        }
     }
     
     @IBAction func callTapped(_ sender: Any) {
@@ -232,6 +243,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     ]
     
     func faveButton(_ faveButton: FaveButton, didSelected selected: Bool){
+        /*
         if favorited {
             print("NOT FAVORITED")
             favorited = false
@@ -239,8 +251,10 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             favorited = true
             print("FAVORITED")
         }
+        */
     }
-    
+ 
+
     func faveButtonDotColors(_ faveButton: FaveButton) -> [DotColors]?{
         if faveButton === favoriteBtn{
             return colors
