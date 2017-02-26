@@ -41,6 +41,8 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
     var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBOutlet weak var SavedButton: UIBarButtonItem!
+    var filterOpt: filterOption?
+    var save: Bool = false
     
     @IBAction func ClearTapped(_ sender: Any) {
         filterOpt?.choosenListValues = []
@@ -145,8 +147,6 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         present(alertController, animated: true, completion: nil)
     }
     
-    var filterOpt: filterOption?
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -156,6 +156,7 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             SavedButton.title = "Save"
             SavedButton.isEnabled = true
             self.navigationItem.rightBarButtonItem = self.editButtonItem
+            if save {promptUserForSaveName()}
         } else {
             SavedButton.title = ""
             SavedButton.isEnabled = false

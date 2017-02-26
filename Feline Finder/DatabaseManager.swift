@@ -290,7 +290,7 @@ class DatabaseManager {
                 self.presentDBErrorMessage((db?.lastErrorMessage())!)
             }
             
-            let querySQL2 = "SELECT QuestionID, Name, Description, [Order], ImageName from Questions order by [Order]"
+            let querySQL2 = "SELECT QuestionID, Name, Description, [Order], ImageName from Questions where Show = 1 order by [Order]"
             
             if let results2 = db?.executeQuery(querySQL2, withArgumentsIn: []) {
                 while results2.next() == true {
@@ -395,10 +395,10 @@ class DatabaseManager {
         var keys = [Int32]()
         
         if (answers == true) {
-            querySQL = "SELECT DISTINCT SavedSearchID, SavedSearchDetailID, Question, QuestionID, QuestionOrder, Choice, ChoicesID from AnswersList order by QuestionOrder"
+            querySQL = "SELECT DISTINCT SavedSearchID, SavedSearchDetailID, Question, QuestionID, QuestionOrder, Choice, ChoicesID, ChoiceOrder from AnswersList order by QuestionOrder"
         }
         else {
-            querySQL = "SELECT DISTINCT SavedSearchID, SavedSearchDetailID, Question, QuestionID, QuestionOrder, Choice, ChoicesID from SavedSearchList order by QuestionOrder"
+            querySQL = "SELECT DISTINCT SavedSearchID, SavedSearchDetailID, Question, QuestionID, QuestionOrder, Choice, ChoicesID, ChoiceOrder from SavedSearchList order by QuestionOrder"
         }
         
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
@@ -410,8 +410,24 @@ class DatabaseManager {
                     let question = results.string(forColumn: "Question")
                     let questionid = results.int(forColumn: "QuestionID")
                     let questionOrder2 = results.int(forColumn: "QuestionOrder")
-                    let choice = results.string(forColumn: "Choice")
+                    var choice = results.string(forColumn: "Choice")
                     let choiceID = results.int(forColumn: "ChoicesID")
+                    let choiceOrder = results.int(forColumn: "ChoiceOrder")
+                    if questionOrder2 < 14 {
+                        if choiceOrder == 2 {
+                            choice = "High"
+                        } else if choiceOrder == 6 {
+                            choice = "Low"
+                        } else if choiceOrder == 1 {
+                            choice = "Unanswered"
+                        } else {
+                            choice = "Medium"
+                        }
+                    } else {
+                        if choiceOrder == 1 {
+                            choice = "Unanswered"
+                        }
+                    }
                     keys.append(SavedSearchID)
                     let ssd2 = SavedSearchDetail(Id: SavedSearchID, DetID: SavedSearchDetailID, q: question!, o: questionOrder2, c: choice!, qID: questionid, cID: choiceID)
                     ssd.append(ssd2)

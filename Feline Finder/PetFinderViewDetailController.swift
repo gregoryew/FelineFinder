@@ -34,7 +34,9 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     @IBOutlet weak var youTube: UIBarButtonItem!
     @IBOutlet weak var pictures: UIBarButtonItem!
-    
+    @IBOutlet weak var map: UIBarButtonItem!
+    @IBOutlet weak var phone: UIBarButtonItem!
+    @IBOutlet weak var email: UIBarButtonItem!
     
     @IBAction func picturesTapped(_ sender: Any) {
         let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
@@ -229,7 +231,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             } else {
                 print ("Adding Favorite")
                 let urlString = pet!.getImage(1, size: "pnt")
-                Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: breedName!, d: favoriteType, s: ""))
+                let bn = pet?.breeds.first
+                Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: bn!, d: favoriteType, s: ""))
             }
         }
     }
@@ -706,6 +709,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         return htmlString
     }
     
+    /*
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -715,6 +719,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         webView.dataDetectorTypes = UIDataDetectorTypes.link
         favoriteBtn?.delegate = self
     }
+    */
     
     var currentIndex = 0
     var timer: Timer?
@@ -785,8 +790,17 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     var imageURLs:[String] = []
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    //override func viewWillAppear(_ animated: Bool) {
+        //super.viewWillAppear(animated)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //self.navigationController?.setNavigationBarHidden(false, animated: false)
+        print("\(webView.frame)")
+        webView.delegate = self
+        webView.dataDetectorTypes = UIDataDetectorTypes.link
+        favoriteBtn?.delegate = self
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setToolbarHidden(false, animated: false)
@@ -841,6 +855,16 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                     DispatchQueue.main.async(execute: {self.youTube.isEnabled = false})}
                 if self.pet?.media.count == 0 {
                     DispatchQueue.main.async(execute: {self.pictures.isEnabled = false})
+                }
+                if shelter.email == "" {
+                    DispatchQueue.main.async(execute: {self.email.isEnabled = false})
+                }
+                let address = shelter.address1.uppercased().replacingOccurrences(of: " ", with: "")
+                if address.hasPrefix("POBOX") || address.hasPrefix("P.O.") || address == "" {
+                    DispatchQueue.main.async(execute: {self.map.isEnabled = false})
+                }
+                if shelter.phone == "" {
+                    DispatchQueue.main.async(execute: {self.phone.isEnabled = false})
                 }
                 let htmlString = self.configureView(pet, s: shelter);
                 self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)

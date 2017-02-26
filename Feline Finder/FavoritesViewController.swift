@@ -156,7 +156,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
             felineDetail.favoriteType = favoritePet.FavoriteDataSource
             felineDetail.modalDelegate = self
             let navEditorViewController: UINavigationController = UINavigationController(rootViewController: felineDetail)
-            tr_presentViewController(navEditorViewController, method: TRPresentTransitionMethod.fade, completion: {
+            tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
                 print("Present finished.")
                 })
         }

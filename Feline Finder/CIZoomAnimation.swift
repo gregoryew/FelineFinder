@@ -65,7 +65,7 @@ class CIZoomAnimation: NSObject, TRViewControllerAnimatedTransitioning {
         containView?.addSubview(fromVC!.view)
         containView?.addSubview(toVC!.view)
         
-        if transitionStatus == TransitionStatus.push {
+        if transitionStatus == TransitionStatus.push || transitionStatus == TransitionStatus.present {
             let fromImage: UIImage?
 
             fromImage = UIImage.imageWithView(view: (fromVC?.view)!)

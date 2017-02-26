@@ -34,9 +34,9 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (SavedSearches2.loaded == false) {
+        //if (SavedSearches2.loaded == false) {
             SavedSearches2.loadSearches(false)
-        }
+        //}
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;

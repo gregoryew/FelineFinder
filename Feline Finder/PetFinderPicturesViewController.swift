@@ -19,11 +19,14 @@ enum panScrollDirection{
     case up, down
 }
 
-class PetFinderPicturesViewController: UIViewController, CardContainerDataSource, NavgationTransitionable {
+class PetFinderPicturesViewController: UIViewController, CardContainerDataSource, NavgationTransitionable, KYCircularProgressDelegate {
     
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0)
     var imageURLs:[String] = []
     var images: Dictionary<String, UIImage> = [:]
+    
+    @IBOutlet weak var circularProgress: KYCircularProgress!
+    @IBOutlet weak var progressLabel: UILabel!
     
     let swipeLeftRec = UISwipeGestureRecognizer()
     let swipeRightRec = UISwipeGestureRecognizer()
@@ -37,6 +40,9 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     let outerBlueSquare = UIView()
     let pageControl = UIPageControl()
     var currentIndex = 0
+    var progress = 0.0
+    var totalImages = 0.0
+    var currentImage = 0.0
     
     //let imgDownArrow = UIImageView.init(image: UIImage(named: "downarrow"))
     let imgDownArrow = UIImageView()
@@ -51,6 +57,9 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
         super.viewDidLoad()
         self.navigationItem.prompt = "Swipe down to see next up for previous"
         self.title = petData.name
+
+        self.circularProgress.isHidden = false
+        self.progressLabel.isHidden = true
         
         cardContainerView.clipsToBounds = false
         view.addSubview(cardContainerView)
@@ -61,12 +70,16 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
         view.layoutIfNeeded()
         
         self.imageURLs = (self.petData.getAllImagesOfACertainSize("x"))
+        totalImages = Double(self.imageURLs.count)
+        currentImage = 0.0
         var errors = 0
         for url in self.imageURLs {
             let imgURL = URL(string: url)
             let request: URLRequest = URLRequest(url: imgURL!)
             //let mainQueue = NSOperationQueue.mainQueue()
             _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+                self.currentImage += 1.0
+                self.circularProgress.progress = self.currentImage / self.totalImages
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
@@ -75,6 +88,12 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
                     if self.images.count + errors == self.imageURLs.count {
                     DispatchQueue.main.async(execute: {
                         //self.setupView()
+                        self.circularProgress.isHidden = true
+                        self.progressLabel.isHidden = true
+                        self.view.addSubview(self.imgDownArrow)
+                        let ypos = self.cardContainerView.bounds.origin.y + self.cardContainerView.frame.size.height + 200
+                        self.imgDownArrow.frame = CGRect(x: self.cardContainerView.frame.center.x, y: ypos, width: 100, height: 100)
+                        self.imgDownArrow.image = UIImage(named: "DownArrow")
                     self.cardContainerView.dataSource = self
                     })
                     }
@@ -87,10 +106,7 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        view.addSubview(imgDownArrow)
-        let ypos = cardContainerView.bounds.origin.y + cardContainerView.frame.size.height + 200
-        imgDownArrow.frame = CGRect(x: cardContainerView.frame.center.x, y: ypos, width: 100, height: 100)
-        imgDownArrow.image = UIImage(named: "DownArrow")
+        circularProgress.delegate = self
         view.layoutIfNeeded()
     }
     
@@ -118,6 +134,12 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         cardContainerView.respondsToSizeChange()
+    }
+
+    func progressChanged(progress: Double, circularProgress: KYCircularProgress) {
+        if circularProgress == self.circularProgress {
+            //progressLabel.text = "\(Int(progress * 100.0))%"
+        }
     }
 
 }

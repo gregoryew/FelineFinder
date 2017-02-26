@@ -10,9 +10,98 @@ import UIKit
 
 var questionList: QuestionList = QuestionList()
 
-class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class QuestionEntryViewController: UIViewController {
 
-    @IBOutlet weak var AnswerPicker: UIPickerView!
+    @IBOutlet weak var HighButton: UIButton!
+    @IBOutlet weak var MediumButton: UIButton!
+    @IBOutlet weak var LowButton: UIButton!
+    
+    @IBAction func HighButtonTapped(_ sender: Any) {
+        let q = questionList.Questions[currentQuestion]
+        var answer = 0
+        if currentQuestion == 8 { //Hair
+            answer = 2
+        } else if currentQuestion == 9 { //Size
+            answer = 1
+        } else {
+            answer = 1
+        }
+        questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[answer].ChoiceID))
+        setButtonToAnswer(answer: 2, flipPage: true)
+    }
+    
+    @IBAction func MediumTapped(_ sender: Any) {
+        let q = questionList.Questions[currentQuestion]
+        var answer = 0
+        if currentQuestion == 8 { //Hair
+            answer = 4
+        } else if currentQuestion == 9 { //Size
+            answer = 2
+        } else {
+            answer = 3
+        }
+        questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[answer].ChoiceID))
+        setButtonToAnswer(answer: 4, flipPage: true)
+    }
+    
+    @IBAction func LowTapped(_ sender: Any) {
+        let q = questionList.Questions[currentQuestion]
+        var answer = 0
+        if currentQuestion == 8 { //Hair
+            answer = 5
+        } else if currentQuestion == 9 { //Size
+            answer = 3
+        } else {
+            answer = 5
+        }
+        questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[answer].ChoiceID))
+        setButtonToAnswer(answer: 6, flipPage: true)
+    }
+    
+    func setButtonToAnswer(answer: Int, flipPage: Bool = false)  {
+        HighButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        MediumButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        LowButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        HighButton.tintColor = UIColor.blue
+        MediumButton.tintColor = UIColor.blue
+        LowButton.tintColor = UIColor.blue
+        switch answer {
+        case 6:
+            LowButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            LowButton.tintColor = UIColor.black
+        case 4:
+            MediumButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            MediumButton.tintColor = UIColor.black
+        case 2:
+            HighButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            HighButton.tintColor = UIColor.black
+        default: break
+        }
+        if (flipPage) {
+            let mpvc = (parent) as! ManagePageViewController
+            if (currentQuestion == questionList.count - 1) || (whichSegueGlobal == "Edit") {
+                mpvc.gotoSummary()
+            } else {
+                currentQuestion = currentQuestion + 1
+                let viewController = mpvc.viewQuestionEntry(currentQuestion)
+                mpvc.setViewControllers([viewController!], direction: .forward, animated: true, completion: nil)
+            }
+        }
+        if currentQuestion == 8 {  //Hair Type
+            LowButton.setTitle("Long Hair", for: .normal)
+            MediumButton.setTitle("Medium", for: .normal)
+            HighButton.setTitle("Short", for: .normal)
+        } else if currentQuestion == 9 {  //Size
+            LowButton.setTitle("Biggish", for: .normal)
+            MediumButton.setTitle("Average", for: .normal)
+            HighButton.setTitle("Small", for: .normal)
+        } else {
+            LowButton.setTitle("Low", for: .normal)
+            MediumButton.setTitle("Medium", for: .normal)
+            HighButton.setTitle("High", for: .normal)
+        }
+    }
+    
     @IBOutlet weak var QuestionLabel: UILabel!
     
     @IBOutlet weak var PageNumbers: UIPageControl!
@@ -43,8 +132,8 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     */
     
     @IBAction func PageChange(_ sender: AnyObject) {
-        //currentQuestion = PageNumbers.currentPage
-        //displayQuestion()
+        currentQuestion = PageNumbers.currentPage
+        displayQuestion()
     }
     
     override func viewDidLoad() {
@@ -67,9 +156,9 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     
     func setupViewController() {
-        self.AnswerPicker.dataSource = self
-        self.AnswerPicker.delegate = self
-        /*
+        //self.AnswerPicker.dataSource = self
+        //self.AnswerPicker.delegate = self
+/*
         if (whichSegue == "Edit") {
             currentQuestion = editWhichQuestion
         }
@@ -78,8 +167,8 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             questionList.getQuestions()
         }
         self.displayQuestion()
-        */
-    }
+*/
+ }
     
     /*
     @IBAction func swipeLeft(sender: AnyObject) {
@@ -100,20 +189,22 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
     }
     */
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1;
-    }
+    //func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    //    return 1;
+    //}
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    //func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         //println(questionList.Questions.count)
-        question = questionList.Questions[currentQuestion];
-        return question.Choices.count;
-    }
+    //    question = questionList.Questions[currentQuestion];
+    //    return question.Choices.count;
+    //}
     
+    /*
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         question = questionList.Questions[currentQuestion];
         return question.Choices[row].Name
     }
+    */
     
     func setPicture( _ answerNumber: Int, fromPicker: Bool = false) {
         var _answerNumber = answerNumber
@@ -147,7 +238,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             let gif = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: gifName, ofType: "gif")!), options: .mappedIfSafe)
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
-        } else if currentQuestion == 13 {
+        } else if currentQuestion == 9 {
             var gifName: String = ""
             switch _answerNumber {
             case 1:
@@ -169,7 +260,7 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
             
-        } else if currentQuestion == 14 {
+        } else if currentQuestion == 10 {
             var gifName: String = ""
             switch _answerNumber {
             case 1:
@@ -197,24 +288,50 @@ class QuestionEntryViewController: UIViewController, UIPickerViewDataSource, UIP
         //self.navigationItem.title = questionList.Questions[currentQuestion].Name;
         let title = questionList.Questions[currentQuestion].Name
         QuestionLabel.text = "\(title)\r\nQuestion \(currentQuestion + 1) out of \(questionList.Questions.count)\r\n\r\n" + questionList.Questions[currentQuestion].Description;
-        AnswerPicker.reloadAllComponents()
+        //AnswerPicker.reloadAllComponents()
         PageNumbers.currentPage = currentQuestion
         let answer = questionList.getAnswer(currentQuestion)
+        /*
         if (answer.Answer == true)
         {
             AnswerPicker.selectRow((Int)(answer.Order - 1), inComponent: 0, animated: false)
         } else {
             AnswerPicker.selectRow(0, inComponent: 0, animated: false)
         }
-        var gifName = ""
-        if currentQuestion == 12 || currentQuestion == 13 || currentQuestion == 14 {
-            setPicture(Int(answer.Order))
+        */
+        if currentQuestion == 8 {
+            if answer.Order == 3 {
+                setButtonToAnswer(answer: 2)
+            } else if answer.Order == 5 {
+                setButtonToAnswer(answer: 4)
+            } else if answer.Order == 6 {
+                setButtonToAnswer(answer: 6)
+            } else {
+                setButtonToAnswer(answer: -1)
+            }
+        } else if currentQuestion == 9 {
+            if answer.Order == 2 {
+                setButtonToAnswer(answer: 2)
+            } else if answer.Order == 3 {
+                setButtonToAnswer(answer: 4)
+            } else if answer.Order == 4 {
+                setButtonToAnswer(answer: 6)
+            } else {
+                setButtonToAnswer(answer: -1)
+            }
         } else {
+            setButtonToAnswer(answer: Int(answer.Order))
+        }
+        
+        var gifName = ""
+        //if currentQuestion == 12 || currentQuestion == 13 || currentQuestion == 14 {
+            //setPicture(Int(answer.Order))
+        //} else {
             gifName = questionList.Questions[currentQuestion].ImageName
             let gif = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: gifName, ofType: "gif")!), options: .mappedIfSafe)
             let GIFImage: FLAnimatedImage = FLAnimatedImage(animatedGIFData: gif)
             self.FLAnimatedGIF.animatedImage = GIFImage
-        }
+        //}
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

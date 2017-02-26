@@ -143,10 +143,12 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
                 let ans: Bool = (self.whichSegue == "Summary" ? true : false)
                 let n = self.txtfld.text
                 SavedSearches.saveSearches(ans, ID: Int(ss.SavedSearchID), SearchName: n!)
+                /*
                 SavedSearches.refresh()
                 SavedSearches.loadSearches(false)
                 SavedSearches2.refresh()
                 SavedSearches2.loadSearches(false)
+                */
                 self.removeTextFieldObserver()
                 SearchTitle = n!
                 DispatchQueue.main.async {

@@ -40,6 +40,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     @IBAction func detailsTapped(_ sender: Any) {
         let Details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
+        Details.viewDidLoad()
         navigationController?.tr_pushViewController(Details, method: DemoTransition.Slide(direction: DIRECTION.left))
     }
     
@@ -57,7 +58,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         var width: CGFloat = 0.0
         if UIDevice.current.userInterfaceIdiom == .pad {
-            width = collectionView!.frame.width / 3.0
+            width = view.frame.width / 3.0
+                //collectionView!.frame.width / 3.0
         } else {
             width = collectionView!.frame.width / 2.0
         }
@@ -154,8 +156,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             navigationItem.title = currentFilterSave
         } else {
             let breeds = filterOptions.breedOption?.getDisplayValues() ?? ""
-            if ((breeds.contains(",")) || breeds == "") {
-                navigationItem.title = "Multiple Breeds"
+            if ((breeds.contains(",")) || breeds == "" || breeds=="Any") {
+                navigationItem.title = "Cats for Adoption"
             } else {
                 navigationItem.title = breeds
             }
@@ -335,7 +337,7 @@ extension AdoptableCatsViewController {
         FelineDetail.breedName = globalBreed!.BreedName
         FelineDetail.modalDelegate = self
         let navEditorViewController: UINavigationController = UINavigationController(rootViewController: FelineDetail)
-        tr_presentViewController(navEditorViewController, method: TRPresentTransitionMethod.fade, completion: {
+        tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
             print("Present finished.")
         })
     }

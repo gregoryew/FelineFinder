@@ -37,13 +37,13 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
         
         var width: CGFloat = 0.0
         if UIDevice.current.userInterfaceIdiom == .pad {
-            width = collectionView!.frame.width / 3.0
+            width = view.frame.width / 3.0
         } else {
             //width = collectionView!.frame.width / 2.0
-            width = 180
+            width = view.frame.width / 2.0
         }
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: 180)
+        layout.itemSize = CGSize(width: width, height: width)
         
         // Sticky Headers
         layout.sectionHeadersPinToVisibleBounds = true
@@ -323,11 +323,9 @@ extension AdoptableCatsTabViewController {
         FelineDetail.breedName = globalBreed!.BreedName
         FelineDetail.modalDelegate = self // Don't forget to set modalDelegate
         let navEditorViewController: UINavigationController = UINavigationController(rootViewController: FelineDetail)
-       tr_presentViewController(navEditorViewController, method: TRPresentTransitionMethod.fade, completion: {
+       tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
             print("Present finished.")
         })
-        //navigationController?.tr_pushViewController(FelineDetail, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -401,6 +399,8 @@ extension AdoptableCatsTabViewController {
         if petData.videos.count > 0 {
             cell.Video.isHidden = false
             cell.Video.image = UIImage(named: "video")
+            print("\(cell.Video.frame)")
+            print("\(cell.Video.image)")
         } else {
             cell.Video.isHidden = true
         }

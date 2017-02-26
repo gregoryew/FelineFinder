@@ -40,12 +40,20 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBOutlet weak var clear: UIBarButtonItem!
-    @IBOutlet weak var importQuestions: UIBarButtonItem!
     
     @IBAction func clearTapped(_ sender: AnyObject) {
         filterOptions.reset()
         currentFilterSave = "Touch Here To Load/Save..."
         self.tableView.reloadData()
+    }
+    
+    @IBAction func SaveTapped(_ sender: Any) {
+        let opt = filterOptions.filteringOptions[0]
+        let listOptions = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "listOptions") as! FilterOptionsListTableViewController
+        listOptions.filterOpt = opt
+        listOptions.save = true
+        sourceViewController = listOptions
+        navigationController?.tr_pushViewController(listOptions, method: DemoTransition.Slide(direction: DIRECTION.left))
     }
     
     @IBAction func DoneTapped(_ sender: AnyObject) {

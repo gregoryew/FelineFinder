@@ -10,6 +10,19 @@ import Foundation
 import TransitionTreasury
 import TransitionAnimation
 
+enum DemoPresent {
+    case CIZoom(transImage: transitionImage)
+}
+
+extension DemoPresent: TransitionAnimationable {
+    func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
+        switch self {
+        case let .CIZoom(transitionImage) :
+            return CIZoomAnimation(transImage: transitionImage)
+        }
+    }
+}
+
 enum DemoTransition {
     case FadePush
     case TwitterPresent
