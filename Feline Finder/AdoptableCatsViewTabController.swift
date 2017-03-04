@@ -43,7 +43,7 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
             width = view.frame.width / 2.0
         }
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width)
+        layout.itemSize = CGSize(width: width, height: width + 30)
         
         // Sticky Headers
         layout.sectionHeadersPinToVisibleBounds = true
@@ -415,6 +415,9 @@ extension AdoptableCatsTabViewController {
         }
         
         let imgURL = URL(string: urlString!)
+        
+        cell.CatImager.cornerRadius = cell.CatImager.frame.width / 2
+        cell.CatImager.shadow = true
         
         if let img = imageCache[urlString!] {
             cell.CatImager.image = img

@@ -20,9 +20,9 @@ class QuestionEntryViewController: UIViewController {
         let q = questionList.Questions[currentQuestion]
         var answer = 0
         if currentQuestion == 8 { //Hair
-            answer = 2
+            answer = 5
         } else if currentQuestion == 9 { //Size
-            answer = 1
+            answer = 3
         } else {
             answer = 1
         }
@@ -48,9 +48,9 @@ class QuestionEntryViewController: UIViewController {
         let q = questionList.Questions[currentQuestion]
         var answer = 0
         if currentQuestion == 8 { //Hair
-            answer = 5
+            answer = 2
         } else if currentQuestion == 9 { //Size
-            answer = 3
+            answer = 1
         } else {
             answer = 5
         }
@@ -59,22 +59,16 @@ class QuestionEntryViewController: UIViewController {
     }
     
     func setButtonToAnswer(answer: Int, flipPage: Bool = false)  {
-        HighButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        MediumButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        LowButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-        HighButton.tintColor = UIColor.blue
-        MediumButton.tintColor = UIColor.blue
-        LowButton.tintColor = UIColor.blue
+        HighButton.setImage(UIImage(named: "High_Unlit"), for: UIControlState.normal)
+        MediumButton.setImage(UIImage(named: "Med_Unlit"), for: UIControlState.normal)
+        LowButton.setImage(UIImage(named: "Low_Unlit"), for: UIControlState.normal)
         switch answer {
         case 6:
-            LowButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            LowButton.tintColor = UIColor.black
+            LowButton.setImage(UIImage(named: "Low_Lit"), for: UIControlState.normal)
         case 4:
-            MediumButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            MediumButton.tintColor = UIColor.black
+            MediumButton.setImage(UIImage(named: "Med_Lit"), for: UIControlState.normal)
         case 2:
-            HighButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            HighButton.tintColor = UIColor.black
+            HighButton.setImage(UIImage(named: "High_Lit"), for: UIControlState.normal)
         default: break
         }
         if (flipPage) {
@@ -285,6 +279,11 @@ class QuestionEntryViewController: UIViewController {
     
     func displayQuestion() {
         if ((currentQuestion < 0) || (currentQuestion >= questionList.Questions.count)) {return}
+        if parent != nil {
+            let mpvc = (parent) as! ManagePageViewController
+            //if let navBar = self.navigationController?.navigationBar {
+            mpvc.navigationController?.navigationItem.title = "Skip Question By Flipping Page"
+        }
         //self.navigationItem.title = questionList.Questions[currentQuestion].Name;
         let title = questionList.Questions[currentQuestion].Name
         QuestionLabel.text = "\(title)\r\nQuestion \(currentQuestion + 1) out of \(questionList.Questions.count)\r\n\r\n" + questionList.Questions[currentQuestion].Description;
@@ -300,21 +299,21 @@ class QuestionEntryViewController: UIViewController {
         }
         */
         if currentQuestion == 8 {
-            if answer.Order == 3 {
+            if answer.Order == 6 {
                 setButtonToAnswer(answer: 2)
             } else if answer.Order == 5 {
                 setButtonToAnswer(answer: 4)
-            } else if answer.Order == 6 {
+            } else if answer.Order == 3 {
                 setButtonToAnswer(answer: 6)
             } else {
                 setButtonToAnswer(answer: -1)
             }
         } else if currentQuestion == 9 {
-            if answer.Order == 2 {
+            if answer.Order == 4 {
                 setButtonToAnswer(answer: 2)
             } else if answer.Order == 3 {
                 setButtonToAnswer(answer: 4)
-            } else if answer.Order == 4 {
+            } else if answer.Order == 2 {
                 setButtonToAnswer(answer: 6)
             } else {
                 setButtonToAnswer(answer: -1)

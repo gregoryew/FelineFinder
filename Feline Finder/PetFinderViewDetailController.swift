@@ -115,10 +115,13 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     }
     
     @IBAction func emailTapped(_ sender: Any) {
-        let index1 = s?.email.characters.index((s?.email.startIndex)!, offsetBy: 7)
-        let email: String = (s?.email.substring(from: index1!))!
+        var email = s?.email
+        if (email?.lowercased().hasPrefix("emailto"))! {
+            let index1 = email?.characters.index((email?.startIndex)!, offsetBy: 7)
+            email = (s?.email.substring(from: index1!))!
+        }
         emailAddress = [String]()
-        emailAddress.append(email)
+        emailAddress.append(email!)
         let mailComposeViewController = configuredMailComposeViewController()
         if MFMailComposeViewController.canSendMail() {
             self.present(mailComposeViewController, animated: true, completion: nil)
@@ -671,7 +674,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         if p.media.count == 0 {
             picture = ""
         } else {
-            picture = "<a href=\"Pictures\"><img src=\"\(url)\" style=\"box-shadow:10px 10px 5px black\" width=\"\(String(w))\">"
+            picture = "<a href=\"Pictures\"><img src=\"\(url)\" style=\"box-shadow:10px 10px 5px black;border-radius: 50%\" width=\"\(String(w))\">"
         }
         
         var born = ""

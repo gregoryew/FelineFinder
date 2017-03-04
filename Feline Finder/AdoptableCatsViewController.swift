@@ -24,7 +24,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     var titles:[String] = []
     var totalRow = 0
     var times = 0
-    
+    let lm = CLLocationManager()
     var tr_pushTransition: TRNavgationTransitionDelegate?
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
@@ -64,7 +64,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             width = collectionView!.frame.width / 2.0
         }
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width)
+        layout.itemSize = CGSize(width: width, height: width + 30)
         
         // Sticky Headers
         layout.sectionHeadersPinToVisibleBounds = true
@@ -78,19 +78,43 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         self.pets = RescuePetList()
         
         self.navigationItem.title = "\(globalBreed!.BreedName)"
-        if (zipCode != "")
-        {
-            self.loadPets()
+
+        lm.delegate = self
+        lm.desiredAccuracy = kCLLocationAccuracyBest
+        lm.requestWhenInUseAuthorization()
+        if zipCode == "" {
+            lm.startUpdatingLocation()
+        } else {
             setFilterDisplay()
-            setupReloadAndScroll()
+            loadPets()
         }
-        else if (CLLocationManager.locationServicesEnabled()) {
-            locationManager = CLLocationManager()
-            locationManager!.delegate = self
-            locationManager!.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager!.requestWhenInUseAuthorization()
-            locationManager!.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            zipCode = ""
+            PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         }
+        if zipCode == "" {
+            determineLocationAuthorization()
+            if status == .denied || status == .restricted {self.loadPets()}
+        }
+    }
+    
+    func determineLocationAuthorization() {
+        if CLLocationManager.locationServicesEnabled() {
+            switch(CLLocationManager.authorizationStatus()) {
+            case .restricted, .denied:
+                zipCode = "65552"  //If the user disabled location services then set the zip code to the middle of us population
+                Utilities.displayAlert("Location Services Not Enabled", errorMessage: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 65562.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.")
+            case .authorizedAlways, .authorizedWhenInUse, .notDetermined:
+                zipCode = ""
+            }
+        } else {
+            zipCode = "65552" //If the user disabled location services then set the zip code to the middle of us population
+            Utilities.displayAlert("Location Services Not Enabled", errorMessage: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 65562.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.")
+        }
+        setFilterDisplay()
     }
     
     func setupReloadAndScroll() {
@@ -171,42 +195,36 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         self.collectionView?.reloadData()
     }
     
-    @IBAction func unwindToPetFinderList(_ sender: UIStoryboardSegue)
-    {
-        //let sourceViewController = sender.sourceViewController
-        setFilterDisplay()
-        self.loadPets()
-        // Pull any data from the view controller which initiated the unwind segue.
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if (zipCode != "") {
             return
         }
-        self.locationManager!.stopUpdatingLocation()
+        self.lm.stopUpdatingLocation()
+        self.lm.delegate = nil
         if let loc = manager.location {
             CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error)->Void in
                 if (error != nil) {
                     Utilities.displayAlert("Alert", errorMessage: "Reverse geocoder failed with error " + error!.localizedDescription)
-                    //println("Reverse geocoder failed with error" + error.localizedDescription)
                     return
                 }
                 
-                if placemarks!.count > 0 {
-                    if let validPlacemark = placemarks?[0] {
-                        let pm = validPlacemark
-                        zipCode = pm.postalCode!
-                        //UserDefaults.standard.set(zipCode, forKey: "zipCode")
-                        self.setFilterDisplay()
-                        print("locationManager")
-                        if (zipCode != "") {
-                            self.loadPets()
+                if let pm = placemarks {
+                    if pm.count > 0 {
+                        if let zc = pm[0].postalCode {
+                            zipCode = zc
+                            self.setFilterDisplay()
+                            if (zipCode != "") {
+                                self.loadPets()
+                            }
+                            self.setupReloadAndScroll()
+                        } else {
+                            Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
                         }
-                        self.setupReloadAndScroll()
+                    } else {
+                        Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
                     }
                 } else {
                     Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
-                    //println("Problem with the data received from geocoder")
                 }
             })
         }
@@ -275,7 +293,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         } else {
             self.totalRow = -1
             self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
-            //self.collectionView?.reloadData()
+            self.collectionView?.reloadData()
         }
     }
     
@@ -428,6 +446,9 @@ extension AdoptableCatsViewController {
         
         
         let imgURL = URL(string: urlString!)
+        
+        cell.CatImager.cornerRadius = cell.CatImager.frame.width / 2
+        cell.CatImager.shadow = true
         
         if let img = imageCache[urlString!] {
             cell.CatImager.image = img

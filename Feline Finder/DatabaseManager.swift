@@ -426,6 +426,24 @@ class DatabaseManager {
                     } else {
                         if choiceOrder == 1 {
                             choice = "Unanswered"
+                        } else {
+                            if questionOrder2 == 14 {
+                                if choiceOrder == 6 {
+                                    choice = "High"
+                                } else if choiceOrder == 3 {
+                                    choice = "Low"
+                                } else {
+                                    choice = "Medium"
+                                }
+                            } else if questionOrder2 == 15 {
+                                if choiceOrder == 2 {
+                                    choice = "Low"
+                                } else if choiceOrder == 4 {
+                                    choice = "High"
+                                } else {
+                                    choice = "Medium"
+                                }
+                            }
                         }
                     }
                     keys.append(SavedSearchID)
