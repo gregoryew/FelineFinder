@@ -19,9 +19,18 @@ class CollectionViewCell: UICollectionViewCell {
         Video.image = nil
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if UIDevice().type.rawValue.hasPrefix("iPad") {
+            CatImager.cornerRadius = 128
+        } else {
+            CatImager.cornerRadius = 90
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         CatImager.contentMode = .scaleAspectFill
-        applyPlainShadow(view: CatImager)
+        //applyPlainShadow(view: CatImager)
     }
     
     func applyPlainShadow(view: UIView) {

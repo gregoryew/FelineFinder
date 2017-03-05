@@ -20,6 +20,8 @@
 		467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */; };
 		467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */; };
 		467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */; };
+		46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84B91E6B7B2C00A0B97E /* smartcat.gif */; };
+		46BE84BC1E6B7E1C00A0B97E /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84BB1E6B7E1C00A0B97E /* hair.gif */; };
 		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
 		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
@@ -272,6 +274,8 @@
 		467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIZoomAnimation.swift; sourceTree = "<group>"; };
 		467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipAnimation.swift; sourceTree = "<group>"; };
 		467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionImageView.swift; sourceTree = "<group>"; };
+		46BE84B91E6B7B2C00A0B97E /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
+		46BE84BB1E6B7E1C00A0B97E /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
 		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
@@ -631,8 +635,10 @@
 				C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */,
 				C5511C411B6EB73A00BE8610 /* good_with_pets.gif */,
 				C5511C421B6EB73A00BE8610 /* good_with_children.gif */,
+				46BE84BB1E6B7E1C00A0B97E /* hair.gif */,
 				C5511C431B6EB73A00BE8610 /* grooming.gif */,
 				C5511C441B6EB73A00BE8610 /* petting.gif */,
+				46BE84B91E6B7B2C00A0B97E /* smartcat.gif */,
 				C5511C451B6EB73A00BE8610 /* talkative.gif */,
 				C5511C461B6EB73A00BE8610 /* Thinking.gif */,
 				C5511C471B6EB73A00BE8610 /* TLC.gif */,
@@ -1160,6 +1166,7 @@
 				C54FCA9D1B83AB6100D9524E /* Tuxedo.html in Resources */,
 				C54FCAA31B83AB6100D9524E /* LaPerm.html in Resources */,
 				C54FCAAC1B83AB9700D9524E /* LaPerm_tonk.jpg in Resources */,
+				46BE84BC1E6B7E1C00A0B97E /* hair.gif in Resources */,
 				C551261E1B22780D007D8CDF /* Burmese.html in Resources */,
 				C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */,
 				C56F90E51B7A110A00EEEBFA /* Manx_cat_crouching.gif in Resources */,
@@ -1183,6 +1190,7 @@
 				C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */,
 				C56F90D61B7675CE00EEEBFA /* welcome_cat_10.png in Resources */,
 				C58B458A1B2CC57800E03538 /* TurkishVan.html in Resources */,
+				46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */,
 				C556BD311B81520A0009EB95 /* Snowshoe.html in Resources */,
 				C55126421B24E290007D8CDF /* Himalayan.html in Resources */,
 				C55126291B227D32007D8CDF /* CornishRex.html in Resources */,

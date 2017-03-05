@@ -20,6 +20,12 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     
+    @IBOutlet weak var surveyTitle: UIImageView!
+    @IBOutlet weak var breedsTitle: UIImageView!
+    @IBOutlet weak var favoritesTitle: UIImageView!
+    @IBOutlet weak var adoptTitle: UIImageView!
+    @IBOutlet weak var savesTitle: UIImageView!
+    
     @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
@@ -35,9 +41,31 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
             print("No!")
         }
         
+        self.surveyTitle.alpha = 0
+        self.breedsTitle.alpha = 0
+        self.favoritesTitle.alpha = 0
+        self.adoptTitle.alpha = 0
+        self.savesTitle.alpha = 0
+        
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if UIDevice().model.hasPrefix("iPad") {
+            surveyTitle.frame = CGRect(x: 10, y: -14, width: 100, height: 107)
+            breedsTitle.frame = CGRect(x: 130, y: -14, width: 100, height: 107)
+            favoritesTitle.frame = CGRect(x: 245, y: -15, width: 110, height: 107)
+            savesTitle.frame = CGRect(x: 10, y: -13, width: 100, height: 107)
+            adoptTitle.frame = CGRect(x: 140, y: -13, width: 88, height: 107)
+        } else {
+            surveyTitle.frame = CGRect(x: 0, y: -14, width: 88, height: 107)
+            breedsTitle.frame = CGRect(x: 80, y: -13, width: 100, height: 107)
+            favoritesTitle.frame = CGRect(x: 170, y: -15, width: 88, height: 107)
+            savesTitle.frame = CGRect(x: -5, y: -10, width: 100, height: 107)
+            adoptTitle.frame = CGRect(x: 90, y: -11, width: 88, height: 107)
+        }
     }
     
     @IBAction func FindACatTouchUpInside(_ sender: AnyObject) {
@@ -85,6 +113,15 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         navigationItem.prompt = ""
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
+            self.surveyTitle.alpha = 1
+            self.breedsTitle.alpha = 1
+            self.favoritesTitle.alpha = 1
+            self.adoptTitle.alpha = 1
+            self.savesTitle.alpha = 1
+        }, completion: { finished in
+            print("Titles Appeared opened!")
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {

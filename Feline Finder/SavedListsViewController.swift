@@ -214,28 +214,30 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SavedListsTableCell
         
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        cell.QuestionChoice?.font = UIFont.systemFont(ofSize: 14.0)
         cell.backgroundColor = lightBackground
-        cell.textLabel!.backgroundColor = UIColor.clear
-        cell.textLabel!.highlightedTextColor = darkTextColor
-        cell.textLabel!.textColor = textColor
+        cell.QuestionChoice!.backgroundColor = UIColor.clear
+        cell.QuestionChoice!.highlightedTextColor = darkTextColor
+        cell.QuestionChoice!.textColor = textColor
 
-        cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)
+        cell.QuestionChoice!.font = UIFont.boldSystemFont(ofSize: 14.0)
         
         if SavedSearches[indexPath.section].SavedSearchDetails.count == 0 {
-            cell.textLabel!.text = "None saved yet.  Save some questions."
+            cell.QuestionChoice!.text = "None saved yet.  Save some questions."
             cell.accessoryView!.isHidden = true
             return cell
         }
         
         cell.accessoryType = .disclosureIndicator
-        cell.lastCell = indexPath.row == SavedSearches[indexPath.section].SavedSearchDetails.count - 1
+        //cell.lastCell = indexPath.row == SavedSearches[indexPath.section].SavedSearchDetails.count - 1
         
         let ss = SavedSearches[indexPath.section].SavedSearchDetails[indexPath.row]
         
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 14.0)
+        cell.QuestionChoice?.font = UIFont.systemFont(ofSize: 14.0)
         
-        cell.textLabel!.text = "\(ss.Question): \(ss.Choice)"
+        cell.QuestionChoice!.text = "\(ss.Question):"
+        
+        cell.QuestionAnswer!.image = UIImage(named: ss.Choice)
         
         return cell
     }

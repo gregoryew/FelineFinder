@@ -25,6 +25,15 @@ class FavoriteTableCell: UITableViewCell {
         applyPlainShadow(view: CatImage)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if UIDevice().model.hasPrefix("iPad") {
+            CatImage.cornerRadius = 40
+        } else {
+            CatImage.cornerRadius = 40
+        }
+    }
+    
     func applyPlainShadow(view: UIView) {
         let layer = view.layer
         

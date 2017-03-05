@@ -78,7 +78,6 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         self.pets = RescuePetList()
         
         self.navigationItem.title = "\(globalBreed!.BreedName)"
-
         lm.delegate = self
         lm.desiredAccuracy = kCLLocationAccuracyBest
         lm.requestWhenInUseAuthorization()
@@ -87,11 +86,12 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         } else {
             setFilterDisplay()
             loadPets()
+            setupReloadAndScroll()
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
+        if (status == .authorizedAlways || status == .authorizedWhenInUse) && zipCode == "" {
             zipCode = ""
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         }
@@ -446,10 +446,7 @@ extension AdoptableCatsViewController {
         
         
         let imgURL = URL(string: urlString!)
-        
-        cell.CatImager.cornerRadius = cell.CatImager.frame.width / 2
-        cell.CatImager.shadow = true
-        
+                
         if let img = imageCache[urlString!] {
             cell.CatImager.image = img
         }
