@@ -425,7 +425,7 @@ extension AdoptableCatsTabViewController {
         
         if petData.videos.count > 0 {
             cell.Video.isHidden = false
-            cell.Video.image = UIImage(named: "video")
+            cell.Video.image = UIImage(named: "video_small")
             print("\(cell.Video.frame)")
             print("\(cell.Video.image)")
         } else {

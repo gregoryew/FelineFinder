@@ -40,7 +40,7 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
             self.breedStats = BreedStats
         }
         
-        self.scrollView.backgroundColor = UIColor.gray
+        self.scrollView.backgroundColor = UIColor.white
         
     }
     
@@ -51,7 +51,7 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
     }
     
     func setGradientBackground() {
-        let colorTop =  UIColor.darkGray.cgColor
+        let colorTop =  UIColor.white.cgColor
         let colorBottom = UIColor.lightGray.cgColor
         
         let gradientLayer = CAGradientLayer()

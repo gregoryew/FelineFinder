@@ -430,7 +430,7 @@ extension AdoptableCatsViewController {
         
         if petData.videos.count > 0 {
             cell.Video.isHidden = false
-            cell.Video.image = UIImage(named: "video")
+            cell.Video.image = UIImage(named: "video_small")
         } else {
             cell.Video.isHidden = true
         }

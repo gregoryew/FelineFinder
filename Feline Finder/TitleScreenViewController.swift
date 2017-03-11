@@ -41,11 +41,16 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
             print("No!")
         }
         
-        self.surveyTitle.alpha = 0
-        self.breedsTitle.alpha = 0
-        self.favoritesTitle.alpha = 0
-        self.adoptTitle.alpha = 0
-        self.savesTitle.alpha = 0
+        var alpha = CGFloat(0.0)
+        if titleLabelsAlreadyDisplayed {
+            alpha = CGFloat(1.0)
+        }
+        
+        self.surveyTitle.alpha = alpha
+        self.breedsTitle.alpha = alpha
+        self.favoritesTitle.alpha = alpha
+        self.adoptTitle.alpha = alpha
+        self.savesTitle.alpha = alpha
         
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -113,6 +118,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         navigationItem.prompt = ""
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        if !titleLabelsAlreadyDisplayed {
         UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
             self.surveyTitle.alpha = 1
             self.breedsTitle.alpha = 1
@@ -120,8 +126,10 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
             self.adoptTitle.alpha = 1
             self.savesTitle.alpha = 1
         }, completion: { finished in
+            titleLabelsAlreadyDisplayed = true
             print("Titles Appeared opened!")
         })
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

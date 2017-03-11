@@ -16,6 +16,12 @@ class QuestionEntryViewController: UIViewController {
     @IBOutlet weak var MediumButton: UIButton!
     @IBOutlet weak var LowButton: UIButton!
     
+    @IBAction func ClearButtonTapped(_ sender: Any) {
+        let q = questionList.Questions[currentQuestion]
+        questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[0].ChoiceID))
+        setButtonToAnswer(answer: 1, flipPage: false)
+    }
+    
     @IBAction func HighButtonTapped(_ sender: Any) {
         let q = questionList.Questions[currentQuestion]
         var answer = 0

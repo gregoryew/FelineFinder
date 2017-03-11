@@ -96,6 +96,7 @@ var rescueGroupsLastQueried = Date()
 var viewPopped = false
 var globalBreed: Breed?
 var sourceViewController: FilterOptionsListTableViewController?
+var titleLabelsAlreadyDisplayed = false
 
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.
