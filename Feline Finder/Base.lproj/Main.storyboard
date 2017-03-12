@@ -26,6 +26,31 @@
             </objects>
             <point key="canvasLocation" x="-255" y="-194"/>
         </scene>
+        <!--Welcome to Feline Finder-->
+        <scene sceneID="nZs-eo-X36">
+            <objects>
+                <viewController storyboardIdentifier="onboarding" title="Welcome to Feline Finder" id="8Jr-C8-yZ7" customClass="OnboardingVideoViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="view" contentMode="scaleToFill" id="x1X-Uh-0Dx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <items>
+                            <navigationItem title="Title" id="Q1f-fd-OdT"/>
+                        </items>
+                    </navigationBar>
+                    <navigationItem key="navigationItem" title="Welcome To Feline Finder" id="FL6-JS-IHS">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="Z6x-mN-4gX">
+                            <connections>
+                                <action selector="doneTapped:" destination="8Jr-C8-yZ7" id="DX3-3v-hBC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DOd-AT-fc0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255.19999999999999" y="488.00599700149928"/>
+        </scene>
         <!--Favorites-->
         <scene sceneID="fAh-BN-7xS">
             <objects>
@@ -362,6 +387,17 @@
                                                     <action selector="instructionsTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="1Bh-Rh-eHW"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6OG-nh-dI5">
+                                                <rect key="frame" x="15" y="-3" width="41" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="TWG-ea-pZ6"/>
+                                                    <constraint firstAttribute="width" constant="41" id="af9-wi-8Vh"/>
+                                                </constraints>
+                                                <state key="normal" image="video_small"/>
+                                                <connections>
+                                                    <action selector="playIntro:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="pzh-p6-ycg"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -369,12 +405,14 @@
                                                 <variation key="widthClass=compact" constant="5"/>
                                             </constraint>
                                             <constraint firstAttribute="bottom" secondItem="tEu-Og-6t6" secondAttribute="bottom" constant="9" id="6bt-0X-7um"/>
+                                            <constraint firstAttribute="bottom" secondItem="6OG-nh-dI5" secondAttribute="bottom" constant="8" id="9UQ-Y8-b0L"/>
                                             <constraint firstAttribute="height" constant="40" identifier="bottomMargin" id="DhR-cM-pui" userLabel="bottomMargin">
                                                 <variation key="widthClass=compact" constant="35"/>
                                                 <variation key="heightClass=compact-widthClass=compact" constant="20"/>
                                                 <variation key="heightClass=regular-widthClass=compact" constant="45"/>
                                                 <variation key="heightClass=regular-widthClass=regular" constant="120"/>
                                             </constraint>
+                                            <constraint firstItem="6OG-nh-dI5" firstAttribute="leading" secondItem="fji-RQ-P9P" secondAttribute="leading" constant="15" id="qd4-PU-j0X"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -434,6 +472,14 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pN6-sC-rdE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="OGU-Ug-fPt">
+                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="DvZ-gX-0JV"/>
+                        <constraint firstAttribute="height" constant="30" id="IDS-4Y-rGK"/>
+                    </constraints>
+                </imageView>
             </objects>
             <point key="canvasLocation" x="776.79999999999995" y="-51.724137931034484"/>
         </scene>
@@ -457,13 +503,13 @@ By: Gregory E Williams
 
 Feline Finder is designed to help make suggestions about what kind of breed of cat you might enjoy.  It will then show you some of the cats that are available to adopt.  These cats and shelters are not affiliated with this app.  This app uses RescueGroups.org information to display these cats to you but is not affiliated with RescueGroups.org.
 
-To start finding a cat breed that might be appropriate for you, please touch the magnifying glass on the title screen.   The app will then ask you a series of questions about what kind of cat you would like.  Choose an option from the list of choices and then swipe from right to left.  Once you are done the app will display a summary of your choices.  If you want to change an answer just touch the row and you will go to that question.  You can click on the icon in the top right of the title bar to go back to the summary. and you can tap the results button of the bottom of the summary screen to see a list of possible breeds suggesting which breeds may be best for you in order.
+To start finding a cat breed that might be appropriate for you, please touch the magnifying glass on the title screen.   The app will then ask you a series of questions about what kind of cat you would like.  Tap the either low, medium, or high and the survey will automatically go to the next question.  Once you are done the app will display a summary of your choices.  If you want to change an answer just touch the row and you will go to that question.  You can click on the icon in the top right of the title bar to go back to the summary. and you can tap the results button of the bottom of the summary screen to see a list of possible breeds suggesting which breeds may be best for you in order.
 
-Tap a breed and you will be taken to a screen with three buttons on the bottom.  The first button on the bottom shows a screen with a description of the breed and youtube video.  The second button shows you the qualities of the breed and which if you answered the questions where your preference lies on the bar with a push pin.  The third button shows cats available to adopt.  Note you can filter the list by tapping on the magnification glass button on the top right of the title bar.
- If you see an icon of a video camera on a picture of a cat that means it has a youtube video of the cat.  To see the video just tap that cat and scroll down to where you see the video camera and tap it. 
-Once you tap a cat you will see a description of the cat and various options to choose to get in touch with the shelter.  Just tap the appropriate hyperlink to either call, get driving directions, email, youtube, or share.  Some of these options may not be present depending on what contact information a particular shelter provides.
+Tap a breed and you will be taken to a screen with three buttons on the bottom.  The first button on the bottom shows a screen with a description of the breed and YouTube video.  The second button shows you the qualities of the breed and which if you answered the questions where your preference lies on the bar with a push pin.  The third button shows cats available to adopt.  Note you can filter the list by tapping on the magnification glass button on the top right of the title bar.
+ If you see an icon of a video camera on a picture of a cat that means it has a youtube video of the cat.  To see the video just tap that cat and tap the video button on the toolbar. 
+Once you tap a cat you will see a description of the cat and various options to choose to get in touch with the shelter.  Just tap the appropriate button to either call, get driving directions, email, youtube, or share.  Some of these options may not be enabled depending on what contact information a particular shelter provides.
 
-When you are viewing a particular cat and you want to keep track of the cat just tap the heart button on the top right of the title bar of the screen displaying the cat.  If the heart is hollow then the cat is not choosen as a favorite.  If the heart is full then this cat is a favorite.  On the title screen you can go to a listing of your favorites and tap them to see a favorite.
+When you are viewing a particular cat and you want to keep track of the cat just tap the heart button on the top right of the title bar of the screen displaying the cat.  If the heart is gray then the cat is not choosen as a favorite.  If the heart is red then this cat is a favorite.  On the title screen you can go to a listing of your favorites and tap them to see a favorite.
 
 From the title screen you can also just see all the cats in an alphabetticaly list without answering the questions.  All options from this list are the same as the recommendation list.
 
@@ -501,8 +547,8 @@ GIFGIFS: http://gifgifs.com/terms/
 Cat Descriptions and pictures: https://www.wikipedia.org
 
 Some cat breed description videos are by www.wizscience.com.  They are clearly shown as such.
- Thanks to my family for their help and support.  My Dad did the excellent naration on the app preview video.  Thanks to  
-Thanks to the members of PhillyCocoa for their great help and support </mutableString>
+ Thanks to my family for their help and support.  My Dad did the excellent naration on the app preview video and onboarding video. 
+Thanks to the members of PhillyCocoa for their great help and support. </mutableString>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1806,7 +1852,7 @@ Thanks to the members of PhillyCocoa for their great help and support </mutabl
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbM-gD-G24">
-                                            <rect key="frame" x="68" y="8" width="338" height="34"/>
+                                            <rect key="frame" x="68" y="8" width="299" height="34"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="TcI-jF-vey"/>

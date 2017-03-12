@@ -91,12 +91,13 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if (status == .authorizedAlways || status == .authorizedWhenInUse) && zipCode == "" {
+        if (status == .authorizedAlways || status == .authorizedWhenInUse) {
             zipCode = ""
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         }
         if zipCode == "" {
             determineLocationAuthorization()
+            lm.startUpdatingLocation()
             if status == .denied || status == .restricted {self.loadPets()}
         }
     }

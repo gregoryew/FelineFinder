@@ -26,6 +26,11 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     @IBOutlet weak var adoptTitle: UIImageView!
     @IBOutlet weak var savesTitle: UIImageView!
     
+    @IBAction func playIntro(_ sender: Any) {
+        let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
+        navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+    }
+    
     @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
     {
         //let sourceViewController = sender.sourceViewController
@@ -34,7 +39,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         if let viewWithTag = background.viewWithTag(999) {
             viewWithTag.sendSubview(toBack: self.view)
         } else {
@@ -118,6 +123,13 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         navigationItem.prompt = ""
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        //Check to see if this is first time the user has opened the app and show a short onboarding video if it is
+        let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
+        if firstTimeLoadingApp == "YES" {
+            let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
+            navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            UserDefaults.standard.set("NO", forKey: "firstTimeLoadingApp")
+        } else {
         if !titleLabelsAlreadyDisplayed {
         UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
             self.surveyTitle.alpha = 1
@@ -127,8 +139,8 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
             self.savesTitle.alpha = 1
         }, completion: { finished in
             titleLabelsAlreadyDisplayed = true
-            print("Titles Appeared opened!")
         })
+        }
         }
     }
     
