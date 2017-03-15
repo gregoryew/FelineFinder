@@ -24,7 +24,11 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate, NavgationT
          _ = navigationController?.tr_popViewController()
     }
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    deinit {
+        print ("YouTubeViewController deinit")
+    }
+    
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -37,11 +41,13 @@ class YouTubeViewController: UIViewController, YouTubePlayerDelegate, NavgationT
     }
  
     func playerReady(_ videoPlayer: YouTubePlayerView) {
+        videoPlayer.clear()
         videoPlayer.play()
     }
     
     func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
         if playerState == YouTubePlayerState.Ended {
+            videoPlayer.clear()
             _ = navigationController?.tr_popViewController()
         }
     }

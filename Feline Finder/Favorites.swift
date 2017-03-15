@@ -115,7 +115,7 @@ class FavoritesList {
                                                     }
                                                 }
                                                 if petID != "" {
-                                                    if var FavoriteStatus = self.Favorites[petID + "_RescueGroup"] {
+                                                    if self.Favorites[petID + "_RescueGroup"] != nil {
                                                         if adoptionPending == "Yes" {
                                                             self.Favorites[petID + "_RescueGroup"]?.Status = "Adoption Pending"
                                                         } else if status == "Adopted" {

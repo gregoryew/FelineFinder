@@ -8,7 +8,9 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
-    
+    deinit {
+        print ("AdoptableCatsTabViewController deinit")
+    }
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -19,8 +21,8 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
     var totalRow = 0
     var times = 0
     let lm = CLLocationManager()
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func searchOptions(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
@@ -442,7 +444,9 @@ extension AdoptableCatsTabViewController {
         }
         
         let imgURL = URL(string: urlString!)
-                
+        cell.CatImager.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+        
+        /*
         if let img = imageCache[urlString!] {
             cell.CatImager.image = img
         }
@@ -469,6 +473,7 @@ extension AdoptableCatsTabViewController {
                 }
             }).resume()
         }
+        */
         
         return cell
     }

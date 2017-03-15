@@ -16,6 +16,16 @@ class BreedTabBarControllerViewController: UITabBarController, NavgationTransiti
         super.viewDidLoad()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tr_pushTransition = nil
+    }
+    
+    deinit {
+        print ("BreedTabBarControllerViewController deinit")
+        tr_pushTransition = nil
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -14,6 +14,7 @@ import Social
 import FaveButton
 import TransitionTreasury
 import TransitionAnimation
+import WebKit
 
 func color(_ rgbColor: Int) -> UIColor{
     return UIColor(
@@ -28,9 +29,12 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     weak var modalDelegate: ModalViewControllerDelegate?
     
-    @IBOutlet weak var webView: UIWebView!
+
     @IBOutlet weak var favoriteBtn: FaveButton?
     
+    @IBOutlet weak var container: UIView!
+    
+    var webView: WKWebView!
     
     @IBOutlet weak var youTube: UIBarButtonItem!
     @IBOutlet weak var pictures: UIBarButtonItem!
@@ -108,7 +112,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         actionSheetController.addAction(callAction)
         
         //We need to provide a popover sourceView when using it on iPad
-        actionSheetController.popoverPresentationController?.sourceView = webView.superview;
+        actionSheetController.popoverPresentationController?.sourceView = webView?.superview;
         
         //Present the AlertController
         self.present(actionSheetController, animated: true, completion: nil)
@@ -172,8 +176,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                                 self.loaded = false
                             }
                             else {
-                                //let popup: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
-                                //popup.presentPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+                                let popup: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
+                                //popup.presentfrom: inPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
                                 self.loaded = false
                             }
                             self.loaded = true
@@ -344,8 +348,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        var errors = 0
-        var imageCache: [UIImage] = []
+        //var errors = 0
+        //var imageCache: [UIImage] = []
         var r: Bool = false
         let u: String = request.url!.relativeString
         if (u.hasPrefix("mailto:")) {
@@ -361,6 +365,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             }
             r = false
         }
+/*
         else if (u.hasSuffix("launchLocation")) {
             loadCoordinate(sh: s!)
             r = false
@@ -369,11 +374,14 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             //webView.stringByEvaluatingJavaScriptFromString("")
             r = true
         }
+ 
+*/
         else if (u.hasSuffix("Pictures")) {
             let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
             pictures.petData = pet!
             navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
         }
+    /*
         else if (u.hasSuffix("Video")) {
             let youTube = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "YouTube") as! YouTubeViewController
             
@@ -495,6 +503,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         //    UIApplication.sharedApplication().openURL(request.URL!)
         //    r = false
         //}
+ */
         else {
             if shouldLoadWeb == true {
                 r = true
@@ -796,14 +805,25 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     //override func viewWillAppear(_ animated: Bool) {
         //super.viewWillAppear(animated)
     
+    deinit {
+        webView?.loadHTMLString("", baseURL: nil)
+        webView?.stopLoading()
+        //webView.delegate = nil
+        webView?.removeFromSuperview()
+        webView = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //self.navigationController?.setNavigationBarHidden(false, animated: false)
+        /*
         print("\(webView.frame)")
         webView.delegate = self
         webView.dataDetectorTypes = UIDataDetectorTypes.link
+        //WKSelectionGranularityCharacter
         favoriteBtn?.delegate = self
+        */
         
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.setToolbarHidden(false, animated: false)
@@ -870,9 +890,26 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                     DispatchQueue.main.async(execute: {self.phone.isEnabled = false})
                 }
                 let htmlString = self.configureView(pet, s: shelter);
-                self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
-                self.imageURLs = (self.pet?.getAllImagesOfACertainSize("x"))!
-                self.getImage()
+                DispatchQueue.main.async(execute: {
+                    if self.webView == nil {
+                    self.imageURLs = (self.pet?.getAllImagesOfACertainSize("x"))!
+                    self.getImage()
+                    let jscript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);"
+                    let userScript = WKUserScript(source: jscript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+                    let wkUController = WKUserContentController()
+                    wkUController.addUserScript(userScript)
+                    let wkWebConfig = WKWebViewConfiguration()
+                        wkWebConfig.userContentController = wkUController
+                    self.webView = WKWebView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)!, width: self.view.frame.width, height: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)!), configuration: wkWebConfig)
+                    self.webView!.isOpaque = false
+                    self.webView!.backgroundColor = UIColor.clear
+                    self.webView!.scrollView.backgroundColor = UIColor.clear
+                    self.webView.translatesAutoresizingMaskIntoConstraints = false
+                    self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
+                    self.view.addSubview(self.webView!)
+                    self.webView.frame = self.container.frame
+                    }
+                })
             })
             }
         })

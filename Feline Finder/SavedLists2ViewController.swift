@@ -16,6 +16,12 @@ var WhichSavedList: Int = 0
 var SearchTitle: String = ""
 
 class SavedLists2ViewController: UITableViewController, NavgationTransitionable {
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("SavedLists2ViewController deinit")
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
             DatabaseManager.sharedInstance.deleteSearch(Int(SavedSearches2[indexPath.row].SavedSearchID))
@@ -134,8 +140,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()

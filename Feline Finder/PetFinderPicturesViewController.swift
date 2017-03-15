@@ -47,7 +47,11 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     //let imgDownArrow = UIImageView.init(image: UIImage(named: "downarrow"))
     let imgDownArrow = UIImageView()
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("PetFinderPicturesViewController deinit")
+    }
     
     @IBAction func doneTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()

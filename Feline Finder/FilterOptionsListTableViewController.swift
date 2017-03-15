@@ -38,7 +38,11 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 class FilterOptionsListTableViewController: UITableViewController, NavgationTransitionable {
     
     var txtfld: UITextField = UITextField()
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("FilterOptionsListTableViewController deinit")
+    }
     
     @IBOutlet weak var SavedButton: UIBarButtonItem!
     var filterOpt: filterOption?

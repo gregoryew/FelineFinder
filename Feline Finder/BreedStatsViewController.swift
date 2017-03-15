@@ -14,7 +14,7 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     var whichSeque: String = ""
     var breedStat: BreedStats = BreedStats(id: 0, desc: "", percent: 0, lowRange: 0, highRange: 0, value: "")
     var breedStats: [BreedStats] = []
@@ -26,6 +26,10 @@ class BreedStatsViewController: UIViewController, NavgationTransitionable {
     let distance=35
     
     var offSet = 20
+    
+    deinit {
+        print ("BreedStatsViewController deinit")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

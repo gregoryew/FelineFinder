@@ -16,6 +16,12 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     var statuses:[String: Favorite] = [:]
     
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("FavoritesViewController deinit")
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -119,6 +125,11 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         
         cell.CatName!.text = name
         
+        cell.CatImage.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+        
+        //cell.CatImager.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+        
+        /*
         cell.CatImage?.image = UIImage(named: "Cat-50")
         
         if let img = imageCache[favorite.imageName] {
@@ -140,7 +151,8 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
                     }
                 }).resume()
         }
-
+        */
+        
         return cell
     }
 
@@ -206,8 +218,6 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
     }

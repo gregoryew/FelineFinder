@@ -29,7 +29,11 @@ import TransitionAnimation
 class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     var currentIndex: Int!
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("ManagePageViewController deinit")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

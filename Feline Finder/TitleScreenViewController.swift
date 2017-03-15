@@ -16,6 +16,8 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     var timer = Timer()
     var counter = 0
     
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
     @IBOutlet var background: UIView!
     
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
@@ -26,9 +28,14 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     @IBOutlet weak var adoptTitle: UIImageView!
     @IBOutlet weak var savesTitle: UIImageView!
     
+    deinit {
+        print ("TitleScreenViewController deinit")
+    }
+    
     @IBAction func playIntro(_ sender: Any) {
         let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
-        navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        //navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        navigationController?.tr_pushViewController(onboarding, method: TRPushTransitionMethod.fade)
     }
     
     @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)
@@ -191,15 +198,15 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     }
     
     @IBAction func instructionsTapped(_ sender: Any) {
-        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "instructions") as! InstructionsViewController
-        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.list))
+        unowned let instructionsvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "instructions") as! InstructionsViewController
+        //navigationController?.pushViewController(instructions, animated: false)
+        navigationController?.tr_pushViewController(instructionsvc, method: TRPushTransitionMethod.fade)
+        //DemoTransition.CIZoom(transImage: transitionImage.list))
     }
 
     override var prefersStatusBarHidden: Bool {
         return true
     }
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     func pop() {
         _ = navigationController?.tr_popViewController()

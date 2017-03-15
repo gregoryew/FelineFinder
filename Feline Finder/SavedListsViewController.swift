@@ -46,6 +46,12 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         
     }
     
+    deinit {
+        print ("SavedListsViewController deinit")
+    }
+    
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
     var whichSegue: String = ""
     var whichQuestion: Int = 0
     var whichSavedList: Int = 0
@@ -270,8 +276,6 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()

@@ -9,11 +9,16 @@
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+//import SDWebImage
 
 class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable, ModalTransitionDelegate {
 
     @IBAction func backButtonTapped(_ sender: AnyObject) {
         _ = navigationController?.tr_popViewController()
+    }
+    
+    deinit {
+        print ("AdoptableCatsViewController deinit")
     }
     
     let handlerDelay = 1.5
@@ -25,8 +30,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     var totalRow = 0
     var times = 0
     let lm = CLLocationManager()
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popToRootViewController()
@@ -447,7 +452,10 @@ extension AdoptableCatsViewController {
         
         
         let imgURL = URL(string: urlString!)
-                
+        
+        cell.CatImager.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+        
+        /*
         if let img = imageCache[urlString!] {
             cell.CatImager.image = img
         }
@@ -474,6 +482,7 @@ extension AdoptableCatsViewController {
                 }
             }).resume()
         }
+        */
         
         return cell
     }

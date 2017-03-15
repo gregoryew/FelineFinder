@@ -7,55 +7,57 @@
 //
 
 import Foundation
-import YouTubePlayer
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class OnboardingVideoViewController: UIViewController, YouTubePlayerDelegate, NavgationTransitionable {
-
-    var youtubeid: String?
-    var videoPlayer: YouTubePlayerView?
+class OnboardingVideoViewController: UIViewController, NavgationTransitionable, WKYTPlayerViewDelegate {
+    
     var viewDisappeared = false
     
+    deinit {
+        print("OnboardingVideoViewController deinit")
+        videoPlayer?.delegate = nil
+    }
+    
     @IBAction func doneTapped(_ sender: Any) {
-        videoPlayer?.stop()
+        videoPlayer?.stopVideo()
         _ = navigationController?.tr_popViewController()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         let rect = CGRect(x: 0, y: 30, width: self.view.frame.width, height: self.view.frame.height - 30)
-        videoPlayer = YouTubePlayerView(frame: rect)
+        //videoPlayer = WKYTPlayerView(frame: rect)
+        videoPlayer?.frame = rect
         self.view.addSubview(videoPlayer!)
-        videoPlayer?.loadVideoID("_lUl9mp8r2U")
+        videoPlayer?.load(withVideoId: "_lUl9mp8r2U")
         videoPlayer?.delegate = self
     }
     
-    func playerReady(_ videoPlayer: YouTubePlayerView) {
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
         if !viewDisappeared {
-            videoPlayer.play()
+            //videoPlayer.clear()
+            videoPlayer?.playVideo()
         }
     }
     
-    func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
-        if playerState == YouTubePlayerState.Ended {
+    func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
+        if state == .ended {
+            videoPlayer?.stopVideo()
             _ = navigationController?.tr_popViewController()
         }
     }
-    
-    func playerQualityChanged(_ videoPlayer: YouTubePlayerView, playbackQuality: YouTubePlaybackQuality) {
-        
-    }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         viewDisappeared = true
-        videoPlayer?.stop()
+        videoPlayer?.stopVideo()
+        videoPlayer?.removeFromSuperview()
     }
 }

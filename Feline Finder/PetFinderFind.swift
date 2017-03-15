@@ -36,8 +36,12 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, NavgationTransitionable, ModalTransitionDelegate {
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
+    
+    deinit {
+        print ("PetFinderFindViewController deinit")
+    }
     
     @IBOutlet weak var clear: UIBarButtonItem!
     

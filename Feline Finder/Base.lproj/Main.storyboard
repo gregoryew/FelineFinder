@@ -40,7 +40,7 @@
                     <navigationItem key="navigationItem" title="Welcome To Feline Finder" id="FL6-JS-IHS">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="Z6x-mN-4gX">
                             <connections>
-                                <action selector="doneTapped:" destination="8Jr-C8-yZ7" id="DX3-3v-hBC"/>
+                                <action selector="doneTapped:" destination="8Jr-C8-yZ7" id="RYU-0y-f1U"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -287,9 +287,6 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1T-di-ObF" userLabel="Favorites">
                                                         <rect key="frame" x="170" y="0.0" width="85" height="92.5"/>
                                                         <state key="normal" image="fffavorites2"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="image" keyPath="image" value="favorites"/>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="favoritesTapped:" destination="eJ3-iK-mVu" eventType="touchUpInside" id="7yl-wV-VlL"/>
                                                         </connections>
@@ -627,32 +624,22 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Wp8-QR-fn9">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </imageView>
-                            <webView opaque="NO" contentMode="scaleToFill" mediaPlaybackRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIw-3z-gxJ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Wp8-QR-fn9" secondAttribute="trailing" id="6LS-vD-8pn"/>
                             <constraint firstItem="Wp8-QR-fn9" firstAttribute="top" secondItem="tXp-f7-i03" secondAttribute="bottom" id="CDl-G4-bJ4"/>
                             <constraint firstAttribute="bottom" secondItem="Wp8-QR-fn9" secondAttribute="bottom" id="FHx-9V-Jp4"/>
-                            <constraint firstItem="QIw-3z-gxJ" firstAttribute="top" secondItem="tXp-f7-i03" secondAttribute="bottom" id="bgf-n2-PSM"/>
-                            <constraint firstAttribute="trailing" secondItem="QIw-3z-gxJ" secondAttribute="trailing" id="c9z-WJ-xv8"/>
-                            <constraint firstItem="QIw-3z-gxJ" firstAttribute="leading" secondItem="tV9-Bg-r9L" secondAttribute="leading" id="ctZ-hL-Hab"/>
-                            <constraint firstItem="H2V-ci-3Ff" firstAttribute="top" secondItem="QIw-3z-gxJ" secondAttribute="bottom" id="laK-9f-pAp"/>
                             <constraint firstItem="Wp8-QR-fn9" firstAttribute="leading" secondItem="tV9-Bg-r9L" secondAttribute="leading" id="sI6-Lr-qWH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Info" image="Cat-50" selectedImage="Cat Filled-50" id="1aD-HU-2nG"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="webView" destination="QIw-3z-gxJ" id="j7d-ic-LvF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RRG-he-McM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1919" y="933"/>
+            <point key="canvasLocation" x="1917.5999999999999" y="932.38380809595208"/>
         </scene>
         <!--Breed Tab Bar Controller View Controller-->
         <scene sceneID="fDx-2l-1ud">
@@ -1360,7 +1347,7 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
         <!--Pet Finder View Detail Controller-->
         <scene sceneID="oRm-pO-xWM">
             <objects>
-                <viewController storyboardIdentifier="FelineDetail" id="I13-hk-Lpk" customClass="PetFinderViewDetailController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FelineDetail" automaticallyAdjustsScrollViewInsets="NO" id="I13-hk-Lpk" customClass="PetFinderViewDetailController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vtb-ZZ-dRQ" propertyAccessControl="none"/>
                         <viewControllerLayoutGuide type="bottom" id="Ivp-wN-A98"/>
@@ -1369,18 +1356,17 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
                         <rect key="frame" x="0.0" y="94" width="375" height="529"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xha-aL-8rJ">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V9H-VV-ym8">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="529"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
-                            </webView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="xha-aL-8rJ" secondAttribute="trailing" id="Efs-ms-gl3"/>
-                            <constraint firstItem="xha-aL-8rJ" firstAttribute="leading" secondItem="Sfa-4h-d5n" secondAttribute="leading" id="PjN-2g-XBn"/>
-                            <constraint firstItem="xha-aL-8rJ" firstAttribute="top" secondItem="Vtb-ZZ-dRQ" secondAttribute="bottom" id="bX4-Ov-pig"/>
-                            <constraint firstItem="Ivp-wN-A98" firstAttribute="top" secondItem="xha-aL-8rJ" secondAttribute="bottom" id="scA-nb-BuE"/>
+                            <constraint firstItem="Ivp-wN-A98" firstAttribute="top" secondItem="V9H-VV-ym8" secondAttribute="bottom" id="6th-jx-4Zh"/>
+                            <constraint firstItem="V9H-VV-ym8" firstAttribute="leading" secondItem="Sfa-4h-d5n" secondAttribute="leading" id="A7X-yA-6qS"/>
+                            <constraint firstItem="V9H-VV-ym8" firstAttribute="top" secondItem="Vtb-ZZ-dRQ" secondAttribute="bottom" id="Xuu-VZ-BLd"/>
+                            <constraint firstAttribute="trailing" secondItem="V9H-VV-ym8" secondAttribute="trailing" id="z4p-yh-oDQ"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
@@ -1461,12 +1447,12 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="Navigation" destination="UQk-Uj-ZNC" id="W1h-hV-BaE"/>
+                        <outlet property="container" destination="V9H-VV-ym8" id="YGO-F4-qNp"/>
                         <outlet property="email" destination="N7f-ap-zAn" id="eVR-1d-e7n"/>
                         <outlet property="favoriteBtn" destination="sSS-83-6Jd" id="Vhi-7B-fyN"/>
                         <outlet property="map" destination="UX1-VZ-TpV" id="Rj6-ZY-zaE"/>
                         <outlet property="phone" destination="gnD-un-6mh" id="jRU-MI-5WR"/>
                         <outlet property="pictures" destination="YBE-Lw-224" id="tS1-fa-6Ui"/>
-                        <outlet property="webView" destination="xha-aL-8rJ" id="CRh-qp-AX8"/>
                         <outlet property="youTube" destination="Cla-Iy-Nbu" id="xM9-Im-EBc"/>
                     </connections>
                 </viewController>
@@ -1596,8 +1582,8 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
                                                 <constraint firstAttribute="height" constant="10" id="odI-e2-zcV"/>
                                             </constraints>
                                         </view>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-1H-iZZ">
-                                            <rect key="frame" x="162" y="135" width="30" height="30"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-1H-iZZ">
+                                            <rect key="frame" x="162" y="139" width="30" height="30"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="ZRo-HU-Rrv"/>
@@ -1813,8 +1799,8 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="shadow" value="YES"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="4OB-rJ-iuE">
-                                                    <rect key="frame" x="162" y="139" width="30" height="30"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="4OB-rJ-iuE">
+                                                    <rect key="frame" x="162" y="141" width="30" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="AHy-wx-w7p"/>
@@ -1940,7 +1926,6 @@ Thanks to the members of PhillyCocoa for their great help and support. </mutab
         <image name="cat_footprint" width="30" height="30"/>
         <image name="cat_footprint_filled-512" width="30" height="30"/>
         <image name="email3" width="50" height="50"/>
-        <image name="favorites" width="120" height="120"/>
         <image name="ffadoptacat" width="120" height="120"/>
         <image name="ffadopttitle" width="347" height="385"/>
         <image name="ffbackground" width="1669" height="2819"/>

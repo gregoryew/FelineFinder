@@ -18,6 +18,12 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "")
     var titles:[String] = []
     
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("MasterViewController deinit")
+    }
+    
     @IBAction func goBackTapped(_ sender: AnyObject) {
         _ = navigationController?.tr_popViewController()
     }
@@ -167,7 +173,5 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-
-    var tr_pushTransition: TRNavgationTransitionDelegate?
 }
 

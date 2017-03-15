@@ -18,7 +18,11 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate,
         _ = navigationController?.tr_popViewController()
     }
     
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("PetFinderViewController deinit")
+    }
     
     var breed: Breed?
     var pets: PetList?
@@ -322,6 +326,9 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate,
         
         cell.CatNameLabel!.text = petData.name
         
+        cell.CatImage.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+        
+        /*
         cell.CatImage?.image = UIImage(named: "Cat")
         
         if let img = imageCache[urlString] {
@@ -345,6 +352,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate,
                 }
             }).resume()
         }
+        */
         
         return cell
     }

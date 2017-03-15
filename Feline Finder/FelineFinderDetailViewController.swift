@@ -41,9 +41,11 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var FavoriteBtn: UIBarButtonItem!
     @IBOutlet weak var BackBtn: UIBarButtonItem!
 
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
-
+    deinit {
+        print ("FelineFinderDetailViewController deinit")
+    }
     
     @IBAction func FavoriteTapped(_ sender: AnyObject) {
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {

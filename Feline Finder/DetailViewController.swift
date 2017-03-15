@@ -9,29 +9,19 @@
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+import WebKit
 
-class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransitionable {
-
-    @IBOutlet weak var webView: UIWebView!
+class DetailViewController: UIViewController, NavgationTransitionable {
+    var webView: WKWebView!
     
-    //var breed: Breed?
-    
-    /*
-    @IBAction func BreedStatsTapped(_ sender: Any) {
-        let breedStats = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedStats") as! BreedStatsViewController
-        breedStats.breed = globalBreed!
-        navigationController?.tr_pushViewController(breedStats, method: DemoTransition.Slide(direction: DIRECTION.right))
+    deinit {
+        print ("DetailViewController deinit")
+        _ = webView?.loadHTMLString("", baseURL: nil)
+        webView?.stopLoading()
+        //webView.delegate = nil
+        webView?.removeFromSuperview()
+        webView = nil
     }
-    
-    @IBAction func AdoptACatTapped(_ sender: Any) {
-        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
-        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.Slide(direction: DIRECTION.right))
-    }
-    
-    @IBAction func goBack(_ sender: Any) {
-        _ = navigationController?.tr_popToRootViewController()
-    }
-    */
     
     func configureView() {
         self.title = globalBreed?.BreedName
@@ -39,7 +29,23 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         let path = Bundle.main.bundlePath;
         let sBaseURL = URL(fileURLWithPath: path);
         blurImage(UIImage(named: (globalBreed?.FullSizedPicture)!)!)
+        
+        
+        let jscript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);"
+        let userScript = WKUserScript(source: jscript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        let wkUController = WKUserContentController()
+        wkUController.addUserScript(userScript)
+        let wkWebConfig = WKWebViewConfiguration()
+        wkWebConfig.userContentController = wkUController
+        self.webView = WKWebView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)!, width: self.view.frame.width, height: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)!), configuration: wkWebConfig)
+        
+        //self.webView = WKWebView()
+        self.webView!.isOpaque = false
+        self.webView!.backgroundColor = UIColor.clear
+        self.webView!.scrollView.backgroundColor = UIColor.clear
+        self.webView.translatesAutoresizingMaskIntoConstraints = false
         self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
+        self.view.addSubview(self.webView!)
     }
     
     func generateDisplay(_ b: Breed) -> String {
@@ -67,14 +73,6 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         self.view.sendSubview(toBack: blurredEffectView)
         self.view.sendSubview(toBack: imageView)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.configureView()
-        self.webView.delegate = self
-        self.webView.allowsInlineMediaPlayback = true
-    }
 
     override func viewDidDisappear(_ animated: Bool) {
         webView.loadHTMLString("", baseURL: nil)
@@ -100,10 +98,7 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        //self.navigationController?.setToolbarHidden(false, animated:false)
         self.configureView()
-        self.webView.delegate = self
-        self.webView.allowsInlineMediaPlayback = true
         self.tabBarController?.navigationItem.title = globalBreed?.BreedName
     }
     
@@ -112,32 +107,5 @@ class DetailViewController: UIViewController, UIWebViewDelegate, NavgationTransi
         super.viewWillDisappear(animated)
     }
     
-    /*
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "BreedStats" {
-            let b = self.breed as Breed?
-            (segue.destination as! BreedStatsViewController).breed = b!
-        }
-        //else if (segue.identifier == "petFinder") {
-        //    let b = self.breed as Breed?
-        //    (segue.destination as! AdoptableCatsViewController).breed = b!
-        //}
-    }
-    */
-    
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if navigationType == UIWebViewNavigationType.linkClicked {
-            UIApplication.shared.openURL(request.url!)
-            return false
-        } else {
-            return true
-        }
-    }
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-    /*
-    @IBAction func back(_ sender: Any) {
-        _ = navigationController?.tr_popToRootViewController()
-    }
-    */
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
 }

@@ -13,7 +13,11 @@ import TransitionAnimation
 class InstructionsViewController: UIViewController, NavgationTransitionable {
     
     @IBOutlet weak var InstructionTextView: UITextView!
-    var tr_pushTransition: TRNavgationTransitionDelegate?
+    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    
+    deinit {
+        print ("InstructionsViewController deinit")
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

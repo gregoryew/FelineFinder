@@ -81,7 +81,7 @@ let hiliteColor = UIColor.lightGray //UIColor.cyan
 
 var whichSegueGlobal = ""
 var cameFromFiltering = false
-var imageCache = [String:UIImage]()  //This is a global image cache
+//var imageCache = [String:UIImage]()  //This is a global image cache
 var zipCode: String = ""
 var zipCodeGlobal: String = ""
 var bnGlobal: String = ""
@@ -97,6 +97,7 @@ var viewPopped = false
 var globalBreed: Breed?
 var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false
+var videoPlayer: WKYTPlayerView? = WKYTPlayerView()
 
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.
