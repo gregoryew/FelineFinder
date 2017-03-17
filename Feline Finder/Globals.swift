@@ -94,6 +94,7 @@ var distance = "4000"
 var updated = Date()
 var rescueGroupsLastQueried = Date()
 var viewPopped = false
+var viewPoppedFromTabBarToBreeds = false
 var globalBreed: Breed?
 var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false

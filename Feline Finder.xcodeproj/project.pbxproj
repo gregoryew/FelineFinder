@@ -42,6 +42,9 @@
 		4692C5CE1E7601F800B83494 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5BA1E7601F800B83494 /* UIView+WebCacheOperation.m */; };
 		4692C5D71E764D7F00B83494 /* WKYTPlayerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4692C5D41E764D7F00B83494 /* WKYTPlayerView.bundle */; };
 		4692C5D81E764D7F00B83494 /* WKYTPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5D61E764D7F00B83494 /* WKYTPlayerView.m */; };
+		4692C5DB1E78EC7F00B83494 /* CharacterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */; };
+		4692C5DD1E78ECB500B83494 /* PictureMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */; };
+		4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */; };
 		46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84B91E6B7B2C00A0B97E /* smartcat.gif */; };
 		46BE84BC1E6B7E1C00A0B97E /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84BB1E6B7E1C00A0B97E /* hair.gif */; };
 		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
@@ -340,6 +343,9 @@
 		4692C5D41E764D7F00B83494 /* WKYTPlayerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WKYTPlayerView.bundle; sourceTree = "<group>"; };
 		4692C5D51E764D7F00B83494 /* WKYTPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKYTPlayerView.h; sourceTree = "<group>"; };
 		4692C5D61E764D7F00B83494 /* WKYTPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKYTPlayerView.m; sourceTree = "<group>"; };
+		4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterFlowLayout.swift; sourceTree = "<group>"; };
+		4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureMasterViewController.swift; sourceTree = "<group>"; };
+		4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatPictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		46BE84B91E6B7B2C00A0B97E /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
 		46BE84BB1E6B7E1C00A0B97E /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
 		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
@@ -700,6 +706,16 @@
 			path = WKYTPlayerView;
 			sourceTree = "<group>";
 		};
+		4692C5D91E78EC6E00B83494 /* PictureViewer */ = {
+			isa = PBXGroup;
+			children = (
+				4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */,
+				4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */,
+				4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */,
+			);
+			name = PictureViewer;
+			sourceTree = "<group>";
+		};
 		80C215F20C9D4AE4D20D5E97 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -902,6 +918,7 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
+				4692C5D91E78EC6E00B83494 /* PictureViewer */,
 				4692C5901E7601F800B83494 /* SDWebImage */,
 				467C97961E3EA85B007C7A08 /* Transition Animations */,
 				46D5378E1E34B7230006498B /* CardAnimationView.swift */,
@@ -1482,10 +1499,12 @@
 				4692C5CE1E7601F800B83494 /* UIView+WebCacheOperation.m in Sources */,
 				C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */,
 				C5471BB51D67B01400F9A459 /* CustomFooter.m in Sources */,
+				4692C5DB1E78EC7F00B83494 /* CharacterFlowLayout.swift in Sources */,
 				4692C58F1E74B0D200B83494 /* OnboardingVideoViewController.swift in Sources */,
 				C5471BBA1D67B01400F9A459 /* CustomCellBackground.m in Sources */,
 				C5943AFB1D8248280088DE4D /* FilteringOptions.swift in Sources */,
 				C5045DB11B9155C200A6663C /* Utilities.swift in Sources */,
+				4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */,
 				4692C5C01E7601F800B83494 /* SDImageCacheConfig.m in Sources */,
 				C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */,
 				C525E3691D896D4B005123C4 /* OptionsTableViewCell.swift in Sources */,
@@ -1526,6 +1545,7 @@
 				C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */,
 				46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */,
 				C5943B011D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift in Sources */,
+				4692C5DD1E78ECB500B83494 /* PictureMasterViewController.swift in Sources */,
 				C56DA7371D78F9DB00524E53 /* FelineFinderBasePets.swift in Sources */,
 				4692C5BC1E7601F800B83494 /* MKAnnotationView+WebCache.m in Sources */,
 				C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */,

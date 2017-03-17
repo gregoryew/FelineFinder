@@ -18,7 +18,9 @@ class BreedTabBarControllerViewController: UITabBarController, NavgationTransiti
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        tr_pushTransition = nil
+        if self.isMovingFromParentViewController {
+            tr_pushTransition = nil
+        }
     }
     
     deinit {

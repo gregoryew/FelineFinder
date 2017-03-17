@@ -10,7 +10,7 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class BreedStatsViewController: UIViewController, NavgationTransitionable {
+class BreedStatsViewController: UIViewController { //, NavgationTransitionable {
     
     @IBOutlet weak var scrollView: UIScrollView!
     

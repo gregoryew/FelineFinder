@@ -11,7 +11,7 @@ import TransitionTreasury
 import TransitionAnimation
 import WebKit
 
-class DetailViewController: UIViewController, NavgationTransitionable {
+class DetailViewController: UIViewController { //, NavgationTransitionable {
     var webView: WKWebView!
     
     deinit {
@@ -107,5 +107,5 @@ class DetailViewController: UIViewController, NavgationTransitionable {
         super.viewWillDisappear(animated)
     }
     
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    //weak var tr_pushTransition: TRNavgationTransitionDelegate?
 }

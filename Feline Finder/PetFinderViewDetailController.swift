@@ -43,7 +43,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBOutlet weak var email: UIBarButtonItem!
     
     @IBAction func picturesTapped(_ sender: Any) {
-        let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
+        let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PictureMasterViewController
         pictures.petData = pet!
         navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }

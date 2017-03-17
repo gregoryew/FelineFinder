@@ -43,6 +43,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
     }
     
+    /*
     @IBAction func detailsTapped(_ sender: Any) {
         let Details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Details") as! DetailViewController
         Details.viewDidLoad()
@@ -53,6 +54,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         let BreedStats = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedStats") as! BreedStatsViewController
         navigationController?.tr_pushViewController(BreedStats, method: DemoTransition.Slide(direction: DIRECTION.left))
     }
+    */
     
     override func viewDidLoad() {
         super.viewDidLoad()

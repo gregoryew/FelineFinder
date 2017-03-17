@@ -27,25 +27,15 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     
     @IBOutlet weak var circularProgress: KYCircularProgress!
     @IBOutlet weak var progressLabel: UILabel!
-    
-    let swipeLeftRec = UISwipeGestureRecognizer()
-    let swipeRightRec = UISwipeGestureRecognizer()
-    let swipeUpRec = UISwipeGestureRecognizer()
-    let swipeDownRec = UISwipeGestureRecognizer()
-    
-    let container = UIView()
-    let redSquare = UIImageView()
-    let blueSquare = UIImageView()
-    let outerRedSquare = UIView()
-    let outerBlueSquare = UIView()
-    let pageControl = UIPageControl()
-    var currentIndex = 0
+
+ 
+    var currrentIndex = 0
     var progress = 0.0
     var totalImages = 0.0
     var currentImage = 0.0
     
     //let imgDownArrow = UIImageView.init(image: UIImage(named: "downarrow"))
-    let imgDownArrow = UIImageView()
+    var imgDownArrow = UIImageView()
     
     weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
@@ -95,8 +85,8 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
                         self.circularProgress.isHidden = true
                         self.progressLabel.isHidden = true
                         self.view.addSubview(self.imgDownArrow)
-                        let ypos = self.cardContainerView.bounds.origin.y + self.cardContainerView.frame.size.height + 200
-                        self.imgDownArrow.frame = CGRect(x: self.cardContainerView.frame.center.x, y: ypos, width: 100, height: 100)
+                        let ypos = (self.cardContainerView.bounds.origin.y) + (self.cardContainerView.frame.size.height) + 200
+                        self.imgDownArrow.frame = CGRect(x: (self.cardContainerView.frame.center.x), y: ypos, width: 100, height: 100)
                         self.imgDownArrow.image = UIImage(named: "DownArrow")
                     self.cardContainerView.dataSource = self
                     })
@@ -114,7 +104,7 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
         view.layoutIfNeeded()
     }
     
-    let cardContainerView = UICardContainerView()
+    var cardContainerView = UICardContainerView()
     
     //MARK: Card Container Data Source
     func numberOfCardsForCardContainerView(_ cardContainerView: UICardContainerView) -> Int{

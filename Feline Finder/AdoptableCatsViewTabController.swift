@@ -2,7 +2,7 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, NavgationTransitionable, ModalTransitionDelegate {
+class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, ModalTransitionDelegate { //, NavgationTransitionable {
     
     let handlerDelay = 1.5
     
@@ -21,7 +21,7 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
     var totalRow = 0
     var times = 0
     let lm = CLLocationManager()
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    //weak var tr_pushTransition: TRNavgationTransitionDelegate?
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func searchOptions(_ sender: Any) {
