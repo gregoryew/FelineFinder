@@ -127,13 +127,30 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         
     }
     
+    func addDoneButtonTo(textField: UITextField) {
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(didTapDone))
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        keyboardToolbar.items = [flexBarButton, doneBarButton]
+        textField.inputAccessoryView = keyboardToolbar
+    }
+    
+    func didTapDone(sender: AnyObject) {
+        zipCodeGlobal = (zipCodeTextField?.text!)!
+        zipCode = (zipCodeTextField?.text!)!
+        zipCodeTextField?.endEditing(true)
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = lightBackground
     }
     
+    /*
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
+    */
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -295,6 +312,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
             cell.ZipCodeTextbox.delegate = self
             cell.ZipCodeTextbox.text = zipCode
             zipCodeTextField = cell.ZipCodeTextbox
+            addDoneButtonTo(textField: zipCodeTextField!)
             return cell
         } else if indexPath.section >= 3 {
             if opt!.list == true {

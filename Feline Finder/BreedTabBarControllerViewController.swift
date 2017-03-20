@@ -20,6 +20,22 @@ class BreedTabBarControllerViewController: UITabBarController, NavgationTransiti
         super.viewWillDisappear(animated)
         if self.isMovingFromParentViewController {
             tr_pushTransition = nil
+            if let controller = self.viewControllers![2] as? AdoptableCatsTabViewController {
+            if controller.pets?.task != nil {
+                controller.pets?.task?.cancel()
+            }
+            controller.pets = nil
+            controller.locationManager = nil
+            if controller.collectionView != nil {
+            if (controller.collectionView?.infiniteScrollingHasBeenSetup)! {
+                controller.collectionView?.infiniteScrollingHasBeenSetup = false
+                controller.collectionView?.removeObserver((controller.collectionView?.infiniteScrollingView)!, forKeyPath: "contentOffset")
+                controller.collectionView?.removeObserver((controller.collectionView?.infiniteScrollingView)!, forKeyPath: "contentSize")
+                controller.collectionView?.infiniteScrollingView.resetScrollViewContentInset()
+                //collectionView?.infiniteScrollingView.isObserving = false
+            }
+            }
+            }
         }
     }
     

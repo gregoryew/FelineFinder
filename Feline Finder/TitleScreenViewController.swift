@@ -131,8 +131,11 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         //Check to see if this is first time the user has opened the app and show a short onboarding video if it is
+        if !Utilities.isNetworkAvailable() {
+            Utilities.displayAlert("Feline Finder Requires Internet", errorMessage: "Sorry you need to connect to the internet in order to use this app.  Most functionality will not work without access to the internet.")
+        }
         let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
-        if firstTimeLoadingApp == "YES" {
+        if firstTimeLoadingApp == "YES"  && Utilities.isNetworkAvailable() {
             let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
             navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
             UserDefaults.standard.set("NO", forKey: "firstTimeLoadingApp")

@@ -41,9 +41,10 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBOutlet weak var map: UIBarButtonItem!
     @IBOutlet weak var phone: UIBarButtonItem!
     @IBOutlet weak var email: UIBarButtonItem!
+    @IBOutlet weak var share: UIBarButtonItem!
     
     @IBAction func picturesTapped(_ sender: Any) {
-        let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PictureMasterViewController
+        let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
         pictures.petData = pet!
         navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
@@ -112,7 +113,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         actionSheetController.addAction(callAction)
         
         //We need to provide a popover sourceView when using it on iPad
-        actionSheetController.popoverPresentationController?.sourceView = webView?.superview;
+        actionSheetController.popoverPresentationController?.sourceView = webView?.superview
+        actionSheetController.popoverPresentationController?.barButtonItem = phone
         
         //Present the AlertController
         self.present(actionSheetController, animated: true, completion: nil)
@@ -177,6 +179,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                             }
                             else {
                                 let popup: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
+                                popup.present(from: self.share, permittedArrowDirections: .up, animated: true)
                                 //popup.presentfrom: inPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
                                 self.loaded = false
                             }
@@ -275,6 +278,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
+        webView = nil
         processFavorite()
     }
     
@@ -338,9 +342,11 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         let request: URLRequest = URLRequest(url: URL(string: imgURL)!)
         //let mainQueue = NSOperationQueue.mainQueue()
         //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
+        var strongSelf: PetFinderViewDetailController? = self
         _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if error == nil {
-                self.images.append(UIImage(data: data!)!)
+                strongSelf?.images.append(UIImage(data: data!)!)
+                strongSelf = nil
             } else {
                 print("Error: \(error!.localizedDescription)")
             }
@@ -811,6 +817,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         //webView.delegate = nil
         webView?.removeFromSuperview()
         webView = nil
+        print("deinit PetFinderViewDetailController")
     }
     
     override func viewDidLoad() {

@@ -27,12 +27,18 @@ class OnboardingVideoViewController: UIViewController, NavgationTransitionable, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rect = CGRect(x: 0, y: 30, width: self.view.frame.width, height: self.view.frame.height - 30)
-        //videoPlayer = WKYTPlayerView(frame: rect)
-        videoPlayer?.frame = rect
-        self.view.addSubview(videoPlayer!)
-        videoPlayer?.load(withVideoId: "_lUl9mp8r2U")
-        videoPlayer?.delegate = self
+        
+        if !Utilities.isNetworkAvailable() {
+            Utilities.displayAlert("Feline Finder Requires Internet", errorMessage: "Sorry you need to connect to the internet in order to use this app.  Most functionality will not work without access to the internet.")
+            _ = navigationController?.tr_popViewController()
+        } else {
+            let rect = CGRect(x: 0, y: 30, width: self.view.frame.width, height: self.view.frame.height - 30)
+            //videoPlayer = WKYTPlayerView(frame: rect)
+            videoPlayer?.frame = rect
+            self.view.addSubview(videoPlayer!)
+            videoPlayer?.load(withVideoId: "_lUl9mp8r2U")
+            videoPlayer?.delegate = self
+        }
     }
     
     weak var tr_pushTransition: TRNavgationTransitionDelegate?

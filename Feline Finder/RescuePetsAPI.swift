@@ -12,6 +12,7 @@ import UIKit
 class RescuePetList: PetList {
 
     var status = ""
+    var task: URLSessionTask?
     
     //var resultLimit: Int = 100
     override func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
@@ -146,11 +147,12 @@ class RescuePetList: PetList {
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
             request.httpBody = jsonData
-            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
+            
+            task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
                 data, response, error in
                 if error != nil {
                     print("Get Error")
-                    Utilities.displayAlert("Sorry There Was A Problem", errorMessage: error! as! String)
+                    Utilities.displayAlert("Sorry There Was A Problem", errorMessage: "An error occurred while trying to display pet data.")
                 } else {
                     //var error:NSError?
                     do {
@@ -182,7 +184,7 @@ class RescuePetList: PetList {
                     }
                 }
             }) 
-            task.resume() } catch { }
+            task?.resume() } catch { }
     }
     
     func validateDouble(_ d: AnyObject) -> Double {

@@ -19,31 +19,36 @@ enum panScrollDirection{
     case up, down
 }
 
-class PetFinderPicturesViewController: UIViewController, CardContainerDataSource, NavgationTransitionable, KYCircularProgressDelegate {
+class PetFinderPicturesViewController: UIViewController, NavgationTransitionable, CardContainerDataSource, KYCircularProgressDelegate {
     
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0)
     var imageURLs:[String] = []
     var images: Dictionary<String, UIImage> = [:]
     
-    @IBOutlet weak var circularProgress: KYCircularProgress!
     @IBOutlet weak var progressLabel: UILabel!
+    
+    @IBOutlet weak var circularProgress: KYCircularProgress!
+    
+    var cardContainerView: UICardContainerView? = UICardContainerView()
 
- 
     var currrentIndex = 0
     var progress = 0.0
     var totalImages = 0.0
     var currentImage = 0.0
     
     //let imgDownArrow = UIImageView.init(image: UIImage(named: "downarrow"))
-    var imgDownArrow = UIImageView()
+    var imgDownArrow: UIImageView? = UIImageView()
     
     weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
-        print ("PetFinderPicturesViewController deinit")
+        print ("PetFinderPicturesViewController DEINIT")
     }
     
     @IBAction func doneTapped(_ sender: Any) {
+        imgDownArrow = nil
+        circularProgress.delegate = nil
+        cardContainerView?.dataSource = nil
         _ = navigationController?.tr_popViewController()
     }
     
@@ -53,14 +58,14 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
         self.title = petData.name
 
         self.circularProgress.isHidden = false
-        self.progressLabel.isHidden = true
+        self.progressLabel.isHidden = false
         
-        cardContainerView.clipsToBounds = false
-        view.addSubview(cardContainerView)
-        view.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0))
-        view.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 3/4, constant: 0))
-        cardContainerView.addConstraint(NSLayoutConstraint(item: cardContainerView, attribute: .height, relatedBy: .equal, toItem: cardContainerView, attribute: .width, multiplier: 1, constant: 0))
+        cardContainerView?.clipsToBounds = false
+        view.addSubview(cardContainerView!)
+        view.addConstraint(NSLayoutConstraint(item: cardContainerView as Any, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: cardContainerView as Any, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0))
+        view.addConstraint(NSLayoutConstraint(item: cardContainerView as Any, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: 3/4, constant: 0))
+        cardContainerView?.addConstraint(NSLayoutConstraint(item: cardContainerView as Any, attribute: .height, relatedBy: .equal, toItem: cardContainerView, attribute: .width, multiplier: 1, constant: 0))
         view.layoutIfNeeded()
         
         self.imageURLs = (self.petData.getAllImagesOfACertainSize("x"))
@@ -71,9 +76,11 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
             let imgURL = URL(string: url)
             let request: URLRequest = URLRequest(url: imgURL!)
             //let mainQueue = NSOperationQueue.mainQueue()
-            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+            _ = URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
                 self.currentImage += 1.0
                 self.circularProgress.progress = self.currentImage / self.totalImages
+                let p = Int((self.currentImage / self.totalImages) * 100.0)
+                self.progressLabel.text = "\(p))%"
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
@@ -84,11 +91,11 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
                         //self.setupView()
                         self.circularProgress.isHidden = true
                         self.progressLabel.isHidden = true
-                        self.view.addSubview(self.imgDownArrow)
-                        let ypos = (self.cardContainerView.bounds.origin.y) + (self.cardContainerView.frame.size.height) + 200
-                        self.imgDownArrow.frame = CGRect(x: (self.cardContainerView.frame.center.x), y: ypos, width: 100, height: 100)
-                        self.imgDownArrow.image = UIImage(named: "DownArrow")
-                    self.cardContainerView.dataSource = self
+                        self.view.addSubview(self.imgDownArrow!)
+                        let ypos = (self.cardContainerView?.bounds.origin.y)! + (self.cardContainerView?.frame.size.height)! + 200
+                        self.imgDownArrow?.frame = CGRect(x: (self.cardContainerView?.frame.center.x)!, y: ypos, width: 100, height: 100)
+                        self.imgDownArrow?.image = UIImage(named: "DownArrow")
+                        self.cardContainerView?.dataSource = self
                     })
                     }
                 } else {
@@ -104,8 +111,6 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
         view.layoutIfNeeded()
     }
     
-    var cardContainerView = UICardContainerView()
-    
     //MARK: Card Container Data Source
     func numberOfCardsForCardContainerView(_ cardContainerView: UICardContainerView) -> Int{
         return imageURLs.count
@@ -117,22 +122,23 @@ class PetFinderPicturesViewController: UIViewController, CardContainerDataSource
     
     func cardIndexChanged(_ currentHeadCardIndex: Int) {
         if currentHeadCardIndex == 0 {
-            imgDownArrow.image = UIImage(named: "DownArrow")
+            imgDownArrow?.image = UIImage(named: "DownArrow")
         } else if currentHeadCardIndex >= imageURLs.count - 1 {
-            imgDownArrow.image = UIImage(named: "UpArrow")
+            imgDownArrow?.image = UIImage(named: "UpArrow")
         } else {
-            imgDownArrow.image = UIImage(named: "DoubleArrow")
+            imgDownArrow?.image = UIImage(named: "DoubleArrow")
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        cardContainerView.respondsToSizeChange()
+        cardContainerView?.respondsToSizeChange()
     }
 
     func progressChanged(progress: Double, circularProgress: KYCircularProgress) {
         if circularProgress == self.circularProgress {
-            //progressLabel.text = "\(Int(progress * 100.0))%"
+            let p = Int(progress * 100.0)
+            progressLabel.text = "\(p)%"
         }
     }
 

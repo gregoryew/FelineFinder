@@ -12,10 +12,6 @@ import TransitionAnimation
 //import SDWebImage
 
 class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable, ModalTransitionDelegate {
-
-    @IBAction func backButtonTapped(_ sender: AnyObject) {
-        _ = navigationController?.tr_popViewController()
-    }
     
     deinit {
         print ("AdoptableCatsViewController deinit")
@@ -34,7 +30,23 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func backTapped(_ sender: Any) {
+        if pets?.task != nil {
+            pets?.task?.cancel()
+        }
+        pets = nil
+        locationManager = nil
+        if (collectionView?.infiniteScrollingHasBeenSetup)! {
+            collectionView?.infiniteScrollingHasBeenSetup = false
+            collectionView?.removeObserver((collectionView?.infiniteScrollingView)!, forKeyPath: "contentOffset")
+            collectionView?.removeObserver((collectionView?.infiniteScrollingView)!, forKeyPath: "contentSize")
+            collectionView?.infiniteScrollingView.resetScrollViewContentInset()
+            //collectionView?.infiniteScrollingView.isObserving = false
+        }
         _ = navigationController?.tr_popToRootViewController()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
     }
     
     @IBAction func searchOptions(_ sender: Any) {
@@ -127,7 +139,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     func setupReloadAndScroll() {
         // Pull to refresh
-        collectionView?.addPullToRefreshWithActionHandler { () -> Void in
+        collectionView?.addPullToRefreshWithActionHandler {[unowned self] () -> Void in
             let delayTime = DispatchTime.now() + Double(Int64(self.handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.collectionView?.stopPullToRefresh()
@@ -136,30 +148,33 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         }
         collectionView?.pullRefreshColor = UIColor.white
         
-        collectionView?.addInfiniteScrollingWithActionHandler { () -> Void in
-            let delayTime = DispatchTime.now() + Double(Int64(self.handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        collectionView?.addInfiniteScrollingWithActionHandler {[unowned self] () -> Void in
+            
+            let strongSelf = self
+            
+            let delayTime = DispatchTime.now() + Double(Int64(strongSelf.handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
-                self.collectionView?.infiniteScrollingView.stopAnimating()
+                strongSelf.collectionView?.infiniteScrollingView.stopAnimating()
                 zipCodeGlobal = ""
                 repeat {
-                self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
-                    self.pets = petList as? RescuePetList
-                    self.totalRow = -1
-                    self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
-                    PetFinderBreeds[(globalBreed?.BreedName)!] = self.pets
+                strongSelf.pets!.loadPets(strongSelf.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
+                    strongSelf.pets = petList as? RescuePetList
+                    strongSelf.totalRow = -1
+                    strongSelf.titles = strongSelf.pets!.distances.keys.sorted{ $0 < $1 }
+                    PetFinderBreeds[(globalBreed?.BreedName)!] = strongSelf.pets
                     DispatchQueue.main.async {
-                        self.collectionView?.reloadData()
+                        strongSelf.collectionView?.reloadData()
                     }
-                    self.times += 1
-                    if self.pets?.status == "error" {
+                    strongSelf.times += 1
+                    if strongSelf.pets?.status == "error" {
                         zipCodeGlobal = ""
                     }
                 }
-            print("Status = \(self.pets?.status) Times = \(self.times)")
-            } while self.pets?.status != "ok" && self.pets?.status != "warning" && self.times < 3
-            self.times = 0
+            print("Status = \(strongSelf.pets?.status) Times = \(strongSelf.times)")
+            } while strongSelf.pets?.status != "ok" && strongSelf.pets?.status != "warning" && strongSelf.times < 3
+            strongSelf.times = 0
         }
-        self.collectionView?.infiniteScrollingView.color = UIColor.white
+        strongSelf.collectionView?.infiniteScrollingView.color = UIColor.white
 
         }
     }
@@ -209,8 +224,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         }
         self.lm.stopUpdatingLocation()
         self.lm.delegate = nil
-        if let loc = manager.location {
-            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error)->Void in
+        if let loc = manager.location { 
+            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {[unowned self] (placemarks, error)->Void in
                 if (error != nil) {
                     Utilities.displayAlert("Alert", errorMessage: "Reverse geocoder failed with error " + error!.localizedDescription)
                     return

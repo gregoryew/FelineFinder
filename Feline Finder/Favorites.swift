@@ -84,7 +84,7 @@ class FavoritesList {
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
             request.httpBody = jsonData
-            let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
+            let task = URLSession.shared.dataTask( with: request as URLRequest, completionHandler: { [unowned self]
                 data, response, error in
                 if error != nil {
                     print("Get Error")

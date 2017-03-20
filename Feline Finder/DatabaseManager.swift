@@ -163,7 +163,7 @@ class DatabaseManager {
         var rb:Dictionary<String, String> = [:]
         getRescueBreedID{(rescueBreeds) -> Void in
         rb = rescueBreeds
-        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { [unowned self] (db: FMDatabase?) -> Void in
             
             var querySQL = ""
             

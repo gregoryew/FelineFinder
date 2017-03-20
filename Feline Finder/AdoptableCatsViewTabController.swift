@@ -116,7 +116,7 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
     
     func setupReloadAndScroll() {
         // Pull to refresh
-        collectionView?.addPullToRefreshWithActionHandler { () -> Void in
+        collectionView?.addPullToRefreshWithActionHandler {[unowned self] () -> Void in
             let delayTime = DispatchTime.now() + Double(Int64(self.handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.collectionView?.stopPullToRefresh()
@@ -125,27 +125,30 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
         }
         collectionView?.pullRefreshColor = UIColor.white
         
-        collectionView?.addInfiniteScrollingWithActionHandler { () -> Void in
-            let delayTime = DispatchTime.now() + Double(Int64(self.handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+        collectionView?.addInfiniteScrollingWithActionHandler {[unowned self] () -> Void in
+            let delayTime = DispatchTime.now() + Double(Int64(1.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
             DispatchQueue.main.asyncAfter(deadline: delayTime) {
                 self.collectionView?.infiniteScrollingView.stopAnimating()
                 zipCodeGlobal = ""
                 repeat {
-                    self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
+                    if let cv = self.collectionView {
+                    self.pets!.loadPets(cv, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
                         self.pets = petList as? RescuePetList
                         self.totalRow = -1
-                        self.titles = self.pets!.distances.keys.sorted{ $0 < $1 }
+                        self.titles = (self.pets!.distances.keys.sorted{ $0 < $1 })
                         PetFinderBreeds[(globalBreed?.BreedName)!] = self.pets
                         DispatchQueue.main.async {
-                            self.collectionView?.reloadData()
+                            cv.reloadData()
+                            //strongSelf = nil
                         }
                         self.times += 1
                         if self.pets?.status == "error" {
                             zipCodeGlobal = ""
                         }
                     }
+                    }
                     print("Status = \(self.pets?.status) Times = \(self.times)")
-                } while self.pets?.status != "ok" && self.pets?.status != "warning" && self.times < 3
+                } while self.pets?.status != "ok" && self.pets?.status != "warning" && (self.times) < 3
                 self.times = 0
             }
             self.collectionView?.infiniteScrollingView.color = UIColor.white
@@ -199,7 +202,7 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
         self.lm.stopUpdatingLocation()
         self.lm.delegate = nil
         if let loc = manager.location {
-            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {(placemarks, error)->Void in
+            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {[unowned self] (placemarks, error)->Void in
                 if (error != nil) {
                     Utilities.displayAlert("Alert", errorMessage: "Reverse geocoder failed with error " + error!.localizedDescription)
                     return
@@ -255,7 +258,7 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
             self.collectionView?.reloadData()
             zipCodeGlobal = ""
             bnGlobal = ""
-            self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
+            self.pets!.loadPets(self.collectionView!, bn: globalBreed!, zipCode: zipCode) { [unowned self] (petList) -> Void in
                 self.pets = petList as? RescuePetList
                 if self.pets?.status == "ok" {
                     self.totalRow = -1
