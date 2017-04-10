@@ -86,37 +86,13 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     }
     
     @IBAction func FindACatTouchUpInside(_ sender: AnyObject) {
+        let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
+        search.viewDidLoad()
         if questionList.count == 0 {
-            let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
-            search.viewDidLoad()
             self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
-            return
-        }
-        
-        let alertController = UIAlertController(title: "New Search?", message: "Do you want a new search or to keep the existing one?", preferredStyle: .alert)
-        
-        // Create the actions.
-        let newAction = UIAlertAction(title: "New", style: .cancel) { action in
-            NSLog("New Button Pressed");
-            questionList = QuestionList()
-            questionList.getQuestions()
-            SearchTitle = "SUMMARY"
-            let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
-            search.viewDidLoad()
+        } else {
             self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
         }
-        
-        let existingAction = UIAlertAction(title: "Existing", style: .default) { action in
-            let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
-            search.viewDidLoad()
-            self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
-        }
-        
-        // Add the actions.
-        alertController.addAction(newAction)
-        alertController.addAction(existingAction)
-        
-        present(alertController, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -136,8 +112,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         }
         let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
         if firstTimeLoadingApp == "YES"  && Utilities.isNetworkAvailable() {
-            let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
-            navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            showOnBoardingAlert()
             UserDefaults.standard.set("NO", forKey: "firstTimeLoadingApp")
         } else {
         if !titleLabelsAlreadyDisplayed {
@@ -152,6 +127,26 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         })
         }
         }
+    }
+    
+    func showOnBoardingAlert() {
+        let alertController = UIAlertController(title: "Welcome To Feline Finder", message: "Would you like to see a short introduction video?  Remember, you can always see it later by pressing the green button on the bottom left of this screen.", preferredStyle: .alert)
+        
+        // Create OK button
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
+            let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
+            self.navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        }
+        alertController.addAction(yesAction)
+        
+        // Create Cancel button
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action:UIAlertAction!) in
+            print("Cancel button tapped");
+        }
+        alertController.addAction(noAction)
+        
+        // Present Dialog message
+        self.present(alertController, animated: true, completion:nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

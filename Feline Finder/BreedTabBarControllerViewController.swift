@@ -21,9 +21,9 @@ class BreedTabBarControllerViewController: UITabBarController, NavgationTransiti
         if self.isMovingFromParentViewController {
             tr_pushTransition = nil
             if let controller = self.viewControllers![2] as? AdoptableCatsTabViewController {
-            if controller.pets?.task != nil {
-                controller.pets?.task?.cancel()
-            }
+                if let ob = controller.observer {
+                    NotificationCenter.default.removeObserver(ob)
+                }
             controller.pets = nil
             controller.locationManager = nil
             if controller.collectionView != nil {

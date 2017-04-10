@@ -82,8 +82,8 @@ class RescuePetList: PetList {
             }
     }
     
-    override func loadPets(_ cv: UICollectionView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
-        super.loadPets(cv, bn: bn, zipCode: zipCode, completion: completion)
+    override func loadPets(bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
+        super.loadPets(bn: bn, zipCode: zipCode, completion: completion)
         
         if zipCodeGlobal == zipCode  && bnGlobal == bn.BreedName {
             return
@@ -237,8 +237,9 @@ class RescuePetList: PetList {
                 case "animalUpdatedDate":
                     let dateFormatter2 = DateFormatter()
                     dateFormatter2.dateFormat = "MM/dd/yyyy hh:mm a"
-                    lastUpdated = dateFormatter2.date(from: validateValue(data))!
-                    print(lastUpdated)
+                    if let d = dateFormatter2.date(from: validateValue(data)) {
+                        lastUpdated = d
+                    }
                 case "animalID": petID = validateValue(data)
                 case "animalAltered": options = hasOption(validateValue(data), option1: "Spayed/Neutered", option2: "Not Spayed/Neutered", options: options)
                 case "animalOKWithAdults": options = hasOption(validateValue(data), option1: "OK With Adults", option2: "Not OK With Adults",  options: options)

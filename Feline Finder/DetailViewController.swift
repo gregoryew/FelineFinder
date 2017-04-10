@@ -11,7 +11,7 @@ import TransitionTreasury
 import TransitionAnimation
 import WebKit
 
-class DetailViewController: UIViewController { //, NavgationTransitionable {
+class DetailViewController: UIViewController, WKNavigationDelegate { //, NavgationTransitionable {
     var webView: WKWebView!
     
     deinit {
@@ -38,7 +38,6 @@ class DetailViewController: UIViewController { //, NavgationTransitionable {
         let wkWebConfig = WKWebViewConfiguration()
         wkWebConfig.userContentController = wkUController
         self.webView = WKWebView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)!, width: self.view.frame.width, height: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)!), configuration: wkWebConfig)
-        
         //self.webView = WKWebView()
         self.webView!.isOpaque = false
         self.webView!.backgroundColor = UIColor.clear
@@ -46,6 +45,7 @@ class DetailViewController: UIViewController { //, NavgationTransitionable {
         self.webView.translatesAutoresizingMaskIntoConstraints = false
         self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
         self.view.addSubview(self.webView!)
+        self.webView?.navigationDelegate = self
     }
     
     func generateDisplay(_ b: Breed) -> String {
@@ -58,6 +58,19 @@ class DetailViewController: UIViewController { //, NavgationTransitionable {
         }
     }
 
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if let url = navigationAction.request.url {
+            if !url.absoluteString.hasPrefix("file:") && !url.absoluteString.hasPrefix("https://www.youtube.com/embed/")  && !url.absoluteString.hasPrefix("about:blank") {
+                UIApplication.shared.openURL(url)
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
+        } else {
+            decisionHandler(.allow)
+        }  
+    }
+    
     func blurImage(_ image2: UIImage) {
         let imageView = UIImageView(image: image2)
         imageView.frame = view.bounds

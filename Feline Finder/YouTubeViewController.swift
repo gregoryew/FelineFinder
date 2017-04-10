@@ -39,7 +39,7 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate, Navgation
         //let h = self.navigationController!.navigationBar.frame.height
         //let r = CGRectMake(0, h, self.view.bounds.width, self.view.bounds.height - h)
         
-        let rect = CGRect(x: 0, y: 30, width: self.view.frame.width, height: self.view.frame.height - 30)
+        let rect = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
         //videoPlayer = WKYTPlayerView(frame: rect)
         videoPlayer?.frame = rect
         self.view.addSubview(videoPlayer!)

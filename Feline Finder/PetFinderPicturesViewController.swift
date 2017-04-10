@@ -80,7 +80,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
                 self.currentImage += 1.0
                 self.circularProgress.progress = self.currentImage / self.totalImages
                 let p = Int((self.currentImage / self.totalImages) * 100.0)
-                self.progressLabel.text = "\(p))%"
+                self.progressLabel.text = "\(p)%"
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)

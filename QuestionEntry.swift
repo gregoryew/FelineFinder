@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreMotion
 
 var questionList: QuestionList = QuestionList()
 
@@ -16,11 +17,7 @@ class QuestionEntryViewController: UIViewController {
     @IBOutlet weak var MediumButton: UIButton!
     @IBOutlet weak var LowButton: UIButton!
     
-    @IBAction func ClearButtonTapped(_ sender: Any) {
-        let q = questionList.Questions[currentQuestion]
-        questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[0].ChoiceID))
-        setButtonToAnswer(answer: 1, flipPage: false)
-    }
+    @IBOutlet weak var ShakeToClearLabel: UILabel!
     
     @IBAction func HighButtonTapped(_ sender: Any) {
         let q = questionList.Questions[currentQuestion]
@@ -70,10 +67,19 @@ class QuestionEntryViewController: UIViewController {
         LowButton.setImage(UIImage(named: "Low_Unlit"), for: UIControlState.normal)
         switch answer {
         case 6:
+            if !flipPage {
+                ShakeToClearLabel.isHidden = false
+            }
             LowButton.setImage(UIImage(named: "Low_Lit"), for: UIControlState.normal)
         case 4:
+            if !flipPage {
+                ShakeToClearLabel.isHidden = false
+            }
             MediumButton.setImage(UIImage(named: "Med_Lit"), for: UIControlState.normal)
         case 2:
+            if !flipPage {
+                ShakeToClearLabel.isHidden = false
+            }
             HighButton.setImage(UIImage(named: "High_Lit"), for: UIControlState.normal)
         default: break
         }
@@ -140,6 +146,16 @@ class QuestionEntryViewController: UIViewController {
         super.viewDidLoad()
         setupViewController()
         displayQuestion()
+        self.becomeFirstResponder()
+    }
+    
+    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            let q = questionList.Questions[currentQuestion]
+            questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[0].ChoiceID))
+            setButtonToAnswer(answer: 1, flipPage: false)
+            ShakeToClearLabel.isHidden = true
+        }
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -153,6 +169,15 @@ class QuestionEntryViewController: UIViewController {
     {
         super.viewWillDisappear(animated)
         //self.navigationController?.setToolbarHidden(false, animated:true);
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if currentQuestion == 0 {
+            LowButton.twinkle()
+            MediumButton.twinkle()
+            HighButton.twinkle()
+        }
     }
     
     func setupViewController() {
@@ -304,6 +329,9 @@ class QuestionEntryViewController: UIViewController {
             AnswerPicker.selectRow(0, inComponent: 0, animated: false)
         }
         */
+        
+        ShakeToClearLabel.isHidden = true
+        
         if currentQuestion == 8 {
             if answer.Order == 6 {
                 setButtonToAnswer(answer: 2)

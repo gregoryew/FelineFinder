@@ -47,6 +47,7 @@
 		4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */; };
 		46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84B91E6B7B2C00A0B97E /* smartcat.gif */; };
 		46BE84BC1E6B7E1C00A0B97E /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84BB1E6B7E1C00A0B97E /* hair.gif */; };
+		46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C326C41E91D17B003905CC /* DownloadManager.swift */; };
 		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
 		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
@@ -348,6 +349,7 @@
 		4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatPictureCollectionViewCell.swift; sourceTree = "<group>"; };
 		46BE84B91E6B7B2C00A0B97E /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
 		46BE84BB1E6B7E1C00A0B97E /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
+		46C326C41E91D17B003905CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
@@ -1179,6 +1181,7 @@
 				C58D21261B4918C7008E1B0B /* PetFinderSheltersAPI.swift */,
 				C56DA73C1D790B0F00524E53 /* RescueSheltersAPI.swift */,
 				C5943AFA1D8248280088DE4D /* FilteringOptions.swift */,
+				46C326C41E91D17B003905CC /* DownloadManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1587,6 +1590,7 @@
 				46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */,
 				C56DA73B1D790AD000524E53 /* RescuePetsAPI.swift in Sources */,
 				C58B459E1B2D457600E03538 /* QuestionEntry.swift in Sources */,
+				46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */,
 				C5FB6EEF1B213474007FFA36 /* FMDatabaseQueue.m in Sources */,
 				C527B1351B46E7DA00874272 /* string extensions.swift in Sources */,
 				46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */,

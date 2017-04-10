@@ -166,37 +166,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     }
     
     func validateZipCode(_ zipCode: String) -> Bool {
-        var validZipCode: Bool = false
-        
-        let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as AnyObject
-        let DBPath:NSString = documentsPath.appending("/CatFinder.db") as NSString
-        
-        let contactDB = FMDatabase(path: DBPath as String)
-        
-        if (contactDB?.open())! {
-            
-            var querySQL: String = ""
-            var c: Int32 = 0
-            
-            querySQL = "SELECT Count(*) c FROM ZipCodes WHERE PostalCode = ?"
-      
-            let results: FMResultSet? = contactDB?.executeQuery(querySQL,
-                withArgumentsIn: [zipCode])
-            
-            while results?.next() == true {
-                c = results!.int(forColumn: "c")
-                if c == 0 {
-                    validZipCode = false
-                }
-                else {
-                    validZipCode = true
-                }
-            }
-            contactDB?.close()
-        } else {
-            print("Error: \(contactDB?.lastErrorMessage())")
-        }
-        return validZipCode
+        return DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode)
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

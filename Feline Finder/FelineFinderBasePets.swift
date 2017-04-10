@@ -224,7 +224,7 @@ class PetList {
         }
     }
     
-    func loadPets(_ cv: UICollectionView, bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
+    func loadPets(bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
     }
     
     private func calicuateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
