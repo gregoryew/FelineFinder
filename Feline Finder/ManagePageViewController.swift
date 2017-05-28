@@ -72,7 +72,9 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     
     @IBAction func GoBackTapped(_ sender: AnyObject) {
         //_ = navigationController?.tr_popViewController()
-        _ = navigationController?.tr_popToRootViewController()
+        //_ = navigationController?.tr_popToRootViewController()
+        let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+        navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: .cat))
     }
     
     func viewQuestionEntry(_ index: Int) -> QuestionEntryViewController? {

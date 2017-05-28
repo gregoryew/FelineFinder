@@ -43,11 +43,38 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         NotificationCenter.default.removeObserver(observer)
         
-        _ = navigationController?.tr_popToRootViewController()
+        //_ = navigationController?.tr_popToRootViewController()
+        
+        let TitleScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+        self.navigationController?.tr_pushViewController(TitleScreen, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    func introOptions() {
+        let alertController = UIAlertController(title: "Welcome to Feline Finder", message: "To start, what would you like to do?  These features will also available by tapping the menu button on the top left.", preferredStyle: .alert)
+        
+        let introAction = UIAlertAction(title: "Introduction Video", style: .default) { (action:UIAlertAction!) in
+            firstTime = true
+            let onboardingVideo = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
+            self.navigationController?.tr_pushViewController(onboardingVideo, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        }
+        let suggestABreedAction = UIAlertAction(title: "Breed Suggestion", style: .default) { (action:UIAlertAction!) in
+            firstTime = true
+            let survey = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
+            self.navigationController?.tr_pushViewController(survey, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        }
+        let startLookingForACatAction = UIAlertAction(title: "Look At Cats For Adoption", style: .default) { (action:UIAlertAction!) in
+            self.findZipCode()
+        }
+        alertController.addAction(introAction)
+        alertController.addAction(suggestABreedAction)
+        alertController.addAction(startLookingForACatAction)
+        
+        // Present Dialog message
+        self.present(alertController, animated: true, completion:nil)
     }
     
     @IBAction func searchOptions(_ sender: Any) {
@@ -58,6 +85,9 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        globalBreed = breed
         
         let nc = NotificationCenter.default
         observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
@@ -90,6 +120,9 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         pets = RescuePetList()
         
         navigationItem.title = "\(globalBreed!.BreedName)"
+    }
+    
+    func findZipCode() {
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.requestWhenInUseAuthorization()
@@ -231,6 +264,17 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             collectionView?.reloadData()
             DownloadManager.loadPetList()
             viewPopped = false
+        }
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        globalBreed = breed
+        let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
+        if (firstTime || firstTimeLoadingApp == "YES")  && Utilities.isNetworkAvailable() {
+            if (!firstTime) {introOptions()}
+            UserDefaults.standard.set("NO", forKey: "firstTimeLoadingApp")
+            if (firstTime) {self.findZipCode()}
+            firstTime = false
+        } else {
+            self.findZipCode()
         }
     }
     

@@ -18,6 +18,8 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "")
     var titles:[String] = []
     
+    @IBOutlet weak var leftBarItem: UIBarButtonItem!
+    
     weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
@@ -25,7 +27,12 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     }
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
-        _ = navigationController?.tr_popViewController()
+        if (whichSeque == "results") {
+            _ = navigationController?.tr_popViewController()
+        } else {
+            let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+            self.navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        }
     }
  
     override var prefersStatusBarHidden: Bool {
@@ -47,9 +54,10 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
-                
-                self.title = "Matches"
             }
+            self.leftBarItem.title = ""
+            self.leftBarItem.image = UIImage(named: "back-1")
+            self.title = "Matches"
         }
         else {
             DatabaseManager.sharedInstance.fetchBreeds(false) { (breeds) -> Void in
@@ -58,8 +66,10 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
                 DispatchQueue.main.async(execute: {
                     self.tableView.reloadData()
                 })
-                self.title = "Breeds"
             }
+            self.title = "Breeds"
+            self.leftBarItem.image = nil
+            self.leftBarItem.title = "Menu"
         }
         
     }
@@ -71,7 +81,7 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
-            guard let cell: MasterViewCell = tableView.cellForRow(at: indexPath) as? MasterViewCell else {
+            guard let _: MasterViewCell = tableView.cellForRow(at: indexPath) as? MasterViewCell else {
                 return }
             let breed = breeds[titles[indexPath.section]]![indexPath.row]
             let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedTabBar") as! BreedTabBarControllerViewController

@@ -110,11 +110,6 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         if !Utilities.isNetworkAvailable() {
             Utilities.displayAlert("Feline Finder Requires Internet", errorMessage: "Sorry you need to connect to the internet in order to use this app.  Most functionality will not work without access to the internet.")
         }
-        let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
-        if firstTimeLoadingApp == "YES"  && Utilities.isNetworkAvailable() {
-            showOnBoardingAlert()
-            UserDefaults.standard.set("NO", forKey: "firstTimeLoadingApp")
-        } else {
         if !titleLabelsAlreadyDisplayed {
         UIView.animate(withDuration: 1.0, delay: 1.2, options: .curveEaseOut, animations: {
             self.surveyTitle.alpha = 1
@@ -126,29 +121,8 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
             titleLabelsAlreadyDisplayed = true
         })
         }
-        }
     }
-    
-    func showOnBoardingAlert() {
-        let alertController = UIAlertController(title: "Welcome To Feline Finder", message: "Would you like to see a short introduction video?  Remember, you can always see it later by pressing the green button on the bottom left of this screen.", preferredStyle: .alert)
         
-        // Create OK button
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action:UIAlertAction!) in
-            let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
-            self.navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
-        }
-        alertController.addAction(yesAction)
-        
-        // Create Cancel button
-        let noAction = UIAlertAction(title: "No", style: .cancel) { (action:UIAlertAction!) in
-            print("Cancel button tapped");
-        }
-        alertController.addAction(noAction)
-        
-        // Present Dialog message
-        self.present(alertController, animated: true, completion:nil)
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //self.navigationController?.setToolbarHidden(true, animated: false)

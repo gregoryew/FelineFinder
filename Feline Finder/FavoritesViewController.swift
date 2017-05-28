@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+import StoreKit
 
 class FavoritesViewController: UITableViewController, NavgationTransitionable, ModalTransitionDelegate {
     
@@ -210,6 +211,13 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if #available( iOS 10.3,*){
+            if Favorites.count > 0 {SKStoreReviewController.requestReview()}
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool)

@@ -91,7 +91,7 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         cell.backgroundColor = lightBackground
         
         if SavedSearches2.count == 0 {
-            cell.textLabel!.text = "To save a search do one from title screen."
+            cell.textLabel!.text = "To save a survey tap survey on the title screen."
             cell.textLabel!.highlightedTextColor = UIColor.brown
             cell.textLabel!.textColor = textColor
             cell.textLabel!.font = UIFont.boldSystemFont(ofSize: 14.0)

@@ -36,14 +36,19 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class SavedListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NavgationTransitionable {
     
+    @IBOutlet weak var MenuBarButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var GoBackButton: UIButton!
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
-        
-        _ = navigationController?.tr_popToRootViewController()
-        
+        if (whichSegue == "SavedSearches") {
+            _ = navigationController?.tr_popToRootViewController()
+        } else {
+            let TitleScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+            self.navigationController?.tr_pushViewController(TitleScreen, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        }
     }
     
     deinit {
@@ -65,6 +70,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         if (whichSegue == "Summary") {
             SearchTitle = "Summary"
             SavedSearches.loadSearches(true)
+            MenuBarButtonItem.title = "Menu"
+            MenuBarButtonItem.image = nil
         }
         else if (whichSegue == "SavedSearches") {
             if (SavedSearches.loaded == false) {
@@ -72,6 +79,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             }
             questionList.readAnswers(whichSavedList)
             questionList.setAnswers()
+            MenuBarButtonItem.title = ""
+            MenuBarButtonItem.image = UIImage(named: "back-1")
         }
         else if (whichSegue == "ShowList") {
             SavedSearches.refresh()
@@ -80,7 +89,8 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             questionList.readAnswers(whichSavedList)
             SavedSearches.loadSearches(true)
             questionList.setAnswers()
-
+            MenuBarButtonItem.title = "Menu"
+            MenuBarButtonItem.image = nil
             tableView.reloadData()
        }
     }
