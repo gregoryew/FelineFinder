@@ -33,6 +33,11 @@ enum DemoTransition {
     //case Zoom(startingRect: CGRect, endingRect: CGRect)
 }
 
+enum FilterType {
+    case Simple
+    case Advanced
+}
+
 extension DemoTransition: TransitionAnimationable {
     func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
         switch self {
@@ -86,7 +91,10 @@ var zipCode: String = ""
 var zipCodeGlobal: String = ""
 var bnGlobal: String = ""
 var editWhichQuestionGlobal: Int = 0
+
 var filterOptions: filterOptionsList = filterOptionsList()
+var filterType: FilterType = FilterType.Simple
+
 var NameID: Int = 0
 var currentFilterSave: String = "Touch Here To Load/Save..."
 var sortFilter: String = "animalLocationDistance"
@@ -100,6 +108,7 @@ var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false
 var videoPlayer: WKYTPlayerView? = WKYTPlayerView()
 var firstTime: Bool = false
+
 
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.

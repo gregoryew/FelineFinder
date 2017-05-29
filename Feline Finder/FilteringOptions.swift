@@ -19,8 +19,9 @@ class filterOption {
     var options: [(displayName: String?, search: String?, value: Int?)] = []
     var choosenListValues:[Int] = []
     var imported: Bool = false
+    var filterType: FilterType
     
-    init (n: String, f: String, d: Bool, c: catClassification, o: [(displayName: String?, search: String?, value: Int?)]) {
+    init (n: String, f: String, d: Bool, c: catClassification, o: [(displayName: String?, search: String?, value: Int?)], ft: FilterType) {
         name = n
         fieldName = f
         options = o
@@ -28,9 +29,10 @@ class filterOption {
         display = d
         list = false
         classification = c
+        self.filterType = ft
     }
     
-    init (n: String, f: String, d: Bool, c: catClassification, l: Bool, o: [(displayName: String?, search: String?, value: Int?)]) {
+    init (n: String, f: String, d: Bool, c: catClassification, l: Bool, o: [(displayName: String?, search: String?, value: Int?)], ft: FilterType) {
         name = n
         fieldName = f
         options = o
@@ -38,6 +40,7 @@ class filterOption {
         display = d
         list = l
         classification = c
+        self.filterType = ft
     }
     
     func optionsArray() -> [String] {
@@ -90,6 +93,7 @@ enum catClassification: Int {
     case breed
     case saves
     case sort
+    case basic
 }
 
 class filterOptionsList {
@@ -104,6 +108,7 @@ class filterOptionsList {
     var personalityList: [filterOption] = []
     var physicalList: [filterOption] = []
     var sortByList: [filterOption] = []
+    var basicList: [filterOption] = []
     func load(_ tv: UITableView) {
         if filteringOptions.count > 0 {return}
 
@@ -115,7 +120,7 @@ class filterOptionsList {
                 self.saves.append((displayName: s.FilterName, search: String(s.FilterID), value: i))
                 i += 1
             }
-            self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: true, o: self.saves))
+            self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: true, o: self.saves, ft: FilterType.Advanced))
             
             self.classify()
             
@@ -143,9 +148,9 @@ class filterOptionsList {
             
             self.breedChoices.append((displayName: "Any", search: "0", value: self.breedChoices.count))
             
-            self.filteringOptions.append(filterOption(n: "Breed", f: "animalPrimaryBreedID", d: false, c:.breed, l: true, o: self.breedChoices))
+            self.filteringOptions.append(filterOption(n: "Breed", f: "animalPrimaryBreedID", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
             
-            self.filteringOptions.append(filterOption(n: "Not These", f: "animalPrimaryBreedIDNot", d: false, c:.breed, l: true, o: self.breedChoices))
+            self.filteringOptions.append(filterOption(n: "Not These", f: "animalPrimaryBreedIDNot", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
             
             self.classify()
 
@@ -157,90 +162,92 @@ class filterOptionsList {
         
         
         //sort
-        filteringOptions.append(filterOption(n: "Sort By", f: "sortBy", d: false, c:.sort, o: [(displayName: "Most Recent", search: "No", value: 1), (displayName: "Distance", search: "animalLocationDistance", value: 0)]))
-        filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [(displayName: "5", search: "5", value: 0), (displayName: "20", search: "20", value: 1), (displayName: "50", search: "50", value: 2), (displayName: "100", search: "100", value: 3), (displayName: "200", search: "200", value: 4), (displayName: "Any", search: "Any", value: 5)]))
-        filteringOptions.append(filterOption(n: "Updated Since", f: "date", d: false, c:.sort, o: [(displayName: "Day", search: "0", value: 0), (displayName: "Week", search: "Week", value: 1), (displayName: "Month", search: "Month", value: 2), (displayName: "Year", search: "Year", value: 3), (displayName: "Any", search: "Any", value: 4)]))
+        filteringOptions.append(filterOption(n: "Sort By", f: "sortBy", d: false, c:.sort, o: [(displayName: "Most Recent", search: "No", value: 1), (displayName: "Distance", search: "animalLocationDistance", value: 0)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [(displayName: "5", search: "5", value: 0), (displayName: "20", search: "20", value: 1), (displayName: "50", search: "50", value: 2), (displayName: "100", search: "100", value: 3), (displayName: "200", search: "200", value: 4), (displayName: "Any", search: "Any", value: 5)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Updated Since", f: "date", d: false, c:.sort, o: [(displayName: "Day", search: "0", value: 0), (displayName: "Week", search: "Week", value: 1), (displayName: "Month", search: "Month", value: 2), (displayName: "Year", search: "Year", value: 3), (displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Find Type", f: "Find Type", d: false, c:.sort, o: [(displayName: "Advanced", search: "Advanced", value: 0), (displayName: "Simple", search: "Simple", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Only With Videos?", f: "Only With Videos", d: false, c:.sort, o: [(displayName: "Yes", search: "Yes", value: 0), (displayName: "No", search: "No", value: 1)], ft: FilterType.Advanced))
 
         
         //admin
-        filteringOptions.append(filterOption(n: "Adoption pending", f: "animalAdoptionPending", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Courtesy", f: "animalCourtesy", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Found", f: "animalFound", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Needs a Foster", f: "animalNeedsFoster", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Allow sponsorship", f: "animalSponsorable", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Up-to-date", f: "animalUptodate", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
+        filteringOptions.append(filterOption(n: "Adoption pending", f: "animalAdoptionPending", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Courtesy", f: "animalCourtesy", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Found", f: "animalFound", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1), (displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Needs a Foster", f: "animalNeedsFoster", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Allow sponsorship", f: "animalSponsorable", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Up-to-date", f: "animalUptodate", d: false, c:.admin, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
         
         //compatibiity
-        filteringOptions.append(filterOption(n: "Apartment OK", f: "animalApartment", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Requires a Yard", f: "animalYardRequired", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "In/Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Cold sensitive", f: "animalNoCold", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Heat sensitive", f: "animalNoHeat", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "OK with dogs", f: "animalOKWithDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
+        filteringOptions.append(filterOption(n: "Apartment OK", f: "animalApartment", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Requires a Yard", f: "animalYardRequired", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "In/Outdoor", f: "animalIndoorOutdoor", d: false, c: .compatibility, o: [(displayName: "Indoor", search: "Indoor Only", value: 0),(displayName: "Both", search: "Indoor and Outdoor", value: 1),(displayName: "Outdoor", search: "Outdoor Only", value: 2),(displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Cold sensitive", f: "animalNoCold", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Heat sensitive", f: "animalNoHeat", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "OK with dogs", f: "animalOKWithDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
  /*
         filteringOptions.append(filterOption(n: "Not good with large dogs", f: "animalNoLargeDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Not good with female dogs", f: "animalNoFemaleDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
         filteringOptions.append(filterOption(n: "Not good with male dogs", f: "animalNoMaleDogs", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
 */
-        filteringOptions.append(filterOption(n: "OK with cats", f: "animalOKWithCats", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Seniors", f: "animalOKForSeniors", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Adults", f: "animalOKWithAdults", d: false, c: .compatibility, o: [(displayName: "All", search: "All", value: 0),(displayName: "Men", search: "Men Only", value: 1),(displayName: "Women", search: "Women Only", value: 2),(displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Farm Animals", f: "animalOKWithFarmAnimals", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "OK with kids", f: "animalOKWithKids", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Older kids only", f: "animalOlderKidsOnly", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Owner experience needed", f: "animalOwnerExperience", d: false, c: .compatibility, o: [(displayName: "None", search: "None", value: 0),(displayName: "Species", search: "Species", value: 1),(displayName: "Breed", search: "Breed", value: 2),(displayName: "Any", search: "Any", value: 3)]))
+        filteringOptions.append(filterOption(n: "OK with cats", f: "animalOKWithCats", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Seniors", f: "animalOKForSeniors", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Adults", f: "animalOKWithAdults", d: false, c: .compatibility, o: [(displayName: "All", search: "All", value: 0),(displayName: "Men", search: "Men Only", value: 1),(displayName: "Women", search: "Women Only", value: 2),(displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Farm Animals", f: "animalOKWithFarmAnimals", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "OK with kids", f: "animalOKWithKids", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Older kids only", f: "animalOlderKidsOnly", d: false, c: .compatibility, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Owner experience needed", f: "animalOwnerExperience", d: false, c: .compatibility, o: [(displayName: "None", search: "None", value: 0),(displayName: "Species", search: "Species", value: 1),(displayName: "Breed", search: "Breed", value: 2),(displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
         
         //Personality
-        filteringOptions.append(filterOption(n: "New People", f: "animalNewPeople", d: false,  c: .personality, l: true, o: [(displayName: "Cautious", search: "Cautious", value: 0),(displayName: "Friendly", search: "Friendly", value: 1),(displayName: "Protective", search: "Protective", value: 2),(displayName: "Aggressive", search: "Aggressive", value: 3),(displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Activity Level", f: "animalActivityLevel", d: false, c: .personality, l: false, o: [(displayName: "None", search: "Not Active", value: 0),(displayName: "Low", search: "Slightly Active", value: 1),(displayName: "Medium", search: "Moderately Active", value: 2),(displayName: "High", search: "Highly Active", value: 3),(displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Energy level", f: "animalEnergyLevel", d: false,  c: .personality, l: false, o: [(displayName: "Low", search: "Low", value: 0),(displayName: "Medium", search: "Moderate", value: 1),(displayName: "High", search: "High", value: 2), (displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Exercise Needs", f: "animalExerciseNeeds", d: false,  c: .personality,l: false, o: [(displayName: "Not Req", search: "Not Required", value: 0),(displayName: "Low", search: "Low", value: 1),(displayName: "Medium", search: "Moderate", value: 2),(displayName: "High", search: "High", value: 3),(displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Obedience training", f: "animalObedienceTraining", d: false,  c: .personality, l: false, o: [(displayName: "Needs", search: "Needs Training", value: 0),(displayName: "Basic", search: "Has Basic Training", value: 1),(displayName: "Well", search: "Well Trained", value: 2),(displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Likes to vocalize", f: "animalVocal", d: false,  c: .personality, l: false, o: [(displayName: "Quiet", search: "Quiet", value: 0),(displayName: "Some", search: "Some", value: 1),(displayName: "Lots", search: "Lots", value: 2), (displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Affectionate", f: "animalAffectionate", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Crate trained", f: "animalCratetrained", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Eager to please", f: "animalEagerToPlease", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Tries to escape", f: "animalEscapes", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Even-tempered", f: "animalEventempered", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Likes to fetch", f: "animalFetches", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Gentle", f: "animalGentle", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Does well in a car", f: "animalGoodInCar", d: false, c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Goofy", f: "animalGoofy", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Housetrained", f: "animalHousetrained", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Independent/aloof", f: "animalIndependent", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Intelligent", f: "animalIntelligent", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Lap pet", f: "animalLap", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Leash trained", f: "animalLeashtrained", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Companion Cat?", f: "animalNeedsCompanionAnimal", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Obedient", f: "animalObedient", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Playful", f: "animalPlayful", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Likes toys", f: "animalPlaysToys", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Predatory", f: "animalPredatory", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Territorial", f: "animalProtective", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Likes to swim", f: "animalSwims", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Timid / shy", f: "animalTimid", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
+        filteringOptions.append(filterOption(n: "New People", f: "animalNewPeople", d: false,  c: .personality, l: true, o: [(displayName: "Cautious", search: "Cautious", value: 0),(displayName: "Friendly", search: "Friendly", value: 1),(displayName: "Protective", search: "Protective", value: 2),(displayName: "Aggressive", search: "Aggressive", value: 3),(displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Activity Level", f: "animalActivityLevel", d: false, c: .personality, l: false, o: [(displayName: "None", search: "Not Active", value: 0),(displayName: "Low", search: "Slightly Active", value: 1),(displayName: "Medium", search: "Moderately Active", value: 2),(displayName: "High", search: "Highly Active", value: 3),(displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Energy level", f: "animalEnergyLevel", d: false,  c: .personality, l: false, o: [(displayName: "Low", search: "Low", value: 0),(displayName: "Medium", search: "Moderate", value: 1),(displayName: "High", search: "High", value: 2), (displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Exercise Needs", f: "animalExerciseNeeds", d: false,  c: .personality,l: false, o: [(displayName: "Not Req", search: "Not Required", value: 0),(displayName: "Low", search: "Low", value: 1),(displayName: "Medium", search: "Moderate", value: 2),(displayName: "High", search: "High", value: 3),(displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Obedience training", f: "animalObedienceTraining", d: false,  c: .personality, l: false, o: [(displayName: "Needs", search: "Needs Training", value: 0),(displayName: "Basic", search: "Has Basic Training", value: 1),(displayName: "Well", search: "Well Trained", value: 2),(displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Likes to vocalize", f: "animalVocal", d: false,  c: .personality, l: false, o: [(displayName: "Quiet", search: "Quiet", value: 0),(displayName: "Some", search: "Some", value: 1),(displayName: "Lots", search: "Lots", value: 2), (displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Affectionate", f: "animalAffectionate", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Crate trained", f: "animalCratetrained", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Eager to please", f: "animalEagerToPlease", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Tries to escape", f: "animalEscapes", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Even-tempered", f: "animalEventempered", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Likes to fetch", f: "animalFetches", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Gentle", f: "animalGentle", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Does well in a car", f: "animalGoodInCar", d: false, c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Goofy", f: "animalGoofy", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Housetrained", f: "animalHousetrained", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Independent/aloof", f: "animalIndependent", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Intelligent", f: "animalIntelligent", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Lap pet", f: "animalLap", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Leash trained", f: "animalLeashtrained", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Companion Cat?", f: "animalNeedsCompanionAnimal", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Obedient", f: "animalObedient", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Playful", f: "animalPlayful", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Likes toys", f: "animalPlaysToys", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Predatory", f: "animalPredatory", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Territorial", f: "animalProtective", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Likes to swim", f: "animalSwims", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Timid / shy", f: "animalTimid", d: false,  c: .personality, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
 
         //physical
-        filteringOptions.append(filterOption(n: "Age", f: "animalGeneralAge", d: true, c: .physical, l: true, o: [(displayName: "Baby", search: "Baby", value: 0),(displayName: "Young", search: "Young", value: 1),(displayName: "Adult", search: "Adult", value: 2), (displayName: "Senior", search: "Senior", value: 3), (displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Ear type", f: "animalEarType", d: false, c: .physical, l: true, o: [(displayName: "Cropped", search: "Cropped", value: 0),(displayName: "Droopy", search: "Droopy", value: 1),(displayName: "Erect", search: "Erect", value: 2),(displayName: "Long", search: "Long", value: 3),(displayName: "Missing", search: "Missing", value: 4),(displayName: "Notched", search: "Notched", value: 5),(displayName: "Rose", search: "Rose", value: 6),(displayName:         "Semi-erect", search: "Semi-erect", value: 7),(displayName: "Tipped", search: "Tipped", value: 8),(displayName: "Natural/Uncropped", search: "Natural/Uncropped", value: 9),(displayName: "Any", search: "Any", value: 10)]))
-        filteringOptions.append(filterOption(n: "Color", f: "animalColor", d: false, c: .physical, l: true, o: [(displayName: "Black", search: "Black", value: 0),(displayName: "Black and White", search: "Black and White", value: 1),(displayName: "Tuxedo", search: "Tuxedo", value: 2),(displayName: "Blue", search: "Blue", value: 3),(displayName: "Salt & Pepper", search: "Salt & Pepper", value: 4),(displayName: "Brown or Chocolate", search: "Brown or Chocolate", value: 5),(displayName: "Brown Tabby", search: "Brown Tabby", value: 6),(displayName: "Calico or Dilute Calico", search: "Calico or Dilute Calico", value: 7),(displayName: "Cream", search: "Cream", value: 8),(displayName: "Ivory", search: "Ivory", value: 9),(displayName: "Gray", search: "Gray", value: 10),(displayName: "Gray Blue or Silver Tabby", search: "Gray Blue or Silver Tabby", value: 11),(displayName: "Red Tabby", search: "Red Tabby", value: 12),(displayName: "Spotted Tabby/Leopard Spotted", search: "Spotted Tabby/Leopard Spotted", value: 13),(displayName: "Tan", search: "Tan", value: 14),(displayName: "Fawn", search: "Fawn", value: 15),(displayName: "Tortoiseshell", search: "Tortoiseshell", value: 16),(displayName: "White", search: "White", value: 17),(displayName: "Any", search: "Any", value: 18)]))
-        filteringOptions.append(filterOption(n: "Eye color", f: "animalEyeColor", d: false, c: .physical, l: true, o: [(displayName: "Black", search: "Black", value: 0),(displayName: "Blue", search: "Blue", value: 1),(displayName: "Blue-brown", search: "Blue-brown", value: 2),(displayName: "Brown", search: "Brown", value: 3),(displayName: "Copper", search: "Copper", value: 4),(displayName: "Gold", search: "Gold", value: 5),(displayName: "Gray", search: "Gray", value: 6),(displayName: "Green", search: "Green", value: 7),(displayName: "Hazlenut", search: "Hazlenut", value: 8),(displayName: "Mixed", search: "Mixed", value: 9),(displayName: "Pink", search: "Pink", value: 10),(displayName: "Yellow", search: "Yellow", value: 11),(displayName: "Any", search: "Any", value: 12)]))
-        filteringOptions.append(filterOption(n: "Tail type", f: "animalTailType", d: false, c: .physical, l: true, o: [(displayName: "Bare", search: "Bare", value: 0),(displayName: "Bob", search: "Bob", value: 1),(displayName: "Curled", search: "Curled", value: 2),(displayName: "Docked", search: "Docked", value: 3),(displayName: "Kinked", search: "Kinked", value: 4),(displayName: "Long", search: "Long", value: 5),(displayName: "Missing", search: "Missing", value: 6),(displayName: "Short", search: "Short", value: 7),(displayName: "Any", search: "Any", value: 8)]))
-        filteringOptions.append(filterOption(n: "Size", f: "animalGeneralSizePotential", d: true, c: .physical, l: true, o: [(displayName: "Small", search: "Small", value: 0),(displayName: "Medium", search: "Medium", value: 1),(displayName: "Large", search: "Large", value: 2),(displayName: "X-Large", search: "X-Large", value: 3),(displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Sex", f: "animalSex", d: true, c: .physical, l: false, o: [(displayName: "Male", search: "Male", value: 0),(displayName: "Female", search: "Female", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Coat Length", f: "animalCoatLength", d: false, c: .physical, l: false, o: [(displayName: "Short", search: "Short", value: 0),(displayName: "Medium", search: "Medium", value: 1),(displayName: "Long", search: "Long", value: 2), (displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Grooming needs", f: "animalGroomingNeeds", d: false, c: .physical, l: false, o: [(displayName: "Not Req", search: "Not Required", value: 0),(displayName: "Low", search: "Low", value: 1),(displayName: "Medium", search: "Moderate", value: 2),(displayName: "High", search: "High", value: 3),(displayName: "Any", search: "Any", value: 4)]))
-        filteringOptions.append(filterOption(n: "Shedding amount", f: "animalShedding", d: false, c: .physical, l: false, o: [(displayName: "Some", search: "Moderate", value: 0),(displayName: "None", search: "None", value: 1),(displayName: "High", search: "High", value: 2),(displayName: "Any", search: "Any", value: 3)]))
-        filteringOptions.append(filterOption(n: "Altered", f: "animalAltered", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Declawed", f: "animalDeclawed", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Has allergies", f: "animalHasAllergies", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Hearing impaired", f: "animalHearingImpaired", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Hypoallergenic", f: "animalHypoallergenic", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Microchipped", f: "animalMicrochipped", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Mixed breed", f: "animalMixedBreed", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
-        filteringOptions.append(filterOption(n: "Ongoing medical?", f: "animalOngoingMedical", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Special diet", f: "animalSpecialDiet", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)]))
-        filteringOptions.append(filterOption(n: "Has special needs", f: "animalSpecialneeds", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)]))
+        filteringOptions.append(filterOption(n: "Age", f: "animalGeneralAge", d: true, c: .physical, l: true, o: [(displayName: "Baby", search: "Baby", value: 0),(displayName: "Young", search: "Young", value: 1),(displayName: "Adult", search: "Adult", value: 2), (displayName: "Senior", search: "Senior", value: 3), (displayName: "Any", search: "Any", value: 4)], ft: FilterType.Simple))
+        filteringOptions.append(filterOption(n: "Ear type", f: "animalEarType", d: false, c: .physical, l: true, o: [(displayName: "Cropped", search: "Cropped", value: 0),(displayName: "Droopy", search: "Droopy", value: 1),(displayName: "Erect", search: "Erect", value: 2),(displayName: "Long", search: "Long", value: 3),(displayName: "Missing", search: "Missing", value: 4),(displayName: "Notched", search: "Notched", value: 5),(displayName: "Rose", search: "Rose", value: 6),(displayName:         "Semi-erect", search: "Semi-erect", value: 7),(displayName: "Tipped", search: "Tipped", value: 8),(displayName: "Natural/Uncropped", search: "Natural/Uncropped", value: 9),(displayName: "Any", search: "Any", value: 10)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Color", f: "animalColor", d: false, c: .physical, l: true, o: [(displayName: "Black", search: "Black", value: 0),(displayName: "Black and White", search: "Black and White", value: 1),(displayName: "Tuxedo", search: "Tuxedo", value: 2),(displayName: "Blue", search: "Blue", value: 3),(displayName: "Salt & Pepper", search: "Salt & Pepper", value: 4),(displayName: "Brown or Chocolate", search: "Brown or Chocolate", value: 5),(displayName: "Brown Tabby", search: "Brown Tabby", value: 6),(displayName: "Calico or Dilute Calico", search: "Calico or Dilute Calico", value: 7),(displayName: "Cream", search: "Cream", value: 8),(displayName: "Ivory", search: "Ivory", value: 9),(displayName: "Gray", search: "Gray", value: 10),(displayName: "Gray Blue or Silver Tabby", search: "Gray Blue or Silver Tabby", value: 11),(displayName: "Red Tabby", search: "Red Tabby", value: 12),(displayName: "Spotted Tabby/Leopard Spotted", search: "Spotted Tabby/Leopard Spotted", value: 13),(displayName: "Tan", search: "Tan", value: 14),(displayName: "Fawn", search: "Fawn", value: 15),(displayName: "Tortoiseshell", search: "Tortoiseshell", value: 16),(displayName: "White", search: "White", value: 17),(displayName: "Any", search: "Any", value: 18)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Eye color", f: "animalEyeColor", d: false, c: .physical, l: true, o: [(displayName: "Black", search: "Black", value: 0),(displayName: "Blue", search: "Blue", value: 1),(displayName: "Blue-brown", search: "Blue-brown", value: 2),(displayName: "Brown", search: "Brown", value: 3),(displayName: "Copper", search: "Copper", value: 4),(displayName: "Gold", search: "Gold", value: 5),(displayName: "Gray", search: "Gray", value: 6),(displayName: "Green", search: "Green", value: 7),(displayName: "Hazlenut", search: "Hazlenut", value: 8),(displayName: "Mixed", search: "Mixed", value: 9),(displayName: "Pink", search: "Pink", value: 10),(displayName: "Yellow", search: "Yellow", value: 11),(displayName: "Any", search: "Any", value: 12)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Tail type", f: "animalTailType", d: false, c: .physical, l: true, o: [(displayName: "Bare", search: "Bare", value: 0),(displayName: "Bob", search: "Bob", value: 1),(displayName: "Curled", search: "Curled", value: 2),(displayName: "Docked", search: "Docked", value: 3),(displayName: "Kinked", search: "Kinked", value: 4),(displayName: "Long", search: "Long", value: 5),(displayName: "Missing", search: "Missing", value: 6),(displayName: "Short", search: "Short", value: 7),(displayName: "Any", search: "Any", value: 8)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Size", f: "animalGeneralSizePotential", d: true, c: .physical, l: true, o: [(displayName: "Small", search: "Small", value: 0),(displayName: "Medium", search: "Medium", value: 1),(displayName: "Large", search: "Large", value: 2),(displayName: "X-Large", search: "X-Large", value: 3),(displayName: "Any", search: "Any", value: 4)], ft: FilterType.Simple))
+        filteringOptions.append(filterOption(n: "Sex", f: "animalSex", d: true, c: .physical, l: false, o: [(displayName: "Male", search: "Male", value: 0),(displayName: "Female", search: "Female", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Simple))
+        filteringOptions.append(filterOption(n: "Coat Length", f: "animalCoatLength", d: false, c: .physical, l: false, o: [(displayName: "Short", search: "Short", value: 0),(displayName: "Medium", search: "Medium", value: 1),(displayName: "Long", search: "Long", value: 2), (displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Grooming needs", f: "animalGroomingNeeds", d: false, c: .physical, l: false, o: [(displayName: "Not Req", search: "Not Required", value: 0),(displayName: "Low", search: "Low", value: 1),(displayName: "Medium", search: "Moderate", value: 2),(displayName: "High", search: "High", value: 3),(displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Shedding amount", f: "animalShedding", d: false, c: .physical, l: false, o: [(displayName: "Some", search: "Moderate", value: 0),(displayName: "None", search: "None", value: 1),(displayName: "High", search: "High", value: 2),(displayName: "Any", search: "Any", value: 3)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Altered", f: "animalAltered", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Declawed", f: "animalDeclawed", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Has allergies", f: "animalHasAllergies", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Hearing impaired", f: "animalHearingImpaired", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Hypoallergenic", f: "animalHypoallergenic", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Microchipped", f: "animalMicrochipped", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Mixed breed", f: "animalMixedBreed", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Ongoing medical?", f: "animalOngoingMedical", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Special diet", f: "animalSpecialDiet", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "Any", search: "Any", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "Has special needs", f: "animalSpecialneeds", d: false, c: .physical, o: [(displayName: "Yes", search: "Yes", value: 0),(displayName: "No", search: "No", value: 1),(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
         
             classify()
     }
@@ -252,6 +259,7 @@ class filterOptionsList {
         personalityList = []
         physicalList = []
         sortByList = []
+        basicList = []
         for o in filteringOptions {
             switch o.classification {
             case .breed:
@@ -273,6 +281,9 @@ class filterOptionsList {
             case .sort:
                 sortByList.append(o)
             default: break
+            }
+            if o.filterType == FilterType.Simple {
+                basicList.append(o)
             }
             o.sequence = s
             s += 1
@@ -374,6 +385,13 @@ class filterOptionsList {
         DatabaseManager.sharedInstance.fetchFFilterOptions(savedID, filterOptions: filterOptions, completion: {(filterOption) -> Void in
             filterOptions.filteringOptions = filterOption
             filterOptions.filteringOptions[0].choosenListValues = filterOption[0].choosenListValues
+            if filterOption[4].fieldName == "Find Type" {
+                if filterOption[4].choosenValue == 0 {
+                    filterType = FilterType.Advanced
+                } else {
+                    filterType = FilterType.Simple
+                }
+            }
             })
     }
     

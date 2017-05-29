@@ -178,9 +178,13 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         case 2:
             return "Location"
         case 3:
-            return "Sort By"
+            return "Filtering Options"
         case 4:
-            return "Administrative"
+            if filterType == FilterType.Simple {
+                return "Simple Options"
+            } else {
+                return "Administrative"
+            }
         case 5:
             return "Compatiblity"
         case 6:
@@ -201,7 +205,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 8
+        if filterType == .Simple {
+            return 5
+        } else {
+            return 8
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
@@ -224,7 +232,13 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
             case 3:
                 return filterOptions.sortByList.count
             case 4:
-                return filterOptions.adminList.count
+                if filterType == FilterType.Simple {
+                    print("Basic \(filterOptions.basicList.count)")
+                    return filterOptions.basicList.count
+                } else {
+                    print("adminList \(filterOptions.adminList.count)")
+                    return filterOptions.adminList.count
+                }
             case 5:
                 return filterOptions.compatibilityList.count
             case 6:
@@ -253,7 +267,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         case 3:
             opt = filterOptions.sortByList[indexPath.row]
         case 4:
-            opt = filterOptions.adminList[indexPath.row]
+            if filterType == FilterType.Simple {
+                opt = filterOptions.basicList[indexPath.row]
+            } else {
+                opt = filterOptions.adminList[indexPath.row]
+            }
         case 5:
             opt = filterOptions.compatibilityList[indexPath.row]
         case 6:
@@ -322,6 +340,15 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     
     func segmentValueChanged(_ sender: AnyObject?) {
         filterOptions.filteringOptions[sender!.tag].choosenValue = sender!.selectedIndex
+        if (sender!.tag == 4) {
+            opt = filterOptions.sortByList[3]
+            if opt?.choosenValue == 1 {
+                filterType = FilterType.Simple
+            } else {
+                filterType = FilterType.Advanced
+            }
+            tableView.reloadData()
+        }
     }
     
     var opt: filterOption?
@@ -340,7 +367,11 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
             case 3:
                 opt = filterOptions.sortByList[indexPath.row]
             case 4:
-                opt = filterOptions.adminList[indexPath.row]
+                if filterType == .Simple {
+                    opt = filterOptions.basicList[indexPath.row]
+                } else {
+                    opt = filterOptions.adminList[indexPath.row]
+                }
                 break
             case 5:
                 opt = filterOptions.compatibilityList[indexPath.row]

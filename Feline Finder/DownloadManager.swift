@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 let petsLoadedMessage = Notification.Name(rawValue:"petsLoaded")
+let petLoadedMessage = Notification.Name(rawValue:"petLoaded")
 
 class DownloadManager {
     static let sharedInstance = DownloadManager()
@@ -83,11 +84,20 @@ class DownloadManager {
         }
     }
     
-    static func loadPet() {
+    static func loadPet(petID: String) {
+        let pets = RescuePetList()
         
-    }
-    
-    static func loadShelter() {
+        let sl = Shelters
         
+        pets.status = ""
+        
+        pets.loadSinglePet(petID, completion: { (pet) -> Void in
+            sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
+                    let nc = NotificationCenter.default
+                    nc.post(name:petLoadedMessage,
+                            object: nil,
+                            userInfo:["pet": pet, "shelter": shelter])
+                })
+            })
     }
 }

@@ -29,7 +29,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     weak var modalDelegate: ModalViewControllerDelegate?
     
-
+    var observer : Any!
+    
     @IBOutlet weak var favoriteBtn: FaveButton?
     
     @IBOutlet weak var container: UIView!
@@ -226,6 +227,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBAction func BackTapped(_ sender: AnyObject) {
         //_ = navigationController?.tr_popViewController()
         processFavorite()
+        NotificationCenter.default.removeObserver(observer)
         modalDelegate?.modalViewControllerDismiss(callbackData: nil)
     }
     
@@ -278,6 +280,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
+        self.removeViewWithTag(-1112)
         webView = nil
         processFavorite()
     }
@@ -808,8 +811,15 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     
     var imageURLs:[String] = []
     
-    //override func viewWillAppear(_ animated: Bool) {
-        //super.viewWillAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let nc = NotificationCenter.default
+        observer = nc.addObserver(forName:petLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.petLoaded(notification: notification)
+        }
+        
+        DownloadManager.loadPet(petID: petID!)
+    }
     
     deinit {
         webView?.loadHTMLString("", baseURL: nil)
@@ -819,6 +829,62 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         webView = nil
         print("deinit PetFinderViewDetailController")
     }
+    
+    func petLoaded(notification:Notification) -> Void {
+        print("petLoaded notification")
+        
+        guard let userInfo = notification.userInfo,
+            let pet = userInfo["pet"] as? Pet,
+            let shelter = userInfo["shelter"] as? shelter else {
+                print("No userInfo found in notification")
+                return
+        }
+        
+        DispatchQueue.main.async { [unowned self] in
+            let path = Bundle.main.bundlePath;
+            let sBaseURL = URL(fileURLWithPath: path);
+            self.s = shelter
+            self.pet = pet
+            if self.pet?.videos.count == 0 {
+                DispatchQueue.main.async(execute: {self.youTube.isEnabled = false})}
+            if self.pet?.media.count == 0 {
+                DispatchQueue.main.async(execute: {self.pictures.isEnabled = false})
+            }
+            if shelter.email == "" {
+                DispatchQueue.main.async(execute: {self.email.isEnabled = false})
+            }
+            let address = shelter.address1.uppercased().replacingOccurrences(of: " ", with: "")
+            if address.hasPrefix("POBOX") || address.hasPrefix("P.O.") || address == "" {
+                DispatchQueue.main.async(execute: {self.map.isEnabled = false})
+            }
+            if shelter.phone == "" {
+                DispatchQueue.main.async(execute: {self.phone.isEnabled = false})
+            }
+            let htmlString = self.configureView(pet, s: shelter);
+            DispatchQueue.main.async(execute: {
+                if self.webView == nil {
+                    self.imageURLs = (self.pet?.getAllImagesOfACertainSize("x"))!
+                    self.getImage()
+                    let jscript = "var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);"
+                    let userScript = WKUserScript(source: jscript, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+                    let wkUController = WKUserContentController()
+                    wkUController.addUserScript(userScript)
+                    let wkWebConfig = WKWebViewConfiguration()
+                    wkWebConfig.userContentController = wkUController
+                    self.webView = WKWebView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)!, width: self.view.frame.width, height: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)!), configuration: wkWebConfig)
+                    self.webView.tag = -1112
+                    self.webView!.isOpaque = false
+                    self.webView!.backgroundColor = UIColor.clear
+                    self.webView!.scrollView.backgroundColor = UIColor.clear
+                    self.webView.translatesAutoresizingMaskIntoConstraints = false
+                    self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
+                    self.view.addSubview(self.webView!)
+                    self.webView.frame = self.container.frame
+                }
+        })
+    }
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -856,7 +922,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         let pl: PetList = (favoriteType == .PetFinder ? PetFinderPetList() : RescuePetList())
         let sl: ShelterList = (favoriteType == .PetFinder ? PetFinderShelters : Shelters)
         */
-        
+
+        /*
         let pl = RescuePetList()
         let sl = Shelters
         
@@ -922,6 +989,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         })
         times += 1
         } while pl.status != "ok" && pl.status != "warning" && times < 3
+        */
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
