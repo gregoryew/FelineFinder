@@ -84,6 +84,8 @@ class DownloadManager {
         }
     }
     
+    static var timesQueryRan: Int = 0
+    
     static func loadPet(petID: String) {
         let pets = RescuePetList()
         
@@ -91,13 +93,30 @@ class DownloadManager {
         
         pets.status = ""
         
+        var s: shelter?
+        
         pets.loadSinglePet(petID, completion: { (pet) -> Void in
+            if pets.status != "Error" {
             sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
+                s = shelter
+                if shelter.id != "Error" {
+                    timesQueryRan = 0
+                    print("Status success reseting timesQueryRan")
                     let nc = NotificationCenter.default
                     nc.post(name:petLoadedMessage,
                             object: nil,
                             userInfo:["pet": pet, "shelter": shelter])
-                })
+                }
             })
+        }
+        })
+        if (pets.status == "Error" || s?.id == "ERROR") && timesQueryRan < 4 {
+            timesQueryRan += 1
+            print("Status Error running for the \(timesQueryRan) time")
+            loadPet(petID: petID)
+        } else if timesQueryRan == 4 {
+            timesQueryRan = 0
+            print("Failure for 3rd and final time reseting timesQueryRan")
+        }
     }
 }
