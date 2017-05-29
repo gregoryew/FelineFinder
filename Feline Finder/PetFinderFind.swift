@@ -343,9 +343,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         if (sender!.tag == 4) {
             opt = filterOptions.sortByList[3]
             if opt?.choosenValue == 1 {
-                filterType = FilterType.Simple
-            } else {
                 filterType = FilterType.Advanced
+            } else {
+                filterType = FilterType.Simple
             }
             tableView.reloadData()
         }

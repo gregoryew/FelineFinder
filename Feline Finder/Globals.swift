@@ -93,7 +93,7 @@ var bnGlobal: String = ""
 var editWhichQuestionGlobal: Int = 0
 
 var filterOptions: filterOptionsList = filterOptionsList()
-var filterType: FilterType = FilterType.Simple
+var filterType: FilterType = FilterType.Advanced
 
 var NameID: Int = 0
 var currentFilterSave: String = "Touch Here To Load/Save..."
