@@ -40,6 +40,10 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
                 self.tableView.reloadData()
             })
         }
+        
+        if #available( iOS 10.3,*){
+            if Favorites.count > 0 {SKStoreReviewController.requestReview()}
+        }
     }
     
     @IBAction func unwindToFavorites(_ sender: UIStoryboardSegue)
@@ -215,9 +219,6 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if #available( iOS 10.3,*){
-            if Favorites.count > 0 {SKStoreReviewController.requestReview()}
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool)

@@ -149,7 +149,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     @IBAction func favoritesTapped(_ sender: Any) {
 
         let favorites = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as! FavoritesViewController
-        favorites.viewDidLoad()
+        //favorites.viewDidLoad()
         navigationController?.tr_pushViewController(favorites, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
     }
     

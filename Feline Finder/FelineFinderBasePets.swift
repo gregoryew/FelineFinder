@@ -55,7 +55,8 @@ struct Pet {
     var birthdate: String = ""
     var row = 0
     var section = 0
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], s3: String, z: String, dis: Double) {
+    var adoptionFee = ""
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], s3: String, z: String, dis: Double, adoptionFee: String) {
         petID = pID
         name = n
         breeds = b
@@ -73,9 +74,10 @@ struct Pet {
         status = ""
         birthdate = ""
         lastUpdated = Date()
+        self.adoptionFee = adoptionFee
     }
 
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], v: [video], s3: String, z: String, dis: Double, stat: String, bd: String, upd: Date) {
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], v: [video], s3: String, z: String, dis: Double, stat: String, bd: String, upd: Date, adoptionFee: String) {
         petID = pID
         name = n
         breeds = b
@@ -93,6 +95,7 @@ struct Pet {
         status = stat
         birthdate = bd
         lastUpdated = upd
+        self.adoptionFee = adoptionFee
     }
 
     

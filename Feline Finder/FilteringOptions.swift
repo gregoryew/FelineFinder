@@ -166,7 +166,7 @@ class filterOptionsList {
         filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [(displayName: "5", search: "5", value: 0), (displayName: "20", search: "20", value: 1), (displayName: "50", search: "50", value: 2), (displayName: "100", search: "100", value: 3), (displayName: "200", search: "200", value: 4), (displayName: "Any", search: "Any", value: 5)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Updated Since", f: "date", d: false, c:.sort, o: [(displayName: "Day", search: "0", value: 0), (displayName: "Week", search: "Week", value: 1), (displayName: "Month", search: "Month", value: 2), (displayName: "Year", search: "Year", value: 3), (displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Find Type", f: "Find Type", d: false, c:.sort, o: [(displayName: "Advanced", search: "Advanced", value: 0), (displayName: "Simple", search: "Simple", value: 1)], ft: FilterType.Advanced))
-        filteringOptions.append(filterOption(n: "Only With Videos?", f: "Only With Videos", d: false, c:.sort, o: [(displayName: "Yes", search: "Yes", value: 0), (displayName: "No", search: "No", value: 1)], ft: FilterType.Advanced))
+        //filteringOptions.append(filterOption(n: "Only With Videos?", f: "Only With Videos", d: false, c:.sort, o: [(displayName: "Yes", search: "Yes", value: 0), (displayName: "No", search: "No", value: 1)], ft: FilterType.Advanced))
 
         
         //admin

@@ -26,7 +26,7 @@ class RescuePetList: PetList {
             }
         }
         
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"100", "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": splitPetID(petID)]], "fields": ["animalID","animalOrgID","animalAltered","animalBreed","animalDeclawed","animalDescription","animalDescriptionPlain","animalGeneralAge","animalGeneralSizePotential","animalHousetrained","animalLocation","animalLocationCoordinates","animalLocationDistance","animalName","animalSpecialneeds","animalSpecialneedsDescription","animalOKWithAdults","animalOKWithCats","animalOKWithDogs","animalOKWithKids","animalPrimaryBreed","animalRescueID","animalSex","animalSizePotential","animalUpdatedDate","animalPictures","animalVideoUrls","animalUptodate","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending","animalBirthdate", "animalBirthdateExact",      "animalApartment", "animalYardRequired","animalIndoorOutdoor","animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds"]]] as [String : Any]
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"100", "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": splitPetID(petID)]], "fields": ["animalID","animalOrgID","animalAltered","animalBreed","animalDeclawed","animalDescription","animalDescriptionPlain","animalGeneralAge","animalGeneralSizePotential","animalHousetrained","animalLocation","animalLocationCoordinates","animalLocationDistance","animalName","animalSpecialneeds","animalSpecialneedsDescription","animalOKWithAdults","animalOKWithCats","animalOKWithDogs","animalOKWithKids","animalPrimaryBreed","animalRescueID","animalSex","animalSizePotential","animalUpdatedDate","animalPictures","animalVideoUrls","animalUptodate","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending","animalBirthdate", "animalBirthdateExact",      "animalApartment", "animalYardRequired","animalIndoorOutdoor","animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds", "animalAdoptionFee"]]] as [String : Any]
         
         if Utilities.isNetworkAvailable() {
             do {
@@ -54,7 +54,7 @@ class RescuePetList: PetList {
                                 for (key, data) in dict {
                                     if key == "foundRows" {
                                         if data as! Int == 0 {
-                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", m2: [], s3: "", z: "", dis: 0))
+                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: ""))
                                             return
                                         }
                                     }
@@ -227,6 +227,7 @@ class RescuePetList: PetList {
         var animalAdoptionPending: String?
         var animalBirthdate: String?
         var lastUpdated = Date()
+        var adoptionFee: String = ""
         description = ""
         //var animalBirthdateExact: String?
         if let dict = p as? [String: AnyObject] {
@@ -234,12 +235,7 @@ class RescuePetList: PetList {
                 switch key {
                 case "animalOKWithDogs" : options = hasOption(validateValue(data), option1: "OK With Dogs", option2: "Not OK With Dogs", options: options)
                 case "animalPrimaryBreed": breeds.insert(validateValue(data))
-                case "animalUpdatedDate":
-                    let dateFormatter2 = DateFormatter()
-                    dateFormatter2.dateFormat = "MM/dd/yyyy hh:mm a"
-                    if let d = dateFormatter2.date(from: validateValue(data)) {
-                        lastUpdated = d
-                    }
+                case "animalUpdatedDate": lastUpdated = parseDate(value: validateValue(data))
                 case "animalID": petID = validateValue(data)
                 case "animalAltered": options = hasOption(validateValue(data), option1: "Spayed/Neutered", option2: "Not Spayed/Neutered", options: options)
                 case "animalOKWithAdults": options = hasOption(validateValue(data), option1: "OK With Adults", option2: "Not OK With Adults",  options: options)
@@ -310,6 +306,11 @@ class RescuePetList: PetList {
                 case "animalMicrochipped": options = hasOption(validateValue(data), option1: "Microchipped", option2: "Not Microchipped", options: options)
                 case "animalOngoingMedical": options = hasOption(validateValue(data), option1: "Has Ongoing Medical Needs", option2: "Does Not Have Ongoing Medical Needs", options: options)
                 case "animalSpecialDiet": options = hasOption(validateValue(data), option1: "Has A Special Diet", option2: "Does Not Have A Special Diet", options: options)
+                case "animalAdoptionFee":
+                    adoptionFee = validateValue(data)
+                    if adoptionFee != "" {
+                        print("adoption Fee \(adoptionFee)")
+                    }
                 default: break
                 }
             }
@@ -323,9 +324,27 @@ class RescuePetList: PetList {
             status = animalStatus! + " " + animalAvailableDate!
         }
         
-        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated)
+        if adoptionFee != "" {
+            status += "<BR/><BR/>Adoption Fee: \(adoptionFee)"
+        }
+        
+        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated, adoptionFee: adoptionFee)
         return p
     }
+}
+
+func parseDate(value: String) -> Date {
+    let dateFormatter = DateFormatter()
+    let date: Date
+    dateFormatter.dateFormat = "MM/dd/yyyy HH:mm:ss Z"
+    
+    guard dateFormatter.date(from: value) != nil else {
+        return Date()
+    }
+    
+    date = dateFormatter.date(from: value)!
+    
+    return date
 }
 
 func hasOption(_ optionValue: String, option1:  String, option2: String, options: Set<String>) -> Set<String> {
