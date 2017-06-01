@@ -1592,7 +1592,7 @@ Thanks to the members of PhillyCocoa for their great help and support. </strin
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="CollectionViewCell" reuseIdentifier="Cell" id="DAO-Xd-ggq" customClass="CollectionViewCell" customModule="Feline_Finder" customModuleProvider="target">
-                                <rect key="frame" x="88" y="50" width="200" height="200"/>
+                                <rect key="frame" x="87.5" y="50" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
