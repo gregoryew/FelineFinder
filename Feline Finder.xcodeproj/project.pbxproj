@@ -950,7 +950,7 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = BVC6BMPCPP;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -1341,8 +1341,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1353,8 +1353,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
+				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1372,8 +1372,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Gregory Williams (BVC6BMPCPP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1384,8 +1384,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
+				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
