@@ -351,10 +351,12 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         
         self.title = "\(petName!)"
         
+        /*
         let nc = NotificationCenter.default
         observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
             //self?.petsLoaded(notification: notification)
         }
+        */
         
 /*
         let pl: PetList = (favoriteType == .PetFinder ? PetFinderPetList() : RescuePetList())

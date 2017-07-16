@@ -43,6 +43,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         print ("PetFinderFindViewController deinit")
     }
     
+    weak var modalDelegate: ModalViewControllerDelegate?
+    
     @IBOutlet weak var clear: UIBarButtonItem!
     
     @IBAction func clearTapped(_ sender: AnyObject) {
@@ -71,7 +73,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
             sourceViewController = nil
             //UserDefaults.standard.set(zipCode, forKey: "zipCode")
             viewPopped = true
-            _ = navigationController?.tr_popViewController()
+            //_ = navigationController?.tr_popViewController()
+            modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         }
     }
     

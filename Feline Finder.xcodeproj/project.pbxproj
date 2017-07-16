@@ -7,69 +7,33 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		460558E21F070383006BC6D9 /* BreedInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */; };
+		461B2A7A1F0359280093EA85 /* CatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B2A791F0359280093EA85 /* CatDetailViewController.swift */; };
+		4620AA431F01CE77009F9DEC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */; };
+		4620AA451F01E75F009F9DEC /* AdoptableCatsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */; };
+		4620AA471F01EA6C009F9DEC /* CollectionViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA461F01EA6C009F9DEC /* CollectionViewCell2.swift */; };
+		4620AA491F030672009F9DEC /* MainSectionAdoptableCats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA481F030672009F9DEC /* MainSectionAdoptableCats.swift */; };
 		46241D481E07041300997D4C /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D471E07041300997D4C /* GradientView.swift */; };
 		46241D4A1E07046400997D4C /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D491E07046400997D4C /* CollectionViewCell.swift */; };
 		46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */; };
 		46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */; };
 		462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */; };
 		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
+		464304C11F187C8C00840573 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C01F187C8C00840573 /* energy_level.gif */; };
+		464304C31F187CB900840573 /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C21F187CB900840573 /* grooming.gif */; };
+		464304C51F187CED00840573 /* good_with_pets.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C41F187CED00840573 /* good_with_pets.gif */; };
+		464304C71F1A941500840573 /* Fun_Loving.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C61F1A941500840573 /* Fun_Loving.gif */; };
+		464304C91F1A949A00840573 /* petting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C81F1A949A00840573 /* petting.gif */; };
+		464304CB1F1A94D900840573 /* fitness.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304CA1F1A94D900840573 /* fitness.gif */; };
+		464304CD1F1A952E00840573 /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304CC1F1A952E00840573 /* hair.gif */; };
+		464B49721F1AB28F00C62491 /* attachment_to_people.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464B49711F1AB28F00C62491 /* attachment_to_people.gif */; };
 		464E39D41E33A42B005577ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 464E39D31E33A42B005577ED /* Media.xcassets */; };
 		467738D21E61D53D009CCD4A /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467738D11E61D53D009CCD4A /* KYCircularProgress.swift */; };
 		467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */; };
 		467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */; };
 		467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */; };
-		467E103A1EDF90C000F7E1A8 /* Abyssinian.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E100B1EDF90C000F7E1A8 /* Abyssinian.jpg */; };
-		467E103B1EDF90C000F7E1A8 /* American_Curl.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E100C1EDF90C000F7E1A8 /* American_Curl.jpg */; };
-		467E103C1EDF90C000F7E1A8 /* American_Shorthair.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E100D1EDF90C000F7E1A8 /* American_Shorthair.jpg */; };
-		467E103D1EDF90C000F7E1A8 /* Balinese-cat-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E100E1EDF90C000F7E1A8 /* Balinese-cat-1.jpg */; };
-		467E103E1EDF90C000F7E1A8 /* Bengal.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E100F1EDF90C000F7E1A8 /* Bengal.jpg */; };
-		467E103F1EDF90C000F7E1A8 /* Birman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10101EDF90C000F7E1A8 /* Birman.jpg */; };
-		467E10401EDF90C000F7E1A8 /* BobtailFull.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10111EDF90C000F7E1A8 /* BobtailFull.jpg */; };
-		467E10411EDF90C000F7E1A8 /* Bombay_femelle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10121EDF90C000F7E1A8 /* Bombay_femelle.jpg */; };
-		467E10421EDF90C000F7E1A8 /* British_Shorthair_Assis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10131EDF90C000F7E1A8 /* British_Shorthair_Assis.jpg */; };
-		467E10431EDF90C000F7E1A8 /* Burmese_chocolate_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10141EDF90C000F7E1A8 /* Burmese_chocolate_cat.jpg */; };
-		467E10441EDF90C000F7E1A8 /* Chausie_fugao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10151EDF90C000F7E1A8 /* Chausie_fugao.jpg */; };
-		467E10451EDF90C000F7E1A8 /* Cornish Rex.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10161EDF90C000F7E1A8 /* Cornish Rex.jpg */; };
-		467E10461EDF90C000F7E1A8 /* Cymric_Fond_Blanc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10171EDF90C000F7E1A8 /* Cymric_Fond_Blanc.jpg */; };
-		467E10471EDF90C000F7E1A8 /* Domestic_short-haired_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10181EDF90C000F7E1A8 /* Domestic_short-haired_cat.jpg */; };
-		467E10481EDF90C000F7E1A8 /* Egyptain Mau.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10191EDF90C000F7E1A8 /* Egyptain Mau.jpg */; };
-		467E10491EDF90C000F7E1A8 /* Exotic_Shorthair.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E101A1EDF90C000F7E1A8 /* Exotic_Shorthair.jpg */; };
-		467E104A1EDF90C000F7E1A8 /* Female_Burmilla_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E101B1EDF90C000F7E1A8 /* Female_Burmilla_cat.jpg */; };
-		467E104B1EDF90C000F7E1A8 /* Handsome_tuxedo_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E101C1EDF90C000F7E1A8 /* Handsome_tuxedo_cat.jpg */; };
-		467E104C1EDF90C000F7E1A8 /* Havana_Brown_-_choco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E101D1EDF90C000F7E1A8 /* Havana_Brown_-_choco.jpg */; };
-		467E104D1EDF90C000F7E1A8 /* Himlayan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E101E1EDF90C000F7E1A8 /* Himlayan.jpg */; };
-		467E104E1EDF90C000F7E1A8 /* Imber-MHDomestic_Grey_Cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E101F1EDF90C000F7E1A8 /* Imber-MHDomestic_Grey_Cat.jpg */; };
-		467E104F1EDF90C000F7E1A8 /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10201EDF90C000F7E1A8 /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg */; };
-		467E10501EDF90C000F7E1A8 /* Javanese.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10211EDF90C000F7E1A8 /* Javanese.jpg */; };
-		467E10511EDF90C000F7E1A8 /* Kero_-_singapura_-_cropped.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10221EDF90C000F7E1A8 /* Kero_-_singapura_-_cropped.jpg */; };
-		467E10521EDF90C000F7E1A8 /* LaPerm_tonk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10231EDF90C000F7E1A8 /* LaPerm_tonk.jpg */; };
-		467E10531EDF90C000F7E1A8 /* Main Coon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10241EDF90C000F7E1A8 /* Main Coon.jpg */; };
-		467E10541EDF90C000F7E1A8 /* Manx_cat_crouching.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10251EDF90C000F7E1A8 /* Manx_cat_crouching.jpg */; };
-		467E10551EDF90C000F7E1A8 /* Munchkin_shorthair_300.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10261EDF90C000F7E1A8 /* Munchkin_shorthair_300.jpg */; };
-		467E10561EDF90C000F7E1A8 /* Murmur's_Siberian_Cat_siberiano_golden.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10271EDF90C000F7E1A8 /* Murmur's_Siberian_Cat_siberiano_golden.jpg */; };
-		467E10571EDF90C000F7E1A8 /* Nebelung.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10281EDF90C000F7E1A8 /* Nebelung.jpg */; };
-		467E10581EDF90C000F7E1A8 /* Norwegian_Forest_Cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10291EDF90C000F7E1A8 /* Norwegian_Forest_Cat.jpg */; };
-		467E10591EDF90C000F7E1A8 /* Ocicat-Charan.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E102A1EDF90C000F7E1A8 /* Ocicat-Charan.jpg */; };
-		467E105A1EDF90C000F7E1A8 /* Oriental_Shorthair_cat_Brandi.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E102B1EDF90C000F7E1A8 /* Oriental_Shorthair_cat_Brandi.jpg */; };
-		467E105B1EDF90C000F7E1A8 /* Pantanal_Pixie-Bob.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E102C1EDF90C000F7E1A8 /* Pantanal_Pixie-Bob.jpg */; };
-		467E105C1EDF90C000F7E1A8 /* Persian_Cat_3_UK.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E102D1EDF90C000F7E1A8 /* Persian_Cat_3_UK.jpg */; };
-		467E105D1EDF90C000F7E1A8 /* Qwill_Siamese_cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E102E1EDF90C000F7E1A8 /* Qwill_Siamese_cat.jpg */; };
-		467E105E1EDF90C000F7E1A8 /* Ragamuffin.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E102F1EDF90C000F7E1A8 /* Ragamuffin.jpg */; };
-		467E105F1EDF90C000F7E1A8 /* Ragdoll.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10301EDF90C000F7E1A8 /* Ragdoll.jpg */; };
-		467E10601EDF90C000F7E1A8 /* Russian_Blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10311EDF90C000F7E1A8 /* Russian_Blue.jpg */; };
-		467E10611EDF90C000F7E1A8 /* Savannah.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10321EDF90C000F7E1A8 /* Savannah.jpg */; };
-		467E10621EDF90C000F7E1A8 /* Savannah Portait.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10331EDF90C000F7E1A8 /* Savannah Portait.jpg */; };
-		467E10631EDF90C000F7E1A8 /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10341EDF90C000F7E1A8 /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg */; };
-		467E10641EDF90C000F7E1A8 /* SnowshoeFace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10351EDF90C000F7E1A8 /* SnowshoeFace.jpg */; };
-		467E10651EDF90C000F7E1A8 /* Somali.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10361EDF90C000F7E1A8 /* Somali.jpg */; };
-		467E10661EDF90C000F7E1A8 /* Sphynx_Red.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10371EDF90C000F7E1A8 /* Sphynx_Red.jpg */; };
-		467E10671EDF90C000F7E1A8 /* Turkish_Angora_Cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10381EDF90C000F7E1A8 /* Turkish_Angora_Cat.jpg */; };
-		467E10681EDF90C000F7E1A8 /* turkish_van.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 467E10391EDF90C000F7E1A8 /* turkish_van.jpg */; };
-		467E106A1EDF921300F7E1A8 /* American_Wirehair.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 467E10691EDF921300F7E1A8 /* American_Wirehair.JPG */; };
-		467E106C1EDF925400F7E1A8 /* Chat Chartreux.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 467E106B1EDF925400F7E1A8 /* Chat Chartreux.JPG */; };
-		467E106E1EDF92E200F7E1A8 /* Selkirk_rex.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 467E106D1EDF92E200F7E1A8 /* Selkirk_rex.JPG */; };
-		467E10701EDF930E00F7E1A8 /* Tonkinese.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 467E106F1EDF930E00F7E1A8 /* Tonkinese.JPG */; };
 		467E10721EDF93DA00F7E1A8 /* DevonRex.png in Resources */ = {isa = PBXBuildFile; fileRef = 467E10711EDF93DA00F7E1A8 /* DevonRex.png */; };
+		468D732D1F005DE00090AB43 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D732C1F005DE00090AB43 /* IntroViewController.swift */; };
 		4692C58F1E74B0D200B83494 /* OnboardingVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C58E1E74B0D200B83494 /* OnboardingVideoViewController.swift */; };
 		4692C5BB1E7601F800B83494 /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5931E7601F800B83494 /* FLAnimatedImageView+WebCache.m */; };
 		4692C5BC1E7601F800B83494 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5951E7601F800B83494 /* MKAnnotationView+WebCache.m */; };
@@ -96,13 +60,17 @@
 		4692C5DB1E78EC7F00B83494 /* CharacterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */; };
 		4692C5DD1E78ECB500B83494 /* PictureMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */; };
 		4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */; };
+		46AECC451F06F2D600793464 /* BreedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECC441F06F2D600793464 /* BreedInfoViewController.swift */; };
+		46AECC471F06F52700793464 /* BreedInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */; };
 		46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84B91E6B7B2C00A0B97E /* smartcat.gif */; };
-		46BE84BC1E6B7E1C00A0B97E /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84BB1E6B7E1C00A0B97E /* hair.gif */; };
+		46BE84BC1E6B7E1C00A0B97E /* hair_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84BB1E6B7E1C00A0B97E /* hair_old.gif */; };
 		46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C326C41E91D17B003905CC /* DownloadManager.swift */; };
 		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
 		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
 		46D537911E34B7230006498B /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378F1E34B7230006498B /* ImageCardView.swift */; };
+		46DBA8731EF09CFF00ADBE66 /* catpaws2.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DBA8721EF09CFF00ADBE66 /* catpaws2.png */; };
+		46DC9B461F04AB3400B1739A /* catpaws.png in Resources */ = {isa = PBXBuildFile; fileRef = 46DC9B451F04AB3400B1739A /* catpaws.png */; };
 		46DD5DBF1E25E3BC00E79D53 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 46DD5DBE1E25E3BC00E79D53 /* libsqlite3.0.tbd */; };
 		46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
@@ -135,15 +103,15 @@
 		C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */; };
 		C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */; };
 		C5511C3B1B6EB3F400BE8610 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */; };
-		C5511C481B6EB73A00BE8610 /* attachment_to_people.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3C1B6EB73A00BE8610 /* attachment_to_people.gif */; };
+		C5511C481B6EB73A00BE8610 /* attachment_to_people_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3C1B6EB73A00BE8610 /* attachment_to_people_old.gif */; };
 		C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3D1B6EB73A00BE8610 /* autonomy.gif */; };
-		C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3E1B6EB73A00BE8610 /* energy_level.gif */; };
-		C5511C4B1B6EB73A00BE8610 /* fitness.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3F1B6EB73A00BE8610 /* fitness.gif */; };
-		C5511C4C1B6EB73A00BE8610 /* Fun_Loving.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */; };
-		C5511C4D1B6EB73A00BE8610 /* good_with_pets.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C411B6EB73A00BE8610 /* good_with_pets.gif */; };
+		C5511C4A1B6EB73A00BE8610 /* energy_level_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3E1B6EB73A00BE8610 /* energy_level_old.gif */; };
+		C5511C4B1B6EB73A00BE8610 /* fitness_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3F1B6EB73A00BE8610 /* fitness_old.gif */; };
+		C5511C4C1B6EB73A00BE8610 /* Fun_Loving_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C401B6EB73A00BE8610 /* Fun_Loving_old.gif */; };
+		C5511C4D1B6EB73A00BE8610 /* good_with_pets_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C411B6EB73A00BE8610 /* good_with_pets_old.gif */; };
 		C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C421B6EB73A00BE8610 /* good_with_children.gif */; };
-		C5511C4F1B6EB73A00BE8610 /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C431B6EB73A00BE8610 /* grooming.gif */; };
-		C5511C501B6EB73A00BE8610 /* petting.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C441B6EB73A00BE8610 /* petting.gif */; };
+		C5511C4F1B6EB73A00BE8610 /* grooming2.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C431B6EB73A00BE8610 /* grooming2.gif */; };
+		C5511C501B6EB73A00BE8610 /* petting_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C441B6EB73A00BE8610 /* petting_old.gif */; };
 		C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C451B6EB73A00BE8610 /* talkative.gif */; };
 		C5511C521B6EB73A00BE8610 /* Thinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C461B6EB73A00BE8610 /* Thinking.gif */; };
 		C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C471B6EB73A00BE8610 /* TLC.gif */; };
@@ -201,6 +169,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoDetailViewController.swift; sourceTree = "<group>"; };
+		461B2A791F0359280093EA85 /* CatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatDetailViewController.swift; sourceTree = "<group>"; };
+		4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsTabViewController.swift; sourceTree = "<group>"; };
+		4620AA461F01EA6C009F9DEC /* CollectionViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell2.swift; sourceTree = "<group>"; };
+		4620AA481F030672009F9DEC /* MainSectionAdoptableCats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSectionAdoptableCats.swift; sourceTree = "<group>"; };
 		46241D471E07041300997D4C /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		46241D491E07046400997D4C /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewController.swift; sourceTree = "<group>"; };
@@ -208,63 +182,21 @@
 		4626663D1E34714800D4C7AE /* FaveButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaveButton.h; sourceTree = "<group>"; };
 		462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwinkleImage.png; sourceTree = "<group>"; };
 		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
+		464304C01F187C8C00840573 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
+		464304C21F187CB900840573 /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
+		464304C41F187CED00840573 /* good_with_pets.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets.gif; sourceTree = "<group>"; };
+		464304C61F1A941500840573 /* Fun_Loving.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving.gif; sourceTree = "<group>"; };
+		464304C81F1A949A00840573 /* petting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting.gif; sourceTree = "<group>"; };
+		464304CA1F1A94D900840573 /* fitness.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness.gif; sourceTree = "<group>"; };
+		464304CC1F1A952E00840573 /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
+		464B49711F1AB28F00C62491 /* attachment_to_people.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people.gif; sourceTree = "<group>"; };
 		464E39D31E33A42B005577ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		467738D11E61D53D009CCD4A /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
 		467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIZoomAnimation.swift; sourceTree = "<group>"; };
 		467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipAnimation.swift; sourceTree = "<group>"; };
 		467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionImageView.swift; sourceTree = "<group>"; };
-		467E100B1EDF90C000F7E1A8 /* Abyssinian.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Abyssinian.jpg; path = catimages/Abyssinian.jpg; sourceTree = "<group>"; };
-		467E100C1EDF90C000F7E1A8 /* American_Curl.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = American_Curl.jpg; path = catimages/American_Curl.jpg; sourceTree = "<group>"; };
-		467E100D1EDF90C000F7E1A8 /* American_Shorthair.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = American_Shorthair.jpg; path = catimages/American_Shorthair.jpg; sourceTree = "<group>"; };
-		467E100E1EDF90C000F7E1A8 /* Balinese-cat-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Balinese-cat-1.jpg"; path = "catimages/Balinese-cat-1.jpg"; sourceTree = "<group>"; };
-		467E100F1EDF90C000F7E1A8 /* Bengal.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Bengal.jpg; path = catimages/Bengal.jpg; sourceTree = "<group>"; };
-		467E10101EDF90C000F7E1A8 /* Birman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Birman.jpg; path = catimages/Birman.jpg; sourceTree = "<group>"; };
-		467E10111EDF90C000F7E1A8 /* BobtailFull.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = BobtailFull.jpg; path = catimages/BobtailFull.jpg; sourceTree = "<group>"; };
-		467E10121EDF90C000F7E1A8 /* Bombay_femelle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Bombay_femelle.jpg; path = catimages/Bombay_femelle.jpg; sourceTree = "<group>"; };
-		467E10131EDF90C000F7E1A8 /* British_Shorthair_Assis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = British_Shorthair_Assis.jpg; path = catimages/British_Shorthair_Assis.jpg; sourceTree = "<group>"; };
-		467E10141EDF90C000F7E1A8 /* Burmese_chocolate_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Burmese_chocolate_cat.jpg; path = catimages/Burmese_chocolate_cat.jpg; sourceTree = "<group>"; };
-		467E10151EDF90C000F7E1A8 /* Chausie_fugao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Chausie_fugao.jpg; path = catimages/Chausie_fugao.jpg; sourceTree = "<group>"; };
-		467E10161EDF90C000F7E1A8 /* Cornish Rex.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Cornish Rex.jpg"; path = "catimages/Cornish Rex.jpg"; sourceTree = "<group>"; };
-		467E10171EDF90C000F7E1A8 /* Cymric_Fond_Blanc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Cymric_Fond_Blanc.jpg; path = catimages/Cymric_Fond_Blanc.jpg; sourceTree = "<group>"; };
-		467E10181EDF90C000F7E1A8 /* Domestic_short-haired_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Domestic_short-haired_cat.jpg"; path = "catimages/Domestic_short-haired_cat.jpg"; sourceTree = "<group>"; };
-		467E10191EDF90C000F7E1A8 /* Egyptain Mau.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Egyptain Mau.jpg"; path = "catimages/Egyptain Mau.jpg"; sourceTree = "<group>"; };
-		467E101A1EDF90C000F7E1A8 /* Exotic_Shorthair.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Exotic_Shorthair.jpg; path = catimages/Exotic_Shorthair.jpg; sourceTree = "<group>"; };
-		467E101B1EDF90C000F7E1A8 /* Female_Burmilla_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Female_Burmilla_cat.jpg; path = catimages/Female_Burmilla_cat.jpg; sourceTree = "<group>"; };
-		467E101C1EDF90C000F7E1A8 /* Handsome_tuxedo_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Handsome_tuxedo_cat.jpg; path = catimages/Handsome_tuxedo_cat.jpg; sourceTree = "<group>"; };
-		467E101D1EDF90C000F7E1A8 /* Havana_Brown_-_choco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Havana_Brown_-_choco.jpg"; path = "catimages/Havana_Brown_-_choco.jpg"; sourceTree = "<group>"; };
-		467E101E1EDF90C000F7E1A8 /* Himlayan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Himlayan.jpg; path = catimages/Himlayan.jpg; sourceTree = "<group>"; };
-		467E101F1EDF90C000F7E1A8 /* Imber-MHDomestic_Grey_Cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Imber-MHDomestic_Grey_Cat.jpg"; path = "catimages/Imber-MHDomestic_Grey_Cat.jpg"; sourceTree = "<group>"; };
-		467E10201EDF90C000F7E1A8 /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg"; path = "catimages/Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg"; sourceTree = "<group>"; };
-		467E10211EDF90C000F7E1A8 /* Javanese.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Javanese.jpg; path = catimages/Javanese.jpg; sourceTree = "<group>"; };
-		467E10221EDF90C000F7E1A8 /* Kero_-_singapura_-_cropped.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Kero_-_singapura_-_cropped.jpg"; path = "catimages/Kero_-_singapura_-_cropped.jpg"; sourceTree = "<group>"; };
-		467E10231EDF90C000F7E1A8 /* LaPerm_tonk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = LaPerm_tonk.jpg; path = catimages/LaPerm_tonk.jpg; sourceTree = "<group>"; };
-		467E10241EDF90C000F7E1A8 /* Main Coon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Main Coon.jpg"; path = "catimages/Main Coon.jpg"; sourceTree = "<group>"; };
-		467E10251EDF90C000F7E1A8 /* Manx_cat_crouching.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Manx_cat_crouching.jpg; path = catimages/Manx_cat_crouching.jpg; sourceTree = "<group>"; };
-		467E10261EDF90C000F7E1A8 /* Munchkin_shorthair_300.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Munchkin_shorthair_300.jpg; path = catimages/Munchkin_shorthair_300.jpg; sourceTree = "<group>"; };
-		467E10271EDF90C000F7E1A8 /* Murmur's_Siberian_Cat_siberiano_golden.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Murmur's_Siberian_Cat_siberiano_golden.jpg"; path = "catimages/Murmur's_Siberian_Cat_siberiano_golden.jpg"; sourceTree = "<group>"; };
-		467E10281EDF90C000F7E1A8 /* Nebelung.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Nebelung.jpg; path = catimages/Nebelung.jpg; sourceTree = "<group>"; };
-		467E10291EDF90C000F7E1A8 /* Norwegian_Forest_Cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Norwegian_Forest_Cat.jpg; path = catimages/Norwegian_Forest_Cat.jpg; sourceTree = "<group>"; };
-		467E102A1EDF90C000F7E1A8 /* Ocicat-Charan.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Ocicat-Charan.jpg"; path = "catimages/Ocicat-Charan.jpg"; sourceTree = "<group>"; };
-		467E102B1EDF90C000F7E1A8 /* Oriental_Shorthair_cat_Brandi.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Oriental_Shorthair_cat_Brandi.jpg; path = catimages/Oriental_Shorthair_cat_Brandi.jpg; sourceTree = "<group>"; };
-		467E102C1EDF90C000F7E1A8 /* Pantanal_Pixie-Bob.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Pantanal_Pixie-Bob.jpg"; path = "catimages/Pantanal_Pixie-Bob.jpg"; sourceTree = "<group>"; };
-		467E102D1EDF90C000F7E1A8 /* Persian_Cat_3_UK.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Persian_Cat_3_UK.jpg; path = catimages/Persian_Cat_3_UK.jpg; sourceTree = "<group>"; };
-		467E102E1EDF90C000F7E1A8 /* Qwill_Siamese_cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Qwill_Siamese_cat.jpg; path = catimages/Qwill_Siamese_cat.jpg; sourceTree = "<group>"; };
-		467E102F1EDF90C000F7E1A8 /* Ragamuffin.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Ragamuffin.jpg; path = catimages/Ragamuffin.jpg; sourceTree = "<group>"; };
-		467E10301EDF90C000F7E1A8 /* Ragdoll.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Ragdoll.jpg; path = catimages/Ragdoll.jpg; sourceTree = "<group>"; };
-		467E10311EDF90C000F7E1A8 /* Russian_Blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Russian_Blue.jpg; path = catimages/Russian_Blue.jpg; sourceTree = "<group>"; };
-		467E10321EDF90C000F7E1A8 /* Savannah.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Savannah.jpg; path = catimages/Savannah.jpg; sourceTree = "<group>"; };
-		467E10331EDF90C000F7E1A8 /* Savannah Portait.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Savannah Portait.jpg"; path = "catimages/Savannah Portait.jpg"; sourceTree = "<group>"; };
-		467E10341EDF90C000F7E1A8 /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg"; path = "catimages/Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg"; sourceTree = "<group>"; };
-		467E10351EDF90C000F7E1A8 /* SnowshoeFace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SnowshoeFace.jpg; path = catimages/SnowshoeFace.jpg; sourceTree = "<group>"; };
-		467E10361EDF90C000F7E1A8 /* Somali.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Somali.jpg; path = catimages/Somali.jpg; sourceTree = "<group>"; };
-		467E10371EDF90C000F7E1A8 /* Sphynx_Red.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Sphynx_Red.jpg; path = catimages/Sphynx_Red.jpg; sourceTree = "<group>"; };
-		467E10381EDF90C000F7E1A8 /* Turkish_Angora_Cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Turkish_Angora_Cat.jpg; path = catimages/Turkish_Angora_Cat.jpg; sourceTree = "<group>"; };
-		467E10391EDF90C000F7E1A8 /* turkish_van.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = turkish_van.jpg; path = catimages/turkish_van.jpg; sourceTree = "<group>"; };
-		467E10691EDF921300F7E1A8 /* American_Wirehair.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = American_Wirehair.JPG; sourceTree = "<group>"; };
-		467E106B1EDF925400F7E1A8 /* Chat Chartreux.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Chat Chartreux.JPG"; sourceTree = "<group>"; };
-		467E106D1EDF92E200F7E1A8 /* Selkirk_rex.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Selkirk_rex.JPG; sourceTree = "<group>"; };
-		467E106F1EDF930E00F7E1A8 /* Tonkinese.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Tonkinese.JPG; sourceTree = "<group>"; };
 		467E10711EDF93DA00F7E1A8 /* DevonRex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevonRex.png; sourceTree = "<group>"; };
+		468D732C1F005DE00090AB43 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = ../IntroViewController.swift; sourceTree = "<group>"; };
 		4692C58E1E74B0D200B83494 /* OnboardingVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVideoViewController.swift; sourceTree = "<group>"; };
 		4692C5921E7601F800B83494 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
 		4692C5931E7601F800B83494 /* FLAnimatedImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FLAnimatedImageView+WebCache.m"; sourceTree = "<group>"; };
@@ -313,13 +245,17 @@
 		4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterFlowLayout.swift; sourceTree = "<group>"; };
 		4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureMasterViewController.swift; sourceTree = "<group>"; };
 		4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatPictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		46AECC441F06F2D600793464 /* BreedInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreedInfoViewController.swift; path = ../BreedInfoViewController.swift; sourceTree = "<group>"; };
+		46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoTableViewCell.swift; sourceTree = "<group>"; };
 		46BE84B91E6B7B2C00A0B97E /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
-		46BE84BB1E6B7E1C00A0B97E /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
+		46BE84BB1E6B7E1C00A0B97E /* hair_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair_old.gif; sourceTree = "<group>"; };
 		46C326C41E91D17B003905CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
 		46D5378F1E34B7230006498B /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
+		46DBA8721EF09CFF00ADBE66 /* catpaws2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catpaws2.png; sourceTree = "<group>"; };
+		46DC9B451F04AB3400B1739A /* catpaws.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catpaws.png; sourceTree = "<group>"; };
 		46DD5DB41E25DE6700E79D53 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		46DD5DB61E25DEAD00E79D53 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libsqlite3.dylib; sourceTree = "<group>"; };
 		46DD5DBA1E25E22F00E79D53 /* libz.1.2.8.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.8.tbd; path = usr/lib/libz.1.2.8.tbd; sourceTree = SDKROOT; };
@@ -364,15 +300,15 @@
 		C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
 		C5511C381B6EB3F400BE8610 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
-		C5511C3C1B6EB73A00BE8610 /* attachment_to_people.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people.gif; sourceTree = "<group>"; };
+		C5511C3C1B6EB73A00BE8610 /* attachment_to_people_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people_old.gif; sourceTree = "<group>"; };
 		C5511C3D1B6EB73A00BE8610 /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
-		C5511C3E1B6EB73A00BE8610 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
-		C5511C3F1B6EB73A00BE8610 /* fitness.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness.gif; sourceTree = "<group>"; };
-		C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving.gif; sourceTree = "<group>"; };
-		C5511C411B6EB73A00BE8610 /* good_with_pets.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets.gif; sourceTree = "<group>"; };
+		C5511C3E1B6EB73A00BE8610 /* energy_level_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level_old.gif; sourceTree = "<group>"; };
+		C5511C3F1B6EB73A00BE8610 /* fitness_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness_old.gif; sourceTree = "<group>"; };
+		C5511C401B6EB73A00BE8610 /* Fun_Loving_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving_old.gif; sourceTree = "<group>"; };
+		C5511C411B6EB73A00BE8610 /* good_with_pets_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets_old.gif; sourceTree = "<group>"; };
 		C5511C421B6EB73A00BE8610 /* good_with_children.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_children.gif; sourceTree = "<group>"; };
-		C5511C431B6EB73A00BE8610 /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
-		C5511C441B6EB73A00BE8610 /* petting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting.gif; sourceTree = "<group>"; };
+		C5511C431B6EB73A00BE8610 /* grooming2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming2.gif; sourceTree = "<group>"; };
+		C5511C441B6EB73A00BE8610 /* petting_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting_old.gif; sourceTree = "<group>"; };
 		C5511C451B6EB73A00BE8610 /* talkative.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative.gif; sourceTree = "<group>"; };
 		C5511C461B6EB73A00BE8610 /* Thinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Thinking.gif; sourceTree = "<group>"; };
 		C5511C471B6EB73A00BE8610 /* TLC.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TLC.gif; sourceTree = "<group>"; };
@@ -470,65 +406,6 @@
 				46E7EC2E1E50DC380041666F /* Transistion.swift */,
 			);
 			name = "Transition Animations";
-			sourceTree = "<group>";
-		};
-		467E0FAC1EDF8E9200F7E1A8 /* cat images background */ = {
-			isa = PBXGroup;
-			children = (
-				467E106B1EDF925400F7E1A8 /* Chat Chartreux.JPG */,
-				467E100B1EDF90C000F7E1A8 /* Abyssinian.jpg */,
-				467E100C1EDF90C000F7E1A8 /* American_Curl.jpg */,
-				467E100D1EDF90C000F7E1A8 /* American_Shorthair.jpg */,
-				467E100E1EDF90C000F7E1A8 /* Balinese-cat-1.jpg */,
-				467E100F1EDF90C000F7E1A8 /* Bengal.jpg */,
-				467E10691EDF921300F7E1A8 /* American_Wirehair.JPG */,
-				467E10101EDF90C000F7E1A8 /* Birman.jpg */,
-				467E10111EDF90C000F7E1A8 /* BobtailFull.jpg */,
-				467E10121EDF90C000F7E1A8 /* Bombay_femelle.jpg */,
-				467E10131EDF90C000F7E1A8 /* British_Shorthair_Assis.jpg */,
-				467E10141EDF90C000F7E1A8 /* Burmese_chocolate_cat.jpg */,
-				467E10151EDF90C000F7E1A8 /* Chausie_fugao.jpg */,
-				467E10161EDF90C000F7E1A8 /* Cornish Rex.jpg */,
-				467E10171EDF90C000F7E1A8 /* Cymric_Fond_Blanc.jpg */,
-				467E10711EDF93DA00F7E1A8 /* DevonRex.png */,
-				467E10181EDF90C000F7E1A8 /* Domestic_short-haired_cat.jpg */,
-				467E10191EDF90C000F7E1A8 /* Egyptain Mau.jpg */,
-				467E101A1EDF90C000F7E1A8 /* Exotic_Shorthair.jpg */,
-				467E101B1EDF90C000F7E1A8 /* Female_Burmilla_cat.jpg */,
-				467E101C1EDF90C000F7E1A8 /* Handsome_tuxedo_cat.jpg */,
-				467E101D1EDF90C000F7E1A8 /* Havana_Brown_-_choco.jpg */,
-				467E101E1EDF90C000F7E1A8 /* Himlayan.jpg */,
-				467E101F1EDF90C000F7E1A8 /* Imber-MHDomestic_Grey_Cat.jpg */,
-				467E10201EDF90C000F7E1A8 /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg */,
-				467E10211EDF90C000F7E1A8 /* Javanese.jpg */,
-				467E10221EDF90C000F7E1A8 /* Kero_-_singapura_-_cropped.jpg */,
-				467E10231EDF90C000F7E1A8 /* LaPerm_tonk.jpg */,
-				467E10241EDF90C000F7E1A8 /* Main Coon.jpg */,
-				467E10251EDF90C000F7E1A8 /* Manx_cat_crouching.jpg */,
-				467E10261EDF90C000F7E1A8 /* Munchkin_shorthair_300.jpg */,
-				467E10271EDF90C000F7E1A8 /* Murmur's_Siberian_Cat_siberiano_golden.jpg */,
-				467E10281EDF90C000F7E1A8 /* Nebelung.jpg */,
-				467E10291EDF90C000F7E1A8 /* Norwegian_Forest_Cat.jpg */,
-				467E102A1EDF90C000F7E1A8 /* Ocicat-Charan.jpg */,
-				467E102B1EDF90C000F7E1A8 /* Oriental_Shorthair_cat_Brandi.jpg */,
-				467E102C1EDF90C000F7E1A8 /* Pantanal_Pixie-Bob.jpg */,
-				467E102D1EDF90C000F7E1A8 /* Persian_Cat_3_UK.jpg */,
-				467E106D1EDF92E200F7E1A8 /* Selkirk_rex.JPG */,
-				467E102E1EDF90C000F7E1A8 /* Qwill_Siamese_cat.jpg */,
-				467E102F1EDF90C000F7E1A8 /* Ragamuffin.jpg */,
-				467E10301EDF90C000F7E1A8 /* Ragdoll.jpg */,
-				467E106F1EDF930E00F7E1A8 /* Tonkinese.JPG */,
-				467E10311EDF90C000F7E1A8 /* Russian_Blue.jpg */,
-				467E10321EDF90C000F7E1A8 /* Savannah.jpg */,
-				467E10331EDF90C000F7E1A8 /* Savannah Portait.jpg */,
-				467E10341EDF90C000F7E1A8 /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg */,
-				467E10351EDF90C000F7E1A8 /* SnowshoeFace.jpg */,
-				467E10361EDF90C000F7E1A8 /* Somali.jpg */,
-				467E10371EDF90C000F7E1A8 /* Sphynx_Red.jpg */,
-				467E10381EDF90C000F7E1A8 /* Turkish_Angora_Cat.jpg */,
-				467E10391EDF90C000F7E1A8 /* turkish_van.jpg */,
-			);
-			name = "cat images background";
 			sourceTree = "<group>";
 		};
 		4692C5901E7601F800B83494 /* SDWebImage */ = {
@@ -662,17 +539,27 @@
 		C5511C251B6EAB4400BE8610 /* QuestionGIFs */ = {
 			isa = PBXGroup;
 			children = (
-				C5511C3C1B6EB73A00BE8610 /* attachment_to_people.gif */,
+				464304C01F187C8C00840573 /* energy_level.gif */,
+				464304C21F187CB900840573 /* grooming.gif */,
+				46DC9B451F04AB3400B1739A /* catpaws.png */,
+				464B49711F1AB28F00C62491 /* attachment_to_people.gif */,
+				C5511C3C1B6EB73A00BE8610 /* attachment_to_people_old.gif */,
 				C56F90BA1B765E2300EEEBFA /* welcome_cat.gif */,
+				464304C41F187CED00840573 /* good_with_pets.gif */,
+				46DBA8721EF09CFF00ADBE66 /* catpaws2.png */,
 				C5511C3D1B6EB73A00BE8610 /* autonomy.gif */,
-				C5511C3E1B6EB73A00BE8610 /* energy_level.gif */,
-				C5511C3F1B6EB73A00BE8610 /* fitness.gif */,
-				C5511C401B6EB73A00BE8610 /* Fun_Loving.gif */,
-				C5511C411B6EB73A00BE8610 /* good_with_pets.gif */,
+				C5511C3E1B6EB73A00BE8610 /* energy_level_old.gif */,
+				C5511C3F1B6EB73A00BE8610 /* fitness_old.gif */,
+				464304CA1F1A94D900840573 /* fitness.gif */,
+				464304C61F1A941500840573 /* Fun_Loving.gif */,
+				C5511C401B6EB73A00BE8610 /* Fun_Loving_old.gif */,
+				C5511C411B6EB73A00BE8610 /* good_with_pets_old.gif */,
 				C5511C421B6EB73A00BE8610 /* good_with_children.gif */,
-				46BE84BB1E6B7E1C00A0B97E /* hair.gif */,
-				C5511C431B6EB73A00BE8610 /* grooming.gif */,
-				C5511C441B6EB73A00BE8610 /* petting.gif */,
+				46BE84BB1E6B7E1C00A0B97E /* hair_old.gif */,
+				464304CC1F1A952E00840573 /* hair.gif */,
+				C5511C431B6EB73A00BE8610 /* grooming2.gif */,
+				C5511C441B6EB73A00BE8610 /* petting_old.gif */,
+				464304C81F1A949A00840573 /* petting.gif */,
 				46BE84B91E6B7B2C00A0B97E /* smartcat.gif */,
 				C5511C451B6EB73A00BE8610 /* talkative.gif */,
 				C5511C461B6EB73A00BE8610 /* Thinking.gif */,
@@ -755,7 +642,11 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
-				467E0FAC1EDF8E9200F7E1A8 /* cat images background */,
+				46AECC441F06F2D600793464 /* BreedInfoViewController.swift */,
+				460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */,
+				468D732C1F005DE00090AB43 /* IntroViewController.swift */,
+				461B2A791F0359280093EA85 /* CatDetailViewController.swift */,
+				467E10711EDF93DA00F7E1A8 /* DevonRex.png */,
 				4692C5D91E78EC6E00B83494 /* PictureViewer */,
 				4692C5901E7601F800B83494 /* SDWebImage */,
 				467C97961E3EA85B007C7A08 /* Transition Animations */,
@@ -791,11 +682,16 @@
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */,
+				4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */,
 				4692C58E1E74B0D200B83494 /* OnboardingVideoViewController.swift */,
 				46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */,
 				46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */,
+				4620AA481F030672009F9DEC /* MainSectionAdoptableCats.swift */,
 				46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */,
+				4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */,
 				46241D491E07046400997D4C /* CollectionViewCell.swift */,
+				4620AA461F01EA6C009F9DEC /* CollectionViewCell2.swift */,
 				46241D4B1E0704D100997D4C /* AdoptableCatsViewController.swift */,
 				46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */,
 				C5933B1A1D6C012A00CFD62E /* Globals.swift */,
@@ -950,7 +846,7 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = BVC6BMPCPP;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -977,82 +873,41 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464B49721F1AB28F00C62491 /* attachment_to_people.gif in Resources */,
 				464E39D41E33A42B005577ED /* Media.xcassets in Resources */,
+				464304C51F187CED00840573 /* good_with_pets.gif in Resources */,
+				464304C31F187CB900840573 /* grooming.gif in Resources */,
 				C5471BB41D67B01400F9A459 /* main_bg.jpg in Resources */,
-				467E10491EDF90C000F7E1A8 /* Exotic_Shorthair.jpg in Resources */,
-				467E10571EDF90C000F7E1A8 /* Nebelung.jpg in Resources */,
-				C5511C501B6EB73A00BE8610 /* petting.gif in Resources */,
+				C5511C501B6EB73A00BE8610 /* petting_old.gif in Resources */,
 				C5511C521B6EB73A00BE8610 /* Thinking.gif in Resources */,
-				467E10471EDF90C000F7E1A8 /* Domestic_short-haired_cat.jpg in Resources */,
-				467E104B1EDF90C000F7E1A8 /* Handsome_tuxedo_cat.jpg in Resources */,
 				C5471BC31D67B07D00F9A459 /* Default-568h@2x.png in Resources */,
-				467E105F1EDF90C000F7E1A8 /* Ragdoll.jpg in Resources */,
-				467E10651EDF90C000F7E1A8 /* Somali.jpg in Resources */,
-				C5511C4F1B6EB73A00BE8610 /* grooming.gif in Resources */,
-				467E105E1EDF90C000F7E1A8 /* Ragamuffin.jpg in Resources */,
-				467E105C1EDF90C000F7E1A8 /* Persian_Cat_3_UK.jpg in Resources */,
-				467E103F1EDF90C000F7E1A8 /* Birman.jpg in Resources */,
-				467E10421EDF90C000F7E1A8 /* British_Shorthair_Assis.jpg in Resources */,
-				467E10511EDF90C000F7E1A8 /* Kero_-_singapura_-_cropped.jpg in Resources */,
-				467E10531EDF90C000F7E1A8 /* Main Coon.jpg in Resources */,
-				467E105B1EDF90C000F7E1A8 /* Pantanal_Pixie-Bob.jpg in Resources */,
-				467E10581EDF90C000F7E1A8 /* Norwegian_Forest_Cat.jpg in Resources */,
+				C5511C4F1B6EB73A00BE8610 /* grooming2.gif in Resources */,
 				462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */,
 				C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */,
-				467E10601EDF90C000F7E1A8 /* Russian_Blue.jpg in Resources */,
-				467E104A1EDF90C000F7E1A8 /* Female_Burmilla_cat.jpg in Resources */,
+				464304C91F1A949A00840573 /* petting.gif in Resources */,
+				464304C71F1A941500840573 /* Fun_Loving.gif in Resources */,
+				46DC9B461F04AB3400B1739A /* catpaws.png in Resources */,
+				46DBA8731EF09CFF00ADBE66 /* catpaws2.png in Resources */,
+				464304CD1F1A952E00840573 /* hair.gif in Resources */,
 				C5FB6EA81B2132EC007FFA36 /* Main.storyboard in Resources */,
-				467E10681EDF90C000F7E1A8 /* turkish_van.jpg in Resources */,
-				467E10441EDF90C000F7E1A8 /* Chausie_fugao.jpg in Resources */,
-				46BE84BC1E6B7E1C00A0B97E /* hair.gif in Resources */,
-				467E103E1EDF90C000F7E1A8 /* Bengal.jpg in Resources */,
-				467E10431EDF90C000F7E1A8 /* Burmese_chocolate_cat.jpg in Resources */,
-				467E10661EDF90C000F7E1A8 /* Sphynx_Red.jpg in Resources */,
-				467E104C1EDF90C000F7E1A8 /* Havana_Brown_-_choco.jpg in Resources */,
+				46BE84BC1E6B7E1C00A0B97E /* hair_old.gif in Resources */,
+				464304CB1F1A94D900840573 /* fitness.gif in Resources */,
 				C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */,
-				467E10701EDF930E00F7E1A8 /* Tonkinese.JPG in Resources */,
-				C5511C4D1B6EB73A00BE8610 /* good_with_pets.gif in Resources */,
-				C5511C4A1B6EB73A00BE8610 /* energy_level.gif in Resources */,
-				467E106E1EDF92E200F7E1A8 /* Selkirk_rex.JPG in Resources */,
+				C5511C4D1B6EB73A00BE8610 /* good_with_pets_old.gif in Resources */,
+				C5511C4A1B6EB73A00BE8610 /* energy_level_old.gif in Resources */,
 				46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */,
-				467E10561EDF90C000F7E1A8 /* Murmur's_Siberian_Cat_siberiano_golden.jpg in Resources */,
 				C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */,
-				467E104F1EDF90C000F7E1A8 /* Japanese_Bobtail_-_URK_cat_show_Vantaa_2006-10-08.jpg in Resources */,
-				467E103C1EDF90C000F7E1A8 /* American_Shorthair.jpg in Resources */,
+				464304C11F187C8C00840573 /* energy_level.gif in Resources */,
 				4692C5D71E764D7F00B83494 /* WKYTPlayerView.bundle in Resources */,
-				467E10641EDF90C000F7E1A8 /* SnowshoeFace.jpg in Resources */,
-				467E10401EDF90C000F7E1A8 /* BobtailFull.jpg in Resources */,
-				467E10411EDF90C000F7E1A8 /* Bombay_femelle.jpg in Resources */,
-				467E10621EDF90C000F7E1A8 /* Savannah Portait.jpg in Resources */,
 				C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */,
-				467E103B1EDF90C000F7E1A8 /* American_Curl.jpg in Resources */,
-				467E106C1EDF925400F7E1A8 /* Chat Chartreux.JPG in Resources */,
-				467E103D1EDF90C000F7E1A8 /* Balinese-cat-1.jpg in Resources */,
-				467E10611EDF90C000F7E1A8 /* Savannah.jpg in Resources */,
-				467E10551EDF90C000F7E1A8 /* Munchkin_shorthair_300.jpg in Resources */,
-				467E10501EDF90C000F7E1A8 /* Javanese.jpg in Resources */,
-				467E103A1EDF90C000F7E1A8 /* Abyssinian.jpg in Resources */,
-				467E10541EDF90C000F7E1A8 /* Manx_cat_crouching.jpg in Resources */,
-				467E104E1EDF90C000F7E1A8 /* Imber-MHDomestic_Grey_Cat.jpg in Resources */,
-				467E106A1EDF921300F7E1A8 /* American_Wirehair.JPG in Resources */,
 				C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */,
-				C5511C481B6EB73A00BE8610 /* attachment_to_people.gif in Resources */,
-				467E10461EDF90C000F7E1A8 /* Cymric_Fond_Blanc.jpg in Resources */,
-				467E10521EDF90C000F7E1A8 /* LaPerm_tonk.jpg in Resources */,
+				C5511C481B6EB73A00BE8610 /* attachment_to_people_old.gif in Resources */,
 				C5471BC11D67B07D00F9A459 /* Default.png in Resources */,
 				C56F90BB1B765E2300EEEBFA /* welcome_cat.gif in Resources */,
-				467E104D1EDF90C000F7E1A8 /* Himlayan.jpg in Resources */,
-				467E10481EDF90C000F7E1A8 /* Egyptain Mau.jpg in Resources */,
-				C5511C4C1B6EB73A00BE8610 /* Fun_Loving.gif in Resources */,
-				C5511C4B1B6EB73A00BE8610 /* fitness.gif in Resources */,
-				467E10591EDF90C000F7E1A8 /* Ocicat-Charan.jpg in Resources */,
+				C5511C4C1B6EB73A00BE8610 /* Fun_Loving_old.gif in Resources */,
+				C5511C4B1B6EB73A00BE8610 /* fitness_old.gif in Resources */,
 				C5471BC21D67B07D00F9A459 /* Default@2x.png in Resources */,
 				467E10721EDF93DA00F7E1A8 /* DevonRex.png in Resources */,
-				467E10451EDF90C000F7E1A8 /* Cornish Rex.jpg in Resources */,
-				467E10631EDF90C000F7E1A8 /* Scottish_Fold_-_CFF_cat_show_Heinola_2008-05-03_IMG_7882.jpg in Resources */,
-				467E10671EDF90C000F7E1A8 /* Turkish_Angora_Cat.jpg in Resources */,
-				467E105D1EDF90C000F7E1A8 /* Qwill_Siamese_cat.jpg in Resources */,
-				467E105A1EDF90C000F7E1A8 /* Oriental_Shorthair_cat_Brandi.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,6 +979,7 @@
 				46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */,
 				4692C5BE1E7601F800B83494 /* NSImage+WebCache.m in Sources */,
 				4692C5C51E7601F800B83494 /* SDWebImageManager.m in Sources */,
+				46AECC451F06F2D600793464 /* BreedInfoViewController.swift in Sources */,
 				C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */,
 				C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */,
 				C58D212B1B496DCE008E1B0B /* CMMapLauncher.m in Sources */,
@@ -1144,8 +1000,10 @@
 				4692C5CA1E7601F800B83494 /* UIImage+WebP.m in Sources */,
 				C58B45A81B2DB19700E03538 /* BreedStatsViewController.swift in Sources */,
 				C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */,
+				4620AA471F01EA6C009F9DEC /* CollectionViewCell2.swift in Sources */,
 				4692C5C21E7601F800B83494 /* SDWebImageDecoder.m in Sources */,
 				C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */,
+				4620AA491F030672009F9DEC /* MainSectionAdoptableCats.swift in Sources */,
 				C539DED81B51C9E300B631B8 /* FavoriteTableCell.swift in Sources */,
 				4692C5CB1E7601F800B83494 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4692C5C91E7601F800B83494 /* UIImage+MultiFormat.m in Sources */,
@@ -1163,9 +1021,12 @@
 				4692C5BB1E7601F800B83494 /* FLAnimatedImageView+WebCache.m in Sources */,
 				C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */,
 				C539DEE41B52786200B631B8 /* SavedListsTableCell.swift in Sources */,
+				461B2A7A1F0359280093EA85 /* CatDetailViewController.swift in Sources */,
 				C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */,
 				C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */,
+				460558E21F070383006BC6D9 /* BreedInfoDetailViewController.swift in Sources */,
 				C5FB6EED1B213474007FFA36 /* FMDatabase.m in Sources */,
+				4620AA431F01CE77009F9DEC /* MainTabBarViewController.swift in Sources */,
 				467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */,
 				C56F90D81B7795C600EEEBFA /* PetFinderFind.swift in Sources */,
 				C5FB6EEE1B213474007FFA36 /* FMResultSet.m in Sources */,
@@ -1186,6 +1047,7 @@
 				46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */,
 				4632471C1E037D17000039FF /* Twinkle.swift in Sources */,
 				C5FB6EF01B213474007FFA36 /* FMDatabaseAdditions.m in Sources */,
+				468D732D1F005DE00090AB43 /* IntroViewController.swift in Sources */,
 				4692C5C31E7601F800B83494 /* SDWebImageDownloader.m in Sources */,
 				C58D21181B4849F2008E1B0B /* PetFinderPetsAPI.swift in Sources */,
 				46D537911E34B7230006498B /* ImageCardView.swift in Sources */,
@@ -1213,9 +1075,11 @@
 				46D537901E34B7230006498B /* CardAnimationView.swift in Sources */,
 				4692C5BD1E7601F800B83494 /* NSData+ImageContentType.m in Sources */,
 				4692C5C41E7601F800B83494 /* SDWebImageDownloaderOperation.m in Sources */,
+				4620AA451F01E75F009F9DEC /* AdoptableCatsTabViewController.swift in Sources */,
 				4692C5CC1E7601F800B83494 /* UIImageView+WebCache.m in Sources */,
 				C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */,
 				46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */,
+				46AECC471F06F52700793464 /* BreedInfoTableViewCell.swift in Sources */,
 				C56DA73B1D790AD000524E53 /* RescuePetsAPI.swift in Sources */,
 				C58B459E1B2D457600E03538 /* QuestionEntry.swift in Sources */,
 				46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */,
@@ -1338,11 +1202,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = BVC6BMPCPP;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1353,8 +1217,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
-				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1369,11 +1233,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Gregory Williams (BVC6BMPCPP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = BVC6BMPCPP;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1384,8 +1248,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
-				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

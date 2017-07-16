@@ -54,7 +54,7 @@ class RescuePetList: PetList {
                                 for (key, data) in dict {
                                     if key == "foundRows" {
                                         if data as! Int == 0 {
-                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: ""))
+                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: "", location: ""))
                                             return
                                         }
                                     }
@@ -130,7 +130,7 @@ class RescuePetList: PetList {
         if sortFilter == "animalLocationDistance" {
             order = "asc"
         }
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls"]]] as [String : Any]
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalLocationCitystate", "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls"]]] as [String : Any]
 
         /*
         let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": "animalUpdatedDate,animalLocationDistance", "resultOrder": "desc,asc", "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls",]]] as [String : Any]
@@ -228,6 +228,7 @@ class RescuePetList: PetList {
         var animalBirthdate: String?
         var lastUpdated = Date()
         var adoptionFee: String = ""
+        var location: String = ""
         description = ""
         //var animalBirthdateExact: String?
         if let dict = p as? [String: AnyObject] {
@@ -311,6 +312,8 @@ class RescuePetList: PetList {
                     if adoptionFee != "" {
                         print("adoption Fee \(adoptionFee)")
                     }
+                case "animalLocationCitystate":
+                    location = validateValue(data)
                 default: break
                 }
             }
@@ -325,10 +328,10 @@ class RescuePetList: PetList {
         }
         
         if adoptionFee != "" {
-            status += "<BR/><BR/>Adoption Fee: \(adoptionFee)"
+            status += " Adoption Fee: \(adoptionFee)"
         }
         
-        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated, adoptionFee: adoptionFee)
+        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated, adoptionFee: adoptionFee, location: location)
         return p
     }
 }

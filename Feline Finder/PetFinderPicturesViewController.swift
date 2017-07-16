@@ -19,15 +19,18 @@ enum panScrollDirection{
     case up, down
 }
 
-class PetFinderPicturesViewController: UIViewController, NavgationTransitionable, CardContainerDataSource, KYCircularProgressDelegate {
+class PetFinderPicturesViewController: UIViewController, NavgationTransitionable, CardContainerDataSource, KYCircularProgressDelegate, ModalTransitionDelegate {
     
-    var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0, adoptionFee: "")
+    var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0, adoptionFee: "", location: "")
     var imageURLs:[String] = []
     var images: Dictionary<String, UIImage> = [:]
     
     @IBOutlet weak var progressLabel: UILabel!
     
     @IBOutlet weak var circularProgress: KYCircularProgress!
+    
+    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
+    weak var modalDelegate: ModalViewControllerDelegate?
     
     var cardContainerView: UICardContainerView? = UICardContainerView()
 
@@ -49,7 +52,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
         imgDownArrow = nil
         circularProgress.delegate = nil
         cardContainerView?.dataSource = nil
-        _ = navigationController?.tr_popViewController()
+        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
     }
     
     override func viewDidLoad() {

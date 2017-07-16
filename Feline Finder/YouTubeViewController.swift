@@ -13,9 +13,12 @@ import TransitionTreasury
 import TransitionAnimation
 
 
-class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate, NavgationTransitionable {
+class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
     var youtubeid: String?
 
+    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
+    weak var modalDelegate: ModalViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,7 +32,7 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate, Navgation
     
     @IBAction func doneTapped(_ sender: Any) {
         videoPlayer?.stopVideo()
-        _ = navigationController?.tr_popViewController()
+        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
     }
     
     weak var tr_pushTransition: TRNavgationTransitionDelegate?
@@ -57,7 +60,7 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate, Navgation
     func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
         if state == .ended {
             videoPlayer?.stopVideo()
-            _ = navigationController?.tr_popViewController()
+            modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         }
     }
     

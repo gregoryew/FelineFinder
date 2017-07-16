@@ -16,6 +16,7 @@ import TransitionTreasury
 import TransitionAnimation
 import WebKit
 
+/*
 func color(_ rgbColor: Int) -> UIColor{
     return UIColor(
         red:   CGFloat((rgbColor & 0xFF0000) >> 16) / 255.0,
@@ -24,6 +25,7 @@ func color(_ rgbColor: Int) -> UIColor{
         alpha: CGFloat(1.0)
     )
 }
+*/
 
 class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate {
     
@@ -203,7 +205,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         
         youTube.youtubeid = pet?.videos[0].videoID
         
-        navigationController?.tr_pushViewController(youTube, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        //navigationController?.tr_pushViewController(youTube, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
     
     //var tr_pushTransition: TRNavgationTransitionDelegate?

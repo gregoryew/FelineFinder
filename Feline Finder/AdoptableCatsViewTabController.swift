@@ -348,13 +348,13 @@ extension AdoptableCatsTabViewController {
             if sectionHeaderView.ActivityIndicator.isAnimating {
                 sectionHeaderView.ActivityIndicator.stopAnimating()
                 sectionHeaderView.ActivityIndicator.isHidden = true
-                sectionHeaderView.SectionImage.isHidden = false
+                //ectionHeaderView.SectionImage.isHidden = false
             }
             return sectionHeaderView
         } else if self.pets?.loading == true {
             if !sectionHeaderView.ActivityIndicator.isAnimating {
                 sectionHeaderView.ActivityIndicator.isHidden = false
-                sectionHeaderView.SectionImage.isHidden = true
+                //sectionHeaderView.SectionImage.isHidden = true
                 sectionHeaderView.ActivityIndicator.startAnimating()
             }
             sectionHeaderView.SectionHeaderLabel.text = "Please wait while the cats are loading..."
@@ -364,9 +364,9 @@ extension AdoptableCatsTabViewController {
         if sectionHeaderView.ActivityIndicator.isAnimating {
             sectionHeaderView.ActivityIndicator.stopAnimating()
             sectionHeaderView.ActivityIndicator.isHidden = true
-            sectionHeaderView.SectionImage.isHidden = false
+            //sectionHeaderView.SectionImage.isHidden = false
         }
-        
+        /*
         switch titles[indexPath.section] {
         case "         Within about 5 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_walk")
         case "       Within about 20 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bike")
@@ -383,6 +383,7 @@ extension AdoptableCatsTabViewController {
             
         default: sectionHeaderView.SectionImage.image = UIImage(named: "")
         }
+ */
         sectionHeaderView.SectionHeaderLabel.text = titles[indexPath.section]
         
         return sectionHeaderView
