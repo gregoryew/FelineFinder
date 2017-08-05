@@ -7,189 +7,236 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0764A09C81C750D33F3F111530F963E6 /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = E0980FCB257912A49464C86FA868204C /* YTPlayer.html */; };
-		11231EDF58D9715E48688041F5775F35 /* Constraints+.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4262DED58DCCBA0FC0F2B23E89301D5 /* Constraints+.swift */; };
-		1226A6A703CFA8954ECC589A156C65AF /* TRNavgationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820EF4E10C4561CF55FC2625418FE500 /* TRNavgationTransitionDelegate.swift */; };
-		14C96683865769F6CA419276A30B1AEB /* FaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27188801A5493F7F5BCFC6B6D78480E /* FaveButton.swift */; };
-		14FBBEDFFABEB818E3FCB80854A46C37 /* ScanbotTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82513D190A549E3335E6B357B97FA70 /* ScanbotTransitionAnimation.swift */; };
-		1FB70CB9F38313F0CA9E8D0CAE765AF8 /* FaveButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ECBD66464EF6A5744C758FC6C6C0D5B2 /* FaveButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		22FA9DB1C7AC76689253927952316C9D /* OMNITransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4321EE8E5C84F81268D3B86513F89D5 /* OMNITransitionAnimation.swift */; };
-		2655B74C57A3F04212DE48B01EC04ED7 /* ElevateTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C82291DC98E64881D0283FB93347ED /* ElevateTransitionAnimation.swift */; };
-		2D00BA76019A33180BAA14E97A11E928 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */; };
-		36665F9CC301DA708DE1222320BD1E4A /* FaveButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EF5C6263A94D91A0C5081D7AB66DCD59 /* FaveButton-dummy.m */; };
-		3741EEE3793C75842D6D3E763249C68D /* Pods-Feline Finder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D20A388132E8E49E5BFD40C6BFB76 /* Pods-Feline Finder-dummy.m */; };
-		3C454639D683DE4289CA9B0B7F0B15D0 /* TaaskyFlipTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFAE163EFCE050E29D61ECB4074AA46A /* TaaskyFlipTransitionAnimation.swift */; };
-		470DC2940E03F13E0C372329E8C744E8 /* SlideTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED42E3097BD5790BCB6032DD03288D8D /* SlideTransitionAnimation.swift */; };
-		4AA5CFB25EE25CAC6D02033AB6DCFB11 /* TwitterTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0491A6FE2B0272C7ECA4ABF35DB5455E /* TwitterTransitionAnimation.swift */; };
-		531408BF6C209461B4C07FFE7312E0F3 /* FaveIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = B848D4B5B107A0A168BF937E01097FA9 /* FaveIcon.swift */; };
-		580C8123ACC73547F0C2F72B33422A53 /* TransitionTreasury-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EC7F300AB4885A6E3D320FB5205D0A /* TransitionTreasury-dummy.m */; };
-		5D4EC2EEEA2132170439BCCE5580BE2A /* Pods-Feline Finder-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA8817208D371271139803C91FF63235 /* Pods-Feline Finder-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5EF4F8BE943AC89E53090B7F0E03EED6 /* Spark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1966F4DF24C97E438CBE4D088C0D0F /* Spark.swift */; };
-		5FF36398355700D82DCAB65ED789A127 /* PopTipTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8562285D93B61D5A4BFA7823716A9DE7 /* PopTipTransitionAnimation.swift */; };
-		60286F46ED65712A97CFBBC87889BC8F /* UITabBarController+TRTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE24BE40BE30DB19D23726403B72DCB /* UITabBarController+TRTransition.swift */; };
-		69785E5B42D6A7745A4FAF328160BE69 /* TransitionAnimation-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3619742F9BAA9CBC41B835AB94CEC1FB /* TransitionAnimation-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6AF39BA1A5A52987AB6DB39473258C35 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */; };
-		6D0B433BB0B8479636FC8E1577FCDEDC /* FadeTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B48A5AAC7BB92F5A580A5AC5039932 /* FadeTransitionAnimation.swift */; };
-		70D81ABFD48177B3BDBBBC68F2E0FC9D /* BlixtTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13428EE0DB8166E15CD452E89B908F65 /* BlixtTransitionAnimation.swift */; };
-		7BE900EE03E9531C58E66A91CB563134 /* TRTabBarTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AD8123E5D9235196E5A15E4DB9651B /* TRTabBarTransitionDelegate.swift */; };
-		7F634A365C6E0363D73BB4ED35B0C42F /* YouTubePlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB565344A7AF80C7F6A13837DF15EB69 /* YouTubePlayer-dummy.m */; };
-		7F646A8678E58BCE820DAA8BF71BB6AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */; };
-		82060DD6F429EFFB61A6D338ED5952F7 /* PageTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15E3508EA692124B3F1A8D7F7782BA4 /* PageTransitionAnimation.swift */; };
-		82D8E6B5BA4C32FC3685667552EB74D0 /* TransitionTreasury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDCD95D65DE82A43149820E43C40008 /* TransitionTreasury.swift */; };
-		86862D5D16B506CFE120C0FD2194081D /* TRViewControllerTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918BE212AC1F9D9BAEA54C37076D9A71 /* TRViewControllerTransitionDelegate.swift */; };
-		88A4858E3058B015FDE0ABC48B6C46C8 /* TransitionTreasury.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68EAB9C8C350A9382FDF27FEB8D10DD6 /* TransitionTreasury.framework */; };
-		998D9395BC483C382BB5AC7CC61F60B8 /* TRViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64EC7C3EEA6DC69A7132ECBBA37392F5 /* TRViewControllerAnimatedTransitioning.swift */; };
-		9BFDCDE0E42C226C63D1E756E6DA66DA /* UIViewController+TRPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48BCEB23FD90C5883C84F853874B754 /* UIViewController+TRPresent.swift */; };
-		A1A066B6357BB6E8840E96165FA7B003 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */; };
-		A3C6189917978671501618E45F6B8F12 /* TransitionAnimation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2DD96EC5B91E1C6CBC2C01B4DFC0F /* TransitionAnimation-dummy.m */; };
-		A97B359DD535CFB839CD7FFBDAF9896F /* YouTubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB32062B3A610DB4225CC7137376C610 /* YouTubePlayer.swift */; };
-		BCACDAD8D1E77052F81FE2A58C23A6F9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */; };
-		C57371AD4BBBE9FA5CBC57C151D9D0BE /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900699D8788A9C27660C048192D0D4A6 /* Easing.swift */; };
-		CD17F739B45D4CF59EC659DF78F6BDB9 /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32FE50FB99626D8ED143BD14C8B9F09 /* Ring.swift */; };
-		CDB1BAFEAB814C169438ED5DDFEEAB76 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83160A0683FFF2FA8497EA1DC3B7919 /* Geometry.swift */; };
-		D2BC1D9B9AB659DB22DFEE7782FA791E /* TransitionAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0802BBB432D2FBFA9F3AC3A0DDA1064 /* TransitionAnimationHelper.swift */; };
-		D421B8BF186C0E7BD10770EB82865C5B /* DefaultPushTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D93E5773171C28AE7617CCBAF9797E /* DefaultPushTransitionAnimation.swift */; };
-		D77889819777E6C940D49756F58BFF4F /* TRTransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07317CCF3E833DD480F6EE9FA050FB17 /* TRTransitionAnimations.swift */; };
-		DF530F8711B94B64BE9296FDCC95290A /* YouTubePlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65ED339497135BD5BA79AACD0F34F439 /* YouTubePlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E5617AF804616C1CFBC42787C784052C /* TransitionTreasury-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C39E3BA2B94DBAB5311944BB68A51620 /* TransitionTreasury-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E57BEF39EED8F5D1E217E012A826D70E /* TRStatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4658AA5C0098B0FECA22947BC5BDEAEE /* TRStatusBarStyle.swift */; };
-		E7429B642F62D3F2F63A90887DEBDC12 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9AF59003C341174D4CBA58081139B9 /* Init.swift */; };
-		E7EA13F9EEC9D6C2CD05EDA003688C6D /* TRTabBarControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D9A6FF48D24C90473E117E3A7884D /* TRTabBarControllerDelegate.swift */; };
-		F677B89B0668968DB633EA8A0B52AC9D /* UINavigationController+TRPushPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5354EF53C0D45F6E4D4174E35A11D7A /* UINavigationController+TRPushPop.swift */; };
-		F6989D37FB8FFE7ADE0AE4513BFAAE54 /* IBanTangTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324DC64F3DE3D2CDBD7D84BFDD8BEB13 /* IBanTangTransitionAnimation.swift */; };
+		05BE1230C25BCEE5FFEA478E39BC2F4F /* TransitionTreasury-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B37CE1E11F1AB2F8636C9AE7FF99145 /* TransitionTreasury-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		05DA037B2991567ABEB6E0F7184AD9AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */; };
+		11231EDF58D9715E48688041F5775F35 /* Constraints+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D396E0259E235229B8DB966DC843ED /* Constraints+.swift */; };
+		135CB52932EABCC92ECFFAB4E9101515 /* TRTabBarControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D7DABA9BD042A0ADC657101B6F9A7E /* TRTabBarControllerDelegate.swift */; };
+		14C96683865769F6CA419276A30B1AEB /* FaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35883B94FD52120F1578A60E226275E8 /* FaveButton.swift */; };
+		1847C267D6075AC3AC37BA7908349CB8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */; };
+		1F75147A05BCD051EC445D47DDD28BB8 /* TRStatusBarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BCFBACA98F55E43DC94BBBB6551F65 /* TRStatusBarStyle.swift */; };
+		1FB70CB9F38313F0CA9E8D0CAE765AF8 /* FaveButton-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 633D8BC277F2DBE14C0478D254369A40 /* FaveButton-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		261B17E8AC397E0D9B96B428B4EFA51D /* YouTubePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04F1133305AC3DFAA79FDD8F97F53A3 /* YouTubePlayer.swift */; };
+		2720CAD919A185A1B9DF5D2036A2A632 /* PopTipTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDA31B710162C77B954624D2687E1726 /* PopTipTransitionAnimation.swift */; };
+		29EA71DF92587C5C8374BDDA849276C9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E555A432067724F728B41FF30F7A26 /* UIKit.framework */; };
+		36665F9CC301DA708DE1222320BD1E4A /* FaveButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A98D0C66F2547B39BF207A2ED67A4A68 /* FaveButton-dummy.m */; };
+		3E7323EB457F35C7AAEEF287DA114887 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */; };
+		400AE238FA8D13F959A8B75C3E149D89 /* YouTubePlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 19F83130118B78764B1C06C09F7F2A32 /* YouTubePlayer-dummy.m */; };
+		401737637179C968B5272D0FF05BDF89 /* TRTabBarTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8085BB5032A9E4A442E8D96A868289C /* TRTabBarTransitionDelegate.swift */; };
+		48F0CF6A320642E063BAA18EB9E3A2D8 /* PageTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BDE9C47942B691C1E0BAB3E036A938 /* PageTransitionAnimation.swift */; };
+		5179FCA845ADB47401A448031370C9C7 /* ScanbotTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158688B225D56F5FE765B7302A73BF89 /* ScanbotTransitionAnimation.swift */; };
+		531408BF6C209461B4C07FFE7312E0F3 /* FaveIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCED8E758094B4663DC91070A36D02E /* FaveIcon.swift */; };
+		578B037CB9E868B689BBE8113228BED5 /* Pods-Feline Finder-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 714D20A388132E8E49E5BFD40C6BFB76 /* Pods-Feline Finder-dummy.m */; };
+		5E978E2268672BFB4E3F60E13CD0F386 /* TransitionTreasury-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 25649176957F7F42770FBE4179FB053E /* TransitionTreasury-dummy.m */; };
+		5EF4F8BE943AC89E53090B7F0E03EED6 /* Spark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8C02251D0DBEBB2C91A3AF5AD1407EE /* Spark.swift */; };
+		62166D2414A29A66A6C0AC995B9AAC4B /* ElevateTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B065C39BECD2F4FACEEA72574674B8 /* ElevateTransitionAnimation.swift */; };
+		655133F033C1DCF564BFBC19F2883DE0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */; };
+		67A52E6D7F5D86A8C1D5E877A2B9A192 /* DefaultPushTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD8F08E3C3D82E839121D1D4DBB82658 /* DefaultPushTransitionAnimation.swift */; };
+		7BCF6A683098F9D5B8DCC199C6DFEF89 /* UINavigationController+TRPushPop.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6DB745F9E4FFBD7A77C112881BF7845 /* UINavigationController+TRPushPop.swift */; };
+		7FEBDFFE9C976BE6DD9BF4386873A6C8 /* TransitionTreasury.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BD1FCF5E646DDB392CEE155346BB94 /* TransitionTreasury.framework */; };
+		83903B247566832E8BE8F0A74028B7AC /* TRViewControllerAnimatedTransitioning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36839344273698C785DB5F996A2E4D58 /* TRViewControllerAnimatedTransitioning.swift */; };
+		8B91E04CF194B623EED436DC123F7F67 /* UIViewController+TRPresent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4507EC85764E9803226E9A93195F88F /* UIViewController+TRPresent.swift */; };
+		8C0484EB96AC39BF804A4A8CC149FDA2 /* SlideTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F44A5AF7A14CA35663D345857B953F3 /* SlideTransitionAnimation.swift */; };
+		936C3C4CFA542A64626E53E928C25773 /* BlixtTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE79F7A63DE118E8B394C1197BF8BF82 /* BlixtTransitionAnimation.swift */; };
+		A81EED1422ECEFAE9778B334A06497D5 /* OMNITransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF8D2228C5A46317835CC2C971ED076 /* OMNITransitionAnimation.swift */; };
+		A8E3B7BF9C99D058A8F0BC4D825D7E4E /* IBanTangTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A78405373C07919C2ED8F0FD8E0141 /* IBanTangTransitionAnimation.swift */; };
+		BEBDE633F0BBBF433E9223576C1FAE19 /* FadeTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AD2A53FBAD8A9C64191A0173EEA08C /* FadeTransitionAnimation.swift */; };
+		C0BF22849F8561BD5D30530E3E0D4FFD /* TransitionAnimation-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 570685CB2D1D77D2917242B62D4F0974 /* TransitionAnimation-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C18FB873DC6FF2B0409E5497309888BC /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = E2AE2199B2F6C2D2CAA0B9819D95ACCB /* YTPlayer.html */; };
+		C3AE55DECC84C6DCEFEE08B0D6FFFF63 /* TransitionAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B610572DCFA06423F047D0DBAA4A188 /* TransitionAnimationHelper.swift */; };
+		C57371AD4BBBE9FA5CBC57C151D9D0BE /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3128752F6498C95ABE2E7B27A7DC588 /* Easing.swift */; };
+		C5A7798AE59B3166FE33465FDC7863FC /* TTSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618855607B03D95DF2A43C7B17F893C7 /* TTSegmentedControl.swift */; };
+		CD17F739B45D4CF59EC659DF78F6BDB9 /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA9AD52A676B248897B0269B877C326 /* Ring.swift */; };
+		CDB1BAFEAB814C169438ED5DDFEEAB76 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73B277165D28E7583FE0935211032054 /* Geometry.swift */; };
+		CFCB1E2EEA7C5983C8DCACB4B289C2CC /* YouTubePlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 579DDF329A89CA22490C4D82EF83496A /* YouTubePlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D77080CDDCBD8B2DD280FB60BFEF9466 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */; };
+		D814A65E1336F72A17AAB115519A2433 /* TransitionTreasury.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A2F31D93173376E64F12D29DA2A2E9 /* TransitionTreasury.swift */; };
+		D8DBC2C82671C50E790758CF7642D542 /* TRViewControllerTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508ED8627B22BC59D5D4247D0548B55F /* TRViewControllerTransitionDelegate.swift */; };
+		DB6FB9D33AD1F230620CE996910BBCE8 /* TransitionAnimation-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 100BEAD4F53FD8547FF369DCA3807C18 /* TransitionAnimation-dummy.m */; };
+		DCEB5C89F5D7138C2BB3007104286CAA /* TaaskyFlipTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB331526EDE5C833BECBAAC22CE49F54 /* TaaskyFlipTransitionAnimation.swift */; };
+		DF75262D2406147E0A5A14D91593C7CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */; };
+		E02E1F43FB5994A0F1E8F697F3BE9E48 /* TTSegmentedControl-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F6698BC91D2D1AA463B91AD284CF77 /* TTSegmentedControl-dummy.m */; };
+		E549FF43BBBA7DC8B5E3E8B0AD79C768 /* TRNavgationTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 641917087F8B347CE0F860F8B5C287E2 /* TRNavgationTransitionDelegate.swift */; };
+		E7429B642F62D3F2F63A90887DEBDC12 /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C92EE0689790F5A0FB766251E1C3DF /* Init.swift */; };
+		F63CA7419158BDE4FE3BC37AA8F8E9EA /* TRTransitionAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B159405653718F131E525BD58912DB9A /* TRTransitionAnimations.swift */; };
+		FA58AB33EB8BC6AA54D1A32BCD62E9CD /* UITabBarController+TRTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2CCB326A5DB24E40F66932125E791EC /* UITabBarController+TRTransition.swift */; };
+		FD916166E7809A98CF4007E2A1D93A51 /* Pods-Feline Finder-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA8817208D371271139803C91FF63235 /* Pods-Feline Finder-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE8437A4FF2D43954FA9DFF16D581861 /* TTSegmentedControl-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AAC4370EBF4720856AF80E9981C3A0D4 /* TTSegmentedControl-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FEA6DF3587A2F5589AFBB2FAE568E68C /* TwitterTransitionAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29578A8408FA355E81331866C1CCFACA /* TwitterTransitionAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		04613581CD5D9DEAFFF66BB5F669BD07 /* PBXContainerItemProxy */ = {
+		010AAAB61808DD4775A673033E4A9179 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 20EB84B6D72A1BB10529C77429E61350;
+			remoteInfo = TransitionAnimation;
+		};
+		245CF146A00BDB1F814912D0B8053FC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5692890361BAF9526BCF21264F01190C;
+			remoteInfo = TransitionTreasury;
+		};
+		333676C3C2467BF63AD74BD21A3225C1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B97AA8B1AFAD942B9C23A4F49EEFE50F;
+			remoteInfo = TTSegmentedControl;
+		};
+		61DA14944670282A85372DB3CAC46A36 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5692890361BAF9526BCF21264F01190C;
+			remoteInfo = TransitionTreasury;
+		};
+		7E89CB65A14E4A02F25D67275FD9C45E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4582BC99CA347F5232AEE722B3669DE;
+			remoteInfo = YouTubePlayer;
+		};
+		BCD0E5E298465681271CBE9C571037F1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 7C08227B6E14D87F0F5B0FD6DFFA1A3E;
 			remoteInfo = FaveButton;
 		};
-		3252D53DDD84175AE8D978470D7F73C5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FDFF0305FCAC19EBCAC3CEA529ABFF8F;
-			remoteInfo = TransitionTreasury;
-		};
-		851D627C6708D1F502C096E9E0449AAD /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = FDFF0305FCAC19EBCAC3CEA529ABFF8F;
-			remoteInfo = TransitionTreasury;
-		};
-		AE012EF4462254433C3E02B7990D1D14 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F9F53BDFC722547E60F711B2759508C6;
-			remoteInfo = YouTubePlayer;
-		};
-		CB0ABD052A152DCCCBAB56B0A0C0D07C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 06AD4484353069B8AF61C6C92CB09887;
-			remoteInfo = TransitionAnimation;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0491A6FE2B0272C7ECA4ABF35DB5455E /* TwitterTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TwitterTransitionAnimation.swift; path = TransitionAnimation/TwitterTransitionAnimation.swift; sourceTree = "<group>"; };
-		07317CCF3E833DD480F6EE9FA050FB17 /* TRTransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTransitionAnimations.swift; path = TransitionAnimation/TRTransitionAnimations.swift; sourceTree = "<group>"; };
-		0833442CEB684B7DD707B931B6447C5A /* TransitionTreasury.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TransitionTreasury.modulemap; sourceTree = "<group>"; };
-		12BB2ED39CFD912CC062AC20ECFE7ABD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		13428EE0DB8166E15CD452E89B908F65 /* BlixtTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlixtTransitionAnimation.swift; path = TransitionAnimation/BlixtTransitionAnimation.swift; sourceTree = "<group>"; };
-		19169D25EF9B341003F7EA9510BF4719 /* YouTubePlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YouTubePlayer.modulemap; sourceTree = "<group>"; };
-		256FACA9530E298D4495FB79FEB7F36D /* TransitionTreasury-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionTreasury-prefix.pch"; sourceTree = "<group>"; };
-		29AD8123E5D9235196E5A15E4DB9651B /* TRTabBarTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTabBarTransitionDelegate.swift; path = TransitionTreasury/TabBarTransition/TRTabBarTransitionDelegate.swift; sourceTree = "<group>"; };
-		2A6D9A6FF48D24C90473E117E3A7884D /* TRTabBarControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTabBarControllerDelegate.swift; path = TransitionTreasury/TabBarTransition/TRTabBarControllerDelegate.swift; sourceTree = "<group>"; };
-		2C9AF59003C341174D4CBA58081139B9 /* Init.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Init.swift; path = Source/Helpers/Init.swift; sourceTree = "<group>"; };
-		30EC7F300AB4885A6E3D320FB5205D0A /* TransitionTreasury-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TransitionTreasury-dummy.m"; sourceTree = "<group>"; };
-		324DC64F3DE3D2CDBD7D84BFDD8BEB13 /* IBanTangTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IBanTangTransitionAnimation.swift; path = TransitionAnimation/IBanTangTransitionAnimation.swift; sourceTree = "<group>"; };
-		3302E7A8153CAC6688691FB388F89AAB /* FaveButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FaveButton.xcconfig; sourceTree = "<group>"; };
-		35D93E5773171C28AE7617CCBAF9797E /* DefaultPushTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultPushTransitionAnimation.swift; path = TransitionAnimation/DefaultPushTransitionAnimation.swift; sourceTree = "<group>"; };
-		3619742F9BAA9CBC41B835AB94CEC1FB /* TransitionAnimation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionAnimation-umbrella.h"; sourceTree = "<group>"; };
-		3DDCD95D65DE82A43149820E43C40008 /* TransitionTreasury.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionTreasury.swift; path = TransitionTreasury/TransitionTreasury.swift; sourceTree = "<group>"; };
-		4658AA5C0098B0FECA22947BC5BDEAEE /* TRStatusBarStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRStatusBarStyle.swift; path = TransitionTreasury/TRStatusBarStyle.swift; sourceTree = "<group>"; };
-		46B48A5AAC7BB92F5A580A5AC5039932 /* FadeTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FadeTransitionAnimation.swift; path = TransitionAnimation/FadeTransitionAnimation.swift; sourceTree = "<group>"; };
-		4FEA1FC0F70E51F96C1540E26D16C6F2 /* FaveButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FaveButton.modulemap; sourceTree = "<group>"; };
-		51923694710C0D51A65D82F21482F440 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		520C3D2CF675AF6F57F2A7B6A8050CE5 /* YouTubePlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YouTubePlayer.xcconfig; sourceTree = "<group>"; };
-		58CB2F1F11FD22D6FB0BF1B2E21397CA /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Feline_Finder.framework; path = "Pods-Feline Finder.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EAA74CE58A974B26DC2B1FCEC914C04 /* TransitionAnimation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionAnimation-prefix.pch"; sourceTree = "<group>"; };
-		64EC7C3EEA6DC69A7132ECBBA37392F5 /* TRViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRViewControllerAnimatedTransitioning.swift; path = TransitionTreasury/TRViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
-		65ED339497135BD5BA79AACD0F34F439 /* YouTubePlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YouTubePlayer-umbrella.h"; sourceTree = "<group>"; };
+		05F9272BF6538E8E9F8193F797DA3716 /* TTSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TTSegmentedControl.modulemap; sourceTree = "<group>"; };
+		0D18B9A4580E08AB74908B329317759A /* TTSegmentedControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTSegmentedControl-prefix.pch"; sourceTree = "<group>"; };
+		0FA9AD52A676B248897B0269B877C326 /* Ring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ring.swift; path = Source/Ring.swift; sourceTree = "<group>"; };
+		100BEAD4F53FD8547FF369DCA3807C18 /* TransitionAnimation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TransitionAnimation-dummy.m"; sourceTree = "<group>"; };
+		158688B225D56F5FE765B7302A73BF89 /* ScanbotTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScanbotTransitionAnimation.swift; path = TransitionAnimation/ScanbotTransitionAnimation.swift; sourceTree = "<group>"; };
+		19F83130118B78764B1C06C09F7F2A32 /* YouTubePlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YouTubePlayer-dummy.m"; sourceTree = "<group>"; };
+		25649176957F7F42770FBE4179FB053E /* TransitionTreasury-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TransitionTreasury-dummy.m"; sourceTree = "<group>"; };
+		29578A8408FA355E81331866C1CCFACA /* TwitterTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TwitterTransitionAnimation.swift; path = TransitionAnimation/TwitterTransitionAnimation.swift; sourceTree = "<group>"; };
+		2BB9BF493B7A1E1C493683FCAFE1372B /* YouTubePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YouTubePlayer.framework; path = YouTubePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		35883B94FD52120F1578A60E226275E8 /* FaveButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FaveButton.swift; path = Source/FaveButton.swift; sourceTree = "<group>"; };
+		36839344273698C785DB5F996A2E4D58 /* TRViewControllerAnimatedTransitioning.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRViewControllerAnimatedTransitioning.swift; path = TransitionTreasury/TRViewControllerAnimatedTransitioning.swift; sourceTree = "<group>"; };
+		37BCFBACA98F55E43DC94BBBB6551F65 /* TRStatusBarStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRStatusBarStyle.swift; path = TransitionTreasury/TRStatusBarStyle.swift; sourceTree = "<group>"; };
+		39C4DEDEC15F0BB1DA48B1DAC9E402DF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B37CE1E11F1AB2F8636C9AE7FF99145 /* TransitionTreasury-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionTreasury-umbrella.h"; sourceTree = "<group>"; };
+		40AD2A53FBAD8A9C64191A0173EEA08C /* FadeTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FadeTransitionAnimation.swift; path = TransitionAnimation/FadeTransitionAnimation.swift; sourceTree = "<group>"; };
+		46DC9F16E5B31EA298F38B355E450C29 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Feline_Finder.framework; path = "Pods-Feline Finder.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		480D37FBE97084B58EC5218DF7EED119 /* TTSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TTSegmentedControl.framework; path = TTSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B610572DCFA06423F047D0DBAA4A188 /* TransitionAnimationHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimationHelper.swift; path = TransitionAnimation/TransitionAnimationHelper.swift; sourceTree = "<group>"; };
+		508ED8627B22BC59D5D4247D0548B55F /* TRViewControllerTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRViewControllerTransitionDelegate.swift; path = TransitionTreasury/PresentTransition/TRViewControllerTransitionDelegate.swift; sourceTree = "<group>"; };
+		526DB5283A5D58978C4312D53396828A /* FaveButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FaveButton.xcconfig; sourceTree = "<group>"; };
+		52E555A432067724F728B41FF30F7A26 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		54791B5D7D0475ED00A4086EFECA7939 /* TransitionAnimation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionAnimation-prefix.pch"; sourceTree = "<group>"; };
+		570685CB2D1D77D2917242B62D4F0974 /* TransitionAnimation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionAnimation-umbrella.h"; sourceTree = "<group>"; };
+		579DDF329A89CA22490C4D82EF83496A /* YouTubePlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YouTubePlayer-umbrella.h"; sourceTree = "<group>"; };
+		618855607B03D95DF2A43C7B17F893C7 /* TTSegmentedControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TTSegmentedControl.swift; path = TTSegmentedControl/TTSegmentedControl.swift; sourceTree = "<group>"; };
+		633D8BC277F2DBE14C0478D254369A40 /* FaveButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FaveButton-umbrella.h"; sourceTree = "<group>"; };
+		641917087F8B347CE0F860F8B5C287E2 /* TRNavgationTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRNavgationTransitionDelegate.swift; path = TransitionTreasury/PushTransition/TRNavgationTransitionDelegate.swift; sourceTree = "<group>"; };
+		64A78405373C07919C2ED8F0FD8E0141 /* IBanTangTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IBanTangTransitionAnimation.swift; path = TransitionAnimation/IBanTangTransitionAnimation.swift; sourceTree = "<group>"; };
 		66E2464B9FB5CDFD308628639A922ADA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		68EAB9C8C350A9382FDF27FEB8D10DD6 /* TransitionTreasury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransitionTreasury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		67351E36477542C88092C0B0A3F337D1 /* YouTubePlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YouTubePlayer.modulemap; sourceTree = "<group>"; };
+		69D396E0259E235229B8DB966DC843ED /* Constraints+.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Constraints+.swift"; path = "Source/Helpers/Constraints+.swift"; sourceTree = "<group>"; };
 		6DD6859CF1D3111F3EC3DF788BF61BF0 /* Pods-Feline Finder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Feline Finder.debug.xcconfig"; sourceTree = "<group>"; };
+		6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6EB24DD08AE01AF883BE01D25B0423F1 /* TransitionAnimation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TransitionAnimation.xcconfig; sourceTree = "<group>"; };
+		6F44A5AF7A14CA35663D345857B953F3 /* SlideTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SlideTransitionAnimation.swift; path = TransitionAnimation/SlideTransitionAnimation.swift; sourceTree = "<group>"; };
 		714D20A388132E8E49E5BFD40C6BFB76 /* Pods-Feline Finder-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Feline Finder-dummy.m"; sourceTree = "<group>"; };
+		723CB674F406815FA7FAA560B156800D /* TransitionAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TransitionAnimation.framework; path = TransitionAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		73B277165D28E7583FE0935211032054 /* Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = Source/Helpers/Geometry.swift; sourceTree = "<group>"; };
+		74B065C39BECD2F4FACEEA72574674B8 /* ElevateTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElevateTransitionAnimation.swift; path = TransitionAnimation/ElevateTransitionAnimation.swift; sourceTree = "<group>"; };
+		7663F9E9367D41B98EFA36502F4F5FC3 /* TransitionTreasury.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TransitionTreasury.modulemap; sourceTree = "<group>"; };
+		790ED2CFCDC5DB1427EA98EC03FB2096 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79D5D249D6497237E344FB66CACD9C82 /* FaveButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FaveButton.framework; path = FaveButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BCED8E758094B4663DC91070A36D02E /* FaveIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FaveIcon.swift; path = Source/FaveIcon.swift; sourceTree = "<group>"; };
 		7D8FD722BC3EBBDFE3FC30EEC05FE666 /* Pods-Feline Finder-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Feline Finder-resources.sh"; sourceTree = "<group>"; };
-		820EF4E10C4561CF55FC2625418FE500 /* TRNavgationTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRNavgationTransitionDelegate.swift; path = TransitionTreasury/PushTransition/TRNavgationTransitionDelegate.swift; sourceTree = "<group>"; };
-		8460C3E7C4D1AA31847D7F9F164F58E8 /* FaveButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FaveButton-prefix.pch"; sourceTree = "<group>"; };
-		8562285D93B61D5A4BFA7823716A9DE7 /* PopTipTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopTipTransitionAnimation.swift; path = TransitionAnimation/PopTipTransitionAnimation.swift; sourceTree = "<group>"; };
-		8A654A4939ACFB1D55EB9D17E7C4F623 /* FaveButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FaveButton.framework; path = FaveButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8DC2DD96EC5B91E1C6CBC2C01B4DFC0F /* TransitionAnimation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TransitionAnimation-dummy.m"; sourceTree = "<group>"; };
 		8F6CECDDFC424E3510D973E719A27D6B /* Pods-Feline Finder-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Feline Finder-acknowledgements.markdown"; sourceTree = "<group>"; };
-		900699D8788A9C27660C048192D0D4A6 /* Easing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Easing.swift; path = Source/Helpers/Easing.swift; sourceTree = "<group>"; };
-		918BE212AC1F9D9BAEA54C37076D9A71 /* TRViewControllerTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRViewControllerTransitionDelegate.swift; path = TransitionTreasury/PresentTransition/TRViewControllerTransitionDelegate.swift; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98B5B721D82A1E87FB6E22EBBDEF1BC5 /* Pods-Feline Finder-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Feline Finder-frameworks.sh"; sourceTree = "<group>"; };
-		9B1966F4DF24C97E438CBE4D088C0D0F /* Spark.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spark.swift; path = Source/Spark.swift; sourceTree = "<group>"; };
-		A15E3508EA692124B3F1A8D7F7782BA4 /* PageTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageTransitionAnimation.swift; path = TransitionAnimation/PageTransitionAnimation.swift; sourceTree = "<group>"; };
-		A32FE50FB99626D8ED143BD14C8B9F09 /* Ring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ring.swift; path = Source/Ring.swift; sourceTree = "<group>"; };
+		9CCB443BDD7AE969BD5A4278F0BBF11E /* TTSegmentedControl.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TTSegmentedControl.xcconfig; sourceTree = "<group>"; };
+		9E4B64F3EAFDA4BAC0D0E342AEA15A9A /* FaveButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FaveButton-prefix.pch"; sourceTree = "<group>"; };
+		A2D933FDC580EE569908C0D64FC2EB72 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5ED28409A9856B3FD9BFA0398E9BF08 /* YouTubePlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YouTubePlayer-prefix.pch"; sourceTree = "<group>"; };
+		A8C02251D0DBEBB2C91A3AF5AD1407EE /* Spark.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spark.swift; path = Source/Spark.swift; sourceTree = "<group>"; };
+		A98D0C66F2547B39BF207A2ED67A4A68 /* FaveButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FaveButton-dummy.m"; sourceTree = "<group>"; };
 		AA8817208D371271139803C91FF63235 /* Pods-Feline Finder-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Feline Finder-umbrella.h"; sourceTree = "<group>"; };
-		AB565344A7AF80C7F6A13837DF15EB69 /* YouTubePlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YouTubePlayer-dummy.m"; sourceTree = "<group>"; };
-		AFE24BE40BE30DB19D23726403B72DCB /* UITabBarController+TRTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITabBarController+TRTransition.swift"; path = "TransitionTreasury/TabBarTransition/UITabBarController+TRTransition.swift"; sourceTree = "<group>"; };
-		B27188801A5493F7F5BCFC6B6D78480E /* FaveButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FaveButton.swift; path = Source/FaveButton.swift; sourceTree = "<group>"; };
-		B81508B12A73CFBEA11725EF7CBE29F8 /* TransitionAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TransitionAnimation.framework; path = TransitionAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B848D4B5B107A0A168BF937E01097FA9 /* FaveIcon.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FaveIcon.swift; path = Source/FaveIcon.swift; sourceTree = "<group>"; };
-		C39E3BA2B94DBAB5311944BB68A51620 /* TransitionTreasury-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionTreasury-umbrella.h"; sourceTree = "<group>"; };
-		C4321EE8E5C84F81268D3B86513F89D5 /* OMNITransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OMNITransitionAnimation.swift; path = TransitionAnimation/OMNITransitionAnimation.swift; sourceTree = "<group>"; };
-		C48BCEB23FD90C5883C84F853874B754 /* UIViewController+TRPresent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+TRPresent.swift"; path = "TransitionTreasury/PresentTransition/UIViewController+TRPresent.swift"; sourceTree = "<group>"; };
-		C82513D190A549E3335E6B357B97FA70 /* ScanbotTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScanbotTransitionAnimation.swift; path = TransitionAnimation/ScanbotTransitionAnimation.swift; sourceTree = "<group>"; };
+		AAC4370EBF4720856AF80E9981C3A0D4 /* TTSegmentedControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTSegmentedControl-umbrella.h"; sourceTree = "<group>"; };
+		AEEF9A45E48591D03B9376D2A0B71146 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B04F1133305AC3DFAA79FDD8F97F53A3 /* YouTubePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YouTubePlayer.swift; path = YouTubePlayer/YouTubePlayer/YouTubePlayer.swift; sourceTree = "<group>"; };
+		B159405653718F131E525BD58912DB9A /* TRTransitionAnimations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTransitionAnimations.swift; path = TransitionAnimation/TRTransitionAnimations.swift; sourceTree = "<group>"; };
+		B4D7DABA9BD042A0ADC657101B6F9A7E /* TRTabBarControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTabBarControllerDelegate.swift; path = TransitionTreasury/TabBarTransition/TRTabBarControllerDelegate.swift; sourceTree = "<group>"; };
+		B6C92EE0689790F5A0FB766251E1C3DF /* Init.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Init.swift; path = Source/Helpers/Init.swift; sourceTree = "<group>"; };
+		BF7412967D9EF6A8888B6A3E94A06470 /* TransitionAnimation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TransitionAnimation.modulemap; sourceTree = "<group>"; };
+		C1D3616B849184D5463E339A379B660E /* FaveButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FaveButton.modulemap; sourceTree = "<group>"; };
+		C4507EC85764E9803226E9A93195F88F /* UIViewController+TRPresent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+TRPresent.swift"; path = "TransitionTreasury/PresentTransition/UIViewController+TRPresent.swift"; sourceTree = "<group>"; };
+		C4E30162DC48E55F61BEFE0464C628F5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6DB745F9E4FFBD7A77C112881BF7845 /* UINavigationController+TRPushPop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+TRPushPop.swift"; path = "TransitionTreasury/PushTransition/UINavigationController+TRPushPop.swift"; sourceTree = "<group>"; };
+		C8085BB5032A9E4A442E8D96A868289C /* TRTabBarTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTabBarTransitionDelegate.swift; path = TransitionTreasury/TabBarTransition/TRTabBarTransitionDelegate.swift; sourceTree = "<group>"; };
+		CB331526EDE5C833BECBAAC22CE49F54 /* TaaskyFlipTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaaskyFlipTransitionAnimation.swift; path = TransitionAnimation/TaaskyFlipTransitionAnimation.swift; sourceTree = "<group>"; };
 		CC6EB141F21C9D94A3A747AEF9659BA2 /* Pods-Feline Finder.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Feline Finder.modulemap"; sourceTree = "<group>"; };
-		CD116A5F71F6A75D7861CD73CBBBC531 /* TransitionAnimation.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TransitionAnimation.xcconfig; sourceTree = "<group>"; };
-		CE1C781E0D91F1A4D9A3A36F7C5B9C81 /* TransitionAnimation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TransitionAnimation.modulemap; sourceTree = "<group>"; };
-		D1C82291DC98E64881D0283FB93347ED /* ElevateTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElevateTransitionAnimation.swift; path = TransitionAnimation/ElevateTransitionAnimation.swift; sourceTree = "<group>"; };
-		E0802BBB432D2FBFA9F3AC3A0DDA1064 /* TransitionAnimationHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionAnimationHelper.swift; path = TransitionAnimation/TransitionAnimationHelper.swift; sourceTree = "<group>"; };
-		E0980FCB257912A49464C86FA868204C /* YTPlayer.html */ = {isa = PBXFileReference; includeInIndex = 1; name = YTPlayer.html; path = YouTubePlayer/YouTubePlayer/YTPlayer.html; sourceTree = "<group>"; };
-		E4A0A2110CC45809170770D3D570596C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E5354EF53C0D45F6E4D4174E35A11D7A /* UINavigationController+TRPushPop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+TRPushPop.swift"; path = "TransitionTreasury/PushTransition/UINavigationController+TRPushPop.swift"; sourceTree = "<group>"; };
-		E83160A0683FFF2FA8497EA1DC3B7919 /* Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = Source/Helpers/Geometry.swift; sourceTree = "<group>"; };
-		E9D563E9624D577A9F3402153A547B10 /* YouTubePlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YouTubePlayer-prefix.pch"; sourceTree = "<group>"; };
-		EB32062B3A610DB4225CC7137376C610 /* YouTubePlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = YouTubePlayer.swift; path = YouTubePlayer/YouTubePlayer/YouTubePlayer.swift; sourceTree = "<group>"; };
-		ECBD66464EF6A5744C758FC6C6C0D5B2 /* FaveButton-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FaveButton-umbrella.h"; sourceTree = "<group>"; };
-		ED42E3097BD5790BCB6032DD03288D8D /* SlideTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SlideTransitionAnimation.swift; path = TransitionAnimation/SlideTransitionAnimation.swift; sourceTree = "<group>"; };
+		D3BD1FCF5E646DDB392CEE155346BB94 /* TransitionTreasury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransitionTreasury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4B18882577A353ECCF18A2D7F6B04AD /* TransitionTreasury.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TransitionTreasury.xcconfig; sourceTree = "<group>"; };
+		D4C2628FF3721D70290036EDE96108A0 /* TransitionTreasury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TransitionTreasury.framework; path = TransitionTreasury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D5BDE9C47942B691C1E0BAB3E036A938 /* PageTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageTransitionAnimation.swift; path = TransitionAnimation/PageTransitionAnimation.swift; sourceTree = "<group>"; };
+		D6F6698BC91D2D1AA463B91AD284CF77 /* TTSegmentedControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTSegmentedControl-dummy.m"; sourceTree = "<group>"; };
+		DBF8D2228C5A46317835CC2C971ED076 /* OMNITransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OMNITransitionAnimation.swift; path = TransitionAnimation/OMNITransitionAnimation.swift; sourceTree = "<group>"; };
+		DD8F08E3C3D82E839121D1D4DBB82658 /* DefaultPushTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultPushTransitionAnimation.swift; path = TransitionAnimation/DefaultPushTransitionAnimation.swift; sourceTree = "<group>"; };
+		DDA31B710162C77B954624D2687E1726 /* PopTipTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopTipTransitionAnimation.swift; path = TransitionAnimation/PopTipTransitionAnimation.swift; sourceTree = "<group>"; };
+		E1A2F31D93173376E64F12D29DA2A2E9 /* TransitionTreasury.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionTreasury.swift; path = TransitionTreasury/TransitionTreasury.swift; sourceTree = "<group>"; };
+		E1D55502D493E69E509D86BAE996E2F9 /* YouTubePlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = YouTubePlayer.xcconfig; sourceTree = "<group>"; };
+		E2AE2199B2F6C2D2CAA0B9819D95ACCB /* YTPlayer.html */ = {isa = PBXFileReference; includeInIndex = 1; name = YTPlayer.html; path = YouTubePlayer/YouTubePlayer/YTPlayer.html; sourceTree = "<group>"; };
+		EE79F7A63DE118E8B394C1197BF8BF82 /* BlixtTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlixtTransitionAnimation.swift; path = TransitionAnimation/BlixtTransitionAnimation.swift; sourceTree = "<group>"; };
 		EEFC8E7DC03FD6F467A2CCC79A3D4CA5 /* Pods-Feline Finder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Feline Finder.release.xcconfig"; sourceTree = "<group>"; };
-		EF5C6263A94D91A0C5081D7AB66DCD59 /* FaveButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FaveButton-dummy.m"; sourceTree = "<group>"; };
-		EFAE163EFCE050E29D61ECB4074AA46A /* TaaskyFlipTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaaskyFlipTransitionAnimation.swift; path = TransitionAnimation/TaaskyFlipTransitionAnimation.swift; sourceTree = "<group>"; };
-		F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		F04A87EC5D21647E980E6BCD4DBE2EE0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F057D78305B60242CB15602DCC4B4724 /* Pods-Feline Finder-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Feline Finder-acknowledgements.plist"; sourceTree = "<group>"; };
-		F4262DED58DCCBA0FC0F2B23E89301D5 /* Constraints+.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Constraints+.swift"; path = "Source/Helpers/Constraints+.swift"; sourceTree = "<group>"; };
-		F6A6B40159ADE10A226BB482A8293348 /* YouTubePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YouTubePlayer.framework; path = YouTubePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F976C3B1ED225C529F48B61FC6BC422E /* TransitionTreasury.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = TransitionTreasury.xcconfig; sourceTree = "<group>"; };
-		F9F7C0B52E08C3B164EAC8680CF2DE6E /* TransitionTreasury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TransitionTreasury.framework; path = TransitionTreasury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F2CCB326A5DB24E40F66932125E791EC /* UITabBarController+TRTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITabBarController+TRTransition.swift"; path = "TransitionTreasury/TabBarTransition/UITabBarController+TRTransition.swift"; sourceTree = "<group>"; };
+		F3128752F6498C95ABE2E7B27A7DC588 /* Easing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Easing.swift; path = Source/Helpers/Easing.swift; sourceTree = "<group>"; };
+		F4814BD547D00BA2FE99582A94A536CE /* TransitionTreasury-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionTreasury-prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		01A85CB9D5E245AC3CB69F675C394F17 /* Frameworks */ = {
+		014ADD82EF91B289F5E763D90FF03DDD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1A066B6357BB6E8840E96165FA7B003 /* Foundation.framework in Frameworks */,
+				1847C267D6075AC3AC37BA7908349CB8 /* Foundation.framework in Frameworks */,
+				29EA71DF92587C5C8374BDDA849276C9 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		91FF5D0AACE475BC315B04C5CD1E975A /* Frameworks */ = {
+		09ED8C3E7C4CFE5056C1E7FD40E4B99D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCACDAD8D1E77052F81FE2A58C23A6F9 /* Foundation.framework in Frameworks */,
+				3E7323EB457F35C7AAEEF287DA114887 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		713E6C1DDF047A5E06A7B3A787DD9FC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF75262D2406147E0A5A14D91593C7CA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A5A6DCE10FC3D31AE11B30839424443 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				655133F033C1DCF564BFBC19F2883DE0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7BB37FE29004E0A9F88E3311D6AB0A0D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05DA037B2991567ABEB6E0F7184AD9AC /* Foundation.framework in Frameworks */,
+				7FEBDFFE9C976BE6DD9BF4386873A6C8 /* TransitionTreasury.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,125 +244,160 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F646A8678E58BCE820DAA8BF71BB6AF /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C789D61638261AF678674F3077E16106 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6AF39BA1A5A52987AB6DB39473258C35 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EB4ABB6DFB9F9BEBC7BA03CECE210312 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2D00BA76019A33180BAA14E97A11E928 /* Foundation.framework in Frameworks */,
-				88A4858E3058B015FDE0ABC48B6C46C8 /* TransitionTreasury.framework in Frameworks */,
+				D77080CDDCBD8B2DD280FB60BFEF9466 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0092E844F60AA4C39B95A67451AB2404 /* Resources */ = {
+		17B27F5E05D7147A49A32B03AF1F3A85 /* TTSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
-				E0980FCB257912A49464C86FA868204C /* YTPlayer.html */,
+				618855607B03D95DF2A43C7B17F893C7 /* TTSegmentedControl.swift */,
+				E6821E27EC846D09B84F4BD797F452DC /* Support Files */,
 			);
-			name = Resources;
+			name = TTSegmentedControl;
+			path = TTSegmentedControl;
 			sourceTree = "<group>";
 		};
-		0FD625DAB516B82DADFAC6540A562D68 /* YouTubePlayer */ = {
+		313FEB17109C2F56F797FABAD80E3694 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EB32062B3A610DB4225CC7137376C610 /* YouTubePlayer.swift */,
-				0092E844F60AA4C39B95A67451AB2404 /* Resources */,
-				38F2C31C8BE6B84BC030A35729DC87DB /* Support Files */,
+				79D5D249D6497237E344FB66CACD9C82 /* FaveButton.framework */,
+				46DC9F16E5B31EA298F38B355E450C29 /* Pods_Feline_Finder.framework */,
+				723CB674F406815FA7FAA560B156800D /* TransitionAnimation.framework */,
+				D4C2628FF3721D70290036EDE96108A0 /* TransitionTreasury.framework */,
+				480D37FBE97084B58EC5218DF7EED119 /* TTSegmentedControl.framework */,
+				2BB9BF493B7A1E1C493683FCAFE1372B /* YouTubePlayer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		34296AAE36AA778DD85B59F3BE4BBE08 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6E35D10E4812D32BA8F6D6AF91BB84CD /* Foundation.framework */,
+				52E555A432067724F728B41FF30F7A26 /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		39B693562998C4F2BC62FB2063EFAF0C /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				39C4DEDEC15F0BB1DA48B1DAC9E402DF /* Info.plist */,
+				7663F9E9367D41B98EFA36502F4F5FC3 /* TransitionTreasury.modulemap */,
+				D4B18882577A353ECCF18A2D7F6B04AD /* TransitionTreasury.xcconfig */,
+				25649176957F7F42770FBE4179FB053E /* TransitionTreasury-dummy.m */,
+				F4814BD547D00BA2FE99582A94A536CE /* TransitionTreasury-prefix.pch */,
+				3B37CE1E11F1AB2F8636C9AE7FF99145 /* TransitionTreasury-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TransitionTreasury";
+			sourceTree = "<group>";
+		};
+		3A776AE8ECA55A182C3A51DF2329C500 /* TransitionTreasury */ = {
+			isa = PBXGroup;
+			children = (
+				E1A2F31D93173376E64F12D29DA2A2E9 /* TransitionTreasury.swift */,
+				641917087F8B347CE0F860F8B5C287E2 /* TRNavgationTransitionDelegate.swift */,
+				37BCFBACA98F55E43DC94BBBB6551F65 /* TRStatusBarStyle.swift */,
+				B4D7DABA9BD042A0ADC657101B6F9A7E /* TRTabBarControllerDelegate.swift */,
+				C8085BB5032A9E4A442E8D96A868289C /* TRTabBarTransitionDelegate.swift */,
+				36839344273698C785DB5F996A2E4D58 /* TRViewControllerAnimatedTransitioning.swift */,
+				508ED8627B22BC59D5D4247D0548B55F /* TRViewControllerTransitionDelegate.swift */,
+				C6DB745F9E4FFBD7A77C112881BF7845 /* UINavigationController+TRPushPop.swift */,
+				F2CCB326A5DB24E40F66932125E791EC /* UITabBarController+TRTransition.swift */,
+				C4507EC85764E9803226E9A93195F88F /* UIViewController+TRPresent.swift */,
+				39B693562998C4F2BC62FB2063EFAF0C /* Support Files */,
+			);
+			name = TransitionTreasury;
+			path = TransitionTreasury;
+			sourceTree = "<group>";
+		};
+		3CD87C37F2C1595E5D4297BD7A71A266 /* YouTubePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				B04F1133305AC3DFAA79FDD8F97F53A3 /* YouTubePlayer.swift */,
+				4F076F21F8AC572D18814E751FE4831F /* Resources */,
+				9A0B964E17237A5C6280AEE6F4FB953B /* Support Files */,
 			);
 			name = YouTubePlayer;
 			path = YouTubePlayer;
 			sourceTree = "<group>";
 		};
-		38F2C31C8BE6B84BC030A35729DC87DB /* Support Files */ = {
+		4F076F21F8AC572D18814E751FE4831F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				51923694710C0D51A65D82F21482F440 /* Info.plist */,
-				19169D25EF9B341003F7EA9510BF4719 /* YouTubePlayer.modulemap */,
-				520C3D2CF675AF6F57F2A7B6A8050CE5 /* YouTubePlayer.xcconfig */,
-				AB565344A7AF80C7F6A13837DF15EB69 /* YouTubePlayer-dummy.m */,
-				E9D563E9624D577A9F3402153A547B10 /* YouTubePlayer-prefix.pch */,
-				65ED339497135BD5BA79AACD0F34F439 /* YouTubePlayer-umbrella.h */,
+				E2AE2199B2F6C2D2CAA0B9819D95ACCB /* YTPlayer.html */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/YouTubePlayer";
+			name = Resources;
 			sourceTree = "<group>";
 		};
-		3D5410622CAFF43CFC98D95616A43520 /* Support Files */ = {
+		5DD5273C29062DD776AECB639D5A2770 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				12BB2ED39CFD912CC062AC20ECFE7ABD /* Info.plist */,
-				CE1C781E0D91F1A4D9A3A36F7C5B9C81 /* TransitionAnimation.modulemap */,
-				CD116A5F71F6A75D7861CD73CBBBC531 /* TransitionAnimation.xcconfig */,
-				8DC2DD96EC5B91E1C6CBC2C01B4DFC0F /* TransitionAnimation-dummy.m */,
-				5EAA74CE58A974B26DC2B1FCEC914C04 /* TransitionAnimation-prefix.pch */,
-				3619742F9BAA9CBC41B835AB94CEC1FB /* TransitionAnimation-umbrella.h */,
+				C4E30162DC48E55F61BEFE0464C628F5 /* Info.plist */,
+				BF7412967D9EF6A8888B6A3E94A06470 /* TransitionAnimation.modulemap */,
+				6EB24DD08AE01AF883BE01D25B0423F1 /* TransitionAnimation.xcconfig */,
+				100BEAD4F53FD8547FF369DCA3807C18 /* TransitionAnimation-dummy.m */,
+				54791B5D7D0475ED00A4086EFECA7939 /* TransitionAnimation-prefix.pch */,
+				570685CB2D1D77D2917242B62D4F0974 /* TransitionAnimation-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/TransitionAnimation";
 			sourceTree = "<group>";
 		};
-		63BCEE75B72B7BD301F907F93E5D084F /* iOS */ = {
+		60C5E6DBBE74B6930AE2D3824B34D437 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F0412F5503EB99685BC0363EFB86C74A /* Foundation.framework */,
+				C1D3616B849184D5463E339A379B660E /* FaveButton.modulemap */,
+				526DB5283A5D58978C4312D53396828A /* FaveButton.xcconfig */,
+				A98D0C66F2547B39BF207A2ED67A4A68 /* FaveButton-dummy.m */,
+				9E4B64F3EAFDA4BAC0D0E342AEA15A9A /* FaveButton-prefix.pch */,
+				633D8BC277F2DBE14C0478D254369A40 /* FaveButton-umbrella.h */,
+				A2D933FDC580EE569908C0D64FC2EB72 /* Info.plist */,
 			);
-			name = iOS;
+			name = "Support Files";
+			path = "../Target Support Files/FaveButton";
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				FA60C4B422B5396FD7FEE5BFDEE186BF /* Frameworks */,
-				A48DE68F0CAA9AEF4596DDCBDD7D8577 /* Pods */,
-				E2FD6F5616F7FA0FECABB649D4B7EF81 /* Products */,
+				F063A913FB49F388BFA81848AE8F64E3 /* Frameworks */,
+				931943DCA886C85EC8F168C626FBC6C9 /* Pods */,
+				313FEB17109C2F56F797FABAD80E3694 /* Products */,
 				F85FC040F14CD67C1170085A3745A37C /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		7E5994FDADFB4DAD75C8E60025DC6123 /* FaveButton */ = {
+		931943DCA886C85EC8F168C626FBC6C9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F4262DED58DCCBA0FC0F2B23E89301D5 /* Constraints+.swift */,
-				900699D8788A9C27660C048192D0D4A6 /* Easing.swift */,
-				B27188801A5493F7F5BCFC6B6D78480E /* FaveButton.swift */,
-				B848D4B5B107A0A168BF937E01097FA9 /* FaveIcon.swift */,
-				E83160A0683FFF2FA8497EA1DC3B7919 /* Geometry.swift */,
-				2C9AF59003C341174D4CBA58081139B9 /* Init.swift */,
-				A32FE50FB99626D8ED143BD14C8B9F09 /* Ring.swift */,
-				9B1966F4DF24C97E438CBE4D088C0D0F /* Spark.swift */,
-				8E3E264D5DEBC140E2BFC1545A1CA23C /* Support Files */,
+				D17DBFD63632722D7955E3A8A53C74AD /* FaveButton */,
+				F0368C1C105FB9399432A4DD8875A420 /* TransitionAnimation */,
+				3A776AE8ECA55A182C3A51DF2329C500 /* TransitionTreasury */,
+				17B27F5E05D7147A49A32B03AF1F3A85 /* TTSegmentedControl */,
+				3CD87C37F2C1595E5D4297BD7A71A266 /* YouTubePlayer */,
 			);
-			name = FaveButton;
-			path = FaveButton;
+			name = Pods;
 			sourceTree = "<group>";
 		};
-		8E3E264D5DEBC140E2BFC1545A1CA23C /* Support Files */ = {
+		9A0B964E17237A5C6280AEE6F4FB953B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4FEA1FC0F70E51F96C1540E26D16C6F2 /* FaveButton.modulemap */,
-				3302E7A8153CAC6688691FB388F89AAB /* FaveButton.xcconfig */,
-				EF5C6263A94D91A0C5081D7AB66DCD59 /* FaveButton-dummy.m */,
-				8460C3E7C4D1AA31847D7F9F164F58E8 /* FaveButton-prefix.pch */,
-				ECBD66464EF6A5744C758FC6C6C0D5B2 /* FaveButton-umbrella.h */,
-				F04A87EC5D21647E980E6BCD4DBE2EE0 /* Info.plist */,
+				790ED2CFCDC5DB1427EA98EC03FB2096 /* Info.plist */,
+				67351E36477542C88092C0B0A3F337D1 /* YouTubePlayer.modulemap */,
+				E1D55502D493E69E509D86BAE996E2F9 /* YouTubePlayer.xcconfig */,
+				19F83130118B78764B1C06C09F7F2A32 /* YouTubePlayer-dummy.m */,
+				A5ED28409A9856B3FD9BFA0398E9BF08 /* YouTubePlayer-prefix.pch */,
+				579DDF329A89CA22490C4D82EF83496A /* YouTubePlayer-umbrella.h */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/FaveButton";
+			path = "../Target Support Files/YouTubePlayer";
 			sourceTree = "<group>";
 		};
 		9E2B9DDE2D57CB65887FB0D72A2F3823 /* Pods-Feline Finder */ = {
@@ -336,69 +418,67 @@
 			path = "Target Support Files/Pods-Feline Finder";
 			sourceTree = "<group>";
 		};
-		A48DE68F0CAA9AEF4596DDCBDD7D8577 /* Pods */ = {
+		D17DBFD63632722D7955E3A8A53C74AD /* FaveButton */ = {
 			isa = PBXGroup;
 			children = (
-				7E5994FDADFB4DAD75C8E60025DC6123 /* FaveButton */,
-				AF6E577884C0AEBB040E4379C8983CA2 /* TransitionAnimation */,
-				D4F553444C69FD73C9E0C61F57946151 /* TransitionTreasury */,
-				0FD625DAB516B82DADFAC6540A562D68 /* YouTubePlayer */,
+				69D396E0259E235229B8DB966DC843ED /* Constraints+.swift */,
+				F3128752F6498C95ABE2E7B27A7DC588 /* Easing.swift */,
+				35883B94FD52120F1578A60E226275E8 /* FaveButton.swift */,
+				7BCED8E758094B4663DC91070A36D02E /* FaveIcon.swift */,
+				73B277165D28E7583FE0935211032054 /* Geometry.swift */,
+				B6C92EE0689790F5A0FB766251E1C3DF /* Init.swift */,
+				0FA9AD52A676B248897B0269B877C326 /* Ring.swift */,
+				A8C02251D0DBEBB2C91A3AF5AD1407EE /* Spark.swift */,
+				60C5E6DBBE74B6930AE2D3824B34D437 /* Support Files */,
 			);
-			name = Pods;
+			name = FaveButton;
+			path = FaveButton;
 			sourceTree = "<group>";
 		};
-		AF6E577884C0AEBB040E4379C8983CA2 /* TransitionAnimation */ = {
+		E6821E27EC846D09B84F4BD797F452DC /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				13428EE0DB8166E15CD452E89B908F65 /* BlixtTransitionAnimation.swift */,
-				35D93E5773171C28AE7617CCBAF9797E /* DefaultPushTransitionAnimation.swift */,
-				D1C82291DC98E64881D0283FB93347ED /* ElevateTransitionAnimation.swift */,
-				46B48A5AAC7BB92F5A580A5AC5039932 /* FadeTransitionAnimation.swift */,
-				324DC64F3DE3D2CDBD7D84BFDD8BEB13 /* IBanTangTransitionAnimation.swift */,
-				C4321EE8E5C84F81268D3B86513F89D5 /* OMNITransitionAnimation.swift */,
-				A15E3508EA692124B3F1A8D7F7782BA4 /* PageTransitionAnimation.swift */,
-				8562285D93B61D5A4BFA7823716A9DE7 /* PopTipTransitionAnimation.swift */,
-				C82513D190A549E3335E6B357B97FA70 /* ScanbotTransitionAnimation.swift */,
-				ED42E3097BD5790BCB6032DD03288D8D /* SlideTransitionAnimation.swift */,
-				EFAE163EFCE050E29D61ECB4074AA46A /* TaaskyFlipTransitionAnimation.swift */,
-				E0802BBB432D2FBFA9F3AC3A0DDA1064 /* TransitionAnimationHelper.swift */,
-				07317CCF3E833DD480F6EE9FA050FB17 /* TRTransitionAnimations.swift */,
-				0491A6FE2B0272C7ECA4ABF35DB5455E /* TwitterTransitionAnimation.swift */,
-				3D5410622CAFF43CFC98D95616A43520 /* Support Files */,
+				AEEF9A45E48591D03B9376D2A0B71146 /* Info.plist */,
+				05F9272BF6538E8E9F8193F797DA3716 /* TTSegmentedControl.modulemap */,
+				9CCB443BDD7AE969BD5A4278F0BBF11E /* TTSegmentedControl.xcconfig */,
+				D6F6698BC91D2D1AA463B91AD284CF77 /* TTSegmentedControl-dummy.m */,
+				0D18B9A4580E08AB74908B329317759A /* TTSegmentedControl-prefix.pch */,
+				AAC4370EBF4720856AF80E9981C3A0D4 /* TTSegmentedControl-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/TTSegmentedControl";
+			sourceTree = "<group>";
+		};
+		F0368C1C105FB9399432A4DD8875A420 /* TransitionAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				EE79F7A63DE118E8B394C1197BF8BF82 /* BlixtTransitionAnimation.swift */,
+				DD8F08E3C3D82E839121D1D4DBB82658 /* DefaultPushTransitionAnimation.swift */,
+				74B065C39BECD2F4FACEEA72574674B8 /* ElevateTransitionAnimation.swift */,
+				40AD2A53FBAD8A9C64191A0173EEA08C /* FadeTransitionAnimation.swift */,
+				64A78405373C07919C2ED8F0FD8E0141 /* IBanTangTransitionAnimation.swift */,
+				DBF8D2228C5A46317835CC2C971ED076 /* OMNITransitionAnimation.swift */,
+				D5BDE9C47942B691C1E0BAB3E036A938 /* PageTransitionAnimation.swift */,
+				DDA31B710162C77B954624D2687E1726 /* PopTipTransitionAnimation.swift */,
+				158688B225D56F5FE765B7302A73BF89 /* ScanbotTransitionAnimation.swift */,
+				6F44A5AF7A14CA35663D345857B953F3 /* SlideTransitionAnimation.swift */,
+				CB331526EDE5C833BECBAAC22CE49F54 /* TaaskyFlipTransitionAnimation.swift */,
+				4B610572DCFA06423F047D0DBAA4A188 /* TransitionAnimationHelper.swift */,
+				B159405653718F131E525BD58912DB9A /* TRTransitionAnimations.swift */,
+				29578A8408FA355E81331866C1CCFACA /* TwitterTransitionAnimation.swift */,
+				5DD5273C29062DD776AECB639D5A2770 /* Support Files */,
 			);
 			name = TransitionAnimation;
 			path = TransitionAnimation;
 			sourceTree = "<group>";
 		};
-		D4F553444C69FD73C9E0C61F57946151 /* TransitionTreasury */ = {
+		F063A913FB49F388BFA81848AE8F64E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3DDCD95D65DE82A43149820E43C40008 /* TransitionTreasury.swift */,
-				820EF4E10C4561CF55FC2625418FE500 /* TRNavgationTransitionDelegate.swift */,
-				4658AA5C0098B0FECA22947BC5BDEAEE /* TRStatusBarStyle.swift */,
-				2A6D9A6FF48D24C90473E117E3A7884D /* TRTabBarControllerDelegate.swift */,
-				29AD8123E5D9235196E5A15E4DB9651B /* TRTabBarTransitionDelegate.swift */,
-				64EC7C3EEA6DC69A7132ECBBA37392F5 /* TRViewControllerAnimatedTransitioning.swift */,
-				918BE212AC1F9D9BAEA54C37076D9A71 /* TRViewControllerTransitionDelegate.swift */,
-				E5354EF53C0D45F6E4D4174E35A11D7A /* UINavigationController+TRPushPop.swift */,
-				AFE24BE40BE30DB19D23726403B72DCB /* UITabBarController+TRTransition.swift */,
-				C48BCEB23FD90C5883C84F853874B754 /* UIViewController+TRPresent.swift */,
-				FDBE4F2912B486E20D94795F97D25D34 /* Support Files */,
+				D3BD1FCF5E646DDB392CEE155346BB94 /* TransitionTreasury.framework */,
+				34296AAE36AA778DD85B59F3BE4BBE08 /* iOS */,
 			);
-			name = TransitionTreasury;
-			path = TransitionTreasury;
-			sourceTree = "<group>";
-		};
-		E2FD6F5616F7FA0FECABB649D4B7EF81 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8A654A4939ACFB1D55EB9D17E7C4F623 /* FaveButton.framework */,
-				58CB2F1F11FD22D6FB0BF1B2E21397CA /* Pods_Feline_Finder.framework */,
-				B81508B12A73CFBEA11725EF7CBE29F8 /* TransitionAnimation.framework */,
-				F9F7C0B52E08C3B164EAC8680CF2DE6E /* TransitionTreasury.framework */,
-				F6A6B40159ADE10A226BB482A8293348 /* YouTubePlayer.framework */,
-			);
-			name = Products;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F85FC040F14CD67C1170085A3745A37C /* Targets Support Files */ = {
@@ -409,37 +489,22 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		FA60C4B422B5396FD7FEE5BFDEE186BF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				68EAB9C8C350A9382FDF27FEB8D10DD6 /* TransitionTreasury.framework */,
-				63BCEE75B72B7BD301F907F93E5D084F /* iOS */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FDBE4F2912B486E20D94795F97D25D34 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E4A0A2110CC45809170770D3D570596C /* Info.plist */,
-				0833442CEB684B7DD707B931B6447C5A /* TransitionTreasury.modulemap */,
-				F976C3B1ED225C529F48B61FC6BC422E /* TransitionTreasury.xcconfig */,
-				30EC7F300AB4885A6E3D320FB5205D0A /* TransitionTreasury-dummy.m */,
-				256FACA9530E298D4495FB79FEB7F36D /* TransitionTreasury-prefix.pch */,
-				C39E3BA2B94DBAB5311944BB68A51620 /* TransitionTreasury-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/TransitionTreasury";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		2647AFC5EB7CEE0613C0257944FA9C0F /* Headers */ = {
+		25BA394A03A807FAD5646180053053C6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5617AF804616C1CFBC42787C784052C /* TransitionTreasury-umbrella.h in Headers */,
+				FE8437A4FF2D43954FA9DFF16D581861 /* TTSegmentedControl-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		54D74AF05D6B3FF2E5F0C0A38ACE6014 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CFCB1E2EEA7C5983C8DCACB4B289C2CC /* YouTubePlayer-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,70 +516,88 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EE60C5F2B92DDC99195BA9066C605AAF /* Headers */ = {
+		93616A310CE2D6D41E615EDDA6C05A6A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D4EC2EEEA2132170439BCCE5580BE2A /* Pods-Feline Finder-umbrella.h in Headers */,
+				C0BF22849F8561BD5D30530E3E0D4FFD /* TransitionAnimation-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FC20014DC144EF339FCE36D3DECDF178 /* Headers */ = {
+		9AFB53DCC16E6784319D5829DA71E463 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69785E5B42D6A7745A4FAF328160BE69 /* TransitionAnimation-umbrella.h in Headers */,
+				05BE1230C25BCEE5FFEA478E39BC2F4F /* TransitionTreasury-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FD56E2B9E64E2E2515FB0B55B25CDDB6 /* Headers */ = {
+		D3907A627CDA6D7EA6B52CEBEA939CE6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF530F8711B94B64BE9296FDCC95290A /* YouTubePlayer-umbrella.h in Headers */,
+				FD916166E7809A98CF4007E2A1D93A51 /* Pods-Feline Finder-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		06AD4484353069B8AF61C6C92CB09887 /* TransitionAnimation */ = {
+		20EB84B6D72A1BB10529C77429E61350 /* TransitionAnimation */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 92883C4752C2C971387E9664088D76F2 /* Build configuration list for PBXNativeTarget "TransitionAnimation" */;
+			buildConfigurationList = D39AA2AEE5C8BFF0A881FAB9BE137758 /* Build configuration list for PBXNativeTarget "TransitionAnimation" */;
 			buildPhases = (
-				72400219D0096FAE8D0C7DBD0E993DCC /* Sources */,
-				EB4ABB6DFB9F9BEBC7BA03CECE210312 /* Frameworks */,
-				FC20014DC144EF339FCE36D3DECDF178 /* Headers */,
+				F224E8215DD7C1DDB26934A5AC6FB622 /* Sources */,
+				7BB37FE29004E0A9F88E3311D6AB0A0D /* Frameworks */,
+				93616A310CE2D6D41E615EDDA6C05A6A /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				09F229E2D4BECF1B53BAB01E8D9F305C /* PBXTargetDependency */,
+				08DA17AF3318011C8A56726782048A89 /* PBXTargetDependency */,
 			);
 			name = TransitionAnimation;
 			productName = TransitionAnimation;
-			productReference = B81508B12A73CFBEA11725EF7CBE29F8 /* TransitionAnimation.framework */;
+			productReference = 723CB674F406815FA7FAA560B156800D /* TransitionAnimation.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		5298FD572C19776B6EC2F0437D1D1A49 /* Pods-Feline Finder */ = {
+		5692890361BAF9526BCF21264F01190C /* TransitionTreasury */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B65CD15A9C6DF22421A28894D57F859C /* Build configuration list for PBXNativeTarget "Pods-Feline Finder" */;
+			buildConfigurationList = 9CE0828AD11AEF9369578CFE641F81F8 /* Build configuration list for PBXNativeTarget "TransitionTreasury" */;
 			buildPhases = (
-				016E778BEA6CDFED6AEA501BDD837BFC /* Sources */,
-				C789D61638261AF678674F3077E16106 /* Frameworks */,
-				EE60C5F2B92DDC99195BA9066C605AAF /* Headers */,
+				572F3E95A326206258C9E5F91BC5FAB7 /* Sources */,
+				09ED8C3E7C4CFE5056C1E7FD40E4B99D /* Frameworks */,
+				9AFB53DCC16E6784319D5829DA71E463 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C0A4E9779D7663C05C743559A6A12560 /* PBXTargetDependency */,
-				CE8EF447BE960FF6D9CCAEC7E385762A /* PBXTargetDependency */,
-				2AC21A034C06049EDBF2AB42FD475289 /* PBXTargetDependency */,
-				431D1CF88EAC7B537E32CC69FA01073C /* PBXTargetDependency */,
+			);
+			name = TransitionTreasury;
+			productName = TransitionTreasury;
+			productReference = D4C2628FF3721D70290036EDE96108A0 /* TransitionTreasury.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		5E107B211FE85371D0F52E815E847D25 /* Pods-Feline Finder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4951F6CC6A46A24EB57C53586F408FAD /* Build configuration list for PBXNativeTarget "Pods-Feline Finder" */;
+			buildPhases = (
+				5437F9BB95BFE8B5189386AD5E2A2F11 /* Sources */,
+				713E6C1DDF047A5E06A7B3A787DD9FC4 /* Frameworks */,
+				D3907A627CDA6D7EA6B52CEBEA939CE6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32803EB4738841431799F4740CE4EEB0 /* PBXTargetDependency */,
+				3380ACBFA9CD0C4C54ADB31BD3D336EC /* PBXTargetDependency */,
+				429CFBC5E946004BE5646CC2B854A63F /* PBXTargetDependency */,
+				49F5843A9AD4085A22BC721A19C75703 /* PBXTargetDependency */,
+				5A2772419EED45C574673A688AC420DC /* PBXTargetDependency */,
 			);
 			name = "Pods-Feline Finder";
 			productName = "Pods-Feline Finder";
-			productReference = 58CB2F1F11FD22D6FB0BF1B2E21397CA /* Pods_Feline_Finder.framework */;
+			productReference = 46DC9F16E5B31EA298F38B355E450C29 /* Pods_Feline_Finder.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7C08227B6E14D87F0F5B0FD6DFFA1A3E /* FaveButton */ = {
@@ -531,17 +614,34 @@
 			);
 			name = FaveButton;
 			productName = FaveButton;
-			productReference = 8A654A4939ACFB1D55EB9D17E7C4F623 /* FaveButton.framework */;
+			productReference = 79D5D249D6497237E344FB66CACD9C82 /* FaveButton.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		F9F53BDFC722547E60F711B2759508C6 /* YouTubePlayer */ = {
+		B97AA8B1AFAD942B9C23A4F49EEFE50F /* TTSegmentedControl */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7ECAF14339EEC54CD6B4F0EA1E07FA6 /* Build configuration list for PBXNativeTarget "YouTubePlayer" */;
+			buildConfigurationList = DFC1938D6E720DF8BA44817AD80AF9CC /* Build configuration list for PBXNativeTarget "TTSegmentedControl" */;
 			buildPhases = (
-				6D9500B1DCE71717781AB3AE752B1B69 /* Sources */,
-				01A85CB9D5E245AC3CB69F675C394F17 /* Frameworks */,
-				F92E8A304ED51987BB0FC457B39C0746 /* Resources */,
-				FD56E2B9E64E2E2515FB0B55B25CDDB6 /* Headers */,
+				961706A70FCC4B53BD8D65429540E618 /* Sources */,
+				014ADD82EF91B289F5E763D90FF03DDD /* Frameworks */,
+				25BA394A03A807FAD5646180053053C6 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TTSegmentedControl;
+			productName = TTSegmentedControl;
+			productReference = 480D37FBE97084B58EC5218DF7EED119 /* TTSegmentedControl.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D4582BC99CA347F5232AEE722B3669DE /* YouTubePlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CDF51BA1CAE4095B764140F9A167B19 /* Build configuration list for PBXNativeTarget "YouTubePlayer" */;
+			buildPhases = (
+				01E6114C49A48F708754A6ACF5891225 /* Sources */,
+				7A5A6DCE10FC3D31AE11B30839424443 /* Frameworks */,
+				C4D3F1A9CDFC8599B8A7E458629B4DA9 /* Resources */,
+				54D74AF05D6B3FF2E5F0C0A38ACE6014 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -549,24 +649,7 @@
 			);
 			name = YouTubePlayer;
 			productName = YouTubePlayer;
-			productReference = F6A6B40159ADE10A226BB482A8293348 /* YouTubePlayer.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		FDFF0305FCAC19EBCAC3CEA529ABFF8F /* TransitionTreasury */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 88241788391DD69BABBCE785C13B8DDB /* Build configuration list for PBXNativeTarget "TransitionTreasury" */;
-			buildPhases = (
-				D7F76DF2F0B7359B9E4DF30BB25CA7B4 /* Sources */,
-				91FF5D0AACE475BC315B04C5CD1E975A /* Frameworks */,
-				2647AFC5EB7CEE0613C0257944FA9C0F /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = TransitionTreasury;
-			productName = TransitionTreasury;
-			productReference = F9F7C0B52E08C3B164EAC8680CF2DE6E /* TransitionTreasury.framework */;
+			productReference = 2BB9BF493B7A1E1C493683FCAFE1372B /* YouTubePlayer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -575,7 +658,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -586,36 +669,38 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = E2FD6F5616F7FA0FECABB649D4B7EF81 /* Products */;
+			productRefGroup = 313FEB17109C2F56F797FABAD80E3694 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				7C08227B6E14D87F0F5B0FD6DFFA1A3E /* FaveButton */,
-				5298FD572C19776B6EC2F0437D1D1A49 /* Pods-Feline Finder */,
-				06AD4484353069B8AF61C6C92CB09887 /* TransitionAnimation */,
-				FDFF0305FCAC19EBCAC3CEA529ABFF8F /* TransitionTreasury */,
-				F9F53BDFC722547E60F711B2759508C6 /* YouTubePlayer */,
+				5E107B211FE85371D0F52E815E847D25 /* Pods-Feline Finder */,
+				20EB84B6D72A1BB10529C77429E61350 /* TransitionAnimation */,
+				5692890361BAF9526BCF21264F01190C /* TransitionTreasury */,
+				B97AA8B1AFAD942B9C23A4F49EEFE50F /* TTSegmentedControl */,
+				D4582BC99CA347F5232AEE722B3669DE /* YouTubePlayer */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F92E8A304ED51987BB0FC457B39C0746 /* Resources */ = {
+		C4D3F1A9CDFC8599B8A7E458629B4DA9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0764A09C81C750D33F3F111530F963E6 /* YTPlayer.html in Resources */,
+				C18FB873DC6FF2B0409E5497309888BC /* YTPlayer.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		016E778BEA6CDFED6AEA501BDD837BFC /* Sources */ = {
+		01E6114C49A48F708754A6ACF5891225 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3741EEE3793C75842D6D3E763249C68D /* Pods-Feline Finder-dummy.m in Sources */,
+				400AE238FA8D13F959A8B75C3E149D89 /* YouTubePlayer-dummy.m in Sources */,
+				261B17E8AC397E0D9B96B428B4EFA51D /* YouTubePlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,95 +720,110 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6D9500B1DCE71717781AB3AE752B1B69 /* Sources */ = {
+		5437F9BB95BFE8B5189386AD5E2A2F11 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F634A365C6E0363D73BB4ED35B0C42F /* YouTubePlayer-dummy.m in Sources */,
-				A97B359DD535CFB839CD7FFBDAF9896F /* YouTubePlayer.swift in Sources */,
+				578B037CB9E868B689BBE8113228BED5 /* Pods-Feline Finder-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		72400219D0096FAE8D0C7DBD0E993DCC /* Sources */ = {
+		572F3E95A326206258C9E5F91BC5FAB7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70D81ABFD48177B3BDBBBC68F2E0FC9D /* BlixtTransitionAnimation.swift in Sources */,
-				D421B8BF186C0E7BD10770EB82865C5B /* DefaultPushTransitionAnimation.swift in Sources */,
-				2655B74C57A3F04212DE48B01EC04ED7 /* ElevateTransitionAnimation.swift in Sources */,
-				6D0B433BB0B8479636FC8E1577FCDEDC /* FadeTransitionAnimation.swift in Sources */,
-				F6989D37FB8FFE7ADE0AE4513BFAAE54 /* IBanTangTransitionAnimation.swift in Sources */,
-				22FA9DB1C7AC76689253927952316C9D /* OMNITransitionAnimation.swift in Sources */,
-				82060DD6F429EFFB61A6D338ED5952F7 /* PageTransitionAnimation.swift in Sources */,
-				5FF36398355700D82DCAB65ED789A127 /* PopTipTransitionAnimation.swift in Sources */,
-				14FBBEDFFABEB818E3FCB80854A46C37 /* ScanbotTransitionAnimation.swift in Sources */,
-				470DC2940E03F13E0C372329E8C744E8 /* SlideTransitionAnimation.swift in Sources */,
-				3C454639D683DE4289CA9B0B7F0B15D0 /* TaaskyFlipTransitionAnimation.swift in Sources */,
-				A3C6189917978671501618E45F6B8F12 /* TransitionAnimation-dummy.m in Sources */,
-				D2BC1D9B9AB659DB22DFEE7782FA791E /* TransitionAnimationHelper.swift in Sources */,
-				D77889819777E6C940D49756F58BFF4F /* TRTransitionAnimations.swift in Sources */,
-				4AA5CFB25EE25CAC6D02033AB6DCFB11 /* TwitterTransitionAnimation.swift in Sources */,
+				5E978E2268672BFB4E3F60E13CD0F386 /* TransitionTreasury-dummy.m in Sources */,
+				D814A65E1336F72A17AAB115519A2433 /* TransitionTreasury.swift in Sources */,
+				E549FF43BBBA7DC8B5E3E8B0AD79C768 /* TRNavgationTransitionDelegate.swift in Sources */,
+				1F75147A05BCD051EC445D47DDD28BB8 /* TRStatusBarStyle.swift in Sources */,
+				135CB52932EABCC92ECFFAB4E9101515 /* TRTabBarControllerDelegate.swift in Sources */,
+				401737637179C968B5272D0FF05BDF89 /* TRTabBarTransitionDelegate.swift in Sources */,
+				83903B247566832E8BE8F0A74028B7AC /* TRViewControllerAnimatedTransitioning.swift in Sources */,
+				D8DBC2C82671C50E790758CF7642D542 /* TRViewControllerTransitionDelegate.swift in Sources */,
+				7BCF6A683098F9D5B8DCC199C6DFEF89 /* UINavigationController+TRPushPop.swift in Sources */,
+				FA58AB33EB8BC6AA54D1A32BCD62E9CD /* UITabBarController+TRTransition.swift in Sources */,
+				8B91E04CF194B623EED436DC123F7F67 /* UIViewController+TRPresent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D7F76DF2F0B7359B9E4DF30BB25CA7B4 /* Sources */ = {
+		961706A70FCC4B53BD8D65429540E618 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				580C8123ACC73547F0C2F72B33422A53 /* TransitionTreasury-dummy.m in Sources */,
-				82D8E6B5BA4C32FC3685667552EB74D0 /* TransitionTreasury.swift in Sources */,
-				1226A6A703CFA8954ECC589A156C65AF /* TRNavgationTransitionDelegate.swift in Sources */,
-				E57BEF39EED8F5D1E217E012A826D70E /* TRStatusBarStyle.swift in Sources */,
-				E7EA13F9EEC9D6C2CD05EDA003688C6D /* TRTabBarControllerDelegate.swift in Sources */,
-				7BE900EE03E9531C58E66A91CB563134 /* TRTabBarTransitionDelegate.swift in Sources */,
-				998D9395BC483C382BB5AC7CC61F60B8 /* TRViewControllerAnimatedTransitioning.swift in Sources */,
-				86862D5D16B506CFE120C0FD2194081D /* TRViewControllerTransitionDelegate.swift in Sources */,
-				F677B89B0668968DB633EA8A0B52AC9D /* UINavigationController+TRPushPop.swift in Sources */,
-				60286F46ED65712A97CFBBC87889BC8F /* UITabBarController+TRTransition.swift in Sources */,
-				9BFDCDE0E42C226C63D1E756E6DA66DA /* UIViewController+TRPresent.swift in Sources */,
+				E02E1F43FB5994A0F1E8F697F3BE9E48 /* TTSegmentedControl-dummy.m in Sources */,
+				C5A7798AE59B3166FE33465FDC7863FC /* TTSegmentedControl.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F224E8215DD7C1DDB26934A5AC6FB622 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				936C3C4CFA542A64626E53E928C25773 /* BlixtTransitionAnimation.swift in Sources */,
+				67A52E6D7F5D86A8C1D5E877A2B9A192 /* DefaultPushTransitionAnimation.swift in Sources */,
+				62166D2414A29A66A6C0AC995B9AAC4B /* ElevateTransitionAnimation.swift in Sources */,
+				BEBDE633F0BBBF433E9223576C1FAE19 /* FadeTransitionAnimation.swift in Sources */,
+				A8E3B7BF9C99D058A8F0BC4D825D7E4E /* IBanTangTransitionAnimation.swift in Sources */,
+				A81EED1422ECEFAE9778B334A06497D5 /* OMNITransitionAnimation.swift in Sources */,
+				48F0CF6A320642E063BAA18EB9E3A2D8 /* PageTransitionAnimation.swift in Sources */,
+				2720CAD919A185A1B9DF5D2036A2A632 /* PopTipTransitionAnimation.swift in Sources */,
+				5179FCA845ADB47401A448031370C9C7 /* ScanbotTransitionAnimation.swift in Sources */,
+				8C0484EB96AC39BF804A4A8CC149FDA2 /* SlideTransitionAnimation.swift in Sources */,
+				DCEB5C89F5D7138C2BB3007104286CAA /* TaaskyFlipTransitionAnimation.swift in Sources */,
+				DB6FB9D33AD1F230620CE996910BBCE8 /* TransitionAnimation-dummy.m in Sources */,
+				C3AE55DECC84C6DCEFEE08B0D6FFFF63 /* TransitionAnimationHelper.swift in Sources */,
+				F63CA7419158BDE4FE3BC37AA8F8E9EA /* TRTransitionAnimations.swift in Sources */,
+				FEA6DF3587A2F5589AFBB2FAE568E68C /* TwitterTransitionAnimation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		09F229E2D4BECF1B53BAB01E8D9F305C /* PBXTargetDependency */ = {
+		08DA17AF3318011C8A56726782048A89 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TransitionTreasury;
-			target = FDFF0305FCAC19EBCAC3CEA529ABFF8F /* TransitionTreasury */;
-			targetProxy = 3252D53DDD84175AE8D978470D7F73C5 /* PBXContainerItemProxy */;
+			target = 5692890361BAF9526BCF21264F01190C /* TransitionTreasury */;
+			targetProxy = 61DA14944670282A85372DB3CAC46A36 /* PBXContainerItemProxy */;
 		};
-		2AC21A034C06049EDBF2AB42FD475289 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = TransitionTreasury;
-			target = FDFF0305FCAC19EBCAC3CEA529ABFF8F /* TransitionTreasury */;
-			targetProxy = 851D627C6708D1F502C096E9E0449AAD /* PBXContainerItemProxy */;
-		};
-		431D1CF88EAC7B537E32CC69FA01073C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = YouTubePlayer;
-			target = F9F53BDFC722547E60F711B2759508C6 /* YouTubePlayer */;
-			targetProxy = AE012EF4462254433C3E02B7990D1D14 /* PBXContainerItemProxy */;
-		};
-		C0A4E9779D7663C05C743559A6A12560 /* PBXTargetDependency */ = {
+		32803EB4738841431799F4740CE4EEB0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FaveButton;
 			target = 7C08227B6E14D87F0F5B0FD6DFFA1A3E /* FaveButton */;
-			targetProxy = 04613581CD5D9DEAFFF66BB5F669BD07 /* PBXContainerItemProxy */;
+			targetProxy = BCD0E5E298465681271CBE9C571037F1 /* PBXContainerItemProxy */;
 		};
-		CE8EF447BE960FF6D9CCAEC7E385762A /* PBXTargetDependency */ = {
+		3380ACBFA9CD0C4C54ADB31BD3D336EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TTSegmentedControl;
+			target = B97AA8B1AFAD942B9C23A4F49EEFE50F /* TTSegmentedControl */;
+			targetProxy = 333676C3C2467BF63AD74BD21A3225C1 /* PBXContainerItemProxy */;
+		};
+		429CFBC5E946004BE5646CC2B854A63F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = TransitionAnimation;
-			target = 06AD4484353069B8AF61C6C92CB09887 /* TransitionAnimation */;
-			targetProxy = CB0ABD052A152DCCCBAB56B0A0C0D07C /* PBXContainerItemProxy */;
+			target = 20EB84B6D72A1BB10529C77429E61350 /* TransitionAnimation */;
+			targetProxy = 010AAAB61808DD4775A673033E4A9179 /* PBXContainerItemProxy */;
+		};
+		49F5843A9AD4085A22BC721A19C75703 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TransitionTreasury;
+			target = 5692890361BAF9526BCF21264F01190C /* TransitionTreasury */;
+			targetProxy = 245CF146A00BDB1F814912D0B8053FC3 /* PBXContainerItemProxy */;
+		};
+		5A2772419EED45C574673A688AC420DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = YouTubePlayer;
+			target = D4582BC99CA347F5232AEE722B3669DE /* YouTubePlayer */;
+			targetProxy = 7E89CB65A14E4A02F25D67275FD9C45E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		078B97968FB74A0BCE3059285855E904 /* Release */ = {
+		34E03419C5AF17835B63CB62A34610DE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD116A5F71F6A75D7861CD73CBBBC531 /* TransitionAnimation.xcconfig */;
+			baseConfigurationReference = E1D55502D493E69E509D86BAE996E2F9 /* YouTubePlayer.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -735,16 +835,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TransitionAnimation/TransitionAnimation-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TransitionAnimation/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/YouTubePlayer/YouTubePlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/YouTubePlayer/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TransitionAnimation/TransitionAnimation.modulemap";
+				MODULEMAP_FILE = "Target Support Files/YouTubePlayer/YouTubePlayer.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TransitionAnimation;
+				PRODUCT_NAME = YouTubePlayer;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -752,43 +853,45 @@
 			};
 			name = Release;
 		};
-		0F1F0E2C7DA406B099E18838BBE46EAC /* Debug */ = {
+		3879F28DACA18D4275FA750441BA882F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CD116A5F71F6A75D7861CD73CBBBC531 /* TransitionAnimation.xcconfig */;
+			baseConfigurationReference = 526DB5283A5D58978C4312D53396828A /* FaveButton.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
 				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TransitionAnimation/TransitionAnimation-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TransitionAnimation/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/FaveButton/FaveButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FaveButton/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TransitionAnimation/TransitionAnimation.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TransitionAnimation;
+				MODULEMAP_FILE = "Target Support Files/FaveButton/FaveButton.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = FaveButton;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		43B7F6D0D8CBF4FE386AEA3856D00DF8 /* Debug */ = {
+		3897A9F9270DA485E85415DCF447FA95 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 520C3D2CF675AF6F57F2A7B6A8050CE5 /* YouTubePlayer.xcconfig */;
+			baseConfigurationReference = E1D55502D493E69E509D86BAE996E2F9 /* YouTubePlayer.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -810,6 +913,7 @@
 				PRODUCT_NAME = YouTubePlayer;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -818,44 +922,12 @@
 			};
 			name = Debug;
 		};
-		52A29F3499226CA6CB035B8BF9847A70 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3302E7A8153CAC6688691FB388F89AAB /* FaveButton.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FaveButton/FaveButton-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FaveButton/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FaveButton/FaveButton.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = FaveButton;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */ = {
+		4E487F173E6C9664F4E9E26B9635D23C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -863,10 +935,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -895,10 +970,46 @@
 			};
 			name = Debug;
 		};
-		5BE47C56D23006BB38F29DB30892DCAA /* Release */ = {
+		566B414D4DF87DBE9438B920336D602F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 520C3D2CF675AF6F57F2A7B6A8050CE5 /* YouTubePlayer.xcconfig */;
+			baseConfigurationReference = 9CCB443BDD7AE969BD5A4278F0BBF11E /* TTSegmentedControl.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TTSegmentedControl/TTSegmentedControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TTSegmentedControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TTSegmentedControl/TTSegmentedControl.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TTSegmentedControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5FA3A1B3CBFB89FC824FC8D891D8D364 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4B18882577A353ECCF18A2D7F6B04AD /* TransitionTreasury.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -910,16 +1021,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/YouTubePlayer/YouTubePlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/YouTubePlayer/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/TransitionTreasury/TransitionTreasury-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TransitionTreasury/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/YouTubePlayer/YouTubePlayer.modulemap";
+				MODULEMAP_FILE = "Target Support Files/TransitionTreasury/TransitionTreasury.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = YouTubePlayer;
+				PRODUCT_NAME = TransitionTreasury;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -927,10 +1039,115 @@
 			};
 			name = Release;
 		};
-		768CE014E8E92B7B763396C3534E7303 /* Debug */ = {
+		622FB6239F509145BF59FB6FCC222309 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CCB443BDD7AE969BD5A4278F0BBF11E /* TTSegmentedControl.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TTSegmentedControl/TTSegmentedControl-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TTSegmentedControl/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TTSegmentedControl/TTSegmentedControl.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TTSegmentedControl;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		6B4BF94D51812A69308D1415752B8601 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6EB24DD08AE01AF883BE01D25B0423F1 /* TransitionAnimation.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TransitionAnimation/TransitionAnimation-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TransitionAnimation/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TransitionAnimation/TransitionAnimation.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TransitionAnimation;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6BF07204B2C5DEB1CF26270F10FA24F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 526DB5283A5D58978C4312D53396828A /* FaveButton.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/FaveButton/FaveButton-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/FaveButton/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/FaveButton/FaveButton.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = FaveButton;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AFC597CA52379A38317ADE86C5F68BDD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6DD6859CF1D3111F3EC3DF788BF61BF0 /* Pods-Feline Finder.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -956,82 +1173,21 @@
 				PRODUCT_NAME = Pods_Feline_Finder;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		85ADFA068F105477EE591DD93F99EA22 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3302E7A8153CAC6688691FB388F89AAB /* FaveButton.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/FaveButton/FaveButton-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/FaveButton/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/FaveButton/FaveButton.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = FaveButton;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		9D686DDDEE1080BB39CA92188B361F3E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F976C3B1ED225C529F48B61FC6BC422E /* TransitionTreasury.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/TransitionTreasury/TransitionTreasury-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/TransitionTreasury/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/TransitionTreasury/TransitionTreasury.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TransitionTreasury;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		B7324857C38B065FEB1EEE3105C2367A /* Release */ = {
+		BDD0139D6EB93FA375F887ABD62DAB2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1039,10 +1195,13 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGNING_REQUIRED = NO;
@@ -1067,10 +1226,45 @@
 			};
 			name = Release;
 		};
-		E136302BE3F7E098BC0BBC1F8751751E /* Debug */ = {
+		C295816E64712F8DA096DF03ADBC0C44 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F976C3B1ED225C529F48B61FC6BC422E /* TransitionTreasury.xcconfig */;
+			baseConfigurationReference = 6EB24DD08AE01AF883BE01D25B0423F1 /* TransitionAnimation.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/TransitionAnimation/TransitionAnimation-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/TransitionAnimation/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/TransitionAnimation/TransitionAnimation.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TransitionAnimation;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE2551532908514F064F519F63ED7012 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D4B18882577A353ECCF18A2D7F6B04AD /* TransitionTreasury.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1092,6 +1286,7 @@
 				PRODUCT_NAME = TransitionTreasury;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1100,10 +1295,11 @@
 			};
 			name = Debug;
 		};
-		F8D9C712082CF03652F92ECEC9D2F91A /* Release */ = {
+		DFEA21FBE9CAEB0B5FA129F799E0ADD7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EEFC8E7DC03FD6F467A2CCC79A3D4CA5 /* Pods-Feline Finder.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
@@ -1129,6 +1325,8 @@
 				PRODUCT_NAME = Pods_Feline_Finder;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1141,35 +1339,44 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				59B042A655B7C20CBAB90E385BF4E4C7 /* Debug */,
-				B7324857C38B065FEB1EEE3105C2367A /* Release */,
+				4E487F173E6C9664F4E9E26B9635D23C /* Debug */,
+				BDD0139D6EB93FA375F887ABD62DAB2E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88241788391DD69BABBCE785C13B8DDB /* Build configuration list for PBXNativeTarget "TransitionTreasury" */ = {
+		4951F6CC6A46A24EB57C53586F408FAD /* Build configuration list for PBXNativeTarget "Pods-Feline Finder" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E136302BE3F7E098BC0BBC1F8751751E /* Debug */,
-				9D686DDDEE1080BB39CA92188B361F3E /* Release */,
+				AFC597CA52379A38317ADE86C5F68BDD /* Debug */,
+				DFEA21FBE9CAEB0B5FA129F799E0ADD7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		92883C4752C2C971387E9664088D76F2 /* Build configuration list for PBXNativeTarget "TransitionAnimation" */ = {
+		8CDF51BA1CAE4095B764140F9A167B19 /* Build configuration list for PBXNativeTarget "YouTubePlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				0F1F0E2C7DA406B099E18838BBE46EAC /* Debug */,
-				078B97968FB74A0BCE3059285855E904 /* Release */,
+				3897A9F9270DA485E85415DCF447FA95 /* Debug */,
+				34E03419C5AF17835B63CB62A34610DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B65CD15A9C6DF22421A28894D57F859C /* Build configuration list for PBXNativeTarget "Pods-Feline Finder" */ = {
+		9CE0828AD11AEF9369578CFE641F81F8 /* Build configuration list for PBXNativeTarget "TransitionTreasury" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				768CE014E8E92B7B763396C3534E7303 /* Debug */,
-				F8D9C712082CF03652F92ECEC9D2F91A /* Release */,
+				DE2551532908514F064F519F63ED7012 /* Debug */,
+				5FA3A1B3CBFB89FC824FC8D891D8D364 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D39AA2AEE5C8BFF0A881FAB9BE137758 /* Build configuration list for PBXNativeTarget "TransitionAnimation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6B4BF94D51812A69308D1415752B8601 /* Debug */,
+				C295816E64712F8DA096DF03ADBC0C44 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1177,17 +1384,17 @@
 		D715AEC5C8ED2BE2A239EC682DB79AAC /* Build configuration list for PBXNativeTarget "FaveButton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				52A29F3499226CA6CB035B8BF9847A70 /* Debug */,
-				85ADFA068F105477EE591DD93F99EA22 /* Release */,
+				6BF07204B2C5DEB1CF26270F10FA24F3 /* Debug */,
+				3879F28DACA18D4275FA750441BA882F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7ECAF14339EEC54CD6B4F0EA1E07FA6 /* Build configuration list for PBXNativeTarget "YouTubePlayer" */ = {
+		DFC1938D6E720DF8BA44817AD80AF9CC /* Build configuration list for PBXNativeTarget "TTSegmentedControl" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				43B7F6D0D8CBF4FE386AEA3856D00DF8 /* Debug */,
-				5BE47C56D23006BB38F29DB30892DCAA /* Release */,
+				566B414D4DF87DBE9438B920336D602F /* Debug */,
+				622FB6239F509145BF59FB6FCC222309 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -43,11 +43,11 @@ class DatabaseManager {
     
     
     func deg2rad(_ deg:Double) -> Double {
-        return deg * M_PI / 180
+        return deg * Double.pi / 180
     }
     
     func rad2deg(_ rad:Double) -> Double {
-        return rad * 180.0 / M_PI
+        return rad * 180.0 / Double.pi
     }
     
     func distance(_ lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {
@@ -94,7 +94,7 @@ class DatabaseManager {
             }
             contactDB?.close()
         } else {
-            print("Error: \(contactDB?.lastErrorMessage())")
+            print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
         }
         return validZipCode
     }
@@ -622,7 +622,7 @@ class DatabaseManager {
                     let PetName = results.string(forColumn: "PetName")
                     let ImageName = results.string(forColumn: "ImageName")
                     let breed = results.string(forColumn: "Breed")
-                    let DS = results.string(forColumn: "DataSource")
+                    _ = results.string(forColumn: "DataSource")
                     //let DSEnum: DataSource = (DS == "PetFinder" ? .PetFinder : .RescueGroup)
                     let DSEnum: DataSource = .RescueGroup
                     PetID = self.checkPetID(PetID!, ds: DSEnum)
@@ -692,7 +692,7 @@ class DatabaseManager {
                 while results.next() == true {
                     let FilterName = results.string(forColumn: "FilterName")
                     let FilterValue = results.string(forColumn: "FilterValue")
-                    print("\(FilterName)=\(FilterValue)")
+                    print("\(String(describing: FilterName))=\(String(describing: FilterValue))")
                     for o in filterOptions.filteringOptions {
                         if o.fieldName == FilterName {
                             if o.list == true {

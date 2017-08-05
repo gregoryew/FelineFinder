@@ -131,7 +131,7 @@ class BreedStatList {
             let results: FMResultSet? = contactDB?.executeQuery(querySQL,
                 withArgumentsIn: [breedID])
             
-            print("Error: \(contactDB?.lastErrorMessage())")
+            print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
             
             while results?.next() == true {
                 let i = results?.int(forColumn: "BreedID")
@@ -159,7 +159,7 @@ class BreedStatList {
             }
             */
         } else {
-            print("Error: \(contactDB?.lastErrorMessage())")
+            print("Error: \(String(describing: contactDB?.lastErrorMessage()))")
         }
     }
 }

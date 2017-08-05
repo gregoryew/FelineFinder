@@ -40,7 +40,7 @@ class RSURLRequest: NSObject {
             
             let responseString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
             handler(response,responseString,error)
-        } as! RSURLRequest.dataFromURLCompletionClosure)
+        } as RSURLRequest.dataFromURLCompletionClosure)
     }
     
     
@@ -72,7 +72,7 @@ class RSURLRequest: NSObject {
             }
             handler(response,resultDictionary.copy() as? NSDictionary,error)
             
-        } as! RSURLRequest.dataFromURLCompletionClosure)
+        } as RSURLRequest.dataFromURLCompletionClosure)
     }
     
     func imageFromURL(_ url : URL, completionHandler handler: @escaping imageFromURLCompletionClosure) {
@@ -85,7 +85,7 @@ class RSURLRequest: NSObject {
             
             let image = UIImage(data: responseData)
             handler(response,image?.copy() as? UIImage,error)
-        } as! RSURLRequest.dataFromURLCompletionClosure)
+        } as RSURLRequest.dataFromURLCompletionClosure)
     }
     
     

@@ -77,7 +77,7 @@ class RSTransactionRequest: NSObject {
             
             let responseString = NSString(data: responseData, encoding: String.Encoding.utf8.rawValue)
             handler(response,responseString,error)
-        } as! (URLResponse?, Data?, NSError?) -> Void)
+        } as (URLResponse?, Data?, NSError?) -> Void)
     }
     
     
@@ -108,7 +108,7 @@ class RSTransactionRequest: NSObject {
                 resultDictionary[self.dictKey] = ""
             }
             handler(response,resultDictionary.copy() as? NSDictionary,error)
-        } as! (URLResponse?, Data?, NSError?) -> Void)
+        } as (URLResponse?, Data?, NSError?) -> Void)
     }
     
     
@@ -122,7 +122,7 @@ class RSTransactionRequest: NSObject {
             
             let image = UIImage(data: responseData)
             handler(response,image?.copy() as! UIImage?,error)
-        } as! (URLResponse?, Data?, NSError?) -> Void)
+        } as (URLResponse?, Data?, NSError?) -> Void)
     }
     
     

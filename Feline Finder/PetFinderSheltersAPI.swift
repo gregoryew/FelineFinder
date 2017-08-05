@@ -38,7 +38,7 @@ class PetFinderShelterList: ShelterList {
                     Utilities.displayAlert("Error Retrieving Shelter Data", errorMessage: error.description)
                     print("Error : \(error)")
                 }
-            } as! RSTransactionRequest.dataFromRSTransactionCompletionClosure)
+            } as RSTransactionRequest.dataFromRSTransactionCompletionClosure)
         }
     }
     
@@ -79,7 +79,7 @@ class PetFinderShelterList: ShelterList {
                 Utilities.displayAlert("Error Retrieving Shelter Data", errorMessage: error.description)
                 print("Error : \(error)")
             }
-        } as! RSTransactionRequest.dataFromRSTransactionCompletionClosure)
+        } as RSTransactionRequest.dataFromRSTransactionCompletionClosure)
     }
     
     func addValue(_ tagName: String, value: JSON) -> String

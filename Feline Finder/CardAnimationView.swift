@@ -92,7 +92,7 @@ open class CardAnimationView: UIView {
     fileprivate lazy var flipDownTransform3D : CATransform3D = {
         var transform = CATransform3DIdentity
         transform.m34 = -1.0 / 1000.0
-        transform = CATransform3DRotate(transform, CGFloat(-M_PI), 1, 0, 0)
+        transform = CATransform3DRotate(transform, CGFloat(-Double.pi), 1, 0, 0)
         return transform
     }()
 
@@ -184,7 +184,7 @@ open class CardAnimationView: UIView {
         let frontView = cardArray.removeFirst()
         let lastIndex = currentIndex + cardArray.count
         if lastIndex < cardCount {
-            addNewCardViewWithIndex(lastIndex, insertOnRear: true)
+            _ = addNewCardViewWithIndex(lastIndex, insertOnRear: true)
         }
 
         UIView.animateKeyframes(withDuration: animationsSpeed*1.5, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
@@ -230,7 +230,7 @@ extension CardAnimationView {
                 let frontView = cardArray[0]
                 switch percent{
                 case 0.0..<1.0:
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI) * percent, 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi) * percent, 1, 0, 0)
                     frontView.layer.transform = flipTransform3D
                     if percent >= 0.5{
                         frontView.contentVisible(false)
@@ -238,7 +238,7 @@ extension CardAnimationView {
                         frontView.contentVisible(true)
                     }
                 case 1.0...CGFloat(MAXFLOAT):
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI), 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi), 1, 0, 0)
                     frontView.layer.transform = flipTransform3D
                 default:
                     print(percent)
@@ -265,7 +265,7 @@ extension CardAnimationView {
                     }else{
                         gestureTempCard!.contentVisible(false)
                     }
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI) * (percent+1.0), 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi) * (percent+1.0), 1, 0, 0)
                     gestureTempCard!.layer.transform = flipTransform3D
                 default:
                     print(percent)
@@ -282,10 +282,10 @@ extension CardAnimationView {
                     let frontView = cardArray.removeFirst()
                     let lastIndex = currentIndex + cardArray.count
                     if lastIndex < cardCount {
-                        addNewCardViewWithIndex(lastIndex, insertOnRear: true)
+                        _ = addNewCardViewWithIndex(lastIndex, insertOnRear: true)
                     }
                     
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(M_PI), 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(Double.pi), 1, 0, 0)
                     UIView.animate(withDuration: 0.3, animations: {
                         frontView.layer.transform = flipTransform3D
                         }, completion: {
@@ -320,7 +320,7 @@ extension CardAnimationView {
                     })
                 }else{
                     UIView.animate(withDuration: 0.2, animations: {
-                        self.gestureTempCard!.layer.transform = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI), 1, 0, 0)
+                        self.gestureTempCard!.layer.transform = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi), 1, 0, 0)
                         }, completion: {
                             _ in
                             self.poolCardArray.append(self.gestureTempCard!)

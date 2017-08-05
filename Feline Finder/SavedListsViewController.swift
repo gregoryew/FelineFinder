@@ -158,7 +158,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
                 let ss = SavedSearches[0]
                 let ans: Bool = (self.whichSegue == "Summary" ? true : false)
                 let n = self.txtfld.text
-                SavedSearches.saveSearches(ans, ID: Int(ss.SavedSearchID), SearchName: n!)
+                _ = SavedSearches.saveSearches(ans, ID: Int(ss.SavedSearchID), SearchName: n!)
                 /*
                 SavedSearches.refresh()
                 SavedSearches.loadSearches(false)

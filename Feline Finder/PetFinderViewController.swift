@@ -387,13 +387,12 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("segue=\(segue.identifier)")
         if segue.identifier == "searchOptions" {
             (segue.destination as! PetFinderFindViewController).breed = breed
         }
         else if segue.identifier == "BreedStats" {
             (segue.destination as! BreedStatsViewController).whichSeque = "BreedList"
-            let b = self.breed as Breed?
+            _ = self.breed as Breed?
             //(segue.destination as! BreedStatsViewController).breed = b!
         }
         /*

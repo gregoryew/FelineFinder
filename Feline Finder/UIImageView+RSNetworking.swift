@@ -25,7 +25,7 @@ extension UIImageView {
         client.imageFromURL(url!, completionHandler: {(response : URLResponse!, image: UIImage!, error: NSError!) -> Void in
             
             self.image = image
-            } as! RSURLRequest.imageFromURLCompletionClosure)
+            } as RSURLRequest.imageFromURLCompletionClosure)
     }
     
     func setImageForRSTransaction(_ transaction:RSTransaction, placeHolder: UIImage) -> Void {
@@ -38,7 +38,7 @@ extension UIImageView {
         
         RSRequest.imageFromRSTransaction(transaction, completionHandler: {(response: URLResponse!, image: UIImage!, error: NSError!) -> Void in
             self.image = image
-            } as! RSTransactionRequest.imageFromRSTransactionCompletionClosure)
+            } as RSTransactionRequest.imageFromRSTransactionCompletionClosure)
         
       }
 }

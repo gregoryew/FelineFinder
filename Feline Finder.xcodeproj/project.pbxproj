@@ -19,20 +19,32 @@
 		46241D4E1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46241D4D1E07062300997D4C /* SectionHeaderViewCollectionReusableView.swift */; };
 		462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */; };
 		4632471C1E037D17000039FF /* Twinkle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632471B1E037D17000039FF /* Twinkle.swift */; };
-		464304C11F187C8C00840573 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C01F187C8C00840573 /* energy_level.gif */; };
-		464304C31F187CB900840573 /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C21F187CB900840573 /* grooming.gif */; };
-		464304C51F187CED00840573 /* good_with_pets.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C41F187CED00840573 /* good_with_pets.gif */; };
-		464304C71F1A941500840573 /* Fun_Loving.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C61F1A941500840573 /* Fun_Loving.gif */; };
-		464304C91F1A949A00840573 /* petting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304C81F1A949A00840573 /* petting.gif */; };
-		464304CB1F1A94D900840573 /* fitness.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304CA1F1A94D900840573 /* fitness.gif */; };
-		464304CD1F1A952E00840573 /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464304CC1F1A952E00840573 /* hair.gif */; };
-		464B49721F1AB28F00C62491 /* attachment_to_people.gif in Resources */ = {isa = PBXBuildFile; fileRef = 464B49711F1AB28F00C62491 /* attachment_to_people.gif */; };
+		4649DAEA1F353D71007FE6AB /* hair2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAE01F353D71007FE6AB /* hair2.gif */; };
+		4649DAFB1F35482E007FE6AB /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF21F35482E007FE6AB /* smartcat.gif */; };
+		4649DAFC1F35482E007FE6AB /* petting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF31F35482E007FE6AB /* petting.gif */; };
+		4649DAFD1F35482E007FE6AB /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF41F35482E007FE6AB /* hair.gif */; };
+		4649DAFE1F35482E007FE6AB /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF51F35482E007FE6AB /* grooming.gif */; };
+		4649DAFF1F35482E007FE6AB /* good_with_pets.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF61F35482E007FE6AB /* good_with_pets.gif */; };
+		4649DB001F35482E007FE6AB /* good_with_children.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF71F35482E007FE6AB /* good_with_children.gif */; };
+		4649DB011F35482E007FE6AB /* Fun_Loving.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF81F35482E007FE6AB /* Fun_Loving.gif */; };
+		4649DB021F35482E007FE6AB /* fitness.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAF91F35482E007FE6AB /* fitness.gif */; };
+		4649DB031F35482E007FE6AB /* attachment_to_people.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4649DAFA1F35482E007FE6AB /* attachment_to_people.gif */; };
+		464B49741F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49731F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift */; };
+		464B49761F1BCECA00C62491 /* BreedInfoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49751F1BCECA00C62491 /* BreedInfoGalleryViewController.swift */; };
+		464B49781F1BCEF100C62491 /* BreedInfoStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49771F1BCEF100C62491 /* BreedInfoStatsViewController.swift */; };
+		464B497A1F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49791F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift */; };
+		464B497C1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B497B1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift */; };
+		464B497E1F1BF1C900C62491 /* BreedinfoSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B497D1F1BF1C900C62491 /* BreedinfoSectionHeaderCollectionReusableView.swift */; };
 		464E39D41E33A42B005577ED /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 464E39D31E33A42B005577ED /* Media.xcassets */; };
 		467738D21E61D53D009CCD4A /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467738D11E61D53D009CCD4A /* KYCircularProgress.swift */; };
 		467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */; };
 		467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */; };
 		467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */; };
 		467E10721EDF93DA00F7E1A8 /* DevonRex.png in Resources */ = {isa = PBXBuildFile; fileRef = 467E10711EDF93DA00F7E1A8 /* DevonRex.png */; };
+		4680BC961F257A850042F2CE /* SurveyQuestionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */; };
+		468A5FFE1F1C59A1003E1F63 /* TicksSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */; };
+		468A5FFF1F1C59A1003E1F63 /* TSThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFC1F1C59A1003E1F63 /* TSThumbLayer.swift */; };
+		468A60001F1C59A1003E1F63 /* TSTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFD1F1C59A1003E1F63 /* TSTrackLayer.swift */; };
 		468D732D1F005DE00090AB43 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468D732C1F005DE00090AB43 /* IntroViewController.swift */; };
 		4692C58F1E74B0D200B83494 /* OnboardingVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C58E1E74B0D200B83494 /* OnboardingVideoViewController.swift */; };
 		4692C5BB1E7601F800B83494 /* FLAnimatedImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5931E7601F800B83494 /* FLAnimatedImageView+WebCache.m */; };
@@ -60,10 +72,9 @@
 		4692C5DB1E78EC7F00B83494 /* CharacterFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */; };
 		4692C5DD1E78ECB500B83494 /* PictureMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */; };
 		4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */; };
+		46A3341A1F21576200382B61 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46A334191F21576200382B61 /* energy_level.gif */; };
 		46AECC451F06F2D600793464 /* BreedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECC441F06F2D600793464 /* BreedInfoViewController.swift */; };
 		46AECC471F06F52700793464 /* BreedInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */; };
-		46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84B91E6B7B2C00A0B97E /* smartcat.gif */; };
-		46BE84BC1E6B7E1C00A0B97E /* hair_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46BE84BB1E6B7E1C00A0B97E /* hair_old.gif */; };
 		46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C326C41E91D17B003905CC /* DownloadManager.swift */; };
 		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
@@ -77,6 +88,7 @@
 		46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */; };
 		46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2E1E50DC380041666F /* Transistion.swift */; };
 		46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */; };
+		46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */; };
@@ -103,18 +115,9 @@
 		C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */; };
 		C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */; };
 		C5511C3B1B6EB3F400BE8610 /* FLAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */; };
-		C5511C481B6EB73A00BE8610 /* attachment_to_people_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3C1B6EB73A00BE8610 /* attachment_to_people_old.gif */; };
 		C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3D1B6EB73A00BE8610 /* autonomy.gif */; };
-		C5511C4A1B6EB73A00BE8610 /* energy_level_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3E1B6EB73A00BE8610 /* energy_level_old.gif */; };
-		C5511C4B1B6EB73A00BE8610 /* fitness_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C3F1B6EB73A00BE8610 /* fitness_old.gif */; };
-		C5511C4C1B6EB73A00BE8610 /* Fun_Loving_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C401B6EB73A00BE8610 /* Fun_Loving_old.gif */; };
-		C5511C4D1B6EB73A00BE8610 /* good_with_pets_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C411B6EB73A00BE8610 /* good_with_pets_old.gif */; };
-		C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C421B6EB73A00BE8610 /* good_with_children.gif */; };
-		C5511C4F1B6EB73A00BE8610 /* grooming2.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C431B6EB73A00BE8610 /* grooming2.gif */; };
-		C5511C501B6EB73A00BE8610 /* petting_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C441B6EB73A00BE8610 /* petting_old.gif */; };
 		C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C451B6EB73A00BE8610 /* talkative.gif */; };
 		C5511C521B6EB73A00BE8610 /* Thinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C461B6EB73A00BE8610 /* Thinking.gif */; };
-		C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5511C471B6EB73A00BE8610 /* TLC.gif */; };
 		C55FC7051D6A9FA000F328F3 /* SavedList2TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55FC7041D6A9FA000F328F3 /* SavedList2TableCell.swift */; };
 		C56DA7371D78F9DB00524E53 /* FelineFinderBasePets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DA7361D78F9DB00524E53 /* FelineFinderBasePets.swift */; };
 		C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56DA7381D79046500524E53 /* FelineFinderBaseSheltersAPI.swift */; };
@@ -182,20 +185,32 @@
 		4626663D1E34714800D4C7AE /* FaveButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FaveButton.h; sourceTree = "<group>"; };
 		462AAB7A1E03856E00F70BD7 /* TwinkleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TwinkleImage.png; sourceTree = "<group>"; };
 		4632471B1E037D17000039FF /* Twinkle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Twinkle.swift; sourceTree = "<group>"; };
-		464304C01F187C8C00840573 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
-		464304C21F187CB900840573 /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
-		464304C41F187CED00840573 /* good_with_pets.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets.gif; sourceTree = "<group>"; };
-		464304C61F1A941500840573 /* Fun_Loving.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving.gif; sourceTree = "<group>"; };
-		464304C81F1A949A00840573 /* petting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting.gif; sourceTree = "<group>"; };
-		464304CA1F1A94D900840573 /* fitness.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness.gif; sourceTree = "<group>"; };
-		464304CC1F1A952E00840573 /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
-		464B49711F1AB28F00C62491 /* attachment_to_people.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people.gif; sourceTree = "<group>"; };
+		4649DAE01F353D71007FE6AB /* hair2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair2.gif; sourceTree = "<group>"; };
+		4649DAF21F35482E007FE6AB /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
+		4649DAF31F35482E007FE6AB /* petting.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting.gif; sourceTree = "<group>"; };
+		4649DAF41F35482E007FE6AB /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
+		4649DAF51F35482E007FE6AB /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
+		4649DAF61F35482E007FE6AB /* good_with_pets.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets.gif; sourceTree = "<group>"; };
+		4649DAF71F35482E007FE6AB /* good_with_children.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_children.gif; sourceTree = "<group>"; };
+		4649DAF81F35482E007FE6AB /* Fun_Loving.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving.gif; sourceTree = "<group>"; };
+		4649DAF91F35482E007FE6AB /* fitness.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness.gif; sourceTree = "<group>"; };
+		4649DAFA1F35482E007FE6AB /* attachment_to_people.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people.gif; sourceTree = "<group>"; };
+		464B49731F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoDescriptionViewController.swift; sourceTree = "<group>"; };
+		464B49751F1BCECA00C62491 /* BreedInfoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoGalleryViewController.swift; sourceTree = "<group>"; };
+		464B49771F1BCEF100C62491 /* BreedInfoStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoStatsViewController.swift; sourceTree = "<group>"; };
+		464B49791F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoAdoptViewController.swift; sourceTree = "<group>"; };
+		464B497B1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		464B497D1F1BF1C900C62491 /* BreedinfoSectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedinfoSectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		464E39D31E33A42B005577ED /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		467738D11E61D53D009CCD4A /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
 		467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIZoomAnimation.swift; sourceTree = "<group>"; };
 		467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipAnimation.swift; sourceTree = "<group>"; };
 		467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionImageView.swift; sourceTree = "<group>"; };
 		467E10711EDF93DA00F7E1A8 /* DevonRex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevonRex.png; sourceTree = "<group>"; };
+		4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionEntryViewController.swift; sourceTree = "<group>"; };
+		468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicksSlider.swift; sourceTree = "<group>"; };
+		468A5FFC1F1C59A1003E1F63 /* TSThumbLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSThumbLayer.swift; sourceTree = "<group>"; };
+		468A5FFD1F1C59A1003E1F63 /* TSTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSTrackLayer.swift; sourceTree = "<group>"; };
 		468D732C1F005DE00090AB43 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IntroViewController.swift; path = ../IntroViewController.swift; sourceTree = "<group>"; };
 		4692C58E1E74B0D200B83494 /* OnboardingVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingVideoViewController.swift; sourceTree = "<group>"; };
 		4692C5921E7601F800B83494 /* FLAnimatedImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FLAnimatedImageView+WebCache.h"; sourceTree = "<group>"; };
@@ -245,10 +260,9 @@
 		4692C5DA1E78EC7F00B83494 /* CharacterFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterFlowLayout.swift; sourceTree = "<group>"; };
 		4692C5DC1E78ECB500B83494 /* PictureMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PictureMasterViewController.swift; sourceTree = "<group>"; };
 		4692C5DE1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatPictureCollectionViewCell.swift; sourceTree = "<group>"; };
+		46A334191F21576200382B61 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
 		46AECC441F06F2D600793464 /* BreedInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreedInfoViewController.swift; path = ../BreedInfoViewController.swift; sourceTree = "<group>"; };
 		46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoTableViewCell.swift; sourceTree = "<group>"; };
-		46BE84B91E6B7B2C00A0B97E /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
-		46BE84BB1E6B7E1C00A0B97E /* hair_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair_old.gif; sourceTree = "<group>"; };
 		46C326C41E91D17B003905CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
@@ -266,6 +280,7 @@
 		46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		46E7EC2E1E50DC380041666F /* Transistion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transistion.swift; sourceTree = "<group>"; };
 		46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewTabController.swift; sourceTree = "<group>"; };
+		46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyManagePageViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
@@ -300,18 +315,9 @@
 		C5511C371B6EB3F400BE8610 /* FLAnimatedImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImage.m; sourceTree = "<group>"; };
 		C5511C381B6EB3F400BE8610 /* FLAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLAnimatedImageView.h; sourceTree = "<group>"; };
 		C5511C391B6EB3F400BE8610 /* FLAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLAnimatedImageView.m; sourceTree = "<group>"; };
-		C5511C3C1B6EB73A00BE8610 /* attachment_to_people_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people_old.gif; sourceTree = "<group>"; };
 		C5511C3D1B6EB73A00BE8610 /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
-		C5511C3E1B6EB73A00BE8610 /* energy_level_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level_old.gif; sourceTree = "<group>"; };
-		C5511C3F1B6EB73A00BE8610 /* fitness_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness_old.gif; sourceTree = "<group>"; };
-		C5511C401B6EB73A00BE8610 /* Fun_Loving_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving_old.gif; sourceTree = "<group>"; };
-		C5511C411B6EB73A00BE8610 /* good_with_pets_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets_old.gif; sourceTree = "<group>"; };
-		C5511C421B6EB73A00BE8610 /* good_with_children.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_children.gif; sourceTree = "<group>"; };
-		C5511C431B6EB73A00BE8610 /* grooming2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming2.gif; sourceTree = "<group>"; };
-		C5511C441B6EB73A00BE8610 /* petting_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = petting_old.gif; sourceTree = "<group>"; };
 		C5511C451B6EB73A00BE8610 /* talkative.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative.gif; sourceTree = "<group>"; };
 		C5511C461B6EB73A00BE8610 /* Thinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Thinking.gif; sourceTree = "<group>"; };
-		C5511C471B6EB73A00BE8610 /* TLC.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TLC.gif; sourceTree = "<group>"; };
 		C55FC7041D6A9FA000F328F3 /* SavedList2TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedList2TableCell.swift; sourceTree = "<group>"; };
 		C56DA7361D78F9DB00524E53 /* FelineFinderBasePets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FelineFinderBasePets.swift; sourceTree = "<group>"; };
 		C56DA7381D79046500524E53 /* FelineFinderBaseSheltersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FelineFinderBaseSheltersAPI.swift; sourceTree = "<group>"; };
@@ -406,6 +412,16 @@
 				46E7EC2E1E50DC380041666F /* Transistion.swift */,
 			);
 			name = "Transition Animations";
+			sourceTree = "<group>";
+		};
+		468A5FFA1F1C5987003E1F63 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */,
+				468A5FFC1F1C59A1003E1F63 /* TSThumbLayer.swift */,
+				468A5FFD1F1C59A1003E1F63 /* TSTrackLayer.swift */,
+			);
+			name = Slider;
 			sourceTree = "<group>";
 		};
 		4692C5901E7601F800B83494 /* SDWebImage */ = {
@@ -539,31 +555,23 @@
 		C5511C251B6EAB4400BE8610 /* QuestionGIFs */ = {
 			isa = PBXGroup;
 			children = (
-				464304C01F187C8C00840573 /* energy_level.gif */,
-				464304C21F187CB900840573 /* grooming.gif */,
+				4649DAF21F35482E007FE6AB /* smartcat.gif */,
+				4649DAF31F35482E007FE6AB /* petting.gif */,
+				4649DAF41F35482E007FE6AB /* hair.gif */,
+				4649DAF51F35482E007FE6AB /* grooming.gif */,
+				4649DAF61F35482E007FE6AB /* good_with_pets.gif */,
+				4649DAF71F35482E007FE6AB /* good_with_children.gif */,
+				4649DAF81F35482E007FE6AB /* Fun_Loving.gif */,
+				4649DAF91F35482E007FE6AB /* fitness.gif */,
+				4649DAFA1F35482E007FE6AB /* attachment_to_people.gif */,
+				4649DAE01F353D71007FE6AB /* hair2.gif */,
+				46A334191F21576200382B61 /* energy_level.gif */,
 				46DC9B451F04AB3400B1739A /* catpaws.png */,
-				464B49711F1AB28F00C62491 /* attachment_to_people.gif */,
-				C5511C3C1B6EB73A00BE8610 /* attachment_to_people_old.gif */,
 				C56F90BA1B765E2300EEEBFA /* welcome_cat.gif */,
-				464304C41F187CED00840573 /* good_with_pets.gif */,
 				46DBA8721EF09CFF00ADBE66 /* catpaws2.png */,
 				C5511C3D1B6EB73A00BE8610 /* autonomy.gif */,
-				C5511C3E1B6EB73A00BE8610 /* energy_level_old.gif */,
-				C5511C3F1B6EB73A00BE8610 /* fitness_old.gif */,
-				464304CA1F1A94D900840573 /* fitness.gif */,
-				464304C61F1A941500840573 /* Fun_Loving.gif */,
-				C5511C401B6EB73A00BE8610 /* Fun_Loving_old.gif */,
-				C5511C411B6EB73A00BE8610 /* good_with_pets_old.gif */,
-				C5511C421B6EB73A00BE8610 /* good_with_children.gif */,
-				46BE84BB1E6B7E1C00A0B97E /* hair_old.gif */,
-				464304CC1F1A952E00840573 /* hair.gif */,
-				C5511C431B6EB73A00BE8610 /* grooming2.gif */,
-				C5511C441B6EB73A00BE8610 /* petting_old.gif */,
-				464304C81F1A949A00840573 /* petting.gif */,
-				46BE84B91E6B7B2C00A0B97E /* smartcat.gif */,
 				C5511C451B6EB73A00BE8610 /* talkative.gif */,
 				C5511C461B6EB73A00BE8610 /* Thinking.gif */,
-				C5511C471B6EB73A00BE8610 /* TLC.gif */,
 			);
 			name = QuestionGIFs;
 			sourceTree = "<group>";
@@ -647,6 +655,7 @@
 				468D732C1F005DE00090AB43 /* IntroViewController.swift */,
 				461B2A791F0359280093EA85 /* CatDetailViewController.swift */,
 				467E10711EDF93DA00F7E1A8 /* DevonRex.png */,
+				468A5FFA1F1C5987003E1F63 /* Slider */,
 				4692C5D91E78EC6E00B83494 /* PictureViewer */,
 				4692C5901E7601F800B83494 /* SDWebImage */,
 				467C97961E3EA85B007C7A08 /* Transition Animations */,
@@ -696,6 +705,7 @@
 				46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */,
 				C5933B1A1D6C012A00CFD62E /* Globals.swift */,
 				C5471BC41D67EAAE00F9A459 /* ManagePageViewController.swift */,
+				46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */,
 				C5411D5C1D61858000FFB128 /* InstructionsViewController.swift */,
 				C56F90D91B77966600EEEBFA /* ReselectableSegmentedControl.swift */,
 				C55FC7041D6A9FA000F328F3 /* SavedList2TableCell.swift */,
@@ -719,6 +729,13 @@
 				C5A35E741B3F1469008708E7 /* VCMapView.swift */,
 				C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */,
 				C5FB6E9E1B2132EC007FFA36 /* Supporting Files */,
+				464B49731F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift */,
+				464B49751F1BCECA00C62491 /* BreedInfoGalleryViewController.swift */,
+				464B49771F1BCEF100C62491 /* BreedInfoStatsViewController.swift */,
+				464B49791F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift */,
+				464B497B1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift */,
+				464B497D1F1BF1C900C62491 /* BreedinfoSectionHeaderCollectionReusableView.swift */,
+				4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */,
 			);
 			name = Purrfect4U;
 			path = "Feline Finder";
@@ -873,41 +890,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				464B49721F1AB28F00C62491 /* attachment_to_people.gif in Resources */,
 				464E39D41E33A42B005577ED /* Media.xcassets in Resources */,
-				464304C51F187CED00840573 /* good_with_pets.gif in Resources */,
-				464304C31F187CB900840573 /* grooming.gif in Resources */,
+				4649DAFF1F35482E007FE6AB /* good_with_pets.gif in Resources */,
 				C5471BB41D67B01400F9A459 /* main_bg.jpg in Resources */,
-				C5511C501B6EB73A00BE8610 /* petting_old.gif in Resources */,
+				4649DAFC1F35482E007FE6AB /* petting.gif in Resources */,
 				C5511C521B6EB73A00BE8610 /* Thinking.gif in Resources */,
 				C5471BC31D67B07D00F9A459 /* Default-568h@2x.png in Resources */,
-				C5511C4F1B6EB73A00BE8610 /* grooming2.gif in Resources */,
 				462AAB7B1E03856E00F70BD7 /* TwinkleImage.png in Resources */,
-				C5511C4E1B6EB73A00BE8610 /* good_with_children.gif in Resources */,
-				464304C91F1A949A00840573 /* petting.gif in Resources */,
-				464304C71F1A941500840573 /* Fun_Loving.gif in Resources */,
+				4649DAFE1F35482E007FE6AB /* grooming.gif in Resources */,
+				4649DB031F35482E007FE6AB /* attachment_to_people.gif in Resources */,
+				46A3341A1F21576200382B61 /* energy_level.gif in Resources */,
+				4649DB021F35482E007FE6AB /* fitness.gif in Resources */,
+				4649DAFD1F35482E007FE6AB /* hair.gif in Resources */,
 				46DC9B461F04AB3400B1739A /* catpaws.png in Resources */,
 				46DBA8731EF09CFF00ADBE66 /* catpaws2.png in Resources */,
-				464304CD1F1A952E00840573 /* hair.gif in Resources */,
 				C5FB6EA81B2132EC007FFA36 /* Main.storyboard in Resources */,
-				46BE84BC1E6B7E1C00A0B97E /* hair_old.gif in Resources */,
-				464304CB1F1A94D900840573 /* fitness.gif in Resources */,
 				C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */,
-				C5511C4D1B6EB73A00BE8610 /* good_with_pets_old.gif in Resources */,
-				C5511C4A1B6EB73A00BE8610 /* energy_level_old.gif in Resources */,
-				46BE84BA1E6B7B2C00A0B97E /* smartcat.gif in Resources */,
 				C5511C491B6EB73A00BE8610 /* autonomy.gif in Resources */,
-				464304C11F187C8C00840573 /* energy_level.gif in Resources */,
+				4649DAEA1F353D71007FE6AB /* hair2.gif in Resources */,
 				4692C5D71E764D7F00B83494 /* WKYTPlayerView.bundle in Resources */,
 				C5511C511B6EB73A00BE8610 /* talkative.gif in Resources */,
-				C5511C531B6EB73A00BE8610 /* TLC.gif in Resources */,
-				C5511C481B6EB73A00BE8610 /* attachment_to_people_old.gif in Resources */,
 				C5471BC11D67B07D00F9A459 /* Default.png in Resources */,
 				C56F90BB1B765E2300EEEBFA /* welcome_cat.gif in Resources */,
-				C5511C4C1B6EB73A00BE8610 /* Fun_Loving_old.gif in Resources */,
-				C5511C4B1B6EB73A00BE8610 /* fitness_old.gif in Resources */,
 				C5471BC21D67B07D00F9A459 /* Default@2x.png in Resources */,
 				467E10721EDF93DA00F7E1A8 /* DevonRex.png in Resources */,
+				4649DB001F35482E007FE6AB /* good_with_children.gif in Resources */,
+				4649DB011F35482E007FE6AB /* Fun_Loving.gif in Resources */,
+				4649DAFB1F35482E007FE6AB /* smartcat.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,7 +965,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -966,7 +975,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				464B49761F1BCECA00C62491 /* BreedInfoGalleryViewController.swift in Sources */,
 				467738D21E61D53D009CCD4A /* KYCircularProgress.swift in Sources */,
+				464B49781F1BCEF100C62491 /* BreedInfoStatsViewController.swift in Sources */,
 				C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */,
 				C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */,
 				46241D4A1E07046400997D4C /* CollectionViewCell.swift in Sources */,
@@ -974,6 +985,7 @@
 				C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */,
 				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
 				4692C5BF1E7601F800B83494 /* SDImageCache.m in Sources */,
+				464B49741F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift in Sources */,
 				46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */,
 				46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */,
 				46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */,
@@ -982,6 +994,7 @@
 				46AECC451F06F2D600793464 /* BreedInfoViewController.swift in Sources */,
 				C56DA73D1D790B0F00524E53 /* RescueSheltersAPI.swift in Sources */,
 				C5FB6EA51B2132EC007FFA36 /* DetailViewController.swift in Sources */,
+				464B497E1F1BF1C900C62491 /* BreedinfoSectionHeaderCollectionReusableView.swift in Sources */,
 				C58D212B1B496DCE008E1B0B /* CMMapLauncher.m in Sources */,
 				4692C5CE1E7601F800B83494 /* UIView+WebCacheOperation.m in Sources */,
 				C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */,
@@ -1017,6 +1030,7 @@
 				C583672B1D68315A001AFDD3 /* CoolButton.m in Sources */,
 				C58B45AA1B2DE4D000E03538 /* BreedStats.swift in Sources */,
 				4692C5C61E7601F800B83494 /* SDWebImagePrefetcher.m in Sources */,
+				468A5FFE1F1C59A1003E1F63 /* TicksSlider.swift in Sources */,
 				C58D21251B4902E6008E1B0B /* PetFinderViewDetailController.swift in Sources */,
 				4692C5BB1E7601F800B83494 /* FLAnimatedImageView+WebCache.m in Sources */,
 				C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */,
@@ -1054,14 +1068,17 @@
 				C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */,
 				4692C5C11E7601F800B83494 /* SDWebImageCompat.m in Sources */,
 				4692C5C71E7601F800B83494 /* UIButton+WebCache.m in Sources */,
+				4680BC961F257A850042F2CE /* SurveyQuestionEntryViewController.swift in Sources */,
 				C5933B1B1D6C012A00CFD62E /* Globals.swift in Sources */,
 				46241D481E07041300997D4C /* GradientView.swift in Sources */,
 				C53BC8A71B52DE0A0033FA7A /* SavedLists2ViewController.swift in Sources */,
 				C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */,
 				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
 				C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */,
+				468A60001F1C59A1003E1F63 /* TSTrackLayer.swift in Sources */,
 				C58D21211B48B0F8008E1B0B /* PetFinderTableCell.swift in Sources */,
 				467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */,
+				468A5FFF1F1C59A1003E1F63 /* TSThumbLayer.swift in Sources */,
 				C525E3671D896733005123C4 /* FelineFinderDetailViewController.swift in Sources */,
 				4692C5CD1E7601F800B83494 /* UIView+WebCache.m in Sources */,
 				C56F90DA1B77966600EEEBFA /* ReselectableSegmentedControl.swift in Sources */,
@@ -1071,10 +1088,12 @@
 				46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */,
 				C5471BB81D67B01400F9A459 /* CoolTableViewController.m in Sources */,
 				C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */,
+				464B497C1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift in Sources */,
 				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
 				46D537901E34B7230006498B /* CardAnimationView.swift in Sources */,
 				4692C5BD1E7601F800B83494 /* NSData+ImageContentType.m in Sources */,
 				4692C5C41E7601F800B83494 /* SDWebImageDownloaderOperation.m in Sources */,
+				46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */,
 				4620AA451F01E75F009F9DEC /* AdoptableCatsTabViewController.swift in Sources */,
 				4692C5CC1E7601F800B83494 /* UIImageView+WebCache.m in Sources */,
 				C5471BC51D67EAAE00F9A459 /* ManagePageViewController.swift in Sources */,
@@ -1085,6 +1104,7 @@
 				46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */,
 				C5FB6EEF1B213474007FFA36 /* FMDatabaseQueue.m in Sources */,
 				C527B1351B46E7DA00874272 /* string extensions.swift in Sources */,
+				464B497A1F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift in Sources */,
 				46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */,
 				C5411D5D1D61858000FFB128 /* InstructionsViewController.swift in Sources */,
 				C527B1331B46E11100874272 /* PetFinderViewController.swift in Sources */,

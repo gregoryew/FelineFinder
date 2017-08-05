@@ -188,7 +188,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                                 self.loaded = false
                             }
                             else {
-                                let popup: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
+                                let _: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
                                 //popup.present(from: self.ShareButton, permittedArrowDirections: .up, animated: true)
                                 //popup.presentfrom: inPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
                                 self.loaded = false

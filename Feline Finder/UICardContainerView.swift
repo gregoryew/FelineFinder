@@ -139,7 +139,7 @@ open class UICardContainerView: UIView {
         
         var flipDownTransform3D = CATransform3DIdentity
         flipDownTransform3D.m34 = -1.0 / 2000.0
-        flipDownTransform3D = CATransform3DRotate(flipDownTransform3D, CGFloat(-M_PI), 1, 0, 0)
+        flipDownTransform3D = CATransform3DRotate(flipDownTransform3D, CGFloat(-Double.pi), 1, 0, 0)
         
         let duration: TimeInterval = 0.5
         //The animation of  borderWidth change in keyFrame animation can't work, so place it in dispatch_after
@@ -176,7 +176,7 @@ open class UICardContainerView: UIView {
         if isNewCard{
             var flipDownTransform3D = CATransform3DIdentity
             flipDownTransform3D.m34 = -1.0 / 2000.0
-            flipDownTransform3D = CATransform3DRotate(flipDownTransform3D, CGFloat(-M_PI), 1, 0, 0)
+            flipDownTransform3D = CATransform3DRotate(flipDownTransform3D, CGFloat(-Double.pi), 1, 0, 0)
             previousHeadCard?.layer.transform = flipDownTransform3D
             previousHeadCard?.hiddenContent()
         }
@@ -360,7 +360,7 @@ open class UICardContainerView: UIView {
         
         var flipDownTransform3D = CATransform3DIdentity
         flipDownTransform3D.m34 = -1.0 / 2000.0
-        flipDownTransform3D = CATransform3DRotate(flipDownTransform3D, CGFloat(-M_PI), 1, 0, 0)
+        flipDownTransform3D = CATransform3DRotate(flipDownTransform3D, CGFloat(-Double.pi), 1, 0, 0)
         cardView.layer.transform = flipDownTransform3D
     }
     
@@ -489,7 +489,7 @@ open class UICardContainerView: UIView {
                 let headCard = visibleCardQueue.first
                 switch percent{
                 case 0.0..<1.0:
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI) * percent, 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi) * percent, 1, 0, 0)
                     headCard?.layer.transform = flipTransform3D
                     if percent >= 0.5{
                         headCard?.hiddenContent()
@@ -501,14 +501,14 @@ open class UICardContainerView: UIView {
                         }
                     }
                 case 1.0...CGFloat(MAXFLOAT):
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI), 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi), 1, 0, 0)
                     headCard?.layer.transform = flipTransform3D
                 default: break
                 }
             }else{
                 switch percent{
                 case -1.0...0:
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI) * (percent + 1.0), 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi) * (percent + 1.0), 1, 0, 0)
                     previousHeadCard?.layer.transform = flipTransform3D
                     if percent <= -0.5{
                         previousHeadCard?.restoreContent()
@@ -534,7 +534,7 @@ open class UICardContainerView: UIView {
             if isInitiallyDown{
                 let headCard = visibleCardQueue.first
                 if percent >= 0.5{
-                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(M_PI), 1, 0, 0)
+                    flipTransform3D = CATransform3DRotate(flipTransform3D, CGFloat(Double.pi), 1, 0, 0)
                     UIView.animate(withDuration: 0.2, animations: {
                         headCard?.layer.transform = flipTransform3D
                         headCard?.alpha = 0
@@ -567,7 +567,7 @@ open class UICardContainerView: UIView {
                 }else{
                     backupCardQueue.append(previousHeadCard!)
                     UIView.animate(withDuration: 0.2, animations: {
-                        self.previousHeadCard?.layer.transform = CATransform3DRotate(flipTransform3D, CGFloat(-M_PI), 1, 0, 0)
+                        self.previousHeadCard?.layer.transform = CATransform3DRotate(flipTransform3D, CGFloat(-Double.pi), 1, 0, 0)
                         self.previousHeadCard?.alpha = 0
                         //self.previousHeadCard?.setImage(nil)
                     })

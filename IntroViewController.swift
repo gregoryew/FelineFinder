@@ -11,7 +11,7 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class IntroViewController: UIViewController, ModalTransitionDelegate, NavgationTransitionable {
+class IntroViewController: UIViewController, ModalTransitionDelegate {
     @IBOutlet weak var IntroVideoImg: UIImageView!
     @IBOutlet weak var IntroVideoLabel: UILabel!
     
@@ -22,11 +22,13 @@ class IntroViewController: UIViewController, ModalTransitionDelegate, NavgationT
     @IBOutlet weak var SearchAdoptableBreedsImg: UIImageView!
     @IBOutlet weak var SearchAdoptableBreedsLabel: UILabel!
 
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        globalBreed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        
         // Do any additional setup after loading the view, typically from a nib.
         let introViewImgtap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.introVideoTapped))
         IntroVideoImg.addGestureRecognizer(introViewImgtap)
@@ -51,34 +53,45 @@ class IntroViewController: UIViewController, ModalTransitionDelegate, NavgationT
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.setToolbarHidden(true, animated:false)
+        //self.navigationController?.setNavigationBarHidden(true, animated: false)
+        //self.navigationController?.setToolbarHidden(true, animated:false)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        //self.navigationController?.setNavigationBarHidden(false, animated: false)
         //self.navigationController?.setToolbarHidden(true, animated:false)
     }
     
     func introVideoTapped() {
-        //Utilities.displayAlert("IntroVideoTapped", errorMessage: "IntroVideoTapped")
-        let onboardingVideo = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
-        self.navigationController?.tr_pushViewController(onboardingVideo, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
+        
+        details.selectedIndex = 5
+        
+        tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
+            print("Present finished.")
+        })
+
     }
     
     func breedSuggestionTapped() {
-        //Utilities.displayAlert("Breed Suggestion", errorMessage: "Breed Suggestion")
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
         
-        let survey = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
-        self.navigationController?.tr_pushViewController(survey, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        details.selectedIndex = 3
+        
+        tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
+            print("Present finished.")
+        })
+    
     }
     
     func lookAtACatBreedForAdoptionTapped() {
-        //Utilities.displayAlert("lookAtACatBreedForAdoption", errorMessage: "lookAtACatBreedForAdoption")
         
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
-        globalBreed = breed
-        navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.page, completion: {})
+        
+        details.selectedIndex = 1
+        
+        tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
+            print("Present finished.")
+        })
     }
 }

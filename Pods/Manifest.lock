@@ -3,11 +3,13 @@ PODS:
   - TransitionAnimation (4.0.0):
     - TransitionTreasury (~> 4.0)
   - TransitionTreasury (4.0.0)
+  - TTSegmentedControl (0.2.1)
   - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
-  - FaveButton (~> 2.0.3)
+  - FaveButton
   - TransitionAnimation (from `https://github.com/gregoryew/TransitionTreasury.git`)
+  - TTSegmentedControl
   - YouTubePlayer
 
 EXTERNAL SOURCES:
@@ -23,8 +25,9 @@ SPEC CHECKSUMS:
   FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
   TransitionAnimation: 4e9acd93e9d5358057899535e5d17b010c5718e7
   TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
+  TTSegmentedControl: 6ba1c0ef7bf966c794361772003f8b27cc812e0a
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
-PODFILE CHECKSUM: 11c2b65ed9e66738af40e5844cc997e2da082916
+PODFILE CHECKSUM: 853e7d2754737a6215fadddd07cd475400bbeea0
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.2.1
