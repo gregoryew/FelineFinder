@@ -63,8 +63,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+            
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        let defaults = UserDefaults.standard
         
+        if defaults.bool(forKey: "hideTitleScreen") == false {
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        } else {
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainTabViewController")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
     }

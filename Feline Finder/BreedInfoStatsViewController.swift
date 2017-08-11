@@ -107,7 +107,7 @@ class BreedInfoStatsViewController: UIViewController {
         breedInfoScrollView.addSubview(currentTick)
         //ticksSlider.addTarget(self, action: #selector(sliderValueDidChanged), for: .valueChanged)
         currentTick.maximumValue = 5
-        currentTick.value = val / 20.0
+        currentTick.value = h / 20.0
         currentTick.statValue = val / 20.0
         
         ticksSliders.append(currentTick)

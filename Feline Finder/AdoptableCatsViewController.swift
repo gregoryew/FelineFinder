@@ -86,7 +86,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
         
         let nc = NotificationCenter.default
@@ -265,7 +265,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             DownloadManager.loadPetList()
             viewPopped = false
         }
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
         let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
         if (firstTime || firstTimeLoadingApp == "YES")  && Utilities.isNetworkAvailable() {

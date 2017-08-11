@@ -164,7 +164,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
 
     @IBAction func adoptCatsTapped(_ sender: Any) {
         let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
         navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }

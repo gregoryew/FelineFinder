@@ -9,7 +9,7 @@
 import UIKit
 import TTSegmentedControl
 
-class SurveyQuestionEntryViewController: UIViewController {
+class SurveyQuestionEntryViewController: SurveyBaseViewController {
 
     @IBOutlet weak var questionGif: FLAnimatedImageView!
     
@@ -18,8 +18,6 @@ class SurveyQuestionEntryViewController: UIViewController {
     @IBOutlet var slider: TicksSlider? = nil
     
     var segmentedControl: TTSegmentedControl? = nil
-    
-    var currentQuestion: Int = 0
     
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -30,22 +28,17 @@ class SurveyQuestionEntryViewController: UIViewController {
     @IBAction func nextQuestion(_ sender: Any) {
         let mpvc = (parent) as! SurveyManagePageViewController
         currentQuestion = currentQuestion + 1
-        if currentQuestion == 10 {
-            questionList.writeAnswers()
-            let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
-            savedLists.whichSegue = "Summary"
-            mpvc.setViewControllers([savedLists], direction: .forward, animated: true, completion: nil)
-        } else {
             let viewController = mpvc.viewQuestionEntry(currentQuestion)
             mpvc.setViewControllers([viewController!], direction: .forward, animated: true, completion: nil)
-        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let frm = CGRect(x: 30, y: self.questionSlider.frame.minY + 10, width: questionLabel.frame.width - 30, height: self.questionSlider.frame.height)
-        slider = TicksSlider(frame: (slider?.frame)!)
+        
+        let screenWidth = UIScreen.main.bounds.width
+        
+        let frm = CGRect(x: (screenWidth - (questionLabel.frame.width - 60)) / 2, y: self.questionSlider.frame.minY + 10, width: questionLabel.frame.width - 60, height: self.questionSlider.frame.height)
+        slider = TicksSlider(frame: frm)
         slider?.minimumValue = 0
         slider!.maximumValue = 5
         slider!.statValue = 0
@@ -62,12 +55,10 @@ class SurveyQuestionEntryViewController: UIViewController {
             questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[i].ChoiceID))
         }
         self.view.addSubview(slider!)
-        //slider?.center.x = self.view.center.x
         
         segmentedControl = TTSegmentedControl()
         segmentedControl?.allowChangeThumbWidth = false
         segmentedControl?.frame = frm
-        //segmentedControl?.center.x = self.view.center.x
         segmentedControl?.didSelectItemWith = { (index, title) -> () in
             print("Selected item \(index)")
             let q = questionList.Questions[self.currentQuestion]

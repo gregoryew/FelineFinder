@@ -13,6 +13,7 @@ import TransitionAnimation
 
 class SurveyManagePageViewController: UIPageViewController, NavgationTransitionable {
     var currentIndex: Int!
+    var chosenBreed: Breed?
     
     weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
@@ -23,7 +24,7 @@ class SurveyManagePageViewController: UIPageViewController, NavgationTransitiona
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = self
+        dataSource = self as UIPageViewControllerDataSource
         
         currentIndex = 0
         
@@ -48,82 +49,73 @@ class SurveyManagePageViewController: UIPageViewController, NavgationTransitiona
                                animated: false,
                                completion: nil)
         }
-        
-        
-        //self.navigationController?.setToolbarHidden(true, animated:true);
     }
     
-    /*
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.setToolbarHidden(true, animated:false);
-    }
- 
-   func GoBackTapped(_ sender: AnyObject) {
-        //_ = navigationController?.tr_popViewController()
-        //_ = navigationController?.tr_popToRootViewController()
-        let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
-        navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: .cat))
-    }
- */
-    
-    func viewQuestionEntry(_ index: Int) -> SurveyQuestionEntryViewController? {
-        if index <= 10 {
+    func viewQuestionEntry(_ index: Int) -> UIViewController? {
+        if index <= 9 {
             if
             let storyboard = storyboard,
             let page = storyboard.instantiateViewController(withIdentifier: "SurveyQuestionEntryViewController") as? SurveyQuestionEntryViewController {
-            page.currentQuestion = index
+                if index >= 0 {
+                    page.currentQuestion = index
+                } else {
+                    page.currentQuestion = 0
+                }
             return page
-        }
+            }
+        } else if index == 10 {
+            questionList.writeAnswers()
+            let page = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurveySummary") as! SurveySummaryViewController
+            page.currentQuestion = index
+            page.whichSegue = "Summary"
+            return page
+        } else {
+            let page = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurveyMatches") as! SurveyMatchesTableViewController
+            page.currentQuestion = index
+            if let b = chosenBreed {
+                page.breed = b
+            }
+            page.whichSeque = "results"
+            return page
         }
         return nil
     }
-    
-    func gotoSummary() {
-        questionList.writeAnswers()
-        let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
-        savedLists.whichSegue = "Summary"
-        navigationController?.tr_pushViewController(savedLists, method: DemoTransition.Slide(direction: DIRECTION.right))
-    }
-    
-    /*
-    @IBAction func SummaryTapped(_ sender: AnyObject) {
-        gotoSummary()
-    }
-    */
 }
+
+var currentIndex2 = 0
 
 //MARK: implementation of UIPageViewControllerDataSource
 extension SurveyManagePageViewController: UIPageViewControllerDataSource {
     // 1
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if let viewController = viewController as? SurveyQuestionEntryViewController {
-            var index = viewController.currentQuestion
-            guard index != NSNotFound && index != 0 else { return nil }
-            index = index - 1
-            return viewQuestionEntry(index)
+        guard let vc = viewController as? SurveyBaseViewController
+            else {
+                return nil
         }
-        return nil
+        let cq = vc.currentQuestion
+        if cq <= 0 {
+            return nil
+        } else {
+            return viewQuestionEntry(cq - 1)
+        }
     }
     
     // 2
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        if let viewController = viewController as? SurveyQuestionEntryViewController {
-            var index = viewController.currentQuestion
-            if viewController.currentQuestion == questionList.count - 1 {
-                questionList.writeAnswers()
-                let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
-                savedLists.whichSegue = "Summary"
-                return savedLists
-            }
-            guard index != NSNotFound else { return nil }
-            index = index + 1
-            guard index != questionList.count + 1 else {return nil}
-            return viewQuestionEntry(index)
+        guard let vc = viewController as? SurveyBaseViewController
+            else {
+                return nil
         }
-        return nil
+        
+        let cq = vc.currentQuestion
+        if cq > questionList.count {
+            return nil
+        } else {
+            return viewQuestionEntry(cq + 1)
+        }
     }
     
     // MARK: UIPageControl

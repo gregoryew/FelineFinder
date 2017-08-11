@@ -68,8 +68,11 @@ class RescueGroupShelterList: ShelterList {
                             }
                         }
                         
-                        completion(cachedShelter!)
-                        
+                        if let cs = cachedShelter {
+                            completion(cs)
+                        } else {
+                            completion(shelter(i: "ERROR", n: "", a1: "", a2: "", c: "", s: "", z: "", lat: 0.0, lng: 0.0, c2: "", p: "", f: "", e: ""))
+                        }
                     } catch let error as NSError {
                         // error handling
                         print(error.localizedDescription)

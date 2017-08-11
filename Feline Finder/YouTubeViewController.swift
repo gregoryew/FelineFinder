@@ -58,7 +58,7 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
     }
     
     func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
-        if state == .ended {
+        if state == .ended || state == .paused {
             videoPlayer?.stopVideo()
             modalDelegate?.modalViewControllerDismiss(callbackData: nil)
         }

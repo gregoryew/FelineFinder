@@ -16,7 +16,7 @@ class MainTabBarControllerViewController: UITabBarController, NavgationTransitio
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
     }
     

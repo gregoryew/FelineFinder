@@ -13,9 +13,9 @@ import TransitionAnimation
 class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ModalTransitionDelegate {
     
     var breeds: Dictionary<String, [Breed]> = [:]
-    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"");
+    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"", playListID: "");
     var whichSeque: String = ""
-    var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "")
+    var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "", playListID: "")
     var titles:[String] = []
     
     @IBOutlet weak var TableView: UITableView!
@@ -177,6 +177,7 @@ class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewWillDisappear(animated)
     }
     
+    /*
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.lightColor = UIColor.blue
@@ -184,6 +185,7 @@ class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableVie
         header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
         return header
     }
+    */
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30

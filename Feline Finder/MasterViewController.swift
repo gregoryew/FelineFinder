@@ -13,9 +13,9 @@ import TransitionAnimation
 class MasterViewController: UITableViewController, NavgationTransitionable {
 
     var breeds: Dictionary<String, [Breed]> = [:]
-    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"");
+    var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"", playListID: "");
     var whichSeque: String = ""
-    var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "")
+    var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "", playListID: "")
     var titles:[String] = []
     
     @IBOutlet weak var leftBarItem: UIBarButtonItem!

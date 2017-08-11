@@ -584,7 +584,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                     wkUController.addUserScript(userScript)
                     let wkWebConfig = WKWebViewConfiguration()
                     wkWebConfig.userContentController = wkUController
-                    self.webView = WKWebView(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.size.height)!, width: self.view.frame.width, height: self.view.frame.height - (self.navigationController?.navigationBar.frame.size.height)!), configuration: wkWebConfig)
+                    self.webView = WKWebView(frame: CGRect(x: 0, y: (self.view.frame.size.height), width: self.view.frame.width, height: self.view.frame.height - (self.view.frame.size.height)), configuration: wkWebConfig)
                     self.webView.tag = -1112
                     self.webView!.isOpaque = false
                     self.webView!.backgroundColor = UIColor.clear

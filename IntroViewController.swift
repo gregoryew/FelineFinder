@@ -24,10 +24,25 @@ class IntroViewController: UIViewController, ModalTransitionDelegate {
 
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     
+    @IBOutlet weak var ScreenOnOffLabel: UILabel!
+    
+    @IBOutlet weak var ScreenOnOffSwitch: UISwitch!
+    
+    @IBAction func ScreenOnOffSwitch(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        if ScreenOnOffSwitch.isOn {
+            ScreenOnOffLabel.text = "Screen On"
+                    } else {
+            ScreenOnOffLabel.text = "Screen Off"
+        }
+        defaults.set(!ScreenOnOffSwitch.isOn, forKey: "hideTitleScreen")
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        globalBreed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "");
+        globalBreed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         
         // Do any additional setup after loading the view, typically from a nib.
         let introViewImgtap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.introVideoTapped))

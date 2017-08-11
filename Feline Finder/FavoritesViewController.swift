@@ -112,7 +112,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         
         cell.accessoryType = .disclosureIndicator
         
-        cell.lastCell = indexPath.row == Favorites.countBreedsInSection(indexPath.section) - 1
+        //cell.lastCell = indexPath.row == Favorites.countBreedsInSection(indexPath.section) - 1
         
         let imgURL = URL(string: favorite.imageName)
         
