@@ -70,8 +70,6 @@ class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableVie
                 })
             }
             self.title = "Breeds"
-            //self.leftBarItem.image = nil
-            //self.leftBarItem.title = "Menu"
         }
         
     }
@@ -176,16 +174,6 @@ class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableVie
     {
         super.viewWillDisappear(animated)
     }
-    
-    /*
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = CustomHeader()
-        header.lightColor = UIColor.blue
-        header.darkColor = UIColor.darkGray
-        header.titleLabel.text = self.tableView(tableView, titleForHeaderInSection: section)
-        return header
-    }
-    */
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30

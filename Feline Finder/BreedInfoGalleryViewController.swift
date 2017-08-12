@@ -16,10 +16,12 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
     @IBOutlet var photoGalleryCollectionView: UICollectionView!
 
     @IBOutlet var videosCountLabel: UILabel!
+    @IBOutlet var picturesCountLabel: UILabel!
     
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     var youTubeVideos: [YouTubeVideo] = []
+    var pictures: [breedPicture] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,6 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10
         youTubeVideosList!.collectionViewLayout = layout
-        
         if globalBreed?.YouTubeVideos.count == 0 {
         
             YouTubeAPI().getYouTubeVideos(playList: (globalBreed?.YouTubePlayListID)!, completion: {(ytl, error) -> Void in
@@ -45,6 +46,27 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
             })
         } else {
             youTubeVideos = (globalBreed?.YouTubeVideos)!
+        }
+        
+        
+        let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        //let width = UIScreen.main.bounds.width
+        layout2.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        layout2.itemSize = CGSize(width: 100, height: 95)
+        layout2.minimumInteritemSpacing = 0
+        layout2.minimumLineSpacing = 10
+        photoGalleryCollectionView!.collectionViewLayout = layout2
+        if globalBreed?.Picture.count == 0 {
+            BreedInfoGalleryPhotoAPI().loadPhotos(bn: globalBreed!, completion: { (pics) in
+            self.pictures = pics
+            globalBreed?.Picture = pics
+            DispatchQueue.main.async { [unowned self] in
+                self.photoGalleryCollectionView?.reloadData()
+            }
+            })
+        } else {
+            self.pictures = (globalBreed?.Picture)!
         }
     }
 
@@ -66,7 +88,8 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
             videosCountLabel.text = "Video (\(youTubeVideos.count) Videos)"
             return youTubeVideos.count
         } else {
-            return 0
+            picturesCountLabel.text = "Photo (\(pictures.count) Photos)"
+            return self.pictures.count
         }
     }
     
@@ -79,8 +102,12 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
         
             return cell
         } else {
-            let cell = youTubeVideosList.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! BreedInfoGalleryPhotoCollectionViewCell2
-            return cell
+            let cell2 = photoGalleryCollectionView.dequeueReusableCell(withReuseIdentifier: "Cell2", for: indexPath) as! BreedInfoGalleryPhotoCollectionViewCell2
+
+            let imgURL = URL(string: pictures[indexPath.row].PictureURL)
+            cell2.Photo.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+
+            return cell2
         }
     }
     
@@ -101,7 +128,17 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
                 print("Present finished.")
             })
         } else {
-            
+            if pictures.count == 0 {
+                return
+            }
+            let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
+            FelineDetail.petID = pictures[indexPath.row].PetID
+            FelineDetail.petName = pictures[indexPath.row].Name
+            FelineDetail.breedName = globalBreed!.BreedName
+            FelineDetail.modalDelegate = self // Don't forget to set modalDelegate
+            tr_presentViewController(FelineDetail, method: DemoPresent.CIZoom(transImage: .cat), completion: {
+                print("Present finished.")
+            })
         }
     }
 }

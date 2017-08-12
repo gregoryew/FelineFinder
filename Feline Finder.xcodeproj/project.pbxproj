@@ -52,6 +52,7 @@
 		467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */; };
 		467E10721EDF93DA00F7E1A8 /* DevonRex.png in Resources */ = {isa = PBXBuildFile; fileRef = 467E10711EDF93DA00F7E1A8 /* DevonRex.png */; };
 		4680BC961F257A850042F2CE /* SurveyQuestionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */; };
+		4687B1B81F3F3B4C00B2C970 /* UserLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4687B1B71F3F3B4C00B2C970 /* UserLocationManager.swift */; };
 		468A5FFE1F1C59A1003E1F63 /* TicksSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */; };
 		468A5FFF1F1C59A1003E1F63 /* TSThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFC1F1C59A1003E1F63 /* TSThumbLayer.swift */; };
 		468A60001F1C59A1003E1F63 /* TSTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFD1F1C59A1003E1F63 /* TSTrackLayer.swift */; };
@@ -231,6 +232,7 @@
 		467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionImageView.swift; sourceTree = "<group>"; };
 		467E10711EDF93DA00F7E1A8 /* DevonRex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevonRex.png; sourceTree = "<group>"; };
 		4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionEntryViewController.swift; sourceTree = "<group>"; };
+		4687B1B71F3F3B4C00B2C970 /* UserLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserLocationManager.swift; sourceTree = "<group>"; };
 		468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicksSlider.swift; sourceTree = "<group>"; };
 		468A5FFC1F1C59A1003E1F63 /* TSThumbLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSThumbLayer.swift; sourceTree = "<group>"; };
 		468A5FFD1F1C59A1003E1F63 /* TSTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSTrackLayer.swift; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 				46B6BF361F3A754600A8E5B0 /* SurveyBaseViewController.swift */,
 				467737411F3C7DBF00883F42 /* BreeedInfoGalleryPhotoCollectionViewCell2.swift */,
 				4663A9191F36E70F00742A4B /* SurveyMatchesTableViewCell.swift */,
+				4687B1B71F3F3B4C00B2C970 /* UserLocationManager.swift */,
 				4663A9171F36E65000742A4B /* SurveyMatchesHeaderTableViewCell.swift */,
 				4649DB081F36502B007FE6AB /* SurveySummaryHeaderTableViewCell2.swift */,
 				46AECC441F06F2D600793464 /* BreedInfoViewController.swift */,
@@ -1139,6 +1142,7 @@
 				46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */,
 				C5471BB81D67B01400F9A459 /* CoolTableViewController.m in Sources */,
 				C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */,
+				4687B1B81F3F3B4C00B2C970 /* UserLocationManager.swift in Sources */,
 				464B497C1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift in Sources */,
 				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
 				46D537901E34B7230006498B /* CardAnimationView.swift in Sources */,
