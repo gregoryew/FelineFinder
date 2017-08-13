@@ -9,10 +9,12 @@
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+import SwiftLocation
+import CoreLocation
 
 let handlerDelay2 = 1.5
 
-class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, ModalTransitionDelegate { //, NavgationTransitionable {
+class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ModalTransitionDelegate { //, NavgationTransitionable {
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
@@ -24,13 +26,12 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     
     var pets: RescuePetList?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
-    var locationManager: CLLocationManager? = CLLocationManager()
+    var currentLocation : CLLocation!
+    
     var titles:[String] = []
     var totalRow = 0
     var times = 0
-    //let lm = CLLocationManager()
     var observer : Any!
-    //weak var tr_pushTransition: TRNavgationTransitionDelegate?
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func searchOptions(_ sender: Any) {
@@ -69,24 +70,9 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         
         if (!Favorites.loaded) {Favorites.LoadFavorites()}
         
-        /*
-        collectionView?.delegate = self
-        
-        collectionView?.backgroundColor = lightBackground
-        
-        var width: CGFloat = 0.0
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            width = view.frame.width / 3.0
-            //collectionView!.frame.width / 3.0
-        } else {
-            width = collectionView!.frame.width / 2.0
-        }
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: width, height: width + 30)
-        */
-        
         // Sticky Headers
-        //layout.sectionHeadersPinToVisibleBounds = true
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.sectionHeadersPinToVisibleBounds = true
         
         if #available(iOS 10.0, *) {
             collectionView?.isPrefetchingEnabled = false
@@ -95,69 +81,28 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         }
         
         pets = RescuePetList()
-        
-        navigationItem.title = "\(globalBreed!.BreedName)"
-        locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.requestWhenInUseAuthorization()
-        if zipCode == "" {
-            locationManager?.startUpdatingLocation()
-        } else {
-            setFilterDisplay()
-            self.pets?.loading = true
-            DownloadManager.loadPetList()
-            setupReloadAndScroll()
-        }
     }
     
-    func petsLoaded(notification:Notification) -> Void {
-        print("petLoaded notification")
+    func getZipCode() {
         
-        guard let userInfo = notification.userInfo,
-            let p = userInfo["petList"] as? RescuePetList,
-            let t = userInfo["titles"] as? [String] else {
-                print("No userInfo found in notification")
-                return
-        }
-        
-        pets = p
-        titles = t
-        
-        self.pets?.loading = false
-        
-        DispatchQueue.main.async { [unowned self] in
-            self.collectionView?.reloadData()
-        }
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways || status == .authorizedWhenInUse {
-            zipCode = ""
-            PetFinderBreeds[(globalBreed?.BreedName)!] = nil
-        }
-        if zipCode == "" {
-            determineLocationAuthorization()
-            locationManager?.startUpdatingLocation()
-            if status == .denied || status == .restricted {
+        Location.getLocation(accuracy: .city, frequency: .oneShot, success: { (_, location) in
+            print("A new update of location is available: \(location)")
+            Location.getPlacemark(forLocation: location, success: { placemarks in
+                zipCode = placemarks.first!.postalCode!
+                self.setFilterDisplay()
                 self.pets?.loading = true
                 DownloadManager.loadPetList()
-            }
-        }
-    }
-    
-    func determineLocationAuthorization() {
-        if CLLocationManager.locationServicesEnabled() {
-            switch(CLLocationManager.authorizationStatus()) {
-            case .restricted, .denied:
+                self.setupReloadAndScroll()
+                print("Found \(placemarks.first!.postalCode ?? "")")
+            }) { error in
                 self.askForZipCode()
-            case .authorizedAlways, .authorizedWhenInUse, .notDetermined:
-                zipCode = ""
+                print("Cannot retrive placemark due to an error \(error)")
             }
-        } else {
+        }) { (request, last, error) in
+            request.cancel() // stop continous location monitoring on error
+            print("Location monitoring failed due to an error \(error)")
             self.askForZipCode()
         }
-        setFilterDisplay()
     }
     
     func askForZipCode() {
@@ -180,8 +125,11 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
                     self.collectionView?.reloadData()
                 }
                 DownloadManager.loadPetList()
+                self.setupReloadAndScroll()
             } else {
-                Utilities.displayAlert("Error", errorMessage: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 66952.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.")
+                let alert3 = UIAlertController(title: "Error", message: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 66952.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.", preferredStyle: .alert)
+                alert3.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert3, animated: true, completion: nil)
                 zipCode = "66952"
                 self.pets?.loading = true
                 self.setFilterDisplay()
@@ -189,11 +137,33 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
                     self.collectionView?.reloadData()
                 }
                 DownloadManager.loadPetList()
+                self.setupReloadAndScroll()
             }
         }))
         
         // 4. Present the alert.
         self.present(alert2, animated: true, completion: nil)
+    }
+    
+    func petsLoaded(notification:Notification) -> Void {
+        print("petLoaded notification")
+        
+        guard let userInfo = notification.userInfo,
+            let p = userInfo["petList"] as? RescuePetList,
+            let t = userInfo["titles"] as? [String] else {
+                print("No userInfo found in notification")
+                return
+        }
+        
+        pets = p
+        titles = t
+        
+        self.pets?.loading = false
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.collectionView?.reloadData()
+        }
+        
     }
     
     func setupReloadAndScroll() {
@@ -228,9 +198,21 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if zipCode == "" {
+            getZipCode()
+        } else {
+            setFilterDisplay()
+            self.pets?.loading = true
+            DownloadManager.loadPetList()
+            setupReloadAndScroll()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool)
     {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         setFilterDisplay()
         if viewPopped {
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
@@ -270,47 +252,6 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         setFilterDisplay()
         DownloadManager.loadPetList()
         // Pull any data from the view controller which initiated the unwind segue.
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if (zipCode != "") {
-            return
-        }
-        self.locationManager?.stopUpdatingLocation()
-        self.locationManager?.delegate = nil
-        if let loc = manager.location {
-            CLGeocoder().reverseGeocodeLocation(loc, completionHandler: {[unowned self] (placemarks, error)->Void in
-                if (error != nil) {
-                    Utilities.displayAlert("Alert", errorMessage: "Reverse geocoder failed with error " + error!.localizedDescription)
-                    return
-                }
-                
-                if let pm = placemarks {
-                    if pm.count > 0 {
-                        if let zc = pm[0].postalCode {
-                            zipCode = zc
-                            self.setFilterDisplay()
-                            if (zipCode != "") {
-                                DownloadManager.loadPetList()
-                            }
-                            self.setupReloadAndScroll()
-                        } else {
-                            Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
-                        }
-                    } else {
-                        Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
-                    }
-                } else {
-                    Utilities.displayAlert("Alert", errorMessage: "Problem with the data received from geocoder")
-                }
-            })
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        if zipCode == "" {
-            self.askForZipCode()
-        }
     }
     
     func totalRows(_ p: PetList) -> Int {
@@ -382,46 +323,12 @@ extension AdoptableCatsTabViewController2 {
         
         if self.pets?.loading == false && titles.count == 0 {
             sectionHeaderView.SectionHeaderLabel.text = "Please broaden the search."
-            if sectionHeaderView.ActivityIndicator.isAnimating {
-                sectionHeaderView.ActivityIndicator.stopAnimating()
-                sectionHeaderView.ActivityIndicator.isHidden = true
-                //sectionHeaderView.SectionImage.isHidden = false
-            }
             return sectionHeaderView
         } else if self.pets?.loading == true {
-            if !sectionHeaderView.ActivityIndicator.isAnimating {
-                sectionHeaderView.ActivityIndicator.isHidden = false
-                //sectionHeaderView.SectionImage.isHidden = true
-                sectionHeaderView.ActivityIndicator.startAnimating()
-            }
             sectionHeaderView.SectionHeaderLabel.text = "Please wait while the cats are loading..."
             return sectionHeaderView
         }
         
-        if sectionHeaderView.ActivityIndicator.isAnimating {
-            sectionHeaderView.ActivityIndicator.stopAnimating()
-            sectionHeaderView.ActivityIndicator.isHidden = true
-            //sectionHeaderView.SectionImage.isHidden = false
-        }
-        
-        /*
-        switch titles[indexPath.section] {
-        case "         Within about 5 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_walk")
-        case "       Within about 20 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bike")
-        case "    Within about 50 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bike_faster")
-        case "   Within about 100 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_bus")
-        case "  Within about 200 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_car")
-        case " Over 200 miles": sectionHeaderView.SectionImage.image = UIImage(named: "travel_plane")
-            
-        case "     Updated Today": sectionHeaderView.SectionImage.image = UIImage(named: "time_day")
-        case "    Updated Within A Week": sectionHeaderView.SectionImage.image = UIImage(named: "time_week")
-        case "   Updated Within A Month": sectionHeaderView.SectionImage.image = UIImage(named: "time_month")
-        case "  Updated Within A Year": sectionHeaderView.SectionImage.image = UIImage(named: "time_year")
-        case " Updated Over A Year Ago": sectionHeaderView.SectionImage.image = UIImage(named: "time_over_a_year")
-            
-        default: sectionHeaderView.SectionImage.image = UIImage(named: "")
-        }
-        */
         sectionHeaderView.SectionHeaderLabel.text = titles[indexPath.section]
         
         return sectionHeaderView

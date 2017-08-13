@@ -9,6 +9,8 @@
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+import SwiftLocation
+import CoreLocation
 
 class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ModalTransitionDelegate {
     
@@ -20,56 +22,140 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
     
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
-    var youTubeVideos: [YouTubeVideo] = []
+    var youTubePlayList: YouTubeVideos = []
     var pictures: [breedPicture] = []
+    var observer : Any!
+    
+    typealias YouTubeVideos = [YouTubeVideo]
+    typealias BreedPictures = [breedPicture]
+    
+    deinit {
+        NotificationCenter.default.removeObserver(observer)
+        print("deinit BreedInfoGalleryViewController")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        //let width = UIScreen.main.bounds.width
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        layout.itemSize = CGSize(width: 120, height: youTubeVideosList.bounds.height)
+        layout.itemSize = CGSize(width: 100, height: 95)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 10
-        youTubeVideosList!.collectionViewLayout = layout
-        if globalBreed?.YouTubeVideos.count == 0 {
-        
-            YouTubeAPI().getYouTubeVideos(playList: (globalBreed?.YouTubePlayListID)!, completion: {(ytl, error) -> Void in
-                self.youTubeVideos = ytl
-                globalBreed?.YouTubeVideos = ytl
-            
-                DispatchQueue.main.async { [unowned self] in
-                self.youTubeVideosList?.reloadData()
-                }
-            })
-        } else {
-            youTubeVideos = (globalBreed?.YouTubeVideos)!
-        }
-        
+        self.photoGalleryCollectionView!.collectionViewLayout = layout
         
         let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        //let width = UIScreen.main.bounds.width
+        layout2.scrollDirection = .horizontal
         layout2.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        layout2.itemSize = CGSize(width: 100, height: 95)
+        layout2.itemSize = CGSize(width: 120, height: self.youTubeVideosList.bounds.height)
         layout2.minimumInteritemSpacing = 0
         layout2.minimumLineSpacing = 10
-        photoGalleryCollectionView!.collectionViewLayout = layout2
-        if globalBreed?.Picture.count == 0 {
-            BreedInfoGalleryPhotoAPI().loadPhotos(bn: globalBreed!, completion: { (pics) in
-            self.pictures = pics
-            globalBreed?.Picture = pics
-            DispatchQueue.main.async { [unowned self] in
-                self.photoGalleryCollectionView?.reloadData()
-            }
-            })
-        } else {
-            self.pictures = (globalBreed?.Picture)!
+        self.youTubeVideosList!.collectionViewLayout = layout2
+        
+        let nc = NotificationCenter.default
+        observer = nc.addObserver(forName:youTubePlayListLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.youTubeLoaded(notification: notification)
         }
+
+        observer = nc.addObserver(forName:breedPicturesLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.picturesLoaded(notification: notification)
+        }
+        
+        DownloadManager.loadYouTubePlayList(playListID: (globalBreed?.YouTubePlayListID)!)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if zipCodeGlobal == "" {
+            getZipCode()
+        } else {
+            DownloadManager.loadPetPictures(breed: globalBreed!)
+        }
+    }
+    
+    func youTubeLoaded(notification:Notification) -> Void {
+        print("youTbueLoaded notification")
+        
+        guard let userInfo = notification.userInfo,
+            let youTube = userInfo["playList"] as? YouTubeVideos
+            else {
+                print("No youtubeapi userInfo found in notification")
+                return
+        }
+        
+        self.youTubePlayList = youTube
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.youTubeVideosList?.reloadData()
+        }
+    }
+    
+    func picturesLoaded(notification:Notification) -> Void {
+        print("pictureLoaded notification")
+        
+        guard let userInfo = notification.userInfo,
+            let pics = userInfo["breedPictures"] as? BreedPictures
+            else {
+                print("No BreedPictuers userInfo found in notification")
+                return
+        }
+        
+        self.pictures = pics
+        
+        DispatchQueue.main.async { [unowned self] in
+            self.photoGalleryCollectionView?.reloadData()
+        }
+    }
+    
+    func getZipCode() {
+        Location.getLocation(accuracy: .city, frequency: .oneShot, success: { (_, location) in
+            print("A new update of location is available: \(location)")
+            Location.getPlacemark(forLocation: location, success: { placemarks in
+                zipCode = placemarks.first!.postalCode!
+                zipCodeGlobal = zipCode
+                DownloadManager.loadPetPictures(breed: globalBreed!)
+                print("Found \(placemarks.first!.postalCode ?? "")")
+            }) { error in
+                self.askForZipCode()
+                print("Cannot retrive placemark due to an error \(error)")
+            }
+        }) { (request, last, error) in
+            request.cancel() // stop continous location monitoring on error
+            print("Location monitoring failed due to an error \(error)")
+            self.askForZipCode()
+        }
+    }
+    
+    func askForZipCode() {
+        let alert2 = UIAlertController(title: "Please Enter Zip Code", message: "Please enter a zip code for the area you want to search?", preferredStyle: .alert)
+        
+        //2. Add the text field. You can configure it however you need.
+        alert2.addTextField { (textField) in
+            textField.text = ""
+        }
+        
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            (btn) in
+            let textField = alert2.textFields![0] // Force unwrapping because we know it exists.
+            zipCode = (textField.text)!
+            zipCodeGlobal = zipCode
+            if DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode) {
+                DownloadManager.loadPetPictures(breed: globalBreed!)
+            } else {
+                let alert3 = UIAlertController(title: "Error", message: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 66952.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.", preferredStyle: .alert)
+                alert3.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert3, animated: true, completion: nil)
+                zipCode = "66952"
+                zipCodeGlobal = zipCode
+                DownloadManager.loadPetPictures(breed: globalBreed!)
+            }
+        }))
+        
+        // 4. Present the alert.
+        self.present(alert2, animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -85,8 +171,8 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == youTubeVideosList {
-            videosCountLabel.text = "Video (\(youTubeVideos.count) Videos)"
-            return youTubeVideos.count
+            videosCountLabel.text = "Video (\(youTubePlayList.count) Videos)"
+            return youTubePlayList.count
         } else {
             picturesCountLabel.text = "Photo (\(pictures.count) Photos)"
             return self.pictures.count
@@ -97,7 +183,7 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
         if collectionView == youTubeVideosList {
             let cell = youTubeVideosList.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! YouTubeCollectionViewCell
         
-            let imgURL = URL(string: youTubeVideos[indexPath.row].pictureURL)
+            let imgURL = URL(string: youTubePlayList[indexPath.row].pictureURL)
             cell.YouTubePicture.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
         
             return cell
@@ -115,13 +201,13 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if collectionView == youTubeVideosList {
-            if youTubeVideos.count == 0 {
+            if youTubePlayList.count == 0 {
                 return
             }
     
             let youTube = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "YouTube") as! YouTubeViewController
     
-            youTube.youtubeid = youTubeVideos[indexPath.row].videoID
+            youTube.youtubeid = youTubePlayList[indexPath.row].videoID
     
             youTube.modalDelegate = self
             tr_presentViewController(youTube, method: DemoPresent.CIZoom(transImage: .cat), completion: {

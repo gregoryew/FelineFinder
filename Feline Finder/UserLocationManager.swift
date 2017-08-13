@@ -38,11 +38,14 @@ class UserLocationManager: NSObject, CLLocationManagerDelegate {
     
     func locationManager(manager: CLLocationManager, didUpdateToLocation newLocation: CLLocation, fromLocation oldLocation: CLLocation) {
         currentLocation = newLocation
-        let userInfo : NSDictionary = ["location" : currentLocation!]
+        let userInfo2 : NSDictionary = ["location" : currentLocation!]
         
-        dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            self.delegate.locationDidUpdateToLocation(self.currentLocation!)
-            NSNotificationCenter.defaultCenter().postNotificationName(kLocationDidChangeNotification, object: self, userInfo: userInfo as [NSObject : AnyObject])
+        DispatchQueue.main.async() { () -> Void in
+            self.delegate.locationDidUpdateToLocation(location: self.currentLocation!)
+            
+            NotificationCenter.default.post(name:NSNotification.Name(rawValue: kLocationDidChangeNotification),
+                    object: self,
+                    userInfo: userInfo2 as? [String : Any])
         }
     }
     

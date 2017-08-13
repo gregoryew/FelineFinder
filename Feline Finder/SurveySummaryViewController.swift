@@ -19,6 +19,7 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
     @IBAction func resultsButtonTapped(_ sender: AnyObject) {
         let mpvc = (parent) as! SurveyManagePageViewController
         let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurveyMatches") as! SurveyMatchesTableViewController
+        savedLists.currentQuestion = 11
         mpvc.setViewControllers([savedLists], direction: .forward, animated: true, completion: nil)
         if let b = chosenBreed {
             savedLists.breed = b

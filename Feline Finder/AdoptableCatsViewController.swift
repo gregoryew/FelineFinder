@@ -412,26 +412,10 @@ extension AdoptableCatsViewController {
     
         if self.pets?.loading == false && titles.count == 0 {
             sectionHeaderView.SectionHeaderLabel.text = "Please broaden the search."
-            if sectionHeaderView.ActivityIndicator.isAnimating {
-                sectionHeaderView.ActivityIndicator.stopAnimating()
-                sectionHeaderView.ActivityIndicator.isHidden = true
-                sectionHeaderView.SectionImage.isHidden = false
-            }
             return sectionHeaderView
         } else if self.pets?.loading == true {
-            if !sectionHeaderView.ActivityIndicator.isAnimating {
-                sectionHeaderView.ActivityIndicator.isHidden = false
-                sectionHeaderView.SectionImage.isHidden = true
-                sectionHeaderView.ActivityIndicator.startAnimating()
-            }
             sectionHeaderView.SectionHeaderLabel.text = "Please wait while the cats are loading..."
             return sectionHeaderView
-        }
-        
-        if sectionHeaderView.ActivityIndicator.isAnimating {
-            sectionHeaderView.ActivityIndicator.stopAnimating()
-            sectionHeaderView.ActivityIndicator.isHidden = true
-            sectionHeaderView.SectionImage.isHidden = false
         }
         
         switch titles[indexPath.section] {

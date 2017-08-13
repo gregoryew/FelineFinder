@@ -185,9 +185,8 @@ class TicksSlider: UIControl {
     }
     
     open var didValueChange:((_ value: Int) -> ())?
-    
-    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        //thumbLayer.highlighted = false
+
+    func positionTracker() {
         h = false
         UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 7, initialSpringVelocity: 15, options: [], animations: { () -> Void in
             let roundValue = round(self.value)
@@ -198,6 +197,11 @@ class TicksSlider: UIControl {
             self.sendActions(for: .valueChanged)
             self.didValueChange?(Int(self.value))
         }
+    }
+    
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        //thumbLayer.highlighted = false
+        positionTracker()
     }
     
 }

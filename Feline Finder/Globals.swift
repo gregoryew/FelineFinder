@@ -161,6 +161,7 @@ var videoPlayer: WKYTPlayerView? = WKYTPlayerView()
 var firstTime: Bool = false
 
 
+
 // 1. Declare outside class definition (or in its own file).
 // 2. UIKit must be included in file where this code is added.
 // 3. Extends UIDevice class, thus is available anywhere in app.

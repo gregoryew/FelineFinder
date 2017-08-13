@@ -9,7 +9,7 @@
 import UIKit
 import TTSegmentedControl
 
-class SurveyQuestionEntryViewController: SurveyBaseViewController {
+class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var questionGif: FLAnimatedImageView!
     
@@ -31,6 +31,10 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController {
             let viewController = mpvc.viewQuestionEntry(currentQuestion)
             mpvc.setViewControllers([viewController!], direction: .forward, animated: true, completion: nil)
     }
+    
+    //var startPoint: CGPoint?
+    
+    var panGesture  = UIPanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +76,41 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController {
     
         displayQuestion()
         
+        self.view.isMultipleTouchEnabled = true
+        
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.draggedView(_:)))
+        panGesture.delegate = self as UIGestureRecognizerDelegate
+        view.isUserInteractionEnabled = true
+        view.addGestureRecognizer(panGesture)
+        
         self.becomeFirstResponder()
+    }
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if gestureRecognizer == panGesture {
+            let velocity = panGesture.velocity(in: self.view)
+            print("y < x \(fabs(velocity.y) < fabs(velocity.x))")
+            return fabs(velocity.y) < fabs(velocity.x)
+        } else {
+            print("true")
+            return true
+        }
+    }
+    
+    func draggedView(_ sender:UIPanGestureRecognizer){
+        //let translation = sender.translation(in: self.view)
+        if sender.state == .ended {
+            slider?.positionTracker()
+        } else {
+            let x = sender.location(in: self.slider).x
+            let value = Double(x / ((slider?.frame.width)!)) * 5
+            if (value >= 0) && (value <= 5) {
+                slider?.value = value
+                print("value = \(String(describing: slider?.value))")
+            } else {
+            
+            }
+        }
     }
     
     func displayQuestion() {

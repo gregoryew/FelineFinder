@@ -10,12 +10,9 @@ import UIKit
 
 class BreedinfoSectionHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var SectionHeaderLabel: UILabel!
-    
-    @IBOutlet weak var ActivityIndicator: UIActivityIndicatorView!
-    
+        
     override func prepareForReuse() {
         super.prepareForReuse()
-        ActivityIndicator.isHidden = true
         SectionHeaderLabel.text = ""
     }
 }

@@ -11,6 +11,9 @@ import UIKit
 
 let petsLoadedMessage = Notification.Name(rawValue:"petsLoaded")
 let petLoadedMessage = Notification.Name(rawValue:"petLoaded")
+let youTubePlayListLoadedMessage = Notification.Name(rawValue:"youTubePlayListLoaded")
+let breedPicturesLoadedMessage = Notification.Name(rawValue:"breedPicturesLoaded")
+
 
 class DownloadManager {
     static let sharedInstance = DownloadManager()
@@ -81,6 +84,26 @@ class DownloadManager {
             nc.post(name:petsLoadedMessage,
                     object: nil,
                     userInfo:["petList": pets, "titles": titles])
+        }
+    }
+    
+    static func loadYouTubePlayList(playListID: String) {
+        YouTubeAPI().getYouTubeVideos(playList: playListID) { (PlayList, Error) in
+            if Error == nil {
+                let nc = NotificationCenter.default
+                nc.post(name:youTubePlayListLoadedMessage,
+                        object: nil,
+                        userInfo:["playList": PlayList])
+            } else {
+                Utilities.displayAlert("YouTube Playlist Load Error", errorMessage: Error.debugDescription)
+            }
+        }
+    }
+    
+    static func loadPetPictures(breed: Breed) {
+        BreedInfoGalleryPhotoAPI().loadPhotos(bn: breed) { (breedPictures) in
+            let nc = NotificationCenter.default
+            nc.post(name: breedPicturesLoadedMessage, object: nil, userInfo: ["breedPictures": breedPictures])
         }
     }
     
