@@ -78,11 +78,11 @@ class IntroViewController: UIViewController, ModalTransitionDelegate {
     }
     
     func introVideoTapped() {
-        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
+        let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
         
-        details.selectedIndex = 5
+        onboarding.modalDelegate = self
         
-        tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
+        tr_presentViewController(onboarding, method: DemoPresent.CIZoom(transImage: .cat), completion: {
             print("Present finished.")
         })
 

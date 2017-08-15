@@ -13,6 +13,6 @@ class SurveyMatchesTableViewCell: UITableViewCell {
     @IBOutlet var CatNameLabel: UILabel!
     @IBOutlet var CatImage: UIImageView!
     @IBOutlet var CatPercentage: UILabel!
-    @IBOutlet var CatValueView: UIView!
+    @IBOutlet var CatValueView: ValueView2!
 
 }

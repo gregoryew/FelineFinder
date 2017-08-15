@@ -62,6 +62,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
 
         self.circularProgress.isHidden = false
         self.progressLabel.isHidden = false
+        self.circularProgress.delegate = self
         
         cardContainerView?.clipsToBounds = false
         view.addSubview(cardContainerView!)
@@ -83,7 +84,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
                 self.currentImage += 1.0
                 self.circularProgress.progress = self.currentImage / self.totalImages
                 let p = Int((self.currentImage / self.totalImages) * 100.0)
-                self.progressLabel.text = "\(p)%"
+                //self.progressLabel.text = "\(p)%"
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
@@ -139,10 +140,14 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
     }
 
     func progressChanged(progress: Double, circularProgress: KYCircularProgress) {
-        if circularProgress == self.circularProgress {
+        //if circularProgress == self.circularProgress {
+        DispatchQueue.main.async {
             let p = Int(progress * 100.0)
-            progressLabel.text = "\(p)%"
+            self.progressLabel.text = "\(p)%"
+            print("Progress = \(String(describing: self.progressLabel.text))")
+            self.progressLabel.setNeedsDisplay()
         }
+        //}
     }
 
 }

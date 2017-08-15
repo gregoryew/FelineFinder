@@ -59,7 +59,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         let introAction = UIAlertAction(title: "Introduction Video", style: .default) { (action:UIAlertAction!) in
             firstTime = true
             let onboardingVideo = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
-            self.navigationController?.tr_pushViewController(onboardingVideo, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            //self.navigationController?.tr_pushViewController(onboardingVideo, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
         }
         let suggestABreedAction = UIAlertAction(title: "Breed Suggestion", style: .default) { (action:UIAlertAction!) in
             firstTime = true

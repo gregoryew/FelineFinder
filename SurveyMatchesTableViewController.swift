@@ -109,20 +109,10 @@ class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDel
         
         cell.CatPercentage.text = "\(breed.PercentMatch)%"
         
-        let valueView = ViewValue()
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        valueView.valueView = cell.CatValueView
-        
-        valueView.maxValue = 100
-        valueView.statValue = Double(breed.PercentMatch)
-        cell.CatValueView.layer.addSublayer(valueView)
         DispatchQueue.main.async(execute: {
-            valueView.needsLayout()
-            valueView.layoutSublayers()
-            valueView.setNeedsDisplay()
-            valueView.frame = cell.CatValueView.frame
-            CATransaction.commit()
+            let vv = cell.CatValueView
+            vv?.percent = CGFloat((Double(breed.PercentMatch) / 100.00) * Double(cell.CatValueView.bounds.size.width))
+            vv?.setNeedsDisplay()
         })
         
         return cell
@@ -166,5 +156,57 @@ class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDel
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
+    }
+}
+
+
+class ValueView2: UIView {
+    
+    var percent: CGFloat = 0.0
+    
+    func drawProgressBar(_ frame: CGRect = CGRect(x: 0, y: 0, width: 300, height: 16), progress: CGFloat = 265) {
+        //// General Declarations
+        let context = UIGraphicsGetCurrentContext()
+        
+        //// Color Declarations
+        let color = UIColor(red: 0.910, green: 0.969, blue: 0.839, alpha: 1.000)
+        let color2 = UIColor(red: 0.361, green: 0.796, blue: 0.980, alpha: 1.000)
+        let color3 = UIColor(red: 0.976, green: 0.996, blue: 0.945, alpha: 1.000)
+        
+        let colours = [color2.cgColor, UIColor.blue.cgColor] as CFArray
+        
+        //// Gradient Declarations
+        let gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colours, locations: [0, 1])!
+        
+        //// Progress Border Drawing
+        let progressBorderPath = UIBezierPath(roundedRect: CGRect(x: frame.minX + 1, y: frame.minY + 1, width: floor((frame.width - 1) * 0.99666 + 0.5), height: 25), cornerRadius: 10)
+        color3.setFill()
+        progressBorderPath.fill()
+        color.setStroke()
+        progressBorderPath.lineWidth = 1
+        progressBorderPath.stroke()
+        
+        
+        //// Progress Active Drawing
+        let progressActivePath = UIBezierPath(roundedRect: CGRect(x: 1, y: 1, width: progress, height: 25), cornerRadius: 10)
+        context!.saveGState()
+        progressActivePath.addClip()
+        let progressActiveRotatedPath = UIBezierPath()
+        progressActiveRotatedPath.append(progressActivePath)
+        var progressActiveTransform = CGAffineTransform(rotationAngle: -45*(-CGFloat(Double.pi)/180))
+        progressActiveRotatedPath.apply(progressActiveTransform)
+        let progressActiveBounds = progressActiveRotatedPath.cgPath.boundingBoxOfPath
+        progressActiveTransform = progressActiveTransform.inverted()
+        
+        context!.drawLinearGradient(gradient,
+                                    start: CGPoint(x: progressActiveBounds.minX, y: progressActiveBounds.midY).applying(progressActiveTransform),
+                                    end: CGPoint(x: progressActiveBounds.maxX, y: progressActiveBounds.midY).applying(progressActiveTransform),
+                                    options: CGGradientDrawingOptions())
+        context!.restoreGState()
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        drawProgressBar(rect, progress: percent)
     }
 }

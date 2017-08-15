@@ -21,6 +21,9 @@ class TSThumbLayer: CALayer {
     override func draw(in ctx: (CGContext!)) {
         if let slider = ticksSlider {
             let myLayer = CALayer()
+            if slider.knobVisible == false {
+                return
+            }
             let myImage = UIImage(named: "SliderKnob")?.cgImage
             //myLayer.frame = bounds
             //self.bounds.size = CGSize(width: 20, height: 20)

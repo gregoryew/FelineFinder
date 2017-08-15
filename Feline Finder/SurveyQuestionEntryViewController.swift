@@ -17,6 +17,8 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
     
     @IBOutlet var slider: TicksSlider? = nil
     
+    @IBOutlet weak var preferenceLabel: UILabel!
+    
     var segmentedControl: TTSegmentedControl? = nil
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -57,6 +59,7 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
                 i = 6 - value
             }
             questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[i].ChoiceID))
+            self.preferenceLabel.text = questionList.Questions[self.currentQuestion].getAnswer().Name
         }
         self.view.addSubview(slider!)
         
@@ -71,6 +74,7 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
             print("Question \(q.Name)")
             print("Answer \(q.Choices[index - 1].Name)")
             questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[index - 1].ChoiceID))
+            self.preferenceLabel.text = questionList.Questions[self.currentQuestion].getAnswer().Name
         }
         view.addSubview(segmentedControl!)
     
@@ -120,7 +124,8 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
         questionLabel.text = questionList.Questions[currentQuestion].Description
         questionNumberLabel.text = "Question \(currentQuestion + 1) out of \(questionList.Questions.count)"
         let answer = questionList.getAnswer(currentQuestion)
- 
+        self.preferenceLabel.text = answer.Name
+        
         if currentQuestion < 8 {
             slider!.isHidden = false
             segmentedControl!.isHidden = true
@@ -146,9 +151,9 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
             slider!.isHidden = true
             segmentedControl!.isHidden = false
             if currentQuestion == 8 {
-                segmentedControl?.itemTitles = ["NA","Short","Med","Long"]
+                segmentedControl?.itemTitles = ["0", "1", "2", "3", "4", "5"]
             } else {
-                segmentedControl?.itemTitles = ["NA", "S", "M", "L"]
+                segmentedControl?.itemTitles = ["0", "1", "2", "3"]
             }
             print("question \(questionList.Questions[currentQuestion].Name)")
             print("answer order \(answer.Order)")

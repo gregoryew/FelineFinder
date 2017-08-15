@@ -89,6 +89,12 @@ class TicksSlider: UIControl {
         }
     }
     
+    var knobVisible: Bool = true {
+        didSet {
+            trackLayer.setNeedsDisplay()
+        }
+    }
+    
     let thumbLayer = TSThumbLayer()
     var thumbColor: CGColor = UIColor.black.cgColor {
         didSet {

@@ -35,7 +35,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     @IBAction func playIntro(_ sender: Any) {
         let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
         //navigationController?.tr_pushViewController(onboarding, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
-        navigationController?.tr_pushViewController(onboarding, method: TRPushTransitionMethod.fade)
+        //navigationController?.tr_pushViewController(onboarding, method: TRPushTransitionMethod.fade)
     }
     
     @IBAction func unwindToMainMenu(_ sender: UIStoryboardSegue)

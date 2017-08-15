@@ -34,6 +34,9 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     var observer : Any!
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
+    @IBOutlet weak var statusBarLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    
     @IBAction func searchOptions(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
@@ -233,10 +236,21 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     }
     
     func setFilterDisplay() {
-        if let navigationBar = self.navigationController?.navigationBar {
-            let filter = "Zip:\(zipCode)"
-            navigationBar.topItem!.prompt = filter
+        let filter = "Zip:\(zipCode)"
+        statusBarLabel.text = filter
+        titleLabel.text = globalBreed?.BreedName
+        
+        if currentFilterSave != "Touch Here To Load/Save..." {
+             titleLabel.text = currentFilterSave
+        } else {
+            let breeds = filterOptions.breedOption?.getDisplayValues() ?? ""
+            if ((breeds.contains(",")) || breeds == "" || breeds=="Any") {
+                titleLabel.text = "Cats for Adoption"
+            } else {
+                 titleLabel.text = breeds
+            }
         }
+
     }
     
     func Refresh() {

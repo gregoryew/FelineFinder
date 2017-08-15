@@ -11,6 +11,8 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
+var w = 0.0
+
 class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -40,15 +42,12 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         whichSegueGlobal = ""
+        w = Double(view.frame.width - (45 + 16) - 200)
         SavedSearches.loadSearches(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(tableView.frame)
-        if tableView.frame.origin.y == 20 {
-            tableView.frame = tableView.frame.offsetBy(dx: 0, dy: 45)
-        }
         resultsButton.twinkle()
     }
     
@@ -116,16 +115,15 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
             default:
                 v = 0
             }
-            print("i = \(indexPath.row) value = \(v)")
             valueView.statValue = Double(v)
         } else {
-            print("i = \(indexPath.row) value = \(answer.Order - 1))")
             valueView.statValue = Double(answer.Order - 1)
         }
 
         cell.ValueView.layer.addSublayer(valueView)
-        cell.ValueView.frame = CGRect(x: 0, y: 0, width: 300.0, height: cell.QuestionChoice!.frame.height)
-        valueView.frame = CGRect(x: 0, y: 0, width: 300.0, height: cell.QuestionChoice!.frame.height)
+        valueView.contentsScale = UIScreen.main.scale
+        cell.ValueView.frame = CGRect(x: 0, y: 0, width: Int(w), height: Int(cell.QuestionChoice!.frame.height))
+        valueView.frame = CGRect(x: 0, y: 0, width: Int(w), height: Int(cell.QuestionChoice!.frame.height))
         valueView.setNeedsDisplay()
         
         CATransaction.commit()
@@ -149,8 +147,9 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
 
         CATransaction.begin()
         CATransaction.setDisableActions(true)
-        
-        trackLayer.frame = CGRect(x: 0, y: 0, width: cell.trackerView.bounds.width, height: 30.0)
+
+        tableView.layoutSubviews()
+        trackLayer.frame = CGRect(x: 0, y: 0, width: w, height: 30)
         trackLayer.setNeedsDisplay()
         
         CATransaction.commit()
@@ -176,16 +175,15 @@ class ViewValue: CALayer {
             
             let backgroundLayer = CALayer()
             backgroundLayer.backgroundColor = UIColor.white.cgColor
-            backgroundLayer.frame = CGRect(x: 0, y: 19, width: bounds.maxX + 10, height: 10)
+            backgroundLayer.frame = CGRect(x: 0, y: 19, width: Int(w), height: 10)
             valueView.layer.addSublayer(backgroundLayer)
             
-            let statV = CGFloat((Double(bounds.maxX) / maxValue) * self.statValue)
+            let statV = CGFloat((Double(w) / maxValue) * self.statValue)
             valueLayer.frame = CGRect(x: 0, y: 19, width: statV, height: 10)
             valueLayer.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor]
             valueLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
             valueLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
             valueView.layer.addSublayer(valueLayer)
-            print("frame = \(valueLayer.frame)")
         }
     }
 }
@@ -205,7 +203,7 @@ class ViewTrackLayer: CALayer {
     override func draw(in ctx: CGContext) {
         if let slider = ticksSlider {
             // Path without ticks
-            let trackPath = UIBezierPath(rect: CGRect(x: 0, y: bounds.height - 2.0, width: bounds.width, height: 2.0))
+            let trackPath = UIBezierPath(rect: CGRect(x: 0, y: frame.height - 2.0, width: CGFloat(w), height: 2.0))
             // Fill the track
             ctx.setFillColor(trackColor)
             ctx.addPath(trackPath.cgPath)
@@ -213,12 +211,12 @@ class ViewTrackLayer: CALayer {
             
             let backgroundLayer = CALayer()
             backgroundLayer.backgroundColor = UIColor.clear.cgColor
-            backgroundLayer.frame = CGRect(x: 0, y: 19, width: bounds.maxX + 10, height: 10)
+            backgroundLayer.frame = CGRect(x: 0, y: 19, width: CGFloat(w), height: 10)
             slider.layer.addSublayer(backgroundLayer)
             
             // Draw ticks
             for index in Int(minimumValue)...Int(maximumValue) {
-                let delta = (slider.bounds.width / CGFloat(maximumValue))
+                let delta = (CGFloat(w) / CGFloat(maximumValue))
                 
                 // Clip
                 let tickPath = UIBezierPath(rect: CGRect(x: (CGFloat(index) * delta - 0.5 * tickWidth) - 5.0 , y: slider.bounds.height - tickHight, width: tickWidth, height: tickHight))
@@ -227,6 +225,7 @@ class ViewTrackLayer: CALayer {
                 ctx.setFillColor(tickColor)
                 ctx.addPath(tickPath.cgPath)
                 ctx.fillPath()
+                
             }
         }
     }

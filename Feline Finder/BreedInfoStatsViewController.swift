@@ -39,6 +39,13 @@ class BreedInfoStatsViewController: UIViewController {
             
             var i = 0
             
+            let pos = CGPoint(x:20,y:10)
+            let lbl = UILabel()
+            lbl.frame = CGRect(x: pos.x, y: pos.y, width: 200, height: 18)
+            lbl.font = lbl.font.withSize(10)
+            lbl.text = "Blue = Actual, Green/Yellow = Preference"
+            self.breedInfoScrollView.addSubview(lbl)
+
             for breedStat in self.breedStats {
                 i += 1;
                 var c: Int = 1
@@ -104,12 +111,15 @@ class BreedInfoStatsViewController: UIViewController {
         
         let currentTick = TicksSlider(frame: CGRect.zero)
         
+        currentTick.knobVisible = false
+        
         breedInfoScrollView.addSubview(currentTick)
         //ticksSlider.addTarget(self, action: #selector(sliderValueDidChanged), for: .valueChanged)
         currentTick.maximumValue = 5
         currentTick.value = h / 20.0
         currentTick.statValue = val / 20.0
         
+        currentTick.isUserInteractionEnabled = false
         ticksSliders.append(currentTick)
         labels.append(lbl)
         
@@ -132,7 +142,15 @@ class BreedInfoStatsViewController: UIViewController {
             i += 1
         }
         
-        self.breedInfoScrollView.contentSize = CGSize(width: width, height: ticksSliders.last!.frame.maxY + ticksSliders.last!.frame.size.height + CGFloat(10.0))
+        i = 8
+        
+        while i < 10 {
+            y += labels[i].frame.size.height + 10
+            labels[i].frame = CGRect(x: margin, y: y, width: width, height: labels[i].frame.size.height)
+            i += 1
+        }
+        
+        self.breedInfoScrollView.contentSize = CGSize(width: width, height: labels.last!.frame.maxY + labels.last!.frame.size.height + CGFloat(10.0))
         
     }
     
