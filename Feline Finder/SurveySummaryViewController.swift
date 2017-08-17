@@ -73,7 +73,6 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let valueView = ViewValue()
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SurveySummaryTableViewCell
         
@@ -89,13 +88,15 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
         
         cell.QuestionChoice?.font = UIFont.systemFont(ofSize: 13.0)
         
-        cell.QuestionChoice!.text = "\(ss.Question)   |"
+        cell.QuestionChoice!.text = "\(ss.Question):"
         
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
-        valueView.valueView = cell.ValueView
+        //CATransaction.begin()
+        //CATransaction.setDisableActions(true)
+        //valueView.valueView = cell.ValueView
         
         let answer = questionList.getAnswer(indexPath.row)
+        
+        var statValue = 0
         
         if indexPath.row < 8 {
             var v = 0
@@ -115,11 +116,25 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
             default:
                 v = 0
             }
-            valueView.statValue = Double(v)
+            statValue = v
+            DispatchQueue.main.async(execute: {
+                let vv = cell.ValueView
+                vv?.isHidden = false
+                vv?.percent = CGFloat((Double(statValue) / 5.0) * Double((vv?.bounds.size.width)!))
+                vv?.setNeedsDisplay()
+                cell.Value.text = ""
+            })
         } else {
-            valueView.statValue = Double(answer.Order - 1)
+            //statValue = Int(Double(answer.Order - 1))
+            DispatchQueue.main.async(execute: {
+                let vv = cell.ValueView
+                vv?.isHidden = true
+                cell.Value.font = UIFont.systemFont(ofSize: 13.0)
+                cell.Value.text = answer.Name
+            })
         }
 
+        /*
         cell.ValueView.layer.addSublayer(valueView)
         valueView.contentsScale = UIScreen.main.scale
         cell.ValueView.frame = CGRect(x: 0, y: 0, width: Int(w), height: Int(cell.QuestionChoice!.frame.height))
@@ -127,6 +142,8 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
         valueView.setNeedsDisplay()
         
         CATransaction.commit()
+        */
+
         
         return cell
     }
@@ -136,6 +153,7 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
         return false
     }
     
+    /*
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let trackLayer = ViewTrackLayer()
         
@@ -156,10 +174,13 @@ class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSour
         
         return cell
     }
+    */
     
+    /*
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
+    */
 }
 
 class ViewValue: CALayer {

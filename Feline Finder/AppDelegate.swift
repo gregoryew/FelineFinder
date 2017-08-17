@@ -30,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // the default appearance of all UITableViewCells in your app
         UITableViewCell.appearance().selectedBackgroundView = colorView
         
+        UITabBar.appearance().barTintColor = UIColor.white
+        
         //setStatusBarBackgroundColor(color: UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0))
         
         // Override point for customization after application launch.

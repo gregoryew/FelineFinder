@@ -18,7 +18,7 @@ class BreedInfoTableViewCell: UITableViewCell {
         //CatImage.layer.masksToBounds = true
         //CatImage.clipsToBounds = true
         CatImage.contentMode = .scaleAspectFill
-        applyPlainShadow(view: CatImage)
+        //applyPlainShadow(view: CatImage)
     }
     
     func cgColor(red: CGFloat, green: CGFloat, blue: CGFloat) -> AnyObject {

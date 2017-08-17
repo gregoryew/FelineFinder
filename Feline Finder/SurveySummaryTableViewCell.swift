@@ -11,6 +11,6 @@ import UIKit
 class SurveySummaryTableViewCell: UITableViewCell {
 
     @IBOutlet var QuestionChoice: UILabel!
-    @IBOutlet var ValueView: UIView!
-
+    @IBOutlet var ValueView: ValueView2!
+    @IBOutlet weak var Value: UILabel!
 }

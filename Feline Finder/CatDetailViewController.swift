@@ -531,6 +531,9 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
             self?.petLoaded(notification: notification)
         }
         
+        favoriteBtn?.normalColor = UIColor.white
+        favoriteBtn?.setNeedsDisplay()
+        
         DownloadManager.loadPet(petID: petID!)
     }
     

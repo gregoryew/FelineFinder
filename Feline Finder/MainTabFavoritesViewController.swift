@@ -176,4 +176,8 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
             self.tableView.reloadData()
         })
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as? UITableViewHeaderFooterView)?.textLabel?.textColor = UIColor.white
+    }
 }

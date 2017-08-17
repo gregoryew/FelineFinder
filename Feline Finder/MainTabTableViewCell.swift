@@ -14,7 +14,7 @@ class MainTabTableViewCell: UITableViewCell {
         
     override func draw(_ rect: CGRect) {
         CatImage.contentMode = .scaleAspectFit
-        applyPlainShadow(view: CatImage)
+        //applyPlainShadow(view: CatImage)
     }
         
     func applyPlainShadow(view: UIView) {

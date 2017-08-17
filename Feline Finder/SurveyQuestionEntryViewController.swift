@@ -44,36 +44,27 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
         let screenWidth = UIScreen.main.bounds.width
         
         let frm = CGRect(x: (screenWidth - (questionLabel.frame.width - 60)) / 2, y: self.questionSlider.frame.minY + 10, width: questionLabel.frame.width - 60, height: self.questionSlider.frame.height)
-        slider = TicksSlider(frame: frm)
-        slider?.minimumValue = 0
-        slider!.maximumValue = 5
-        slider!.statValue = 0
-        slider!.value = 0
-        slider?.didValueChange = { (value) -> () in
-            print("Value \(value)")
-            let q = questionList.Questions[self.currentQuestion]
-            var i = 0
-            if value == 0 {
-               i = 0
-            } else {
-                i = 6 - value
-            }
-            questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[i].ChoiceID))
-            self.preferenceLabel.text = questionList.Questions[self.currentQuestion].getAnswer().Name
-        }
-        self.view.addSubview(slider!)
-        
         segmentedControl = TTSegmentedControl()
         segmentedControl?.allowChangeThumbWidth = false
         segmentedControl?.frame = frm
         segmentedControl?.didSelectItemWith = { (index, title) -> () in
             print("Selected item \(index)")
             let q = questionList.Questions[self.currentQuestion]
-            print("")
-            print("Displaying")
-            print("Question \(q.Name)")
-            print("Answer \(q.Choices[index - 1].Name)")
-            questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[index - 1].ChoiceID))
+            var i = 0
+            if self.currentQuestion < 8 {
+                if index == 1 {
+                    i = 0
+                } else {
+                    i = 7 - index
+                }
+                questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[i].ChoiceID))
+            } else {
+                print("")
+                print("Displaying")
+                print("Question \(q.Name)")
+                print("Answer \(q.Choices[index - 1].Name)")
+                questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[index - 1].ChoiceID))
+            }
             self.preferenceLabel.text = questionList.Questions[self.currentQuestion].getAnswer().Name
         }
         view.addSubview(segmentedControl!)
@@ -126,10 +117,14 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
         let answer = questionList.getAnswer(currentQuestion)
         self.preferenceLabel.text = answer.Name
         
+        if currentQuestion <= 8 {
+            segmentedControl?.itemTitles = ["0", "1", "2", "3", "4", "5"]
+        } else {
+            segmentedControl?.itemTitles = ["0", "1", "2", "3"]
+        }
+        
+        var v = Int(answer.Order - 1)
         if currentQuestion < 8 {
-            slider!.isHidden = false
-            segmentedControl!.isHidden = true
-            var v = 0
             switch answer.Order {
             case 1:
                 v = 0
@@ -146,19 +141,8 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
             default:
                 v = 0
             }
-            slider!.value = Double(v)
-        } else {
-            slider!.isHidden = true
-            segmentedControl!.isHidden = false
-            if currentQuestion == 8 {
-                segmentedControl?.itemTitles = ["0", "1", "2", "3", "4", "5"]
-            } else {
-                segmentedControl?.itemTitles = ["0", "1", "2", "3"]
-            }
-            print("question \(questionList.Questions[currentQuestion].Name)")
-            print("answer order \(answer.Order)")
-            segmentedControl?.selectItemAt(index: Int(answer.Order - 1), animated: true)
         }
+        segmentedControl?.selectItemAt(index: v, animated: true)
         
         var gifName = ""
 
