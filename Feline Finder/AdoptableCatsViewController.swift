@@ -255,7 +255,9 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     
     override func viewDidAppear(_ animated: Bool)
     {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+        globalBreed = breed
         setFilterDisplay()
         if viewPopped {
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
@@ -265,8 +267,6 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
             DownloadManager.loadPetList()
             viewPopped = false
         }
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
-        globalBreed = breed
         let firstTimeLoadingApp = UserDefaults.standard.string(forKey: "firstTimeLoadingApp") ?? "YES"
         if (firstTime || firstTimeLoadingApp == "YES")  && Utilities.isNetworkAvailable() {
             if (!firstTime) {introOptions()}

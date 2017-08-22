@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		460558E21F070383006BC6D9 /* BreedInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */; };
+		4607099E1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607099D1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift */; };
 		461B2A7A1F0359280093EA85 /* CatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B2A791F0359280093EA85 /* CatDetailViewController.swift */; };
 		4620AA431F01CE77009F9DEC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */; };
 		4620AA451F01E75F009F9DEC /* AdoptableCatsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */; };
@@ -186,6 +187,7 @@
 
 /* Begin PBXFileReference section */
 		460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoDetailViewController.swift; sourceTree = "<group>"; };
+		4607099D1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabIntoVideoViewController.swift; sourceTree = "<group>"; };
 		461B2A791F0359280093EA85 /* CatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatDetailViewController.swift; sourceTree = "<group>"; };
 		4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsTabViewController.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 				4649DB081F36502B007FE6AB /* SurveySummaryHeaderTableViewCell2.swift */,
 				46AECC441F06F2D600793464 /* BreedInfoViewController.swift */,
 				460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */,
+				4607099D1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift */,
 				468D732C1F005DE00090AB43 /* IntroViewController.swift */,
 				461B2A791F0359280093EA85 /* CatDetailViewController.swift */,
 				467E10711EDF93DA00F7E1A8 /* DevonRex.png */,
@@ -1078,6 +1081,7 @@
 				46B6BF371F3A754600A8E5B0 /* SurveyBaseViewController.swift in Sources */,
 				468EE33C1F3BF39900E2CFC2 /* YouTubeCollectionViewCell.swift in Sources */,
 				C539DEE41B52786200B631B8 /* SavedListsTableCell.swift in Sources */,
+				4607099E1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift in Sources */,
 				461B2A7A1F0359280093EA85 /* CatDetailViewController.swift in Sources */,
 				C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */,
 				C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */,

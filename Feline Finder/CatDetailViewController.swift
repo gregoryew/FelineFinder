@@ -280,6 +280,26 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         self.removeViewWithTag(-1112)
         webView = nil
         processFavorite()
+
+        self.VerticalBar1.alpha = 1
+        self.VerticalBar2.alpha = 1
+        self.LocationLabel.alpha = 1
+        self.LocationLabel2.alpha = 1
+        self.UpdatedLabel2.alpha = 1
+        self.UpdatedLabel.alpha = 1
+        self.StatusLabel.alpha = 1
+        self.StatusLabel2.alpha = 1
+        self.StatusLabel2.text = "\(String(describing: self.pet!.status))"
+        self.StatusLabel2.frame = CGRect(x: self.priorX, y: self.StatusLabel2.frame.minY, width: self.priorWidth, height: self.StatusLabel2.frame.size.height)
+        self.StatusLabel.frame = CGRect(x: self.priorX, y: self.StatusLabel.frame.minY, width: self.priorWidth, height: self.StatusLabel.frame.size.height)
+        var textwidth = self.StatusLabel2.text?.width(withConstrainedHeigth: self.StatusLabel2.frame.height, font: self.StatusLabel2.font)
+        if CGFloat(self.StatusLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+            self.StatusLabel2.addTrailing(with: "...", moreText: "▼", moreTextFont: self.StatusLabel2.font!, moreTextColor:self.StatusLabel2.textColor)
+        }
+        textwidth = self.LocationLabel.text?.width(withConstrainedHeigth: self.LocationLabel.frame.height, font: self.LocationLabel.font)
+        if CGFloat(self.LocationLabel.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+            self.LocationLabel.addTrailing(with: "...", moreText: "▼", moreTextFont: self.LocationLabel.font!, moreTextColor:self.LocationLabel.textColor)
+        }
     }
     
     var emailAddress: [String] = [String]()
@@ -362,6 +382,79 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         print("Webview did finish loadss")
     }
     
+    var priorWidth: CGFloat = 0.0
+    
+    func lblLocationLabelTapped(sender: UITapGestureRecognizer) {
+        if (self.LocationLabel.text?.hasSuffix("▲"))! {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.VerticalBar1.alpha = 1
+                self.VerticalBar2.alpha = 1
+                self.StatusLabel2.alpha = 1
+                self.UpdatedLabel2.alpha = 1
+                self.StatusLabel.alpha = 1
+                self.UpdatedLabel.alpha = 1
+                self.LocationLabel.text = "\(String(describing: self.s?.city ?? "")) \(String(describing: self.s?.state ?? ""))"
+                self.LocationLabel.frame = CGRect(x: self.LocationLabel.frame.minX, y: self.LocationLabel.frame.minY, width: self.priorWidth, height: self.LocationLabel.frame.size.height)
+            }, completion: {(finished: Bool) in
+                let textwidth = self.LocationLabel.text?.width(withConstrainedHeigth: self.LocationLabel.frame.height, font: self.LocationLabel.font)
+                if CGFloat(self.LocationLabel.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+                    self.LocationLabel.addTrailing(with: "...", moreText: "▼", moreTextFont: self.LocationLabel.font!, moreTextColor:self.LocationLabel.textColor)
+                }
+            })
+        } else {
+            priorWidth = self.LocationLabel.frame.width
+            UIView.animate(withDuration: 0.3) {
+                self.VerticalBar1.alpha = 0
+                self.VerticalBar2.alpha = 0
+                self.StatusLabel2.alpha = 0
+                self.UpdatedLabel2.alpha = 0
+                self.StatusLabel.alpha = 0
+                self.UpdatedLabel.alpha = 0
+                self.LocationLabel.text = "\(String(describing: self.s?.city ?? "")), \(String(describing: self.s?.state ?? ""))▲"
+                self.LocationLabel.frame = CGRect(x: self.LocationLabel.frame.minX, y: self.LocationLabel.frame.minY, width: self.UpdatedLabel2.frame.maxX, height: self.LocationLabel.frame.size.height)
+            }
+        }
+    }
+
+    var priorX: CGFloat = 0.0
+    
+    func lblStatusLabelTapped(sender: UITapGestureRecognizer) {
+        if (self.StatusLabel2.text?.hasSuffix("▲"))! {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.VerticalBar1.alpha = 1
+                self.VerticalBar2.alpha = 1
+                self.LocationLabel.alpha = 1
+                self.LocationLabel2.alpha = 1
+                self.UpdatedLabel2.alpha = 1
+                self.StatusLabel.alpha = 1
+                self.UpdatedLabel.alpha = 1
+                self.StatusLabel2.text = "\(String(describing: self.pet!.status))"
+                self.StatusLabel2.frame = CGRect(x: self.priorX, y: self.StatusLabel2.frame.minY, width: self.priorWidth, height: self.StatusLabel2.frame.size.height)
+                self.StatusLabel.frame = CGRect(x: self.priorX, y: self.StatusLabel.frame.minY, width: self.priorWidth, height: self.StatusLabel.frame.size.height)
+            }, completion: {(finished: Bool) in
+                let textwidth = self.StatusLabel2.text?.width(withConstrainedHeigth: self.StatusLabel2.frame.height, font: self.StatusLabel2.font)
+                if CGFloat(self.StatusLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+                    self.StatusLabel2.addTrailing(with: "...", moreText: "▼", moreTextFont: self.StatusLabel2.font!, moreTextColor:self.StatusLabel2.textColor)
+                }
+            })
+        } else {
+            priorWidth = self.StatusLabel2.frame.width
+            priorX = self.StatusLabel2.frame.minX
+            UIView.animate(withDuration: 0.3) {
+                self.VerticalBar1.alpha = 0
+                self.VerticalBar2.alpha = 0
+                self.LocationLabel.alpha = 0
+                self.UpdatedLabel2.alpha = 0
+                //self.StatusLabel.alpha = 0
+                self.UpdatedLabel.alpha = 0
+                self.LocationLabel2.alpha = 0
+                self.StatusLabel2.text = "\(String(describing: self.pet!.status ))▲"
+                self.StatusLabel2.frame = CGRect(x: self.LocationLabel.frame.minX, y: self.StatusLabel2.frame.minY, width: self.UpdatedLabel2.frame.maxX, height: self.StatusLabel2.frame.size.height)
+                self.StatusLabel.frame = CGRect(x: self.LocationLabel.frame.minX, y: self.StatusLabel.frame.minY, width: self.UpdatedLabel.frame.maxX, height: self.StatusLabel.frame.size.height)
+            }
+        }
+    }
+    
     func configureView(_ p: Pet, s: shelter) -> String {
         shouldLoadWeb = true
         var b: String = ""
@@ -410,14 +503,39 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         })
 
         DispatchQueue.main.async {
-        self.LocationLabel.text = "Location:\r\n\(s.city), \(s.state)"
+        self.LocationLabel.text = "\(s.city) \(s.state)"
         self.CatNameLabel.text = p.name
-        self.StatusLabel.text = "Status:\r\n\(p.status)"
+        self.StatusLabel2.text = "\(p.status)"
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let d = dateFormatter.string(from: p.lastUpdated)
-        self.UpdatedLabel.text = "Updated:\r\n\(d)"
+        self.UpdatedLabel2.text = "\(d)"
+        var textwidth = self.LocationLabel.text?.width(withConstrainedHeigth: self.LocationLabel.frame.height, font: self.LocationLabel.font)
+        if CGFloat(self.LocationLabel.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+                self.LocationLabel.addTrailing(with: "... ", moreText: "▼", moreTextFont: self.LocationLabel.font!, moreTextColor:self.LocationLabel.textColor)
         }
+        textwidth = self.StatusLabel2.text?.width(withConstrainedHeigth: self.StatusLabel2.frame.height, font: self.StatusLabel2.font)
+        if CGFloat(self.StatusLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) {
+                self.StatusLabel2.addTrailing(with: "... ", moreText: "▼", moreTextFont: self.StatusLabel2.font!, moreTextColor:self.StatusLabel2.textColor)
+        }
+        textwidth = self.UpdatedLabel2.text?.width(withConstrainedHeigth: self.UpdatedLabel2.frame.height, font: self.UpdatedLabel2.font)
+            if CGFloat(self.UpdatedLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) {
+                self.UpdatedLabel2.addTrailing(with: "... ", moreText: "▼", moreTextFont: self.UpdatedLabel2.font!, moreTextColor:self.UpdatedLabel2.textColor)
+            }
+        }
+        
+        LocationLabel.isUserInteractionEnabled = true
+        
+        let lblLocationTapRec = UITapGestureRecognizer(target: self, action: #selector(lblLocationLabelTapped(sender:)))
+        LocationLabel.isUserInteractionEnabled = true
+        LocationLabel.addGestureRecognizer(lblLocationTapRec)
+
+        LocationLabel.isUserInteractionEnabled = true
+        
+        let StatusLabel2TapRec = UITapGestureRecognizer(target: self, action: #selector(lblStatusLabelTapped(sender:)))
+        StatusLabel2.isUserInteractionEnabled = true
+        StatusLabel2.addGestureRecognizer(StatusLabel2TapRec)
+
         
         var html: String = ""
         html = "\(html)<tr><td><b>Address:</b></td></tr>"
@@ -602,6 +720,12 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        priorX = self.StatusLabel2.frame.minX
+        priorWidth = self.StatusLabel2.frame.size.width
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -671,7 +795,11 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     
     @IBOutlet weak var StatusLabel: UILabel!
     
+    @IBOutlet weak var StatusLabel2: UILabel!
+    
     @IBOutlet weak var UpdatedLabel: UILabel!
+    
+    @IBOutlet weak var UpdatedLabel2: UILabel!
     
     @IBOutlet weak var CatNameLabel: UILabel!
     
@@ -680,6 +808,13 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     @IBOutlet weak var container: UIView!
     
     @IBOutlet weak var favoriteBtn: FaveButton?
+    
+    @IBOutlet weak var VerticalBar1: UIImageView!
+    
+    @IBOutlet weak var VerticalBar2: UIImageView!
+    
+    @IBOutlet weak var LocationLabel2: UILabel!
+    
     
     var webView: WKWebView!
     

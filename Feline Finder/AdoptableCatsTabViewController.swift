@@ -14,7 +14,7 @@ import CoreLocation
 
 let handlerDelay2 = 1.5
 
-class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ModalTransitionDelegate { //, NavgationTransitionable {
+class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ModalTransitionDelegate, MyCellDelegate { //, NavgationTransitionable {
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
@@ -203,6 +203,8 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+        globalBreed = breed
         if zipCode == "" {
             getZipCode()
         } else {
@@ -348,6 +350,28 @@ extension AdoptableCatsTabViewController2 {
         return sectionHeaderView
     }
     
+    func lblCityTapped(cell: CollectionViewCell2) {
+        
+        let alert = UIAlertController(title: "City", message: cell.CityVar, preferredStyle: UIAlertControllerStyle.alert)
+        
+        //Add alert action
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        //Present alert
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func lblStatusTapped(cell: CollectionViewCell2) {
+        
+        let alert = UIAlertController(title: "Status", message: cell.StatusVar, preferredStyle: UIAlertControllerStyle.alert)
+        
+        //Add alert action
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        //Present alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell2
         
@@ -386,8 +410,13 @@ extension AdoptableCatsTabViewController2 {
         
         cell.BreedName.text = petData.breeds.first
         cell.City.text = petData.location
+        cell.CityVar = petData.location
+
+        cell.delegate = self
+        
         cell.CatNameLabel.text = petData.name
         cell.Status.text = petData.status
+        cell.StatusVar = petData.status
         
         if urlString == "" {
             cell.CatImager?.backgroundColor = getRandomColor()
@@ -397,6 +426,17 @@ extension AdoptableCatsTabViewController2 {
         
         let imgURL = URL(string: urlString!)
         cell.CatImager.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
+        
+        DispatchQueue.main.async {
+            var textwidth = cell.City.text?.width(withConstrainedHeigth: cell.City.frame.height, font: cell.City.font)
+            if CGFloat(cell.City.intrinsicContentSize.width) < CGFloat(textwidth!) {
+                cell.City.addTrailing(with: "... ", moreText: "▼", moreTextFont: cell.City.font!, moreTextColor:cell.City.textColor)
+            }
+            textwidth = cell.Status.text?.width(withConstrainedHeigth: cell.Status.frame.height, font: cell.Status.font)
+            if CGFloat(cell.Status.intrinsicContentSize.width) < CGFloat(textwidth!) {
+                cell.Status.addTrailing(with: "... ", moreText: "▼", moreTextFont: cell.Status.font!, moreTextColor:cell.Status.textColor)
+            }
+        }
         
         return cell
     }

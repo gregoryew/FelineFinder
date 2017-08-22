@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol MyCellDelegate {
+    func lblCityTapped(cell: CollectionViewCell2)
+    func lblStatusTapped(cell: CollectionViewCell2)
+}
+
 class CollectionViewCell2: UICollectionViewCell {
     @IBOutlet weak var CatImager: UIImageView!
     @IBOutlet weak var CatNameLabel: UILabel!
@@ -16,6 +21,38 @@ class CollectionViewCell2: UICollectionViewCell {
     @IBOutlet weak var BreedName: UILabel!
     @IBOutlet weak var City: UILabel!
     @IBOutlet weak var Status: UILabel!
+    
+    var CityVar: String = ""
+    var StatusVar: String = ""
+    
+    var lblCityTapRec:UITapGestureRecognizer!
+    var lblStatusTapRec:UITapGestureRecognizer!
+    var delegate: MyCellDelegate?
+        
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        
+        City.isUserInteractionEnabled = true
+        
+        lblCityTapRec = UITapGestureRecognizer(target: self, action: #selector(CollectionViewCell2.lblCityTapped(sender:)))
+        City.isUserInteractionEnabled = true
+        City.addGestureRecognizer(lblCityTapRec)
+
+        Status.isUserInteractionEnabled = true
+        
+        lblStatusTapRec = UITapGestureRecognizer(target: self, action: #selector(CollectionViewCell2.lblStatusTapped(sender:)))
+        Status.isUserInteractionEnabled = true
+        Status.addGestureRecognizer(lblStatusTapRec)
+    }
+        
+    func lblCityTapped(sender: AnyObject){
+        delegate?.lblCityTapped(cell: self)
+    }
+
+    func lblStatusTapped(sender: AnyObject){
+        delegate?.lblStatusTapped(cell: self)
+    }
     
     override func prepareForReuse() {
         CatImager.image = nil
