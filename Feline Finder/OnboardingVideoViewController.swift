@@ -42,14 +42,15 @@ class OnboardingVideoViewController: UIViewController, WKYTPlayerViewDelegate {
             videoPlayer = WKYTPlayerView(frame: rect)
             videoPlayer?.frame = rect
             self.view.addSubview(videoPlayer!)
-            videoPlayer?.load(withVideoId: "E5ArKwFUgJw")
-            videoPlayer?.delegate = self
+            
+             videoPlayer?.delegate = self
+            
+            videoPlayer?.load(withVideoId: "2zJO2iQrNe0")
         }
     }
     
     func playerViewDidBecomeReady(_ playerView: WKYTPlayerView) {
         if !viewDisappeared {
-            //videoPlayer.clear()
             videoPlayer?.playVideo()
         }
     }

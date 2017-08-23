@@ -14,7 +14,7 @@ class MainTabIntoVideoViewController: UIViewController, WKYTPlayerViewDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        IntroVideo?.load(withVideoId: "E5ArKwFUgJw")
+        IntroVideo?.load(withVideoId: "2zJO2iQrNe0")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -23,7 +23,7 @@ class MainTabIntoVideoViewController: UIViewController, WKYTPlayerViewDelegate {
     
     func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
         if state == .ended {
-            IntroVideo?.load(withVideoId: "E5ArKwFUgJw")
+            IntroVideo?.load(withVideoId: "2zJO2iQrNe0")
         }
     }
     

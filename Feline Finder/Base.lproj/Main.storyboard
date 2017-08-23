@@ -1670,36 +1670,38 @@ Thanks to the members of PhillyCocoa for their great help and support.
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <string key="text">Welcome to Feline Finder
-Concept and Programming By: Gregory E Williams
-Graphics and Layout By: K W J Suraweera
+Concept and Programming By Gregory E Williams
+Graphics and Layout By K W J Suraweera
 Animations By: Yezz55
-Naration of Introduction Video: Edward D Williams
+Narration of Introduction Video: Edward D Williams
 
-Feline Finder is designed to help make suggestions about what kind of breed of cat you might enjoy.  It will then show you some of the cats that are available to adopt.  These cats and shelters are not affiliated with this app.  This app uses RescueGroups.org information to display these cats to you but is not affiliated with RescueGroups.org.
+Feline Finder is designed to help make suggestions about what kind of breed of cat you might enjoy.  It will then show you some of the cats that are available to adopt.  These cats and shelters are not affiliated with this app.  This app uses RescueGroups.org information to display these cats to you but not affiliated with RescueGroups.org.
 
-When you first start the app it starts on the introduction screen.  You can choose to see an introduction video, a breed suggestion survey, or go straight to adopting cats tab.  You can also turn this screen off if you want to go directly to the tab screen from now on.  On the main screen you can choose from a tab bar of 6 options.  4 main options and two supplemental options.  The 4 main options are see a list of breeds with associated information about each, see  a list of adoptable cats, see a list of cats you have marked as favorite, and take a survey to find the breeds purrfect for you.
+When you first start the app, it starts on the introduction screen.  You can choose to see an introduction video, a breed suggestion survey, or go straight to adopting cats tab.  You can also turn this screen off if you want to go directly to the tab screen from now on.  On the main screen, you can choose from a tab bar of 6 options.  4 main options and two supplemental options.  The four top options are seeing a list of breeds with associated information about each, see a list of adoptable cats, see a list of cats you have marked as favorite, and take a survey to find the breeds purrfect for you.
 
-The breeds screen is a list of breeds with a picture of each one.  You can tap on them to go to a screen  describing each the breed.
+The breeds screen is a list of breeds with a picture of each one.  You can tap on them to go to a display describing each the breed.
 
-The breed information screen you go to has the following buttons in the middle of the screen.  The first is the information screen which has a description of each breed along with history and cultural references.  The second button is a gallery of YouTube videos and pictures of the cats.  You can tap on each video to play it and tap on each picture to see adoption information regarding the cat.  The third button shows the various statistics about the cat.  The fourth button shows cats of this breed for adoption.
+The breed information screen you go to has the following buttons in the middle of the screen.  The first is the information screen which has a description of each breed along with history and cultural references.  The second button is a gallery of YouTube videos and pictures of the cats.  You can tap on each video to play it and tap on each image to see adoption information regarding the cat.  The third button shows the various statistics about the cat.  The fourth button shows cats of this breed for adoption.
 
+The stat screen shows the various statistics of the cat breed in a blue line and your preference if you have taken the survey in either yellow if your preference is lower than the cat's stat or a green line if your choice is greater than the cat's statistics.
 
+The second icon on the main tab is the adopt option.  Here you can see cats either listed by how far they are away from you or by how recently they were updated.  
 
-If you tap the menu button a menu screen will appear.  From here you can tap the magnifying glass which will take you to the suggest a breed survey which will then ask you a series of questions about what kind of cat you would like.  Tap the either low, medium, or high and the survey will automatically go to the next question.  Once you are done the app will display a summary of your choices.  If you want to change an answer just touch the row and you will go to that question.  Tap the results button of the bottom of the summary screen to see a list of possible breeds suggesting which breeds may be best for you in order.
+Below each of their pictures is the cat's name, breed, location, and status.  On their image of a heart indicating if the cat is one of your favorites.  If the heart is filled in, then that cat is a favorite.  Also on the bottom left of some of the cat's pictures is a white play button showing if the cat has a video you can play.
 
-Tap a breed and you will be taken to a screen with three buttons on the bottom.  The first button on the bottom shows a screen with a description of the breed and YouTube video.  The second button shows you the qualities of the breed and which if you answered the questions where your preference lies on the bar with a push pin.  The third button shows cats available to adopt of that breed.
+Also on this screen is a search button on the top right which will filter the list of cats down.  The search screen allows you to choose options for the cats.  It also allows you to save the search.
 
-If you see an icon of a film with a play button on the lower right hand side of a picture of a cat that means it has a youtube video of the cat.  To see the video just tap that cat and tap the video button on the toolbar.
+While on the adopt screen of the main tab bar you can tap on a cat to see more details about the cat.  The details screen has a bigger picture of the cat and below that is a row of icons which do various things.  Each will either be enabled or displayed if you can use that buttons feature.
 
-Once you tap a cat you will see a description of the cat and various options to choose to get in touch with the shelter.  Just tap the appropriate button to either call, get driving directions, email, youtube, or share.  Some of these options may not be enabled depending on what contact information a particular shelter provides.
+The functions from left to right are going to Apple maps to get directions, call the shelter to talk to someone, email the shelter about the cat, see more pictures of the cat,  see a video of the cat, and share the cat's details with someone.
 
-When you are viewing a particular cat and you want to keep track of the cat just tap the heart button on the top right of the title bar of the screen displaying the cat.  If the heart is gray then the cat is not choosen as a favorite.  If the heart is red then this cat is a favorite.  On the title screen you can go to a listing of your favorites and tap them to see a favorite.
+Below this is necessary information like where the city and state where the cat is located, whether the cat is still available, and the last time the cat's information was updated.
 
-From the title screen you can also just see all the cats in an alphabetticaly list without answering the questions.  All options from this list are the same as the survey.
+Below this bar is more information about the cat.  Like general facts about the cat, the exact address of the cat, and a description of the cat.
 
-Also you can go directly to the list of all cat breeds to adopt startng with the ones closest to you.
+On the top right of the detail screen is a heart. The heart is used to favorite the cat.  If the heart is white, that means the cat is not yet a favorite.  If the heart is red, then it is favorited.  A list of the main tab bar of the app shows a list of which cats are your favorites.
 
-You can save your answers from the survey summary list by clicking the disk icon on the upper right and entering a name to save undera as well.  These saved list of answers can be seen by tapping on the disk icon button accessible from the title screen.
+The second to last icon on the main tab bar is the survey icon.  The survey will ask you various questions about what kind of cat you would like and then show a list of cats in order of how they match your choices.  To answer a question click on one of the numbers on the middle bar, and it will show you what the option means.  If you don't care about a question then just leave the option on the 0, and it will not use the question to do the matching.  You can go to the next question by either click on the next button or scroll the page forward.  If you want to go back a page, then scroll the page backward.
 
 I hope you find a cat that is purrfect for you!
 
@@ -1734,10 +1736,9 @@ Cat Descriptions and pictures: https://www.wikipedia.org
 
 Some cat breed description videos are by www.wizscience.com.  They are clearly shown as such.
 
-Thanks to my family for their help and support.  My Dad did the excellent naration on the app preview video and onboarding video.  My brother analyzed the survey ui and gave me user interface ideas.  My sister in law Katja drew and my neice Petra then colored the icon and launch screen picture of my cat Gizmo.
+Thanks to my family for their help and support.  My Dad did the excellent naration on the app preview video and onboarding video.  My brother analyzed the survey ui and gave me user interface ideas.
 
-Thanks to the members of PhillyCocoa for their great help and support.
-</string>
+Thanks to the members of PhillyCocoa for their great help and support.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1751,7 +1752,7 @@ Thanks to the members of PhillyCocoa for their great help and support.
                             <constraint firstItem="31O-n7-55d" firstAttribute="top" secondItem="h58-Rx-tBK" secondAttribute="bottom" constant="9" id="w8K-RX-Nex"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="About" id="3ci-Ml-WK8"/>
+                    <tabBarItem key="tabBarItem" title="About" image="about-1" selectedImage="about-1" id="3ci-Ml-WK8"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FBi-rd-bMo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2457,7 +2458,7 @@ Thanks to the members of PhillyCocoa for their great help and support.
         <scene sceneID="dUm-vj-pts">
             <objects>
                 <collectionViewController storyboardIdentifier="adoptACat" id="9Ce-aR-hIR" customClass="AdoptableCatsViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Iau-WG-o6L">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Iau-WG-o6L">
                         <rect key="frame" x="0.0" y="94" width="375" height="529"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -4307,6 +4308,7 @@ Cg
         <image name="SurveyNextButton" width="336" height="67"/>
         <image name="TopSearchIcon" width="22" height="22"/>
         <image name="VideoAvailableIcon" width="25" height="25"/>
+        <image name="about-1" width="25" height="25"/>
         <image name="back-1" width="35" height="35"/>
         <image name="bar-empty" width="25" height="25"/>
         <image name="bar-filled" width="25" height="25"/>
