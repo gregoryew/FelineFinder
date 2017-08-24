@@ -14,7 +14,7 @@ import CoreLocation
 
 //let handlerDelay2 = 1.5
 
-class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ModalTransitionDelegate { //, NavgationTransitionable {
+class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ModalTransitionDelegate, UICollectionViewDelegateFlowLayout { //, NavgationTransitionable {
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
@@ -41,6 +41,26 @@ class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, 
     var observer : Any!
     //weak var tr_pushTransition: TRNavgationTransitionDelegate?
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        let cellSpacing = CGFloat(0) //Define the space between each cell
+        let leftRightMargin = CGFloat(0) //If defined in Interface Builder for "Section Insets"
+        var numColumns: CGFloat = 0
+        if UIDevice().model.hasPrefix("iPad") {
+            numColumns = CGFloat(5) //The total number of columns you want
+        } else {
+            numColumns = CGFloat(2)
+        }
+        
+        let totalCellSpace = cellSpacing * (numColumns - 1)
+        let screenWidth = UIScreen.main.bounds.width
+        let width = (screenWidth - leftRightMargin - totalCellSpace) / numColumns
+        let height = CGFloat(205) //whatever height you want
+        
+        return CGSize(width: width, height: height);
+    }
     
     func getZipCode() {
         

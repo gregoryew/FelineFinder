@@ -293,11 +293,11 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         self.StatusLabel2.frame = CGRect(x: self.priorX, y: self.StatusLabel2.frame.minY, width: self.priorWidth, height: self.StatusLabel2.frame.size.height)
         self.StatusLabel.frame = CGRect(x: self.priorX, y: self.StatusLabel.frame.minY, width: self.priorWidth, height: self.StatusLabel.frame.size.height)
         var textwidth = self.StatusLabel2.text?.width(withConstrainedHeigth: self.StatusLabel2.frame.height, font: self.StatusLabel2.font)
-        if CGFloat(self.StatusLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+        if CGFloat(self.StatusLabel2.frame.width) < CGFloat(textwidth!) + 1 {
             self.StatusLabel2.addTrailing(with: "...", moreText: "▼", moreTextFont: self.StatusLabel2.font!, moreTextColor:self.StatusLabel2.textColor)
         }
         textwidth = self.LocationLabel.text?.width(withConstrainedHeigth: self.LocationLabel.frame.height, font: self.LocationLabel.font)
-        if CGFloat(self.LocationLabel.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+        if CGFloat(self.LocationLabel.frame.width) < CGFloat(textwidth!) + 1 {
             self.LocationLabel.addTrailing(with: "...", moreText: "▼", moreTextFont: self.LocationLabel.font!, moreTextColor:self.LocationLabel.textColor)
         }
     }
@@ -393,11 +393,11 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                 self.UpdatedLabel2.alpha = 1
                 self.StatusLabel.alpha = 1
                 self.UpdatedLabel.alpha = 1
-                self.LocationLabel.text = "\(String(describing: self.s?.city ?? "")) \(String(describing: self.s?.state ?? ""))"
+                self.LocationLabel.text = self.pet?.location
                 self.LocationLabel.frame = CGRect(x: self.LocationLabel.frame.minX, y: self.LocationLabel.frame.minY, width: self.priorWidth, height: self.LocationLabel.frame.size.height)
             }, completion: {(finished: Bool) in
                 let textwidth = self.LocationLabel.text?.width(withConstrainedHeigth: self.LocationLabel.frame.height, font: self.LocationLabel.font)
-                if CGFloat(self.LocationLabel.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+                if CGFloat(self.LocationLabel.frame.width) < CGFloat(textwidth!) + 1 {
                     self.LocationLabel.addTrailing(with: "...", moreText: "▼", moreTextFont: self.LocationLabel.font!, moreTextColor:self.LocationLabel.textColor)
                 }
             })
@@ -410,7 +410,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                 self.UpdatedLabel2.alpha = 0
                 self.StatusLabel.alpha = 0
                 self.UpdatedLabel.alpha = 0
-                self.LocationLabel.text = "\(String(describing: self.s?.city ?? "")), \(String(describing: self.s?.state ?? ""))▲"
+                self.LocationLabel.text = "\(self.pet!.location)▲"
                 self.LocationLabel.frame = CGRect(x: self.LocationLabel.frame.minX, y: self.LocationLabel.frame.minY, width: self.UpdatedLabel2.frame.maxX, height: self.LocationLabel.frame.size.height)
             }
         }
@@ -433,7 +433,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                 self.StatusLabel.frame = CGRect(x: self.priorX, y: self.StatusLabel.frame.minY, width: self.priorWidth, height: self.StatusLabel.frame.size.height)
             }, completion: {(finished: Bool) in
                 let textwidth = self.StatusLabel2.text?.width(withConstrainedHeigth: self.StatusLabel2.frame.height, font: self.StatusLabel2.font)
-                if CGFloat(self.StatusLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+                if CGFloat(self.StatusLabel2.frame.width) < CGFloat(textwidth!) + 1 {
                     self.StatusLabel2.addTrailing(with: "...", moreText: "▼", moreTextFont: self.StatusLabel2.font!, moreTextColor:self.StatusLabel2.textColor)
                 }
             })
@@ -503,23 +503,23 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         })
 
         DispatchQueue.main.async {
-        self.LocationLabel.text = "\(s.city) \(s.state)"
+        self.LocationLabel.text = p.location
         self.CatNameLabel.text = p.name
-        self.StatusLabel2.text = "\(p.status)"
+        self.StatusLabel2.text = p.status
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
         let d = dateFormatter.string(from: p.lastUpdated)
         self.UpdatedLabel2.text = "\(d)"
         var textwidth = self.LocationLabel.text?.width(withConstrainedHeigth: self.LocationLabel.frame.height, font: self.LocationLabel.font)
-        if CGFloat(self.LocationLabel.intrinsicContentSize.width) < CGFloat(textwidth!) + 1 {
+        if CGFloat(self.LocationLabel.frame.width) < CGFloat(textwidth!) + 1 {
                 self.LocationLabel.addTrailing(with: "... ", moreText: "▼", moreTextFont: self.LocationLabel.font!, moreTextColor:self.LocationLabel.textColor)
         }
         textwidth = self.StatusLabel2.text?.width(withConstrainedHeigth: self.StatusLabel2.frame.height, font: self.StatusLabel2.font)
-        if CGFloat(self.StatusLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) {
+        if CGFloat(self.StatusLabel2.frame.width) < CGFloat(textwidth!) {
                 self.StatusLabel2.addTrailing(with: "... ", moreText: "▼", moreTextFont: self.StatusLabel2.font!, moreTextColor:self.StatusLabel2.textColor)
         }
         textwidth = self.UpdatedLabel2.text?.width(withConstrainedHeigth: self.UpdatedLabel2.frame.height, font: self.UpdatedLabel2.font)
-            if CGFloat(self.UpdatedLabel2.intrinsicContentSize.width) < CGFloat(textwidth!) {
+            if CGFloat(self.UpdatedLabel2.frame.width) < CGFloat(textwidth!) {
                 self.UpdatedLabel2.addTrailing(with: "... ", moreText: "▼", moreTextFont: self.UpdatedLabel2.font!, moreTextColor:self.UpdatedLabel2.textColor)
             }
         }

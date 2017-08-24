@@ -345,7 +345,7 @@ extension UIView {
 extension UILabel {
     
     func addTrailing(with trailingText: String, moreText: String, moreTextFont: UIFont, moreTextColor: UIColor) {
-        let readMoreText: String = trailingText + moreText
+        let readMoreText: String = moreText
         
         let lengthForVisibleString: Int = self.vissibleTextLength()
         let mutableString: String = self.text!
