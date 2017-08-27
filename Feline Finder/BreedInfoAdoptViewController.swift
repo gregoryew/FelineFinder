@@ -55,7 +55,7 @@ class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, 
         }
         
         let totalCellSpace = cellSpacing * (numColumns - 1)
-        let screenWidth = UIScreen.main.bounds.width
+        let screenWidth = UIScreen.main.bounds.width - 45
         let width = (screenWidth - leftRightMargin - totalCellSpace) / numColumns
         let height = CGFloat(205) //whatever height you want
         
