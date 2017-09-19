@@ -224,6 +224,7 @@
 		465313131F394EB300B39413 /* MainTabTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabTableViewCell.swift; sourceTree = "<group>"; };
 		4663A9171F36E65000742A4B /* SurveyMatchesHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyMatchesHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4663A9191F36E70F00742A4B /* SurveyMatchesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyMatchesTableViewCell.swift; sourceTree = "<group>"; };
+		4668DC171F65686E00883BDE /* Feline Finder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = "Feline Finder.entitlements"; path = "Feline Finder/Feline Finder.entitlements"; sourceTree = "<group>"; };
 		466FCC5C1F36B9B000539B43 /* SurveyMatchesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SurveyMatchesTableViewController.swift; path = ../SurveyMatchesTableViewController.swift; sourceTree = "<group>"; };
 		467737411F3C7DBF00883F42 /* BreeedInfoGalleryPhotoCollectionViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreeedInfoGalleryPhotoCollectionViewCell2.swift; sourceTree = "<group>"; };
 		467737431F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoGalleryPhotoAPI.swift; sourceTree = "<group>"; };
@@ -658,6 +659,7 @@
 		C5FB6E921B2132EC007FFA36 = {
 			isa = PBXGroup;
 			children = (
+				4668DC171F65686E00883BDE /* Feline Finder.entitlements */,
 				464E39D31E33A42B005577ED /* Media.xcassets */,
 				C5FB6E9C1B2132EC007FFA36 /* Products */,
 				C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */,
@@ -905,7 +907,15 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = BVC6BMPCPP;
 						LastSwiftMigration = 0810;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1280,8 +1290,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Feline Finder/Feline Finder.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer: Gregory Williams (2VJTDFL7KC)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
@@ -1293,8 +1304,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
-				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1311,8 +1322,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Feline Finder/Feline Finder.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Gregory Williams (BVC6BMPCPP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
@@ -1324,8 +1336,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "0644eb72-7b23-43a4-9ce9-3b77fa9223bc";
-				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -16,6 +16,8 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     
     var tr_presentTransition: TRViewControllerTransitionDelegate?
     var statuses:[String: Favorite] = [:]
+    var observer : Any!
+    
     @IBOutlet var tableView: UITableView!
     
     deinit {
@@ -25,23 +27,14 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        Favorites.loaded = false
-        Favorites.Favorites.removeAll()
-        Favorites.breedKeys.removeAll()
-        Favorites.LoadFavorites()
-        
-        Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
-            self.statuses = Stats
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
+     
+        let nc = NotificationCenter.default
+        observer = nc.addObserver(forName:NSNotification.Name(rawValue: "reloadFavorites"), object:nil, queue:nil) { [weak self] notification in
+            self?.loadData()
         }
         
-        if #available( iOS 10.3,*){
-            if Favorites.count > 0 {SKStoreReviewController.requestReview()}
-        }
     }
-        
+    
     override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool
     {
         if Favorites.totalBreeds == 0 && identifier == "felineFinderDetail" {
@@ -75,7 +68,7 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        if Favorites.totalBreeds == 0 {
+        if Favorites.totalBreeds == 0 || Favorites.breedKeys.count == 0 {
             return ""
         } else {
             return Favorites.breedKeys[section]
@@ -162,19 +155,22 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:false);
-        
+        loadData()
+        if #available( iOS 10.3,*){
+            if Favorites.count > 0 {SKStoreReviewController.requestReview()}
+        }
+    }
+    
+    func loadData() {
         Favorites.loaded = false
-        Favorites.Favorites.removeAll()
-        Favorites.breedKeys.removeAll()
         Favorites.LoadFavorites()
         
         Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
             self.statuses = Stats
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
         }
-        
-        DispatchQueue.main.async(execute: {
-            self.tableView.reloadData()
-        })
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

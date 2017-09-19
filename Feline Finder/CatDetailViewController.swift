@@ -375,6 +375,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         }
         
         self.CatBreedLabel.text = b
+        self.CatNameLabel.text = p.name
         
         var o: String = ""
         for o2 in p.options {

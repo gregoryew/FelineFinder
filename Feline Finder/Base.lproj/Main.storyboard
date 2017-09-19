@@ -1204,8 +1204,8 @@ Thanks to the members of PhillyCocoa for their great help and support.
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2G-Jn-XLS">
                                 <rect key="frame" x="0.0" y="350" width="375" height="24"/>
                                 <subviews>
-                                    <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh8-z2-peS">
-                                        <rect key="frame" x="8" y="4" width="4" height="16"/>
+                                    <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kh8-z2-peS">
+                                        <rect key="frame" x="8" y="4" width="359" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" red="0.41960784309999999" green="0.72941176470000002" blue="0.30980392159999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1216,6 +1216,7 @@ Thanks to the members of PhillyCocoa for their great help and support.
                                     <constraint firstAttribute="bottom" secondItem="Kh8-z2-peS" secondAttribute="bottom" constant="4" id="1QC-p4-D2O"/>
                                     <constraint firstItem="Kh8-z2-peS" firstAttribute="leading" secondItem="X2G-Jn-XLS" secondAttribute="leading" constant="8" id="Hpu-id-dkN"/>
                                     <constraint firstItem="Kh8-z2-peS" firstAttribute="top" secondItem="X2G-Jn-XLS" secondAttribute="top" constant="4" id="XEW-rf-M7Y"/>
+                                    <constraint firstItem="Kh8-z2-peS" firstAttribute="centerX" secondItem="X2G-Jn-XLS" secondAttribute="centerX" id="iWL-ci-IcH"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CatDetailHorizontalSeperator" translatesAutoresizingMaskIntoConstraints="NO" id="wTJ-O1-QN9">

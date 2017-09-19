@@ -65,6 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+  
+        let kvStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default();
+        let notificationsCenter: NotificationCenter = NotificationCenter.default
+        notificationsCenter.addObserver(self, selector: #selector(AppDelegate.ubiquitousKeyValueStoreDidChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: kvStore)
+        kvStore.synchronize()
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
             
@@ -83,6 +88,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
+    }
+    
+    func ubiquitousKeyValueStoreDidChange() {
+        Favorites.loadIDs()
+        let nc = NotificationCenter.default
+        nc.post(name:NSNotification.Name(rawValue: "reloadFavorites"),
+                object: nil,
+                userInfo:nil)
+
     }
     
     func setStatusBarBackgroundColor(color: UIColor) {
@@ -193,6 +207,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("Error")
                         }
                     }
+                    Favorites.LoadFavoritesDB()
+                    IDs.mergeElements(newElements: Favorites.keys)
+                    Favorites.storeIDs()
                 }
             }
         }
@@ -266,7 +283,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let build = dictionary["CFBundleVersion"] as! String
         return "\(version) build \(build)"
     }
-
+    
     /*
     func showWarning() {
         if warningShown == false {
@@ -304,4 +321,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+var Favorites = FavoritesList()
 
