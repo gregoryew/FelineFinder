@@ -343,7 +343,7 @@ extension UIView {
 }
 
 extension UILabel {
-    
+    /*
     func addTrailing(with trailingText: String, moreText: String, moreTextFont: UIFont, moreTextColor: UIColor) {
         let readMoreText: String = moreText
         
@@ -358,7 +358,9 @@ extension UILabel {
         //self.attributedText = answerAttributed
         self.text = trimmedForReadMore + readMoreText
     }
+    */
     
+    /*
     func vissibleTextLength() -> Int {
         let font: UIFont = self.font
         let mode: NSLineBreakMode = self.lineBreakMode
@@ -366,7 +368,7 @@ extension UILabel {
         let labelHeight: CGFloat = self.frame.size.height
         let sizeConstraint = CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude)
         
-        let attributes: [AnyHashable: Any] = [NSFontAttributeName: font]
+        let attributes: [AnyHashable: Any] = [NSAttributedStringKey.font: font]
         let attributedText = NSAttributedString(string: self.text!, attributes: attributes as? [String : Any])
         let boundingRect: CGRect = attributedText.boundingRect(with: sizeConstraint, options: .usesLineFragmentOrigin, context: nil)
         
@@ -386,20 +388,21 @@ extension UILabel {
         }
         return self.text!.characters.count
 }
+*/
 }
-
+    
 extension String {
     
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         
         return boundingBox.height
     }
     
     func width(withConstrainedHeigth height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         
         return boundingBox.width
     }

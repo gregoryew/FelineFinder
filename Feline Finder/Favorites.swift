@@ -26,7 +26,7 @@ struct Favorite {
 }
 
 class FavoritesList {
-    var iCloudKeyStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default()
+    var iCloudKeyStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default
     var Favorites = [String:Favorite]()
     var keys = [String]()
     var loaded: Bool = false
@@ -421,7 +421,7 @@ var IDs:[String] = []
 
 extension Array where Element : Equatable{
     
-    public mutating func mergeElements<C : Collection>(newElements: C) where C.Generator.Element == Element{
+    public mutating func mergeElements<C : Collection>(newElements: C) where C.Iterator.Element == Element{
         let filteredList = newElements.filter({!self.contains($0)})
         self.append(contentsOf: filteredList)
     }

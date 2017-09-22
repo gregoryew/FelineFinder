@@ -62,7 +62,7 @@ class PictureMasterViewController: UICollectionViewController, NavgationTransiti
     
   }
   
-  func refreshControlDidFire() {
+  @objc func refreshControlDidFire() {
     collectionView?.reloadData()
     if #available(iOS 10.0, *) {
         collectionView?.refreshControl?.endRefreshing()

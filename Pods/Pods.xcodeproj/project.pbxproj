@@ -137,11 +137,11 @@
 /* Begin PBXFileReference section */
 		0036A4A8435583280E114EF7E0D231A2 /* TTSegmentedControl-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTSegmentedControl-prefix.pch"; sourceTree = "<group>"; };
 		05D754D10E7AED89B40CCD112ECFC45F /* IPService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IPService.swift; path = Sources/SwiftLocation/IPService.swift; sourceTree = "<group>"; };
-		064E26CC50F8CD00FFBDFE9A09F75AA4 /* YouTubePlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = YouTubePlayer.modulemap; sourceTree = "<group>"; };
+		064E26CC50F8CD00FFBDFE9A09F75AA4 /* YouTubePlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = YouTubePlayer.modulemap; sourceTree = "<group>"; };
 		065C72CF9F11678DD7183AAAFDD71138 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		12DB6C9B6502BF5244FAD01DB6A06072 /* BlixtTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BlixtTransitionAnimation.swift; path = TransitionAnimation/BlixtTransitionAnimation.swift; sourceTree = "<group>"; };
 		1D6A98E275947A20B40D37DF6068D782 /* YouTubePlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "YouTubePlayer-dummy.m"; sourceTree = "<group>"; };
-		2036DB4BF9681901DD8DEC456B6E6A8D /* YTPlayer.html */ = {isa = PBXFileReference; includeInIndex = 1; name = YTPlayer.html; path = YouTubePlayer/YouTubePlayer/YTPlayer.html; sourceTree = "<group>"; };
+		2036DB4BF9681901DD8DEC456B6E6A8D /* YTPlayer.html */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.html; name = YTPlayer.html; path = YouTubePlayer/YouTubePlayer/YTPlayer.html; sourceTree = "<group>"; };
 		22A2115AE434DBDAD5436D757B7DFB31 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22CB36FD80E9F7943882BDD4FE6F880B /* Ring.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ring.swift; path = Source/Ring.swift; sourceTree = "<group>"; };
 		2404DB1BD4E268F38A7CC41EE9E8711C /* Easing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Easing.swift; path = Source/Helpers/Easing.swift; sourceTree = "<group>"; };
@@ -150,7 +150,7 @@
 		2AFA5784178DA9C17FDCD10CFC5B5D53 /* Frequency.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Frequency.swift; path = Sources/SwiftLocation/Frequency.swift; sourceTree = "<group>"; };
 		2CE08EBDEEA9F26D31129B99A7139F51 /* ScanbotTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScanbotTransitionAnimation.swift; path = TransitionAnimation/ScanbotTransitionAnimation.swift; sourceTree = "<group>"; };
 		2E59B18D1BF29D82D2585C2CCD68B812 /* TRTabBarControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRTabBarControllerDelegate.swift; path = TransitionTreasury/TabBarTransition/TRTabBarControllerDelegate.swift; sourceTree = "<group>"; };
-		2EE3EF1CA799CAF61A7C712A5DA27DE0 /* TTSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TTSegmentedControl.framework; path = TTSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EE3EF1CA799CAF61A7C712A5DA27DE0 /* TTSegmentedControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TTSegmentedControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EFCC31AD94D1A6D91B9605A10651C72 /* TransitionAnimation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TransitionAnimation-dummy.m"; sourceTree = "<group>"; };
 		3158917A768E73295DD34360775C348D /* RegionRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegionRequest.swift; path = Sources/SwiftLocation/RegionRequest.swift; sourceTree = "<group>"; };
 		37F913203E5431C35E11FCB304B12724 /* UITabBarController+TRTransition.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITabBarController+TRTransition.swift"; path = "TransitionTreasury/TabBarTransition/UITabBarController+TRTransition.swift"; sourceTree = "<group>"; };
@@ -161,13 +161,13 @@
 		45271A9B32F895AAC7E38F2F8523650E /* TRStatusBarStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRStatusBarStyle.swift; path = TransitionTreasury/TRStatusBarStyle.swift; sourceTree = "<group>"; };
 		4C78F5CAF4AF52C39F1893CDA45BDAD6 /* Constraints+.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Constraints+.swift"; path = "Source/Helpers/Constraints+.swift"; sourceTree = "<group>"; };
 		511C61C1160957AEAF4798AE0504FE1B /* TransitionTreasury-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TransitionTreasury-dummy.m"; sourceTree = "<group>"; };
-		54C2314B46C1CBDAE1D4EE000AE7D30B /* TransitionAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TransitionAnimation.framework; path = TransitionAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		54C2314B46C1CBDAE1D4EE000AE7D30B /* TransitionAnimation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransitionAnimation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C23E909D1472D1C0A929CF763BD34F /* Accuracy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Accuracy.swift; path = Sources/SwiftLocation/Accuracy.swift; sourceTree = "<group>"; };
 		5509EEAC22876CAB9B76DEE22245AD89 /* YouTubePlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YouTubePlayer-prefix.pch"; sourceTree = "<group>"; };
 		56D8B4D7CF6A77665F6EF3CD2692C547 /* PopTipTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopTipTransitionAnimation.swift; path = TransitionAnimation/PopTipTransitionAnimation.swift; sourceTree = "<group>"; };
-		5B1097BFF351EF149C557CCB1241EB8F /* TransitionTreasury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TransitionTreasury.framework; path = TransitionTreasury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B1097BFF351EF149C557CCB1241EB8F /* TransitionTreasury.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TransitionTreasury.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BEC2BAEA2C51AA3A684F9482BB2F52E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		5DECBB90F89FCDF6161052DEB1F24BDC /* SwiftLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftLocation.framework; path = SwiftLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5DECBB90F89FCDF6161052DEB1F24BDC /* SwiftLocation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftLocation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63E2364E282010F6A7FA4D0D7B88B6E2 /* YouTubePlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "YouTubePlayer-umbrella.h"; sourceTree = "<group>"; };
 		63F28B6684A20A2E7AFC266CFF6E203D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		66E2464B9FB5CDFD308628639A922ADA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		728389BAFA71F88275B964836B1B1F6E /* TwitterTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TwitterTransitionAnimation.swift; path = TransitionAnimation/TwitterTransitionAnimation.swift; sourceTree = "<group>"; };
 		730194BCB93AF016C5590F0524EC50C3 /* Structs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Structs.swift; path = Sources/SwiftLocation/Structs.swift; sourceTree = "<group>"; };
 		7336C38BD5ED3A6A6651073B2223163D /* TransitionAnimation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionAnimation-umbrella.h"; sourceTree = "<group>"; };
-		74F08DCA1BA053693937980873BF07EC /* SwiftLocation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftLocation.modulemap; sourceTree = "<group>"; };
+		74F08DCA1BA053693937980873BF07EC /* SwiftLocation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftLocation.modulemap; sourceTree = "<group>"; };
 		753C8FC02F7B67A5D9CC777D5DB3E13A /* TransitionTreasury-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionTreasury-prefix.pch"; sourceTree = "<group>"; };
 		76ED85BDF57C1F146675E6A460364918 /* SwiftLocation-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftLocation-dummy.m"; sourceTree = "<group>"; };
 		77B320949D25817657D59103A94B3102 /* OMNITransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OMNITransitionAnimation.swift; path = TransitionAnimation/OMNITransitionAnimation.swift; sourceTree = "<group>"; };
@@ -192,18 +192,18 @@
 		8EDF06ED9B4490A04BF2C078A90DAC49 /* Geometry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Geometry.swift; path = Source/Helpers/Geometry.swift; sourceTree = "<group>"; };
 		8F6CECDDFC424E3510D973E719A27D6B /* Pods-Feline Finder-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Feline Finder-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9292B0DE37781053AA51FB047B5824DF /* LocationRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocationRequest.swift; path = Sources/SwiftLocation/LocationRequest.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		98B5B721D82A1E87FB6E22EBBDEF1BC5 /* Pods-Feline Finder-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Feline Finder-frameworks.sh"; sourceTree = "<group>"; };
 		9B3A708FE5450D0EF40FEDDBA445A3A7 /* Spark.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Spark.swift; path = Source/Spark.swift; sourceTree = "<group>"; };
-		9DE1CBF395588194493EA1B5BC0BE152 /* YouTubePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = YouTubePlayer.framework; path = YouTubePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DE1CBF395588194493EA1B5BC0BE152 /* YouTubePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YouTubePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E56AD11AAFF9BC945DA4F268E4BE6BC /* TaaskyFlipTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaaskyFlipTransitionAnimation.swift; path = TransitionAnimation/TaaskyFlipTransitionAnimation.swift; sourceTree = "<group>"; };
 		A129A8E2449C2C62345E9467FEDF1E3B /* SwiftLocation-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftLocation-umbrella.h"; sourceTree = "<group>"; };
-		A3CD7223F115CDB21459980949AF2E7D /* TransitionAnimation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TransitionAnimation.modulemap; sourceTree = "<group>"; };
+		A3CD7223F115CDB21459980949AF2E7D /* TransitionAnimation.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TransitionAnimation.modulemap; sourceTree = "<group>"; };
 		A760C0751913E67CDCD66BBFD7DEFC9E /* PageTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageTransitionAnimation.swift; path = TransitionAnimation/PageTransitionAnimation.swift; sourceTree = "<group>"; };
 		AA8817208D371271139803C91FF63235 /* Pods-Feline Finder-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Feline Finder-umbrella.h"; sourceTree = "<group>"; };
 		B0D74D2CAFC282BAE6437CA7650BAF34 /* UINavigationController+TRPushPop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+TRPushPop.swift"; path = "TransitionTreasury/PushTransition/UINavigationController+TRPushPop.swift"; sourceTree = "<group>"; };
 		B3A9E71F6012D8520DE90986F96B4F2F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B4CD036E0606C38201E47B9B9CB458FF /* FaveButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FaveButton.framework; path = FaveButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4CD036E0606C38201E47B9B9CB458FF /* FaveButton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FaveButton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5ECB23914BF14C6D332FBE4DD3F683E /* TTSegmentedControl-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TTSegmentedControl-umbrella.h"; sourceTree = "<group>"; };
 		B6F67734E9EBDB4453E1D40D2A53CA12 /* TransitionAnimation-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionAnimation-prefix.pch"; sourceTree = "<group>"; };
 		BD14CAAC78D188D0FFD0D60062B1A3A1 /* FaveButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FaveButton-prefix.pch"; sourceTree = "<group>"; };
@@ -211,16 +211,16 @@
 		BD7EA7EAE62D6775A87D99B4D7F0D5C0 /* IBanTangTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IBanTangTransitionAnimation.swift; path = TransitionAnimation/IBanTangTransitionAnimation.swift; sourceTree = "<group>"; };
 		BDBECB2C94F3ECF0AC8BD35CBF1CFE33 /* Init.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Init.swift; path = Source/Helpers/Init.swift; sourceTree = "<group>"; };
 		BFF6760729A55EF6F0A9F3ED1D9BE677 /* ElevateTransitionAnimation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ElevateTransitionAnimation.swift; path = TransitionAnimation/ElevateTransitionAnimation.swift; sourceTree = "<group>"; };
-		C2F1A123D88168A82B8A2DC22BF9405F /* TransitionTreasury.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TransitionTreasury.modulemap; sourceTree = "<group>"; };
+		C2F1A123D88168A82B8A2DC22BF9405F /* TransitionTreasury.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TransitionTreasury.modulemap; sourceTree = "<group>"; };
 		C3AE351D4A5BF84B724E5F2BCFC0CA44 /* HeadingRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeadingRequest.swift; path = Sources/SwiftLocation/HeadingRequest.swift; sourceTree = "<group>"; };
-		C7353E98319BBD79E7D4B1E33F1579BA /* TTSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = TTSegmentedControl.modulemap; sourceTree = "<group>"; };
-		CC6EB141F21C9D94A3A747AEF9659BA2 /* Pods-Feline Finder.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-Feline Finder.modulemap"; sourceTree = "<group>"; };
-		CD109405FBB9B5E6D4A8438701FFDDBB /* FaveButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = FaveButton.modulemap; sourceTree = "<group>"; };
+		C7353E98319BBD79E7D4B1E33F1579BA /* TTSegmentedControl.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = TTSegmentedControl.modulemap; sourceTree = "<group>"; };
+		CC6EB141F21C9D94A3A747AEF9659BA2 /* Pods-Feline Finder.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Feline Finder.modulemap"; sourceTree = "<group>"; };
+		CD109405FBB9B5E6D4A8438701FFDDBB /* FaveButton.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = FaveButton.modulemap; sourceTree = "<group>"; };
 		CE490E10FC9993F4C21B8FE2B687DC32 /* FaveButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FaveButton.xcconfig; sourceTree = "<group>"; };
 		D074C1F6CE2DE1040AE45CA39727DC90 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MapKit.framework; sourceTree = DEVELOPER_DIR; };
 		D089F868C695C03D2B50E636D81E7262 /* TRNavgationTransitionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TRNavgationTransitionDelegate.swift; path = TransitionTreasury/PushTransition/TRNavgationTransitionDelegate.swift; sourceTree = "<group>"; };
 		D5C01CE10292B06C64F60DE983440591 /* Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Sources/SwiftLocation/Extensions.swift; sourceTree = "<group>"; };
-		D721E027D5AFF9CD831C81B12B165C6B /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Feline_Finder.framework; path = "Pods-Feline Finder.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D721E027D5AFF9CD831C81B12B165C6B /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E048131B7A42314344B2B31EFDC0EF21 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2348BE1724714E58BA70B0F67CB3D0F /* TTSegmentedControl-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "TTSegmentedControl-dummy.m"; sourceTree = "<group>"; };
 		E4FB1B042D84A37FB08A6582E1EC4E64 /* TransitionTreasury-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "TransitionTreasury-umbrella.h"; sourceTree = "<group>"; };
@@ -391,7 +391,6 @@
 				728389BAFA71F88275B964836B1B1F6E /* TwitterTransitionAnimation.swift */,
 				C5E34BADA4A85149EED147D6B043403C /* Support Files */,
 			);
-			name = TransitionAnimation;
 			path = TransitionAnimation;
 			sourceTree = "<group>";
 		};
@@ -446,7 +445,6 @@
 				EA369A2765416C0E88AC72F47884E927 /* VisitsRequest.swift */,
 				6DC0A66520FC8DD890A88EA18BE504E2 /* Support Files */,
 			);
-			name = SwiftLocation;
 			path = SwiftLocation;
 			sourceTree = "<group>";
 		};
@@ -481,7 +479,6 @@
 				9B3A708FE5450D0EF40FEDDBA445A3A7 /* Spark.swift */,
 				D49445824BC105E5A987313E1985AAC7 /* Support Files */,
 			);
-			name = FaveButton;
 			path = FaveButton;
 			sourceTree = "<group>";
 		};
@@ -500,7 +497,6 @@
 				680F769AD0571BEF5A6C0DC6D2058999 /* UIViewController+TRPresent.swift */,
 				4084622ABB01E2CC8F01F415A19C9879 /* Support Files */,
 			);
-			name = TransitionTreasury;
 			path = TransitionTreasury;
 			sourceTree = "<group>";
 		};
@@ -564,7 +560,6 @@
 				7371BAA7F4D01E64682A1F3084C9CEF6 /* Resources */,
 				15478648DD3DF52EDB9266E8611D2B7D /* Support Files */,
 			);
-			name = YouTubePlayer;
 			path = YouTubePlayer;
 			sourceTree = "<group>";
 		};
@@ -574,7 +569,6 @@
 				EA78A97CBBBCE03D57288997B7F0AC1D /* TTSegmentedControl.swift */,
 				AF0F351207FBB4DB3F63FA2BCF0263FD /* Support Files */,
 			);
-			name = TTSegmentedControl;
 			path = TTSegmentedControl;
 			sourceTree = "<group>";
 		};
@@ -783,6 +777,26 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					1611B5266C66AB758C2BC15CA72DC32C = {
+						LastSwiftMigration = 0900;
+					};
+					2E695A0DD5D83DFC970DCC3F917F0AB2 = {
+						LastSwiftMigration = 0900;
+					};
+					7C08227B6E14D87F0F5B0FD6DFFA1A3E = {
+						LastSwiftMigration = 0900;
+					};
+					940A17D0942E7ACDA8EBB00ADB3E635D = {
+						LastSwiftMigration = 0900;
+					};
+					9AC6049C28283306A6816460C86B8838 = {
+						LastSwiftMigration = 0900;
+					};
+					C3F1912969C6A1AB2F7E8A8F4F8721A9 = {
+						LastSwiftMigration = 0900;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -998,7 +1012,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1032,7 +1047,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1066,7 +1082,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1100,7 +1117,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1183,7 +1201,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1217,7 +1236,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1252,7 +1272,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1325,7 +1346,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1404,7 +1426,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1478,7 +1501,8 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1512,7 +1536,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1546,7 +1571,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

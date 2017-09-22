@@ -92,7 +92,7 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
         }
     }
     
-    func draggedView(_ sender:UIPanGestureRecognizer){
+    @objc func draggedView(_ sender:UIPanGestureRecognizer){
         //let translation = sender.translation(in: self.view)
         if sender.state == .ended {
             slider?.positionTracker()

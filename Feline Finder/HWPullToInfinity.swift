@@ -86,7 +86,7 @@ extension UIScrollView {
         }
     }
     
-    func triggerPullToRefresh() {
+    @objc func triggerPullToRefresh() {
         if let handler = self.pullRefreshHandler {
             handler()
         }

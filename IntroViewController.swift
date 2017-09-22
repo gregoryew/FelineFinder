@@ -77,7 +77,7 @@ class IntroViewController: UIViewController, ModalTransitionDelegate {
         //self.navigationController?.setToolbarHidden(true, animated:false)
     }
     
-    func introVideoTapped() {
+    @objc func introVideoTapped() {
         let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
         
         onboarding.modalDelegate = self
@@ -88,7 +88,7 @@ class IntroViewController: UIViewController, ModalTransitionDelegate {
 
     }
     
-    func breedSuggestionTapped() {
+    @objc func breedSuggestionTapped() {
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
         
         details.selectedIndex = 3
@@ -99,7 +99,7 @@ class IntroViewController: UIViewController, ModalTransitionDelegate {
     
     }
     
-    func lookAtACatBreedForAdoptionTapped() {
+    @objc func lookAtACatBreedForAdoptionTapped() {
         
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
         

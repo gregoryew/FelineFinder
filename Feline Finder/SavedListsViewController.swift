@@ -196,7 +196,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     //handler
-    func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
+    @objc func handleTextFieldTextDidChangeNotification(_ notification: Notification) {
         let textField = notification.object as! UITextField
         
         // Enforce a minimum length of >= 1 for secure text alerts.

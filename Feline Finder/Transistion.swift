@@ -249,7 +249,7 @@ class TransitionImageView2: UIImageView {
         return newImage
     }
     
-    func timerFired(timer: Timer) {
+    @objc func timerFired(timer: Timer) {
         i = CGFloat((CACurrentMediaTime() - transitionStartTime) / duration) * bounds.size.height
         outputSize = CGSize(width: 10 + i, height: 10 + i)
         image = compositeTwoImages(img: bottomImage!, newSize: outputSize!)

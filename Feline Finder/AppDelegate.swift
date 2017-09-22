@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName:UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
         
         // set up your background color view
         let colorView = UIView()
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
   
-        let kvStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default();
+        let kvStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default;
         let notificationsCenter: NotificationCenter = NotificationCenter.default
         notificationsCenter.addObserver(self, selector: #selector(AppDelegate.ubiquitousKeyValueStoreDidChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: kvStore)
         kvStore.synchronize()
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func ubiquitousKeyValueStoreDidChange() {
+    @objc func ubiquitousKeyValueStoreDidChange() {
         Favorites.loadIDs()
         let nc = NotificationCenter.default
         nc.post(name:NSNotification.Name(rawValue: "reloadFavorites"),
@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
-    func rotated()
+    @objc func rotated()
     {
         if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
         {

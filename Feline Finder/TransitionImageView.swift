@@ -100,7 +100,7 @@ class TransitionImageView: UIImageView {
         return newImage
     }
     
-    func timerFired(timer: Timer) {
+    @objc func timerFired(timer: Timer) {
         i = CGFloat((CACurrentMediaTime() - transitionStartTime) / duration) * bottomImage!.size.height
         //i += 40.0
         var mi: UIImage?

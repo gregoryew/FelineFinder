@@ -139,7 +139,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         textField.inputAccessoryView = keyboardToolbar
     }
     
-    func didTapDone(sender: AnyObject) {
+    @objc func didTapDone(sender: AnyObject) {
         zipCodeGlobal = (zipCodeTextField?.text!)!
         zipCode = (zipCodeTextField?.text!)!
         zipCodeTextField?.endEditing(true)
@@ -341,7 +341,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         }
     }
     
-    func segmentValueChanged(_ sender: AnyObject?) {
+    @objc func segmentValueChanged(_ sender: AnyObject?) {
         filterOptions.filteringOptions[sender!.tag].choosenValue = sender!.selectedIndex
         if (sender!.tag == 4) {
             opt = filterOptions.sortByList[3]
