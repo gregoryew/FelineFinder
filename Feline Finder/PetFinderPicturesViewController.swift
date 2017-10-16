@@ -78,34 +78,36 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
         var errors = 0
         for url in self.imageURLs {
             let imgURL = URL(string: url)
-            let request: URLRequest = URLRequest(url: imgURL!)
-            //let mainQueue = NSOperationQueue.mainQueue()
-            _ = URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
-                self.currentImage += 1.0
-                self.circularProgress.progress = self.currentImage / self.totalImages
-                _ = Int((self.currentImage / self.totalImages) * 100.0)
-                //self.progressLabel.text = "\(p)%"
-                if error == nil {
-                    // Convert the downloaded data in to a UIImage object
-                    let image = UIImage(data: data!)
-                    // Update the cell
-                    self.images[url] = image
-                    if self.images.count + errors == self.imageURLs.count {
-                    DispatchQueue.main.async(execute: {
-                        //self.setupView()
-                        self.circularProgress.isHidden = true
-                        self.progressLabel.isHidden = true
-                        self.view.addSubview(self.imgDownArrow!)
-                        let ypos = (self.cardContainerView?.bounds.origin.y)! + (self.cardContainerView?.frame.size.height)! + 200
-                        self.imgDownArrow?.frame = CGRect(x: (self.cardContainerView?.frame.center.x)!, y: ypos, width: 100, height: 100)
-                        self.imgDownArrow?.image = UIImage(named: "DownArrow")
-                        self.cardContainerView?.dataSource = self
-                    })
+            if let urlImg = imgURL {
+                let request: URLRequest = URLRequest(url: urlImg)
+                //let mainQueue = NSOperationQueue.mainQueue()
+                _ = URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
+                    self.currentImage += 1.0
+                    self.circularProgress.progress = self.currentImage / self.totalImages
+                    _ = Int((self.currentImage / self.totalImages) * 100.0)
+                    //self.progressLabel.text = "\(p)%"
+                    if error == nil {
+                        // Convert the downloaded data in to a UIImage object
+                        let image = UIImage(data: data!)
+                        // Update the cell
+                        self.images[url] = image
+                        if self.images.count + errors == self.imageURLs.count {
+                            DispatchQueue.main.async(execute: {
+                                //self.setupView()
+                                self.circularProgress.isHidden = true
+                                self.progressLabel.isHidden = true
+                                self.view.addSubview(self.imgDownArrow!)
+                                let ypos = (self.cardContainerView?.bounds.origin.y)! + (self.cardContainerView?.frame.size.height)! + 200
+                                self.imgDownArrow?.frame = CGRect(x: (self.cardContainerView?.frame.center.x)!, y: ypos, width: 100, height: 100)
+                                self.imgDownArrow?.image = UIImage(named: "DownArrow")
+                                self.cardContainerView?.dataSource = self
+                            })
+                        }
+                    } else {
+                        errors += 1
                     }
-                } else {
-                    errors += 1
-                }
-            }).resume()
+                }).resume()
+            }
         }
     }
     

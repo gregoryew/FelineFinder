@@ -256,6 +256,8 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                 let bn = pet?.breeds.first
                 Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: bn!, d: favoriteType, s: ""))
             }
+            Favorites.loadIDs()
+            Favorites.LoadFavorites()
         }
     }
     

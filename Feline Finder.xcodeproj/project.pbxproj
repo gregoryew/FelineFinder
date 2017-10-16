@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		460558E21F070383006BC6D9 /* BreedInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */; };
 		4607099E1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4607099D1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift */; };
+		46181E881F7FEBFB00948D74 /* RescueSheltersAPI2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46181E871F7FEBFB00948D74 /* RescueSheltersAPI2.swift */; };
 		461B2A7A1F0359280093EA85 /* CatDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 461B2A791F0359280093EA85 /* CatDetailViewController.swift */; };
 		4620AA431F01CE77009F9DEC /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */; };
 		4620AA451F01E75F009F9DEC /* AdoptableCatsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */; };
@@ -88,6 +89,7 @@
 		46A3341A1F21576200382B61 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = 46A334191F21576200382B61 /* energy_level.gif */; };
 		46AECC451F06F2D600793464 /* BreedInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECC441F06F2D600793464 /* BreedInfoViewController.swift */; };
 		46AECC471F06F52700793464 /* BreedInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */; };
+		46B454C31F74A17700E0390F /* RescuePetsAPI2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */; };
 		46B6BF371F3A754600A8E5B0 /* SurveyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6BF361F3A754600A8E5B0 /* SurveyBaseViewController.swift */; };
 		46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C326C41E91D17B003905CC /* DownloadManager.swift */; };
 		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
@@ -103,6 +105,7 @@
 		46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2E1E50DC380041666F /* Transistion.swift */; };
 		46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */; };
 		46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */; };
+		46FA94031F8E3F89004C255E /* LocationManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FA94021F8E3F89004C255E /* LocationManager2.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */; };
@@ -188,6 +191,7 @@
 /* Begin PBXFileReference section */
 		460558E11F070383006BC6D9 /* BreedInfoDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoDetailViewController.swift; sourceTree = "<group>"; };
 		4607099D1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabIntoVideoViewController.swift; sourceTree = "<group>"; };
+		46181E871F7FEBFB00948D74 /* RescueSheltersAPI2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueSheltersAPI2.swift; sourceTree = "<group>"; };
 		461B2A791F0359280093EA85 /* CatDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatDetailViewController.swift; sourceTree = "<group>"; };
 		4620AA421F01CE77009F9DEC /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		4620AA441F01E75F009F9DEC /* AdoptableCatsTabViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsTabViewController.swift; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 		46A334191F21576200382B61 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
 		46AECC441F06F2D600793464 /* BreedInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BreedInfoViewController.swift; path = ../BreedInfoViewController.swift; sourceTree = "<group>"; };
 		46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoTableViewCell.swift; sourceTree = "<group>"; };
+		46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescuePetsAPI2.swift; sourceTree = "<group>"; };
 		46B6BF361F3A754600A8E5B0 /* SurveyBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyBaseViewController.swift; sourceTree = "<group>"; };
 		46C326C41E91D17B003905CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
@@ -310,6 +315,7 @@
 		46E7EC2E1E50DC380041666F /* Transistion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transistion.swift; sourceTree = "<group>"; };
 		46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewTabController.swift; sourceTree = "<group>"; };
 		46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyManagePageViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
+		46FA94021F8E3F89004C255E /* LocationManager2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager2.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
@@ -778,6 +784,7 @@
 				464B497D1F1BF1C900C62491 /* BreedinfoSectionHeaderCollectionReusableView.swift */,
 				4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */,
 				4649DB061F361B31007FE6AB /* SurveySummaryTableViewCell.swift */,
+				46FA94021F8E3F89004C255E /* LocationManager2.swift */,
 			);
 			name = Purrfect4U;
 			path = "Feline Finder";
@@ -852,6 +859,8 @@
 				46C326C41E91D17B003905CC /* DownloadManager.swift */,
 				468EE3391F3BEFB800E2CFC2 /* YouTubeAPI.swift */,
 				467737431F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift */,
+				46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */,
+				46181E871F7FEBFB00948D74 /* RescueSheltersAPI2.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1064,6 +1073,7 @@
 				46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */,
 				C5943AFD1D825A240088DE4D /* FilterOptionsBreedCustomCellView.swift in Sources */,
 				4692C5CA1E7601F800B83494 /* UIImage+WebP.m in Sources */,
+				46FA94031F8E3F89004C255E /* LocationManager2.swift in Sources */,
 				C58B45A81B2DB19700E03538 /* BreedStatsViewController.swift in Sources */,
 				C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */,
 				4620AA471F01EA6C009F9DEC /* CollectionViewCell2.swift in Sources */,
@@ -1085,6 +1095,7 @@
 				C58B45AA1B2DE4D000E03538 /* BreedStats.swift in Sources */,
 				4692C5C61E7601F800B83494 /* SDWebImagePrefetcher.m in Sources */,
 				468A5FFE1F1C59A1003E1F63 /* TicksSlider.swift in Sources */,
+				46B454C31F74A17700E0390F /* RescuePetsAPI2.swift in Sources */,
 				C58D21251B4902E6008E1B0B /* PetFinderViewDetailController.swift in Sources */,
 				4692C5BB1E7601F800B83494 /* FLAnimatedImageView+WebCache.m in Sources */,
 				C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */,
@@ -1159,6 +1170,7 @@
 				4692C5BD1E7601F800B83494 /* NSData+ImageContentType.m in Sources */,
 				4692C5C41E7601F800B83494 /* SDWebImageDownloaderOperation.m in Sources */,
 				46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */,
+				46181E881F7FEBFB00948D74 /* RescueSheltersAPI2.swift in Sources */,
 				4620AA451F01E75F009F9DEC /* AdoptableCatsTabViewController.swift in Sources */,
 				467737421F3C7DBF00883F42 /* BreeedInfoGalleryPhotoCollectionViewCell2.swift in Sources */,
 				4692C5CC1E7601F800B83494 /* UIImageView+WebCache.m in Sources */,

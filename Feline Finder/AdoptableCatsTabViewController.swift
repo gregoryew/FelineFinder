@@ -9,7 +9,7 @@
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
-import SwiftLocation
+//import SwiftLocation
 import CoreLocation
 
 let handlerDelay2 = 1.5
@@ -23,6 +23,13 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     }
     
     @IBOutlet weak var collectionView: UICollectionView!
+
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(AdoptableCatsTabViewController2.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
     
     var pets: RescuePetList?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
@@ -103,27 +110,25 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         }
         
         pets = RescuePetList()
+        
+        self.collectionView.addSubview(self.refreshControl)
     }
     
     func getZipCode() {
-        
-        Location.getLocation(accuracy: .city, frequency: .oneShot, success: { (_, location) in
-            print("A new update of location is available: \(location)")
-            Location.getPlacemark(forLocation: location, success: { placemarks in
-                zipCode = placemarks.first!.postalCode!
-                self.setFilterDisplay()
-                self.pets?.loading = true
-                DownloadManager.loadPetList()
-                self.setupReloadAndScroll()
-                print("Found \(placemarks.first!.postalCode ?? "")")
-            }) { error in
+        LocationManager2.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+            if error != nil {
                 self.askForZipCode()
-                print("Cannot retrive placemark due to an error \(error)")
+                return
             }
-        }) { (request, last, error) in
-            request.cancel() // stop continous location monitoring on error
-            print("Location monitoring failed due to an error \(error)")
-            self.askForZipCode()
+            guard let _ = location else {
+                return
+            }
+            
+            zipCode = placemark?.postalCode ?? "19106"
+            self.setFilterDisplay()
+            self.pets?.loading = true
+            DownloadManager.loadPetList()
+            self.setupReloadAndScroll()
         }
     }
     
@@ -188,20 +193,19 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         
     }
     
+    @objc func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        // Fetch more objects from a web service, for example...
+        
+        zipCodeGlobal = ""
+        PetFinderBreeds[(globalBreed?.BreedName)!] = nil
+        DownloadManager.loadPetList()
+        self.pets?.loading = true
+        self.collectionView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     func setupReloadAndScroll() {
-        // Pull to refresh
-        /*
-         collectionView.addPullToRefreshWithActionHandler {
-         let delayTime = DispatchTime.now() + Double(Int64(handlerDelay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
-         DispatchQueue.main.asyncAfter(deadline: delayTime) {
-         self.collectionView.stopPullToRefresh()
-         zipCodeGlobal = ""
-         PetFinderBreeds[(globalBreed?.BreedName)!] = nil
-         DownloadManager.loadPetList()
-         }
-         }
-         collectionView.pullRefreshColor = UIColor.white
-        */
         collectionView.addInfiniteScrollingWithActionHandler {[unowned self] () -> Void in
             
             //let strongSelf = self

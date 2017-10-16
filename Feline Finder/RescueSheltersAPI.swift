@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 class RescueGroupShelterList: ShelterList {
     override func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void {
         super.loadSingleShelter(shelterID, completion: completion)
@@ -20,12 +21,9 @@ class RescueGroupShelterList: ShelterList {
                 return
             }
         }
-        /*
-        let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgPostalCode","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
-        */
+
         let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
 
-        
         do {
             
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)

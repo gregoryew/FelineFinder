@@ -25,7 +25,7 @@ class Utilities {
         }
         return true
     }
-    
+        
     class func displayAlert(_ errorTitle: String, errorMessage: String) {
         //If host is not reachable, display a UIAlertController informing the user
         let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)

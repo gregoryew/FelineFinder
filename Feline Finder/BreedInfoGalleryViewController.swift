@@ -108,21 +108,20 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
     }
     
     func getZipCode() {
-        Location.getLocation(accuracy: .city, frequency: .oneShot, success: { (_, location) in
-            print("A new update of location is available: \(location)")
-            Location.getPlacemark(forLocation: location, success: { placemarks in
-                zipCode = placemarks.first!.postalCode!
-                zipCodeGlobal = zipCode
-                DownloadManager.loadPetPictures(breed: globalBreed!)
-                print("Found \(placemarks.first!.postalCode ?? "")")
-            }) { error in
+        LocationManager2.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+            if error != nil {
                 self.askForZipCode()
-                print("Cannot retrive placemark due to an error \(error)")
+                return
             }
-        }) { (request, last, error) in
-            request.cancel() // stop continous location monitoring on error
-            print("Location monitoring failed due to an error \(error)")
-            self.askForZipCode()
+            
+            guard let _ = location else {
+                return
+            }
+            
+            zipCode = placemark?.postalCode ?? "19106"
+            zipCodeGlobal = zipCode
+            DownloadManager.loadPetPictures(breed: globalBreed!)
+            print("Found \(placemark?.postalCode ?? "")")
         }
     }
     

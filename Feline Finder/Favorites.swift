@@ -291,7 +291,11 @@ class FavoritesList {
     
     subscript (petID: String) -> Favorite {
         get {
-            return Favorites[petID]!
+            if let f = Favorites[petID] {
+                return f
+            } else {
+                return Favorite(id: "", n: "", i: "", b: "", d: DataSource.RescueGroup, s: "")
+            }
         }
     }
     

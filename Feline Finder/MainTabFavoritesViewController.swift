@@ -59,7 +59,7 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if Favorites.totalBreeds == 0 {
-            return 1
+            return 0
         } else {
             return Favorites.countBreedsInSection(section)
         }
@@ -80,12 +80,10 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! MainTabTableViewCell
         
         cell.accessoryType = .none
-        //cell.backgroundColor = lightBackground
-        //cell.CatName!.backgroundColor = lightBackground
         cell.CatName!.textColor = textColor
-        //cell.CatName!.font = UIFont.boldSystemFont(ofSize: 14.0)
+        cell.CatName!.font = UIFont.boldSystemFont(ofSize: 13.0)
         
-        if Favorites.totalBreeds == 0 {
+        if Favorites.count == 0 {
             cell.CatName!.text = "None yet. To add one tap a heart."
             cell.CatImage.isHidden = true
             return cell
@@ -96,8 +94,6 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
         let favorite = Favorites[indexPath.section, indexPath.row]
         
         cell.accessoryType = .disclosureIndicator
-        
-        //cell.lastCell = indexPath.row == Favorites.countBreedsInSection(indexPath.section) - 1
         
         let imgURL = URL(string: favorite.imageName)
         
@@ -159,6 +155,10 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
         if #available( iOS 10.3,*){
             if Favorites.count > 0 {SKStoreReviewController.requestReview()}
         }
+        DispatchQueue.main.async(execute: {
+            Favorites.loadIDs()
+            self.tableView.reloadData()
+        })
     }
     
     func loadData() {
