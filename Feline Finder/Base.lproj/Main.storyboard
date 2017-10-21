@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -2414,7 +2414,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             </constraints>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="0lm-1H-iZZ">
-                                            <rect key="frame" x="170" y="139" width="30" height="30"/>
+                                            <rect key="frame" x="154" y="139" width="30" height="30"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="ZRo-HU-Rrv"/>
@@ -2452,7 +2452,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WER-1d-F35">
-                                    <rect key="frame" x="60" y="0.0" width="315" height="50"/>
+                                    <rect key="frame" x="76" y="20" width="283" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="highlightedColor"/>
@@ -2464,7 +2464,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                     </constraints>
                                 </imageView>
                                 <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="5W9-HD-evN">
-                                    <rect key="frame" x="3" y="3" width="30" height="44"/>
+                                    <rect key="frame" x="19" y="23" width="30" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="30" id="9BN-Db-i4i"/>
                                     </constraints>
@@ -3385,10 +3385,10 @@ Cg
                                                         <constraint firstAttribute="height" constant="28.5" id="2O2-l4-4ur"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" misplaced="YES" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tr-07-oOw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="100%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4tr-07-oOw">
                                                     <rect key="frame" x="251" y="65" width="59" height="24"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="54" id="woF-CT-Y4Y"/>
+                                                        <constraint firstAttribute="width" constant="59" id="woF-CT-Y4Y"/>
                                                         <constraint firstAttribute="height" constant="24" id="yXl-aW-gOh"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -3404,7 +3404,7 @@ Cg
                                                 <constraint firstItem="WRO-QU-jzK" firstAttribute="leading" secondItem="4QF-sm-SIc" secondAttribute="leadingMargin" id="RXZ-Fi-A8g"/>
                                                 <constraint firstItem="zBH-tm-5z1" firstAttribute="leading" secondItem="WRO-QU-jzK" secondAttribute="trailing" constant="15" id="VF4-b3-i6M"/>
                                                 <constraint firstItem="FSa-jm-nBP" firstAttribute="leading" secondItem="WRO-QU-jzK" secondAttribute="trailing" constant="8" symbolic="YES" id="bhE-or-aNM"/>
-                                                <constraint firstItem="4tr-07-oOw" firstAttribute="leading" secondItem="zBH-tm-5z1" secondAttribute="trailing" constant="7" id="jCk-cM-ewj"/>
+                                                <constraint firstItem="4tr-07-oOw" firstAttribute="leading" secondItem="zBH-tm-5z1" secondAttribute="trailing" constant="2" id="jCk-cM-ewj"/>
                                                 <constraint firstItem="WRO-QU-jzK" firstAttribute="top" secondItem="FSa-jm-nBP" secondAttribute="top" id="msM-j2-7nq"/>
                                                 <constraint firstItem="zBH-tm-5z1" firstAttribute="top" secondItem="FSa-jm-nBP" secondAttribute="bottom" constant="17" id="u4l-uR-Kpw"/>
                                                 <constraint firstItem="FSa-jm-nBP" firstAttribute="top" secondItem="4QF-sm-SIc" secondAttribute="topMargin" id="uN1-Lu-UDy"/>
@@ -3574,7 +3574,7 @@ Cg
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video_small" translatesAutoresizingMaskIntoConstraints="NO" id="4OB-rJ-iuE">
-                                                    <rect key="frame" x="170" y="141" width="30" height="30"/>
+                                                    <rect key="frame" x="154" y="141" width="30" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="AHy-wx-w7p"/>
@@ -3612,7 +3612,7 @@ Cg
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbM-gD-G24">
-                                            <rect key="frame" x="68" y="8" width="307" height="34"/>
+                                            <rect key="frame" x="68" y="8" width="291" height="34"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="34" id="TcI-jF-vey"/>
@@ -3628,7 +3628,7 @@ Cg
                                             </constraints>
                                         </imageView>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EVJ-DF-W8g">
-                                            <rect key="frame" x="11" y="11" width="30" height="36"/>
+                                            <rect key="frame" x="11" y="31" width="30" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="30" id="75N-cq-TUH"/>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="jNA-6J-VWO"/>

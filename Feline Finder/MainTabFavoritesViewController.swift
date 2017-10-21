@@ -58,8 +58,9 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        guard Favorites.totalBreeds > 0 else {return 1}
         if Favorites.totalBreeds == 0 {
-            return 0
+            return 1
         } else {
             return Favorites.countBreedsInSection(section)
         }

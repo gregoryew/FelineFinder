@@ -63,6 +63,16 @@ class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, 
     }
     
     func getZipCode() {
+        let keyStore = NSUbiquitousKeyValueStore()
+        zipCode = keyStore.string(forKey: "zipCode") ?? ""
+        if zipCode != "" {
+            self.setFilterDisplay()
+            self.pets?.loading = true
+            DownloadManager.loadPetList()
+            self.setupReloadAndScroll()
+            return
+        }
+        
         LocationManager2.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
             if error != nil {
                 self.askForZipCode()
@@ -95,6 +105,8 @@ class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, 
             (btn) in
             let textField = alert2.textFields![0] // Force unwrapping because we know it exists.
             zipCode = (textField.text)!
+            let keyStore = NSUbiquitousKeyValueStore()
+            keyStore.set(zipCode, forKey: "zipCode")
             if DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode) {
                 self.pets?.loading = true
                 self.setFilterDisplay()

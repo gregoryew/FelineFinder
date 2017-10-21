@@ -1317,7 +1317,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
-				PROVISIONING_PROFILE = "0aa5e7e0-d930-486d-b0b5-bbb105ce2271";
+				PROVISIONING_PROFILE = "c72805c6-1133-412b-895d-ef2adeed5e58";
 				PROVISIONING_PROFILE_SPECIFIER = "Cat Appz May Work";
 				SWIFT_OBJC_BRIDGING_HEADER = "Feline Finder/Feline Finder-Bridging-Header.h";
 				"SWIFT_OBJC_INTERFACE_HEADER_NAME[arch=*]" = "$(SWIFT_MODULE_NAME)-Swift.h";

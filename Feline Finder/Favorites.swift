@@ -285,6 +285,7 @@ class FavoritesList {
     
     subscript (section: Int, index: Int) -> Favorite {
         get {
+            guard breedKeys.count > 0 else {return Favorite(id: "", n: "", i: "", b: "", d: DataSource.RescueGroup, s: "")}
             return self[breeds[breedKeys[section]]![index]]
         }
     }
