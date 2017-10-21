@@ -67,9 +67,12 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         bnGlobal = ""
         zipCodeGlobal = ""
         zipCode = zipCodeTextField!.text!
+
         if validateZipCode(zipCode) == false {
             Utilities.displayAlert("Invalid Zip Code", errorMessage: "Please enter a valid zip code.")
         } else {
+            let keyStore = NSUbiquitousKeyValueStore()
+            keyStore.set(zipCode, forKey: "zipCode")
             sourceViewController = nil
             //UserDefaults.standard.set(zipCode, forKey: "zipCode")
             viewPopped = true

@@ -111,10 +111,8 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
         let keyStore = NSUbiquitousKeyValueStore()
         zipCode = keyStore.string(forKey: "zipCode") ?? ""
         if zipCode != "" {
-            self.setFilterDisplay()
-            self.pets?.loading = true
-            DownloadManager.loadPetList()
-            self.setupReloadAndScroll()
+            zipCodeGlobal = zipCode
+            DownloadManager.loadPetPictures(breed: globalBreed!)
             return
         }
         
