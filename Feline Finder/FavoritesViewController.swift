@@ -40,7 +40,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
                 self.tableView.reloadData()
             })
         }
-        
+ 
         if #available( iOS 10.3,*){
             if Favorites.count > 0 {SKStoreReviewController.requestReview()}
         }
@@ -210,8 +210,10 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         
         Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
             self.statuses = Stats
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
         }
-        
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })

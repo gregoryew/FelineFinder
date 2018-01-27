@@ -31,6 +31,9 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
         let nc = NotificationCenter.default
         observer = nc.addObserver(forName:NSNotification.Name(rawValue: "reloadFavorites"), object:nil, queue:nil) { [weak self] notification in
             self?.loadData()
+            DispatchQueue.main.async(execute: {
+                self?.tableView.reloadData()
+            })
         }
         
     }
@@ -156,10 +159,10 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
         if #available( iOS 10.3,*){
             if Favorites.count > 0 {SKStoreReviewController.requestReview()}
         }
-        DispatchQueue.main.async(execute: {
-            Favorites.loadIDs()
-            self.tableView.reloadData()
-        })
+        //DispatchQueue.main.async(execute: {
+            //Favorites.loadIDs()
+            //self.tableView.reloadData()
+        //})
     }
     
     func loadData() {
@@ -168,6 +171,7 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
         
         Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
             self.statuses = Stats
+            Favorites.loadIDs()
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })

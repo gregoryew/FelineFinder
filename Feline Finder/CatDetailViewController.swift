@@ -32,6 +32,15 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     
     weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
+    @IBAction func catImageButton(_ sender: Any) {
+        if let p = pet, let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as? PetFinderPicturesViewController {
+            pictures.petData = p
+            pictures.modalDelegate = self
+            tr_presentViewController(pictures, method: DemoPresent.CIZoom(transImage: .cat), completion: {
+                print("Present finished.")
+            })
+        }
+    }
     /*
     override func viewDidLoad() {
         super.viewDidLoad()

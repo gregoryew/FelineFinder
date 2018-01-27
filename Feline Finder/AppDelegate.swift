@@ -21,16 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        UINavigationBar.appearance().isTranslucent = false
         
         // set up your background color view
-        let colorView = UIView()
-        colorView.backgroundColor = UIColor.lightGray
+        //let colorView = UIView()
+        ///colorView.backgroundColor = UIColor.lightGray
         
         // use UITableViewCell.appearance() to configure
         // the default appearance of all UITableViewCells in your app
-        UITableViewCell.appearance().selectedBackgroundView = colorView
+        ///UITableViewCell.appearance().selectedBackgroundView = colorView
         
-        UITabBar.appearance().barTintColor = UIColor.white
+        ///UITabBar.appearance().barTintColor = UIColor.white
         
         //setStatusBarBackgroundColor(color: UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0))
         
@@ -96,16 +97,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nc.post(name:NSNotification.Name(rawValue: "reloadFavorites"),
                 object: nil,
                 userInfo:nil)
-
     }
     
+/*
     func setStatusBarBackgroundColor(color: UIColor) {
         
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         
         statusBar.backgroundColor = color
     }
-    
+ 
+*/
     func sharedInstance() -> AppDelegate{
         return UIApplication.shared.delegate as! AppDelegate
     }

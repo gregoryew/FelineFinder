@@ -40,7 +40,9 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
     var currentImage = 0.0
     
     //let imgDownArrow = UIImageView.init(image: UIImage(named: "downarrow"))
-    var imgDownArrow: UIImageView? = UIImageView()
+    //var imgDownArrow: UIImageView? = UIImageView()
+    
+    let lblInstructions = UILabel()
     
     weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
@@ -49,7 +51,8 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
     }
     
     @IBAction func doneTapped(_ sender: Any) {
-        imgDownArrow = nil
+        //imgDownArrow = nil
+        //lblInstructions = nil
         circularProgress.delegate = nil
         cardContainerView?.dataSource = nil
         modalDelegate?.modalViewControllerDismiss(callbackData: nil)
@@ -96,10 +99,16 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
                                 //self.setupView()
                                 self.circularProgress.isHidden = true
                                 self.progressLabel.isHidden = true
-                                self.view.addSubview(self.imgDownArrow!)
-                                let ypos = (self.cardContainerView?.bounds.origin.y)! + (self.cardContainerView?.frame.size.height)! + 200
-                                self.imgDownArrow?.frame = CGRect(x: (self.cardContainerView?.frame.center.x)!, y: ypos, width: 100, height: 100)
-                                self.imgDownArrow?.image = UIImage(named: "DownArrow")
+                                if self.images.count > 1 {
+                                    self.view.addSubview(self.lblInstructions)
+                                    self.lblInstructions.textColor = UIColor.white
+                                    self.lblInstructions.font = UIFont(name: "Helvetica", size: 12)
+                                    self.lblInstructions.text = "Drag down image for next one"
+                                    self.lblInstructions.textAlignment = NSTextAlignment.center
+                                    let ypos = (self.cardContainerView?.bounds.origin.y)! + (self.cardContainerView?.frame.size.height)! + 200
+                                    self.lblInstructions.frame = CGRect(x: ((self.view.frame.center.x) / 2), y: ypos, width: 300, height: 100)
+                                    self.lblInstructions.center.x = self.view.frame.center.x
+                                }
                                 self.cardContainerView?.dataSource = self
                             })
                         }
@@ -128,11 +137,11 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
     
     func cardIndexChanged(_ currentHeadCardIndex: Int) {
         if currentHeadCardIndex == 0 {
-            imgDownArrow?.image = UIImage(named: "DownArrow")
+            lblInstructions.text = "Drag down for next image"
         } else if currentHeadCardIndex >= imageURLs.count - 1 {
-            imgDownArrow?.image = UIImage(named: "UpArrow")
+            lblInstructions.text = "Drag up for previous image"
         } else {
-            imgDownArrow?.image = UIImage(named: "DoubleArrow")
+            lblInstructions.text = "Drag up or down for images"
         }
     }
     
