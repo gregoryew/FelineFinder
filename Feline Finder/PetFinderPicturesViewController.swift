@@ -22,7 +22,7 @@ enum panScrollDirection{
 class PetFinderPicturesViewController: UIViewController, NavgationTransitionable, CardContainerDataSource, KYCircularProgressDelegate, ModalTransitionDelegate {
     
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0, adoptionFee: "", location: "")
-    var imageURLs:[String] = []
+    var imageURLs:[picture] = []
     var images: Dictionary<String, UIImage> = [:]
     
     @IBOutlet weak var progressLabel: UILabel!
@@ -75,12 +75,12 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
         cardContainerView?.addConstraint(NSLayoutConstraint(item: cardContainerView as Any, attribute: .height, relatedBy: .equal, toItem: cardContainerView, attribute: .width, multiplier: 1, constant: 0))
         view.layoutIfNeeded()
         
-        self.imageURLs = (self.petData.getAllImagesOfACertainSize("x"))
+        self.imageURLs = (self.petData.getAllImagesObjectsOfACertainSize("x"))
         totalImages = Double(self.imageURLs.count)
         currentImage = 0.0
         var errors = 0
         for url in self.imageURLs {
-            let imgURL = URL(string: url)
+            let imgURL = URL(string: url.URL)
             if let urlImg = imgURL {
                 let request: URLRequest = URLRequest(url: urlImg)
                 //let mainQueue = NSOperationQueue.mainQueue()
@@ -93,7 +93,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
                         // Convert the downloaded data in to a UIImage object
                         let image = UIImage(data: data!)
                         // Update the cell
-                        self.images[url] = image
+                        self.images[url.URL] = image
                         if self.images.count + errors == self.imageURLs.count {
                             DispatchQueue.main.async(execute: {
                                 //self.setupView()
@@ -132,7 +132,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
     }
     
     func cardContainerView(_ cardContainerView: UICardContainerView, imageForCardAtIndex index: Int) -> UIImage?{
-        return index < imageURLs.count ? images[imageURLs[index]] : nil
+        return index < imageURLs.count ? images[imageURLs[index].URL] : nil
     }
     
     func cardIndexChanged(_ currentHeadCardIndex: Int) {
@@ -147,6 +147,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        cardContainerView!.contentMode = .scaleAspectFit
         cardContainerView?.respondsToSizeChange()
     }
 

@@ -12,10 +12,14 @@ struct picture {
     var idnum: Int
     var size: String //["pnt", "fpm", "x", "pn", "t"]
     var URL: String
-    init (i: Int, s: String, u: String) {
+    var height: Int
+    var width: Int
+    init (i: Int, s: String, u: String, h: Int, w: Int) {
         idnum = i
         size = s
         URL = u
+        height = h
+        width = w
     }
 }
 
@@ -116,6 +120,16 @@ struct Pet {
         for img: picture in media {
             if img.size == size {
                 images.append(img.URL)
+            }
+        }
+        return images
+    }
+    
+    func getAllImagesObjectsOfACertainSize(_ size: String) -> [picture] {
+        var images: [picture] = []
+        for img: picture in media {
+            if img.size == size {
+                images.append(img)
             }
         }
         return images

@@ -397,16 +397,20 @@ func parsePictures(_ data: [AnyObject]) -> [picture] {
 func parsePicture(_ id: Int, data: AnyObject) -> picture {
     var type: String?
     var url: String?
+    var h: Int?
+    var w: Int?
     if let dict = data as? [String: AnyObject] {
         for (key, data) in dict {
             switch key {
                 case "type": type = convert((data as? String)!)
                 case "url": url = data as? String
+            case "resolutionY": h = Int((data as? String)!)!
+            case "resolutionX": w = Int((data as? String)!)!
             default: break
             }
         }
     }
-    return picture(i: id, s: type!, u: url!)
+    return picture(i: id, s: type!, u: url!, h: h!, w: w!)
 }
 
 

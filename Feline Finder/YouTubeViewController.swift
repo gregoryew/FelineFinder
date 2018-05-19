@@ -46,6 +46,7 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
         //videoPlayer = WKYTPlayerView(frame: rect)
         videoPlayer?.frame = rect
         self.view.addSubview(videoPlayer!)
+        videoPlayer?.load(withVideoId: youtubeid!, playerVars: ["origin": "http://www.youtube.com"])
         videoPlayer?.load(withVideoId: youtubeid!)
         videoPlayer?.delegate = self
     }
@@ -64,8 +65,13 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
         }
     }
     
+    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
+        videoPlayer?.stopVideo()
+        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
-        viewDisappeared = true
+         viewDisappeared = true
         videoPlayer?.stopVideo()
         videoPlayer?.removeFromSuperview()
     }

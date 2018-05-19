@@ -270,11 +270,11 @@ public extension UIDevice {
 extension String
 {
     func chopPrefix(_ count: Int = 1) -> String {
-        return self.substring(from: self.characters.index(self.startIndex, offsetBy: count))
+        return self.substring(from: self.index(self.startIndex, offsetBy: count))
     }
     
     func chopSuffix(_ count: Int = 1) -> String {
-        return self.substring(to: self.characters.index(self.endIndex, offsetBy: -count))
+        return self.substring(to: self.index(self.endIndex, offsetBy: -count))
     }
 }
 

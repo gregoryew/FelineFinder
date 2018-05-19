@@ -31,7 +31,7 @@ import TransitionAnimation
 class PictureMasterViewController: UICollectionViewController, NavgationTransitionable {
   
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0, adoptionFee: "", location: "")
-    var imageURLs:[String] = []
+    var imageURLs:[picture] = []
   
   var currentCard: Int = 0
     
@@ -40,7 +40,7 @@ class PictureMasterViewController: UICollectionViewController, NavgationTransiti
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.imageURLs = (self.petData.getAllImagesOfACertainSize("x"))
+    self.imageURLs = (self.petData.getAllImagesObjectsOfACertainSize("x"))
     
     navigationController!.isToolbarHidden = true
     
@@ -86,9 +86,10 @@ override func collectionView(_ collectionView: UICollectionView, numberOfItemsIn
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CatImageCell", for: indexPath) as! CatPictureCollectionViewCell
         
         // Configure the cell
-        let img = URL(string: imageURLs[indexPath.item])
+        let img = URL(string: imageURLs[indexPath.item].URL)
         cell.catImage.sd_setImage(with: img, placeholderImage: UIImage(named: "NoCatImage"))
-        
+        cell.sizeThatFits(CGSize(width: imageURLs[indexPath.item].width, height: imageURLs[indexPath.item].height))
+    
         return cell
     }
 

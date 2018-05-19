@@ -75,7 +75,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         var num: Int = 0
         //let b: Bool = false
         var tot: Int = 0
-        for c1 in p.characters {
+        for c1 in p {
             if c1 >= "0" && c1 <= "9" {
                 num += 1
                 if num == 1 {
@@ -126,7 +126,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBAction func emailTapped(_ sender: Any) {
         var email = s?.email
         if (email?.lowercased().hasPrefix("emailto"))! {
-            let index1 = email?.characters.index((email?.startIndex)!, offsetBy: 7)
+            let index1 = email?.index((email?.startIndex)!, offsetBy: 7)
             email = (s?.email.substring(from: index1!))!
         }
         emailAddress = [String]()
@@ -364,7 +364,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         var r: Bool = false
         let u: String = request.url!.relativeString
         if (u.hasPrefix("mailto:")) {
-            let index1 = u.characters.index(u.startIndex, offsetBy: 7)
+            let index1 = u.index(u.startIndex, offsetBy: 7)
             let email: String = u.substring(from: index1)
             emailAddress = [String]()
             emailAddress.append(email)

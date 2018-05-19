@@ -39,7 +39,8 @@ class YouTubeAPI {
     
     func getYouTubeVideos(playList: String, completion: @escaping ([YouTubeVideo], _ error: Error?) -> Void) {
         //PLrrwGtN2q9fDIt62ltVoOU4GmUOB4TlWo
-        let t = NSURL(string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=49&playlistId=\(playList)&key=\(youTubeAPIKey)")
+        let t = NSURL(string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,status&maxResults=49&playlistId=\(playList)&key=\(youTubeAPIKey)")
+ //let t = NSURL(string: "https://www.googleapis.com/youtube/v3/playlistItems?maxResults=49&playlistId=\(playList)&key=\(youTubeAPIKey)")
         var videos: [YouTubeVideo] = []
         var u = ""
         var id = ""
@@ -50,6 +51,8 @@ class YouTubeAPI {
                         let json = try JSONSerialization.jsonObject(with: data) as? [String: Any],
                         let items = json["items"] as? [[String: Any]] {
                         for item in items {
+                            
+                            print("privacyStatus ===> ", ((item["status"] as! Dictionary<String, AnyObject>)["privacyStatus"] as! String))
                             
                             u = (((item["snippet"] as! Dictionary<String, AnyObject>)["thumbnails"] as! Dictionary<String, AnyObject>)["default"] as! Dictionary<String, AnyObject>)["url"] as! String
                             

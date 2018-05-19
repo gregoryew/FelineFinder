@@ -123,7 +123,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         var num: Int = 0
         //let b: Bool = false
         var tot: Int = 0
-        for c1 in p.characters {
+        for c1 in p {
             if c1 >= "0" && c1 <= "9" {
                 num += 1
                 if num == 1 {

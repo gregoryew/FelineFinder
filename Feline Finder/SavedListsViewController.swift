@@ -174,7 +174,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             }
         
             // disable the 'save' button (otherAction) initially
-            if SearchTitle.characters.count == 0 {
+            if SearchTitle.count == 0 {
                 otherAction.isEnabled = false
             } else {
                 otherAction.isEnabled = true
@@ -200,7 +200,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         let textField = notification.object as! UITextField
         
         // Enforce a minimum length of >= 1 for secure text alerts.
-        AddAlertSaveAction!.isEnabled = textField.text?.characters.count >= 1
+        AddAlertSaveAction!.isEnabled = textField.text?.count >= 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

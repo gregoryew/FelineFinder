@@ -34,8 +34,8 @@ struct animalPicture: Codable {
     var mediaOrder: String?
     var lastUpdated: String?
     var fileSize: String?
-    var resolutionX: String?
-    var resolutionY: String?
+    var resolutionX: Int?
+    var resolutionY: Int?
     var fileNameFullsize: String?
     var fileNameThumbnail: String?
     var urlSecureFullsize: String?
@@ -895,9 +895,9 @@ func parsePictures(_ pics: [animalPicture?]) -> [picture] {
     var id = 1
     
     for p in pics {
-        pictures.append(picture(i: id, s: convert(p?.large!.type), u: (p?.large?.url!)!))
-        pictures.append(picture(i: id, s: convert(p?.original!.type), u: (p?.original?.url!)!))
-        pictures.append(picture(i: id, s: convert(p?.small!.type), u: (p?.small?.url!)!))
+        pictures.append(picture(i: id, s: convert(p?.large!.type), u: (p?.large?.url!)!, h: (p?.resolutionY)!, w: (p?.resolutionX)!))
+        pictures.append(picture(i: id, s: convert(p?.original!.type), u: (p?.original?.url!)!, h: (p?.resolutionY)!, w: (p?.resolutionX)!))
+        pictures.append(picture(i: id, s: convert(p?.small!.type), u: (p?.small?.url!)!, h: (p?.resolutionY)!, w: (p?.resolutionX)!))
         id += 1
     }
     

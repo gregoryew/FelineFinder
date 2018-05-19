@@ -34,8 +34,8 @@ private class UICardView: UIView {
         foregroundView.alpha = 0
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = UIColor.clear
         addSubview(imageView)
         addSubview(foregroundView)
         
@@ -60,6 +60,7 @@ private class UICardView: UIView {
     
     func setImage(_ image: UIImage?){
         imageView.image = image
+        //imageView.image = imageView.image?.fixImageOrientation()
     }
     
     func adjustAlpha(_ toAlpha: CGFloat){
@@ -90,8 +91,9 @@ open class UICardContainerView: UIView {
     var needsCardCenterVertically: Bool = true //The property decide card is center vertically in container, or distance of bottom between card and contaienr is the height of card.
     var enableBrightnessControl: Bool = true
     var maxVisibleCardCount: Int = 10
+    //var defaultCardSize = CGSize(width: 400, height: 300)
     var defaultCardSize = CGSize(width: 400, height: 300)
-    var needsBorder: Bool = true
+    var needsBorder: Bool = false
     var headCardBorderWidth: CGFloat = 5
     
     var dataSource: CardContainerDataSource?{

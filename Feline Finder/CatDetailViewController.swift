@@ -91,7 +91,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         var num: Int = 0
         //let b: Bool = false
         var tot: Int = 0
-        for c1 in p.characters {
+        for c1 in p {
             if c1 >= "0" && c1 <= "9" {
                 num += 1
                 if num == 1 {
@@ -142,7 +142,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     @IBAction func emailTapped(_ sender: Any) {
         var email = s?.email
         if (email?.lowercased().hasPrefix("emailto"))! {
-            let index1 = email?.characters.index((email?.startIndex)!, offsetBy: 7)
+            let index1 = email?.index((email?.startIndex)!, offsetBy: 7)
             email = (s?.email.substring(from: index1!))!
         }
         emailAddress = [String]()
@@ -606,9 +606,19 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                     self.webView.translatesAutoresizingMaskIntoConstraints = false
                     self.webView.loadHTMLString(htmlString as String, baseURL: sBaseURL)
                     self.view.addSubview(self.webView!)
+                    self.webView.scrollView.delegate = self
                     self.webView.frame = self.container.frame
                 }
             })
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y == 0) {
+            print("At top")
+        } else {
+            print(scrollView.contentOffset.y / scrollView.contentSize.height)
+            print("NOT at top")
         }
     }
     
@@ -687,18 +697,10 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     
     @IBOutlet weak var favoriteBtn: FaveButton?
     
+    @IBOutlet weak var background: UIImageView!
+    
+    @IBOutlet weak var bottomBackground: UIImageView!
+    
     var webView: WKWebView!
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0)
-        {
-            print("up")
-        }
-        else
-        {
-            print("down")
-        } 
-    }
-    
     
 }

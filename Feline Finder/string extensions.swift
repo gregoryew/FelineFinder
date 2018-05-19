@@ -21,8 +21,8 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        let index1 = self.characters.index(self.startIndex, offsetBy: r.lowerBound)
-        let index2 = self.characters.index(self.startIndex, offsetBy: r.upperBound)
+        let index1 = self.index(self.startIndex, offsetBy: r.lowerBound)
+        let index2 = self.index(self.startIndex, offsetBy: r.upperBound)
         let range = index1..<index2
         return substring(with: range)
         //return substringWithRange(Range(start: index1, end: index2))
