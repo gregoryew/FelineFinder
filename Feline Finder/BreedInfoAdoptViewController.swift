@@ -134,19 +134,6 @@ class BreedInfoAdoptViewController: UIViewController, UICollectionViewDelegate, 
         self.present(alert2, animated: true, completion: nil)
     }
     
-    @IBAction func searchOptions(_ sender: Any) {
-        let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
-        PetFinderFind.breed = globalBreed
-        
-        PetFinderFind.modalDelegate = self
-        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: PetFinderFind)
-        tr_presentViewController(navEditorViewController, method: DemoTransition.Flip, completion: {
-            print("Present finished.")
-        })
-        
-        //navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
@@ -365,9 +352,16 @@ extension BreedInfoAdoptViewController {
         let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as! BreedinfoSectionHeaderCollectionReusableView
         
         if self.pets?.loading == false && titles.count == 0 {
-            sectionHeaderView.SectionHeaderLabel.text = "Please broaden the search."
+            sectionHeaderView.SectionHeaderLabel.isUserInteractionEnabled = true
+            sectionHeaderView.SectionHeaderLabel.textColor = UIColor.red
+            sectionHeaderView.SectionHeaderLabel.text = "Currently not available but tap for options."
+            let tap = UITapGestureRecognizer(target: self, action: #selector(labelTapped(gesture:)))
+            tap.numberOfTapsRequired = 1
+            sectionHeaderView.SectionHeaderLabel.addGestureRecognizer(tap)
+            sectionHeaderView.SectionHeaderLabel.tag = indexPath.row
             return sectionHeaderView
         } else if self.pets?.loading == true {
+            sectionHeaderView.SectionHeaderLabel.textColor = UIColor.blue
             sectionHeaderView.SectionHeaderLabel.text = "Please wait while the cats are loading..."
             return sectionHeaderView
         }
@@ -375,6 +369,50 @@ extension BreedInfoAdoptViewController {
         sectionHeaderView.SectionHeaderLabel.text = titles[indexPath.section]
         
         return sectionHeaderView
+    }
+    
+    @objc func labelTapped(gesture: UITapGestureRecognizer) {
+        //If host is not reachable, display a UIAlertController informing the user
+        let alert = UIAlertController(title: "Search Daily Until Found?", message: "Would you like to setup a search for this breed until one is availabe?  I will search daily and report back when I find one?", preferredStyle: UIAlertControllerStyle.alert)
+        
+        //Add alert action
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.default, handler: { action in self.searchOptions(self)}))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.default, handler: nil))
+
+        //Present alert
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    @IBAction func searchOptions(_ sender: Any) {
+        let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
+        PetFinderFind.breed = globalBreed
+        
+        //var breedsList: Dictionary<String, [Breed]> = [:]
+        //var breedChoices: [(displayName: String?, search: String?, value: Int?)] = []
+        //breedChoices.append((displayName: globalBreed?.BreedName, search: globalBreed?.RescueBreedID, value: 0))
+        
+        //filterOptions.load(nil)
+        var filter = filterOptions.filteringOptions
+        filter = filterOptions.filteringOptions.filter { (value) -> Bool in
+            value.fieldName == "animalPrimaryBreedID"
+        }
+        var breed = filter[0].options.filter { (d, s, v) -> Bool in
+            d == globalBreed!.BreedName
+        }
+        
+        filterOptions.setFilter(name: "animalPrimaryBreedID", value: [Int(breed[0].value!)])
+        
+        PetFinderFind.modalDelegate = self
+        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: PetFinderFind)
+        tr_presentViewController(navEditorViewController, method: DemoTransition.Flip, completion: {
+            print("Present finished.")
+        })
+        
+        //navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
+    }
+    
+    func setupSearch() {
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

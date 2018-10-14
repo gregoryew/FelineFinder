@@ -45,6 +45,10 @@ class TopIconButton: UIButton {
     
 }
 
+class AppMisc {
+    static let USER_ID = NSUUID().uuidString.replacingOccurrences(of: "-", with: "_")
+}
+
 enum DemoPresent {
     case CIZoom(transImage: transitionImage)
 }

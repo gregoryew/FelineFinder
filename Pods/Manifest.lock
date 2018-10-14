@@ -1,10 +1,12 @@
 PODS:
-  - FaveButton (2.0.3)
-  - SwiftLocation (2.0.7)
+  - FaveButton (3.0.0)
+  - SwiftLocation (3.2.3):
+    - SwiftyJSON (~> 4.0.0-alpha.1)
+  - SwiftyJSON (4.0.0)
   - TransitionAnimation (4.0.0):
     - TransitionTreasury (~> 4.0)
-  - TransitionTreasury (4.0.0)
-  - TTSegmentedControl (0.2.1)
+  - TransitionTreasury (4.1.0)
+  - TTSegmentedControl (0.4.7)
   - YouTubePlayer (0.4.0)
 
 DEPENDENCIES:
@@ -13,6 +15,15 @@ DEPENDENCIES:
   - TransitionAnimation (from `https://github.com/gregoryew/TransitionTreasury.git`)
   - TTSegmentedControl
   - YouTubePlayer
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FaveButton
+    - SwiftLocation
+    - SwiftyJSON
+    - TransitionTreasury
+    - TTSegmentedControl
+    - YouTubePlayer
 
 EXTERNAL SOURCES:
   TransitionAnimation:
@@ -24,13 +35,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/gregoryew/TransitionTreasury.git
 
 SPEC CHECKSUMS:
-  FaveButton: cfcbc5e73da159c4f916613da5687357b5bb4783
-  SwiftLocation: 1fe2e15a5812e961496e82eeaca71d03e829e47a
+  FaveButton: 1fa9cd7b037d7164e229765401931271adbe3a23
+  SwiftLocation: a3c3bc2023118171ef3572188a31def94aa0892c
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   TransitionAnimation: 4e9acd93e9d5358057899535e5d17b010c5718e7
-  TransitionTreasury: dcf3fe6e5c740525d9e7d4544af45e6fbfd71c88
-  TTSegmentedControl: 6ba1c0ef7bf966c794361772003f8b27cc812e0a
+  TransitionTreasury: c3b541a2073ee3060519835afa10791bd4ba55f9
+  TTSegmentedControl: 422a8fab507a02a60050476d69d577052550f592
   YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
 
 PODFILE CHECKSUM: af774d7652c760308edbafc984aa7425c6f512d5
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.2

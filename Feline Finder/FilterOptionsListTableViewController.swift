@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
+//import Alamofire
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -33,8 +35,15 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
     return !(lhs < rhs)
   }
 }
-
-
+/*
+extension String: ParameterEncoding {
+    public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var request = try urlRequest.asURLRequest()
+        request.httpBody = data(using: .utf8, allowLossyConversion: false)
+        return request
+    }
+}
+*/
 class FilterOptionsListTableViewController: UITableViewController, NavgationTransitionable {
     
     var txtfld: UITextField = UITextField()
@@ -89,18 +98,60 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         filterOptions.storeFilters(0, saveName: name)
         let c = filterOptions.filteringOptions[0].options.count + 1
         filterOptions.filteringOptions[0].options.append((displayName: name, search: String(NameID), value: c))
+        let json2 = generateJSON()
+        
+        /*
+        var request = URLRequest(url: URL(string: "http://127.0.0.1:4000/save")!)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        //let pjson = json2.toJSONString(prettyPrint: false)
+        let data = (json2.data(using: .utf8))! as Data
+        
+        request.httpBody = data
+        
+        Alamofire.request(request).responseJSON { (response) in
+            
+            
+            print(response)
+            
+        }
+        */
+        let url = URL(string: "https://glacial-wave-88689.herokuapp.com/save")!
+        //Alamofire.request(url, method: .post, parameters: ["json2":json2, "queryid":12, "userid": AppMisc.USER_ID]).responseString { (s) in print(s) }
         DispatchQueue.main.async {
-            self.tableView.reloadData()
             let indexPath = IndexPath(row: self.filterOpt!.options.count - 1, section: 0);
+            self.tableView.reloadData()
             self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
             self.filterOpt?.choosenValue = Int((self.filterOpt?.options[self.filterOpt!.options.count - 1].search)!)
             //indexPath.row
-            let cell = self.tableView.cellForRow(at: indexPath)
-            currentFilterSave = (cell?.textLabel?.text)!
+            currentFilterSave = (self.filterOpt?.options[self.filterOpt!.options.count - 1].displayName)!
             //filterOpt?.choosenListValues.append(indexPath.row)
             //performSegue(withIdentifier: "backToFilterOptions", sender: nil)
             _ = self.navigationController?.tr_popViewController()
         }
+    }
+    
+    func generateJSON() -> String {
+        var filters:[filter] = []
+        
+        filters += filterOptions.getFilters()
+        
+        filters.append(["fieldName": "animalStatus" as AnyObject, "operation": "notequals" as AnyObject, "criteria": "Adopted" as AnyObject])
+        filters.append(["fieldName": "animalSpecies" as AnyObject, "operation": "equals" as AnyObject, "criteria": "cat" as AnyObject])
+        filters.append(["fieldName": "animalLocationDistance" as AnyObject, "operation": "radius" as AnyObject, "criteria": distance as AnyObject])
+        //print("Distance=\(distance)")
+        filters.append(["fieldName": "animalLocation" as AnyObject, "operation": "equals" as AnyObject, "criteria": zipCode as AnyObject])
+        if bnGlobal != "All Breeds" {
+            filters.append(["fieldName": "animalPrimaryBreed" as AnyObject, "operation": "contains" as AnyObject, "criteria": bnGlobal as AnyObject])
+        }
+        var order = "desc"
+        if sortFilter == "animalLocationDistance" {
+            order = "asc"
+        }
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": 0, "resultLimit": 100, "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalLocationCitystate", "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls"]]] as [String : Any]
+
+        return Utilities.stringify(json: json, prettyPrinted: true);
     }
     
     func promptUserForSaveName() {

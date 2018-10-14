@@ -109,7 +109,7 @@ class filterOptionsList {
     var physicalList: [filterOption] = []
     var sortByList: [filterOption] = []
     var basicList: [filterOption] = []
-    func load(_ tv: UITableView) {
+    func load(_ tv: UITableView?) {
         if filteringOptions.count > 0 {return}
 
         var saveList: [(FilterID: Int, FilterName: String)] = []
@@ -121,12 +121,14 @@ class filterOptionsList {
                 i += 1
             }
             self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: true, o: self.saves, ft: FilterType.Advanced))
-            
+
             self.classify()
             
-            DispatchQueue.main.async(execute: {
-                tv.reloadData()
-            })
+            if (tv != nil) {
+                DispatchQueue.main.async(execute: {
+                    tv?.reloadData()
+                })
+            }
         }
         
         //breed
@@ -154,10 +156,11 @@ class filterOptionsList {
             
             self.classify()
 
-            DispatchQueue.main.async(execute: {
-                tv.reloadData()
-            })
-            
+            if (tv != nil) {
+                DispatchQueue.main.async(execute: {
+                    tv?.reloadData()
+                })
+            }
         }
         
         
@@ -166,6 +169,7 @@ class filterOptionsList {
         filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [(displayName: "5", search: "5", value: 0), (displayName: "20", search: "20", value: 1), (displayName: "50", search: "50", value: 2), (displayName: "100", search: "100", value: 3), (displayName: "200", search: "200", value: 4), (displayName: "Any", search: "Any", value: 5)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Updated Since", f: "date", d: false, c:.sort, o: [(displayName: "Day", search: "0", value: 0), (displayName: "Week", search: "Week", value: 1), (displayName: "Month", search: "Month", value: 2), (displayName: "Year", search: "Year", value: 3), (displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Find Type", f: "Find Type", d: false, c:.sort, o: [(displayName: "Simple", search: "Simple", value: 0), (displayName: "Advanced", search: "Advanced", value: 1)], ft: FilterType.Advanced))
+        filteringOptions.append(filterOption(n: "While Your Away", f: "While Your Away", d: false, c:.sort, o: [(displayName: "Search Daily?", search: "", value: 1), (displayName: "Don't Search?", search: "", value: 0)], ft: FilterType.Advanced))
         //filteringOptions.append(filterOption(n: "Only With Videos?", f: "Only With Videos", d: false, c:.sort, o: [(displayName: "Yes", search: "Yes", value: 0), (displayName: "No", search: "No", value: 1)], ft: FilterType.Advanced))
 
         
@@ -367,7 +371,9 @@ class filterOptionsList {
                                 
                                 filters.append(["fieldName": "animalUpdatedDate" as AnyObject, "operation": "greaterthan" as AnyObject, "criteria": d as AnyObject])
                             } else {
-                                filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": opt.search! as AnyObject])
+                                if (opt.search != "") {
+                                    filters.append(["fieldName": o.fieldName! as AnyObject, "operation": "equals" as AnyObject, "criteria": opt.search! as AnyObject])
+                                }
                             }
                         }
                     }
@@ -436,6 +442,13 @@ class filterOptionsList {
         for f in filteringOptions {
             if f.fieldName == name {
                 if f.list! {
+                    for o in f.options {
+                        if (Int(value[0]) == Int(o.search!)) {
+                            f.choosenValue = Int(o.search!)
+                            break
+                        }
+                    }
+                    //f.choosenValue = value[0]
                     f.choosenListValues = value
                 } else {
                     f.choosenValue = value[0]

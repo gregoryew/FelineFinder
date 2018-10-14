@@ -1,4 +1,4 @@
-//
+    //
 //  AppDelegate.swift
 //  Feline Finder
 //
@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 import SystemConfiguration
+//import PushNotifications
+//import UserNotifications
 
 @UIApplicationMain
 
@@ -16,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var warningShown: Bool = false
+    
+    //let pushNotifications = PushNotifications.shared
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
@@ -88,8 +92,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
+        filterOptions.load(nil)
+        
+        //self.pushNotifications.register(instanceId: "a1ec1d97-a842-4f3d-998b-bdda0c65e066")
+        //registerForPushNotifications()
         return true
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        /*self.pushNotifications.registerDeviceToken(deviceToken) {
+            print("subscribed")
+            self.pushNotifications.subscribe(interest: "hello") // + AppMisc.USER_ID)
+        }
+        */
+    }
+    
+    /*
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("*************MESSAGE")
+        print(userInfo)
+    }
+    */
     
     @objc func ubiquitousKeyValueStoreDidChange() {
         Favorites.loadIDs()
@@ -320,8 +343,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
+/*
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+            
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("Notification settings: \(settings)")
+            
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication,
+                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+  */
 }
 
 var Favorites = FavoritesList()

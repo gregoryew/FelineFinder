@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DEEC724B8A6757463B1D597D50B9E58A"
+               BlueprintIdentifier = "07A0D46C8CBEA7482748CF1414F79CE5"
                BuildableName = "Pods_Feline_Finder.framework"
                BlueprintName = "Pods-Feline Finder"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DEEC724B8A6757463B1D597D50B9E58A"
+            BlueprintIdentifier = "07A0D46C8CBEA7482748CF1414F79CE5"
             BuildableName = "Pods_Feline_Finder.framework"
             BlueprintName = "Pods-Feline Finder"
             ReferencedContainer = "container:Pods.xcodeproj">

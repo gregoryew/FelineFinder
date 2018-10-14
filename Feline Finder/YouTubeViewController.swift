@@ -65,8 +65,7 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
         }
     }
     
-    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
-        videoPlayer?.stopVideo()
+    func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {        videoPlayer?.stopVideo()
         modalDelegate?.modalViewControllerDismiss(callbackData: nil)
     }
     
