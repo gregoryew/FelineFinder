@@ -760,7 +760,8 @@ NSString static *const kWKYTPlayerSyndicationRegexPattern = @"^https://tpc.googl
     if (ytMatch || adMatch || oauthMatch || staticProxyMatch || syndicationMatch) {
         return YES;
     } else {
-        [[UIApplication sharedApplication] openURL:url];
+        UIApplication *application = [UIApplication sharedApplication];
+        [application openURL:url options:@{} completionHandler:nil];
         return NO;
     }
 }
