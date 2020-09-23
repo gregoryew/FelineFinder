@@ -22,14 +22,14 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         print ("SavedLists2ViewController deinit")
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
             DatabaseManager.sharedInstance.deleteSearch(Int(SavedSearches2[indexPath.row].SavedSearchID))
             SavedSearches2.ss.removeValue(forKey: SavedSearches2[indexPath.row].SavedSearchID)
             SavedSearches2.ssd.remove(at: indexPath.row)
             SavedSearches2.keys.remove(at: indexPath.row)
             if SavedSearches2.count > 0 {
-                tableView.deleteRows(at: [indexPath], with:UITableViewRowAnimation.fade)
+                tableView.deleteRows(at: [indexPath], with:UITableView.RowAnimation.fade)
             } else {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()

@@ -64,7 +64,7 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             let index = Int(filterOptions.filteringOptions[0].options[indexPath.row].search!) ?? 0
@@ -98,7 +98,7 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         filterOptions.storeFilters(0, saveName: name)
         let c = filterOptions.filteringOptions[0].options.count + 1
         filterOptions.filteringOptions[0].options.append((displayName: name, search: String(NameID), value: c))
-        let json2 = generateJSON()
+        _ = generateJSON()
         
         /*
         var request = URLRequest(url: URL(string: "http://127.0.0.1:4000/save")!)
@@ -117,12 +117,12 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             
         }
         */
-        let url = URL(string: "https://glacial-wave-88689.herokuapp.com/save")!
+        _ = URL(string: "https://glacial-wave-88689.herokuapp.com/save")!
         //Alamofire.request(url, method: .post, parameters: ["json2":json2, "queryid":12, "userid": AppMisc.USER_ID]).responseString { (s) in print(s) }
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.filterOpt!.options.count - 1, section: 0);
             self.tableView.reloadData()
-            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.none)
+            self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
             self.filterOpt?.choosenValue = Int((self.filterOpt?.options[self.filterOpt!.options.count - 1].search)!)
             //indexPath.row
             currentFilterSave = (self.filterOpt?.options[self.filterOpt!.options.count - 1].displayName)!
@@ -179,10 +179,10 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             for s in filterOptions.filteringOptions[0].options {
                 if s.displayName == self.n {
                     duplicate = true
-                    let alert = UIAlertController(title: "Overwrite Existing?", message: "A filter by this name already exists.  Do you want to overwrite or enter another name", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.destructive, handler: {action in
+                    let alert = UIAlertController(title: "Overwrite Existing?", message: "A filter by this name already exists.  Do you want to overwrite or enter another name", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Overwrite", style: UIAlertAction.Style.destructive, handler: {action in
                         self.saveFilter(name: self.n, overwrite: true, existingSaveID: Int(s.search!)!)}))
-                    alert.addAction(UIAlertAction(title: "Enter Another", style: UIAlertActionStyle.default, handler: {
+                    alert.addAction(UIAlertAction(title: "Enter Another", style: UIAlertAction.Style.default, handler: {
                         action in
                         self.promptUserForSaveName()
                     }))

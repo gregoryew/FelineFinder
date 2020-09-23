@@ -84,8 +84,8 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if gestureRecognizer == panGesture {
             let velocity = panGesture.velocity(in: self.view)
-            print("y < x \(fabs(velocity.y) < fabs(velocity.x))")
-            return fabs(velocity.y) < fabs(velocity.x)
+            print("y < x \(abs(velocity.y) < abs(velocity.x))")
+            return abs(velocity.y) < abs(velocity.x)
         } else {
             print("true")
             return true

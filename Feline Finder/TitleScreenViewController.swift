@@ -48,7 +48,7 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         super.viewWillAppear(animated)
         
         if let viewWithTag = background.viewWithTag(999) {
-            viewWithTag.sendSubview(toBack: self.view)
+            viewWithTag.sendSubviewToBack(self.view)
         } else {
             print("No!")
         }

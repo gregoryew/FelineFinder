@@ -142,7 +142,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
             alertController.addTextField { textField in
                 //listen for changes
                 
-            NotificationCenter.default.addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: NSNotification.Name.UITextFieldTextDidChange, object: textField)
+            NotificationCenter.default.addObserver(self, selector: #selector(SavedListsViewController.handleTextFieldTextDidChangeNotification(_:)), name: UITextField.textDidChangeNotification, object: textField)
                 
             textField.text = SearchTitle
             self.txtfld = textField
@@ -192,7 +192,7 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func removeTextFieldObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UITextFieldTextDidChange, object: self.txtfld)
+        NotificationCenter.default.removeObserver(self, name: UITextField.textDidChangeNotification, object: self.txtfld)
     }
     
     //handler

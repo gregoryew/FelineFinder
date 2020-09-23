@@ -21,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //let pushNotifications = PushNotifications.shared
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
         UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         UINavigationBar.appearance().isTranslucent = false
         
         // set up your background color view
@@ -69,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(distance, forKey: "distance")
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
   
         let kvStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default;
         let notificationsCenter: NotificationCenter = NotificationCenter.default
@@ -137,12 +137,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @objc func rotated()
     {
-        if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation))
+        if(UIDevice.current.orientation.isLandscape)
         {
             //println("landscape")
         }
         
-        if(UIDeviceOrientationIsPortrait(UIDevice.current.orientation))
+        if(UIDevice.current.orientation.isPortrait)
         {
             //println("Portrait")
         }

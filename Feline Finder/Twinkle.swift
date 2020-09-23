@@ -108,9 +108,9 @@ internal class TwinkleLayer: CAEmitterLayer {
         self.emitterCells = emitterCells
         self.emitterPosition = CGPoint(x: (bounds.size.width * 0.5), y: (bounds.size.height * 0.5))
         self.emitterSize = bounds.size
-        self.emitterShape = TwinkleLayerEmitterShapeKey
-        self.emitterMode = TwinkleLayerEmitterModeKey
-        self.renderMode = TwinkleLayerRenderModeKey
+        self.emitterShape = convertToCAEmitterLayerEmitterShape(TwinkleLayerEmitterShapeKey)
+        self.emitterMode = convertToCAEmitterLayerEmitterMode(TwinkleLayerEmitterModeKey)
+        self.renderMode = convertToCAEmitterLayerRenderMode(TwinkleLayerRenderModeKey)
     }
     
     internal required init?(coder aDecoder: NSCoder) {
@@ -145,9 +145,9 @@ internal class TwinkleLayer: CAEmitterLayer {
         self.emitterCells = emitterCells
         self.emitterPosition = CGPoint(x: (bounds.size.width * 0.5), y: (bounds.size.height * 0.5))
         self.emitterSize = bounds.size
-        self.emitterShape = TwinkleLayerEmitterShapeKey
-        self.emitterMode = TwinkleLayerEmitterModeKey
-        self.renderMode = TwinkleLayerRenderModeKey
+        self.emitterShape = convertToCAEmitterLayerEmitterShape(TwinkleLayerEmitterShapeKey)
+        self.emitterMode = convertToCAEmitterLayerEmitterMode(TwinkleLayerEmitterModeKey)
+        self.renderMode = convertToCAEmitterLayerRenderMode(TwinkleLayerRenderModeKey)
     }
     
 }
@@ -182,7 +182,7 @@ extension TwinkleLayer {
         CATransaction.begin()
         let keyFrameAnim = CAKeyframeAnimation(keyPath: "transform")
         keyFrameAnim.duration = 0.3
-        keyFrameAnim.valueFunction = CAValueFunction(name: kCAValueFunctionRotateZ)
+        keyFrameAnim.valueFunction = CAValueFunction(name: CAValueFunctionName.rotateZ)
         keyFrameAnim.isAdditive = true
         keyFrameAnim.repeatCount = MAXFLOAT
         keyFrameAnim.isRemovedOnCompletion = false
@@ -196,13 +196,13 @@ extension TwinkleLayer {
     internal func addFadeInOutAnimation(_ beginTime: CFTimeInterval) {
         CATransaction.begin()
         let fadeAnimation: CABasicAnimation = CABasicAnimation(keyPath: "opacity")
-        fadeAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        fadeAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         fadeAnimation.fromValue = 0
         fadeAnimation.toValue = 1
         fadeAnimation.repeatCount = 2
         fadeAnimation.autoreverses = true // fade in then out
         fadeAnimation.duration = 0.4
-        fadeAnimation.fillMode = kCAFillModeForwards
+        fadeAnimation.fillMode = CAMediaTimingFillMode.forwards
         fadeAnimation.beginTime = beginTime
         CATransaction.setCompletionBlock({
             self.removeFromSuperlayer()
@@ -234,4 +234,19 @@ extension UIView {
         Twinkle.twinkle(self)
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAEmitterLayerEmitterShape(_ input: String) -> CAEmitterLayerEmitterShape {
+	return CAEmitterLayerEmitterShape(rawValue: input)
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAEmitterLayerEmitterMode(_ input: String) -> CAEmitterLayerEmitterMode {
+	return CAEmitterLayerEmitterMode(rawValue: input)
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToCAEmitterLayerRenderMode(_ input: String) -> CAEmitterLayerRenderMode {
+	return CAEmitterLayerRenderMode(rawValue: input)
 }

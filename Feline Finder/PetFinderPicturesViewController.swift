@@ -84,7 +84,7 @@ class PetFinderPicturesViewController: UIViewController, NavgationTransitionable
             if let urlImg = imgURL {
                 let request: URLRequest = URLRequest(url: urlImg)
                 //let mainQueue = NSOperationQueue.mainQueue()
-                _ = URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
+                URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
                     self.currentImage += 1.0
                     self.circularProgress.progress = self.currentImage / self.totalImages
                     _ = Int((self.currentImage / self.totalImages) * 100.0)

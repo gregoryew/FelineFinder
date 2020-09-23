@@ -151,7 +151,7 @@ open class UICardContainerView: UIView {
             headCard.layer.borderWidth = 0
         })
         
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: UIView.KeyframeAnimationOptions(), animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
                 headCard.layer.transform = flipDownTransform3D
             })
@@ -194,7 +194,7 @@ open class UICardContainerView: UIView {
             self.previousHeadCard?.layer.borderWidth = self.headCardBorderWidth
         })
         
-        UIView.animateKeyframes(withDuration: duration, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
+        UIView.animateKeyframes(withDuration: duration, delay: 0, options: UIView.KeyframeAnimationOptions(), animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 self.previousHeadCard?.alpha = 1
             })

@@ -114,7 +114,7 @@ public struct JSON {
      
      - returns: The created JSON
      */
-    @available(*, deprecated: 3.2, message: "Use instead `init(parseJSON: )`")
+    @available(*, deprecated, message: "Use instead `init(parseJSON: )`")
     public static func parse(json: String) -> JSON {
         return json.data(using: String.Encoding.utf8)
             .flatMap{ JSON(data: $0) } ?? JSON(NSNull())
@@ -567,7 +567,7 @@ extension JSON: Swift.ExpressibleByDictionaryLiteral {
     
     public init(dictionaryLiteral elements: [(String, Any)]) {
         let jsonFromDictionaryLiteral: ([String : Any]) -> JSON = { dictionary in
-            let initializeElement = Array(dictionary.keys).flatMap { key -> (String, Any)? in
+            let initializeElement = Array(dictionary.keys).compactMap { key -> (String, Any)? in
                 if let value = dictionary[key] {
                     return (key, value)
                 }

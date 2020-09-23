@@ -138,7 +138,7 @@ class filterOptionsList {
             var i = 0
             let titles: [String] = breedsList.keys.sorted{$0 < $1}
             for t in titles {
-                var data = breedsList[t]
+                let data = breedsList[t]
                 var j = 0
                 while j < data!.count {
                     let b = data![j]

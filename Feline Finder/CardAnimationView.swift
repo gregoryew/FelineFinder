@@ -153,7 +153,7 @@ open class CardAnimationView: UIView {
 
         let shouldRemoveLast = cardArray.count > maxVisibleCardCount
 
-        UIView.animateKeyframes(withDuration: animationsSpeed, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
+        UIView.animateKeyframes(withDuration: animationsSpeed, delay: 0, options: UIView.KeyframeAnimationOptions(), animations: {
 
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
                 newView.layer.transform = self.flipUpTransform3D
@@ -187,7 +187,7 @@ open class CardAnimationView: UIView {
             _ = addNewCardViewWithIndex(lastIndex, insertOnRear: true)
         }
 
-        UIView.animateKeyframes(withDuration: animationsSpeed*1.5, delay: 0, options: UIViewKeyframeAnimationOptions(), animations: {
+        UIView.animateKeyframes(withDuration: animationsSpeed*1.5, delay: 0, options: UIView.KeyframeAnimationOptions(), animations: {
 
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 1, animations: {
                 frontView.layer.transform = self.flipDownTransform3D

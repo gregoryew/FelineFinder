@@ -182,7 +182,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
             let request: URLRequest = URLRequest(url: imgURL!)
             _ = OperationQueue.main
             //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+            URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)

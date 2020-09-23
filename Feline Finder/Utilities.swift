@@ -14,10 +14,10 @@ class Utilities {
             //var networkType = RSUtilities.networkConnectionType("api.petfinder.com")
             
             //If host is not reachable, display a UIAlertController informing the user
-            let alert = UIAlertController(title: "No Internet Connection", message: "For this function to work you need to be connected to the internet and you are not connected.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "No Internet Connection", message: "For this function to work you need to be connected to the internet and you are not connected.", preferredStyle: UIAlertController.Style.alert)
             
             //Add alert action
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             
             //Present alert
             AppDelegate().sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
@@ -28,10 +28,10 @@ class Utilities {
         
     class func displayAlert(_ errorTitle: String, errorMessage: String) {
         //If host is not reachable, display a UIAlertController informing the user
-        let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertController.Style.alert)
             
         //Add alert action
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             
         //Present alert
         AppDelegate().sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)

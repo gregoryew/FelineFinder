@@ -36,7 +36,7 @@ class DatabaseManager {
         
     func presentDBErrorMessage(_ errorMessage: String) {
         let message: String = "Error occured on database: \(errorMessage)"
-        let dbErrorAlert: UIAlertController = UIAlertController(title: "Database Error", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let dbErrorAlert: UIAlertController = UIAlertController(title: "Database Error", message: message, preferredStyle: UIAlertController.Style.alert)
         dbErrorAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         AppDelegate().sharedInstance().window?.rootViewController?.present(dbErrorAlert, animated: true, completion: nil)
     }

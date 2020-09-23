@@ -94,7 +94,7 @@ class BreedStatsViewController: UIViewController { //, NavgationTransitionable {
         for breedStat in breedStats {
             i += 1;
             var c: Int = 1
-            if (i > breedStats.count / 2) && UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+            if (i > breedStats.count / 2) && UIDevice.current.orientation.isLandscape {
                 c = 2
             }
             if breedStat.Value == "" {

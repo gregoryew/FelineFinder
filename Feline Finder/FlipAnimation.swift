@@ -41,9 +41,9 @@ class FlipAnimation: NSObject, TRViewControllerAnimatedTransitioning {
         containView?.addSubview(toVC!.view)
         
         if transitionStatus == .push {
-        UIView.transition(from: (fromVC?.view)!, to: (toVC?.view)!, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+        UIView.transition(from: (fromVC?.view)!, to: (toVC?.view)!, duration: 1, options: UIView.AnimationOptions.transitionFlipFromRight, completion: nil)
         } else {
-            UIView.transition(from: (fromVC?.view)!, to: (toVC?.view)!, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            UIView.transition(from: (fromVC?.view)!, to: (toVC?.view)!, duration: 1, options: UIView.AnimationOptions.transitionFlipFromLeft, completion: nil)
         }
         self.transitionContext?.completeTransition(true)
     }

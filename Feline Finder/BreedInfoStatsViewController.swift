@@ -49,7 +49,7 @@ class BreedInfoStatsViewController: UIViewController {
             for breedStat in self.breedStats {
                 i += 1;
                 var c: Int = 1
-                if (i > self.breedStats.count / 2) && UIDeviceOrientationIsLandscape(UIDevice.current.orientation) {
+                if (i > self.breedStats.count / 2) && UIDevice.current.orientation.isLandscape {
                     c = 2
                 }
                 if breedStat.Value == "" {

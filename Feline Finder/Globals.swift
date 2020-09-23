@@ -213,13 +213,13 @@ public enum Model : String {
 }
 
 public extension UIDevice {
-    public var type: Model {
+    var type: Model {
         var systemInfo = utsname()
         uname(&systemInfo)
         let modelCode = withUnsafeMutablePointer(to: &systemInfo.machine) {
             ptr in String(cString: UnsafeRawPointer(ptr).assumingMemoryBound(to: CChar.self))
         }
-        var modelMap : [ String : Model ] = [
+        let modelMap : [ String : Model ] = [
             "i386"      : .simulator,
             "x86_64"    : .simulator,
             "iPod1,1"   : .iPod1,
@@ -399,14 +399,14 @@ extension String {
     
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
         
         return boundingBox.height
     }
     
     func width(withConstrainedHeigth height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
         
         return boundingBox.width
     }

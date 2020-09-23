@@ -11,7 +11,7 @@ import Foundation
 extension String {
     
     subscript (i: Int) -> Character {
-        let index1 = self.characters.index(self.startIndex, offsetBy: i)
+        let index1 = self.index(self.startIndex, offsetBy: i)
         //let index = self.startIndex.advanceBy(i)
         return self[index1]
     }

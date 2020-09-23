@@ -265,8 +265,8 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         blurredEffectView.frame = imageView.bounds
         view.addSubview(blurredEffectView)
         
-        self.view.sendSubview(toBack: blurredEffectView)
-        self.view.sendSubview(toBack: imageView)
+        self.view.sendSubviewToBack(blurredEffectView)
+        self.view.sendSubviewToBack(imageView)
     }
     
     func getImage() {
@@ -286,7 +286,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         let request: URLRequest = URLRequest(url: imgURL!)
         //let mainQueue = NSOperationQueue.mainQueue()
         //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-        _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+        URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if error == nil {
                 // Convert the downloaded data in to a UIImage object
                 let image = UIImage(data: data!)
@@ -317,7 +317,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         let request: URLRequest = URLRequest(url: URL(string: imgURL)!)
         //let mainQueue = NSOperationQueue.mainQueue()
         //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-        _ = URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
+        URLSession.shared.dataTask(with: request, completionHandler: {[unowned self] data, response, error in
             if error == nil {
                 self.images.append(UIImage(data: data!)!)
             } else {

@@ -90,13 +90,13 @@ class CharacterFlowLayout: UICollectionViewFlowLayout {
   }
   
   func setupCollectionView() {
-    self.collectionView!.decelerationRate = UIScrollViewDecelerationRateFast
+    self.collectionView!.decelerationRate = UIScrollView.DecelerationRate.fast
    
     let collectionSize = collectionView!.bounds.size
     let yInset = (collectionSize.height - self.itemSize.height) / 2
     let xInset = (collectionSize.width - self.itemSize.width) / 2
     
-    self.sectionInset = UIEdgeInsetsMake(yInset, xInset, yInset, xInset)
+    self.sectionInset = UIEdgeInsets.init(top: yInset, left: xInset, bottom: yInset, right: xInset)
     
   }
   

@@ -62,25 +62,25 @@ class QuestionEntryViewController: UIViewController {
     }
     
     func setButtonToAnswer(answer: Int, flipPage: Bool = false)  {
-        HighButton.setImage(UIImage(named: "High_Unlit"), for: UIControlState.normal)
-        MediumButton.setImage(UIImage(named: "Med_Unlit"), for: UIControlState.normal)
-        LowButton.setImage(UIImage(named: "Low_Unlit"), for: UIControlState.normal)
+        HighButton.setImage(UIImage(named: "High_Unlit"), for: UIControl.State.normal)
+        MediumButton.setImage(UIImage(named: "Med_Unlit"), for: UIControl.State.normal)
+        LowButton.setImage(UIImage(named: "Low_Unlit"), for: UIControl.State.normal)
         switch answer {
         case 6:
             if !flipPage {
                 ShakeToClearLabel.isHidden = false
             }
-            LowButton.setImage(UIImage(named: "Low_Lit"), for: UIControlState.normal)
+            LowButton.setImage(UIImage(named: "Low_Lit"), for: UIControl.State.normal)
         case 4:
             if !flipPage {
                 ShakeToClearLabel.isHidden = false
             }
-            MediumButton.setImage(UIImage(named: "Med_Lit"), for: UIControlState.normal)
+            MediumButton.setImage(UIImage(named: "Med_Lit"), for: UIControl.State.normal)
         case 2:
             if !flipPage {
                 ShakeToClearLabel.isHidden = false
             }
-            HighButton.setImage(UIImage(named: "High_Lit"), for: UIControlState.normal)
+            HighButton.setImage(UIImage(named: "High_Lit"), for: UIControl.State.normal)
         default: break
         }
         if (flipPage) {
@@ -149,7 +149,7 @@ class QuestionEntryViewController: UIViewController {
         self.becomeFirstResponder()
     }
     
-    override func motionBegan(_ motion: UIEventSubtype, with event: UIEvent?) {
+    override func motionBegan(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         if motion == .motionShake {
             let q = questionList.Questions[currentQuestion]
             questionList.Questions[currentQuestion].setAnswer(Int(q.Choices[0].ChoiceID))

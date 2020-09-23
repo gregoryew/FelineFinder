@@ -153,7 +153,7 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
                 DownloadManager.loadPetPictures(breed: globalBreed!)
             } else {
                 let alert3 = UIAlertController(title: "Error", message: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 66952.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.", preferredStyle: .alert)
-                alert3.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                alert3.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert3, animated: true, completion: nil)
                 zipCode = "66952"
                 zipCodeGlobal = zipCode

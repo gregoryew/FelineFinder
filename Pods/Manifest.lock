@@ -1,18 +1,16 @@
 PODS:
-  - FaveButton (3.0.0)
-  - SwiftLocation (3.2.3):
-    - SwiftyJSON (~> 4.0.0-alpha.1)
-  - SwiftyJSON (4.0.0)
-  - TransitionAnimation (4.0.0):
-    - TransitionTreasury (~> 4.0)
-  - TransitionTreasury (4.1.0)
-  - TTSegmentedControl (0.4.7)
-  - YouTubePlayer (0.4.0)
+  - FaveButton (3.2.1)
+  - SwiftLocation (4.2.0)
+  - TransitionAnimation (6.0.0):
+    - TransitionTreasury (~> 6.0.0)
+  - TransitionTreasury (6.0.0)
+  - TTSegmentedControl (0.4.10)
+  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
   - FaveButton
   - SwiftLocation
-  - TransitionAnimation (from `https://github.com/gregoryew/TransitionTreasury.git`)
+  - TransitionAnimation
   - TTSegmentedControl
   - YouTubePlayer
 
@@ -20,29 +18,19 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - FaveButton
     - SwiftLocation
-    - SwiftyJSON
+    - TransitionAnimation
     - TransitionTreasury
     - TTSegmentedControl
     - YouTubePlayer
 
-EXTERNAL SOURCES:
-  TransitionAnimation:
-    :git: https://github.com/gregoryew/TransitionTreasury.git
-
-CHECKOUT OPTIONS:
-  TransitionAnimation:
-    :commit: f196de5f93bb634a6ae9ff565906d70d59e95164
-    :git: https://github.com/gregoryew/TransitionTreasury.git
-
 SPEC CHECKSUMS:
-  FaveButton: 1fa9cd7b037d7164e229765401931271adbe3a23
-  SwiftLocation: a3c3bc2023118171ef3572188a31def94aa0892c
-  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
-  TransitionAnimation: 4e9acd93e9d5358057899535e5d17b010c5718e7
-  TransitionTreasury: c3b541a2073ee3060519835afa10791bd4ba55f9
-  TTSegmentedControl: 422a8fab507a02a60050476d69d577052550f592
-  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
+  FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
+  SwiftLocation: 609ac8859f2c5d48a6cadd2a58c63b1dae02dc25
+  TransitionAnimation: bdb7ab1754c17befbd22f30c374606b14bb60104
+  TransitionTreasury: b81fa25b49d797b3b467785c336b20d1f6d7327d
+  TTSegmentedControl: d8005c0cdca2549ade0aee8e09240723e2478a6a
+  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: af774d7652c760308edbafc984aa7425c6f512d5
+PODFILE CHECKSUM: f4442ccb5fb945f19cb7d7e7db8f95c60fcc0efd
 
 COCOAPODS: 1.5.2

@@ -57,7 +57,7 @@ class TransitionImageView2: UIImageView {
                                 target: self, selector: #selector(timerFired(timer:)),
                                 userInfo: toImage,
                                 repeats: true)
-        RunLoop.current.add(transitionTimer!, forMode: RunLoopMode.defaultRunLoopMode)
+        RunLoop.current.add(transitionTimer!, forMode: RunLoop.Mode.default)
         
     }
     

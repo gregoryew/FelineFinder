@@ -83,7 +83,7 @@ class TransitionImageView: UIImageView {
                                 target: self, selector: #selector(timerFired(timer:)),
                                   userInfo: toImage,
                                   repeats: true)
-        RunLoop.current.add(transitionTimer!, forMode: RunLoopMode.defaultRunLoopMode)
+        RunLoop.current.add(transitionTimer!, forMode: RunLoop.Mode.default)
         
     }
     
@@ -113,7 +113,7 @@ class TransitionImageView: UIImageView {
         filter.setValue(progress, forKey: kCIInputTimeKey)
         image = UIImage(ciImage: filter.outputImage!,
                         scale: UIScreen.main.scale,
-                        orientation: UIImageOrientation.up)
+                        orientation: UIImage.Orientation.up)
         if CACurrentMediaTime() > transitionStartTime + duration {
             image = timer.userInfo as? UIImage
             i = 0.0

@@ -27,7 +27,7 @@ class PetFinderShelterList: ShelterList {
             let rsRequest: RSTransactionRequest = RSTransactionRequest()
             rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : URLResponse!, responseData: Data!, error: NSError!) -> Void in
                 if error == nil {
-                    var json = JSON(data: responseData)
+                    let json = JSON(data: responseData)
                     let s = json[ShelterTags.PETFINDER_TAG][ShelterTags.SHELTER_TAG]
                     let cachedShelter = self.createShelter(s)
                     self.sh[cachedShelter.id] = cachedShelter
@@ -36,7 +36,7 @@ class PetFinderShelterList: ShelterList {
                 } else {
                     //If there was an error, log it
                     Utilities.displayAlert("Error Retrieving Shelter Data", errorMessage: error.description)
-                    print("Error : \(error)")
+                    print("Error : \(String(describing: error))")
                 }
             } as RSTransactionRequest.dataFromRSTransactionCompletionClosure)
         }
@@ -60,7 +60,7 @@ class PetFinderShelterList: ShelterList {
         rsRequest.dataFromRSTransaction(rsTransGet, completionHandler: { (response : URLResponse!, responseData: Data!, error: NSError!) ->
             Void in
             if error == nil {
-                var json = JSON(data: responseData)
+                let json = JSON(data: responseData)
                 if let lo = json[ShelterTags.PETFINDER_TAG][ShelterTags.LASTOFFSET_TAG][ShelterTags.T_TAG].string {
                     self.lastOffset = lo
                 } else {
@@ -77,7 +77,7 @@ class PetFinderShelterList: ShelterList {
             } else {
                 //If there was an error, log it
                 Utilities.displayAlert("Error Retrieving Shelter Data", errorMessage: error.description)
-                print("Error : \(error)")
+                print("Error : \(String(describing: error))")
             }
         } as RSTransactionRequest.dataFromRSTransactionCompletionClosure)
     }

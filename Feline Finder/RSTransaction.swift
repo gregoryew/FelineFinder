@@ -12,7 +12,7 @@ enum RSTransactionType {
     case get
     case post
     case unknown
-}
+}   
 
 class RSTransaction: NSObject {
     var transactionType = RSTransactionType.unknown

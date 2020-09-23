@@ -166,7 +166,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             let request: URLRequest = URLRequest(url: imgURL!)
             _ = OperationQueue.main
             //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+            URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
                 if error == nil {
                     // Convert the downloaded data in to a UIImage object
                     let image = UIImage(data: data!)
@@ -348,7 +348,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         //let mainQueue = NSOperationQueue.mainQueue()
         //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
         var strongSelf: PetFinderViewDetailController? = self
-        _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+        URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if error == nil {
                 strongSelf?.images.append(UIImage(data: data!)!)
                 strongSelf = nil
@@ -358,7 +358,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         }).resume()
     }
     
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebView.NavigationType) -> Bool {
         //var errors = 0
         //var imageCache: [UIImage] = []
         var r: Bool = false
@@ -519,7 +519,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
             if shouldLoadWeb == true {
                 r = true
                 shouldLoadWeb = false
-            } else if navigationType == UIWebViewNavigationType.linkClicked{
+            } else if navigationType == UIWebView.NavigationType.linkClicked{
                 let actionSheetController: UIAlertController = UIAlertController(title: "Copy URL to Clipboard?", message: "Sorry but I cannot go to outside websites.  Should I copy the URL to your clipboard and then you can paste it in a web browser?", preferredStyle: .actionSheet)
                 
                 //Create and add the Cancel action
@@ -773,8 +773,8 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         blurredEffectView.tag = 999
         view.addSubview(blurredEffectView)
     
-        self.view.sendSubview(toBack: blurredEffectView)
-        self.view.sendSubview(toBack: imageView)
+        self.view.sendSubviewToBack(blurredEffectView)
+        self.view.sendSubviewToBack(imageView)
     /*
         if timer == nil {
             timer = NSTimer.scheduledTimerWithTimeInterval(15.0, target: self, selector: #selector(PetFinderViewDetailController.getImage), userInfo: nil, repeats: true)
@@ -799,7 +799,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         let request: URLRequest = URLRequest(url: imgURL!)
         //let mainQueue = NSOperationQueue.mainQueue()
         //NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-        _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+        URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
             if error == nil {
                 // Convert the downloaded data in to a UIImage object
                 let image = UIImage(data: data!)

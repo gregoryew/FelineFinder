@@ -83,8 +83,8 @@ class DetailViewController: UIViewController, WKNavigationDelegate { //, Navgati
         blurredEffectView.frame = imageView.bounds
         view.addSubview(blurredEffectView)
         
-        self.view.sendSubview(toBack: blurredEffectView)
-        self.view.sendSubview(toBack: imageView)
+        self.view.sendSubviewToBack(blurredEffectView)
+        self.view.sendSubviewToBack(imageView)
     }
 
     override func viewDidDisappear(_ animated: Bool) {

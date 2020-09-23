@@ -64,7 +64,7 @@ extension UIScrollView {
     func addPullToRefreshWithActionHandler(_ actionHandler: @escaping () -> Void) {
         if !self.pullRefreshHasBeenSetup {
             let view: UIRefreshControl = UIRefreshControl()
-            view.addTarget(self, action: #selector(UIScrollView.triggerPullToRefresh), for: UIControlEvents.valueChanged)
+            view.addTarget(self, action: #selector(UIScrollView.triggerPullToRefresh), for: UIControl.Event.valueChanged)
             view.layer.zPosition = self.layer.zPosition - 1
             self.refreshControlView = view
             self.pullRefreshHandler = actionHandler
@@ -77,7 +77,7 @@ extension UIScrollView {
         if !self.pullRefreshHasBeenSetup {
             let view: UIRefreshControl = UIRefreshControl()
             if let title = pullToRefreshTitle { view.attributedTitle = title }
-            view.addTarget(self, action: #selector(UIScrollView.triggerPullToRefresh), for: UIControlEvents.valueChanged)
+            view.addTarget(self, action: #selector(UIScrollView.triggerPullToRefresh), for: UIControl.Event.valueChanged)
             view.layer.zPosition = self.layer.zPosition - 1
             self.refreshControlView = view
             self.pullRefreshHandler = actionHandler
@@ -138,7 +138,7 @@ class HWPullToInfinityView: UIView {
     fileprivate var activityIndicatorView : UIActivityIndicatorView {
         get {
             if _activityIndicatorView == nil {
-                _activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+                _activityIndicatorView = UIActivityIndicatorView(style: .white)
                 _activityIndicatorView?.color = _infiniteRefreshColor
                 _activityIndicatorView?.hidesWhenStopped = true
                 self.addSubview(_activityIndicatorView!)

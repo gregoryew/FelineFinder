@@ -18,7 +18,7 @@ class TSThumbLayer: CALayer {
     */
     weak var ticksSlider : TicksSlider?
     
-    override func draw(in ctx: (CGContext!)) {
+    override func draw(in ctx: (CGContext?)) {
         if let slider = ticksSlider {
             let myLayer = CALayer()
             if slider.knobVisible == false {

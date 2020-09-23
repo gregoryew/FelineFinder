@@ -82,22 +82,22 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     }
     
     @IBAction func importQuestions(_ sender: Any) {
-        let alert = UIAlertController(title: "Import", message: "Do you want to import your current answers, choose a saved answers, new, or cancel?", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Current", style: UIAlertActionStyle.default, handler: { action in filterOptions.importQuestions()
+        let alert = UIAlertController(title: "Import", message: "Do you want to import your current answers, choose a saved answers, new, or cancel?", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Current", style: UIAlertAction.Style.default, handler: { action in filterOptions.importQuestions()
             self.tableView.reloadData()}))
-        alert.addAction(UIAlertAction(title: "Saved", style: UIAlertActionStyle.default, handler: {action in
+        alert.addAction(UIAlertAction(title: "Saved", style: UIAlertAction.Style.default, handler: {action in
             cameFromFiltering = true
             questionList = QuestionList()
             questionList.getQuestions()
             SearchTitle = "SUMMARY"
             self.performSegue(withIdentifier: "importFromSaved", sender: nil)}))
-        alert.addAction(UIAlertAction(title: "New", style: UIAlertActionStyle.default, handler: {action in
+        alert.addAction(UIAlertAction(title: "New", style: UIAlertAction.Style.default, handler: {action in
             cameFromFiltering = true
             questionList = QuestionList()
             questionList.getQuestions()
             SearchTitle = "SUMMARY"
             self.performSegue(withIdentifier: "answerQuestions", sender: nil)}))
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -134,8 +134,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
     }
     
     func addDoneButtonTo(textField: UITextField) {
-        let flexBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let doneBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(didTapDone))
+        let flexBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(didTapDone))
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
         keyboardToolbar.items = [flexBarButton, doneBarButton]
@@ -290,19 +290,19 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.ListName.text = opt!.name
             cell.ListValue.text = currentFilterSave
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.ListName.text = opt!.name
             cell.ListValue.text = opt?.getDisplayValues()
             return cell
         } else if indexPath.section == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "zipCode", for: indexPath) as! FilterOptionsZipCodeTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.ZipCodeTextbox.delegate = self
             cell.ZipCodeTextbox.text = zipCode
             zipCodeTextField = cell.ZipCodeTextbox
@@ -311,7 +311,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
         } else if indexPath.section >= 3 {
             if opt!.list == true {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as! FilterOptionsListTableCell
-                cell.selectionStyle = UITableViewCellSelectionStyle.none
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
                 cell.ListName.text = opt!.name
                 cell.ListValue.text = opt?.getDisplayValues()
                 if (opt?.imported)! {
@@ -322,7 +322,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate, N
                 return cell
             } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "options", for: indexPath) as! FilterOptionsSegmentedTableCell
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
+            cell.selectionStyle = UITableViewCell.SelectionStyle.none
             cell.OptionLabel.text = opt!.name
             cell.OptionSegmentedControl.items = opt!.optionsArray()
             cell.OptionSegmentedControl.font = UIFont(name: "Avenir-Black", size: 12)
