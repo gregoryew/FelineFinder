@@ -13,6 +13,5 @@
 #import "Common.h"
 #import "CoolTableViewController.h"
 #import "CustomCellBackground.h"
-#import "CoolButton.h"
 #import "UIImageView+WebCache.h"
 #import "WKYTPlayerView.h"

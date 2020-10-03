@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SurveyBaseViewController: UIViewController {
+class SurveyBaseViewController: ZoomAnimationViewController {
 
     var currentQuestion: Int = 0
     

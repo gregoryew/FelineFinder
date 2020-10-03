@@ -21,11 +21,7 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        let index1 = self.index(self.startIndex, offsetBy: r.lowerBound)
-        let index2 = self.index(self.startIndex, offsetBy: r.upperBound)
-        let range = index1..<index2
-        return substring(with: range)
-        //return substringWithRange(Range(start: index1, end: index2))
+        return mid(r.startIndex, amount: r.count - 1)
     }
     
     func URLEncodedString() -> String? {
@@ -62,5 +58,38 @@ extension String {
             get{
                 return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
         }
+    }
+    
+    // LEFT
+    // Returns the specified number of chars from the left of the string
+    // let str = "Hello"
+    // print(str.left(3))         // Hel
+    func left(_ to: Int) -> String {
+        return "\(self[..<self.index(startIndex, offsetBy: to)])"
+    }
+
+    // RIGHT
+    // Returns the specified number of chars from the right of the string
+    // let str = "Hello"
+    // print(str.left(3))         // llo
+    func right(_ from: Int) -> String {
+        return "\(self[self.index(startIndex, offsetBy: self.count-from)...])"
+    }
+
+    // MID
+    // Returns the specified number of chars from the startpoint of the string
+    // let str = "Hello"
+    // print(str.left(2,amount: 2))         // ll
+    func mid(_ from: Int, amount: Int) -> String {
+        let x = "\(self[self.index(startIndex, offsetBy: from)...])"
+        return x.left(amount)
+    }
+    
+    func chopPrefix(_ count: Int = 1) -> String {
+        return self.right(self.count - count)
+    }
+    
+    func chopSuffix(_ count: Int = 1) -> String {
+        return self.left(self.count - count)
     }
 }

@@ -25,18 +25,14 @@
 
 import UIKit
 import Foundation
-import TransitionTreasury
-import TransitionAnimation
 
-class PictureMasterViewController: UICollectionViewController, NavgationTransitionable {
+class PictureMasterViewController: UICollectionViewController {
   
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0, adoptionFee: "", location: "")
     var imageURLs:[picture] = []
   
   var currentCard: Int = 0
-    
-   weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    
+
   override func viewDidLoad() {
     super.viewDidLoad()
     

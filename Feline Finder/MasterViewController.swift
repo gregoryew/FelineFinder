@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Gregory Williams. All rights reserved.
 //
 
+/*
 import UIKit
 import TransitionTreasury
 import TransitionAnimation
@@ -184,4 +185,4 @@ class MasterViewController: UITableViewController, NavgationTransitionable {
         return 30
     }
 }
-
+*/

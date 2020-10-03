@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class InstructionsViewController: UIViewController, NavgationTransitionable {
+class InstructionsViewController: ZoomAnimationViewController {
     
     @IBOutlet weak var InstructionTextView: UITextView!
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
         print ("InstructionsViewController deinit")

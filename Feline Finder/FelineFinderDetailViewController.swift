@@ -11,10 +11,8 @@ import UIKit
 import MessageUI
 import MapKit
 import Social
-import TransitionTreasury
-import TransitionAnimation
 
-class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate, NavgationTransitionable {
+class FelineFinderDetailViewController: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate {
     
     var petID: String?
     var petName: String?
@@ -41,8 +39,6 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var DescriptionTextView: UITextView!
     @IBOutlet weak var FavoriteBtn: UIBarButtonItem!
     @IBOutlet weak var BackBtn: UIBarButtonItem!
-
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
         print ("FelineFinderDetailViewController deinit")
@@ -55,7 +51,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         }
         else {
             let urlString = pet!.getImage(1, size: "pnt")
-            Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: breedName!, d: favoriteType, s: ""))
+            Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: breedName!, FavoriteDataSource: favoriteType, Status: ""))
             FavoriteBtn.image = UIImage(named: "LikeFilled")
         }
     }
@@ -160,7 +156,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         actionSheetController.addAction(cancelAction)
         //Create and add first option action
         let callAction: UIAlertAction = UIAlertAction(title: "Call", style: .default) { action -> Void in
-            UIApplication.shared.openURL(u!)
+            UIApplication.shared.open(u!, options: [:], completionHandler: nil)
         }
         actionSheetController.addAction(callAction)
         
@@ -340,7 +336,7 @@ class FelineFinderDetailViewController: UIViewController, UITableViewDelegate, U
         
         self.navigationController?.setToolbarHidden(true, animated:false)
         
-        if (!Favorites.loaded) {Favorites.LoadFavorites()}
+        if (!Favorites.loaded) {Favorites.LoadFavorites(tv: nil)}
         
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
             FavoriteBtn.image = UIImage(named: "LikeFilled")

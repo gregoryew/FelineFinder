@@ -12,8 +12,6 @@ import MessageUI
 import MapKit
 import Social
 import FaveButton
-import TransitionTreasury
-import TransitionAnimation
 import WebKit
 
 /*
@@ -27,9 +25,7 @@ func color(_ rgbColor: Int) -> UIColor{
 }
 */
 
-class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate {
-    
-    weak var modalDelegate: ModalViewControllerDelegate?
+class PetFinderViewDetailController: ZoomAnimationViewController, UIWebViewDelegate, MFMailComposeViewControllerDelegate, FaveButtonDelegate {
     
     var observer : Any!
     
@@ -49,7 +45,9 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBAction func picturesTapped(_ sender: Any) {
         let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
         pictures.petData = pet!
-        navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        pictures.modalPresentationStyle = .custom
+        pictures.transitioningDelegate = self
+        present(pictures, animated: true, completion: nil)
     }
     
     @IBAction func directionsTapped(_ sender: Any) {
@@ -111,8 +109,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         actionSheetController.addAction(cancelAction)
         //Create and add first option action
         let callAction: UIAlertAction = UIAlertAction(title: "Call", style: .default) { action -> Void in
-            UIApplication.shared.openURL(u!)
-        }
+            UIApplication.shared.open(u!, options: [:], completionHandler: nil)       }
         actionSheetController.addAction(callAction)
         
         //We need to provide a popover sourceView when using it on iPad
@@ -126,8 +123,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
     @IBAction func emailTapped(_ sender: Any) {
         var email = s?.email
         if (email?.lowercased().hasPrefix("emailto"))! {
-            let index1 = email?.index((email?.startIndex)!, offsetBy: 7)
-            email = (s?.email.substring(from: index1!))!
+            email = (s?.email.chopPrefix(7))!
         }
         emailAddress = [String]()
         emailAddress.append(email!)
@@ -230,7 +226,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         //_ = navigationController?.tr_popViewController()
         processFavorite()
         NotificationCenter.default.removeObserver(observer)
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     func processFavorite() {
@@ -246,7 +242,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
                 print ("Adding Favorite")
                 let urlString = pet!.getImage(1, size: "pnt")
                 let bn = pet?.breeds.first
-                Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: bn!, d: favoriteType, s: ""))
+                Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
             }
         }
     }
@@ -364,8 +360,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         var r: Bool = false
         let u: String = request.url!.relativeString
         if (u.hasPrefix("mailto:")) {
-            let index1 = u.index(u.startIndex, offsetBy: 7)
-            let email: String = u.substring(from: index1)
+            let email: String = u.chopPrefix(7)
             emailAddress = [String]()
             emailAddress.append(email)
             let mailComposeViewController = configuredMailComposeViewController()
@@ -390,7 +385,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         else if (u.hasSuffix("Pictures")) {
             let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as! PetFinderPicturesViewController
             pictures.petData = pet!
-            navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            //navigationController?.tr_pushViewController(pictures, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
         }
     /*
         else if (u.hasSuffix("Video")) {
@@ -904,7 +899,7 @@ class PetFinderViewDetailController: UIViewController, UIWebViewDelegate, MFMail
         self.navigationController?.setToolbarHidden(false, animated: false)
         self.navigationController?.toolbar.barTintColor = UIColor.blue
         
-        if (!Favorites.loaded) {Favorites.LoadFavorites()}
+        if (!Favorites.loaded) {Favorites.LoadFavorites(tv: nil)}
         
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
             favoriteBtn?.isSelected = true

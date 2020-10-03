@@ -271,17 +271,6 @@ public extension UIDevice {
     }
 }
 
-extension String
-{
-    func chopPrefix(_ count: Int = 1) -> String {
-        return self.substring(from: self.index(self.startIndex, offsetBy: count))
-    }
-    
-    func chopSuffix(_ count: Int = 1) -> String {
-        return self.substring(to: self.index(self.endIndex, offsetBy: -count))
-    }
-}
-
 class CustomSegue: UIStoryboardSegue {
     override func perform() {
         //self.sourceViewController.presentViewController(self.destinationViewController as! UIViewController, animated: false, completion: nil)

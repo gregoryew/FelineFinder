@@ -8,17 +8,8 @@
 
 import UIKit
 import Foundation
-import TransitionTreasury
-import TransitionAnimation
 
-class BreedInfoDetailViewController: UIViewController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        setupView()
-    }
-    
-    weak var modalDelegate: ModalViewControllerDelegate?
+class BreedInfoDetailViewController: ZoomAnimationViewController {
     
     @IBOutlet weak var BreedSubTitle: UILabel!
     @IBOutlet weak var ShortDescriptionTextView: UITextView!
@@ -49,16 +40,16 @@ class BreedInfoDetailViewController: UIViewController {
     }
     
     @IBAction func BackTapped(_ sender: Any) {
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewToShow = storyboard.instantiateViewController(withIdentifier: "BreedInfoViewController") as! BreedInfoViewController
+        let vc = presentingViewController as! MainTabBarControllerViewController
+        var vcs = [UIViewController]()
+        vcs.append(viewToShow);
+        vcs.append(contentsOf: vc.viewControllers![1...vc.viewControllers!.count - 1])
+        vc.setViewControllers(vcs, animated: false)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-    }
-        
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-        
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
@@ -70,16 +61,7 @@ class BreedInfoDetailViewController: UIViewController {
         
         self.tabBarController?.navigationItem.title = globalBreed?.BreedName
     }
-        
-    override func viewWillDisappear(_ animated: Bool)
-    {
-        super.viewWillDisappear(animated)
-    }
-    
-    func setupView() {
-        
-    }
-    
+            
     private lazy var BreedInfoDescriptionViewController: BreedInfoDescriptionViewController = {
         // Load Storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)

@@ -630,7 +630,7 @@ class DatabaseManager {
                     if (!_keys.contains(PetID!)) {
                         _keys.append(PetID!)
                     }
-                    _favorites[PetID!] = (Favorite(id: PetID!, n: PetName!, i: ImageName!, b: breed!, d: DSEnum, s: ""))
+                    _favorites[PetID!] = (Favorite(petID: PetID!, petName: PetName!, imageName: ImageName!, breed: breed!, FavoriteDataSource: DSEnum, Status: ""))
                 }
             
                 results.close()

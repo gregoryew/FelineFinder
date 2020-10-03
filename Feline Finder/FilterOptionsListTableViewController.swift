@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 //import Alamofire
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
@@ -44,10 +42,9 @@ extension String: ParameterEncoding {
     }
 }
 */
-class FilterOptionsListTableViewController: UITableViewController, NavgationTransitionable {
+class FilterOptionsListTableViewController: UITableViewController {
     
     var txtfld: UITextField = UITextField()
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
         print ("FilterOptionsListTableViewController deinit")
@@ -64,6 +61,41 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         }
     }
     
+    lazy var sideBar: UIView = {
+        let toolBarView: UIView!
+        if filterOpt?.classification == .saves {
+            toolBarView = UIView(frame: CGRect(x: self.view.frame.width - 150, y: 20, width: 150, height: 50))
+        } else {
+            toolBarView = UIView(frame: CGRect(x: self.view.frame.width - 100, y: 20, width: 100, height: 50))
+        }
+        toolBarView.backgroundColor = .green
+        toolBarView.layer.shadowRadius = 5
+        toolBarView.layer.shadowOpacity = 0.8
+        toolBarView.layer.shadowOffset = CGSize(width: 5, height: 5)
+        
+        let backBtn = UIButton(type: .roundedRect)
+        backBtn.setTitle("↩️", for: .normal)
+        toolBarView.addSubview(backBtn)
+        backBtn.addTarget(self, action: #selector(backTapped), for:  .touchUpInside)
+        backBtn.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
+
+        let clearBtn = UIButton(type: .roundedRect)
+        clearBtn.setTitle("🗑️", for: .normal)
+        toolBarView.addSubview(clearBtn)
+        clearBtn.addTarget(self, action: #selector(ClearTapped), for: .touchUpInside)
+        clearBtn.frame = CGRect(x: backBtn.frame.minX + backBtn.frame.width + 5, y: 5, width: 40, height: 40)
+
+        if filterOpt?.classification == .saves {
+            let saveBtn = UIButton(type: .roundedRect)
+            saveBtn.setTitle("💾", for: .normal)
+            toolBarView.addSubview(saveBtn)
+            saveBtn.addTarget(self, action: #selector(SavedTapped), for:  .touchUpInside)
+            saveBtn.frame = CGRect(x: clearBtn.frame.minX + clearBtn.frame.width + 5, y: 5, width: 40, height: 40)
+        }
+        
+        return toolBarView
+    }()
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
@@ -97,7 +129,7 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         }
         filterOptions.storeFilters(0, saveName: name)
         let c = filterOptions.filteringOptions[0].options.count + 1
-        filterOptions.filteringOptions[0].options.append((displayName: name, search: String(NameID), value: c))
+        filterOptions.filteringOptions[0].options.append(listOption(displayName: name, search: String(NameID), value: c))
         _ = generateJSON()
         
         /*
@@ -128,7 +160,13 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             currentFilterSave = (self.filterOpt?.options[self.filterOpt!.options.count - 1].displayName)!
             //filterOpt?.choosenListValues.append(indexPath.row)
             //performSegue(withIdentifier: "backToFilterOptions", sender: nil)
-            _ = self.navigationController?.tr_popViewController()
+            self.presentingViewController?.dismiss(animated: false) {
+                let nc = NotificationCenter.default
+                nc.post(name:listReturned,
+                        object: nil,
+                        userInfo:nil)
+            }
+
         }
     }
     
@@ -218,8 +256,32 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.view.addSubview(sideBar)
+        if filterOpt?.classification == .saves {
+            sideBar.frame = CGRect(x: self.view.frame.width - 150, y: 20, width: 150, height: 50)
+        } else {
+            sideBar.frame = CGRect(x: self.view.frame.width - 100, y: 20, width: 100, height: 50)
+        }
+        view.bringSubviewToFront(sideBar)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if filterOpt?.classification == .saves {
+            sideBar.frame = CGRect(x: self.view.frame.width - 150, y: scrollView.contentOffset.y + 20, width: 150, height: 50);
+        } else {
+            sideBar.frame = CGRect(x: self.view.frame.width - 100, y: scrollView.contentOffset.y + 20, width: 100, height: 50);
+        }
+        view.bringSubviewToFront(sideBar)
+    }
+    
     @IBAction func backTapped(_ sender: Any) {
-        _ = navigationController?.tr_popViewController()
+        presentingViewController?.dismiss(animated: false) {
+            let nc = NotificationCenter.default
+            nc.post(name:listReturned,
+                    object: nil,
+                    userInfo:nil)
+        }
     }
     
     @IBAction func unwindToFilterOptionList(_ sender: UIStoryboardSegue)
@@ -274,9 +336,12 @@ class FilterOptionsListTableViewController: UITableViewController, NavgationTran
             //indexPath.row
             let cell = tableView.cellForRow(at: indexPath)
             currentFilterSave = (cell?.textLabel?.text)!
-            //filterOpt?.choosenListValues.append(indexPath.row)
-            //performSegue(withIdentifier: "backToFilterOptions", sender: nil)
-            _ = navigationController?.tr_popViewController()
+            presentingViewController?.dismiss(animated: false) {
+                let nc = NotificationCenter.default
+                nc.post(name:listReturned,
+                        object: self,
+                        userInfo:nil)
+            }
         } else if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             filterOpt?.choosenListValues = (filterOpt?.choosenListValues.filter(){$0 != indexPath.row})!
             tableView.cellForRow(at: indexPath)?.accessoryType = .none

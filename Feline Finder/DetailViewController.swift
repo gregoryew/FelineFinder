@@ -7,11 +7,9 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 import WebKit
 
-class DetailViewController: UIViewController, WKNavigationDelegate { //, NavgationTransitionable {
+class DetailViewController: ZoomAnimationViewController, WKNavigationDelegate { //, NavgationTransitionable {
     var webView: WKWebView!
     
     deinit {
@@ -61,7 +59,7 @@ class DetailViewController: UIViewController, WKNavigationDelegate { //, Navgati
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if let url = navigationAction.request.url {
             if !url.absoluteString.hasPrefix("file:") && !url.absoluteString.hasPrefix("https://www.youtube.com/embed/")  && !url.absoluteString.hasPrefix("about:blank") {
-                UIApplication.shared.openURL(url)
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 decisionHandler(.cancel)
             } else {
                 decisionHandler(.allow)

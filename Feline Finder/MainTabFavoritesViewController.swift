@@ -8,13 +8,9 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 import StoreKit
 
-class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate, UITableViewDataSource, UITableViewDelegate {
-    
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
+class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDataSource, UITableViewDelegate {
     var statuses:[String: Favorite] = [:]
     var observer : Any!
     
@@ -30,7 +26,7 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
      
         let nc = NotificationCenter.default
         observer = nc.addObserver(forName:NSNotification.Name(rawValue: "reloadFavorites"), object:nil, queue:nil) { [weak self] notification in
-            self?.loadData()
+            Favorites.LoadFavorites(tv: nil)
             DispatchQueue.main.async(execute: {
                 self?.tableView.reloadData()
             })
@@ -130,10 +126,9 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
             felineDetail.petName = favoritePet.petName
             felineDetail.whichSegue = "Favorites"
             felineDetail.favoriteType = favoritePet.FavoriteDataSource
-            felineDetail.modalDelegate = self
-            tr_presentViewController(felineDetail, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
+            felineDetail.modalPresentationStyle = .custom
+            felineDetail.transitioningDelegate = self
+            present(felineDetail, animated: true, completion: nil)
         }
     }
     
@@ -155,29 +150,12 @@ class MainTabFavoritesViewController: UIViewController, ModalTransitionDelegate,
     {
         super.viewWillAppear(animated)
         self.navigationController?.setToolbarHidden(true, animated:false);
-        loadData()
+        Favorites.LoadFavorites(tv: self.tableView)
         if #available( iOS 10.3,*){
             if Favorites.count > 0 {SKStoreReviewController.requestReview()}
         }
-        //DispatchQueue.main.async(execute: {
-            //Favorites.loadIDs()
-            //self.tableView.reloadData()
-        //})
     }
-    
-    func loadData() {
-        Favorites.loaded = false
-        Favorites.LoadFavorites()
         
-        Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
-            self.statuses = Stats
-            Favorites.loadIDs()
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-        }
-    }
-    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as? UITableViewHeaderFooterView)?.textLabel?.textColor = UIColor.white
     }

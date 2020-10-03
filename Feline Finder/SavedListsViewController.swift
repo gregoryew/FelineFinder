@@ -8,8 +8,6 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -34,7 +32,7 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-class SavedListsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NavgationTransitionable {
+class SavedListsViewController: ZoomAnimationViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var MenuBarButtonItem: UIBarButtonItem!
     
@@ -46,17 +44,17 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         if (whichSegue == "SavedSearches") {
             _ = navigationController?.tr_popToRootViewController()
         } else {
+            /*
             let TitleScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
             self.navigationController?.tr_pushViewController(TitleScreen, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            */
         }
     }
     
     deinit {
         print ("SavedListsViewController deinit")
     }
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    
+        
     var whichSegue: String = ""
     var whichQuestion: Int = 0
     var whichSavedList: Int = 0
@@ -114,19 +112,19 @@ class SavedListsViewController: UIViewController, UITableViewDataSource, UITable
         self.tableView.backgroundView = background;
     }
     
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
-    
     @IBAction func ResultsTouchUpInside(_ sender: AnyObject) {
         if cameFromFiltering {
             self.performSegue(withIdentifier: "filtering", sender: nil)
         } else {
             cameFromFiltering = false
+            /*
             let masterList = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedList") as! MasterViewController
             if let b = chosenBreed {
                 masterList.breed = b
             }
             masterList.whichSeque = "results"
             navigationController?.tr_pushViewController(masterList, method: TRPushTransitionMethod.fade, completion: {})
+            */
         }
     }
     

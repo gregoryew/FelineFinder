@@ -8,12 +8,10 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
 var w = 0.0
 
-class SurveySummaryViewController: SurveyBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class SurveySummaryViewController: ZoomAnimationViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var resultsButton: UIButton!

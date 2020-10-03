@@ -8,15 +8,12 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
 var SavedSearches2: SavedSeachesList = SavedSeachesList()
 var WhichSavedList: Int = 0
 var SearchTitle: String = ""
 
-class SavedLists2ViewController: UITableViewController, NavgationTransitionable {
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+class SavedLists2ViewController: UITableViewController {
     
     deinit {
         print ("SavedLists2ViewController deinit")
@@ -116,8 +113,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
             return true
         }
     }
-    
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if SavedSearches2.count == 0 {return}
@@ -126,7 +121,6 @@ class SavedLists2ViewController: UITableViewController, NavgationTransitionable 
         let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
         savedLists.whichSavedList = WhichSavedList
         savedLists.whichSegue = "ShowList"
-        navigationController?.tr_pushViewController(savedLists, method: TRPushTransitionMethod.fade, completion: {})
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

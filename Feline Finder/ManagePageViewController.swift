@@ -22,14 +22,9 @@
 
 import UIKit
 import Foundation
-import TransitionTreasury
-import TransitionAnimation
 
-
-class ManagePageViewController: UIPageViewController, NavgationTransitionable {
+class ManagePageViewController: UIPageViewController {
     var currentIndex: Int!
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
         print ("ManagePageViewController deinit")
@@ -73,8 +68,8 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
     @IBAction func GoBackTapped(_ sender: AnyObject) {
         //_ = navigationController?.tr_popViewController()
         //_ = navigationController?.tr_popToRootViewController()
-        let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
-        navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: .cat))
+        //let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+        //navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: .cat))
     }
     
     func viewQuestionEntry(_ index: Int) -> QuestionEntryViewController? {
@@ -90,7 +85,7 @@ class ManagePageViewController: UIPageViewController, NavgationTransitionable {
         questionList.writeAnswers()
         let savedLists = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedSelections") as! SavedListsViewController
         savedLists.whichSegue = "Summary"
-        navigationController?.tr_pushViewController(savedLists, method: DemoTransition.Slide(direction: DIRECTION.right))
+        //navigationController?.tr_pushViewController(savedLists, method: DemoTransition.Slide(direction: DIRECTION.right))
     }
     
     @IBAction func SummaryTapped(_ sender: AnyObject) {

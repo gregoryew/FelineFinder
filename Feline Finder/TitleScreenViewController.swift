@@ -11,12 +11,12 @@ import UIKit
 import TransitionTreasury
 import TransitionAnimation
 
-class TitleScreenViewController: UIViewController, ModalTransitionDelegate, NavgationTransitionable {
+class TitleScreenViewController: UIViewController {
     
     var timer = Timer()
     var counter = 0
     
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    //weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     @IBOutlet var background: UIView!
     
@@ -89,9 +89,9 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
         let search = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
         search.viewDidLoad()
         if questionList.count == 0 {
-            self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
+            //self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
         } else {
-            self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
+            //self.navigationController?.tr_pushViewController(search, method: DemoTransition.CIZoom(transImage: transitionImage.search), completion: {})
         }
     }
     
@@ -139,40 +139,42 @@ class TitleScreenViewController: UIViewController, ModalTransitionDelegate, Navg
     }
     
     @IBAction func breedsTapped(_ sender: Any) {
+        /*
         let master = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedList") as! MasterViewController
         master.viewDidLoad()
         navigationController?.tr_pushViewController(master, method: DemoTransition.CIZoom(transImage: transitionImage.list), completion: {})
+        */
     }
     
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
+    //var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func favoritesTapped(_ sender: Any) {
 
-        let favorites = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as! FavoritesViewController
+        //let favorites = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Favorites") as! FavoritesViewController
         //favorites.viewDidLoad()
-        navigationController?.tr_pushViewController(favorites, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
+        //navigationController?.tr_pushViewController(favorites, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
     }
     
     func modalViewControllerDismiss(callbackData data: Any?) {
-        tr_dismissViewController()
+        //tr_dismissViewController()
     }
     
     @IBAction func savedSearchesTapped(_ sender: Any) {
-        let savedSearches = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedLists") as! SavedLists2ViewController
-        navigationController?.tr_pushViewController(savedSearches, method: DemoTransition.CIZoom(transImage: transitionImage.save))
+        //let savedSearches = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SavedLists") as! SavedLists2ViewController
+        //navigationController?.tr_pushViewController(savedSearches, method: DemoTransition.CIZoom(transImage: transitionImage.save))
     }
 
     @IBAction func adoptCatsTapped(_ sender: Any) {
-        let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
+        //let adoptACat = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "adoptACat") as! AdoptableCatsViewController
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
-        navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        //navigationController?.tr_pushViewController(adoptACat, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
     
     @IBAction func instructionsTapped(_ sender: Any) {
-        unowned let instructionsvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "instructions") as! InstructionsViewController
+        //unowned let instructionsvc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "instructions") as! InstructionsViewController
         //navigationController?.pushViewController(instructions, animated: false)
-        navigationController?.tr_pushViewController(instructionsvc, method: TRPushTransitionMethod.fade)
+        //navigationController?.tr_pushViewController(instructionsvc, method: TRPushTransitionMethod.fade)
         //DemoTransition.CIZoom(transImage: transitionImage.list))
     }
 

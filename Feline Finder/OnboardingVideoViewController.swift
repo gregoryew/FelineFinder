@@ -8,12 +8,8 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class OnboardingVideoViewController: UIViewController, WKYTPlayerViewDelegate {
-    
-    weak var modalDelegate: ModalViewControllerDelegate?
+class OnboardingVideoViewController: ZoomAnimationViewController, WKYTPlayerViewDelegate {
     
     var viewDisappeared = false
     
@@ -24,13 +20,12 @@ class OnboardingVideoViewController: UIViewController, WKYTPlayerViewDelegate {
     
     @IBAction func doneTapped(_ sender: Any) {
         videoPlayer?.stopVideo()
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -43,7 +38,7 @@ class OnboardingVideoViewController: UIViewController, WKYTPlayerViewDelegate {
             videoPlayer?.frame = rect
             self.view.addSubview(videoPlayer!)
             
-             videoPlayer?.delegate = self
+            videoPlayer?.delegate = self
             
             videoPlayer?.load(withVideoId: "2zJO2iQrNe0")
         }
@@ -58,13 +53,13 @@ class OnboardingVideoViewController: UIViewController, WKYTPlayerViewDelegate {
     func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
         if (state == .ended || state == .paused) {
             videoPlayer?.stopVideo()
-            modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+            presentingViewController?.dismiss(animated: false, completion: nil)
         }
     }
 
     func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {
         videoPlayer?.stopVideo()
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

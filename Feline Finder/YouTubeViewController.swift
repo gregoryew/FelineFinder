@@ -9,15 +9,9 @@
 import Foundation
 import YouTubePlayer
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-
-class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
+class YouTubeViewController: ZoomAnimationViewController, WKYTPlayerViewDelegate {
     var youtubeid: String?
-
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
-    weak var modalDelegate: ModalViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +26,9 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
     
     @IBAction func doneTapped(_ sender: Any) {
         videoPlayer?.stopVideo()
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //let h = self.navigationController!.navigationBar.frame.height
@@ -61,12 +53,12 @@ class YouTubeViewController: UIViewController, WKYTPlayerViewDelegate {
     func playerView(_ playerView: WKYTPlayerView, didChangeTo state: WKYTPlayerState) {
         if state == .ended || state == .paused {
             videoPlayer?.stopVideo()
-            modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+            presentingViewController?.dismiss(animated: false, completion: nil)
         }
     }
     
     func playerView(_ playerView: WKYTPlayerView, receivedError error: WKYTPlayerError) {        videoPlayer?.stopVideo()
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

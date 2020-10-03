@@ -7,19 +7,15 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDelegate, UITableViewDataSource, ModalTransitionDelegate {
+class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     var breeds: Dictionary<String, [Breed]> = [:]
     var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"", playListID: "");
     var whichSeque: String = ""
     var breedStat: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101: "", playListID: "")
     var titles:[String] = []
-    
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
-    
+        
     @IBOutlet var tableView: UITableView!
     
     @IBAction func startOverTapped(_ sender: Any) {
@@ -29,9 +25,7 @@ class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDel
     
         mpvc.setViewControllers([viewController!], direction: .reverse, animated: true, completion: nil)
     }
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    
+        
     deinit {
         print ("MasterViewController deinit")
     }
@@ -69,11 +63,10 @@ class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDel
                 return }
             let breed = breeds[titles[indexPath.section]]![indexPath.row]
             let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as! BreedInfoDetailViewController
+            details.modalPresentationStyle = .custom
+            details.transitioningDelegate = self
             globalBreed = breed
-            details.modalDelegate = self
-            tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
+            present(details, animated: true, completion: nil)
             filterOptions.reset()
         }
     }

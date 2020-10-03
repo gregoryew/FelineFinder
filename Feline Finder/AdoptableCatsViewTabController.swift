@@ -1,10 +1,8 @@
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
 let handlerDelay = 1.5
 
-class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, ModalTransitionDelegate { //, NavgationTransitionable {
+class AdoptableCatsTabViewController: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate { //, NavgationTransitionable {
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
@@ -22,13 +20,11 @@ class AdoptableCatsTabViewController: UIViewController, UICollectionViewDelegate
     var times = 0
     //let lm = CLLocationManager()
     var observer : Any!
-    //weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func searchOptions(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
-        navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
+        //navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
     }
     
     override func viewDidLoad() {
@@ -327,16 +323,14 @@ extension AdoptableCatsTabViewController {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
-        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FelineDetail") as! PetFinderViewDetailController
+        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
         FelineDetail.pet = petData
         FelineDetail.petID = petData.petID
         FelineDetail.petName = petData.name
         FelineDetail.breedName = globalBreed!.BreedName
-        FelineDetail.modalDelegate = self // Don't forget to set modalDelegate
-        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: FelineDetail)
-       tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
+        FelineDetail.modalPresentationStyle = .custom
+        FelineDetail.transitioningDelegate = self
+        present(FelineDetail, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

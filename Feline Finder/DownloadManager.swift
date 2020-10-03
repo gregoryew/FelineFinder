@@ -14,7 +14,6 @@ let petLoadedMessage = Notification.Name(rawValue:"petLoaded")
 let youTubePlayListLoadedMessage = Notification.Name(rawValue:"youTubePlayListLoaded")
 let breedPicturesLoadedMessage = Notification.Name(rawValue:"breedPicturesLoaded")
 
-
 class DownloadManager {
     static let sharedInstance = DownloadManager()
 

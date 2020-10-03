@@ -8,48 +8,19 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 import StoreKit
 
-class FavoritesViewController: UITableViewController, NavgationTransitionable, ModalTransitionDelegate {
-    
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
+class FavoritesViewController: UITableViewController {
     var statuses:[String: Favorite] = [:]
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    
-    deinit {
-        print ("FavoritesViewController deinit")
-    }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        Favorites.loaded = false
-        Favorites.Favorites.removeAll()
-        Favorites.breedKeys.removeAll()
-        Favorites.LoadFavorites()
         
         let background = UIImageView(image: UIImage(named: "main_bg.jpg"))
         self.tableView.backgroundView = background;
+    }
         
-        Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
-            self.statuses = Stats
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-        }
- 
-        if #available( iOS 10.3,*){
-            if Favorites.count > 0 {SKStoreReviewController.requestReview()}
-        }
-    }
-    
-    @IBAction func unwindToFavorites(_ sender: UIStoryboardSegue)
-    {
-    }
-    
     override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool
     {
         if Favorites.totalBreeds == 0 && identifier == "felineFinderDetail" {
@@ -111,9 +82,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         let favorite = Favorites[indexPath.section, indexPath.row]
         
         cell.accessoryType = .disclosureIndicator
-        
-        //cell.lastCell = indexPath.row == Favorites.countBreedsInSection(indexPath.section) - 1
-        
+                
         let imgURL = URL(string: favorite.imageName)
         
         cell.CatName!.textColor = textColor
@@ -131,33 +100,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
         cell.CatName!.text = name
         
         cell.CatImage.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
-        
-        //cell.CatImager.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
-        
-        /*
-        cell.CatImage?.image = UIImage(named: "Cat-50")
-        
-        if let img = imageCache[favorite.imageName] {
-            cell.CatImage?.image = img
-        } else {
-            let request: URLRequest = URLRequest(url: imgURL!)
-            _ = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
-                    if error == nil {
-                        // Convert the downloaded data in to a UIImage object
-                        let image = UIImage(data: data!)
-                        // Update the cell
-                        DispatchQueue.main.async(execute: {
-                            if let cellToUpdate = tableView.cellForRow(at: indexPath) as? FavoriteTableCell {
-                                cellToUpdate.CatImage?.image = image
-                            }
-                        })
-                    } else {
-                        print("Error: \(error!.localizedDescription)")
-                    }
-                }).resume()
-        }
-        */
-        
+                
         return cell
     }
 
@@ -171,11 +114,10 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
             felineDetail.petName = favoritePet.petName
             felineDetail.whichSegue = "Favorites"
             felineDetail.favoriteType = favoritePet.FavoriteDataSource
-            felineDetail.modalDelegate = self
-            let navEditorViewController: UINavigationController = UINavigationController(rootViewController: felineDetail)
-            tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-                })
+            felineDetail.modalPresentationStyle = .custom
+            //felineDetail.transitioningDelegate = self
+            //globalBreed = breed
+            //present(details, animated: true, completion: nil)
         }
         //navigationController?.tr_pushViewController(felineDetail, method: DemoTransition.CIZoom(transImage: transitionImage.heart))
     }
@@ -201,22 +143,8 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
     override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:false);
         
-        Favorites.loaded = false
-        Favorites.Favorites.removeAll()
-        Favorites.breedKeys.removeAll()
-        Favorites.LoadFavorites()
-        
-        Favorites.assignStatus(self.tableView) { (Stats: [String: Favorite]) -> Void in
-            self.statuses = Stats
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-        }
-        DispatchQueue.main.async(execute: {
-            self.tableView.reloadData()
-        })
+        Favorites.LoadFavorites(tv: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -226,7 +154,7 @@ class FavoritesViewController: UITableViewController, NavgationTransitionable, M
     override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:false);
+        //self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
     @IBAction func backTapped(_ sender: Any) {

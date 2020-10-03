@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, NavgationTransitionable, ModalTransitionDelegate {
+class AdoptableCatsViewController: UICollectionViewController, CLLocationManagerDelegate, UIViewControllerTransitioningDelegate {
     
     deinit {
         print ("AdoptableCatsViewController deinit")
@@ -24,9 +22,6 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     var titles:[String] = []
     var totalRow = 0
     var times = 0
-    //let lm = CLLocationManager()
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     var observer : Any!
     
     @IBAction func backTapped(_ sender: Any) {
@@ -43,10 +38,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         
         NotificationCenter.default.removeObserver(observer)
         
-        //_ = navigationController?.tr_popToRootViewController()
-        
-        let TitleScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
-        self.navigationController?.tr_pushViewController(TitleScreen, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+        //let TitleScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+        //self.navigationController?.tr_pushViewController(TitleScreen, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,7 +57,9 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         let suggestABreedAction = UIAlertAction(title: "Breed Suggestion", style: .default) { (action:UIAlertAction!) in
             firstTime = true
             let survey = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Search") as! ManagePageViewController
-            self.navigationController?.tr_pushViewController(survey, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            survey.modalPresentationStyle = .custom
+            //survey.transitioningDelegate = self
+            //present(survey, animated: true, completion: nil)
         }
         let startLookingForACatAction = UIAlertAction(title: "Look At Cats For Adoption", style: .default) { (action:UIAlertAction!) in
             self.findZipCode()
@@ -80,7 +75,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     @IBAction func searchOptions(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
-        navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
+        //navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
     }
     
     override func viewDidLoad() {
@@ -399,11 +394,10 @@ extension AdoptableCatsViewController {
         FelineDetail.petID = petData.petID
         FelineDetail.petName = petData.name
         FelineDetail.breedName = globalBreed!.BreedName
-        FelineDetail.modalDelegate = self
-        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: FelineDetail)
-        tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
+        FelineDetail.modalPresentationStyle = .custom
+        FelineDetail.transitioningDelegate = self
+
+        present(FelineDetail, animated: true, completion: nil)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

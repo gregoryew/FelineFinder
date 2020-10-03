@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class BreedTabBarControllerViewController: UITabBarController, NavgationTransitionable, TRTabBarControllerDelegate {
+class BreedTabBarControllerViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +17,6 @@ class BreedTabBarControllerViewController: UITabBarController, NavgationTransiti
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if self.isMovingFromParent {
-            tr_pushTransition = nil
             if let controller = self.viewControllers![2] as? AdoptableCatsTabViewController {
                 if let ob = controller.observer {
                     NotificationCenter.default.removeObserver(ob)
@@ -41,15 +38,12 @@ class BreedTabBarControllerViewController: UITabBarController, NavgationTransiti
     
     deinit {
         print ("BreedTabBarControllerViewController deinit")
-        tr_pushTransition = nil
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
     
     /*
     // MARK: - Navigation

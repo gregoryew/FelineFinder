@@ -14,18 +14,30 @@ import SystemConfiguration
 
 @UIApplicationMain
 
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerDelegate {
 
     var window: UIWindow?
     var warningShown: Bool = false
-    
+        
     //let pushNotifications = PushNotifications.shared
+    /*
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        if viewController is BreedInfoDetailViewController {
+            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "BreedInfoDetail2") {
+                tabBarController.present(newVC, animated: true)
+                return false
+            }
+        }
+
+        return true
+    }
+    */
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        UINavigationBar.appearance().isTranslucent = false
+        //UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
+        //UINavigationBar.appearance().tintColor = UIColor.white
+        //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
+        //UINavigationBar.appearance().isTranslucent = false
         
         // set up your background color view
         //let colorView = UIView()
@@ -80,17 +92,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let defaults = UserDefaults.standard
+        //let defaults = UserDefaults.standard
         
-        if defaults.bool(forKey: "hideTitleScreen") == false {
+        //if defaults.bool(forKey: "hideTitleScreen") == false {
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
+        /*
         } else {
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainTabViewController")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }
+        */
         
         filterOptions.load(nil)
         
@@ -232,9 +246,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("Error")
                         }
                     }
-                    Favorites.LoadFavoritesDB()
-                    IDs.mergeElements(newElements: Favorites.keys)
-                    Favorites.storeIDs()
+                    Favorites.LoadFavorites(tv: nil)
                 }
             }
         }
@@ -383,4 +395,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 var Favorites = FavoritesList()
+var details: BreedInfoDetailViewController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as? BreedInfoDetailViewController)!
 

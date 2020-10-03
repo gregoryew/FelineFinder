@@ -7,14 +7,13 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
-//import SwiftLocation
 import CoreLocation
 
 let handlerDelay2 = 1.5
 
-class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, ModalTransitionDelegate, UICollectionViewDelegateFlowLayout { //, NavgationTransitionable {
+let filterReturned = Notification.Name(rawValue: "filterReturned")
+
+class AdoptableCatsTabViewController2: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout { //, NavgationTransitionable {
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
@@ -39,22 +38,15 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     var totalRow = 0
     var times = 0
     var observer : Any!
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
-    
+    var observer2: Any!
+        
     @IBOutlet weak var statusBarLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func searchOptions(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
-        
-        PetFinderFind.modalDelegate = self
-        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: PetFinderFind)
-        tr_presentViewController(navEditorViewController, method: DemoTransition.Flip, completion: {
-            print("Present finished.")
-        })
-        
-        //navigationController?.tr_pushViewController(PetFinderFind, method: DemoTransition.Flip)
+        present(PetFinderFind, animated: false, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -79,13 +71,17 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         
         return CGSize(width: width, height: height);
     }
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let nc = NotificationCenter.default
         observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
             self?.petsLoaded(notification: notification)
+        }
+        
+        observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
+            self?.retrieveData()
         }
         
         if let navigationBar = self.navigationController?.navigationBar {
@@ -97,7 +93,7 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
             navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(customView: searchButton)
         }
         
-        if (!Favorites.loaded) {Favorites.LoadFavorites()}
+        if (!Favorites.loaded) {Favorites.LoadFavorites(tv: nil)}
         
         // Sticky Headers
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
@@ -238,6 +234,7 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        retrieveData()
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
         if zipCode == "" {
@@ -250,9 +247,7 @@ class AdoptableCatsTabViewController2: UIViewController, UICollectionViewDelegat
         }
     }
     
-    override func viewDidAppear(_ animated: Bool)
-    {
-        super.viewDidAppear(animated)
+    @objc func retrieveData() {
         setFilterDisplay()
         if viewPopped {
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
@@ -353,19 +348,13 @@ extension AdoptableCatsTabViewController2 {
     {
         let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
         let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
-        
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
         FelineDetail.pet = petData
         FelineDetail.petID = petData.petID
         FelineDetail.petName = petData.name
         FelineDetail.breedName = globalBreed!.BreedName
-        FelineDetail.modalDelegate = self // Don't forget to set modalDelegate
-
-        let navEditorViewController: UINavigationController = UINavigationController(rootViewController: FelineDetail)
-        tr_presentViewController(navEditorViewController, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
+        FelineDetail.modalPresentationStyle = .custom
+        FelineDetail.transitioningDelegate = self
+        present(FelineDetail, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {

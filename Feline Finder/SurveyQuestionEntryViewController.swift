@@ -52,10 +52,10 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
             let q = questionList.Questions[self.currentQuestion]
             var i = 0
             if self.currentQuestion < 8 {
-                if index == 1 {
+                if index == 0 {
                     i = 0
                 } else {
-                    i = 7 - index
+                    i = 6 - index
                 }
                 questionList.Questions[self.currentQuestion].setAnswer(Int(q.Choices[i].ChoiceID))
             } else {

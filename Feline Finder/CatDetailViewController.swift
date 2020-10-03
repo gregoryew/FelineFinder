@@ -12,8 +12,6 @@ import MessageUI
 import MapKit
 import Social
 import FaveButton
-import TransitionTreasury
-import TransitionAnimation
 import WebKit
 
 func color(_ rgbColor: Int) -> UIColor{
@@ -25,49 +23,42 @@ func color(_ rgbColor: Int) -> UIColor{
     )
 }
 
-class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebViewDelegate, MFMailComposeViewControllerDelegate, ModalTransitionDelegate { //, FaveButtonDelegate {
+class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate, UIWebViewDelegate, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate {
 
-    weak var modalDelegate: ModalViewControllerDelegate?
     var observer : Any!
-    
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBAction func catImageButton(_ sender: Any) {
         if let p = pet, let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as? PetFinderPicturesViewController {
             pictures.petData = p
-            pictures.modalDelegate = self
-            tr_presentViewController(pictures, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
+            present(pictures, animated: true, completion: nil)
         }
     }
-    /*
-    override func viewDidLoad() {
-        super.viewDidLoad()
- 
-    self.navigationController?.setNavigationBarHidden(true, animated: false)
-        
-    self.GeneralInformation.scrollView.delegate = self
-    }
-    */
 
     @IBAction func backTapped(_ sender: UIButton) {
         processFavorite()
         NotificationCenter.default.removeObserver(observer)
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let viewToShow = storyboard.instantiateViewController(withIdentifier: "Favorites") as! MainTabFavoritesViewController
+        let viewToShow2 = storyboard.instantiateViewController(withIdentifier: "CatsForAdoption") as! AdoptableCatsTabViewController2
+        if presentingViewController is MainTabBarControllerViewController {
+            let vc = presentingViewController as! MainTabBarControllerViewController
+            var vcs = [UIViewController]()
+            vcs.append(contentsOf: vc.viewControllers![0...0])
+            vcs.append(viewToShow2)
+            vcs.append(viewToShow)
+            vcs.append(contentsOf: vc.viewControllers![3...vc.viewControllers!.count - 1])
+            vc.setViewControllers(vcs, animated: false)
+        }
+        presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func picturesTapped(_ sender: Any) {
         if let p = pet, let pictures = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Pictures") as? PetFinderPicturesViewController {
             pictures.petData = p
-            pictures.modalDelegate = self
-            tr_presentViewController(pictures, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
+            present(pictures, animated: true, completion: nil)
         }
     }
-    
-    
+        
     @IBAction func directionsTapped(_ sender: Any) {
         self.loadCoordinate(sh: s!)
     }
@@ -127,7 +118,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         actionSheetController.addAction(cancelAction)
         //Create and add first option action
         let callAction: UIAlertAction = UIAlertAction(title: "Call", style: .default) { action -> Void in
-            UIApplication.shared.openURL(u!)
+            UIApplication.shared.open(u!, options: [:], completionHandler: nil)
         }
         actionSheetController.addAction(callAction)
         
@@ -142,8 +133,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     @IBAction func emailTapped(_ sender: Any) {
         var email = s?.email
         if (email?.lowercased().hasPrefix("emailto"))! {
-            let index1 = email?.index((email?.startIndex)!, offsetBy: 7)
-            email = (s?.email.substring(from: index1!))!
+            email = (s?.email.chopPrefix(7))!
         }
         emailAddress = [String]()
         emailAddress.append(email!)
@@ -197,9 +187,20 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                                 self.loaded = false
                             }
                             else {
-                                let _: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
+                                //let _: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
                                 //popup.present(from: self.ShareButton, permittedArrowDirections: .up, animated: true)
-                                //popup.presentfrom: inPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+                                //popup.presentfrom: inPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections:
+                                //UIPopoverArrowDirection.Any, animated: true)
+                                
+                                self.vc?.modalPresentationStyle = UIModalPresentationStyle.popover
+                                if let popoverController = self.vc?.popoverPresentationController {
+                                    popoverController.delegate = self
+                                    popoverController.sourceView = self.vc?.view
+                                    popoverController.sourceRect = (self.vc?.view.bounds)!
+                                    popoverController.permittedArrowDirections = UIPopoverArrowDirection.any
+                                }
+                                self.present(self.vc!, animated: true)
+                                
                                 self.loaded = false
                             }
                             self.loaded = true
@@ -221,13 +222,8 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         
         youTube.youtubeid = pet?.videos[0].videoID
         
-        youTube.modalDelegate = self
-        tr_presentViewController(youTube, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
+        present(youTube, animated: false, completion: nil)
     }
-    
-    //var tr_pushTransition: TRNavgationTransitionDelegate?
     
     var loaded: Bool = false
     var petID: String?
@@ -242,13 +238,6 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     var whichSegue = ""
     var favorited: Bool = false
     var wasFavoritedBefore: Bool = false
-
-    @IBAction func BackTapped(_ sender: AnyObject) {
-        //_ = navigationController?.tr_popViewController()
-        processFavorite()
-        NotificationCenter.default.removeObserver(observer)
-        modalDelegate?.modalViewControllerDismiss(callbackData: nil)
-    }
     
     func processFavorite() {
         self.favoriteType = .RescueGroup
@@ -263,10 +252,10 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
                 print ("Adding Favorite")
                 let urlString = pet!.getImage(1, size: "pnt")
                 let bn = pet?.breeds.first
-                Favorites.addFavorite(petID!, f: Favorite(id: petID!, n: pet!.name, i: urlString, b: bn!, d: favoriteType, s: ""))
+                Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
             }
             Favorites.loadIDs()
-            Favorites.LoadFavorites()
+            Favorites.LoadFavorites(tv: nil)
         }
     }
     
@@ -348,11 +337,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
     func configuredMailComposeViewController() -> MFMailComposeViewController {
         let mailComposerVC = MFMailComposeViewController()
         mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        
         mailComposerVC.setToRecipients(emailAddress)
-        //mailComposerVC.setSubject("Sending you an in-app e-mail...")
-        //mailComposerVC.setMessageBody("Sending e-mail in-app is not so bad!", isHTML: false)
-        
         return mailComposerVC
     }
     
@@ -640,7 +625,7 @@ class CatDetailViewController: UIViewController, UIScrollViewDelegate, UIWebView
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
-        if (!Favorites.loaded) {Favorites.LoadFavorites()}
+        if (!Favorites.loaded) {Favorites.LoadFavorites(tv: nil)}
         
         if (Favorites.isFavorite(petID!, dataSource: favoriteType)) {
             favoriteBtn?.isSelected = true

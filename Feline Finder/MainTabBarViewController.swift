@@ -6,15 +6,13 @@
 //  Copyright © 2017 Gregory Williams. All rights reserved.
 //
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class MainTabBarControllerViewController: UITabBarController, NavgationTransitionable, TRTabBarControllerDelegate {
-    
-    var tr_pushTransition: TRNavgationTransitionDelegate?
-    
+class MainTabBarControllerViewController: UITabBarController {
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
         
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed

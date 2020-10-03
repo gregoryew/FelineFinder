@@ -8,14 +8,10 @@
 
 import UIKit
 import Foundation
-import TransitionTreasury
-import TransitionAnimation
 
-class SurveyManagePageViewController: UIPageViewController, NavgationTransitionable {
+class SurveyManagePageViewController: UIPageViewController {
     var currentIndex: Int!
     var chosenBreed: Breed?
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
         print ("SurveyManagePageViewController deinit")
@@ -66,7 +62,7 @@ class SurveyManagePageViewController: UIPageViewController, NavgationTransitiona
         } else if index == 10 {
             questionList.writeAnswers()
             let page = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurveySummary") as! SurveySummaryViewController
-            page.currentQuestion = index
+            //page.currentQuestion = index
             page.whichSegue = "Summary"
             return page
         } else {

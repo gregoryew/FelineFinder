@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import BetterSegmentedControl
 
 class FilterOptionsSegmentedTableCell: UITableViewCell {
     @IBOutlet weak var OptionLabel: UILabel!
-    @IBOutlet weak var OptionSegmentedControl: ADVSegmentedControl!
+    @IBOutlet weak var OptionSegmentedControl: BetterSegmentedControl!
 }

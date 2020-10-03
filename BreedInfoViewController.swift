@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ModalTransitionDelegate {
+class BreedInfoViewController: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource {
     
     var breeds: Dictionary<String, [Breed]> = [:]
     var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"", playListID: "");
@@ -21,19 +19,17 @@ class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var TableView: UITableView!
     
     @IBOutlet weak var leftBarItem: UIBarButtonItem!
-    
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
-    
+        
     deinit {
         print ("MasterViewController deinit")
     }
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
         if (whichSeque == "results") {
-            _ = navigationController?.tr_popViewController()
+            self.dismiss(animated: false, completion: nil)
         } else {
-            let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
-            self.navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
+            //let title = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Title") as! TitleScreenViewController
+            //self.navigationController?.tr_pushViewController(title, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
         }
     }
     
@@ -81,12 +77,10 @@ class BreedInfoViewController: UIViewController, UITableViewDelegate, UITableVie
                 return }
             let breed = breeds[titles[indexPath.section]]![indexPath.row]
             let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as! BreedInfoDetailViewController
+            details.modalPresentationStyle = .custom
+            details.transitioningDelegate = self
             globalBreed = breed
-            details.modalDelegate = self
-            tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
-            //navigationController?.tr_pushViewController(details, method: TRPushTransitionMethod.page, completion: {})
+            present(details, animated: true, completion: nil)
         }
     }
     

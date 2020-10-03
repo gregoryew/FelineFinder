@@ -8,25 +8,45 @@
 
 import Foundation
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class IntroViewController: UIViewController, ModalTransitionDelegate {
+class IntroViewController: ZoomAnimationViewController {
+    
     @IBOutlet weak var IntroVideoImg: UIImageView!
     @IBOutlet weak var IntroVideoLabel: UILabel!
     
     @IBOutlet weak var SuggestABreedImg: UIImageView!
     @IBOutlet weak var SuggestABreedLabel: UILabel!
-    
-    
+        
     @IBOutlet weak var SearchAdoptableBreedsImg: UIImageView!
     @IBOutlet weak var SearchAdoptableBreedsLabel: UILabel!
-
-    var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     @IBOutlet weak var ScreenOnOffLabel: UILabel!
-    
     @IBOutlet weak var ScreenOnOffSwitch: UISwitch!
+        
+    @IBAction func IntroTapped(_ sender: Any) {
+        let OnboardingViewController = OnboardingVideoViewController()
+        OnboardingViewController.modalPresentationStyle = .custom
+        OnboardingViewController.transitioningDelegate = self
+       present(OnboardingViewController, animated: false, completion: nil)
+    }
+    
+    @IBAction func BreedSuggestionTapped(_ sender: Any) {
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
+        details.selectedIndex = 3
+        details.modalPresentationStyle = .custom
+        details.transitioningDelegate = self
+                
+        present(details, animated: true, completion: nil)
+    }
+    
+    @IBAction func AdoptTapped(_ sender: Any) {
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
+        details.selectedIndex = 1
+        details.modalPresentationStyle = .custom
+        details.transitioningDelegate = self
+        
+        present(details, animated: true, completion: nil)
+    }
     
     @IBAction func ScreenOnOffSwitch(_ sender: Any) {
         let defaults = UserDefaults.standard
@@ -38,75 +58,10 @@ class IntroViewController: UIViewController, ModalTransitionDelegate {
         defaults.set(!ScreenOnOffSwitch.isOn, forKey: "hideTitleScreen")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         globalBreed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         
-        // Do any additional setup after loading the view, typically from a nib.
-        let introViewImgtap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.introVideoTapped))
-        IntroVideoImg.addGestureRecognizer(introViewImgtap)
-        IntroVideoImg.isUserInteractionEnabled = true
-        let introViewLabeltap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.introVideoTapped))
-        IntroVideoLabel.addGestureRecognizer(introViewLabeltap)
-        IntroVideoLabel.isUserInteractionEnabled = true
-        
-        let SuggestABreedImgTap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.breedSuggestionTapped))
-        SuggestABreedImg.addGestureRecognizer(SuggestABreedImgTap)
-        SuggestABreedImg.isUserInteractionEnabled = true
-        let SuggestABreedLabeltap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.breedSuggestionTapped))
-        SuggestABreedLabel.addGestureRecognizer(SuggestABreedLabeltap)
-        SuggestABreedLabel.isUserInteractionEnabled = true
-        
-        let SearchAdoptableBreedsImgTap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.lookAtACatBreedForAdoptionTapped))
-        SearchAdoptableBreedsImg.addGestureRecognizer(SearchAdoptableBreedsImgTap)
-        SearchAdoptableBreedsImg.isUserInteractionEnabled = true
-        let SeaechAdoptableCatsLabeltap = UITapGestureRecognizer(target: self, action: #selector(IntroViewController.lookAtACatBreedForAdoptionTapped))
-        SearchAdoptableBreedsLabel.addGestureRecognizer(SeaechAdoptableCatsLabeltap)
-        SearchAdoptableBreedsLabel.isUserInteractionEnabled = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        //self.navigationController?.setNavigationBarHidden(true, animated: false)
-        //self.navigationController?.setToolbarHidden(true, animated:false)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        //self.navigationController?.setNavigationBarHidden(false, animated: false)
-        //self.navigationController?.setToolbarHidden(true, animated:false)
-    }
-    
-    @objc func introVideoTapped() {
-        let onboarding = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "onboarding") as! OnboardingVideoViewController
-        
-        onboarding.modalDelegate = self
-        
-        tr_presentViewController(onboarding, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
-
-    }
-    
-    @objc func breedSuggestionTapped() {
-        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
-        
-        details.selectedIndex = 3
-        
-        tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
-    
-    }
-    
-    @objc func lookAtACatBreedForAdoptionTapped() {
-        
-        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
-        
-        details.selectedIndex = 1
-        
-        tr_presentViewController(details, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-            print("Present finished.")
-        })
     }
 }

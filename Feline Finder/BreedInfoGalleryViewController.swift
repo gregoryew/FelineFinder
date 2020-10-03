@@ -7,20 +7,16 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 import SwiftLocation
 import CoreLocation
 
-class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ModalTransitionDelegate {
+class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
     @IBOutlet var youTubeVideosList: UICollectionView!
     @IBOutlet var photoGalleryCollectionView: UICollectionView!
 
     @IBOutlet var videosCountLabel: UILabel!
     @IBOutlet var picturesCountLabel: UILabel!
-    
-    weak var tr_presentTransition: TRViewControllerTransitionDelegate?
     
     var youTubePlayList: YouTubeVideos = []
     var pictures: [breedPicture] = []
@@ -206,7 +202,6 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
         }
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
         if collectionView == youTubeVideosList {
@@ -217,11 +212,7 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
             let youTube = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "YouTube") as! YouTubeViewController
     
             youTube.youtubeid = youTubePlayList[indexPath.row].videoID
-    
-            youTube.modalDelegate = self
-            tr_presentViewController(youTube, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
+            present(youTube, animated: false, completion: nil)
         } else {
             if pictures.count == 0 {
                 return
@@ -230,10 +221,7 @@ class BreedInfoGalleryViewController: UIViewController, UICollectionViewDataSour
             FelineDetail.petID = pictures[indexPath.row].PetID
             FelineDetail.petName = pictures[indexPath.row].Name
             FelineDetail.breedName = globalBreed!.BreedName
-            FelineDetail.modalDelegate = self // Don't forget to set modalDelegate
-            tr_presentViewController(FelineDetail, method: DemoPresent.CIZoom(transImage: .cat), completion: {
-                print("Present finished.")
-            })
+            present(FelineDetail, animated: false, completion: nil)
         }
     }
 }

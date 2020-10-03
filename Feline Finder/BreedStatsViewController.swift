@@ -7,14 +7,11 @@
 //
 
 import UIKit
-import TransitionTreasury
-import TransitionAnimation
 
-class BreedStatsViewController: UIViewController { //, NavgationTransitionable {
+class BreedStatsViewController: ZoomAnimationViewController { //, NavgationTransitionable {
     
     @IBOutlet weak var scrollView: UIScrollView!
-    
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+
     var whichSeque: String = ""
     var breedStat: BreedStats = BreedStats(id: 0, desc: "", percent: 0, lowRange: 0, highRange: 0, value: "")
     var breedStats: [BreedStats] = []
