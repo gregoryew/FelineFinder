@@ -292,7 +292,7 @@ class CustomSegue: UIStoryboardSegue {
         if navigationController != nil {
             if navigationController!.viewControllers.count != 0 {
                 var controllerStack: [UIViewController] = navigationController!.viewControllers
-                let sourceIndex = controllerStack.index(of: sourceViewController)!
+                let sourceIndex = controllerStack.firstIndex(of: sourceViewController)!
                 controllerStack[sourceIndex] = destinationController
                 // Assign the updated stack with animation
                 navigationController!.setViewControllers(controllerStack, animated:true)

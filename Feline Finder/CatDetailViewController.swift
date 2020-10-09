@@ -331,7 +331,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
         if (s.address1 != "" && parseStreetAddress(s.address1) != "POBOX") {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(address,completionHandler: {(placemarks, error) -> Void in
-                if let placemark = placemarks?[0] as CLPlacemark! {
+                if let placemark = placemarks?[0] as CLPlacemark? {
                     //println("address = \(address) corridinate = (\(placemark.location!.coordinate.latitude), \(placemark.location!.coordinate.longitude))")
                     self.getDrivingDirections(latitude: placemark.location!.coordinate.latitude, longitude: placemark.location!.coordinate.longitude, name: s.name)
                 }
