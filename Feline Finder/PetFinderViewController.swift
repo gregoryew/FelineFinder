@@ -9,16 +9,18 @@
 import Foundation
 import UIKit
 import CoreLocation
-import TransitionTreasury
-import TransitionAnimation
+//import TransitionTreasury
+//import TransitionAnimation
 
-class PetFinderViewController: UITableViewController, CLLocationManagerDelegate, NavgationTransitionable {
+class PetFinderViewController: UITableViewController, CLLocationManagerDelegate {
     
+    /*
     @IBAction func backButtonTapped(_ sender: AnyObject) {
         _ = navigationController?.tr_popViewController()
     }
+    */
     
-    weak var tr_pushTransition: TRNavgationTransitionDelegate?
+    //weak var tr_pushTransition: TRNavgationTransitionDelegate?
     
     deinit {
         print ("PetFinderViewController deinit")

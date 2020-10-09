@@ -41,6 +41,7 @@ class SavedListsViewController: ZoomAnimationViewController, UITableViewDataSour
     @IBOutlet weak var GoBackButton: UIButton!
     
     @IBAction func goBackTapped(_ sender: AnyObject) {
+        /*
         if (whichSegue == "SavedSearches") {
             _ = navigationController?.tr_popToRootViewController()
         } else {
@@ -49,6 +50,7 @@ class SavedListsViewController: ZoomAnimationViewController, UITableViewDataSour
             self.navigationController?.tr_pushViewController(TitleScreen, method: DemoTransition.CIZoom(transImage: transitionImage.cat))
             */
         }
+        */
     }
     
     deinit {
@@ -285,7 +287,9 @@ class SavedListsViewController: ZoomAnimationViewController, UITableViewDataSour
         return 30
     }
     
+    /*
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
     }
+    */
 }

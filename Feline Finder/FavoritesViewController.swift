@@ -157,8 +157,10 @@ class FavoritesViewController: UITableViewController {
         //self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
+    /*
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
     }
+    */
 
 }

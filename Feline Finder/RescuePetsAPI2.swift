@@ -21,15 +21,18 @@ struct video2: Codable {
     var urlThumbnail: String?
 }
 
-struct picture2: Codable {
+/*
+struct rgpicture: Codable {
     var type: String?
     var fileSize: String?
     var resolutionX: String?
     var resolutionY: String?
     var url: String?
 }
+*/
 
-struct animalPicture: Codable {
+/*
+struct pictures: Codable {
     var mediaID: String?
     var mediaOrder: String?
     var lastUpdated: String?
@@ -42,10 +45,11 @@ struct animalPicture: Codable {
     var urlSecureThumbnail: String?
     var urlInsecureFullsize: String?
     var urlInsecureThumbnail: String?
-    var original: picture2?
-    var large: picture2?
-    var small: picture2?
+    var original: pictures?
+    var large: pictures?
+    var small: pictures?
 }
+*/
 
 struct cat: Codable {
     var animalID: String?
@@ -75,7 +79,7 @@ struct cat: Codable {
     var animalRescueID: String?
     var animalSizePotential: String?
     var animalUpdatedDate: String?
-    var animalPictures: [animalPicture]?
+    var animalPictures: [pictures]?
     var animalVideoUrls: [video2]?
     var animalUptodate: String?
     var animalAdoptedDate: String?
@@ -292,7 +296,7 @@ struct cat: Codable {
         }
 
         do {
-            animalPictures = try values.decode([animalPicture].self, forKey: .animalPictures)
+            animalPictures = try values.decode([pictures].self, forKey: .animalPictures)
         } catch {
             animalPictures = nil
         }
@@ -593,13 +597,14 @@ struct cat: Codable {
     }
 }
 
-struct cats: Codable {
+struct Cats: Decodable {
     var status: String
     var messages: messages
     var foundRows: Int
     var data: [Int: cat]
 }
 
+/*
 class RescuePetList2: PetList {
     var status = ""
     var task: URLSessionTask?
@@ -621,16 +626,26 @@ class RescuePetList2: PetList {
         if Utilities.isNetworkAvailable() {
             do {
                 
-                let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                let session = URLSession.shared
+                
                 
                 let myURL = URL(string: "https://api.rescuegroups.org/http/v2.json")!
-                let request = NSMutableURLRequest(url: myURL)
+                
+                var request = URLRequest(url: myURL)
                 request.httpMethod = "POST"
                 
-                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-                request.setValue("application/json", forHTTPHeaderField: "Accept")
+                let jsonData = try! JSONSerialization.data(withJSONObject: json, options: [])
                 
-                request.httpBody = jsonData
+                let task = session.uploadTask(with: request, from: jsonData) { data, response, error in
+                    if error != nil {
+                        print ("Got Error")
+                    }
+                    if let data = data {
+                        let decoder = JSONDecoder()
+                        let cats = try! decoder.decode(Cats.self, from: data)
+                        
+
+                
                 let task = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: {
                     data, response, error in
                     if error != nil {
@@ -640,11 +655,11 @@ class RescuePetList2: PetList {
                         do {
                             
                             let jsonDecoder = JSONDecoder()
-                            let Cats = try jsonDecoder.decode(cats.self, from: data!)
+                            //let Cats = try jsonDecoder.decode(cats.self, from: data!)
   
-                            let cachedPet = self.createPet((Cats.data.first?.value)!)
+                            //let cachedPet = self.createPet((cats.data.first?.value)!)
                                 PetsGlobal[cachedPet.petID] = cachedPet
-                                completion(cachedPet)
+                                //completion(cachedPet)
 
                         } catch let error as NSError {
                             // error handling
@@ -922,3 +937,4 @@ func parseVideos(_ vids:[video2?]) -> [video] {
     }
     return videos
 }
+*/

@@ -27,8 +27,9 @@ class InstructionsViewController: ZoomAnimationViewController {
         self.navigationController?.setToolbarHidden(true, animated:false);
     }
     
+    /*
     @IBAction func goBackTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
     }
-    
+    */
 }

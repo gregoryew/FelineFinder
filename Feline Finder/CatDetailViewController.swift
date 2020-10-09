@@ -23,6 +23,9 @@ func color(_ rgbColor: Int) -> UIColor{
     )
 }
 
+var scrollPos: IndexPath?
+var whichTab = 0
+
 class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate, UIWebViewDelegate, MFMailComposeViewControllerDelegate, UIPopoverPresentationControllerDelegate {
 
     var observer : Any!
@@ -39,7 +42,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
         NotificationCenter.default.removeObserver(observer)
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewToShow = storyboard.instantiateViewController(withIdentifier: "Favorites") as! MainTabFavoritesViewController
-        let viewToShow2 = storyboard.instantiateViewController(withIdentifier: "CatsForAdoption") as! AdoptableCatsTabViewController2
+        let viewToShow2 = storyboard.instantiateViewController(withIdentifier: "MainTabAdoptableCats") as! MainTabAdoptableCats
         if presentingViewController is MainTabBarControllerViewController {
             let vc = presentingViewController as! MainTabBarControllerViewController
             var vcs = [UIViewController]()
@@ -49,7 +52,15 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
             vcs.append(contentsOf: vc.viewControllers![3...vc.viewControllers!.count - 1])
             vc.setViewControllers(vcs, animated: false)
         }
-        presentingViewController?.dismiss(animated: false, completion: nil)
+        presentingViewController?.dismiss(animated: false) {
+            if whichTab == 1 { //Favorites
+                viewToShow.tableView.reloadRows(at: [scrollPos!], with: .none)
+                viewToShow.tableView.scrollToRow(at: scrollPos!, at:.middle, animated: false)
+            } else { //Adoptable Cats
+                viewToShow2.MainTV.reloadRows(at: [scrollPos!], with: .none)
+                viewToShow2.MainTV.scrollToRow(at: scrollPos!, at:.middle, animated: false)
+            }
+        }
     }
     
     @IBAction func picturesTapped(_ sender: Any) {

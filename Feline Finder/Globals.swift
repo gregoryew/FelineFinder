@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import TransitionTreasury
-import TransitionAnimation
+//import TransitionTreasury
+//import TransitionAnimation
 import UIKit
 
 @IBDesignable
@@ -49,10 +49,13 @@ class AppMisc {
     static let USER_ID = NSUUID().uuidString.replacingOccurrences(of: "-", with: "_")
 }
 
+/*
 enum DemoPresent {
     case CIZoom(transImage: transitionImage)
 }
-
+*/
+ 
+/*
 extension DemoPresent: TransitionAnimationable {
     func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
         switch self {
@@ -71,12 +74,14 @@ enum DemoTransition {
     case Slide(direction: DIRECTION)
     //case Zoom(startingRect: CGRect, endingRect: CGRect)
 }
+*/
 
 enum FilterType {
     case Simple
     case Advanced
 }
 
+/*
 extension DemoTransition: TransitionAnimationable {
     func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
         switch self {
@@ -97,6 +102,7 @@ extension DemoTransition: TransitionAnimationable {
         }
     }
 }
+*/
 
 extension UIImage {
     var isPortrait:  Bool    { return size.height > size.width }

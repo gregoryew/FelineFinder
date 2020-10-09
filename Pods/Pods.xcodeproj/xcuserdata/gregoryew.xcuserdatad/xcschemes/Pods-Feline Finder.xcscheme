@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "94B99EFC49DAB92104BE742DCF8004F8"
+               BlueprintIdentifier = "F6E4B3ECC8E8F7FEF9DDBC4AB03D4BD0"
                BuildableName = "Pods_Feline_Finder.framework"
                BlueprintName = "Pods-Feline Finder"
                ReferencedContainer = "container:Pods.xcodeproj">

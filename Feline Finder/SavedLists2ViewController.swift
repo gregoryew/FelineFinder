@@ -135,7 +135,9 @@ class SavedLists2ViewController: UITableViewController {
         return 30
     }
     
+    /*
     @IBAction func backTapped(_ sender: Any) {
         _ = navigationController?.tr_popViewController()
     }
+    */
 }

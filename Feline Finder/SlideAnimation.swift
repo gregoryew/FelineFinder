@@ -1,4 +1,5 @@
 import UIKit
+/*
 import TransitionTreasury
 
 enum DIRECTION {
@@ -79,3 +80,4 @@ class SlideAnimation: NSObject, TRViewControllerAnimatedTransitioning {
         }
     }
 }
+ */

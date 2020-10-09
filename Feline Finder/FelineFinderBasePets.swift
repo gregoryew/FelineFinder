@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct picture {
+struct picture2: Codable {
     var idnum: Int
     var size: String //["pnt", "fpm", "x", "pn", "t"]
     var URL: String
@@ -23,7 +23,7 @@ struct picture {
     }
 }
 
-struct video {
+struct video: Codable {
     var mediaID: String
     var mediaOrder: String
     var urlThumbnail: String
@@ -38,7 +38,7 @@ struct video {
     }
 }
 
-struct Pet {
+struct Pet: Codable {
     var dateCreated = Date()
     var petID: String
     var shelterID: String
@@ -53,7 +53,7 @@ struct Pet {
     var lastUpdated: Date = Date()
     var zipCode: String = ""
     var distance: Double = 0
-    var media = [picture]()
+    var media = [picture2]()
     var videos = [video]()
     var status: String = ""
     var birthdate: String = ""
@@ -61,7 +61,7 @@ struct Pet {
     var section = 0
     var adoptionFee = ""
     var location = ""
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], s3: String, z: String, dis: Double, adoptionFee: String, location: String) {
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture2], s3: String, z: String, dis: Double, adoptionFee: String, location: String) {
         petID = pID
         name = n
         breeds = b
@@ -83,7 +83,7 @@ struct Pet {
         self.location = location
     }
 
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture], v: [video], s3: String, z: String, dis: Double, stat: String, bd: String, upd: Date, adoptionFee: String, location: String) {
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture2], v: [video], s3: String, z: String, dis: Double, stat: String, bd: String, upd: Date, adoptionFee: String, location: String) {
         petID = pID
         name = n
         breeds = b
@@ -107,7 +107,7 @@ struct Pet {
 
     
     func getImage(_ idNum: Int, size: String) -> String {
-        for img: picture in media {
+        for img: picture2 in media {
             if img.idnum == idNum && img.size == size {
                 return img.URL
             }
@@ -117,7 +117,7 @@ struct Pet {
     
     func getAllImagesOfACertainSize(_ size: String) -> [String] {
         var images: [String] = []
-        for img: picture in media {
+        for img: picture2 in media {
             if img.size == size {
                 images.append(img.URL)
             }
@@ -125,9 +125,9 @@ struct Pet {
         return images
     }
     
-    func getAllImagesObjectsOfACertainSize(_ size: String) -> [picture] {
-        var images: [picture] = []
-        for img: picture in media {
+    func getAllImagesObjectsOfACertainSize(_ size: String) -> [picture2] {
+        var images: [picture2] = []
+        for img: picture2 in media {
             if img.size == size {
                 images.append(img)
             }
@@ -148,7 +148,8 @@ class PetList {
     var distances: Dictionary<String, [Pet]> = [:]
     var resultStart: Int = 0
     var resultLimit: Int = 0
-    
+    var foundRows: Int = 0
+
     init() {
         if UIDevice.current.userInterfaceIdiom == .pad {
             resultLimit = 100
@@ -179,22 +180,23 @@ class PetList {
     }
     
     func assignDistances() {
+        /*
         var label: String = ""
         var i = 0
         var r = 0
         var s = 0
-        let d = Double(distance)
+        let d = Int(distance)
         
         distances.removeAll()
         
          while i < self.Pets.count {
             if sortFilter == "animalLocationDistance" {
-                if self.Pets[i].distance >= d! {
+                if self.Pets[i].animalLocationDistance! >= d! {
                     i += 1
                     continue
                 }
                 //print(self.Pets[i].distance)
-                switch (self.Pets[i].distance) {
+                switch (self.Pets[i].animalLocationDistance!) {
                 case 0..<5:
                     label = "         Within about 5 miles"
                 case 5..<20:
@@ -209,7 +211,9 @@ class PetList {
                     label = " Over 200 miles"
                 }
             } else {
-                switch (calicuateDaysBetweenTwoDates(start: self.Pets[i].lastUpdated, end: Date())) {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yyyy HH:MM:SS"
+                switch (calicuateDaysBetweenTwoDates(start: dateFormatter.date(from: self.Pets[i].animalUpdatedDate ?? "") ?? Date(), end: Date())) {
                 case 0...1:
                     label = "     Updated Today"
                 case 2...8:
@@ -242,12 +246,13 @@ class PetList {
             r += 1
             i += 1
         }
+        */
     }
     
     func loadPets(bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
     }
     
-    private func calicuateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
+    private func calculateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
         
         let currentCalendar = Calendar.current
         guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {

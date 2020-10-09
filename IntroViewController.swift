@@ -40,12 +40,13 @@ class IntroViewController: ZoomAnimationViewController {
     }
     
     @IBAction func AdoptTapped(_ sender: Any) {
+        //let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabAdoptableCats") as! MainTabAdoptableCats
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
-        details.selectedIndex = 1
-        details.modalPresentationStyle = .custom
-        details.transitioningDelegate = self
+        //details.selectedIndex = 1
+        //details.modalPresentationStyle = .custom
+        //details.transitioningDelegate = self
         
-        present(details, animated: true, completion: nil)
+        present(details, animated: false, completion: nil)
     }
     
     @IBAction func ScreenOnOffSwitch(_ sender: Any) {

@@ -11,18 +11,31 @@ import UIKit
 
 let petsLoadedMessage = Notification.Name(rawValue:"petsLoaded")
 let petLoadedMessage = Notification.Name(rawValue:"petLoaded")
+let petsFailedMessage = Notification.Name(rawValue:"petsFailed")
 let youTubePlayListLoadedMessage = Notification.Name(rawValue:"youTubePlayListLoaded")
 let breedPicturesLoadedMessage = Notification.Name(rawValue:"breedPicturesLoaded")
 
+var isFetchInProgress = false
+
 class DownloadManager {
     static let sharedInstance = DownloadManager()
-
+    
+    private var currentPage = 1
+    private var total = 0
+    //private var isFetchInProgress = false
+    
     static func loadPetList(more: Bool = false) {
-        var pets = RescuePetList()
+        
+        if isFetchInProgress {return}
+        isFetchInProgress = true
+        
+        var pets: RescuePetsAPI3!
         
         if let p = PetFinderBreeds[(globalBreed?.BreedName)!]
         {
-            pets = p as! RescuePetList
+            pets = p as! RescuePetsAPI3
+        } else {
+            pets = RescuePetsAPI3()
         }
         
         let date = pets.dateCreated
@@ -43,46 +56,58 @@ class DownloadManager {
             b = true
         }
         
+        let oldCount = pets.count
+        
         if b == true
         {
-            if more == false {
-                zipCodeGlobal = ""
-                bnGlobal = ""
-            }
-            pets.loadPets(bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
-                pets = (petList as? RescuePetList)!
-                if pets.status == "ok" {
-                    let titles = pets.distances.keys.sorted{ $0 < $1 }
-                    PetFinderBreeds[(globalBreed?.BreedName)!] = pets
-                    let nc = NotificationCenter.default
-                    nc.post(name:petsLoadedMessage,
-                            object: nil,
-                            userInfo:["petList": pets, "titles": titles])
-                } else {
+            //func loadPets(bn: Breed, zipCode: String, completion: @escaping (Result<Cats, DataResponseError>) -> Void) {
+            pets.loadPets3(bn: globalBreed!, zipCode: zipCode, more: more) { result in
+                switch result {
+                case .failure(let error):
                     zipCodeGlobal = ""
                     bnGlobal = ""
                     sleep(1)
                     pets.resultStart = 0
-                    pets.loadPets(bn: globalBreed!, zipCode: zipCode) { (petList) -> Void in
-                        pets = (petList as? RescuePetList)!
-                        if pets.status == "ok" {
-                            let titles = pets.distances.keys.sorted{ $0 < $1 }
-                            PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+                    pets.loadPets3(bn: globalBreed!, zipCode: zipCode) { result in
+                        switch result {
+                        case .failure(let error):
+                            let nc = NotificationCenter.default
+                            nc.post(name:petsFailedMessage,
+                                    object: nil,
+                                    userInfo: ["error": error.reason])
+                        case .success(let response):
+                            let petList = response as PetList
+                            PetFinderBreeds[(globalBreed?.BreedName)!] = petList
+                            var info = [String: Any]()
+                            info["petList"] = pets
+                            if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
                             let nc = NotificationCenter.default
                             nc.post(name:petsLoadedMessage,
                                     object: nil,
-                                    userInfo:["petList": pets, "titles": titles])
+                                    userInfo: info)
                         }
                     }
-                }
+                case .success(let response):
+                    let petList = response as PetList
+                    PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+                    var info = [String: Any]()
+                    info["petList"] = pets
+                    if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
+                    let nc = NotificationCenter.default
+                    nc.post(name:petsLoadedMessage,
+                            object: nil,
+                            userInfo: info)
+            }
             }
         } else {
-            let titles = pets.distances.keys.sorted{ $0 < $1 }
             PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+            var info = [String: Any]()
+            info["petList"] = pets
+            if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: pets.count)}
             let nc = NotificationCenter.default
             nc.post(name:petsLoadedMessage,
                     object: nil,
-                    userInfo:["petList": pets, "titles": titles])
+                    userInfo: info)
         }
     }
     
@@ -141,4 +166,29 @@ class DownloadManager {
             print("Failure for 3rd and final time reseting timesQueryRan")
         }
     }
+    
+    static private func calculateIndexPathsToReload(priorCount: Int, newCount: Int) -> [IndexPath] {
+      let startIndex = newCount - priorCount
+      let endIndex = startIndex + newCount
+      return (startIndex..<endIndex).map { IndexPath(row: $0, section: 0) }
+    }
 }
+
+protocol AlertDisplayer {
+  func displayAlert(with title: String, message: String, actions: [UIAlertAction]?)
+}
+
+extension AlertDisplayer where Self: UIViewController {
+  func displayAlert(with title: String, message: String, actions: [UIAlertAction]? = nil) {
+    guard presentedViewController == nil else {
+      return
+    }
+    
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    actions?.forEach { action in
+      alertController.addAction(action)
+    }
+    present(alertController, animated: true)
+  }
+}
+

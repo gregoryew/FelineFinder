@@ -128,6 +128,8 @@ class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDa
             felineDetail.favoriteType = favoritePet.FavoriteDataSource
             felineDetail.modalPresentationStyle = .custom
             felineDetail.transitioningDelegate = self
+            scrollPos = indexPath
+            whichTab = 1
             present(felineDetail, animated: true, completion: nil)
         }
     }

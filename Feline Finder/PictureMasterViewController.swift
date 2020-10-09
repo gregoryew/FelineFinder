@@ -29,7 +29,7 @@ import Foundation
 class PictureMasterViewController: UICollectionViewController {
   
     var petData: Pet = Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [""], d: "", m2: [], s3: "", z: "", dis: 0.0, adoptionFee: "", location: "")
-    var imageURLs:[picture] = []
+    var imageURLs:[picture2] = []
   
   var currentCard: Int = 0
 

@@ -49,9 +49,6 @@
 		467737421F3C7DBF00883F42 /* BreeedInfoGalleryPhotoCollectionViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467737411F3C7DBF00883F42 /* BreeedInfoGalleryPhotoCollectionViewCell2.swift */; };
 		467737441F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467737431F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift */; };
 		467738D21E61D53D009CCD4A /* KYCircularProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467738D11E61D53D009CCD4A /* KYCircularProgress.swift */; };
-		467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */; };
-		467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */; };
-		467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */; };
 		467E10721EDF93DA00F7E1A8 /* DevonRex.png in Resources */ = {isa = PBXBuildFile; fileRef = 467E10711EDF93DA00F7E1A8 /* DevonRex.png */; };
 		4680BC961F257A850042F2CE /* SurveyQuestionEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */; };
 		468A5FFE1F1C59A1003E1F63 /* TicksSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */; };
@@ -91,7 +88,6 @@
 		46B454C31F74A17700E0390F /* RescuePetsAPI2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */; };
 		46B6BF371F3A754600A8E5B0 /* SurveyBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B6BF361F3A754600A8E5B0 /* SurveyBaseViewController.swift */; };
 		46C326C51E91D17B003905CC /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C326C41E91D17B003905CC /* DownloadManager.swift */; };
-		46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CF47E61E42E179004615AD /* SlideAnimation.swift */; };
 		46D5378D1E34B70C0006498B /* UICardContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378C1E34B70C0006498B /* UICardContainerView.swift */; };
 		46D537901E34B7230006498B /* CardAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378E1E34B7230006498B /* CardAnimationView.swift */; };
 		46D537911E34B7230006498B /* ImageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D5378F1E34B7230006498B /* ImageCardView.swift */; };
@@ -101,12 +97,14 @@
 		46DD5DC11E29AC4700E79D53 /* RadialGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */; };
 		46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */; };
 		46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */; };
-		46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC2E1E50DC380041666F /* Transistion.swift */; };
 		46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */; };
 		46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */; };
 		46FA94031F8E3F89004C255E /* LocationManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FA94021F8E3F89004C255E /* LocationManager2.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
+		C50CD18125290DAD007FA052 /* MainTabAdoptableCats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CD18025290DAD007FA052 /* MainTabAdoptableCats.swift */; };
+		C50CD18B25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CD18A25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift */; };
+		C50CD18E25291044007FA052 /* MainTabAdoptableCatsSubCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CD18D25291044007FA052 /* MainTabAdoptableCatsSubCVCell.swift */; };
 		C51D41A92527289F00040BEE /* FilterOptionSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D41A82527289F00040BEE /* FilterOptionSearch.swift */; };
 		C51D41AE25272E4800040BEE /* CoolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51D41AC25272E4800040BEE /* CoolButton.swift */; };
 		C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */; };
@@ -173,6 +171,13 @@
 		C5943B011D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943B001D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift */; };
 		C5943B031D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943B021D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift */; };
 		C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5943B041D83B56C0088DE4D /* FilterOptionsListTableViewController.swift */; };
+		C59AC43E252E45E40016F523 /* HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC437252E45E30016F523 /* HTTPURLResponse.swift */; };
+		C59AC43F252E45E40016F523 /* PagedModeratorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC438252E45E30016F523 /* PagedModeratorResponse.swift */; };
+		C59AC440252E45E40016F523 /* DataResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC439252E45E30016F523 /* DataResponseError.swift */; };
+		C59AC441252E45E40016F523 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC43A252E45E30016F523 /* Result.swift */; };
+		C59AC442252E45E40016F523 /* URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC43B252E45E40016F523 /* URLRequest.swift */; };
+		C59AC443252E45E40016F523 /* ModeratorRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC43C252E45E40016F523 /* ModeratorRequest.swift */; };
+		C59AC444252E45E40016F523 /* RescuePetsAPI3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59AC43D252E45E40016F523 /* RescuePetsAPI3.swift */; };
 		C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A159271B8A51CB00517915 /* DatabaseManager.swift */; };
 		C5A1592A1B8AB37500517915 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A159291B8AB37500517915 /* Favorites.swift */; };
 		C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A35E741B3F1469008708E7 /* VCMapView.swift */; };
@@ -238,9 +243,6 @@
 		467737411F3C7DBF00883F42 /* BreeedInfoGalleryPhotoCollectionViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreeedInfoGalleryPhotoCollectionViewCell2.swift; sourceTree = "<group>"; };
 		467737431F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoGalleryPhotoAPI.swift; sourceTree = "<group>"; };
 		467738D11E61D53D009CCD4A /* KYCircularProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KYCircularProgress.swift; sourceTree = "<group>"; };
-		467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIZoomAnimation.swift; sourceTree = "<group>"; };
-		467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlipAnimation.swift; sourceTree = "<group>"; };
-		467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionImageView.swift; sourceTree = "<group>"; };
 		467E10711EDF93DA00F7E1A8 /* DevonRex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevonRex.png; sourceTree = "<group>"; };
 		4680BC951F257A850042F2CE /* SurveyQuestionEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyQuestionEntryViewController.swift; sourceTree = "<group>"; };
 		468A5FFB1F1C59A1003E1F63 /* TicksSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicksSlider.swift; sourceTree = "<group>"; };
@@ -302,7 +304,6 @@
 		46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescuePetsAPI2.swift; sourceTree = "<group>"; };
 		46B6BF361F3A754600A8E5B0 /* SurveyBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyBaseViewController.swift; sourceTree = "<group>"; };
 		46C326C41E91D17B003905CC /* DownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
-		46CF47E61E42E179004615AD /* SlideAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideAnimation.swift; sourceTree = "<group>"; };
 		46D5378C1E34B70C0006498B /* UICardContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICardContainerView.swift; sourceTree = "<group>"; };
 		46D5378E1E34B7230006498B /* CardAnimationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationView.swift; sourceTree = "<group>"; };
 		46D5378F1E34B7230006498B /* ImageCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCardView.swift; sourceTree = "<group>"; };
@@ -316,12 +317,14 @@
 		46DD5DC01E29AC4700E79D53 /* RadialGradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadialGradientView.swift; sourceTree = "<group>"; };
 		46DDD2ED1E0738F300344803 /* HWPullToInfinity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWPullToInfinity.swift; sourceTree = "<group>"; };
 		46E7EC2A1E50C50A0041666F /* BreedTabBarControllerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedTabBarControllerViewController.swift; sourceTree = "<group>"; };
-		46E7EC2E1E50DC380041666F /* Transistion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transistion.swift; sourceTree = "<group>"; };
 		46E7EC301E5163980041666F /* AdoptableCatsViewTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdoptableCatsViewTabController.swift; sourceTree = "<group>"; };
 		46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyManagePageViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		46FA94021F8E3F89004C255E /* LocationManager2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager2.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		C50CD18025290DAD007FA052 /* MainTabAdoptableCats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCats.swift; sourceTree = "<group>"; };
+		C50CD18A25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsMainTVCell.swift; sourceTree = "<group>"; };
+		C50CD18D25291044007FA052 /* MainTabAdoptableCatsSubCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsSubCVCell.swift; sourceTree = "<group>"; };
 		C51D41A82527289F00040BEE /* FilterOptionSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionSearch.swift; sourceTree = "<group>"; };
 		C51D41AC25272E4800040BEE /* CoolButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoolButton.swift; sourceTree = "<group>"; };
 		C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
@@ -399,6 +402,13 @@
 		C5943B001D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsSegmentedCustomCellView.swift; sourceTree = "<group>"; };
 		C5943B021D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsListCustomCellView.swift; sourceTree = "<group>"; };
 		C5943B041D83B56C0088DE4D /* FilterOptionsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsListTableViewController.swift; sourceTree = "<group>"; };
+		C59AC437252E45E30016F523 /* HTTPURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPURLResponse.swift; sourceTree = "<group>"; };
+		C59AC438252E45E30016F523 /* PagedModeratorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedModeratorResponse.swift; sourceTree = "<group>"; };
+		C59AC439252E45E30016F523 /* DataResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataResponseError.swift; sourceTree = "<group>"; };
+		C59AC43A252E45E30016F523 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		C59AC43B252E45E40016F523 /* URLRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequest.swift; sourceTree = "<group>"; };
+		C59AC43C252E45E40016F523 /* ModeratorRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeratorRequest.swift; sourceTree = "<group>"; };
+		C59AC43D252E45E40016F523 /* RescuePetsAPI3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RescuePetsAPI3.swift; sourceTree = "<group>"; };
 		C5A159271B8A51CB00517915 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C5A159291B8AB37500517915 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		C5A35E741B3F1469008708E7 /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapView.swift; sourceTree = "<group>"; };
@@ -446,18 +456,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		467C97961E3EA85B007C7A08 /* Transition Animations */ = {
-			isa = PBXGroup;
-			children = (
-				467C97C71E3FF36E007C7A08 /* TransitionImageView.swift */,
-				467C97C31E3FF35C007C7A08 /* CIZoomAnimation.swift */,
-				467C97C41E3FF35C007C7A08 /* FlipAnimation.swift */,
-				46CF47E61E42E179004615AD /* SlideAnimation.swift */,
-				46E7EC2E1E50DC380041666F /* Transistion.swift */,
-			);
-			name = "Transition Animations";
-			sourceTree = "<group>";
-		};
 		468A5FFA1F1C5987003E1F63 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +646,20 @@
 			name = CMMapLauncher;
 			sourceTree = "<group>";
 		};
+		C59AC436252E45660016F523 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C59AC439252E45E30016F523 /* DataResponseError.swift */,
+				C59AC437252E45E30016F523 /* HTTPURLResponse.swift */,
+				C59AC43C252E45E40016F523 /* ModeratorRequest.swift */,
+				C59AC438252E45E30016F523 /* PagedModeratorResponse.swift */,
+				C59AC43A252E45E30016F523 /* Result.swift */,
+				C59AC43D252E45E40016F523 /* RescuePetsAPI3.swift */,
+				C59AC43B252E45E40016F523 /* URLRequest.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -706,7 +718,6 @@
 				468A5FFA1F1C5987003E1F63 /* Slider */,
 				4692C5D91E78EC6E00B83494 /* PictureViewer */,
 				4692C5901E7601F800B83494 /* SDWebImage */,
-				467C97961E3EA85B007C7A08 /* Transition Animations */,
 				46D5378E1E34B7230006498B /* CardAnimationView.swift */,
 				46D5378F1E34B7230006498B /* ImageCardView.swift */,
 				46D5378C1E34B70C0006498B /* UICardContainerView.swift */,
@@ -728,6 +739,7 @@
 				C5FB6EF21B21347D007FFA36 /* fmdb */,
 				C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */,
 				467738D11E61D53D009CCD4A /* KYCircularProgress.swift */,
+				C59AC436252E45660016F523 /* Networking */,
 				C5B8F9891D68C7E5002EC03C /* PetFinderContactOptions */,
 				C58B459D1B2D457600E03538 /* QuestionEntry.swift */,
 				46241D471E07041300997D4C /* GradientView.swift */,
@@ -738,6 +750,9 @@
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				C50CD18025290DAD007FA052 /* MainTabAdoptableCats.swift */,
+				C50CD18A25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift */,
+				C50CD18D25291044007FA052 /* MainTabAdoptableCatsSubCVCell.swift */,
 				468EE33B1F3BF39900E2CFC2 /* YouTubeCollectionViewCell.swift */,
 				4649DB041F36144E007FE6AB /* SurveySummaryViewController.swift */,
 				46AECC461F06F52700793464 /* BreedInfoTableViewCell.swift */,
@@ -1002,8 +1017,6 @@
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/TTSegmentedControl/TTSegmentedControl.framework",
-				"${BUILT_PRODUCTS_DIR}/TransitionAnimation/TransitionAnimation.framework",
-				"${BUILT_PRODUCTS_DIR}/TransitionTreasury/TransitionTreasury.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -1012,8 +1025,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTSegmentedControl.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionAnimation.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TransitionTreasury.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,13 +1062,13 @@
 				464B49781F1BCEF100C62491 /* BreedInfoStatsViewController.swift in Sources */,
 				C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */,
 				C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */,
+				C50CD18B25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift in Sources */,
 				46241D4A1E07046400997D4C /* CollectionViewCell.swift in Sources */,
 				C5755F9F1BC02CB30023F353 /* RSUtilities.swift in Sources */,
 				C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */,
 				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
 				4692C5BF1E7601F800B83494 /* SDImageCache.m in Sources */,
 				464B49741F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift in Sources */,
-				46CF47E71E42E179004615AD /* SlideAnimation.swift in Sources */,
 				46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */,
 				46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */,
 				4692C5BE1E7601F800B83494 /* NSImage+WebCache.m in Sources */,
@@ -1078,6 +1089,7 @@
 				C5045DB11B9155C200A6663C /* Utilities.swift in Sources */,
 				4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */,
 				4692C5C01E7601F800B83494 /* SDImageCacheConfig.m in Sources */,
+				C59AC440252E45E40016F523 /* DataResponseError.swift in Sources */,
 				C5755F9D1BC02CB30023F353 /* RSTransactionRequest.swift in Sources */,
 				C51D41A92527289F00040BEE /* FilterOptionSearch.swift in Sources */,
 				C525E3691D896D4B005123C4 /* OptionsTableViewCell.swift in Sources */,
@@ -1089,6 +1101,7 @@
 				C5933B1D1D6D3C4F00CFD62E /* ADVSegmentedControl.swift in Sources */,
 				4620AA471F01EA6C009F9DEC /* CollectionViewCell2.swift in Sources */,
 				4692C5C21E7601F800B83494 /* SDWebImageDecoder.m in Sources */,
+				C50CD18E25291044007FA052 /* MainTabAdoptableCatsSubCVCell.swift in Sources */,
 				C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */,
 				4620AA491F030672009F9DEC /* MainSectionAdoptableCats.swift in Sources */,
 				C539DED81B51C9E300B631B8 /* FavoriteTableCell.swift in Sources */,
@@ -1097,6 +1110,7 @@
 				C5511C3B1B6EB3F400BE8610 /* FLAnimatedImageView.m in Sources */,
 				C5755FA11BC02CB30023F353 /* UIImageView+RSNetworking.swift in Sources */,
 				C5A1592A1B8AB37500517915 /* Favorites.swift in Sources */,
+				C59AC441252E45E40016F523 /* Result.swift in Sources */,
 				C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */,
 				C584DCA0251FE27E006B614C /* CatLogoLayer.swift in Sources */,
 				C5755F9C1BC02CB30023F353 /* RSTransaction.swift in Sources */,
@@ -1111,16 +1125,17 @@
 				4692C5BB1E7601F800B83494 /* FLAnimatedImageView+WebCache.m in Sources */,
 				C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */,
 				46B6BF371F3A754600A8E5B0 /* SurveyBaseViewController.swift in Sources */,
+				C50CD18125290DAD007FA052 /* MainTabAdoptableCats.swift in Sources */,
 				468EE33C1F3BF39900E2CFC2 /* YouTubeCollectionViewCell.swift in Sources */,
 				C539DEE41B52786200B631B8 /* SavedListsTableCell.swift in Sources */,
 				4607099E1F45ABBC00C9AD01 /* MainTabIntoVideoViewController.swift in Sources */,
+				C59AC43E252E45E40016F523 /* HTTPURLResponse.swift in Sources */,
 				461B2A7A1F0359280093EA85 /* CatDetailViewController.swift in Sources */,
 				C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */,
 				C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */,
 				460558E21F070383006BC6D9 /* BreedInfoDetailViewController.swift in Sources */,
 				C5FB6EED1B213474007FFA36 /* FMDatabase.m in Sources */,
 				4620AA431F01CE77009F9DEC /* MainTabBarViewController.swift in Sources */,
-				467C97C81E3FF36E007C7A08 /* TransitionImageView.swift in Sources */,
 				C56F90D81B7795C600EEEBFA /* PetFinderFind.swift in Sources */,
 				C5FB6EEE1B213474007FFA36 /* FMResultSet.m in Sources */,
 				C55FC7051D6A9FA000F328F3 /* SavedList2TableCell.swift in Sources */,
@@ -1140,7 +1155,6 @@
 				C5755F951BC02BD80023F353 /* SwiftyJSON.swift in Sources */,
 				C58D21271B4918C7008E1B0B /* PetFinderSheltersAPI.swift in Sources */,
 				C5471BB71D67B01400F9A459 /* Common.m in Sources */,
-				467C97C61E3FF35C007C7A08 /* FlipAnimation.swift in Sources */,
 				46E7EC2B1E50C50A0041666F /* BreedTabBarControllerViewController.swift in Sources */,
 				4632471C1E037D17000039FF /* Twinkle.swift in Sources */,
 				465313141F394EB300B39413 /* MainTabTableViewCell.swift in Sources */,
@@ -1158,16 +1172,17 @@
 				4680BC961F257A850042F2CE /* SurveyQuestionEntryViewController.swift in Sources */,
 				C5933B1B1D6C012A00CFD62E /* Globals.swift in Sources */,
 				4649DB091F36502C007FE6AB /* SurveySummaryHeaderTableViewCell2.swift in Sources */,
+				C59AC43F252E45E40016F523 /* PagedModeratorResponse.swift in Sources */,
 				C584DC9D251FE1DA006B614C /* RevealAnimator.swift in Sources */,
 				46241D481E07041300997D4C /* GradientView.swift in Sources */,
 				C53BC8A71B52DE0A0033FA7A /* SavedLists2ViewController.swift in Sources */,
 				C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */,
 				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
 				C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */,
+				C59AC442252E45E40016F523 /* URLRequest.swift in Sources */,
 				467737441F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift in Sources */,
 				468A60001F1C59A1003E1F63 /* TSTrackLayer.swift in Sources */,
 				C58D21211B48B0F8008E1B0B /* PetFinderTableCell.swift in Sources */,
-				467C97C51E3FF35C007C7A08 /* CIZoomAnimation.swift in Sources */,
 				468A5FFF1F1C59A1003E1F63 /* TSThumbLayer.swift in Sources */,
 				C525E3671D896733005123C4 /* FelineFinderDetailViewController.swift in Sources */,
 				4692C5CD1E7601F800B83494 /* UIView+WebCache.m in Sources */,
@@ -1181,6 +1196,7 @@
 				464B497C1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift in Sources */,
 				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
 				46D537901E34B7230006498B /* CardAnimationView.swift in Sources */,
+				C59AC443252E45E40016F523 /* ModeratorRequest.swift in Sources */,
 				4692C5BD1E7601F800B83494 /* NSData+ImageContentType.m in Sources */,
 				4692C5C41E7601F800B83494 /* SDWebImageDownloaderOperation.m in Sources */,
 				46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */,
@@ -1198,9 +1214,9 @@
 				C527B1351B46E7DA00874272 /* string extensions.swift in Sources */,
 				464B497A1F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift in Sources */,
 				C525BD8925272EA300213944 /* Drawing.swift in Sources */,
-				46E7EC2F1E50DC380041666F /* Transistion.swift in Sources */,
 				C5411D5D1D61858000FFB128 /* InstructionsViewController.swift in Sources */,
 				C527B1331B46E11100874272 /* PetFinderViewController.swift in Sources */,
+				C59AC444252E45E40016F523 /* RescuePetsAPI3.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

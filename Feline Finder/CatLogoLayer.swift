@@ -140,7 +140,6 @@ class CatLogoLayer {
     }
  }
 
-/*
 extension CGRect{
     var center: CGPoint {
         return CGPoint( x: self.size.width/2.0,y: self.size.height/2.0)
@@ -186,7 +185,6 @@ extension UIBezierPath{
         return self
     }
     
-    
     func applyCentered(transform: @autoclosure () -> CGAffineTransform ) -> Self{
         let bound  = self.cgPath.boundingBox
         let center = CGPoint(x: bound.midX, y: bound.midY)
@@ -200,4 +198,3 @@ extension UIBezierPath{
         return self
     }
 }
-*/

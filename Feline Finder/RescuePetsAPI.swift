@@ -162,11 +162,13 @@ class RescuePetList: PetList {
                                 if key == "status" {
                                     self.status = data as! String
                                     print("Status = |\(self.status)|")
+                                } else if key == "foundRows" {
+                                    self.foundRows = data as? Int ?? 0
                                 } else if key == "data" {
                                     if let d = data as? [String: AnyObject] {
                                         for (_, data2) in d {
                                             let cachedPet = self.createPet(data2)
-                                            self.Pets.append(cachedPet)
+                                            //self.Pets.append(cachedPet)
                                             PetsGlobal[cachedPet.petID] = cachedPet
                                         }
                                     }
@@ -217,7 +219,7 @@ class RescuePetList: PetList {
         var options: Set<String> = Set<String>()
         var description: String?
         var distance: Double = 0.0
-        var pictures: [picture] = [picture]()
+        var pictures: [picture2] = [picture2]()
         var videos: [video] = [video]()
         var sID: String?
         let zipCode: String = ""
@@ -329,7 +331,8 @@ class RescuePetList: PetList {
             status += " Adoption Fee: \(adoptionFee)"
         }
         
-        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: pictures, v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated, adoptionFee: adoptionFee, location: location)
+        let p = Pet(pID: petID!, n: name!, b: breeds, m: false, a: age!, s: sex!, s2: size!, o: options, d: description!, m2: [], v: videos, s3: sID!, z: zipCode, dis: distance, stat: status, bd: animalBirthdate!, upd: lastUpdated, adoptionFee: adoptionFee, location: location)
+        
         return p
     }
 }
@@ -368,8 +371,8 @@ func hasOption(_ optionValue: String, option1:  String, options: Set<String>) ->
     return opts
 }
 
-func parsePictures(_ data: [AnyObject]) -> [picture] {
-    var pictures: [picture] = [picture]()
+func parsePictures(_ data: [AnyObject]) -> [picture2] {
+    var pictures: [picture2] = [picture2]()
     var id = 1
     var d: Any?
     var i = 0
@@ -392,7 +395,7 @@ func parsePictures(_ data: [AnyObject]) -> [picture] {
     return pictures
 }
 
-func parsePicture(_ id: Int, data: AnyObject) -> picture {
+func parsePicture(_ id: Int, data: AnyObject) -> picture2 {
     var type: String?
     var url: String?
     var h: Int?
@@ -408,7 +411,7 @@ func parsePicture(_ id: Int, data: AnyObject) -> picture {
             }
         }
     }
-    return picture(i: id, s: type!, u: url!, h: h!, w: w!)
+    return picture2(i: id, s: type!, u: url!, h: h!, w: w!)
 }
 
 
