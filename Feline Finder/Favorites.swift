@@ -142,7 +142,6 @@ class FavoritesList {
         if (!keys.contains(pID)) {
             keys.append(pID)
             IDs = keys
-            storeIDs()
         }
     }
     
@@ -159,8 +158,6 @@ class FavoritesList {
         }
         
         IDs = keys
-        
-        storeIDs()
     }
     
     func isFavorite(_ petID: String, dataSource: DataSource) -> Bool {

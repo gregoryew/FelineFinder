@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FaveButton
 
 class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
         
@@ -17,15 +18,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var BreedNameLabel: UILabel!
     @IBOutlet weak var InfoLabel: UILabel!
     @IBOutlet weak var CityLabel: UILabel!
-    
-    @IBOutlet weak var Favorite: UIImageView!
-    
-    //@IBOutlet weak var LoadingIndicator: UIActivityIndicatorView!
-    
-    private let sectionInsets = UIEdgeInsets(top: 50.0,
-                                             left: 20.0,
-                                             bottom: 50.0,
-                                             right: 20.0)
+    @IBOutlet weak var Favorite: FaveButton!
     
     var petData: Pet!
     var imgs: [String]!
@@ -62,28 +55,12 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             InfoLabel.alpha = 1
             MainCatImage.alpha = 1
             SubCatCV.alpha = 1
-            //LoadingIndicator.stopAnimating()
             
             self.petData = p
             
             setup()
-            
-            /*
-            if petData.videos.count > 0 {
-                cell.Video.isHidden = false
-                cell.Video.image = UIImage(named: "VideoAvailableIcon")
-                print("\(cell.Video.frame)")
-                print("\(String(describing: cell.Video.image))")
-            } else {
-                cell.Video.isHidden = true
-            }
-            */
-            
-            if Favorites.isFavorite(petData.petID, dataSource: .RescueGroup) {
-                Favorite.image = UIImage(named: "AdoptHeart")
-            } else {
-                Favorite.image = UIImage(named: "AdoptHeartEmpty")
-            }
+                        
+            Favorite.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
             
             let urlString: String? = petData.getImage(1, size: "pn")
             
@@ -102,7 +79,6 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             }
         }
         else {
-            //LoadingIndicator.startAnimating()
             Favorite.alpha = 0
             CatNameLabel.alpha = 0
             BreedNameLabel.alpha = 0

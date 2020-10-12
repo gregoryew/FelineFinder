@@ -10,7 +10,7 @@ DEPENDENCIES:
   - FaveButton
   - SwiftLocation
   - TTSegmentedControl
-  - YouTubePlayer
+  - YouTubePlayer (~> 0.7.2)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -27,6 +27,6 @@ SPEC CHECKSUMS:
   TTSegmentedControl: d8005c0cdca2549ade0aee8e09240723e2478a6a
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: b34a5bbc0674528e7edc7c2c6bf34ff9368bf6aa
+PODFILE CHECKSUM: 197e88fa5808c9790a416b7ab8209d14678ef757
 
 COCOAPODS: 1.5.2

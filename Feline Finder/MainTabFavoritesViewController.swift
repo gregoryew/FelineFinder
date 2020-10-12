@@ -148,16 +148,14 @@ class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDa
         return 30
     }
     
-    override func viewWillAppear(_ animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(true, animated:false);
+    override func viewDidAppear(_ animated: Bool) {
+        super .viewDidAppear(animated)
         Favorites.LoadFavorites(tv: self.tableView)
         if #available( iOS 10.3,*){
             if Favorites.count > 0 {SKStoreReviewController.requestReview()}
         }
     }
-        
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as? UITableViewHeaderFooterView)?.textLabel?.textColor = UIColor.white
     }

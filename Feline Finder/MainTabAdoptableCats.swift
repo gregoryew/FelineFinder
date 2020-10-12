@@ -158,6 +158,8 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
     }
     
+    var totalRows = 0
+    
     func petsLoaded(notification:Notification) -> Void {
         print("petLoaded notification")
         
@@ -167,8 +169,10 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
                 print("No userInfo found in notification")
                 return
         }
-
+        
         pets = p
+
+        totalRows = pets?.foundRows ?? 0
         
         self.pets?.loading = false
         
@@ -191,7 +195,6 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        retrieveData()
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
         if zipCode == "" {
@@ -199,10 +202,13 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         } else {
             setFilterDisplay()
             self.pets?.loading = true
-            //DownloadManager.loadPetList()
-            //setupReloadAndScroll()
         }
         DownloadManager.loadPetList()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Favorites.storeIDs()
     }
     
     @objc func retrieveData() {
@@ -280,7 +286,9 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return pets?.foundRows ?? 0
+        return totalRows
+        
+        //return pets?.foundRows ?? 0
         
         /*
         var c = 0

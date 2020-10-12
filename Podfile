@@ -6,10 +6,7 @@ target 'Feline Finder' do
    use_frameworks!
 
   # Pods for Feline Finder
-      pod 'YouTubePlayer'
-      #pod 'TransitionAnimation', :git => 'https://github.com/gregoryew/TransitionTreasury.git'
-      #pod 'TransitionTreasury'
-      #pod 'TransitionAnimation'
+      pod 'YouTubePlayer', '~> 0.7.2'
       pod 'FaveButton' #, '~> 2.0.3'
       pod 'TTSegmentedControl'
       pod 'BetterSegmentedControl', '~> 1.3'
