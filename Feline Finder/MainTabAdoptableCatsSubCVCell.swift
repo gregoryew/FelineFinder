@@ -9,5 +9,16 @@
 import Foundation
 
 class MainTabAdoptableCatsSubCVCell: UICollectionViewCell {
-    @IBOutlet weak var subCatImage: UIImageView!
+    
+    @IBOutlet weak var subCatImage: DynamicImageView!
+    @IBOutlet weak var MainView: UIView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        // Add width constraint if you want dynamic height
+        MainView.translatesAutoresizingMaskIntoConstraints = false
+        MainView.heightAnchor.constraint(equalToConstant: 73).isActive = true
+    }
+
 }

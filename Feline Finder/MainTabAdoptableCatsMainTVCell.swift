@@ -30,6 +30,9 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         ximgs = petData.getAllImagesOfACertainSize("x")
         SubCatCV.dataSource = self
         SubCatCV.delegate = self
+        if let collectionViewLayout = SubCatCV.collectionViewLayout as? UICollectionViewFlowLayout {
+             collectionViewLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        }
         DispatchQueue.main.async {
             self.SubCatCV.reloadData()
             self.SubCatCV.layoutIfNeeded()
