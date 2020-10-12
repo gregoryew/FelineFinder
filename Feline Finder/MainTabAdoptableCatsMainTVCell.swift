@@ -18,7 +18,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var BreedNameLabel: UILabel!
     @IBOutlet weak var InfoLabel: UILabel!
     @IBOutlet weak var CityLabel: UILabel!
-    @IBOutlet weak var Favorite: FaveButton!
+    @IBOutlet weak var FavoriteButton: FaveButton!
     
     var petData: Pet!
     var imgs: [String]!
@@ -36,6 +36,15 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         }
     }
     
+    @IBAction func favoriteTapped(_ sender: Any) {
+        if FavoriteButton.isSelected {
+            let f = Favorite(petID: petData.petID, petName: petData.name, imageName: petData.media[0].URL, breed: petData.breeds.popFirst() ?? "", FavoriteDataSource: DataSource.RescueGroup, Status: petData.status)
+            Favorites.addFavorite(petData.petID, f: f)
+        } else {
+            Favorites.removeFavorite(petData.petID, dataSource: .RescueGroup)
+        }
+    }
+    
     override func prepareForReuse() {
         self.backgroundColor = UIColor.white
         self.MainCatImage.backgroundColor = getRandomColor()
@@ -48,7 +57,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     func configure(pd: Pet?) {
         if let p = pd {
 
-            Favorite.alpha = 1
+            FavoriteButton.alpha = 1
             CatNameLabel.alpha = 1
             BreedNameLabel.alpha = 1
             CityLabel.alpha = 1
@@ -60,7 +69,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             
             setup()
                         
-            Favorite.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
+            FavoriteButton.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
             
             let urlString: String? = petData.getImage(1, size: "pn")
             
@@ -79,7 +88,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             }
         }
         else {
-            Favorite.alpha = 0
+            FavoriteButton.alpha = 0
             CatNameLabel.alpha = 0
             BreedNameLabel.alpha = 0
             CityLabel.alpha = 0

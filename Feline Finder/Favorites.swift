@@ -136,6 +136,16 @@ class FavoritesList {
     
     func addFavorite(_ petID: String, f: Favorite) {
         let pID = checkPetID(petID, ds: DataSource.RescueGroup)
+        Favorites[pID] = f
+        
+        if (!keys.contains(pID)) {
+            keys.append(pID)
+            IDs = keys
+        }
+    }
+
+    func addFavorite(_ petID: String) {
+        let pID = checkPetID(petID, ds: DataSource.RescueGroup)
         let f = Favorite(petID: pID, petName: "", imageName: "", breed: "", FavoriteDataSource: DataSource.RescueGroup, Status: "")
         Favorites[pID] = f
         

@@ -66,8 +66,6 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         
         TitleLabel.text = "Cats for Adoption"
         
-        if (!Favorites.loaded) {Favorites.LoadFavorites(tv: nil)}
-
         pets = RescuePetsAPI3()
 
     }
@@ -203,6 +201,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             setFilterDisplay()
             self.pets?.loading = true
         }
+        Favorites.LoadFavorites(tv: nil)
         DownloadManager.loadPetList()
     }
     

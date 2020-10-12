@@ -32,21 +32,20 @@ class IntroViewController: ZoomAnimationViewController {
     
     @IBAction func BreedSuggestionTapped(_ sender: Any) {
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
-        details.selectedIndex = 3
         details.modalPresentationStyle = .custom
         details.transitioningDelegate = self
-                
-        present(details, animated: true, completion: nil)
+        present(details, animated: true) {
+            details.selectedIndex = 3
+        }
     }
     
     @IBAction func AdoptTapped(_ sender: Any) {
-        //let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabAdoptableCats") as! MainTabAdoptableCats
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MainTabViewController") as! MainTabBarControllerViewController
-        //details.selectedIndex = 1
-        //details.modalPresentationStyle = .custom
-        //details.transitioningDelegate = self
-        
-        present(details, animated: false, completion: nil)
+        details.modalPresentationStyle = .custom
+        details.transitioningDelegate = self
+        present(details, animated: true) {
+            details.selectedIndex = 1
+        }
     }
     
     @IBAction func ScreenOnOffSwitch(_ sender: Any) {

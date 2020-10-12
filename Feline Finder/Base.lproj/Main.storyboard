@@ -1994,8 +1994,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                     <connections>
-                                                        <action selector="FavoriteTapped:" destination="I13-hk-Lpk" eventType="touchUpInside" id="Yk1-m4-cv9"/>
-                                                        <action selector="FavoriteTapped:" destination="OnN-g8-CXh" eventType="touchUpInside" id="sBb-wm-K3Y"/>
+                                                        <action selector="favoriteTapped:" destination="Ote-UK-EhE" eventType="touchUpInside" id="qWB-q1-QML"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -2019,7 +2018,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <outlet property="BreedNameLabel" destination="jkG-Y4-R9h" id="FrF-KU-Gas"/>
                                             <outlet property="CatNameLabel" destination="9tX-Fw-kUg" id="UQl-1a-OjB"/>
                                             <outlet property="CityLabel" destination="tjY-mq-rjL" id="Rh3-OC-UMf"/>
-                                            <outlet property="Favorite" destination="i2E-0o-p8V" id="eFb-cP-QF6"/>
+                                            <outlet property="FavoriteButton" destination="i2E-0o-p8V" id="k1z-uM-Fa7"/>
                                             <outlet property="InfoLabel" destination="0fd-TB-1fb" id="8VC-8p-plP"/>
                                             <outlet property="MainCatImage" destination="2ce-q9-ska" id="8sS-Ge-SWL"/>
                                             <outlet property="SubCatCV" destination="511-kE-YwT" id="2EM-cj-E4C"/>

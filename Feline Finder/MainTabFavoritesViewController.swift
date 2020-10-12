@@ -19,21 +19,7 @@ class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDa
     deinit {
         print ("FavoritesViewController deinit")
     }
-    
-    override func viewDidLoad()
-    {
-        super.viewDidLoad()
-     
-        let nc = NotificationCenter.default
-        observer = nc.addObserver(forName:NSNotification.Name(rawValue: "reloadFavorites"), object:nil, queue:nil) { [weak self] notification in
-            Favorites.LoadFavorites(tv: nil)
-            DispatchQueue.main.async(execute: {
-                self?.tableView.reloadData()
-            })
-        }
         
-    }
-    
     override func shouldPerformSegue(withIdentifier identifier: String?, sender: Any?) -> Bool
     {
         if Favorites.totalBreeds == 0 && identifier == "felineFinderDetail" {

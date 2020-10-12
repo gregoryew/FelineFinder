@@ -38,7 +38,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
     }
 
     @IBAction func backTapped(_ sender: UIButton) {
-        processFavorite()
+        //processFavorite()
         NotificationCenter.default.removeObserver(observer)
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         let viewToShow = storyboard.instantiateViewController(withIdentifier: "Favorites") as! MainTabFavoritesViewController
@@ -265,8 +265,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
                 let bn = pet?.breeds.first
                 Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
             }
-            Favorites.loadIDs()
-            Favorites.LoadFavorites(tv: nil)
+            Favorites.storeIDs()
         }
     }
     
