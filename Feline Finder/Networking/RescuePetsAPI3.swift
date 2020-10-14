@@ -15,6 +15,8 @@ final class RescuePetsAPI3: PetList {
     
     func loadPets3(bn: Breed, zipCode: String, more: Bool = false, completion: @escaping (Result<PetList, DataResponseError>) -> Void) {
         
+        if zipCode == "" {return}
+        
         if isLoading {return}
         
         isLoading = true
@@ -53,10 +55,12 @@ final class RescuePetsAPI3: PetList {
                 filters.append(["fieldName": "animalPrimaryBreedID" as AnyObject, "operation": "equals" as AnyObject, "criteria": bn.RescueBreedID as AnyObject])
             }
         }
+        //filters.append(["fieldName": "animalID" as AnyObject, "operation": "equals" as AnyObject, "criteria": "8610893" as AnyObject])
         var order = "desc"
         if sortFilter == "animalLocationDistance" {
             order = "asc"
         }
+        //resultLimit = 5
         let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalLocationCitystate", "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls"]]] as [String : Any]
 
         // 1
@@ -100,9 +104,11 @@ final class RescuePetsAPI3: PetList {
                 let videos: [video] = self.parseVideos2(videos: cat.animalVideoUrls ?? [])
                 let status = self.animalStatus(pending: cat.animalAdoptionPending ?? "", animalStatus: cat.animalStatus ?? "", availableDate: cat.animalAvailableDate ?? "", animalAdoptedDate: cat.animalAdoptedDate ?? "", adoptionFee: cat.animalAdoptionFee ?? "")
                 
-                let p = Pet(pID: cat.animalID ?? "", n: cat.animalName ?? "", b: breed, m: false, a: cat.animalGeneralAge ?? "", s: cat.animalSex ?? "", s2: cat.animalSizePotential ?? "", o: options, d: cat.animalDescriptionPlain ?? "", m2: pictures, v: videos, s3: cat.animalOrgID ?? "", z: "", dis: 0.0, stat: status, bd: cat.animalBirthdate ?? "", upd: dateFromString(str: cat.animalUpdatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date(), adoptionFee: cat.adoptionFee ?? "", location: cat.animalLocationCitystate ?? "")
+                let p = Pet(pID: cat.animalID ?? "", n: cat.animalName ?? "", b: breed, m: false, a: cat.animalGeneralAge ?? "", s: cat.animalSex ?? "", s2: cat.animalSizePotential ?? "", o: options, d: cat.animalDescriptionPlain ?? "", m2: pictures, v: videos, s3: cat.animalOrgID ?? "", z: "", dis: cat.animalLocationDistance!, stat: status, bd: cat.animalBirthdate ?? "", upd: dateFromString(str: cat.animalUpdatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date(), adoptionFee: cat.adoptionFee ?? "", location: cat.animalLocationCitystate ?? "")
                 pets2.append(p)
             }
+            
+            pets2.sort { $0.distance < $1.distance }
             
             if more {
                 self.resultStart += self.resultLimit

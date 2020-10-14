@@ -44,7 +44,7 @@ class DownloadManager {
         
         var b = false
         
-        if (pets.count == 0) {
+        if pets.count == 0 {
             b = true
         }
         
@@ -108,6 +108,7 @@ class DownloadManager {
             nc.post(name:petsLoadedMessage,
                     object: nil,
                     userInfo: info)
+            isFetchInProgress = false
         }
     }
     

@@ -25,6 +25,7 @@
 
 import UIKit
 import Foundation
+import SDWebImage
 
 class PictureMasterViewController: UICollectionViewController {
   

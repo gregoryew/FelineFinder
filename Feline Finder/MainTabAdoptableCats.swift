@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SDWebImage
 
 class TableViewWorkAround: UITableView {
     override func layoutSubviews() {
@@ -24,6 +25,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     var pets: RescuePetsAPI3?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
     var currentLocation : CLLocation!
+    var locationManager: CLLocationManager? = CLLocationManager()
     
     var titles:[String] = []
     var totalRow = 0
@@ -63,6 +65,10 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         MainTV.dataSource = self
         MainTV.delegate = self
         MainTV.prefetchDataSource = self
+        locationManager?.delegate = self
+        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager?.requestWhenInUseAuthorization()
+ 
         
         TitleLabel.text = "Cats for Adoption"
         
@@ -76,8 +82,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         if zipCode != "" {
             self.setFilterDisplay()
             self.pets?.loading = true
-            //DownloadManager.loadPetList()
-            //self.setupReloadAndScroll()
+            DownloadManager.loadPetList(more: false)
             return
         }
         
@@ -86,15 +91,13 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
                 self.askForZipCode()
                 return
             }
-            guard let _ = location else {
+            guard let l = location else {
                 return
             }
             
             zipCode = placemark?.postalCode ?? "19106"
             self.setFilterDisplay()
-            self.pets?.loading = true
-            DownloadManager.loadPetList()
-            //self.setupReloadAndScroll()
+            DownloadManager.loadPetList(more: false)
         }
     }
 
@@ -169,13 +172,12 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
         
         pets = p
-
-        totalRows = pets?.foundRows ?? 0
         
         self.pets?.loading = false
         
         guard let newIndexPathsToReload = userInfo["newIndexPathsToReload"] as? [IndexPath] else {
           DispatchQueue.main.async { [unowned self] in
+            totalRows = pets?.foundRows ?? 0
             self.MainTV.reloadData()
             isFetchInProgress = false
           }
@@ -200,9 +202,9 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         } else {
             setFilterDisplay()
             self.pets?.loading = true
+            DownloadManager.loadPetList()
         }
         Favorites.LoadFavorites(tv: nil)
-        DownloadManager.loadPetList()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -345,7 +347,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         FelineDetail.transitioningDelegate = self
         scrollPos = indexPath
         whichTab = 2
-        present(FelineDetail, animated: true, completion: nil)
+        //present(FelineDetail, animated: true, completion: nil)
     }
 
 }

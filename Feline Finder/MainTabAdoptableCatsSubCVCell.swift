@@ -8,17 +8,29 @@
 
 import Foundation
 
+protocol AmISelected {
+    func selected(tag: Int) -> Bool
+}
+
 class MainTabAdoptableCatsSubCVCell: UICollectionViewCell {
+    var delegate: AmISelected!
+    
+    override var isSelected: Bool {
+        didSet  {
+            subCatImage.alpha = self.isSelected ? 1 : 0.5
+        }
+    }
+    
+    override func prepareForReuse() {
+        super .prepareForReuse()
+        isSelected = delegate.selected(tag: subCatImage.tag)
+    }
     
     @IBOutlet weak var subCatImage: DynamicImageView!
-    @IBOutlet weak var MainView: UIView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        // Add width constraint if you want dynamic height
-        MainView.translatesAutoresizingMaskIntoConstraints = false
-        MainView.heightAnchor.constraint(equalToConstant: 73).isActive = true
+    func configure(imgURL: URL, isSelected: Bool) {
+        subCatImage.alpha = isSelected ? 1 : 0.5
+        subCatImage.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
     }
-
+    
 }

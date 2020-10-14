@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import StoreKit
+import SDWebImage
 
 class FavoritesViewController: UITableViewController {
     var statuses:[String: Favorite] = [:]

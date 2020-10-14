@@ -13,6 +13,7 @@ import MapKit
 import Social
 import FaveButton
 import WebKit
+import SDWebImage
 
 func color(_ rgbColor: Int) -> UIColor{
     return UIColor(
@@ -408,13 +409,10 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
                     self.CatImage.image = self.CatImage.image?.circleMasked
             }
         })
-
-        SDWebImageManager.shared().imageDownloader?.downloadImage(with: NSURL(string: largeURL)! as URL, options: SDWebImageDownloaderOptions.lowPriority, progress: nil, completed: {
-            (image, error, cacheType, imageURL) in
-            DispatchQueue.main.async {
-                self.CatImage.image = image?.circleMasked
-            }
-        })
+        
+        self.CatImage.sd_setImage(with: NSURL(string: largeURL)! as URL) { (image, error, cacheType, imageURL) in
+            self.CatImage.image = image?.circleMasked
+        }
 
         DispatchQueue.main.async {
             let dateFormatter = DateFormatter()

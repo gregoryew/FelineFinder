@@ -59,7 +59,7 @@ struct cat: Codable {
     var animalSex: String?
     var animalPrimaryBreed: String?
     var animalOrgID: String?
-    var animalLocationDistance: Int?
+    var animalLocationDistance: Double?
     var animalStatus: String?
     var animalBirthdate: String?
     var animalAvailableDate: String?
@@ -176,7 +176,7 @@ struct cat: Codable {
         }
 
         do {
-            animalLocationDistance = try values.decode(Int.self, forKey: .animalLocationDistance)
+            animalLocationDistance = Double(try values.decode(Int.self, forKey: .animalLocationDistance))
         } catch {
             animalLocationDistance = nil
         }

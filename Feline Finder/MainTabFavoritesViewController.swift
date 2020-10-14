@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import StoreKit
+import SDWebImage
 
 class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDataSource, UITableViewDelegate {
     var statuses:[String: Favorite] = [:]

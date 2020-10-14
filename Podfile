@@ -11,4 +11,6 @@ target 'Feline Finder' do
       pod 'TTSegmentedControl'
       pod 'BetterSegmentedControl', '~> 1.3'
       pod 'SwiftLocation'
+      pod 'SDWebImage', '~> 5.0'
+      pod 'ImageSizeFetcher'
 end

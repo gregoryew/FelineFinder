@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImage
 
 let handlerDelay = 1.5
 

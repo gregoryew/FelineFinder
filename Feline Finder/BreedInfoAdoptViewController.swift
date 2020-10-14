@@ -9,6 +9,7 @@
 import UIKit
 import SwiftLocation
 import CoreLocation
+import SDWebImage
 
 //let handlerDelay2 = 1.5
 

@@ -9,6 +9,7 @@
 import UIKit
 import SwiftLocation
 import CoreLocation
+import SDWebImage
 
 class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
