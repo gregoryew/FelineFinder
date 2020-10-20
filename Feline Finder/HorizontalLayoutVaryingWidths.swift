@@ -80,7 +80,10 @@ class HorizontalLayoutVaryingWidths: UICollectionViewLayout {
         let width = delegate.collectionView(collectionView!, widthForPhotoAtIndexPath: indexPath)
 
         let frame = CGRect(x: xOffsets[row], y: yOffsets[row], width: width, height: columnHeight)
-        let insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+        var insetFrame = frame
+        if width > cellPadding * 2 {
+            insetFrame = frame.insetBy(dx: cellPadding, dy: cellPadding)
+        }
         let attributes = HorizontalLayoutVaryingWidthsAttributes(forCellWith: indexPath)
         attributes.frame = insetFrame
         attributes.imageWidth = width

@@ -18,6 +18,8 @@ class TableViewWorkAround: UITableView {
     }
 }
 
+var selectedImages: [Int] = []
+
 class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
     
     var viewDidLayoutSubviewsForTheFirstTime = true
@@ -33,7 +35,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     var observer : Any!
     var observer2: Any!
     var obeserver3: Any!
-    
+        
     @IBOutlet weak var ZipCode: UILabel!
     @IBOutlet weak var MainTV: TableViewWorkAround! //UITableView!
     @IBOutlet weak var SearchButton: UIButton!
@@ -44,7 +46,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         PetFinderFind.breed = globalBreed
         present(PetFinderFind, animated: false, completion: nil)
     }
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -179,6 +181,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
           DispatchQueue.main.async { [unowned self] in
             totalRows = pets?.foundRows ?? 0
             self.MainTV.reloadData()
+            selectedImages = [Int](repeating: 0, count: totalRows)
             isFetchInProgress = false
           }
           return
@@ -305,32 +308,16 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         return c
         */
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
-        
-        /*
-        if titles.count == 0 || indexPath.section >= titles.count {
-            return cell
-        }
-        let d = self.pets!.distances[titles[indexPath.section]]
-        
-        if d == nil {
-            return cell
-        }
-        
-        if (d?.count)! == 0 || indexPath.row >= (d?.count)! {
-            return cell
-        }
-        
-        let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
-        */
         
         if isLoadingCell(for: indexPath) {
             cell.configure(pd: .none)
         } else {
             cell.configure(pd: self.pets![indexPath.row])
         }
+        cell.tag = indexPath.row
         return cell
 
     }

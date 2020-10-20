@@ -22,6 +22,7 @@ struct Breed {
     var YouTubePlayListID: String = ""
     var YouTubeVideos: [YouTubeVideo] = []
     var Picture: [breedPicture] = []
+    var Percentage: Double = 0
     
     init (id: Int32, name: String, url: String, picture: String, percentMatch: Int32, desc: String, fullPict: String, rbID: String, youTubeURL: String, cats101: String, playListID: String) {
         BreedID = id

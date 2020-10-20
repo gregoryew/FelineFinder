@@ -11,7 +11,7 @@ import FaveButton
 import SDWebImage
 import ImageSizeFetcher
 
-class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, AmISelected {
+class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var MainCatImage: UIImageView!
     @IBOutlet weak var SubCatCV: UICollectionView!
@@ -26,8 +26,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     private var imgs: [picture2] = []
     private var ximgs: [picture2] = []
     private var photos: [picture2] = []
-    private var selectedIndex: Int = 0
-
+    
     func getHeaderInformations (myUrl: URL, completion: @escaping (_ content: String?) -> ()) {
 
         var request = URLRequest(url: myUrl)
@@ -46,10 +45,6 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         task.resume()
     }
     
-    func selected(tag: Int) -> Bool {
-        return tag == selectedIndex
-    }
-
     static func sizeOfImageAt(url: URL) -> CGSize? {
         // with CGImageSource we avoid loading the whole image into memory
         guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
@@ -81,13 +76,13 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         
         SubCatCV.dataSource = self
         SubCatCV.delegate = self
-        
+                
         SubCatCV!.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
         let layout = SubCatCV.collectionViewLayout as! HorizontalLayoutVaryingWidths
         layout.delegate = self
         layout.numberOfRows = 1
-        layout.cellPadding = 0
+        layout.cellPadding = 2.5
         
         CGWidths = []
         for img in imgs {
@@ -101,6 +96,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
          
         DispatchQueue.main.async {
             self.SubCatCV.reloadData()
+            let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
+            self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
             self.SubCatCV.layoutIfNeeded()
         }
     }
@@ -116,8 +113,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     
     override func prepareForReuse() {
         super .prepareForReuse()
-        self.backgroundColor = UIColor.white
-        self.MainCatImage.backgroundColor = getRandomColor()
+        //self.backgroundColor = UIColor.white
+        //self.MainCatImage.backgroundColor = getRandomColor()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -182,15 +179,15 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
         cell.tag = indexPath.item
-        cell.delegate = self
         prepareForReuse()
         if indexPath.item >= imgs.count {
             return cell
         }
         let imgURL = URL(string: imgs[indexPath.item].URL)
         cell.prepareForReuse()
-        cell.configure(imgURL: imgURL!, isSelected: selectedIndex == indexPath.item)
+        cell.configure(imgURL: imgURL!, isSelected: selectedImages[tag] == indexPath.row)
         self.layoutIfNeeded()
+        self.SubCatCV.setNeedsDisplay()
         return cell
     }
     
@@ -204,20 +201,20 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             print("cell frame = \(cell.frame) imgs w= \(self.imgs[indexPath.item].width) imgs h= \(self.imgs[indexPath.item].height) url= \(self.imgs[indexPath.item].URL) subimg=\(img!.size) ratio=\(img!.size.width * (100 / img!.size.height)) CGFloat=\(self.CGWidths) indexPath=\(indexPath) imgsCount=\(self.imgs.count) petID=\(self.petData.petID)")
         }
         
-        if indexPath.item - selectedIndex > 0 {
+        if indexPath.item - selectedImages[tag] > 0 {
             animateImageView(newImgURL: imgURL, direction: .fromRight)
-        } else if indexPath.item - selectedIndex < 0 {
+        } else if indexPath.item - selectedImages[tag] < 0 {
             animateImageView(newImgURL: imgURL, direction: .fromLeft)
         } else {
             return
         }
-        selectedIndex = indexPath.item
+        selectedImages[tag] = indexPath.item
     }
 
     func animateImageView(newImgURL: URL?, direction: CATransitionSubtype) {
         QuartzCore.CATransaction.begin() //Begin the CATransaction
 
-        QuartzCore.CATransaction.setAnimationDuration(1)
+        QuartzCore.CATransaction.setAnimationDuration(0.25)
         QuartzCore.CATransaction.setCompletionBlock {
         }
 

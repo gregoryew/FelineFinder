@@ -8,12 +8,7 @@
 
 import Foundation
 
-protocol AmISelected {
-    func selected(tag: Int) -> Bool
-}
-
 class MainTabAdoptableCatsSubCVCell: UICollectionViewCell {
-    var delegate: AmISelected!
     
     override var isSelected: Bool {
         didSet  {
@@ -23,7 +18,6 @@ class MainTabAdoptableCatsSubCVCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super .prepareForReuse()
-        isSelected = delegate.selected(tag: subCatImage.tag)
     }
     
     @IBOutlet weak var subCatImage: DynamicImageView!

@@ -251,6 +251,50 @@ class DatabaseManager {
         }
         }
     }
+
+    func fetchBreedsFit(completion: @escaping (_ breeds: [Breed]) -> Void) {
+        var rb:Dictionary<String, String> = [:]
+        getRescueBreedID{(rescueBreeds) -> Void in
+        rb = rescueBreeds
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { [unowned self] (db: FMDatabase?) -> Void in
+            
+            var querySQL = ""
+            querySQL = "SELECT substr(BreedName, 1, 1) Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID from Breed order by BreedName"
+
+            var breeds = [Breed]()
+            
+            if let results = db?.executeQuery(querySQL, withArgumentsIn: []) {
+                
+                while results.next() == true {
+                    let id = results.int(forColumn: "BreedID")
+                    var name = results.string(forColumn: "BreedName")
+                    let url = results.string(forColumn: "BreedHTMLURL")
+                    let pict = results.string(forColumn: "PictureHeadShotName")
+                    let percentMatch = results.int(forColumn: "c")
+                    let description = results.string(forColumn: "Description")
+                    let fullpict = results.string(forColumn: "FullSizedPicture")
+                    let youTubeURL = results.string(forColumn: "YouTubeURL")
+                    let cats101URL = results.string(forColumn: "Cats101URL")
+                    let playListID = results.string(forColumn: "PlayListID")
+                    name = name?.replacingOccurrences(of: "\n", with: "")
+                    let breed: Breed?
+                    if let rID = rb[name!] {
+                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rID, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
+                    } else {
+                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: "", youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
+                    }
+                    breeds.append(breed!)
+                }
+
+            results.close()
+            } else {
+                self.presentDBErrorMessage((db?.lastErrorMessage())!)
+            }
+            
+            completion(breeds)
+        }
+        }
+    }
     
     //Breed Stats
     func fetchBreedStatList(_ breedID: Int, percentageMatch: Double, completion: @escaping (_ breedStats: [BreedStats]) -> Void) {

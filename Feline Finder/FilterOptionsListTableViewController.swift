@@ -318,22 +318,25 @@ class FilterOptionsListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel!.text = filterOpt?.optionsArray()[indexPath.row]
-        cell.textLabel!.textColor = textColor
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "isSelectedCell", for: indexPath) as! SelectedItemTableViewCell
         if filterOpt?.classification == .saves {return cell}
         if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
-            cell.accessoryType = .checkmark
+            if filterOpt?.name == "Not These" {
+                cell.isSelectedLabel.text = "😿"
+            } else {
+                cell.isSelectedLabel.text = "😻"
+            }
         } else {
-            cell.accessoryType = .none
+            cell.isSelectedLabel.text = "🐱"
         }
+        cell.optionLabel.text = filterOpt?.optionsArray()[indexPath.row]
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if filterOpt?.classification == .saves {
             filterOpt?.choosenValue = Int((filterOpt?.options[indexPath.row].search)!)
-            //indexPath.row
             let cell = tableView.cellForRow(at: indexPath)
             currentFilterSave = (cell?.textLabel?.text)!
             presentingViewController?.dismiss(animated: false) {
@@ -344,12 +347,11 @@ class FilterOptionsListTableViewController: UITableViewController {
             }
         } else if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             filterOpt?.choosenListValues = (filterOpt?.choosenListValues.filter(){$0 != indexPath.row})!
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            self.tableView.reloadRows(at: [indexPath], with: .none)
         } else {
             filterOpt?.choosenListValues.append(indexPath.row)
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            self.tableView.reloadRows(at: [indexPath], with: .none)
         }
-        return indexPath
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
