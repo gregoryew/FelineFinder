@@ -9,5 +9,5 @@
 import UIKit
 
 class ToolCollectionViewCell: UICollectionViewCell {
-    
+    @IBOutlet weak var ToolIcon: UIView!
 }

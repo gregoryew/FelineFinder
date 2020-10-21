@@ -1788,22 +1788,36 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cvf-bs-1MN">
                                 <rect key="frame" x="0.0" y="44" width="414" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Devon Rex" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lP-yy-kSW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5lP-yy-kSW">
                                         <rect key="frame" x="0.0" y="30" width="414" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="Z1o-56-DLs"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Devon Rex">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="24" name="HelveticaNeue-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zip Code: 19106" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9Y-eH-od5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9Y-eH-od5">
                                         <rect key="frame" x="0.0" y="10" width="414" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="dBr-mM-EcK"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Zip Code: 19106">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvP-sU-uu7">
@@ -1812,6 +1826,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <constraint firstAttribute="height" constant="40" id="UcF-G0-lrd"/>
                                             <constraint firstAttribute="width" constant="46" id="iNF-Hp-abr"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="41"/>
                                         <state key="normal" title="🔎"/>
                                         <connections>
                                             <action selector="SearchButtonTapped:" destination="o3E-7I-hhl" eventType="touchUpInside" id="bp2-eX-xt2"/>
@@ -1819,7 +1834,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.31461793179999997" green="0.45798739789999998" blue="0.89417970179999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.99845069649999996" green="0.8341670632" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="m9Y-eH-od5" secondAttribute="trailing" id="BXe-jr-PPJ"/>
                                     <constraint firstAttribute="trailing" secondItem="5lP-yy-kSW" secondAttribute="trailing" id="Wpq-tM-hug"/>
@@ -1948,6 +1963,9 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                                 <segment title="🛠️"/>
                                                             </segments>
                                                             <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
+                                                            <connections>
+                                                                <action selector="switchToggled:" destination="Ote-UK-EhE" eventType="valueChanged" id="hcQ-bh-5yV"/>
+                                                            </connections>
                                                         </segmentedControl>
                                                     </subviews>
                                                     <color key="backgroundColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1983,7 +2001,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
-                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Py9-EY-wWw">
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Py9-EY-wWw">
                                                     <rect key="frame" x="0.0" y="450" width="414" height="100"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -1992,7 +2010,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                     </constraints>
                                                     <collectionViewLayout key="collectionViewLayout" id="Yjc-y8-4BT" customClass="HorizontalLayoutVaryingWidths" customModule="Feline_Finder" customModuleProvider="target"/>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" reuseIdentifier="subCell" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-xg-jCo" customClass="MainTabAdoptableCatsSubCVCell" customModule="Feline_Finder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" misplaced="YES" reuseIdentifier="subCell" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-xg-jCo" customClass="MainTabAdoptableCatsSubCVCell" customModule="Feline_Finder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="25" width="50" height="50"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZO-iD-OUe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -2029,7 +2047,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                                 <outlet property="subCatImage" destination="2FH-cQ-ZHL" id="JV1-VY-ocJ"/>
                                                             </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="toolCell" id="MCg-CZ-Gwz" customClass="ToolCollectionViewCell" customModule="Feline_Finder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="toolCell" translatesAutoresizingMaskIntoConstraints="NO" id="MCg-CZ-Gwz" customClass="ToolCollectionViewCell" customModule="Feline_Finder" customModuleProvider="target">
                                                             <rect key="frame" x="60" y="0.0" width="100" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nI-Mx-Dfd">
@@ -2051,6 +2069,9 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
                                                             <size key="customSize" width="100" height="100"/>
+                                                            <connections>
+                                                                <outlet property="ToolIcon" destination="9nI-Mx-Dfd" id="GiU-xw-Udj"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                     <userDefinedRuntimeAttributes>
@@ -2061,7 +2082,6 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="2ce-q9-ska" firstAttribute="centerX" secondItem="9wo-cy-HYx" secondAttribute="centerX" id="1X2-eY-F0E"/>
-                                                <constraint firstItem="Py9-EY-wWw" firstAttribute="leading" secondItem="9wo-cy-HYx" secondAttribute="leading" id="H00-2v-wGi"/>
                                                 <constraint firstItem="FQ8-Rh-Fvo" firstAttribute="leading" secondItem="9wo-cy-HYx" secondAttribute="leading" constant="25" id="MGO-BK-VHb"/>
                                                 <constraint firstItem="Py9-EY-wWw" firstAttribute="centerX" secondItem="9wo-cy-HYx" secondAttribute="centerX" id="W61-CC-x1r"/>
                                                 <constraint firstItem="Py9-EY-wWw" firstAttribute="top" secondItem="FQ8-Rh-Fvo" secondAttribute="bottom" constant="15" id="W6y-9J-JuC"/>
@@ -2081,6 +2101,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <outlet property="MainCatImage" destination="2ce-q9-ska" id="8sS-Ge-SWL"/>
                                             <outlet property="SubCatCV" destination="Py9-EY-wWw" id="7yJ-ea-tBo"/>
                                             <outlet property="SubCatCVWidth" destination="pXY-fv-hgN" id="9dS-Y2-34J"/>
+                                            <outlet property="switch" destination="5Zd-Rc-Izs" id="Nok-Cy-KuG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

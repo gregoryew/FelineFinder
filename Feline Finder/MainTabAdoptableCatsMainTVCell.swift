@@ -21,124 +21,18 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var InfoLabel: UILabel!
     @IBOutlet weak var CityLabel: UILabel!
     @IBOutlet weak var FavoriteButton: FaveButton!
+    @IBOutlet weak var Togle: UISegmentedControl!
     
     @IBOutlet weak var SubCatCVWidth: NSLayoutConstraint!
     
     private var petData: Pet!
-    private var imgs: [picture2] = []
-    private var ximgs: [picture2] = []
-    private var photos: [picture2] = []
-    
-    func getHeaderInformations (myUrl: URL, completion: @escaping (_ content: String?) -> ()) {
-
-        var request = URLRequest(url: myUrl)
-        request.httpMethod = "HEAD"
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        guard error == nil, let reponse = response as? HTTPURLResponse, let contentType = reponse.allHeaderFields["Content-Type"],let contentLength = reponse.allHeaderFields["Content-Length"]
-
-            else{
-                completion(nil)
-                return
-        }
-            let content = String(describing: contentType) + "/" + String(describing: contentLength)
-
-                completion(content)
-        }
-        task.resume()
-    }
-    
-    static func sizeOfImageAt(url: URL) -> CGSize? {
-        // with CGImageSource we avoid loading the whole image into memory
-        guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-            return nil
-        }
-
-        let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
-        guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
-            return nil
-        }
-
-        if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
-            let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
-            return CGSize(width: width, height: height)
-        } else {
-            return nil
-        }
-    }
-    
+    //private var imgs: [picture2] = []
+    //private var ximgs: [picture2] = []
+    //private var photos: [picture2] = []
+    private var imgs: [imageTool] = []
+    private var tools: Tools!
+        
     var CGWidths = [CGFloat]()
-    
-    func setup() {
-        //guard petData != nil else {return}
-        imgs = []
-        imgs = petData.getAllImagesObjectsOfACertainSize("pnt")
-        //imgs = petData.getAllImagesOfACertainSize("pnt")
-        ximgs = []
-        ximgs = petData.getAllImagesObjectsOfACertainSize("x")
-        
-        SubCatCV.dataSource = self
-        SubCatCV.delegate = self
-                
-        SubCatCV!.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        
-        let layout = SubCatCV.collectionViewLayout as! HorizontalLayoutVaryingWidths
-        layout.delegate = self
-        layout.numberOfRows = 1
-        layout.cellPadding = 2.5
-        
-        CGWidths = []
-        for img in imgs {
-            /*
-            let s = MainTabAdoptableCatsMainTVCell.sizeOfImageAt(url: URL(string: img.URL)!)
-            let w: CGFloat = s!.width
-            let h: CGFloat = s!.height
-            let ratio = 100 / h
-            let w2 = w * ratio
-            CGWidths.append(w2)
-            */
-            let ratio = 100 / CGFloat(img.height)
-            let w2 = CGFloat(img.width) * ratio
-            CGWidths.append(w2)
-        }
-         
-        DispatchQueue.main.async {
-            self.SubCatCV.reloadData()
-            var totalWidth:CGFloat = 0
-            for i in 0..<self.CGWidths.count {
-                totalWidth += self.CGWidths[i]
-            }
-            if totalWidth <
-                self.contentView.frame.width {
-                self.SubCatCVWidth.constant = totalWidth
-                self.SubCatCV.isScrollEnabled = false
-            } else {
-                self.SubCatCVWidth.constant = self.contentView.frame.width
-                self.SubCatCV.isScrollEnabled = true
-            }
-            let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
-            self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
-            self.SubCatCV.layoutIfNeeded()
-        }
-    }
-    
-    @IBAction func favoriteTapped(_ sender: Any) {
-        if FavoriteButton.isSelected {
-            let f = Favorite(petID: petData.petID, petName: petData.name, imageName: petData.media[0].URL, breed: petData.breeds.popFirst() ?? "", FavoriteDataSource: DataSource.RescueGroup, Status: petData.status)
-            Favorites.addFavorite(petData.petID, f: f)
-        } else {
-            Favorites.removeFavorite(petData.petID, dataSource: .RescueGroup)
-        }
-    }
-    
-    override func prepareForReuse() {
-        super .prepareForReuse()
-        self.backgroundColor = UIColor.clear
-        self.MainCatImage.backgroundColor = UIColor.clear
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imgs.count
-    }
     
     func configure(pd: Pet?) {
         if let p = pd {
@@ -152,6 +46,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             SubCatCV.alpha = 1
             
             self.petData = p
+            
+            tools = Tools(pet: self.petData)
             
             setup()
             
@@ -195,11 +91,80 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         }
     }
     
+    func setup() {
+        //guard petData != nil else {return}
+        //imgs = []
+        //imgs = petData.getAllImagesObjectsOfACertainSize("pnt")
+        //imgs = petData.getAllImagesOfACertainSize("pnt")
+        //ximgs = []
+        //ximgs = petData.getAllImagesObjectsOfACertainSize("x")
+        
+        SubCatCV.dataSource = self
+        SubCatCV.delegate = self
+                
+        SubCatCV!.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        let layout = SubCatCV.collectionViewLayout as! HorizontalLayoutVaryingWidths
+        layout.delegate = self
+        layout.numberOfRows = 1
+        layout.cellPadding = 2.5
+        
+        CGWidths = []
+        let imgs = tools.images()
+        for img in imgs {
+            let ratio = 100 / CGFloat(img.thumbNail.height)
+            let w2 = CGFloat(img.thumbNail.width) * ratio
+            CGWidths.append(w2)
+        }
+         
+        DispatchQueue.main.async {
+            self.SubCatCV.reloadData()
+            var totalWidth:CGFloat = 0
+            for i in 0..<self.CGWidths.count {
+                totalWidth += self.CGWidths[i]
+            }
+            if totalWidth <
+                self.contentView.frame.width {
+                self.SubCatCVWidth.constant = totalWidth
+                self.SubCatCV.isScrollEnabled = false
+            } else {
+                self.SubCatCVWidth.constant = self.contentView.frame.width
+                self.SubCatCV.isScrollEnabled = true
+            }
+            let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
+            self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
+            self.SubCatCV.layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func togleSwitched(_ sender: Any) {
+        self.tools?.switchMode()
+    }
+    
+    @IBAction func favoriteTapped(_ sender: Any) {
+        if FavoriteButton.isSelected {
+            let f = Favorite(petID: petData.petID, petName: petData.name, imageName: petData.media[0].URL, breed: petData.breeds.popFirst() ?? "", FavoriteDataSource: DataSource.RescueGroup, Status: petData.status)
+            Favorites.addFavorite(petData.petID, f: f)
+        } else {
+            Favorites.removeFavorite(petData.petID, dataSource: .RescueGroup)
+        }
+    }
+    
+    override func prepareForReuse() {
+        super .prepareForReuse()
+        self.backgroundColor = UIColor.clear
+        self.MainCatImage.backgroundColor = UIColor.clear
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return imgs.count
+    }
+        
     @objc func curlRightAnimation(_ gesture: UISwipeGestureRecognizer)
     {
         print("PAGE CURL RIGHT")
         
-        if selectedImages[tag] >= ximgs.count - 1 {
+        if selectedImages[tag] >= imgs.count - 1 {
             Animations.requireUserAtencion(on: self.MainCatImage)
             return
         }
@@ -214,7 +179,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
 
         selectedImages[tag] += 1
         
-        let newImgURL = URL(string: ximgs[selectedImages[tag]].URL)
+        let newImgURL = URL(string: imgs[selectedImages[tag]].photo.URL)
             
         self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
             CATransaction.commit()
@@ -242,7 +207,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
 
         selectedImages[tag] -= 1
                 
-        let newImgURL = URL(string: ximgs[selectedImages[tag]].URL)
+        let newImgURL = URL(string: imgs[selectedImages[tag]].photo.URL)
         
         self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
             CATransaction.commit()
@@ -269,7 +234,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         if indexPath.item >= imgs.count {
             return cell
         }
-        let imgURL = URL(string: imgs[indexPath.item].URL)
+        let imgURL = URL(string: imgs[indexPath.item].thumbNail.URL)
         cell.prepareForReuse()
         cell.configure(imgURL: imgURL!, isSelected: selectedImages[tag] == indexPath.row)
         self.layoutIfNeeded()
@@ -278,19 +243,19 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let imgURL = URL(string: ximgs[indexPath.item].URL)
-        let imgURL2 = URL(string: imgs[indexPath.item].URL)
+        let thumbNail = URL(string: imgs[indexPath.item].thumbNail.URL)
+        let photo = URL(string: imgs[indexPath.item].photo.URL)
 
         let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
         
-        cell.subCatImage.sd_setImage(with: imgURL2) { (img, err, _, url) in
-            print("cell frame = \(cell.frame) imgs w= \(self.imgs[indexPath.item].width) imgs h= \(self.imgs[indexPath.item].height) url= \(self.imgs[indexPath.item].URL) subimg=\(img!.size) ratio=\(img!.size.width * (100 / img!.size.height)) CGFloat=\(self.CGWidths) indexPath=\(indexPath) imgsCount=\(self.imgs.count) petID=\(self.petData.petID)")
+        cell.subCatImage.sd_setImage(with: thumbNail) { (img, err, _, url) in
+            print("cell frame = \(cell.frame) imgs w= \(self.imgs[indexPath.item].thumbNail.width) imgs h= \(self.imgs[indexPath.item].thumbNail.height) url= \(self.imgs[indexPath.item].thumbNail.URL) subimg=\(img!.size) ratio=\(img!.size.width * (100 / img!.size.height)) CGFloat=\(self.CGWidths) indexPath=\(indexPath) imgsCount=\(self.imgs.count) petID=\(self.petData.petID)")
         }
         
         if indexPath.item - selectedImages[tag] > 0 {
-            animateImageView(newImgURL: imgURL, oldImgURL: imgs[indexPath.item].URL, direction: .fromRight)
+            animateImageView(newImgURL: photo, oldImgURL: imgs[indexPath.item].thumbNail.URL, direction: .fromRight)
         } else if indexPath.item - selectedImages[tag] < 0 {
-            animateImageView(newImgURL: imgURL, oldImgURL: imgs[indexPath.item].URL, direction: .fromLeft)
+            animateImageView(newImgURL: photo, oldImgURL: imgs[indexPath.item].thumbNail.URL, direction: .fromLeft)
         } else {
             return
         }
@@ -434,5 +399,43 @@ class DynamicImageView: UIImageView {
         }
         return s
     }
-
 }
+
+/*
+func getHeaderInformations (myUrl: URL, completion: @escaping (_ content: String?) -> ()) {
+
+    var request = URLRequest(url: myUrl)
+    request.httpMethod = "HEAD"
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+    guard error == nil, let reponse = response as? HTTPURLResponse, let contentType = reponse.allHeaderFields["Content-Type"],let contentLength = reponse.allHeaderFields["Content-Length"]
+
+        else{
+            completion(nil)
+            return
+    }
+        let content = String(describing: contentType) + "/" + String(describing: contentLength)
+
+            completion(content)
+    }
+    task.resume()
+}
+
+static func sizeOfImageAt(url: URL) -> CGSize? {
+    // with CGImageSource we avoid loading the whole image into memory
+    guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+        return nil
+    }
+
+    let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+    guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+        return nil
+    }
+
+    if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+        let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+        return CGSize(width: width, height: height)
+    } else {
+        return nil
+    }
+}
+ */
