@@ -170,8 +170,11 @@
 		C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */; };
 		C5BB77C52521672C00E33668 /* ZoomViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BB77C32521669A00E33668 /* ZoomViewControler.swift */; };
 		C5BE355F2534458200B6F2B8 /* HorizontalLayoutVaryingWidths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BE355E2534458200B6F2B8 /* HorizontalLayoutVaryingWidths.swift */; };
+		C5C2B8A4253F79E300E7E753 /* ImageSizeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B8A3253F79E300E7E753 /* ImageSizeAPI.swift */; };
+		C5C2B8A7253F7A4700E7E753 /* PetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C2B8A6253F7A4700E7E753 /* PetImage.swift */; };
 		C5C506DD1B83DD1A0092BC00 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C5C506DC1B83DD1A0092BC00 /* CatFinder.db */; };
 		C5CB15AF2523BF6900E20B25 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5CB15AE2523BF6900E20B25 /* energy_level.gif */; };
+		C5D294F02540427C009419B9 /* ToolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */; };
 		C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA433E1B33ADAF00CF7283 /* Breeders.m */; };
 		C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */; };
 		C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */; };
@@ -367,8 +370,11 @@
 		C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderPicturesViewController.swift; sourceTree = "<group>"; };
 		C5BB77C32521669A00E33668 /* ZoomViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomViewControler.swift; sourceTree = "<group>"; };
 		C5BE355E2534458200B6F2B8 /* HorizontalLayoutVaryingWidths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutVaryingWidths.swift; sourceTree = "<group>"; };
+		C5C2B8A3253F79E300E7E753 /* ImageSizeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSizeAPI.swift; sourceTree = "<group>"; };
+		C5C2B8A6253F7A4700E7E753 /* PetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetImage.swift; sourceTree = "<group>"; };
 		C5C506DC1B83DD1A0092BC00 /* CatFinder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = CatFinder.db; sourceTree = "<group>"; };
 		C5CB15AE2523BF6900E20B25 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
+		C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5DA433E1B33ADAF00CF7283 /* Breeders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breeders.m; sourceTree = "<group>"; };
 		C5DA43441B343A8A00CF7283 /* Breeders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Breeders.h; sourceTree = "<group>"; };
 		C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feline Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -553,6 +559,7 @@
 				C59AC43A252E45E30016F523 /* Result.swift */,
 				C59AC43D252E45E40016F523 /* RescuePetsAPI3.swift */,
 				C59AC43B252E45E40016F523 /* URLRequest.swift */,
+				C5C2B8A3253F79E300E7E753 /* ImageSizeAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -594,6 +601,7 @@
 		C5FB6E9D1B2132EC007FFA36 /* Purrfect4U */ = {
 			isa = PBXGroup;
 			children = (
+				C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */,
 				C525BD8825272EA300213944 /* Drawing.swift */,
 				C51D41AC25272E4800040BEE /* CoolButton.swift */,
 				C5BB77C32521669A00E33668 /* ZoomViewControler.swift */,
@@ -784,6 +792,7 @@
 				467737431F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift */,
 				46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */,
 				46181E871F7FEBFB00948D74 /* RescueSheltersAPI2.swift */,
+				C5C2B8A6253F7A4700E7E753 /* PetImage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -988,6 +997,7 @@
 				4692C5DB1E78EC7F00B83494 /* CharacterFlowLayout.swift in Sources */,
 				4692C58F1E74B0D200B83494 /* OnboardingVideoViewController.swift in Sources */,
 				C5471BBA1D67B01400F9A459 /* CustomCellBackground.m in Sources */,
+				C5D294F02540427C009419B9 /* ToolCollectionViewCell.swift in Sources */,
 				C5943AFB1D8248280088DE4D /* FilteringOptions.swift in Sources */,
 				C5045DB11B9155C200A6663C /* Utilities.swift in Sources */,
 				4692C5DF1E78EE4A00B83494 /* CatPictureCollectionViewCell.swift in Sources */,
@@ -1045,6 +1055,7 @@
 				C57028B5253D644F000ED749 /* FitQuestionSliderTableViewCell.swift in Sources */,
 				C57028B8253D66A5000ED749 /* FitBreedTableViewCell.swift in Sources */,
 				C5511C3A1B6EB3F400BE8610 /* FLAnimatedImage.m in Sources */,
+				C5C2B8A4253F79E300E7E753 /* ImageSizeAPI.swift in Sources */,
 				46DDD2EE1E0738F300344803 /* HWPullToInfinity.swift in Sources */,
 				4663A9181F36E65000742A4B /* SurveyMatchesHeaderTableViewCell.swift in Sources */,
 				C5943B011D825A700088DE4D /* FilterOptionsSegmentedCustomCellView.swift in Sources */,
@@ -1064,6 +1075,7 @@
 				46D537911E34B7230006498B /* ImageCardView.swift in Sources */,
 				C58367271D68047A001AFDD3 /* MasterViewTableCell.swift in Sources */,
 				468EE33A1F3BEFB800E2CFC2 /* YouTubeAPI.swift in Sources */,
+				C5C2B8A7253F7A4700E7E753 /* PetImage.swift in Sources */,
 				C51D41AE25272E4800040BEE /* CoolButton.swift in Sources */,
 				465313121F39472F00B39413 /* MainTabFavoritesViewController.swift in Sources */,
 				4680BC961F257A850042F2CE /* SurveyQuestionEntryViewController.swift in Sources */,

@@ -34,8 +34,10 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     var times = 0
     var observer : Any!
     var observer2: Any!
-    var obeserver3: Any!
-        
+    var observer3: Any!
+    var observer4: Any!
+    var observer5: Any!
+
     @IBOutlet weak var ZipCode: UILabel!
     @IBOutlet weak var MainTV: TableViewWorkAround! //UITableView!
     @IBOutlet weak var SearchButton: UIButton!
@@ -55,15 +57,23 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
             self?.petsLoaded(notification: notification)
         }
+                
+        observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
+            self?.retrieveData()
+        }
         
         observer3 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
             self?.petsFailed(notification: notification)
         }
         
-        observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
-            self?.retrieveData()
+        observer4 = nc.addObserver(forName: imageProberFailedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.imagesFailed(notification: notification)
         }
 
+        observer5 = nc.addObserver(forName: imageProberLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.imagesLoaded(notification: notification)
+        }
+        
         MainTV.dataSource = self
         MainTV.delegate = self
         MainTV.prefetchDataSource = self
@@ -75,7 +85,11 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         TitleLabel.text = "Cats for Adoption"
         
         pets = RescuePetsAPI3()
-
+        
+        MainTV.backgroundView = UIImageView(image: UIImage(named: "greenBackground"))
+        MainTV.backgroundColor = UIColor.clear
+        
+        MainTV.separatorStyle = .none
     }
     
     func getZipCode() {
@@ -175,6 +189,43 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         
         pets = p
         
+        DownloadManager.sizeImages(pets: p)
+
+/*
+        self.pets?.loading = false
+        
+        guard let newIndexPathsToReload = userInfo["newIndexPathsToReload"] as? [IndexPath] else {
+          DispatchQueue.main.async { [unowned self] in
+            totalRows = pets?.foundRows ?? 0
+            self.MainTV.reloadData()
+            selectedImages = [Int](repeating: 0, count: totalRows)
+            isFetchInProgress = false
+          }
+          return
+        }
+        
+        DispatchQueue.main.async { [unowned self] in
+            let indexPathsForVisibleRows = MainTV.indexPathsForVisibleRows ?? []
+            let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(newIndexPathsToReload)
+            let indexPathsToReload = Array(indexPathsIntersection)
+            self.MainTV.reloadRows(at: indexPathsToReload, with: .automatic)
+            isFetchInProgress = false
+        }
+*/
+    }
+    
+    func imagesLoaded(notification:Notification) -> Void {
+        print("petLoaded notification")
+        
+        guard let userInfo = notification.userInfo,
+              let p = userInfo["petList"] as? RescuePetsAPI3
+        else {
+                print("No userInfo found in notification")
+                return
+        }
+        
+        pets = p
+
         self.pets?.loading = false
         
         guard let newIndexPathsToReload = userInfo["newIndexPathsToReload"] as? [IndexPath] else {
@@ -196,6 +247,22 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
     }
 
+    func imagesFailed(notification: Notification) -> Void {
+        guard let userInfo = notification.userInfo,
+              let reason = userInfo["error"] as? String
+        else {
+                print("No userInfo found in notification")
+                return
+        }
+
+        DispatchQueue.main.async { [unowned self] in
+            let title = "Warning"
+            let action = UIAlertAction(title: "OK", style: .default)
+            displayAlert(with: title , message: reason, actions: [action])
+            isFetchInProgress = false
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
@@ -312,12 +379,19 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
         
+        cell.backgroundView = UIView(backgroundColor: .clear)
+        cell.backgroundView?.addSeparator()
+
+        cell.selectedBackgroundView = UIView(backgroundColor: .blue)
+        cell.selectedBackgroundView?.addSeparator()
+        
         if isLoadingCell(for: indexPath) {
             cell.configure(pd: .none)
         } else {
             cell.configure(pd: self.pets![indexPath.row])
         }
         cell.tag = indexPath.row
+        
         return cell
 
     }
@@ -381,4 +455,46 @@ private extension MainTabAdoptableCats {
     return Array(indexPathsIntersection)
   }
 */
+}
+
+private extension UIView {
+    convenience init(backgroundColor: UIColor) {
+        self.init()
+        self.backgroundColor = backgroundColor
+    }
+
+    func addSeparator() {
+        let separatorHeight: CGFloat = 6
+        let frame = CGRect(x: 0, y: bounds.height - separatorHeight, width: bounds.width, height: separatorHeight)
+        let separator = CustomView(frame: frame)
+        //separator.backgroundColor = UIColor(displayP3Red: 254/255, green: 211/255, blue: 35/255, alpha: 1)
+        //separator.backgroundColor = UIColor.gray
+        //separator.backgroundColor = UIColor(displayP3Red: 28/255, green: 69/255, blue: 38/255, alpha: 1)
+        separator.backgroundColor = UIColor.systemGreen
+        separator.alpha = 0.5
+        separator.draw(separator.bounds)
+        separator.autoresizingMask = [.flexibleTopMargin, .flexibleWidth]
+
+        addSubview(separator)
+    }
+}
+
+class CustomView: UIView
+{
+    override func draw(_ rect: CGRect)
+    {
+        super.draw(rect)
+        if let context = UIGraphicsGetCurrentContext()
+        {
+            context.setStrokeColor(UIColor.lightGray.cgColor)
+            context.setLineWidth(1)
+            context.move(to: CGPoint(x: 0, y: 1))
+            context.addLine(to: CGPoint(x: bounds.width, y: 1))
+            context.setStrokeColor(UIColor.darkGray.cgColor)
+            context.setLineWidth(1)
+            context.move(to: CGPoint(x: 0, y: bounds.height))
+            context.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
+            context.strokePath()
+        }
+    }
 }

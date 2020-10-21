@@ -11,7 +11,7 @@ import FaveButton
 import SDWebImage
 import ImageSizeFetcher
 
-class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource {
+class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, CAAnimationDelegate {
     
     @IBOutlet weak var MainCatImage: UIImageView!
     @IBOutlet weak var SubCatCV: UICollectionView!
@@ -21,6 +21,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var InfoLabel: UILabel!
     @IBOutlet weak var CityLabel: UILabel!
     @IBOutlet weak var FavoriteButton: FaveButton!
+    
+    @IBOutlet weak var SubCatCVWidth: NSLayoutConstraint!
     
     private var petData: Pet!
     private var imgs: [picture2] = []
@@ -86,16 +88,33 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         
         CGWidths = []
         for img in imgs {
+            /*
             let s = MainTabAdoptableCatsMainTVCell.sizeOfImageAt(url: URL(string: img.URL)!)
             let w: CGFloat = s!.width
             let h: CGFloat = s!.height
             let ratio = 100 / h
             let w2 = w * ratio
             CGWidths.append(w2)
+            */
+            let ratio = 100 / CGFloat(img.height)
+            let w2 = CGFloat(img.width) * ratio
+            CGWidths.append(w2)
         }
          
         DispatchQueue.main.async {
             self.SubCatCV.reloadData()
+            var totalWidth:CGFloat = 0
+            for i in 0..<self.CGWidths.count {
+                totalWidth += self.CGWidths[i]
+            }
+            if totalWidth <
+                self.contentView.frame.width {
+                self.SubCatCVWidth.constant = totalWidth
+                self.SubCatCV.isScrollEnabled = false
+            } else {
+                self.SubCatCVWidth.constant = self.contentView.frame.width
+                self.SubCatCV.isScrollEnabled = true
+            }
             let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
             self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
             self.SubCatCV.layoutIfNeeded()
@@ -113,8 +132,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     
     override func prepareForReuse() {
         super .prepareForReuse()
-        //self.backgroundColor = UIColor.white
-        //self.MainCatImage.backgroundColor = getRandomColor()
+        self.backgroundColor = UIColor.clear
+        self.MainCatImage.backgroundColor = UIColor.clear
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -135,7 +154,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             self.petData = p
             
             setup()
-                        
+            
             FavoriteButton.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
             
             let urlString: String? = petData.getImage(1, size: "pn")
@@ -153,8 +172,19 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
                 let imgURL = URL(string: urlString2)
                 MainCatImage.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"))
             }
-        }
-        else {
+            
+            let gesture = UISwipeGestureRecognizer(target: self, action: #selector(curlLeftAnimation))
+            gesture.direction = .right
+            MainCatImage.addGestureRecognizer(gesture)
+
+            let gesture2 = UISwipeGestureRecognizer(target: self, action: #selector(curlRightAnimation))
+            gesture2.direction = .left
+            MainCatImage.addGestureRecognizer(gesture2)
+            
+            //MainCatImage.layer.cornerRadius = MainCatImage.frame.size.width * 0.125
+            MainCatImage.layer.borderWidth = 6
+            MainCatImage.layer.borderColor = UIColor(red: 0.5, green: 0.47, blue: 0.25, alpha: 1.0).cgColor
+        } else {
             FavoriteButton.alpha = 0
             CatNameLabel.alpha = 0
             BreedNameLabel.alpha = 0
@@ -163,6 +193,62 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             MainCatImage.alpha = 0
             SubCatCV.alpha = 0
         }
+    }
+    
+    @objc func curlRightAnimation(_ gesture: UISwipeGestureRecognizer)
+    {
+        print("PAGE CURL RIGHT")
+        
+        if selectedImages[tag] >= ximgs.count - 1 {
+            Animations.requireUserAtencion(on: self.MainCatImage)
+            return
+        }
+        
+        QuartzCore.CATransaction.begin() //Begin the CATransaction
+
+        QuartzCore.CATransaction.setAnimationDuration(0.7)
+        QuartzCore.CATransaction.setCompletionBlock {
+        }
+
+        MainCatImage.layer.pageCURL(duration: 0.7, direction: CATransitionSubtype.fromRight)
+
+        selectedImages[tag] += 1
+        
+        let newImgURL = URL(string: ximgs[selectedImages[tag]].URL)
+            
+        self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
+            CATransaction.commit()
+            self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        }
+        
+    }
+
+    @objc func curlLeftAnimation(_ gesture: UISwipeGestureRecognizer)
+    {
+        print("PAGE CURL LEFT")
+        
+        if selectedImages[tag] <= 0 {
+            Animations.requireUserAtencion(on: self.MainCatImage)
+            return
+        }
+        
+        QuartzCore.CATransaction.begin() //Begin the CATransaction
+
+        QuartzCore.CATransaction.setAnimationDuration(0.7)
+        QuartzCore.CATransaction.setCompletionBlock {
+        }
+
+        MainCatImage.layer.pageCURL(duration: 0.7, direction: CATransitionSubtype.fromLeft)
+
+        selectedImages[tag] -= 1
+                
+        let newImgURL = URL(string: ximgs[selectedImages[tag]].URL)
+        
+        self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
+            CATransaction.commit()
+            self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        }
+
     }
     
     func getRandomColor() -> UIColor{
@@ -202,16 +288,16 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         }
         
         if indexPath.item - selectedImages[tag] > 0 {
-            animateImageView(newImgURL: imgURL, direction: .fromRight)
+            animateImageView(newImgURL: imgURL, oldImgURL: imgs[indexPath.item].URL, direction: .fromRight)
         } else if indexPath.item - selectedImages[tag] < 0 {
-            animateImageView(newImgURL: imgURL, direction: .fromLeft)
+            animateImageView(newImgURL: imgURL, oldImgURL: imgs[indexPath.item].URL, direction: .fromLeft)
         } else {
             return
         }
         selectedImages[tag] = indexPath.item
     }
 
-    func animateImageView(newImgURL: URL?, direction: CATransitionSubtype) {
+    func animateImageView(newImgURL: URL?, oldImgURL: String, direction: CATransitionSubtype) {
         QuartzCore.CATransaction.begin() //Begin the CATransaction
 
         QuartzCore.CATransaction.setAnimationDuration(0.25)
@@ -219,7 +305,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         }
 
         let transition = CATransition()
-        transition.type = CATransitionType.push
+        transition.type = CATransitionType.moveIn
         transition.subtype = direction
 
         /*
@@ -228,8 +314,9 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         */
 
         MainCatImage.layer.add(transition, forKey: kCATransition)
-        self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), completed: nil)
-        CATransaction.commit()
+        self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: oldImgURL), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
+            CATransaction.commit()
+        }
     }
 }
 
@@ -249,6 +336,53 @@ extension MainTabAdoptableCatsMainTVCell: HorizontalLayoutVaryingWidthsLayoutDel
         return CGWidths[indexPath.item]
     }
   }
+}
+
+extension CALayer {
+    
+    func bottomAnimation(duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.duration = duration
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromTop
+        self.add(animation, forKey: CATransitionType.push.rawValue)
+    }
+    
+    func topAnimation(duration:CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        animation.duration = duration
+        animation.type = CATransitionType.push
+        animation.subtype = CATransitionSubtype.fromBottom
+        self.add(animation, forKey: CATransitionType.push.rawValue)
+    }
+    
+    func pageCURL(duration:CFTimeInterval, direction: CATransitionSubtype) {
+            let animation = CATransition()
+            animation.duration = duration
+            animation.startProgress = 0.0
+            animation.endProgress   = 1;
+            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+            //animation.type = CATransitionType(rawValue: "pageCurl")
+            animation.type = CATransitionType.moveIn
+            animation.subtype = direction
+            //animation.isRemovedOnCompletion = true
+        //animation.fillMode = CAMediaTimingFillMode.removed
+            self.add(animation, forKey: "pageFlipAnimation")
+        }
+}
+
+class Animations {
+    static func requireUserAtencion(on onView: UIView) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: onView.center.x - 10, y: onView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: onView.center.x + 10, y: onView.center.y))
+        onView.layer.add(animation, forKey: "position")
+    }
 }
 
 /*
@@ -287,7 +421,7 @@ class DynamicImageView: UIImageView {
         } else if fixedWidth <= 0 && fixedHeight > 0 {
             if let image = self.image {
                 let ratio = fixedHeight / image.size.height
-                s.width = image.size.width * ratio
+                s.width = image.size.width * ratio - 10
             }
         } else if fixedWidth > 0 && fixedHeight <= 0 {
             s.width = fixedWidth

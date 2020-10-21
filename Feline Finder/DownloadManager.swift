@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let imageProberFailedMessage = Notification.Name(rawValue:"imageProberFailed")
+let imageProberLoadedMessage = Notification.Name(rawValue:"imageProberLoaded")
 let petsLoadedMessage = Notification.Name(rawValue:"petsLoaded")
 let petLoadedMessage = Notification.Name(rawValue:"petLoaded")
 let petsFailedMessage = Notification.Name(rawValue:"petsFailed")
@@ -23,6 +25,48 @@ class DownloadManager {
     private var currentPage = 1
     private var total = 0
     //private var isFetchInProgress = false
+        
+    static func sizeImages(pets: RescuePetsAPI3) {
+        
+        var imgs = [String]()
+        
+        let imageProber = ImageSizeAPI()
+        
+        for pet in pets.Pets {
+            for img in pet.media {
+                if img.size == "pnt" {imgs.append(img.URL)}
+            }
+        }
+        
+        imageProber.probeImages(imageArray: imgs) { result in
+            switch result {
+            case .failure(let error):
+                let nc = NotificationCenter.default
+                nc.post(name:imageProberFailedMessage,
+                        object: nil,
+                        userInfo: ["error": error.reason])
+            case .success(let response):
+                let imgList = response as [String: PetImage]
+                for i in 0..<pets.Pets.count {
+                    for j in 0..<pets.Pets[i].media.count {
+                        if pets.Pets[i].media[j].size == "pnt" {
+                            if let petImg = imgList[pets.Pets[i].media[j].URL] {
+                                pets.Pets[i].media[j].height = petImg.height
+                                pets.Pets[i].media[j].width = petImg.width
+                            }
+                        }
+                    }
+                }
+
+                var info = [String: Any]()
+                info["petList"] = pets
+                let nc = NotificationCenter.default
+                nc.post(name:imageProberLoadedMessage,
+                        object: nil,
+                        userInfo: info)
+            }
+        }
+    }
     
     static func loadPetList(more: Bool = false) {
         
