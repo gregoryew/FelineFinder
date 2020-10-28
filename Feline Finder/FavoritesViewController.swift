@@ -12,6 +12,7 @@ import StoreKit
 import SDWebImage
 
 class FavoritesViewController: UITableViewController {
+/*
     var statuses:[String: Favorite] = [:]
     
     override func viewDidLoad()
@@ -163,5 +164,5 @@ class FavoritesViewController: UITableViewController {
         _ = navigationController?.tr_popViewController()
     }
     */
-
+*/
 }

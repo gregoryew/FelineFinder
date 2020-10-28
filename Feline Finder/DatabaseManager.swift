@@ -627,6 +627,7 @@ class DatabaseManager {
     }
     
     //Favorites
+    /*
     func addFavorite(_ petID: String, f: Favorite) {
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
             if (!(db?.executeUpdate("INSERT INTO Favorites (PetID, PetName, ImageName, Breed, DataSource) VALUES (?, ?, ?, ?, ?)", withArgumentsIn: [f.petID + "_" + f.FavoriteDataSource.rawValue, f.petName, f.imageName, f.breed, f.FavoriteDataSource.rawValue]))!) {
@@ -634,6 +635,7 @@ class DatabaseManager {
             }
         }
     }
+    */
     
     func removeFavorite(_ petID: String) {
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
@@ -651,6 +653,7 @@ class DatabaseManager {
         return pID
     }
     
+    /*
     func fetchFavorites(_ keys: [String], favorites: [String:Favorite], completion: @escaping (_ favorites: [String:Favorite], _ keys: [String]) -> Void) {
         
         var _keys = keys
@@ -687,6 +690,7 @@ class DatabaseManager {
             completion(favoritesDict, keysArray)
         }
     }
+    */
     
     func deleteFilterOptions(savedID: Int) -> Void {
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in

@@ -1,5 +1,6 @@
 import Foundation
 
+/*
 final class RescuePetsAPI3: PetList {
     private lazy var baseURL: URL = {
         return URL(string: "https://api.rescuegroups.org/http/v2.json")!
@@ -12,6 +13,68 @@ final class RescuePetsAPI3: PetList {
     }
     
     var isLoading = false
+            
+    func loadSinglePetAPI3(_ PetID: String, completion: @escaping (Result<Pet, DataResponseError>) -> Void) {
+        
+        if let pet = PetsGlobal[PetID] {
+            print("pet in cache = |\(PetID)|")
+            //Supposed to refresh the PetFinder data every 24 hours
+            let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: pet.dateCreated as Date, to: Date(), options: []).hour
+            if hoursSinceCreation! < 24 {
+                print("returning cached shelter = |\(PetID)|")
+                completion(Result.success(pet))
+                return
+            }
+        }
+
+        if (Utilities.isNetworkAvailable() == false) {
+            isLoading = false
+            return
+        }
+        
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"100", "resultSort": "animalLocationDistance", "resultOrder": "asc", "calcFoundRows": "Yes", "filters": [["fieldName": "animalSpecies", "operation": "equals", "criteria": "cat"],["fieldName": "animalID", "operation": "equals", "criteria": splitPetID(PetID)]], "fields": ["animalID","animalOrgID","animalAltered","animalBreed","animalDeclawed","animalDescription","animalDescriptionPlain","animalGeneralAge","animalGeneralSizePotential","animalHousetrained","animalLocation","animalLocationCoordinates","animalLocationDistance","animalName","animalSpecialneeds","animalSpecialneedsDescription","animalOKWithAdults","animalOKWithCats","animalOKWithDogs","animalOKWithKids","animalPrimaryBreed","animalRescueID","animalSex","animalSizePotential","animalUpdatedDate","animalPictures","animalVideoUrls","animalUptodate","animalStatus","animalAdoptedDate","animalAvailableDate","animalAdoptionPending","animalBirthdate", "animalBirthdateExact",      "animalApartment", "animalYardRequired","animalIndoorOutdoor","animalNoCold", "animalNoHeat", "animalOKForSeniors", "animalActivityLevel", "animalEnergyLevel", "animalExerciseNeeds", "animalNewPeople", "animalVocal", "animalAffectionate", "animalCratetrained", "animalEagerToPlease", "animalEscapes", "animalEventempered", "animalGoodInCar", "animalHousetrained", "animalIntelligent", "animalLap", "animalNeedsCompanionAnimal", "animalPlayful", "animalPlaysToys", "animalPredatory", "animalTimid", "animalCoatLength", "animalEyeColor", "animalGroomingNeeds", "animalShedding", "animalTailType", "animalColor", "animalHearingImpaired", "animalHypoallergenic", "animalMicrochipped", "animalOngoingMedical", "animalSpecialDiet", "animalSpecialneeds", "animalAdoptionFee", "animalLocationCitystate"]]] as [String : Any]
+
+        var urlRequest = URLRequest(url: baseURL)
+
+        urlRequest.httpMethod = "POST"
+        
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: json, options: [])
+        
+        session.uploadTask(with: urlRequest, from: jsonData, completionHandler: { data, response, error in
+            guard
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.hasSuccessStatusCode,
+                let data = data
+            else {
+                completion(Result.failure(DataResponseError.network))
+                return
+            }
+            
+            guard let decodedResponse = try? JSONDecoder().decode(cat.self, from: data) else {
+                    completion(Result.failure(DataResponseError.decoding))
+                    return
+                }
+            
+            let petData = (decodedResponse as cat)
+
+            self.isLoading = false
+                        
+            let breed: Set<String> = [petData.animalPrimaryBreed ?? ""]
+            let options: Set<String> = self.getOptions(pet: petData)
+            let pictures: [picture2] = self.parsePictures2(picts: petData.animalPictures ?? [])
+            //print("animalPictures = \(String(describing: cat.animalPictures))")
+            let videos: [video] = self.parseVideos2(videos: petData.animalVideoUrls ?? [])
+            let status = self.animalStatus(pending: petData.animalAdoptionPending ?? "", animalStatus: petData.animalStatus ?? "", availableDate: petData.animalAvailableDate ?? "", animalAdoptedDate: petData.animalAdoptedDate ?? "", adoptionFee: petData.animalAdoptionFee ?? "")
+            
+            let p = Pet(pID: petData.animalID ?? "", n: petData.animalName ?? "", b: breed, m: false, a: petData.animalGeneralAge ?? "", s: petData.animalSex ?? "", s2: petData.animalSizePotential ?? "", o: options, d: petData.animalDescriptionPlain ?? "", m2: pictures, v: videos, s3: petData.animalOrgID ?? "", z: "", dis: petData.animalLocationDistance!, stat: status, bd: petData.animalBirthdate ?? "", upd: dateFromString(str: petData.animalUpdatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date(), adoptionFee: petData.adoptionFee ?? "", location: petData.animalLocationCitystate ?? "")
+            
+            PetsGlobal[p.petID] = p
+            
+            completion(Result.success(p))
+        }).resume()
+    }
     
     func loadPets3(bn: Breed, zipCode: String, more: Bool = false, completion: @escaping (Result<PetList, DataResponseError>) -> Void) {
         
@@ -61,7 +124,7 @@ final class RescuePetsAPI3: PetList {
             order = "asc"
         }
         //resultLimit = 5
-        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalLocationCitystate", "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls"]]] as [String : Any]
+        let json = ["apikey":"0doJkmYU","objectType":"animals","objectAction":"publicSearch", "search": ["resultStart": String(resultStart), "resultLimit":String(resultLimit), "resultSort": sortFilter, "resultOrder": order, "calcFoundRows": "Yes", "filters": filters, "fields": ["animalID", "animalName", "animalBreed", "animalGeneralAge", "animalSex", "animalPrimaryBreed", "animalUpdatedDate", "animalOrgID", "animalLocationDistance" , "animalLocationCitystate", "animalPictures", "animalStatus", "animalBirthdate", "animalAvailableDate", "animalGeneralSizePotential", "animalVideoUrls", "animalDescription","animalDescriptionPlain"]]] as [String : Any]
         // 1
         //let urlRequest = URLRequest(url: baseURL.appendingPathComponent(request.path))
         var urlRequest = URLRequest(url: baseURL)
@@ -103,7 +166,7 @@ final class RescuePetsAPI3: PetList {
                 let videos: [video] = self.parseVideos2(videos: cat.animalVideoUrls ?? [])
                 let status = self.animalStatus(pending: cat.animalAdoptionPending ?? "", animalStatus: cat.animalStatus ?? "", availableDate: cat.animalAvailableDate ?? "", animalAdoptedDate: cat.animalAdoptedDate ?? "", adoptionFee: cat.animalAdoptionFee ?? "")
                 
-                let p = Pet(pID: cat.animalID ?? "", n: cat.animalName ?? "", b: breed, m: false, a: cat.animalGeneralAge ?? "", s: cat.animalSex ?? "", s2: cat.animalSizePotential ?? "", o: options, d: cat.animalDescriptionPlain ?? "", m2: pictures, v: videos, s3: cat.animalOrgID ?? "", z: "", dis: cat.animalLocationDistance!, stat: status, bd: cat.animalBirthdate ?? "", upd: dateFromString(str: cat.animalUpdatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date(), adoptionFee: cat.adoptionFee ?? "", location: cat.animalLocationCitystate ?? "")
+                let p = Pet(pID: cat.animalID ?? "", n: cat.animalName ?? "", b: breed, m: false, a: cat.animalGeneralAge ?? "", s: cat.animalSex ?? "", s2: cat.animalSizePotential ?? "", o: options, d: cat.animalDescription ?? "", m2: pictures, v: videos, s3: cat.animalOrgID ?? "", z: "", dis: cat.animalLocationDistance!, stat: status, bd: cat.animalBirthdate ?? "", upd: dateFromString(str: cat.animalUpdatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date(), adoptionFee: cat.adoptionFee ?? "", location: cat.animalLocationCitystate ?? "")
                 pets2.append(p)
             }
             
@@ -335,7 +398,7 @@ final class RescuePetsAPI3: PetList {
         return opts
     }
 }
-
+*/
 func dateFromString(str: String, format: String) -> Date? {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format

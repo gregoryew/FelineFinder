@@ -24,9 +24,8 @@ class DownloadManager {
     
     private var currentPage = 1
     private var total = 0
-    //private var isFetchInProgress = false
         
-    static func sizeImages(pets: RescuePetsAPI3) {
+    static func sizeImages(pets: RescuePetsAPI5) {
         
         var imgs = [String]()
         
@@ -67,70 +66,106 @@ class DownloadManager {
             }
         }
     }
-    
-    static func loadPetList(more: Bool = false) {
         
-        if isFetchInProgress {return}
+    static func canProceedCheck(reset: Bool, pets: RescuePetsAPI5) -> Bool {
+        if isFetchInProgress {return false}
         isFetchInProgress = true
         
-        var pets: RescuePetsAPI3!
-        
-        if let p = PetFinderBreeds[(globalBreed?.BreedName)!]
-        {
-            pets = p as! RescuePetsAPI3
-        } else {
-            pets = RescuePetsAPI3()
+        if pets.dateCreated == INITIAL_DATE {
+            return true
         }
         
-        let date = pets.dateCreated
+        let hoursSinceCreation: Int = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: pets.dateCreated as Date, to: Date(), options: []).hour!
+
+        var proceed = false
         
-        let hoursSinceCreation: Int = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: date as Date, to: Date(), options: []).hour!
-        
-        var b = false
-        
-        if pets.count == 0 {
-            b = true
+        if hoursSinceCreation > 24 || reset == false {
+            proceed = true
         }
+            
+        return proceed
+    }
+    
+    static func generatePetsJSON(filters: [[String: Any]]) -> [String: Any] {
+       var filtersParam: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
         
-        if hoursSinceCreation > 24 {
-            b = true
-        }
+        filtersParam.append(contentsOf: filters)
+
+       let json = [
+            "data" : [
+                "filters": filtersParam
+            ]
+       ] as [String: Any]
         
-        if more == true {
-            b = true
-        }
+       return json
+    }
+    
+    static func loadFavorites(reset: Bool = false) {
+        let pets = RescuePetsAPI5()
+        
+        let json = generatePetsJSON(filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
         
         let oldCount = pets.count
         
-        if b == true
+        pets.loadPets5(json: json, reset: reset) { result in
+            switch result {
+            case .failure(let error):
+                let nc = NotificationCenter.default
+                nc.post(name:petsFailedMessage,
+                        object: nil,
+                        userInfo: ["error": error.reason])
+            case .success(let response):
+                let petList = response as PetList
+                PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+                var info = [String: Any]()
+                info["petList"] = pets
+                if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
+                let nc = NotificationCenter.default
+                nc.post(name:petsLoadedMessage,
+                        object: nil,
+                        userInfo: info)
+            }
+        }
+    }
+    
+    static func loadPetList(reset: Bool = false) {
+        
+        var pets: RescuePetsAPI5!
+        
+        if let p = PetFinderBreeds[(globalBreed?.BreedName)!]
         {
-            //func loadPets(bn: Breed, zipCode: String, completion: @escaping (Result<Cats, DataResponseError>) -> Void) {
-            pets.loadPets3(bn: globalBreed!, zipCode: zipCode, more: more) { result in
+            pets = p as? RescuePetsAPI5
+        } else {
+            pets = RescuePetsAPI5()
+        }
+        
+        var oldCount = 0
+        if !reset {
+            oldCount = pets.count
+        }
+        
+        if canProceedCheck(reset: reset, pets: pets) == true
+        {
+            let jsonBase = [
+                "data" : [
+                    "filters":
+                    [
+                        [
+                            "fieldName": "species.singular",
+                            "operation": "equal",
+                            "criteria": "cat"
+                        ]
+                    ]
+                ]
+            ] as [String: Any]
+            
+            pets.loadPets5(json: jsonBase, reset: reset) { result in
                 switch result {
                 case .failure(let error):
-                    zipCodeGlobal = ""
-                    bnGlobal = ""
-                    sleep(1)
-                    pets.resultStart = 0
-                    pets.loadPets3(bn: globalBreed!, zipCode: zipCode) { result in
-                        switch result {
-                        case .failure(let error):
-                            let nc = NotificationCenter.default
-                            nc.post(name:petsFailedMessage,
-                                    object: nil,
-                                    userInfo: ["error": error.reason])
-                        case .success(let response):
-                            let petList = response as PetList
-                            PetFinderBreeds[(globalBreed?.BreedName)!] = petList
-                            var info = [String: Any]()
-                            info["petList"] = pets
-                            if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
-                            let nc = NotificationCenter.default
-                            nc.post(name:petsLoadedMessage,
-                                    object: nil,
-                                    userInfo: info)
-                        }
-                    }
+                    let nc = NotificationCenter.default
+                    nc.post(name:petsFailedMessage,
+                            object: nil,
+                            userInfo: ["error": error.reason])
                 case .success(let response):
                     let petList = response as PetList
                     PetFinderBreeds[(globalBreed?.BreedName)!] = pets
@@ -141,7 +176,7 @@ class DownloadManager {
                     nc.post(name:petsLoadedMessage,
                             object: nil,
                             userInfo: info)
-            }
+                }
             }
         } else {
             PetFinderBreeds[(globalBreed?.BreedName)!] = pets
@@ -175,43 +210,7 @@ class DownloadManager {
             nc.post(name: breedPicturesLoadedMessage, object: nil, userInfo: ["breedPictures": breedPictures])
         }
     }
-    
-    static var timesQueryRan: Int = 0
-    
-    static func loadPet(petID: String) {
-        let pets = RescuePetList()
         
-        let sl = Shelters
-        
-        pets.status = ""
-        
-        var s: shelter?
-        
-        pets.loadSinglePet(petID, completion: { (pet) -> Void in
-            if pets.status != "Error" {
-            sl.loadSingleShelter(pet.shelterID, completion: { (shelter) -> Void in
-                s = shelter
-                if shelter.id != "Error" {
-                    timesQueryRan = 0
-                    print("Status success reseting timesQueryRan")
-                    let nc = NotificationCenter.default
-                    nc.post(name:petLoadedMessage,
-                            object: nil,
-                            userInfo:["pet": pet, "shelter": shelter])
-                }
-            })
-        }
-        })
-        if (pets.status == "Error" || s?.id == "ERROR") && timesQueryRan < 4 {
-            timesQueryRan += 1
-            print("Status Error running for the \(timesQueryRan) time")
-            loadPet(petID: petID)
-        } else if timesQueryRan == 4 {
-            timesQueryRan = 0
-            print("Failure for 3rd and final time reseting timesQueryRan")
-        }
-    }
-    
     static private func calculateIndexPathsToReload(priorCount: Int, newCount: Int) -> [IndexPath] {
       let startIndex = newCount - priorCount
       let endIndex = startIndex + newCount

@@ -150,9 +150,9 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
     
     @IBAction func DoneTapped(_ sender: AnyObject) {
-        PetFinderBreeds[bnGlobal] = nil
-        bnGlobal = ""
-        zipCodeGlobal = ""
+        //PetFinderBreeds[bnGlobal] = nil
+        //bnGlobal = ""
+        //zipCodeGlobal = ""
         zipCode = zipCodeTextField!.text!
 
         if validateZipCode(zipCode) == false {
@@ -186,7 +186,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
             
     @objc func didTapDone(sender: AnyObject) {
-        zipCodeGlobal = (zipCodeTextField?.text!)!
+        //zipCodeGlobal = (zipCodeTextField?.text!)!
         zipCode = (zipCodeTextField?.text!)!
         zipCodeTextField?.endEditing(true)
     }

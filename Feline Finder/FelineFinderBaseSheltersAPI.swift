@@ -45,14 +45,15 @@ struct shelter {
     }
 }
 
+//var globalShelterCache = [String: shelter]()
+
 class ShelterList {
     var loading: Bool = true
-    var sh = [String: shelter]()
     var dateCreated = Date()
     var lastOffset: String = ""
     
     var count: Int {
-        return sh.count
+        return globalShelterCache.count
     }
     
     func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void  {

@@ -63,11 +63,11 @@ class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionV
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if zipCodeGlobal == "" {
-            getZipCode()
-        } else {
-            DownloadManager.loadPetPictures(breed: globalBreed!)
-        }
+        //if zipCodeGlobal == "" {
+        //    getZipCode()
+        //} else {
+        //    DownloadManager.loadPetPictures(breed: globalBreed!)
+        //}
     }
     
     func youTubeLoaded(notification:Notification) -> Void {
@@ -108,9 +108,9 @@ class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionV
         let keyStore = NSUbiquitousKeyValueStore()
         zipCode = keyStore.string(forKey: "zipCode") ?? ""
         if zipCode != "" {
-            zipCodeGlobal = zipCode
-            DownloadManager.loadPetPictures(breed: globalBreed!)
-            return
+            //zipCodeGlobal = zipCode
+            //DownloadManager.loadPetPictures(breed: globalBreed!)
+            //return
         }
         
         LocationManager2.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
@@ -124,7 +124,7 @@ class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionV
             }
             
             zipCode = placemark?.postalCode ?? "19106"
-            zipCodeGlobal = zipCode
+            //zipCodeGlobal = zipCode
             DownloadManager.loadPetPictures(breed: globalBreed!)
             print("Found \(placemark?.postalCode ?? "")")
         }
@@ -143,7 +143,7 @@ class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionV
             (btn) in
             let textField = alert2.textFields![0] // Force unwrapping because we know it exists.
             zipCode = (textField.text)!
-            zipCodeGlobal = zipCode
+            //zipCodeGlobal = zipCode
             let keyStore = NSUbiquitousKeyValueStore()
             keyStore.set(zipCode, forKey: "zipCode")
             if DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode) {
@@ -153,7 +153,7 @@ class BreedInfoGalleryViewController: ZoomAnimationViewController, UICollectionV
                 alert3.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert3, animated: true, completion: nil)
                 zipCode = "66952"
-                zipCodeGlobal = zipCode
+                //zipCodeGlobal = zipCode
                 DownloadManager.loadPetPictures(breed: globalBreed!)
             }
         }))

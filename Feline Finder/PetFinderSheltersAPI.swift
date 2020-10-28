@@ -11,7 +11,8 @@ import Foundation
 class PetFinderShelterList: ShelterList {
     override func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void {
         super.loadSingleShelter(shelterID, completion: completion)
-        if let s = sh[shelterID] {
+        /*
+        if let s = globalShelterCache[shelterID] {
             print("shelter in cache = |\(shelterID)|")
             //Supposed to refresh the PetFinder data every 24 hours
             let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: s.dateCreated as Date, to: Date(), options: []).hour
@@ -21,7 +22,7 @@ class PetFinderShelterList: ShelterList {
                 return
             }
         }
-        
+        */
         if Utilities.isNetworkAvailable() {
             let rsTransGet: RSTransaction = RSTransaction(transactionType: RSTransactionType.get, baseURL: Utilities.petFinderAPIURL(), path: "shelter.get", parameters: ["key" :Utilities.apiKey(), "id":shelterID, "format":"json"])
             let rsRequest: RSTransactionRequest = RSTransactionRequest()
@@ -30,7 +31,7 @@ class PetFinderShelterList: ShelterList {
                     let json = JSON(data: responseData)
                     let s = json[ShelterTags.PETFINDER_TAG][ShelterTags.SHELTER_TAG]
                     let cachedShelter = self.createShelter(s)
-                    self.sh[cachedShelter.id] = cachedShelter
+                    //sh[cachedShelter.id] = cachedShelter
                     print("fetched shelter = |\(shelterID)|")
                     completion(cachedShelter)
                 } else {
@@ -70,7 +71,7 @@ class PetFinderShelterList: ShelterList {
                 while i < json[ShelterTags.PETFINDER_TAG][ShelterTags.SHELTERS_TAG][ShelterTags.SHELTER_TAG].count {
                     let s = json[ShelterTags.PETFINDER_TAG][ShelterTags.SHELTERS_TAG][ShelterTags.SHELTER_TAG][i]
                     let cachedShelter = self.createShelter(s)
-                    self.sh[cachedShelter.id] = cachedShelter
+                    //sh[cachedShelter.id] = cachedShelter
                     self.loading = false
                     i += 1
                 }

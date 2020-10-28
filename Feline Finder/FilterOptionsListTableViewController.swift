@@ -180,9 +180,9 @@ class FilterOptionsListTableViewController: UITableViewController {
         filters.append(["fieldName": "animalLocationDistance" as AnyObject, "operation": "radius" as AnyObject, "criteria": distance as AnyObject])
         //print("Distance=\(distance)")
         filters.append(["fieldName": "animalLocation" as AnyObject, "operation": "equals" as AnyObject, "criteria": zipCode as AnyObject])
-        if bnGlobal != "All Breeds" {
-            filters.append(["fieldName": "animalPrimaryBreed" as AnyObject, "operation": "contains" as AnyObject, "criteria": bnGlobal as AnyObject])
-        }
+        //if bnGlobal != "All Breeds" {
+        //    filters.append(["fieldName": "animalPrimaryBreed" as AnyObject, "operation": "contains" as AnyObject, "criteria": bnGlobal as AnyObject])
+        //}
         var order = "desc"
         if sortFilter == "animalLocationDistance" {
             order = "asc"

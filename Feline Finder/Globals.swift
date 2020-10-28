@@ -149,8 +149,6 @@ var whichSegueGlobal = ""
 var cameFromFiltering = false
 //var imageCache = [String:UIImage]()  //This is a global image cache
 var zipCode: String = ""
-var zipCodeGlobal: String = ""
-var bnGlobal: String = ""
 var editWhichQuestionGlobal: Int = 0
 
 var filterOptions: filterOptionsList = filterOptionsList()

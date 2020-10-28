@@ -9,5 +9,9 @@
 import UIKit
 
 class ToolCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var ToolIcon: UIView!
+    @IBOutlet weak var ToolIcon: UILabel!
+    
+    func configure(tool: Tool) {
+        ToolIcon.text = tool.icon
+    }
 }

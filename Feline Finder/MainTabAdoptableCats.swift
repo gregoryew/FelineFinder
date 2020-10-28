@@ -8,6 +8,8 @@
 
 import Foundation
 import SDWebImage
+import MessageUI
+import FaveButton
 
 class TableViewWorkAround: UITableView {
     override func layoutSubviews() {
@@ -20,11 +22,15 @@ class TableViewWorkAround: UITableView {
 
 var selectedImages: [Int] = []
 
-class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
+class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, AlertDisplayer, MFMailComposeViewControllerDelegate {
+    
+    private let refreshControl = UIRefreshControl()
     
     var viewDidLayoutSubviewsForTheFirstTime = true
     
-    var pets: RescuePetsAPI3?
+    //var delegate: scrolledView!
+    
+    var pets: RescuePetsAPI5?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
     var currentLocation : CLLocation!
     var locationManager: CLLocationManager? = CLLocationManager()
@@ -48,9 +54,31 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         PetFinderFind.breed = globalBreed
         present(PetFinderFind, animated: false, completion: nil)
     }
+
+    @IBOutlet weak var FavoriteBtn: FaveButton!
+    
+    @IBAction func FavoriteBtnTapped(_ sender: Any) {
+        Favorites.storeIDs()
+        Favorites.loadIDs()
+        if FavoriteBtn.isSelected {
+            DownloadManager.loadFavorites(reset: true)
+        } else {
+            DownloadManager.loadPetList(reset: true)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add Refresh Control to Table View
+        if #available(iOS 10.0, *) {
+            MainTV.refreshControl = refreshControl
+        } else {
+            MainTV.addSubview(refreshControl)
+        }
+        
+        // Configure Refresh Control
+        refreshControl.addTarget(self, action: #selector(refreshPetData(_:)), for: .valueChanged)
         
         let nc = NotificationCenter.default
         
@@ -84,12 +112,22 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         
         TitleLabel.text = "Cats for Adoption"
         
-        pets = RescuePetsAPI3()
+        pets = RescuePetsAPI5()
         
         MainTV.backgroundView = UIImageView(image: UIImage(named: "greenBackground"))
         MainTV.backgroundColor = UIColor.clear
         
         MainTV.separatorStyle = .none
+
+    }
+    
+    @objc private func refreshPetData(_ sender: Any) {
+        PetFinderBreeds.removeValue(forKey: globalBreed!.BreedName)
+        DownloadManager.loadPetList(reset: true)
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     func getZipCode() {
@@ -98,7 +136,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         if zipCode != "" {
             self.setFilterDisplay()
             self.pets?.loading = true
-            DownloadManager.loadPetList(more: false)
+            DownloadManager.loadPetList(reset: true)
             return
         }
         
@@ -113,7 +151,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             
             zipCode = placemark?.postalCode ?? "19106"
             self.setFilterDisplay()
-            DownloadManager.loadPetList(more: false)
+            DownloadManager.loadPetList(reset: true)
         }
     }
 
@@ -138,7 +176,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
                 DispatchQueue.main.async {
                     self.MainTV.reloadData()
                 }
-                DownloadManager.loadPetList()
+                DownloadManager.loadPetList(reset: true)
                 //self.setupReloadAndScroll()
             } else {
                 let alert3 = UIAlertController(title: "Error", message: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 66952.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.", preferredStyle: .alert)
@@ -150,7 +188,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
                 DispatchQueue.main.async {
                     self.MainTV.reloadData()
                 }
-                DownloadManager.loadPetList()
+                DownloadManager.loadPetList(reset: true)
                 //self.setupReloadAndScroll()
             }
         }))
@@ -168,6 +206,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
 
         DispatchQueue.main.async { [unowned self] in
+            self.refreshControl.endRefreshing()
             let title = "Warning"
             let action = UIAlertAction(title: "OK", style: .default)
             displayAlert(with: title , message: reason, actions: [action])
@@ -181,7 +220,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         print("petLoaded notification")
         
         guard let userInfo = notification.userInfo,
-              let p = userInfo["petList"] as? RescuePetsAPI3
+              let p = userInfo["petList"] as? RescuePetsAPI5
         else {
                 print("No userInfo found in notification")
                 return
@@ -189,9 +228,8 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         
         pets = p
         
-        DownloadManager.sizeImages(pets: p)
+        //DownloadManager.sizeImages(pets: p)
 
-/*
         self.pets?.loading = false
         
         guard let newIndexPathsToReload = userInfo["newIndexPathsToReload"] as? [IndexPath] else {
@@ -200,6 +238,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             self.MainTV.reloadData()
             selectedImages = [Int](repeating: 0, count: totalRows)
             isFetchInProgress = false
+            self.refreshControl.endRefreshing()
           }
           return
         }
@@ -210,15 +249,15 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             let indexPathsToReload = Array(indexPathsIntersection)
             self.MainTV.reloadRows(at: indexPathsToReload, with: .automatic)
             isFetchInProgress = false
+            self.refreshControl.endRefreshing()
         }
-*/
     }
     
     func imagesLoaded(notification:Notification) -> Void {
         print("petLoaded notification")
         
         guard let userInfo = notification.userInfo,
-              let p = userInfo["petList"] as? RescuePetsAPI3
+              let p = userInfo["petList"] as? RescuePetsAPI5
         else {
                 print("No userInfo found in notification")
                 return
@@ -234,6 +273,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             self.MainTV.reloadData()
             selectedImages = [Int](repeating: 0, count: totalRows)
             isFetchInProgress = false
+            self.refreshControl.endRefreshing()
           }
           return
         }
@@ -244,6 +284,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             let indexPathsToReload = Array(indexPathsIntersection)
             self.MainTV.reloadRows(at: indexPathsToReload, with: .automatic)
             isFetchInProgress = false
+            self.refreshControl.endRefreshing()
         }
     }
 
@@ -256,6 +297,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
 
         DispatchQueue.main.async { [unowned self] in
+            self.refreshControl.endRefreshing()
             let title = "Warning"
             let action = UIAlertAction(title: "OK", style: .default)
             displayAlert(with: title , message: reason, actions: [action])
@@ -272,7 +314,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         } else {
             setFilterDisplay()
             self.pets?.loading = true
-            DownloadManager.loadPetList()
+            DownloadManager.loadPetList(reset: true)
         }
         Favorites.LoadFavorites(tv: nil)
     }
@@ -285,10 +327,8 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     @objc func retrieveData() {
         setFilterDisplay()
         if viewPopped {
-            PetFinderBreeds[(globalBreed?.BreedName)!] = nil
-            zipCodeGlobal = ""
             self.pets?.loading = true
-            DownloadManager.loadPetList()
+            DownloadManager.loadPetList(reset: true)
             viewPopped = false
         }
         DispatchQueue.main.async { [unowned self] in
@@ -320,8 +360,6 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     }
     
     func Refresh() {
-        zipCodeGlobal = ""
-        PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         self.pets?.loading = true
         DownloadManager.loadPetList()
     }
@@ -386,9 +424,9 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         cell.selectedBackgroundView?.addSeparator()
         
         if isLoadingCell(for: indexPath) {
-            cell.configure(pd: .none)
+            cell.configure(pd: .none, sh: .none, sourceView: self.view)
         } else {
-            cell.configure(pd: self.pets![indexPath.row])
+            cell.configure(pd: self.pets![indexPath.row], sh: globalShelterCache[self.pets![indexPath.row].shelterID], sourceView: self.view)
         }
         cell.tag = indexPath.row
         
@@ -398,6 +436,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
+        if self.pets!.foundRows < indexPath.row {return}
         let petData = self.pets![indexPath.row]
         let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
         FelineDetail.pet = petData
@@ -417,8 +456,7 @@ extension MainTabAdoptableCats: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         if isFetchInProgress {return}
         if indexPaths.contains(where: isLoadingCell) {
-            self.pets?.loading = true
-            DownloadManager.loadPetList(more: true)
+            DownloadManager.loadPetList(reset: false)
         }
     }
   

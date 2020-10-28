@@ -240,9 +240,9 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
                 if let cv = self.collectionView {
                     cv.infiniteScrollingView.stopAnimating()
                 }
-                zipCodeGlobal = ""
+                //zipCodeGlobal = ""
                 self.pets?.loading = true
-                DownloadManager.loadPetList(more: true)
+                //DownloadManager.loadPetList(more: true)
         }
         self.collectionView?.infiniteScrollingView.color = UIColor.white
 
@@ -257,7 +257,7 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
         setFilterDisplay()
         if viewPopped {
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
-            zipCodeGlobal = ""
+            //zipCodeGlobal = ""
             self.pets?.loading = true
             collectionView?.reloadData()
             DownloadManager.loadPetList()
@@ -295,8 +295,8 @@ class AdoptableCatsViewController: UICollectionViewController, CLLocationManager
     }
     
     func Refresh() {
-        zipCodeGlobal = ""
-        PetFinderBreeds[(globalBreed?.BreedName)!] = nil
+        //zipCodeGlobal = ""
+        //PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         self.pets?.loading = true
         DownloadManager.loadPetList()
     }

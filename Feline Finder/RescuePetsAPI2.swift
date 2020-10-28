@@ -9,8 +9,8 @@
 import UIKit
 
 struct messages: Codable {
-    var generalMessages: [String]
-    var recordMessages: [String]
+    var generalMessages: [String]?
+    var recordMessages: [String]?
 }
 
 struct video2: Codable {
@@ -79,7 +79,7 @@ struct cat: Codable {
     var animalRescueID: String?
     var animalSizePotential: String?
     var animalUpdatedDate: String?
-    var animalPictures: [pictures]?
+    //var animalPictures: [pictures]?
     var animalVideoUrls: [video2]?
     var animalUptodate: String?
     var animalAdoptedDate: String?
@@ -294,13 +294,15 @@ struct cat: Codable {
         } catch {
             animalUpdatedDate = nil
         }
-
+        
+        /*
         do {
             animalPictures = try values.decode([pictures].self, forKey: .animalPictures)
         } catch {
             animalPictures = nil
         }
-        
+        */
+ 
         do {
             animalVideoUrls = try values.decode([video2].self, forKey: .animalVideoUrls)
         } catch {

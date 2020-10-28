@@ -11,7 +11,8 @@ import Foundation
 class RescueGroupShelterList: ShelterList {
     override func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void {
         super.loadSingleShelter(shelterID, completion: completion)
-        if let s = sh[shelterID] {
+/*
+        if let s = globalShelterCache[shelterID] {
             print("shelter in cache = |\(shelterID)|")
             //Supposed to refresh the PetFinder data every 24 hours
             let hoursSinceCreation = (Calendar.current as NSCalendar).components(NSCalendar.Unit.hour, from: s.dateCreated as Date, to: Date(), options: []).hour
@@ -60,7 +61,7 @@ class RescueGroupShelterList: ShelterList {
                                 if key == "data" {
                                     for (_, data2) in (data as? [String: AnyObject])! {
                                         cachedShelter = self.createShelter(data2)
-                                        self.sh[cachedShelter!.id] = cachedShelter
+                                        //globalShelterCache[cachedShelter!.id] = cachedShelter
                                     }
                                 }
                             }
@@ -79,6 +80,7 @@ class RescueGroupShelterList: ShelterList {
             }) 
             task.resume()
         } catch { }
+ */
     }
     
     func vaidateValue(_ d: AnyObject) -> String {

@@ -96,7 +96,7 @@ class PetFinderViewController: UITableViewController, CLLocationManagerDelegate 
     }
     
     @IBAction func Refresh(_ sender: UIRefreshControl) {
-        zipCodeGlobal = ""
+        //zipCodeGlobal = ""
         PetFinderBreeds[self.breed!.BreedName] = nil
         self.loadPets()
         self.tableView.reloadData()

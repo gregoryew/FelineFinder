@@ -11,7 +11,8 @@ import UIKit
 import StoreKit
 import SDWebImage
 
-class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDataSource, UITableViewDelegate {
+class MainTabFavoritesViewController: ZoomAnimationViewController { //}, UITableViewDataSource, UITableViewDelegate {
+    /*
     var statuses:[String: Favorite] = [:]
     var observer : Any!
     
@@ -146,4 +147,5 @@ class MainTabFavoritesViewController: ZoomAnimationViewController, UITableViewDa
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         (view as? UITableViewHeaderFooterView)?.textLabel?.textColor = UIColor.white
     }
+    */
 }

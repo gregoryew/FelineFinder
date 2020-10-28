@@ -11,6 +11,18 @@ import FaveButton
 import SDWebImage
 import ImageSizeFetcher
 
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
+    }
+}
+
 class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, CAAnimationDelegate {
     
     @IBOutlet weak var MainCatImage: UIImageView!
@@ -26,16 +38,14 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var SubCatCVWidth: NSLayoutConstraint!
     
     private var petData: Pet!
-    //private var imgs: [picture2] = []
-    //private var ximgs: [picture2] = []
-    //private var photos: [picture2] = []
+    private var shelterData: shelter!
     private var imgs: [imageTool] = []
     private var tools: Tools!
         
     var CGWidths = [CGFloat]()
     
-    func configure(pd: Pet?) {
-        if let p = pd {
+    func configure(pd: Pet?, sh: shelter?, sourceView: UIView) {
+        if let p = pd, let s = sh {
 
             FavoriteButton.alpha = 1
             CatNameLabel.alpha = 1
@@ -46,10 +56,16 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             SubCatCV.alpha = 1
             
             self.petData = p
-            
-            tools = Tools(pet: self.petData)
+
+            tools = Tools(pet: p, shelter: s, sourceView: sourceView)
             
             setup()
+            
+            if tools.count() < 2 {
+                self.tools.switchMode()
+                setup()
+                Togle.selectedSegmentIndex = 1
+            }
             
             FavoriteButton.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
             
@@ -57,8 +73,13 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             
             CatNameLabel.text = petData.name
             BreedNameLabel.text = petData.breeds.first
-            CityLabel.text = "\(petData.location) 🐾 \(petData.distance) Miles"
-            InfoLabel.text = "\(petData.status) 🐾 \(petData.sex) 🐾 \(petData.age) 🐾 \(petData.size)"
+            CityLabel.text = "\(petData.location != "" ? petData.location + "📍" : "")\(petData.distance) Miles"
+            var items = [String]()
+            if petData.status != "" {items.append(petData.status)}
+            if petData.sex != "" {items.append(petData.sex)}
+            if petData.age != "" {items.append(petData.age)}
+            if petData.size != "" {items.append(petData.size)}
+            InfoLabel.text = items.joined(separator: " 🐾 ")
             
             if urlString == "" {
                 MainCatImage?.backgroundColor = getRandomColor()
@@ -92,13 +113,6 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     }
     
     func setup() {
-        //guard petData != nil else {return}
-        //imgs = []
-        //imgs = petData.getAllImagesObjectsOfACertainSize("pnt")
-        //imgs = petData.getAllImagesOfACertainSize("pnt")
-        //ximgs = []
-        //ximgs = petData.getAllImagesObjectsOfACertainSize("x")
-        
         SubCatCV.dataSource = self
         SubCatCV.delegate = self
                 
@@ -110,10 +124,19 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         layout.cellPadding = 2.5
         
         CGWidths = []
-        let imgs = tools.images()
-        for img in imgs {
-            let ratio = 100 / CGFloat(img.thumbNail.height)
-            let w2 = CGFloat(img.thumbNail.width) * ratio
+        var ratio: CGFloat = 0
+        var w2: CGFloat = 0
+        
+        for tool in tools {
+            switch tool.cellType {
+            case .image:
+                ratio = 100 / CGFloat((tool as! imageTool).thumbNail.height)
+                w2 = CGFloat((tool as! imageTool).thumbNail.width) * ratio
+            case .video:
+                w2 = 160
+            case .tool:
+                w2 = 70
+            }
             CGWidths.append(w2)
         }
          
@@ -133,18 +156,20 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             }
             let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
             self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
+            
             self.SubCatCV.layoutIfNeeded()
+            
         }
     }
     
     @IBAction func togleSwitched(_ sender: Any) {
         self.tools?.switchMode()
+        setup()
     }
     
     @IBAction func favoriteTapped(_ sender: Any) {
         if FavoriteButton.isSelected {
-            let f = Favorite(petID: petData.petID, petName: petData.name, imageName: petData.media[0].URL, breed: petData.breeds.popFirst() ?? "", FavoriteDataSource: DataSource.RescueGroup, Status: petData.status)
-            Favorites.addFavorite(petData.petID, f: f)
+            Favorites.addFavorite(petData.petID)
         } else {
             Favorites.removeFavorite(petData.petID, dataSource: .RescueGroup)
         }
@@ -154,10 +179,11 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         super .prepareForReuse()
         self.backgroundColor = UIColor.clear
         self.MainCatImage.backgroundColor = UIColor.clear
+        self.Togle.selectedSegmentIndex = 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imgs.count
+        return tools.count()
     }
         
     @objc func curlRightAnimation(_ gesture: UISwipeGestureRecognizer)
@@ -206,12 +232,18 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         MainCatImage.layer.pageCURL(duration: 0.7, direction: CATransitionSubtype.fromLeft)
 
         selectedImages[tag] -= 1
-                
-        let newImgURL = URL(string: imgs[selectedImages[tag]].photo.URL)
         
-        self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
-            CATransaction.commit()
-            self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        let tool = tools[selectedImages[tag]]
+        if tool.cellType == .image {
+        
+            let selectedImg = tool as! imageTool
+            
+            let newImgURL = URL(string: selectedImg.photo.URL)
+        
+            self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
+                CATransaction.commit()
+                self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
+            }
         }
 
     }
@@ -228,36 +260,87 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
-        cell.tag = indexPath.item
-        prepareForReuse()
-        if indexPath.item >= imgs.count {
+        if indexPath.item >= tools.count() {
+            let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
             return cell
         }
-        let imgURL = URL(string: imgs[indexPath.item].thumbNail.URL)
-        cell.prepareForReuse()
-        cell.configure(imgURL: imgURL!, isSelected: selectedImages[tag] == indexPath.row)
-        self.layoutIfNeeded()
-        self.SubCatCV.setNeedsDisplay()
-        return cell
+        switch tools[indexPath.row].cellType {
+        case .image:
+            let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
+            if indexPath.item >= tools.count() {
+                return cell
+            }
+            cell.tag = indexPath.item
+            let imgURL = URL(string: (tools[indexPath.item] as! imageTool).thumbNail.URL)
+            cell.prepareForReuse()
+            cell.configure(imgURL: imgURL!, isSelected: selectedImages[tag] == indexPath.row)
+            self.layoutIfNeeded()
+            self.SubCatCV.setNeedsDisplay()
+            return cell
+        case .video:
+            let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
+            if indexPath.item >= tools.count() {
+                return cell
+            }
+            cell.tag = indexPath.item
+            let imgURL = URL(string: (tools[indexPath.item] as! youTubeTool).video.urlThumbnail)
+            cell.prepareForReuse()
+            cell.configure(imgURL: imgURL!, isSelected: selectedImages[tag] == indexPath.row)
+            self.layoutIfNeeded()
+            self.SubCatCV.setNeedsDisplay()
+            return cell
+        case .tool:
+            let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "toolCell", for: indexPath) as! ToolCollectionViewCell
+            if indexPath.item >= tools.count() {
+                return cell
+            }
+            cell.tag = indexPath.item
+            cell.prepareForReuse()
+            cell.configure(tool: tools[indexPath.item])
+            self.layoutIfNeeded()
+            self.SubCatCV.setNeedsDisplay()
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let thumbNail = URL(string: imgs[indexPath.item].thumbNail.URL)
-        let photo = URL(string: imgs[indexPath.item].photo.URL)
+        
+        let currentTool = tools[indexPath.item]
+        
+        if currentTool.cellType == .image || currentTool.cellType == .video {
+            
+            let thumbNail: URL?
+            let photo: URL?
+            let oldImgURL: String?
+            
+            if currentTool.cellType == .image {
+                thumbNail = URL(string: (currentTool as! imageTool).thumbNail.URL)
+                photo = URL(string: (currentTool as! imageTool).photo.URL)
+                oldImgURL = (tools[indexPath.item] as! imageTool).thumbNail.URL
+            } else {
+                thumbNail = URL(string: (currentTool as! youTubeTool).video.urlThumbnail)
+                photo = URL(string: (currentTool as! youTubeTool).video.urlThumbnail)
+                oldImgURL = (tools[indexPath.item] as! youTubeTool).video.urlThumbnail
+            }
 
-        let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
+            let cell = SubCatCV.dequeueReusableCell(withReuseIdentifier: "subCell", for: indexPath) as! MainTabAdoptableCatsSubCVCell
         
-        cell.subCatImage.sd_setImage(with: thumbNail) { (img, err, _, url) in
-            print("cell frame = \(cell.frame) imgs w= \(self.imgs[indexPath.item].thumbNail.width) imgs h= \(self.imgs[indexPath.item].thumbNail.height) url= \(self.imgs[indexPath.item].thumbNail.URL) subimg=\(img!.size) ratio=\(img!.size.width * (100 / img!.size.height)) CGFloat=\(self.CGWidths) indexPath=\(indexPath) imgsCount=\(self.imgs.count) petID=\(self.petData.petID)")
-        }
+            cell.subCatImage.sd_setImage(with: thumbNail) { (img, err, _, url) in
+                /*
+                print("cell frame = \(cell.frame) imgs w= \((self.tools[indexPath.item] as! imageTool).thumbNail.width) imgs h= \(self.imgs[indexPath.item].thumbNail.height) url= \(self.imgs[indexPath.item].thumbNail.URL) subimg=\(img!.size) ratio=\(img!.size.width * (100 / img!.size.height)) CGFloat=\(self.CGWidths) indexPath=\(indexPath) imgsCount=\(self.imgs.count) petID=\(self.petData.petID)")
+                */
+            }
         
-        if indexPath.item - selectedImages[tag] > 0 {
-            animateImageView(newImgURL: photo, oldImgURL: imgs[indexPath.item].thumbNail.URL, direction: .fromRight)
-        } else if indexPath.item - selectedImages[tag] < 0 {
-            animateImageView(newImgURL: photo, oldImgURL: imgs[indexPath.item].thumbNail.URL, direction: .fromLeft)
+            if indexPath.item - selectedImages[tag] > 0 {
+                animateImageView(newImgURL: photo, oldImgURL: oldImgURL!, direction: .fromRight)
+            } else if indexPath.item - selectedImages[tag] < 0 {
+                animateImageView(newImgURL: photo, oldImgURL: oldImgURL!, direction: .fromLeft)
+            } else {
+                return
+            }
         } else {
-            return
+            print("ACTION = \(currentTool.icon)")
+            currentTool.performAction()
         }
         selectedImages[tag] = indexPath.item
     }
@@ -289,12 +372,6 @@ extension MainTabAdoptableCatsMainTVCell: HorizontalLayoutVaryingWidthsLayoutDel
   func collectionView(
       _ collectionView: UICollectionView,
     widthForPhotoAtIndexPath indexPath:IndexPath) -> CGFloat {
- /*
-    let photo = imgs[indexPath.item]
-    let ratio = 100 / CGFloat(photo.height) //fixedHeight / image.size.height
-    let width = CGFloat(photo.width) * ratio
-    return width
-*/
     if indexPath.item >= CGWidths.count {
         return 0
     } else {

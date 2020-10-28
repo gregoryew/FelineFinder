@@ -143,7 +143,7 @@ class PetList {
     var Pets = [Pet]()
     var pet: Pet!
     var lastOffset: String = ""
-    var dateCreated = Date()
+    var dateCreated = INITIAL_DATE
     var loading: Bool = true
     var distances: Dictionary<String, [Pet]> = [:]
     var resultStart: Int = 0

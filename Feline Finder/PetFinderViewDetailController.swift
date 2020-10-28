@@ -242,7 +242,7 @@ class PetFinderViewDetailController: ZoomAnimationViewController, UIWebViewDeleg
                 print ("Adding Favorite")
                 let urlString = pet!.getImage(1, size: "pnt")
                 let bn = pet?.breeds.first
-                Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
+                //Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
             }
         }
     }
@@ -815,7 +815,7 @@ class PetFinderViewDetailController: ZoomAnimationViewController, UIWebViewDeleg
             self?.petLoaded(notification: notification)
         }
         
-        DownloadManager.loadPet(petID: petID!)
+        //DownloadManager.loadPet(petID: petID!)
     }
     
     deinit {

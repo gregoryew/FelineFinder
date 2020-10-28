@@ -85,12 +85,12 @@ class RescuePetList: PetList {
     override func loadPets(bn: Breed, zipCode: String, completion: @escaping (_ p: PetList) -> Void) -> Void {
         super.loadPets(bn: bn, zipCode: zipCode, completion: completion)
         
-        if zipCodeGlobal == zipCode  && bnGlobal == bn.BreedName {
-            return
-        } else {
-            zipCodeGlobal = zipCode
-            bnGlobal = bn.BreedName
-        }
+        //if zipCodeGlobal == zipCode  && bnGlobal == bn.BreedName {
+        //    return
+        //} else {
+        //    zipCodeGlobal = zipCode
+        //    bnGlobal = bn.BreedName
+        //}
         
         loading = true
         

@@ -1830,13 +1830,26 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                         <state key="normal" title="🔎"/>
                                         <connections>
                                             <action selector="SearchButtonTapped:" destination="o3E-7I-hhl" eventType="touchUpInside" id="bp2-eX-xt2"/>
-                                            <action selector="searchOptions:" destination="x0Q-1C-wYo" eventType="touchUpInside" id="cla-H3-UMH"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Yu-cz-HIe" customClass="FaveButton" customModule="FaveButton">
+                                        <rect key="frame" x="15" y="12.666666666666664" width="46" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="9rK-4b-sdW"/>
+                                            <constraint firstAttribute="height" constant="40" id="r5Z-a6-piy"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                        <state key="normal" title="🔎" image="heart"/>
+                                        <connections>
+                                            <action selector="FavoriteBtnTapped:" destination="o3E-7I-hhl" eventType="touchUpInside" id="DsA-fl-Nns"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99845069649999996" green="0.8341670632" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="m9Y-eH-od5" secondAttribute="trailing" id="BXe-jr-PPJ"/>
+                                    <constraint firstItem="3Yu-cz-HIe" firstAttribute="leading" secondItem="cvf-bs-1MN" secondAttribute="leading" constant="15" id="FEF-qA-efm"/>
+                                    <constraint firstItem="3Yu-cz-HIe" firstAttribute="centerY" secondItem="cvf-bs-1MN" secondAttribute="centerY" id="NLk-Hu-Kzj"/>
                                     <constraint firstAttribute="trailing" secondItem="5lP-yy-kSW" secondAttribute="trailing" id="Wpq-tM-hug"/>
                                     <constraint firstItem="5lP-yy-kSW" firstAttribute="top" secondItem="cvf-bs-1MN" secondAttribute="top" constant="30" id="b6D-qB-g1y"/>
                                     <constraint firstItem="cvP-sU-uu7" firstAttribute="centerY" secondItem="cvf-bs-1MN" secondAttribute="centerY" id="gv1-5Y-lan"/>
@@ -1964,7 +1977,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                             </segments>
                                                             <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
                                                             <connections>
-                                                                <action selector="switchToggled:" destination="Ote-UK-EhE" eventType="valueChanged" id="hcQ-bh-5yV"/>
+                                                                <action selector="togleSwitched:" destination="Ote-UK-EhE" eventType="valueChanged" id="LVy-L7-Tsw"/>
                                                             </connections>
                                                         </segmentedControl>
                                                     </subviews>
@@ -2012,7 +2025,8 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" misplaced="YES" reuseIdentifier="subCell" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-xg-jCo" customClass="MainTabAdoptableCatsSubCVCell" customModule="Feline_Finder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="25" width="50" height="50"/>
-                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZO-iD-OUe">
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZO-iD-OUe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2FH-cQ-ZHL" customClass="DynamicImageView" customModule="Feline_Finder" customModuleProvider="target">
@@ -2039,25 +2053,27 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                                     <constraint firstAttribute="bottom" secondItem="2FH-cQ-ZHL" secondAttribute="bottom" id="qzC-Mc-pPZ"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
-                                                            <constraints>
-                                                                <constraint firstItem="CZO-iD-OUe" firstAttribute="leading" secondItem="tRF-xg-jCo" secondAttribute="leadingMargin" constant="-8" id="WQZ-Bm-q7n"/>
-                                                                <constraint firstItem="CZO-iD-OUe" firstAttribute="top" secondItem="tRF-xg-jCo" secondAttribute="topMargin" constant="-8" id="gT8-Dx-K5l"/>
-                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="subCatImage" destination="2FH-cQ-ZHL" id="JV1-VY-ocJ"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="toolCell" translatesAutoresizingMaskIntoConstraints="NO" id="MCg-CZ-Gwz" customClass="ToolCollectionViewCell" customModule="Feline_Finder" customModuleProvider="target">
-                                                            <rect key="frame" x="60" y="0.0" width="100" height="100"/>
+                                                            <rect key="frame" x="60" y="0.0" width="70" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nI-Mx-Dfd">
-                                                                <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="70" height="100"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🔗" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZNY-dh-ZUf">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZNY-dh-ZUf">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="70" height="100"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="70"/>
-                                                                        <nil key="textColor"/>
+                                                                        <attributedString key="attributedText">
+                                                                            <fragment content="🎞️">
+                                                                                <attributes>
+                                                                                    <font key="NSFont" metaFont="system" size="55"/>
+                                                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                                </attributes>
+                                                                            </fragment>
+                                                                        </attributedString>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
@@ -2068,9 +2084,9 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                                     <constraint firstAttribute="bottom" secondItem="ZNY-dh-ZUf" secondAttribute="bottom" id="zqV-yQ-rm9"/>
                                                                 </constraints>
                                                             </collectionViewCellContentView>
-                                                            <size key="customSize" width="100" height="100"/>
+                                                            <size key="customSize" width="70" height="100"/>
                                                             <connections>
-                                                                <outlet property="ToolIcon" destination="9nI-Mx-Dfd" id="GiU-xw-Udj"/>
+                                                                <outlet property="ToolIcon" destination="ZNY-dh-ZUf" id="tW2-y1-3XG"/>
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
@@ -2096,12 +2112,12 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <outlet property="BreedNameLabel" destination="jkG-Y4-R9h" id="FrF-KU-Gas"/>
                                             <outlet property="CatNameLabel" destination="9tX-Fw-kUg" id="UQl-1a-OjB"/>
                                             <outlet property="CityLabel" destination="tjY-mq-rjL" id="Rh3-OC-UMf"/>
-                                            <outlet property="FavoriteButton" destination="i2E-0o-p8V" id="k1z-uM-Fa7"/>
+                                            <outlet property="FavoriteButton" destination="i2E-0o-p8V" id="zJa-Jh-zUO"/>
                                             <outlet property="InfoLabel" destination="0fd-TB-1fb" id="8VC-8p-plP"/>
                                             <outlet property="MainCatImage" destination="2ce-q9-ska" id="8sS-Ge-SWL"/>
                                             <outlet property="SubCatCV" destination="Py9-EY-wWw" id="7yJ-ea-tBo"/>
                                             <outlet property="SubCatCVWidth" destination="pXY-fv-hgN" id="9dS-Y2-34J"/>
-                                            <outlet property="switch" destination="5Zd-Rc-Izs" id="Nok-Cy-KuG"/>
+                                            <outlet property="Togle" destination="5Zd-Rc-Izs" id="KNO-vj-jpr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -2122,6 +2138,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                     <tabBarItem key="tabBarItem" title="Adopt" image="MainTabAdopt" selectedImage="MainTabAdoptUp" id="jnc-fs-jBW"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="FavoriteBtn" destination="3Yu-cz-HIe" id="OYW-v7-N9s"/>
                         <outlet property="MainTV" destination="Wio-68-cFh" id="qcy-uK-yiA"/>
                         <outlet property="SearchButton" destination="cvP-sU-uu7" id="pOn-lV-Xt0"/>
                         <outlet property="TitleLabel" destination="5lP-yy-kSW" id="386-WZ-Mt0"/>

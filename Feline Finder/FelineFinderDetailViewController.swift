@@ -51,7 +51,7 @@ class FelineFinderDetailViewController: ZoomAnimationViewController, UITableView
         }
         else {
             let urlString = pet!.getImage(1, size: "pnt")
-            Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: breedName!, FavoriteDataSource: favoriteType, Status: ""))
+            //Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: breedName!, FavoriteDataSource: favoriteType, Status: ""))
             FavoriteBtn.image = UIImage(named: "LikeFilled")
         }
     }

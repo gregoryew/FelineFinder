@@ -206,7 +206,7 @@ class AdoptableCatsTabViewController2: ZoomAnimationViewController, UICollection
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
         
-        zipCodeGlobal = ""
+        //zipCodeGlobal = ""
         PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         DownloadManager.loadPetList()
         self.pets?.loading = true
@@ -225,8 +225,8 @@ class AdoptableCatsTabViewController2: ZoomAnimationViewController, UICollection
                 if let cv = self.collectionView {
                     cv.infiniteScrollingView.stopAnimating()
                 }
-                zipCodeGlobal = ""
-                DownloadManager.loadPetList(more: true)
+                //zipCodeGlobal = ""
+                DownloadManager.loadPetList(reset: false)
             }
             self.collectionView.infiniteScrollingView.color = UIColor.white
             
@@ -252,7 +252,7 @@ class AdoptableCatsTabViewController2: ZoomAnimationViewController, UICollection
         setFilterDisplay()
         if viewPopped {
             PetFinderBreeds[(globalBreed?.BreedName)!] = nil
-            zipCodeGlobal = ""
+            //zipCodeGlobal = ""
             self.pets?.loading = true
             collectionView?.reloadData()
             DownloadManager.loadPetList()
@@ -287,7 +287,7 @@ class AdoptableCatsTabViewController2: ZoomAnimationViewController, UICollection
     }
     
     func Refresh() {
-        zipCodeGlobal = ""
+        //zipCodeGlobal = ""
         PetFinderBreeds[(globalBreed?.BreedName)!] = nil
         self.pets?.loading = true
         DownloadManager.loadPetList()

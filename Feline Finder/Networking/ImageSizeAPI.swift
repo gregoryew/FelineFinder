@@ -10,7 +10,7 @@ import Foundation
 
 final class ImageSizeAPI {
     private lazy var baseURL: URL = {
-        return URL(string: "http://FelineFinderServerBackend-env.eba-cacmtkpz.us-east-1.elasticbeanstalk.com/api/sizeImages")!
+        return URL(string: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/sizeImages")!
     }()
     
     let session: URLSession

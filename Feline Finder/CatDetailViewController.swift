@@ -54,6 +54,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
             vc.setViewControllers(vcs, animated: false)
         }
         presentingViewController?.dismiss(animated: false) {
+            /*
             if whichTab == 1 { //Favorites
                 viewToShow.tableView.reloadRows(at: [scrollPos!], with: .none)
                 viewToShow.tableView.scrollToRow(at: scrollPos!, at:.middle, animated: false)
@@ -61,6 +62,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
                 viewToShow2.MainTV.reloadRows(at: [scrollPos!], with: .none)
                 viewToShow2.MainTV.scrollToRow(at: scrollPos!, at:.middle, animated: false)
             }
+            */
         }
     }
     
@@ -264,7 +266,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
                 print ("Adding Favorite")
                 let urlString = pet!.getImage(1, size: "pnt")
                 let bn = pet?.breeds.first
-                Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
+                //Favorites.addFavorite(petID!, f: Favorite(petID: petID!, petName: pet!.name, imageName: urlString, breed: bn!, FavoriteDataSource: favoriteType, Status: ""))
             }
             Favorites.storeIDs()
         }
@@ -538,7 +540,7 @@ class CatDetailViewController: ZoomAnimationViewController, UIScrollViewDelegate
         favoriteBtn?.normalColor = UIColor.white
         favoriteBtn?.setNeedsDisplay()
         
-        DownloadManager.loadPet(petID: petID!)
+        //DownloadManager.loadPet(petID: petID!)
     }
     
     deinit {
