@@ -14,3 +14,4 @@
 #import "CoolTableViewController.h"
 #import "CustomCellBackground.h"
 #import "WKYTPlayerView.h"
+#import "URBSegmentedControl.h"

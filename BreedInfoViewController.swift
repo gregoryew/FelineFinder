@@ -8,8 +8,8 @@
 
 import UIKit
 
-class BreedInfoViewController: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class BreedInfoViewController: UIViewController {
+    /*
     var breeds: Dictionary<String, [Breed]> = [:]
     var breed: Breed = Breed(id: 0, name: "", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "0", youTubeURL: "", cats101:"", playListID: "");
     var whichSeque: String = ""
@@ -168,4 +168,5 @@ class BreedInfoViewController: ZoomAnimationViewController, UITableViewDelegate,
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
+ */
 }

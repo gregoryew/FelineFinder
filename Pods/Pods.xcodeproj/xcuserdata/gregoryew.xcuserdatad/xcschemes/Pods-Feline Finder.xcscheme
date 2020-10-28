@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "97671ACEF52C5928E110FFF6ADABFA3C"
+               BlueprintIdentifier = "01021CC41A5AB2BB13DB24BAFFC25DED"
                BuildableName = "Pods_Feline_Finder.framework"
                BlueprintName = "Pods-Feline Finder"
                ReferencedContainer = "container:Pods.xcodeproj">

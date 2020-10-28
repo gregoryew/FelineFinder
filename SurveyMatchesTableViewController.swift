@@ -19,11 +19,11 @@ class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDel
     @IBOutlet var tableView: UITableView!
     
     @IBAction func startOverTapped(_ sender: Any) {
-        let mpvc = (parent) as! SurveyManagePageViewController
+        //let mpvc = (parent) as! SurveyManagePageViewController
         
-        let viewController = mpvc.viewQuestionEntry(0)
+        //let viewController = mpvc.viewQuestionEntry(0)
     
-        mpvc.setViewControllers([viewController!], direction: .reverse, animated: true, completion: nil)
+        //mpvc.setViewControllers([viewController!], direction: .reverse, animated: true, completion: nil)
     }
         
     deinit {
@@ -62,12 +62,12 @@ class SurveyMatchesTableViewController: SurveyBaseViewController, UITableViewDel
             guard let _: SurveyMatchesTableViewCell = tableView.cellForRow(at: indexPath) as? SurveyMatchesTableViewCell else {
                 return }
             let breed = breeds[titles[indexPath.section]]![indexPath.row]
-            let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as! BreedInfoDetailViewController
-            details.modalPresentationStyle = .custom
-            details.transitioningDelegate = self
-            globalBreed = breed
-            present(details, animated: true, completion: nil)
-            filterOptions.reset()
+            //let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as! BreedInfoDetailViewController
+            //details.modalPresentationStyle = .custom
+            //details.transitioningDelegate = self
+            //globalBreed = breed
+            //present(details, animated: true, completion: nil)
+            //filterOptions.reset()
         }
     }
     

@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>ImageSizeFetcher.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Feline Finder.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -35,6 +30,11 @@
 			<false/>
 		</dict>
 		<key>TTSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>URBSegmentedControl.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

@@ -9,7 +9,7 @@
 import Foundation
 import FaveButton
 import SDWebImage
-import ImageSizeFetcher
+import URBSegmentedControl
 
 extension UIView {
     func findViewController() -> UIViewController? {
@@ -32,10 +32,10 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var BreedNameLabel: UILabel!
     @IBOutlet weak var InfoLabel: UILabel!
     @IBOutlet weak var CityLabel: UILabel!
-    @IBOutlet weak var FavoriteButton: FaveButton!
-    @IBOutlet weak var Togle: UISegmentedControl!
-    
-    @IBOutlet weak var SubCatCVWidth: NSLayoutConstraint!
+    @IBOutlet weak var FavoriteButton:
+        FaveButton!
+    @IBOutlet weak var ToolsChooser: UIView!
+    var ToolChooserControl: URBSegmentedControl?
     
     private var petData: Pet!
     private var shelterData: shelter!
@@ -56,6 +56,17 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             InfoLabel.alpha = 1
             MainCatImage.alpha = 1
             SubCatCV.alpha = 1
+         
+            ToolChooserControl = URBSegmentedControl.init(titles: ["🐱", "💬"])
+
+            ToolChooserControl?.segmentViewLayout = .vertical
+            ToolChooserControl?.layoutOrientation = .vertical
+            
+            ToolsChooser.addSubview(ToolChooserControl!)
+            
+            ToolChooserControl?.frame = ToolsChooser.bounds
+            
+            ToolChooserControl?.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
             
             self.petData = p
 
@@ -70,9 +81,9 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             setup()
             
             if tools.count() < 2 {
-                self.tools.switchMode()
+                self.tools.mode = .tools
                 setup()
-                Togle.selectedSegmentIndex = 1
+                ToolChooserControl?.selectedSegmentIndex = 1
             }
             
             FavoriteButton.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
@@ -149,7 +160,29 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         }
          
         DispatchQueue.main.async {
-            self.SubCatCV.reloadData()
+            //(self.tools.mode == .media ? .transitionFlipFromBottom : .transitionFlipFromTop)
+            if self.tools.mode == .media {
+                var totalWidth = 0
+                for i in 0..<self.media.count {
+                    var w = 0
+                    if self.media[i].cellType == .image {
+                        w = (self.media[i] as! imageTool).photo.width
+                    } else {
+                        w = 100
+                    }
+                    totalWidth += w
+                }
+                self.SubCatCV.frame = CGRect(x: -totalWidth, y: Int(self.SubCatCV.frame.minY), width: totalWidth, height: 100)
+            } else {
+                self.SubCatCV.frame = CGRect(x: -self.tools.count() * 100, y: Int(self.SubCatCV.frame.minY), width: self.tools.count() * 100, height: 100)
+            }
+            
+            UIView.transition(with: self.SubCatCV, duration: 0.5, options: .curveEaseInOut , animations: {
+                self.SubCatCV.frame = CGRect(x: Int(self.ToolsChooser.frame.width), y: Int(self.SubCatCV.frame.minY), width: Int(self.SubCatCV.frame.width), height: 100)
+                self.SubCatCV.reloadData()
+            }, completion: nil)
+            
+            /*
             var totalWidth:CGFloat = 0
             for i in 0..<self.CGWidths.count {
                 totalWidth += self.CGWidths[i]
@@ -162,6 +195,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
                 self.SubCatCVWidth.constant = self.contentView.frame.width
                 self.SubCatCV.isScrollEnabled = true
             }
+            */
             let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
             self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
             
@@ -170,8 +204,12 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         }
     }
     
-    @IBAction func togleSwitched(_ sender: Any) {
-        self.tools?.switchMode()
+    @objc func indexChanged(_ sender: URBSegmentedControl, _ index: Int) {
+        if ToolChooserControl?.selectedSegmentIndex == 0 {
+            tools.mode = .media
+        } else {
+            tools.mode = .tools
+        }
         setup()
     }
     
@@ -187,7 +225,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         super .prepareForReuse()
         self.backgroundColor = UIColor.clear
         self.MainCatImage.backgroundColor = UIColor.clear
-        self.Togle.selectedSegmentIndex = 0
+        self.ToolChooserControl?.selectedSegmentIndex = 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

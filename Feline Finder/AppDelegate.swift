@@ -395,5 +395,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
 }
 
 var Favorites = FavoritesList()
-var details: BreedInfoDetailViewController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as? BreedInfoDetailViewController)!
+//var details: BreedInfoDetailViewController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as? BreedInfoDetailViewController)!
 

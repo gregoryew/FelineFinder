@@ -141,6 +141,8 @@ class descriptionTool: Tool { //, scrolledView {
     
     func diplayDescription() {
         if let sv = sourceView {
+            UIView.transition(with: sv, duration: 0.5, options: .transitionFlipFromLeft , animations: { [self] in
+                //Do the data reload here
             let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
             blurEffectView = UIVisualEffectView(effect: blurEffect)
             blurEffectView.frame = sv.bounds
@@ -158,6 +160,7 @@ class descriptionTool: Tool { //, scrolledView {
             sourceViewController!.view.addSubview(sideBar)
             sideBar.frame = CGRect(x: sourceViewController!.view.frame.width - 60, y: 50, width: 60, height: 30)
             sourceViewController!.view.bringSubviewToFront(sideBar)
+            }, completion: nil)
             //(sourceViewController as! MainTabAdoptableCats).delegate = self
         }
     }
@@ -194,9 +197,12 @@ class descriptionTool: Tool { //, scrolledView {
     }
 */
     @IBAction func backTapped(_ sender: Any) {
-        sideBar.removeFromSuperview()
-        blurEffectView.removeFromSuperview()
-        wv.removeFromSuperview()
+        UIView.transition(with: sourceView!, duration: 0.5, options: .transitionFlipFromRight , animations: { [self] in
+            //Do the data reload here
+            sideBar.removeFromSuperview()
+            blurEffectView.removeFromSuperview()
+            wv.removeFromSuperview()
+        }, completion: nil)
     }
     
     func generateDescription() {
@@ -442,7 +448,7 @@ class shareTool: Tool {
     
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "🔗"
+        icon = "📤"
         cellType = .tool
     }
     
@@ -535,7 +541,7 @@ class statsTool: Tool {
     }
     override func isVisible(mode: Mode) -> Bool {
         visible = super.isVisible(mode: mode)
-        return mode == .tools
+        return false
     }
     override func performAction() {
         super.performAction()
@@ -603,7 +609,12 @@ class Tools: Sequence, IteratorProtocol {
     private var tools = [Tool]()
     private var currentIndex: Int = 0
     
-    var mode: Mode = .media
+    var mode = Mode.media {
+        didSet {
+            currentIndex = 0
+            tools = getTools()
+        }
+    }
     
     init(pet: Pet, shelter: shelter, sourceView: UIView) {
         list = []
@@ -641,17 +652,7 @@ class Tools: Sequence, IteratorProtocol {
         }
         return tools
     }
-    
-    func switchMode() {
-        if mode == .media {
-            mode = .tools
-        } else {
-            mode = .media
-        }
-        currentIndex = 0
-        tools = getTools()
-    }
-    
+        
     subscript(index: Int) -> Tool {
         return tools[index]
     }

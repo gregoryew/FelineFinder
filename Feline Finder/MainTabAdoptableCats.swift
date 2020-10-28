@@ -54,7 +54,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     @IBAction func SearchButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
-        present(PetFinderFind, animated: false, completion: nil)
+        self.present(PetFinderFind, animated: true, completion: nil)
     }
 
     @IBOutlet weak var FavoriteBtn: FaveButton!
@@ -63,12 +63,16 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         Favorites.storeIDs()
         Favorites.loadIDs()
         if FavoriteBtn.isSelected {
-            tempBreedName = globalBreed?.BreedName ?? ALL_BREEDS
-            globalBreed?.BreedName = FAVORITES
-            DownloadManager.loadFavorites(reset: true)
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromLeft , animations: {
+                self.tempBreedName = globalBreed?.BreedName ?? ALL_BREEDS
+                globalBreed?.BreedName = FAVORITES
+                DownloadManager.loadFavorites(reset: true)
+            }, completion: nil)
         } else {
-            globalBreed?.BreedName = tempBreedName
-            DownloadManager.loadPetList(reset: true)
+            UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromRight , animations: {
+                globalBreed?.BreedName = self.tempBreedName
+                DownloadManager.loadPetList(reset: true)
+            }, completion: nil)
         }
         if self.MainTV.numberOfRows(inSection: 0) > 0 {self.MainTV.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)}
     }

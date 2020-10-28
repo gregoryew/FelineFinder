@@ -28,10 +28,10 @@ class SurveyQuestionEntryViewController: SurveyBaseViewController, UIGestureReco
     @IBOutlet weak var questionNumberLabel: UILabel!
     
     @IBAction func nextQuestion(_ sender: Any) {
-        let mpvc = (parent) as! SurveyManagePageViewController
-        currentQuestion = currentQuestion + 1
-            let viewController = mpvc.viewQuestionEntry(currentQuestion)
-            mpvc.setViewControllers([viewController!], direction: .forward, animated: true, completion: nil)
+        //let mpvc = (parent) as! SurveyManagePageViewController
+        //currentQuestion = currentQuestion + 1
+            //let viewController = mpvc.viewQuestionEntry(currentQuestion)
+            //mpvc.setViewControllers([viewController!], direction: .forward, animated: true, completion: nil)
     }
     
     //var startPoint: CGPoint?

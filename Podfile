@@ -12,5 +12,5 @@ target 'Feline Finder' do
       pod 'BetterSegmentedControl', '~> 1.3'
       pod 'SwiftLocation'
       pod 'SDWebImage', '~> 5.0'
-      pod 'ImageSizeFetcher'
+      pod "URBSegmentedControl"
 end

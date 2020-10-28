@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 
 class SurveyManagePageViewController: UIPageViewController {
+/*
     var currentIndex: Int!
     var chosenBreed: Breed?
     
@@ -118,4 +119,5 @@ extension SurveyManagePageViewController: UIPageViewControllerDataSource {
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
         return questionList.count
     }
+ */
 }

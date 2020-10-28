@@ -16,7 +16,7 @@ final class RescuePetsAPI5: PetList {
     var page = 1
     
     private lazy var baseURL: String = {
-        return "https://api.rescuegroups.org/v5/public/animals/search/?fields[animals]=id,name,breedPrimary,ageGroup,sex,updatedDate,birthDate,availableDate,sizeGroup,descriptionHtml,descriptionText,status&limit=25"
+        return "https://api.rescuegroups.org/v5/public/animals/search/?fields[animals]=id,name,breedPrimary,ageGroup,sex,updatedDate,birthDate,availableDate,sizeGroup,descriptionHtml,descriptionText,distance,status&limit=25"
     }()
     
     var session: URLSession!
@@ -333,6 +333,7 @@ struct IncludedAttributes: Decodable {
     let updated: String?
     let videoId: String?
     let urlThumbnail: String?
+    let distance: Double?
 }
 
 struct picture: Decodable {

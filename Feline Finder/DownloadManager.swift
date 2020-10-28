@@ -86,16 +86,17 @@ class DownloadManager {
         return proceed
     }
     
-    static func generatePetsJSON(filters: [[String: Any]]) -> [String: Any] {
+    static func generatePetsJSON(filters: [[String: Any]]) -> [String : [String : Any]] {
        var filtersParam: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
-        
-        filtersParam.append(contentsOf: filters)
+                
+       filtersParam.append(contentsOf: filters)
 
        let json = [
             "data" : [
+                "filterRadius": ["miles": "25", "postalcode": "94608"],
                 "filters": filtersParam
             ]
-       ] as [String: Any]
+       ] as [String : [String : Any]]
         
        return json
     }

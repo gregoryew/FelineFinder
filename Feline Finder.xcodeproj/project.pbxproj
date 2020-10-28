@@ -35,7 +35,6 @@
 		4649DB071F361B31007FE6AB /* SurveySummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649DB061F361B31007FE6AB /* SurveySummaryTableViewCell.swift */; };
 		4649DB091F36502C007FE6AB /* SurveySummaryHeaderTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4649DB081F36502B007FE6AB /* SurveySummaryHeaderTableViewCell2.swift */; };
 		464B49741F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49731F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift */; };
-		464B49761F1BCECA00C62491 /* BreedInfoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49751F1BCECA00C62491 /* BreedInfoGalleryViewController.swift */; };
 		464B49781F1BCEF100C62491 /* BreedInfoStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49771F1BCEF100C62491 /* BreedInfoStatsViewController.swift */; };
 		464B497A1F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B49791F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift */; };
 		464B497C1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464B497B1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift */; };
@@ -223,7 +222,6 @@
 		4649DB061F361B31007FE6AB /* SurveySummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveySummaryTableViewCell.swift; sourceTree = "<group>"; };
 		4649DB081F36502B007FE6AB /* SurveySummaryHeaderTableViewCell2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveySummaryHeaderTableViewCell2.swift; sourceTree = "<group>"; };
 		464B49731F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoDescriptionViewController.swift; sourceTree = "<group>"; };
-		464B49751F1BCECA00C62491 /* BreedInfoGalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoGalleryViewController.swift; sourceTree = "<group>"; };
 		464B49771F1BCEF100C62491 /* BreedInfoStatsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoStatsViewController.swift; sourceTree = "<group>"; };
 		464B49791F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoAdoptViewController.swift; sourceTree = "<group>"; };
 		464B497B1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedInfoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -714,7 +712,6 @@
 				C51EE1C61D7B7F5900747D8C /* YouTubeViewController.swift */,
 				C5FB6E9E1B2132EC007FFA36 /* Supporting Files */,
 				464B49731F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift */,
-				464B49751F1BCECA00C62491 /* BreedInfoGalleryViewController.swift */,
 				464B49771F1BCEF100C62491 /* BreedInfoStatsViewController.swift */,
 				464B49791F1BCF0F00C62491 /* BreedInfoAdoptViewController.swift */,
 				464B497B1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift */,
@@ -939,28 +936,28 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Feline Finder/Pods-Feline Finder-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BetterSegmentedControl/BetterSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/FaveButton/FaveButton.framework",
-				"${BUILT_PRODUCTS_DIR}/ImageSizeFetcher/ImageSizeFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/TTSegmentedControl/TTSegmentedControl.framework",
+				"${BUILT_PRODUCTS_DIR}/URBSegmentedControl/URBSegmentedControl.framework",
 				"${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BetterSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FaveButton.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImageSizeFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/URBSegmentedControl.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YouTubePlayer.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Feline Finder/Pods-Feline Finder-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Feline Finder/Pods-Feline Finder-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5E33BEEA79C54CB2E3A0AAB /* [CP] Check Pods Manifest.lock */ = {
@@ -988,7 +985,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				464B49761F1BCECA00C62491 /* BreedInfoGalleryViewController.swift in Sources */,
 				467738D21E61D53D009CCD4A /* KYCircularProgress.swift in Sources */,
 				464B49781F1BCEF100C62491 /* BreedInfoStatsViewController.swift in Sources */,
 				C56DA7391D79046500524E53 /* FelineFinderBaseSheltersAPI.swift in Sources */,
