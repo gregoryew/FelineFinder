@@ -39,9 +39,11 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     
     private var petData: Pet!
     private var shelterData: shelter!
-    private var imgs: [imageTool] = []
     private var tools: Tools!
-        
+    private var media = [Tool]()
+    
+    private var mediaCount = 0
+    
     var CGWidths = [CGFloat]()
     
     func configure(pd: Pet?, sh: shelter?, sourceView: UIView) {
@@ -58,6 +60,12 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             self.petData = p
 
             tools = Tools(pet: p, shelter: s, sourceView: sourceView)
+            
+            media = []
+            media.append(contentsOf: tools.images())
+            media.append(contentsOf: tools.youTubeVidoes())
+            
+            mediaCount = tools.images().count + tools.youTubeVidoes().count
             
             setup()
             
@@ -190,7 +198,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     {
         print("PAGE CURL RIGHT")
         
-        if selectedImages[tag] >= imgs.count - 1 {
+        if selectedImages[tag] == media.count - 1 {
             Animations.requireUserAtencion(on: self.MainCatImage)
             return
         }
@@ -205,8 +213,13 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
 
         selectedImages[tag] += 1
         
-        let newImgURL = URL(string: imgs[selectedImages[tag]].photo.URL)
-            
+        var newImgURL: URL?
+        if media[selectedImages[tag]].cellType == .image {
+            newImgURL = URL(string: (media[selectedImages[tag]] as! imageTool).photo.URL)
+        } else {
+            newImgURL = URL(string: (media[selectedImages[tag]] as! youTubeTool).video.urlThumbnail)
+        }
+        
         self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
             CATransaction.commit()
             self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
@@ -233,19 +246,17 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
 
         selectedImages[tag] -= 1
         
-        let tool = tools[selectedImages[tag]]
-        if tool.cellType == .image {
-        
-            let selectedImg = tool as! imageTool
-            
-            let newImgURL = URL(string: selectedImg.photo.URL)
-        
-            self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
-                CATransaction.commit()
-                self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            }
+        var newImgURL: URL?
+        if media[selectedImages[tag]].cellType == .image {
+            newImgURL = URL(string: (media[selectedImages[tag]] as! imageTool).photo.URL)
+        } else {
+            newImgURL = URL(string: (media[selectedImages[tag]] as! youTubeTool).video.urlThumbnail)
         }
 
+        self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
+            CATransaction.commit()
+            self.SubCatCV.selectItem(at: IndexPath(item: selectedImages[self.tag], section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        }
     }
     
     func getRandomColor() -> UIColor{

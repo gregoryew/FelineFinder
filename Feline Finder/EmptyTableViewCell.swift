@@ -29,7 +29,7 @@ class EmptyTableViewCell: UITableViewCell {
         } else {
             if numberOfRows == 1 {
                 if IsFavoriteMode {
-                    MessageLabel.text = "Currently You Have No Favorites"
+                    MessageLabel.text = "Add Some Favorites"
                 } else {
                     MessageLabel.text = "Sorry nothing found.  Tap here for me to search once a day till found."
                 }
