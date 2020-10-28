@@ -61,7 +61,7 @@ class IntroViewController: ZoomAnimationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        globalBreed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+        globalBreed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         
     }
 }

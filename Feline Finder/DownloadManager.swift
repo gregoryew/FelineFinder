@@ -103,7 +103,13 @@ class DownloadManager {
     static func loadFavorites(reset: Bool = false) {
         let pets = RescuePetsAPI5()
         
-        let json = generatePetsJSON(filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
+        var json: [String: Any] = [:]
+        
+        if Favorites.catIDs.count > 0 {
+            json = generatePetsJSON(filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
+        } else {
+            json = generatePetsJSON(filters: [["fieldName": "animals.id", "operation": "equal", "criteria": "-1"]])
+        }
         
         let oldCount = pets.count
         

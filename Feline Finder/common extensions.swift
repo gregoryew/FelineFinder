@@ -32,3 +32,5 @@ public extension Date {
 }
 
 let INITIAL_DATE = Date.setToDateTime(dateString: "1900-01-01")
+let ALL_BREEDS = "All Breeds"
+let FAVORITES = "FAVORITES"

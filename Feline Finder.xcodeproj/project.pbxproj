@@ -179,6 +179,7 @@
 		C5CB15AF2523BF6900E20B25 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5CB15AE2523BF6900E20B25 /* energy_level.gif */; };
 		C5D294F02540427C009419B9 /* ToolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */; };
 		C5D294F325404B44009419B9 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D294F225404B42009419B9 /* Tools.swift */; };
+		C5D5515E25490ECB00DF57C5 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5515D25490ECB00DF57C5 /* EmptyTableViewCell.swift */; };
 		C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA433E1B33ADAF00CF7283 /* Breeders.m */; };
 		C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */; };
 		C5FB6EA31B2132EC007FFA36 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA21B2132EC007FFA36 /* MasterViewController.swift */; };
@@ -383,6 +384,7 @@
 		C5CB15AE2523BF6900E20B25 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
 		C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5D294F225404B42009419B9 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
+		C5D5515D25490ECB00DF57C5 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		C5DA433E1B33ADAF00CF7283 /* Breeders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breeders.m; sourceTree = "<group>"; };
 		C5DA43441B343A8A00CF7283 /* Breeders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Breeders.h; sourceTree = "<group>"; };
 		C5FB6E9B1B2132EC007FFA36 /* Feline Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Feline Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -728,6 +730,7 @@
 				C576B64A253E2B59008DC111 /* FitDialogViewController.swift */,
 				C5D294F225404B42009419B9 /* Tools.swift */,
 				C522D73C2548C3F700DF7063 /* common extensions.swift */,
+				C5D5515D25490ECB00DF57C5 /* EmptyTableViewCell.swift */,
 			);
 			name = Purrfect4U;
 			path = "Feline Finder";
@@ -1118,6 +1121,7 @@
 				C57028BE253D68EA000ED749 /* MainTabFitViewController.swift in Sources */,
 				C5471BB61D67B01400F9A459 /* CustomHeader.m in Sources */,
 				464B497C1F1BEEE000C62491 /* BreedInfoCollectionViewCell.swift in Sources */,
+				C5D5515E25490ECB00DF57C5 /* EmptyTableViewCell.swift in Sources */,
 				C539DED01B51742800B631B8 /* SavedListsViewController.swift in Sources */,
 				46D537901E34B7230006498B /* CardAnimationView.swift in Sources */,
 				C59AC443252E45E40016F523 /* ModeratorRequest.swift in Sources */,

@@ -35,6 +35,8 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     var currentLocation : CLLocation!
     var locationManager: CLLocationManager? = CLLocationManager()
     
+    var tempBreedName = ""
+    
     var titles:[String] = []
     var totalRow = 0
     var times = 0
@@ -61,10 +63,14 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         Favorites.storeIDs()
         Favorites.loadIDs()
         if FavoriteBtn.isSelected {
+            tempBreedName = globalBreed?.BreedName ?? ALL_BREEDS
+            globalBreed?.BreedName = FAVORITES
             DownloadManager.loadFavorites(reset: true)
         } else {
+            globalBreed?.BreedName = tempBreedName
             DownloadManager.loadPetList(reset: true)
         }
+        if self.MainTV.numberOfRows(inSection: 0) > 0 {self.MainTV.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)}
     }
     
     override func viewDidLoad() {
@@ -109,7 +115,6 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.requestWhenInUseAuthorization()
  
-        
         TitleLabel.text = "Cats for Adoption"
         
         pets = RescuePetsAPI5()
@@ -118,11 +123,14 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         MainTV.backgroundColor = UIColor.clear
         
         MainTV.separatorStyle = .none
+        self.MainTV.rowHeight = UITableView.automaticDimension
+        MainTV.estimatedRowHeight = 560
 
     }
     
     @objc private func refreshPetData(_ sender: Any) {
         PetFinderBreeds.removeValue(forKey: globalBreed!.BreedName)
+        FavoriteBtn.isSelected = false
         DownloadManager.loadPetList(reset: true)
     }
     
@@ -307,7 +315,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+        let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
         if zipCode == "" {
             getZipCode()
@@ -394,44 +402,36 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return totalRows
-        
-        //return pets?.foundRows ?? 0
-        
-        /*
-        var c = 0
-        
-        if let p = self.pets {
-            if p.loading || self.pets!.distances.count == 0 {
-                c = 0
-            } else {
-                let sectionTitle = titles[section]
-                c = self.pets!.distances[sectionTitle]!.count
-            }
+        if FavoriteBtn.isSelected && Favorites.count > 0 {
+            return totalRows
+        } else {
+            return totalRows + 1
         }
-        return c
-        */
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
-        
-        cell.backgroundView = UIView(backgroundColor: .clear)
-        cell.backgroundView?.addSeparator()
-
-        cell.selectedBackgroundView = UIView(backgroundColor: .blue)
-        cell.selectedBackgroundView?.addSeparator()
-        
-        if isLoadingCell(for: indexPath) {
-            cell.configure(pd: .none, sh: .none, sourceView: self.view)
+        let numberOfRows = self.MainTV.numberOfRows(inSection: 0)
+        if (numberOfRows == indexPath.row + 1 && !FavoriteBtn.isSelected) || (FavoriteBtn.isSelected && Favorites.count == 0) {
+            let cell = MainTV.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath) as! EmptyTableViewCell
+            cell.configure(numberOfRows: numberOfRows, currentRow: indexPath.row, IsFavoriteMode: FavoriteBtn.isSelected)
+            return cell
         } else {
-            cell.configure(pd: self.pets![indexPath.row], sh: globalShelterCache[self.pets![indexPath.row].shelterID], sourceView: self.view)
-        }
-        cell.tag = indexPath.row
-        
-        return cell
+            let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
+            
+            cell.backgroundView = UIView(backgroundColor: .clear)
+            cell.backgroundView?.addSeparator()
 
+            cell.selectedBackgroundView = UIView(backgroundColor: .blue)
+            cell.selectedBackgroundView?.addSeparator()
+            
+            if isLoadingCell(for: indexPath) {
+                cell.configure(pd: .none, sh: .none, sourceView: self.view)
+            } else {
+                cell.configure(pd: self.pets![indexPath.row], sh: globalShelterCache[self.pets![indexPath.row].shelterID], sourceView: self.view)
+            }
+            cell.tag = indexPath.row
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

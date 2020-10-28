@@ -2120,6 +2120,41 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <outlet property="Togle" destination="5Zd-Rc-Izs" id="KNO-vj-jpr"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="Vt9-ZY-nQu" customClass="EmptyTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="588" width="414" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vt9-ZY-nQu" id="XT6-fF-xyZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rx9-Ge-TOM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                                    <color key="backgroundColor" red="0.16142514350000001" green="0.62755286690000001" blue="0.27835950259999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Label">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <font key="NSFont" size="24" name="HelveticaNeue-Bold"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="rx9-Ge-TOM" firstAttribute="leading" secondItem="XT6-fF-xyZ" secondAttribute="leading" id="SBT-DG-pw4"/>
+                                                <constraint firstItem="rx9-Ge-TOM" firstAttribute="top" secondItem="XT6-fF-xyZ" secondAttribute="top" id="exf-8i-1XD"/>
+                                                <constraint firstAttribute="bottom" secondItem="rx9-Ge-TOM" secondAttribute="bottom" id="hyf-kL-lAT"/>
+                                                <constraint firstAttribute="trailing" secondItem="rx9-Ge-TOM" secondAttribute="trailing" id="qhi-Lc-sJD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="MessageLabel" destination="rx9-Ge-TOM" id="mj7-cf-Qrf"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
