@@ -196,6 +196,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
                 self.SubCatCV.isScrollEnabled = true
             }
             */
+            selectedImages[self.tag] = 1
             let indexPathForFirstRow = IndexPath(row: selectedImages[self.tag], section: 0)
             self.SubCatCV.selectItem(at: indexPathForFirstRow, animated: false, scrollPosition: UICollectionView.ScrollPosition.left)
             
@@ -236,7 +237,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     {
         print("PAGE CURL RIGHT")
         
-        if selectedImages[tag] == media.count - 1 {
+        if selectedImages[tag] == media.count {
             Animations.requireUserAtencion(on: self.MainCatImage)
             return
         }
@@ -252,10 +253,10 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         selectedImages[tag] += 1
         
         var newImgURL: URL?
-        if media[selectedImages[tag]].cellType == .image {
-            newImgURL = URL(string: (media[selectedImages[tag]] as! imageTool).photo.URL)
+        if media[selectedImages[tag] - 1].cellType == .image {
+            newImgURL = URL(string: (media[selectedImages[tag] - 1] as! imageTool).photo.URL)
         } else {
-            newImgURL = URL(string: (media[selectedImages[tag]] as! youTubeTool).video.urlThumbnail)
+            newImgURL = URL(string: (media[selectedImages[tag] - 1] as! youTubeTool).video.urlThumbnail)
         }
         
         self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
@@ -269,7 +270,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     {
         print("PAGE CURL LEFT")
         
-        if selectedImages[tag] <= 0 {
+        if selectedImages[tag] == 1 {
             Animations.requireUserAtencion(on: self.MainCatImage)
             return
         }
@@ -286,9 +287,9 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         
         var newImgURL: URL?
         if media[selectedImages[tag]].cellType == .image {
-            newImgURL = URL(string: (media[selectedImages[tag]] as! imageTool).photo.URL)
+            newImgURL = URL(string: (media[selectedImages[tag] - 1] as! imageTool).photo.URL)
         } else {
-            newImgURL = URL(string: (media[selectedImages[tag]] as! youTubeTool).video.urlThumbnail)
+            newImgURL = URL(string: (media[selectedImages[tag] - 1] as! youTubeTool).video.urlThumbnail)
         }
 
         self.MainCatImage.sd_setImage(with: newImgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority) { (img, err, _, _) in
@@ -391,7 +392,11 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             print("ACTION = \(currentTool.icon)")
             currentTool.performAction()
         }
-        selectedImages[tag] = indexPath.item
+        if indexPath.row == 0 {
+            selectedImages[tag] = 1
+        } else {
+            selectedImages[tag] = indexPath.item
+        }
     }
 
     func animateImageView(newImgURL: URL?, oldImgURL: String, direction: CATransitionSubtype) {

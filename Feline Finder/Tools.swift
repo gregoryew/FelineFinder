@@ -128,7 +128,7 @@ class descriptionTool: Tool { //, scrolledView {
     
     override func isVisible(mode: Mode) -> Bool {
         visible = super.isVisible(mode: mode)
-        return mode == .tools
+        return true
     }
     
     override func performAction() {
@@ -149,12 +149,12 @@ class descriptionTool: Tool { //, scrolledView {
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             sv.addSubview(blurEffectView)
             wv = UIWebView(frame: sv.bounds)
-            generateDescription()
+            let description2 = generateDescription()
             wv.isOpaque = false
             wv.backgroundColor = UIColor.clear
             let path = Bundle.main.bundlePath;
             let sBaseURL = URL(fileURLWithPath: path);
-            wv.loadHTMLString(description, baseURL: sBaseURL)
+            wv.loadHTMLString(description2, baseURL: sBaseURL)
             sv.addSubview(wv)
             
             sourceViewController!.view.addSubview(sideBar)
@@ -205,7 +205,8 @@ class descriptionTool: Tool { //, scrolledView {
         }, completion: nil)
     }
     
-    func generateDescription() {
+    func generateDescription() -> String {
+        var htmlString = ""
         if let pet = pet, let shelter = shelter {
         var b: String = ""
         for b2 in pet.breeds {
@@ -318,9 +319,9 @@ class descriptionTool: Tool { //, scrolledView {
         //dateFormatter.dateFormat = "MM/dd/yyyy"
         //let d = dateFormatter.string(from: p.lastUpdated)
         
-            let htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #66ff33} a.visited, a.hover {color: #1abcde;} </style></header><body><center><table width=\"\(tableWidth)\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><h3><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(width!)'><h1><p style=\"word-wrap: break-word;\">\(pet.description)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
-        description = htmlString
+            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #66ff33} a.visited, a.hover {color: #1abcde;} </style></header><body><center><table width=\"\(tableWidth)\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><h3>\(pet.name)</h3></br><h3><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(width!)'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
         }
+        return htmlString
     }
 }
 

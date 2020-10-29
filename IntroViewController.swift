@@ -35,7 +35,7 @@ class IntroViewController: ZoomAnimationViewController {
         details.modalPresentationStyle = .custom
         details.transitioningDelegate = self
         present(details, animated: true) {
-            details.selectedIndex = 3
+            details.selectedIndex = 1
         }
     }
     
@@ -44,7 +44,7 @@ class IntroViewController: ZoomAnimationViewController {
         details.modalPresentationStyle = .custom
         details.transitioningDelegate = self
         present(details, animated: true) {
-            details.selectedIndex = 1
+            details.selectedIndex = 0
         }
     }
     

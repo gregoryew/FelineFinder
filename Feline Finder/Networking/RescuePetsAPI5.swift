@@ -16,7 +16,7 @@ final class RescuePetsAPI5: PetList {
     var page = 1
     
     private lazy var baseURL: String = {
-        return "https://api.rescuegroups.org/v5/public/animals/search/?fields[animals]=id,name,breedPrimary,ageGroup,sex,updatedDate,birthDate,availableDate,sizeGroup,descriptionHtml,descriptionText,distance,status&limit=25"
+        return "https://api.rescuegroups.org/v5/public/animals/search/available?fields[animals]=id,name,breedPrimary,ageGroup,sex,updatedDate,birthDate,availableDate,sizeGroup,descriptionHtml,descriptionText,status&limit=25"
     }()
     
     var session: URLSession!
@@ -84,26 +84,38 @@ final class RescuePetsAPI5: PetList {
                     //let videos: [video] = self.parseVideos2(videos: cat.animalVideoUrls ?? [])
                     let stat = self.animalStatus(id: cat.id ?? "") // ?? "", animalStatus: cat.animalStatus ?? "", availableDate: cat.animalAvailableDate ?? "", animalAdoptedDate: cat.animalAdoptedDate ?? "", adoptionFee: cat.animalAdoptionFee ?? "")
                     let organizationID = self.catData?.data?[i].relationships?.orgs?.data![0].id
-                    let distance = self.getDistance()
+                    //let dist = self.getDistanceToFirstOrg(lat1: 0, lon1: 0, petID: cat.id ?? "")
+                    
+                    let upd = dateFromString(str: cat.updatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date()
+                    
+                    let cityState = self.getCityState(id: cat.id ?? "")
                 
-                    let p = Pet(pID: cat.id ?? "", n: cat.name ?? "", b: breed, m: false, a: cat.ageGroup ?? "", s: cat.sex ?? "", s2: cat.sizeGroup ?? "", o: [], d: cat.descriptionText ?? "", m2: pictures, v: videos, s3: organizationID ?? "", z: "", dis: Double(distance), stat: stat , bd: cat.birthDate ?? "", upd: dateFromString(str: cat.updatedDate ?? "", format: "MM/dd/yyyy HH:mm:ss Z") ?? Date(), adoptionFee: "NA" , location: self.getCityState(id: cat.id ?? "") )
+                    var p = Pet(pID: cat.id ?? "", n: cat.name ?? "", b: breed, m: false, a: cat.ageGroup ?? "", s: cat.sex ?? "", s2: cat.sizeGroup ?? "", o: [], d: cat.descriptionText ?? "", m2: pictures, v: videos, s3: organizationID ?? "", z: "", dis: -1, stat: stat, bd: cat.birthDate ?? "", upd: upd, adoptionFee: "NA" , location: cityState)
+                    p.descriptionHtml = cat.descriptionHtml ?? ""
                     pets2.append(p)
                 }
             }
             }
             
-            pets2.sort { $0.distance < $1.distance }
+            pets2 = self.lookupOrgZips(pets: pets2)
+            DatabaseManager.sharedInstance.fetchDistancesFromZipCode (pets2) { (zC) -> Void in
+                for i in 0..<pets2.count {
+                    pets2[i].distance = (zC[pets2[i].zipCode]?.distance ?? -2).rounded()
+                }
             
-            self.page += 1
-            if reset {
-                self.Pets = pets2
-            } else {
-                self.Pets.append(contentsOf: pets2)
+                pets2.sort { ($0.distance, $0.name) < ($1.distance, $1.name) }
+                
+                self.page += 1
+                if reset {
+                    self.Pets = pets2
+                } else {
+                    self.Pets.append(contentsOf: pets2)
+                }
+                
+                self.isLoading = false
+                completion(Result.success(self))
             }
-            
-            self.isLoading = false
-            completion(Result.success(self))
-            
+                        
         }).resume()
     }
     
@@ -210,6 +222,49 @@ final class RescuePetsAPI5: PetList {
         }
     }
     
+    func deg2rad(deg:Double) -> Double {
+        return deg * .pi / 180
+    }
+
+    ///////////////////////////////////////////////////////////////////////
+    ///  This function converts radians to decimal degrees              ///
+    ///////////////////////////////////////////////////////////////////////
+    func rad2deg(rad:Double) -> Double {
+        return rad * 180.0 / .pi
+    }
+
+    func distance(lat1:Double, lon1:Double, lat2:Double, lon2:Double, unit:String) -> Double {
+        let theta = lon1 - lon2
+        var dist = sin(deg2rad(deg: lat1)) * sin(deg2rad(deg: lat2)) + cos(deg2rad(deg: lat1)) * cos(deg2rad(deg: lat2)) * cos(deg2rad(deg: theta))
+        dist = acos(dist)
+        dist = rad2deg(rad: dist)
+        dist = dist * 60 * 1.1515
+        if (unit == "K") {
+            dist = dist * 1.609344
+        }
+        else if (unit == "N") {
+            dist = dist * 0.8684
+        }
+        return dist
+    }
+    
+    func lookupOrgZips(pets: [Pet]) -> [Pet] {
+        var tempPets = [Pet]()
+        tempPets.append(contentsOf: pets)
+        for i in 0..<tempPets.count {
+            let r = catData?.data?.first(where: { (rel) -> Bool in
+                return rel.id == tempPets[i].petID
+            })
+            let id = r?.relationships?.orgs?.data?[0].id
+            let item = catData?.included?.first(where: { (i) -> Bool in
+                return i.id == id && i.type == "orgs"
+            })
+            tempPets[i].zipCode = item?.attributes?.postalcode ?? ""
+        }
+        return tempPets
+    }
+    
+    /*
     func getDistance() -> Int {
         return -1
         /*
@@ -220,14 +275,15 @@ final class RescuePetsAPI5: PetList {
         }
         */
     }
+    */
 
     func getCityState(id: String) -> String {
         let r2 = catData?.data?.first(where: { (r) -> Bool in
             return r.id == id
         })
-        let id = r2?.relationships?.locations?.data?[0].id
+        let id = r2?.relationships?.orgs?.data?[0].id
         let item = catData?.included!.first(where: { (i) -> Bool in
-            return i.id == id && i.type == "locations"
+            return i.id == id && i.type == "orgs"
         })
         let citystate = item?.attributes?.citystate ?? ""
         return citystate
@@ -269,6 +325,7 @@ struct Attribute: Decodable {
     //Below new not sure if right
     let status: String?
     let ageGroup: String?
+    let distance: Double?
 }
 
 struct Relationship: Decodable {
@@ -333,7 +390,6 @@ struct IncludedAttributes: Decodable {
     let updated: String?
     let videoId: String?
     let urlThumbnail: String?
-    let distance: Double?
 }
 
 struct picture: Decodable {

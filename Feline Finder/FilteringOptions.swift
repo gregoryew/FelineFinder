@@ -106,7 +106,7 @@ enum catClassification: Int {
     case physical
     case basic
 }
-
+/*
 class filterOptionsList {
     var savesOption: filterOption?
     var saves: [listOption] = []
@@ -630,3 +630,4 @@ class filterOptionsList {
         currentFilterSave = "Touch Here To Load/Save..."
     }
 }
+*/

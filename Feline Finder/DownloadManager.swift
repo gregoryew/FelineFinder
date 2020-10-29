@@ -19,7 +19,7 @@ let breedPicturesLoadedMessage = Notification.Name(rawValue:"breedPicturesLoaded
 
 var isFetchInProgress = false
 
-class DownloadManager {
+final class DownloadManager {
     static let sharedInstance = DownloadManager()
     
     private var currentPage = 1
@@ -86,15 +86,36 @@ class DownloadManager {
         return proceed
     }
     
-    static func generatePetsJSON(filters: [[String: Any]]) -> [String : [String : Any]] {
-       var filtersParam: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
-                
-       filtersParam.append(contentsOf: filters)
+    static func generatePetsJSON(filtered: Bool = true, filters filtersParam: [[String: Any]]) -> [String : [String : Any]] {
+       var filters: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
+        
+        if filtered {
+            filters.append(contentsOf: filterOptions.getFilters())
+
+            if let bn = globalBreed {
+                if bn.BreedName != "All Breeds" {
+                    if bn.RescueBreedID == "" {
+                        filters.append(["fieldName": "animals.PrimaryBreed", "operation": "contains", "criteria": bn.BreedName])
+                    } else {
+                        filters.append(["fieldName": "animals.PrimaryBreedID", "operation": "equals", "criteria": bn.RescueBreedID])
+                }
+            }
+        }
+        }
+        
+        filters.append(contentsOf: filtersParam)
+        
+            /*
+        var order = "desc"
+        if sortFilter == "animalLocationDistance" {
+            order = "asc"
+        }
+    */
 
        let json = [
             "data" : [
-                "filterRadius": ["miles": "25", "postalcode": "94608"],
-                "filters": filtersParam
+                "filterRadius": ["miles": distance, "postalcode": zipCode],
+                "filters": filters
             ]
        ] as [String : [String : Any]]
         
@@ -107,9 +128,9 @@ class DownloadManager {
         var json: [String: Any] = [:]
         
         if Favorites.catIDs.count > 0 {
-            json = generatePetsJSON(filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
+            json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
         } else {
-            json = generatePetsJSON(filters: [["fieldName": "animals.id", "operation": "equal", "criteria": "-1"]])
+            json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": "-1"]])
         }
         
         let oldCount = pets.count
@@ -150,22 +171,10 @@ class DownloadManager {
         if !reset {
             oldCount = pets.count
         }
-        
+                
         if canProceedCheck(reset: reset, pets: pets) == true
         {
-            let jsonBase = [
-                "data" : [
-                    "filters":
-                    [
-                        [
-                            "fieldName": "species.singular",
-                            "operation": "equal",
-                            "criteria": "cat"
-                        ]
-                    ]
-                ]
-            ] as [String: Any]
-            
+            let jsonBase = generatePetsJSON(filtered: true, filters: [])
             pets.loadPets5(json: jsonBase, reset: reset) { result in
                 switch result {
                 case .failure(let error):

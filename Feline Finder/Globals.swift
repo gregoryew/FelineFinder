@@ -151,7 +151,7 @@ var cameFromFiltering = false
 var zipCode: String = ""
 var editWhichQuestionGlobal: Int = 0
 
-var filterOptions: filterOptionsList = filterOptionsList()
+var filterOptions: filterOptionsListV5 = filterOptionsListV5()
 var filterType: FilterType = FilterType.Advanced
 
 var NameID: Int = 0
@@ -182,7 +182,7 @@ var firstTime: Bool = false
 //       print("Wow! Running on a \(UIDevice().type.rawValue)")
 //    }
 
-typealias filter = Dictionary<String, AnyObject>
+typealias filter = Dictionary<String, Any>
 
 public enum DataSource: String {
     case PetFinder      = "PetFinder"

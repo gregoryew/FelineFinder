@@ -54,7 +54,7 @@ class RescuePetList: PetList {
                                 for (key, data) in dict {
                                     if key == "foundRows" {
                                         if data as! Int == 0 {
-                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: "", location: ""))
+                                            completion(Pet(pID: "ERROR", n: "", b: [""], m: true, a: "", s: "", s2: "", o: [], d: "", html: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: "", location: ""))
                                             return
                                         }
                                     }

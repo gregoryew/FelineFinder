@@ -169,6 +169,7 @@
 		C5A159281B8A51CB00517915 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A159271B8A51CB00517915 /* DatabaseManager.swift */; };
 		C5A1592A1B8AB37500517915 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A159291B8AB37500517915 /* Favorites.swift */; };
 		C5A35E751B3F1469008708E7 /* VCMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A35E741B3F1469008708E7 /* VCMapView.swift */; };
+		C5AFB76A254A1F2300531EB7 /* FilteringOptionsV5.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AFB769254A1F2300531EB7 /* FilteringOptionsV5.swift */; };
 		C5B8F9A31D693ABB002EC03C /* PetFinderPicturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */; };
 		C5BB77C52521672C00E33668 /* ZoomViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BB77C32521669A00E33668 /* ZoomViewControler.swift */; };
 		C5BE355F2534458200B6F2B8 /* HorizontalLayoutVaryingWidths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BE355E2534458200B6F2B8 /* HorizontalLayoutVaryingWidths.swift */; };
@@ -373,6 +374,7 @@
 		C5A159271B8A51CB00517915 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		C5A159291B8AB37500517915 /* Favorites.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		C5A35E741B3F1469008708E7 /* VCMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VCMapView.swift; sourceTree = "<group>"; };
+		C5AFB769254A1F2300531EB7 /* FilteringOptionsV5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteringOptionsV5.swift; sourceTree = "<group>"; };
 		C5B8F9A21D693ABB002EC03C /* PetFinderPicturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PetFinderPicturesViewController.swift; sourceTree = "<group>"; };
 		C5BB77C32521669A00E33668 /* ZoomViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomViewControler.swift; sourceTree = "<group>"; };
 		C5BE355E2534458200B6F2B8 /* HorizontalLayoutVaryingWidths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutVaryingWidths.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 				46B454C21F74A17700E0390F /* RescuePetsAPI2.swift */,
 				46181E871F7FEBFB00948D74 /* RescueSheltersAPI2.swift */,
 				C5C2B8A6253F7A4700E7E753 /* PetImage.swift */,
+				C5AFB769254A1F2300531EB7 /* FilteringOptionsV5.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1055,6 +1058,7 @@
 				C5943B051D83B56C0088DE4D /* FilterOptionsListTableViewController.swift in Sources */,
 				C57F87E01B4B664400DBA9D6 /* TitleScreenViewController.swift in Sources */,
 				460558E21F070383006BC6D9 /* BreedInfoDetailViewController.swift in Sources */,
+				C5AFB76A254A1F2300531EB7 /* FilteringOptionsV5.swift in Sources */,
 				C5FB6EED1B213474007FFA36 /* FMDatabase.m in Sources */,
 				4620AA431F01CE77009F9DEC /* MainTabBarViewController.swift in Sources */,
 				C56F90D81B7795C600EEEBFA /* PetFinderFind.swift in Sources */,

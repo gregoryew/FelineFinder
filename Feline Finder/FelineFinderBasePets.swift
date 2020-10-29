@@ -50,6 +50,7 @@ struct Pet: Codable {
     var size: String //["S","M","L","XL"]
     var options: Set<String> //["specialNeeds", "noDogs", "noCats", "noKids", "noClaws", "hasShots", "houseBroken", "altered"]
     var description: String = ""
+    var descriptionHtml: String = ""
     var lastUpdated: Date = Date()
     var zipCode: String = ""
     var distance: Double = 0
@@ -61,7 +62,7 @@ struct Pet: Codable {
     var section = 0
     var adoptionFee = ""
     var location = ""
-    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, m2: [picture2], s3: String, z: String, dis: Double, adoptionFee: String, location: String) {
+    init (pID: String, n: String, b: Set<String>, m: Bool, a: String, s: String, s2: String, o: Set<String>, d: String, html: String, m2: [picture2], s3: String, z: String, dis: Double, adoptionFee: String, location: String) {
         petID = pID
         name = n
         breeds = b
@@ -71,6 +72,7 @@ struct Pet: Codable {
         size = s2
         options = o
         description = d
+        descriptionHtml = html
         media = m2
         shelterID = s3
         zipCode = z

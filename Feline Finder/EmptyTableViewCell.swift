@@ -23,10 +23,8 @@ class EmptyTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(numberOfRows: Int, currentRow: Int, IsFavoriteMode: Bool) {
-        if isFetchInProgress && !IsFavoriteMode {
-            MessageLabel.text = "Please Wait While Cats Are Loading..."
-        } else {
+    func configure(fetching: Bool, numberOfRows: Int, currentRow: Int, IsFavoriteMode: Bool) {
+        if (fetching == false || IsFavoriteMode == true) {
             if numberOfRows == 1 {
                 if IsFavoriteMode {
                     MessageLabel.text = "Add Some Favorites"
@@ -36,9 +34,8 @@ class EmptyTableViewCell: UITableViewCell {
             } else if numberOfRows == currentRow {
                 MessageLabel.text = "End of Results.  Tap here for me to search once a day till found."
             }
+        } else if (fetching == true && IsFavoriteMode == false) {
+            MessageLabel.text = "Please Wait While Cats Are Loading..."
         }
-        self.superview?.setNeedsDisplay()
-        self.superview?.setNeedsLayout()
     }
-
 }

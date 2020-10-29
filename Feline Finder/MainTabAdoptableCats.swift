@@ -36,6 +36,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     var locationManager: CLLocationManager? = CLLocationManager()
     
     var tempBreedName = ""
+    var tempTitleLabel = ""
     
     var titles:[String] = []
     var totalRow = 0
@@ -66,12 +67,17 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromLeft , animations: {
                 self.tempBreedName = globalBreed?.BreedName ?? ALL_BREEDS
                 globalBreed?.BreedName = FAVORITES
+                self.tempTitleLabel = self.TitleLabel.text ?? "Cats for Adoption"
+                self.TitleLabel.text = "Favorites"
                 DownloadManager.loadFavorites(reset: true)
+                self.SearchButton.isHidden = true
             }, completion: nil)
         } else {
             UIView.transition(with: self.view, duration: 0.5, options: .transitionFlipFromRight , animations: {
                 globalBreed?.BreedName = self.tempBreedName
+                self.TitleLabel.text = self.tempTitleLabel
                 DownloadManager.loadPetList(reset: true)
+                self.SearchButton.isHidden = false
             }, completion: nil)
         }
         if self.MainTV.numberOfRows(inSection: 0) > 0 {self.MainTV.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)}
@@ -339,12 +345,13 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     @objc func retrieveData() {
         setFilterDisplay()
         if viewPopped {
-            self.pets?.loading = true
+            self.pets?.dateCreated = INITIAL_DATE
             DownloadManager.loadPetList(reset: true)
             viewPopped = false
         }
         DispatchQueue.main.async { [unowned self] in
             self.MainTV.reloadData()
+            if totalRows > 0 {self.MainTV.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)}
         }
     }
     
@@ -406,7 +413,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if FavoriteBtn.isSelected && Favorites.count > 0 {
+        if FavoriteBtn.isSelected && totalRows > 0 {
             return totalRows
         } else {
             return totalRows + 1
@@ -414,10 +421,31 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let numberOfRows = self.MainTV.numberOfRows(inSection: 0)
-        if (numberOfRows == indexPath.row + 1 && !FavoriteBtn.isSelected) || (FavoriteBtn.isSelected && Favorites.count == 0) {
+        let isFavorite = FavoriteBtn.isSelected
+        let FavoriteCount = Favorites.count
+        var numberOfRows = 0
+        if isFavorite == true && totalRows > 0 {
+            numberOfRows = totalRows
+        } else {
+            numberOfRows = totalRows + 1
+        }
+        if (numberOfRows == indexPath.row + 1 && isFavorite == false) || (isFavorite == true && totalRows == 0) {
             let cell = MainTV.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath) as! EmptyTableViewCell
-            cell.configure(numberOfRows: numberOfRows, currentRow: indexPath.row, IsFavoriteMode: FavoriteBtn.isSelected)
+            if (isFetchInProgress == false || isFavorite == true) {
+                if totalRows == 0 {
+                    if isFavorite == true {
+                        cell.MessageLabel.text = "Add Some Favorites"
+                    } else {
+                        cell.MessageLabel.text = "Sorry nothing found.  I can search once a day for it if you tap here."
+                    }
+                } else if numberOfRows == indexPath.row + 1 {
+                    cell.MessageLabel.text = "End of Results.  If you didn't find what you want tap here."
+                }
+            } else if (isFetchInProgress == true && isFavorite == false) {
+                cell.MessageLabel.text = "Please Wait While Cats Are Loading..."
+            }
+
+            //cell.configure(fetching: isFetchInProgress, numberOfRows: numberOfRows, currentRow: indexPath.row, IsFavoriteMode: FavoriteBtn.isSelected)
             return cell
         } else {
             let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
@@ -483,12 +511,12 @@ extension MainTabAdoptableCats: UITableViewDataSourcePrefetching {
 
 private extension MainTabAdoptableCats {
   func isLoadingCell(for indexPath: IndexPath) -> Bool {
-    if indexPath.row >= pets!.Pets.count {
+    if indexPath.row > pets!.Pets.count {
         print ("isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
     } else {
         print ("NOT isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
     }
-    return indexPath.row >= pets!.Pets.count
+    return indexPath.row > pets!.Pets.count
   }
 /*
   func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {

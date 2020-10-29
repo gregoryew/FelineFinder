@@ -725,7 +725,7 @@ class DatabaseManager {
         }
     }
     
-    func fetchFFilterOptions(_ filterID: Int, filterOptions: filterOptionsList, completion: @escaping (_ filterOptions: [filterOption]) -> Void) {
+    func fetchFFilterOptions(_ filterID: Int, filterOptions: filterOptionsListV5, completion: @escaping (_ filterOptions: [filterOption]) -> Void) {
         
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
             
@@ -768,7 +768,7 @@ class DatabaseManager {
         }
     }
     
-    func saveFilterOptions(_ oldNameID: Int, name: String, filterOptions: filterOptionsList) -> Void {
+    func saveFilterOptions(_ oldNameID: Int, name: String, filterOptions: filterOptionsListV5) -> Void {
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
             if oldNameID != 0 {
                 if (!(db?.executeUpdate("DELETE FROM PetListFilterDetails WHERE FilterID = ?", withArgumentsIn: [oldNameID]))!){
