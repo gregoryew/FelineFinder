@@ -790,7 +790,7 @@ Thanks to the members of PhillyCocoa for their great help and support.
                         <viewControllerLayoutGuide type="bottom" id="pLy-ba-KLX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="900-8n-fca">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SM8-TU-Auo">
@@ -2083,6 +2083,14 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                         <constraint firstAttribute="height" constant="100" id="cz2-KW-UaD"/>
                                                     </constraints>
                                                 </view>
+                                                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDN-Yo-3jM" customClass="YouTubePlayerView" customModule="YouTubePlayer">
+                                                    <rect key="frame" x="10" y="10" width="394" height="290"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="290" id="Nw0-kx-A10"/>
+                                                        <constraint firstAttribute="width" constant="394" id="x1c-eF-3Yh"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -2092,11 +2100,15 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                 <constraint firstItem="52k-aS-NLu" firstAttribute="leading" secondItem="9wo-cy-HYx" secondAttribute="leading" id="HAm-le-iFA"/>
                                                 <constraint firstItem="FQ8-Rh-Fvo" firstAttribute="leading" secondItem="9wo-cy-HYx" secondAttribute="leading" constant="25" id="MGO-BK-VHb"/>
                                                 <constraint firstItem="Py9-EY-wWw" firstAttribute="top" secondItem="FQ8-Rh-Fvo" secondAttribute="bottom" constant="15" id="W6y-9J-JuC"/>
+                                                <constraint firstItem="FQ8-Rh-Fvo" firstAttribute="top" secondItem="tDN-Yo-3jM" secondAttribute="bottom" constant="15" id="YG3-c7-vXN"/>
                                                 <constraint firstItem="2ce-q9-ska" firstAttribute="top" secondItem="9wo-cy-HYx" secondAttribute="top" constant="10" id="jl5-UW-A3o"/>
                                                 <constraint firstAttribute="bottom" secondItem="Py9-EY-wWw" secondAttribute="bottom" constant="10" id="u3x-Lb-fhE"/>
                                                 <constraint firstItem="FQ8-Rh-Fvo" firstAttribute="top" secondItem="2ce-q9-ska" secondAttribute="bottom" constant="15" id="u8o-LT-16R"/>
+                                                <constraint firstItem="tDN-Yo-3jM" firstAttribute="leading" secondItem="9wo-cy-HYx" secondAttribute="leading" constant="10" id="wEx-15-6e6"/>
                                                 <constraint firstAttribute="trailing" secondItem="FQ8-Rh-Fvo" secondAttribute="trailing" constant="25" id="xxO-lA-ai7"/>
                                                 <constraint firstAttribute="trailing" secondItem="Py9-EY-wWw" secondAttribute="trailing" constant="10" id="yKH-o5-R81"/>
+                                                <constraint firstItem="tDN-Yo-3jM" firstAttribute="top" secondItem="9wo-cy-HYx" secondAttribute="top" constant="10" id="z75-zp-ySk"/>
+                                                <constraint firstAttribute="trailing" secondItem="tDN-Yo-3jM" secondAttribute="trailing" constant="10" id="zi9-W4-VJ7"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2109,6 +2121,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <outlet property="MainCatImage" destination="2ce-q9-ska" id="8sS-Ge-SWL"/>
                                             <outlet property="SubCatCV" destination="Py9-EY-wWw" id="7yJ-ea-tBo"/>
                                             <outlet property="ToolsChooser" destination="52k-aS-NLu" id="e35-59-lyz"/>
+                                            <outlet property="YouTubeVideo" destination="tDN-Yo-3jM" id="VuG-8g-6MQ"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="Vt9-ZY-nQu" customClass="EmptyTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
@@ -3399,15 +3412,16 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6vi-IJ-s8W">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6vi-IJ-s8W">
                                 <rect key="frame" x="0.0" y="52" width="314" height="761"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexColor" red="0.83216959239999999" green="0.98548370600000001" blue="0.47333085539999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="slider" rowHeight="81" id="1Rw-Ud-AhC" customClass="FitQuestionSliderTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="314" height="81"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="slider" rowHeight="118" id="1Rw-Ud-AhC" customClass="FitQuestionSliderTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="314" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1Rw-Ud-AhC" id="FSh-uA-PaJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="314" height="81"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="314" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Energy Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTV-FL-jON">
@@ -3438,28 +3452,36 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                         <action selector="helpTapped:" destination="1Rw-Ud-AhC" eventType="touchUpInside" id="0V7-x2-l2H"/>
                                                     </connections>
                                                 </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNB-Mp-cI9" customClass="HorizontalBarChartView" customModule="Charts">
+                                                    <rect key="frame" x="14" y="81" width="286" height="30"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="eNB-Mp-cI9" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leading" constant="14" id="17E-sz-YOC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="2jL-to-2Qo" secondAttribute="trailing" constant="0.67000000000000004" id="2Ds-WX-iJh"/>
                                                 <constraint firstItem="XTV-FL-jON" firstAttribute="top" secondItem="FSh-uA-PaJ" secondAttribute="top" constant="13" id="2sC-Al-VB4"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="top" secondItem="2jL-to-2Qo" secondAttribute="bottom" constant="4.3300000000000001" id="6NS-gY-V41"/>
                                                 <constraint firstItem="2jL-to-2Qo" firstAttribute="top" secondItem="FSh-uA-PaJ" secondAttribute="topMargin" constant="1" id="72X-Uk-EnW"/>
+                                                <constraint firstItem="eNB-Mp-cI9" firstAttribute="top" secondItem="jGy-VV-hCa" secondAttribute="bottom" constant="11" id="BQ2-m4-6gs"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="trailing" secondItem="FSh-uA-PaJ" secondAttribute="trailingMargin" id="Dha-Yk-m3E"/>
                                                 <constraint firstItem="XTV-FL-jON" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leading" constant="15" id="SbL-iC-RFB"/>
                                                 <constraint firstItem="2jL-to-2Qo" firstAttribute="leading" secondItem="XTV-FL-jON" secondAttribute="trailing" constant="8" symbolic="YES" id="SkP-p7-rjT"/>
-                                                <constraint firstItem="jGy-VV-hCa" firstAttribute="bottom" secondItem="FSh-uA-PaJ" secondAttribute="bottomMargin" id="dMW-Yy-vJZ"/>
-                                                <constraint firstItem="jGy-VV-hCa" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leadingMargin" id="eVf-fM-HOH"/>
+                                                <constraint firstItem="jGy-VV-hCa" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leadingMargin" id="XWh-zV-FyF"/>
+                                                <constraint firstAttribute="bottom" secondItem="eNB-Mp-cI9" secondAttribute="bottom" constant="7" id="o7l-X2-dFl"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="top" secondItem="XTV-FL-jON" secondAttribute="bottom" constant="7" id="tya-ug-xjM"/>
+                                                <constraint firstAttribute="trailing" secondItem="eNB-Mp-cI9" secondAttribute="trailing" constant="14" id="uwm-Lp-ETR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="AnswerSlider" destination="jGy-VV-hCa" id="xsI-Cz-xCf"/>
+                                            <outlet property="BreedStatValue" destination="eNB-Mp-cI9" id="R4r-QB-nAm"/>
                                             <outlet property="HelpButton" destination="2jL-to-2Qo" id="Xcs-rC-FE5"/>
                                             <outlet property="QuestionLabel" destination="XTV-FL-jON" id="Vg8-ot-7fK"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="segment" rowHeight="81" id="lwd-nH-sfg" customClass="FitQuestionSegmentTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="109" width="314" height="81"/>
+                                        <rect key="frame" x="0.0" y="146" width="314" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lwd-nH-sfg" id="cEq-h4-rOy">
                                             <rect key="frame" x="0.0" y="0.0" width="314" height="81"/>
@@ -3549,7 +3571,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Abyssinian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2U-J2-u53">
                                                     <rect key="frame" x="37" y="100" width="63" height="20"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="gc2-iV-OJs"/>
                                                     </constraints>
@@ -3559,14 +3581,14 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100%" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jz-9f-M42">
                                                     <rect key="frame" x="5" y="100" width="27" height="20"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="27" id="FNc-ye-Q5h"/>
                                                         <constraint firstAttribute="height" constant="20" id="Qfa-Hx-ykJ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
+                                                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </label>
                                             </subviews>
                                             <constraints>

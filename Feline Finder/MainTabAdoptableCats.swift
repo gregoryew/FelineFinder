@@ -10,6 +10,7 @@ import Foundation
 import SDWebImage
 import MessageUI
 import FaveButton
+import YouTubePlayer
 
 class TableViewWorkAround: UITableView {
     override func layoutSubviews() {
@@ -27,6 +28,8 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     private let refreshControl = UIRefreshControl()
     
     var viewDidLayoutSubviewsForTheFirstTime = true
+    
+    var currentlyPlayingYouTubeVideoView: YouTubePlayerView?
     
     //var delegate: scrolledView!
     
@@ -410,6 +413,16 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
         return t
         */
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let ytv = currentlyPlayingYouTubeVideoView {
+            if !(MainTV.indexPathsForVisibleRows?.contains(IndexPath(row: ytv.tag - 1, section: 0)))! {
+                ytv.stop()
+                ytv.isHidden = true
+                currentlyPlayingYouTubeVideoView = nil
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -13,4 +13,5 @@ target 'Feline Finder' do
       pod 'SwiftLocation'
       pod 'SDWebImage', '~> 5.0'
       pod "URBSegmentedControl"
+      pod 'Charts'
 end

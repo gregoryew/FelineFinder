@@ -27,12 +27,13 @@ class FitQuestionSliderTableViewCell: UITableViewCell {
     @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var HelpButton: UIButton!
     @IBOutlet weak var AnswerSlider: UISlider!
+    @IBOutlet weak var BreedStatValue: UIView!
     
     var priorValue: Int = -1
     
     var delegate: calcStats?
     var question: Question?
-    
+        
     @IBAction func helpTapped(_ sender: Any) {
         let fitDialogVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FitDialog") as! FitDialogViewController
         fitDialogVC.modalPresentationStyle = .formSheet
@@ -69,8 +70,8 @@ class FitQuestionSliderTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
-    func configure(question: Question) {
+    
+    func configure(question: Question, breedName: String, traitValue: Int) {
         QuestionLabel.text = question.Name
         AnswerSlider.value = 0
         self.question = question

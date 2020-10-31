@@ -10,6 +10,7 @@ import Foundation
 import FaveButton
 import SDWebImage
 import URBSegmentedControl
+import YouTubePlayer
 
 extension UIView {
     func findViewController() -> UIViewController? {
@@ -23,7 +24,7 @@ extension UIView {
     }
 }
 
-class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, CAAnimationDelegate {
+class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, CAAnimationDelegate, YouTubePlayerDelegate {
     
     @IBOutlet weak var MainCatImage: UIImageView!
     @IBOutlet weak var SubCatCV: UICollectionView!
@@ -36,6 +37,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         FaveButton!
     @IBOutlet weak var ToolsChooser: UIView!
     var ToolChooserControl: URBSegmentedControl?
+    
+    @IBOutlet weak var YouTubeVideo: YouTubePlayerView!
     
     private var petData: Pet!
     private var shelterData: shelter!
@@ -87,6 +90,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             }
             
             FavoriteButton.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
+            
+            YouTubeVideo.delegate = self
             
             let urlString: String? = petData.getImage(1, size: "pn")
             
@@ -352,7 +357,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             return cell
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let currentTool = tools[indexPath.item]
@@ -381,6 +386,21 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
                 */
             }
         
+            if currentTool.cellType == .video {
+                self.YouTubeVideo.playerVars = [
+                    "playsinline": "1",
+                    "controls": "0",
+                    "showinfo": "0"
+                    ] as YouTubePlayerView.YouTubePlayerParameters
+                self.YouTubeVideo.loadVideoID((currentTool as! youTubeTool).video.videoID)
+                YouTubeVideo.isHidden = false
+                YouTubeVideo.tag = tag
+                (self.findViewController() as? MainTabAdoptableCats)?.currentlyPlayingYouTubeVideoView = YouTubeVideo
+            } else {
+                YouTubeVideo.stop()
+                YouTubeVideo.isHidden = true
+            }
+            
             if indexPath.item - selectedImages[tag] > 0 {
                 animateImageView(newImgURL: photo, oldImgURL: oldImgURL!, direction: .fromRight)
             } else if indexPath.item - selectedImages[tag] < 0 {

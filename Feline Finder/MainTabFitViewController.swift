@@ -22,9 +22,14 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     var breedStats = BreedStatList()
     var responses: [response] = []
     var breedPercentages: [Double] = []
+    var selectedBreedID: Int = 1
+    var selectedBreedIndexPath: Int = 1
     
     let BREED_TV = 1
     let QUESTION_TV = 2
+    
+    var breedColors: [UIColor]?
+    var breedSelected = [Bool](repeating: false, count: 66)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +52,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         breedStats.getBreedStatListForAllBreeds()
         initializeResponses()
+        breedColors = assignRandomColors()
     }
     
     func initializeResponses() {
@@ -85,7 +91,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+        
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView.tag == BREED_TV {
             return breeds.count
@@ -94,12 +100,36 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag == BREED_TV {
+            selectedBreedID = Int(breeds[indexPath.row].BreedID)
+            breedSelected[selectedBreedID] = !breedSelected[selectedBreedID]
+            DispatchQueue.main.async {
+                self.BreedTableView.reloadRows(at: [indexPath], with: .none)
+                self.QuestionsTableView.reloadData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView.tag == BREED_TV {
             let cell = (self.BreedTableView.dequeueReusableCell(withIdentifier: "Breed", for: indexPath) as! FitBreedTableViewCell)
 
             let breed = breeds[indexPath.row]
 
+            if breedSelected[ Int(breed.BreedID)] {
+                cell.BreedImage.layer.borderWidth = 5
+                cell.BreedImage.layer.borderColor = breedColors?[Int(breed.BreedID)].cgColor
+                cell.BreedNameLabel.backgroundColor = breedColors?[Int(breed.BreedID)]
+                cell.BreedFitPercentageLabel.backgroundColor = breedColors?[Int(breed.BreedID)]
+                cell.backgroundColor = breedColors?[Int(breed.BreedID)]
+            } else {
+                cell.BreedImage.layer.borderWidth = 0
+                cell.BreedImage.layer.borderColor = UIColor.clear.cgColor
+                cell.BreedNameLabel.backgroundColor = UIColor.clear
+                cell.BreedFitPercentageLabel.backgroundColor = UIColor.clear
+            }
+            
             cell.configure(breed: breed)
             
             return cell
@@ -111,8 +141,17 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
 
                 cell.tag = indexPath.row
                 cell.delegate = self
-                cell.configure(question: question)
-            
+                var breedName: String?
+                var value: Int?
+                if selectedBreedIndexPath < breeds.count {
+                    breedName = breeds[selectedBreedIndexPath].BreedName
+                    value = Int(breedStats.allBreedStats[selectedBreedID]![indexPath.row].Percent) ?? 0
+                } else {
+                    breedName = ""
+                    value = 0
+                }
+                cell.configure(question: question, breedName: breedName ?? "", traitValue: value ?? 0)
+                                
                 return cell
             } else {
                 let cell = (self.QuestionsTableView.dequeueReusableCell(withIdentifier: "segment", for: indexPath) as! FitQuestionSegmentTableViewCell)
@@ -128,6 +167,32 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
 
+    func assignRandomColors() -> [UIColor] {
+        var temp = [UIColor]()
+        for _ in 0..<12 {
+            temp.append(UIColor(red: CGFloat(arc4random_uniform(255))/255.0, green: 0, blue: 0, alpha: 1))
+        }
+        for _ in 0..<12 {
+            temp.append(UIColor(red: 0, green: CGFloat(arc4random_uniform(255))/255.0, blue: 0, alpha: 1))
+        }
+        for _ in 0..<12 {
+            temp.append(UIColor(red: 0, green: 0, blue: CGFloat(arc4random_uniform(255))/255.0, alpha: 1))
+        }
+        for _ in 0..<12 {
+            temp.append(UIColor(red: CGFloat(arc4random_uniform(255))/255.0, green: CGFloat(arc4random_uniform(255))/255.0, blue: 0, alpha: 1))
+        }
+        for _ in 0..<12 {
+            temp.append(UIColor(red: CGFloat(arc4random_uniform(255))/255.0, green: 0, blue: CGFloat(arc4random_uniform(255))/255.0, alpha: 1))
+        }
+        for _ in 0..<12 {
+            temp.append(UIColor(red: 0, green: CGFloat(arc4random_uniform(255))/255.0, blue: CGFloat(arc4random_uniform(255))/255.0, alpha: 1))
+        }
+        for _ in 0...65 {
+            temp.swapAt(Int(arc4random_uniform(65)), Int(arc4random_uniform(65)))
+        }
+        return temp
+    }
+    
     /*
     // MARK: - Navigation
 

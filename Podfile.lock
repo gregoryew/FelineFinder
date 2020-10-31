@@ -1,12 +1,48 @@
 PODS:
-  - YouTubePlayer (0.4.0)
+  - BetterSegmentedControl (1.3.0)
+  - Charts (3.6.0):
+    - Charts/Core (= 3.6.0)
+  - Charts/Core (3.6.0)
+  - FaveButton (3.2.1)
+  - SDWebImage (5.9.4):
+    - SDWebImage/Core (= 5.9.4)
+  - SDWebImage/Core (5.9.4)
+  - SwiftLocation (4.2.0)
+  - TTSegmentedControl (0.4.10)
+  - URBSegmentedControl (1.0.4)
+  - YouTubePlayer (0.7.2)
 
 DEPENDENCIES:
-  - YouTubePlayer
+  - BetterSegmentedControl (~> 1.3)
+  - Charts
+  - FaveButton
+  - SDWebImage (~> 5.0)
+  - SwiftLocation
+  - TTSegmentedControl
+  - URBSegmentedControl
+  - YouTubePlayer (~> 0.7.2)
+
+SPEC REPOS:
+  trunk:
+    - BetterSegmentedControl
+    - Charts
+    - FaveButton
+    - SDWebImage
+    - SwiftLocation
+    - TTSegmentedControl
+    - URBSegmentedControl
+    - YouTubePlayer
 
 SPEC CHECKSUMS:
-  YouTubePlayer: 028451f6772f372d4759866db99824c676ac1473
+  BetterSegmentedControl: 85d1b0343a09603b098884d527f550dfc8e6cdd9
+  Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
+  SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
+  SwiftLocation: 609ac8859f2c5d48a6cadd2a58c63b1dae02dc25
+  TTSegmentedControl: d8005c0cdca2549ade0aee8e09240723e2478a6a
+  URBSegmentedControl: 6ca4bb5483854fe02e9718a92211f8f126748dc8
+  YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: f9e6984301122440c24ba213dc704b8f92389782
+PODFILE CHECKSUM: 6519b723dd48753c262e488cd40c12798e52dcbc
 
-COCOAPODS: 1.2.0.beta.3
+COCOAPODS: 1.10.0

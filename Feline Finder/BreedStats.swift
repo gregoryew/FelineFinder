@@ -167,6 +167,10 @@ class BreedStatList {
     
     var breedIDs = [Int]()
     
+    func getBreedTraitValue(_ breedID: Int, traitNumber: Int) -> Int {
+        return Int(allBreedStats[breedID]![traitNumber].Value) ?? 0
+    }
+    
     func getBreedStatList(_ breedID: Int, percentageMatch: Double) {
         let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.documentDirectory,.userDomainMask,true)[0] as AnyObject
         let DBPath:NSString = documentsPath.appending("/CatFinder.db") as NSString
