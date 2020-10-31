@@ -11,6 +11,7 @@ import FaveButton
 import SDWebImage
 import URBSegmentedControl
 import YouTubePlayer
+import SkeletonView
 
 extension UIView {
     func findViewController() -> UIViewController? {
@@ -52,6 +53,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     func configure(pd: Pet?, sh: shelter?, sourceView: UIView) {
         if let p = pd, let s = sh {
 
+            /*
             FavoriteButton.alpha = 1
             CatNameLabel.alpha = 1
             BreedNameLabel.alpha = 1
@@ -59,7 +61,10 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             InfoLabel.alpha = 1
             MainCatImage.alpha = 1
             SubCatCV.alpha = 1
-         
+            */
+ 
+            self.contentView.stopSkeletonAnimation()
+            
             ToolChooserControl = URBSegmentedControl.init(titles: ["🐱", "💬"])
 
             ToolChooserControl?.segmentViewLayout = .vertical
@@ -126,6 +131,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             MainCatImage.layer.borderWidth = 6
             MainCatImage.layer.borderColor = UIColor(red: 0.5, green: 0.47, blue: 0.25, alpha: 1.0).cgColor
         } else {
+            self.contentView.showAnimatedGradientSkeleton()
+            /*
             FavoriteButton.alpha = 0
             CatNameLabel.alpha = 0
             BreedNameLabel.alpha = 0
@@ -133,6 +140,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             InfoLabel.alpha = 0
             MainCatImage.alpha = 0
             SubCatCV.alpha = 0
+            */
         }
     }
     

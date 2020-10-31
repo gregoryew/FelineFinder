@@ -7,6 +7,7 @@ PODS:
   - SDWebImage (5.9.4):
     - SDWebImage/Core (= 5.9.4)
   - SDWebImage/Core (5.9.4)
+  - SkeletonView (1.11.0)
   - SwiftLocation (4.2.0)
   - TTSegmentedControl (0.4.10)
   - URBSegmentedControl (1.0.4)
@@ -17,6 +18,7 @@ DEPENDENCIES:
   - Charts
   - FaveButton
   - SDWebImage (~> 5.0)
+  - SkeletonView
   - SwiftLocation
   - TTSegmentedControl
   - URBSegmentedControl
@@ -28,6 +30,7 @@ SPEC REPOS:
     - Charts
     - FaveButton
     - SDWebImage
+    - SkeletonView
     - SwiftLocation
     - TTSegmentedControl
     - URBSegmentedControl
@@ -38,11 +41,12 @@ SPEC CHECKSUMS:
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
   FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
   SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
+  SkeletonView: cc84ce90a804dd0dd7198dd802833411c8a64eaf
   SwiftLocation: 609ac8859f2c5d48a6cadd2a58c63b1dae02dc25
   TTSegmentedControl: d8005c0cdca2549ade0aee8e09240723e2478a6a
   URBSegmentedControl: 6ca4bb5483854fe02e9718a92211f8f126748dc8
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: 6519b723dd48753c262e488cd40c12798e52dcbc
+PODFILE CHECKSUM: ad55900e8ecc45d78195b2292647f489ce4201fc
 
 COCOAPODS: 1.10.0

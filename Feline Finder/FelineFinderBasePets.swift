@@ -177,7 +177,12 @@ class PetList {
     
     subscript(index: Int) -> Pet {
         get {
-            return Pets[index]
+            if Pets.count > index {
+                return Pets[index]
+            }
+            else {
+                return Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [], d: "", html: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: "", location: "")
+            }
         }
     }
     

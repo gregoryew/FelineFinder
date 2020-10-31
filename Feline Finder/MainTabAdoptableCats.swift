@@ -11,6 +11,7 @@ import SDWebImage
 import MessageUI
 import FaveButton
 import YouTubePlayer
+import SkeletonView
 
 class TableViewWorkAround: UITableView {
     override func layoutSubviews() {
@@ -417,7 +418,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let ytv = currentlyPlayingYouTubeVideoView {
-            if !(MainTV.indexPathsForVisibleRows?.contains(IndexPath(row: ytv.tag - 1, section: 0)))! {
+            if !(MainTV.indexPathsForVisibleRows?.contains(IndexPath(row: ytv.tag, section: 0)))! {
                 ytv.stop()
                 ytv.isHidden = true
                 currentlyPlayingYouTubeVideoView = nil

@@ -14,4 +14,5 @@ target 'Feline Finder' do
       pod 'SDWebImage', '~> 5.0'
       pod "URBSegmentedControl"
       pod 'Charts'
+      pod 'SkeletonView'
 end
