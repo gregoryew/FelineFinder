@@ -74,20 +74,20 @@ class FilterOptionsListTableViewController: UITableViewController {
         toolBarView.layer.shadowOffset = CGSize(width: 5, height: 5)
         
         let backBtn = UIButton(type: .roundedRect)
-        backBtn.setTitle("↩️", for: .normal)
+        backBtn.setAttributedTitle(setEmojicaLabel(text:  "↩️"), for: .normal)
         toolBarView.addSubview(backBtn)
         backBtn.addTarget(self, action: #selector(backTapped), for:  .touchUpInside)
         backBtn.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
 
         let clearBtn = UIButton(type: .roundedRect)
-        clearBtn.setTitle("🗑️", for: .normal)
+        clearBtn.setAttributedTitle(setEmojicaLabel(text: "🗑️"), for: .normal)
         toolBarView.addSubview(clearBtn)
         clearBtn.addTarget(self, action: #selector(ClearTapped), for: .touchUpInside)
         clearBtn.frame = CGRect(x: backBtn.frame.minX + backBtn.frame.width + 5, y: 5, width: 40, height: 40)
 
         if filterOpt?.classification == .saves {
             let saveBtn = UIButton(type: .roundedRect)
-            saveBtn.setTitle("💾", for: .normal)
+            saveBtn.setAttributedTitle(setEmojicaLabel(text:  "💾"), for: .normal)
             toolBarView.addSubview(saveBtn)
             saveBtn.addTarget(self, action: #selector(SavedTapped), for:  .touchUpInside)
             saveBtn.frame = CGRect(x: clearBtn.frame.minX + clearBtn.frame.width + 5, y: 5, width: 40, height: 40)
@@ -323,12 +323,14 @@ class FilterOptionsListTableViewController: UITableViewController {
         if filterOpt?.classification == .saves {return cell}
         if ((filterOpt?.choosenListValues.contains(indexPath.row)) == true) {
             if filterOpt?.name == "Not These" {
-                cell.isSelectedLabel.text = "😿"
+                cell.isSelectedLabel.attributedText = setEmojicaLabel(text: "😿")
+                //cell.isSelectedLabel.text = "😿"
             } else {
-                cell.isSelectedLabel.text = "😻"
+                cell.isSelectedLabel.attributedText = setEmojicaLabel(text: "😻")
             }
         } else {
-            cell.isSelectedLabel.text = "🐱"
+            cell.isSelectedLabel.attributedText = setEmojicaLabel(text: "🐱")
+            //cell.isSelectedLabel.text = "🐱"
         }
         cell.optionLabel.text = filterOpt?.optionsArray()[indexPath.row]
         return cell

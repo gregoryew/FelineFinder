@@ -63,7 +63,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             SubCatCV.alpha = 1
             */
  
-            self.contentView.stopSkeletonAnimation()
+            //self.contentView.stopSkeletonAnimation()
             
             ToolChooserControl = URBSegmentedControl.init(titles: ["🐱", "💬"])
 
@@ -100,15 +100,15 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             
             let urlString: String? = petData.getImage(1, size: "pn")
             
-            CatNameLabel.text = petData.name
-            BreedNameLabel.text = petData.breeds.first
-            CityLabel.text = "\(petData.location != "" ? petData.location + "📍" : "")\(petData.distance) Miles"
+            CatNameLabel.text = petData.name + " "
+            BreedNameLabel.text = petData.breeds.first! + " "
+            CityLabel.attributedText = setEmojicaLabel(text: "\(petData.location != "" ? petData.location + "📍" : "")\(petData.distance) Miles ", size: CityLabel.font.pointSize, fontName: CityLabel.font.fontName)
             var items = [String]()
             if petData.status != "" {items.append(petData.status)}
             if petData.sex != "" {items.append(petData.sex)}
             if petData.age != "" {items.append(petData.age)}
             if petData.size != "" {items.append(petData.size)}
-            InfoLabel.text = items.joined(separator: " 🐾 ")
+            InfoLabel.attributedText = setEmojicaLabel(text: items.joined(separator: " 🐾 ") + " ", size: InfoLabel.font.pointSize, fontName: InfoLabel.font.fontName)
             
             if urlString == "" {
                 MainCatImage?.backgroundColor = getRandomColor()
@@ -131,7 +131,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             MainCatImage.layer.borderWidth = 6
             MainCatImage.layer.borderColor = UIColor(red: 0.5, green: 0.47, blue: 0.25, alpha: 1.0).cgColor
         } else {
-            self.contentView.showAnimatedGradientSkeleton()
+            //self.contentView.showAnimatedGradientSkeleton()
             /*
             FavoriteButton.alpha = 0
             CatNameLabel.alpha = 0

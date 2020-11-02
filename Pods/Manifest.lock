@@ -3,7 +3,9 @@ PODS:
   - Charts (3.6.0):
     - Charts/Core (= 3.6.0)
   - Charts/Core (3.6.0)
+  - Emojica (0.9.6)
   - FaveButton (3.2.1)
+  - MarqueeLabel (4.0.5)
   - SDWebImage (5.9.4):
     - SDWebImage/Core (= 5.9.4)
   - SDWebImage/Core (5.9.4)
@@ -16,7 +18,9 @@ PODS:
 DEPENDENCIES:
   - BetterSegmentedControl (~> 1.3)
   - Charts
+  - Emojica
   - FaveButton
+  - MarqueeLabel
   - SDWebImage (~> 5.0)
   - SkeletonView
   - SwiftLocation
@@ -28,7 +32,9 @@ SPEC REPOS:
   trunk:
     - BetterSegmentedControl
     - Charts
+    - Emojica
     - FaveButton
+    - MarqueeLabel
     - SDWebImage
     - SkeletonView
     - SwiftLocation
@@ -39,7 +45,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   BetterSegmentedControl: 85d1b0343a09603b098884d527f550dfc8e6cdd9
   Charts: b1e3a1f5a1c9ba5394438ca3b91bd8c9076310af
+  Emojica: 97f8fd80445fe3014ba73637954c5a0e976cfa6b
   FaveButton: 93cfebf6030336fa7653fad2068c3152ed668b39
+  MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   SDWebImage: b69257f4ab14e9b6a2ef53e910fdf914d8f757c1
   SkeletonView: cc84ce90a804dd0dd7198dd802833411c8a64eaf
   SwiftLocation: 609ac8859f2c5d48a6cadd2a58c63b1dae02dc25
@@ -47,6 +55,6 @@ SPEC CHECKSUMS:
   URBSegmentedControl: 6ca4bb5483854fe02e9718a92211f8f126748dc8
   YouTubePlayer: 2b5f2830d8f9b2cde942083211291e382c9e6bd5
 
-PODFILE CHECKSUM: ad55900e8ecc45d78195b2292647f489ce4201fc
+PODFILE CHECKSUM: 4834a3ab4c76f931a250ae34f8cf230a1c45aae5
 
 COCOAPODS: 1.10.0

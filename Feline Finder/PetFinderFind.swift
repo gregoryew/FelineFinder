@@ -65,13 +65,13 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         toolBarView.layer.shadowOffset = CGSize(width: 5, height: 5)
 
         let searchBtn = UIButton(type: .roundedRect)
-        searchBtn.setTitle("🔍", for: .normal)
+        searchBtn.setAttributedTitle(setEmojicaLabel(text: "🔎"), for: .normal)
         toolBarView.addSubview(searchBtn)
         searchBtn.addTarget(self, action: #selector(DoneTapped), for:  .touchUpInside)
         searchBtn.frame = CGRect(x: 5, y: 5, width: 40, height: 40)
 
         let clearBtn = UIButton(type: .roundedRect)
-        clearBtn.setTitle("🗑️", for: .normal)
+        clearBtn.setAttributedTitle(setEmojicaLabel(text: "🗑️"), for: .normal)
         toolBarView.addSubview(clearBtn)
         clearBtn.addTarget(self, action: #selector(clearTapped), for:  .touchUpInside)
         clearBtn.frame = CGRect(x: searchBtn.frame.minX + searchBtn.frame.width + 5, y: 5, width: 40, height: 40)
@@ -251,7 +251,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             )
             let title = self.tableView(tableView, titleForHeaderInSection: section)
             header.titleLabel.text = title ?? ""
-            header.titleLabel.text = (colapsed[section - 4] ? "➡️ " : "⬇️ ") + (header.titleLabel.text ?? "")
+            let label = (colapsed[section - 4] ? "➡️ " : "⬇️ ") + (title ?? "")
+            header.titleLabel.attributedText = setEmojicaLabel(text: label, size: header.titleLabel.font.pointSize, fontName: header.titleLabel.font.fontName)
             header.tag = section
             header.addGestureRecognizer(tapGestureRecognizer)
         }
@@ -265,7 +266,8 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             let header = sender?.view as! CustomHeader
             let title = self.tableView(self.tableView, titleForHeaderInSection: section)
             colapsed[section - 4] = colapsed[section - 4] ? false : true
-            header.titleLabel.text = (colapsed[section - 4] ? "➡️ " : "⬇️ ") + (title ?? "")
+            let label = (colapsed[section - 4] ? "➡️ " : "⬇️ ") + (title ?? "")
+            header.titleLabel.attributedText = setEmojicaLabel(text: label, size: header.titleLabel.font.pointSize, fontName: header.titleLabel.font.fontName)
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
@@ -325,14 +327,14 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
             if filterOption.classification != section {continue}
             if filterOption.choosenListValues.count > 0 || filterOption.choosenValue != filterOption.options.count - 1 {
                 if filterOption.choosenListValues.count > 0 {
-                    choosen = ("\(choosen), 🔍 \(filterOption.name ?? "")")
+                    choosen = ("\(choosen), 🔎 \(filterOption.name ?? "")")
                 } else {
                     if (filterOption.options[filterOption.choosenValue!] ).displayName == "Yes" {
-                        choosen = ("\(choosen), 🔍 \(filterOption.name ?? "")")
+                        choosen = ("\(choosen), 🔎 \(filterOption.name ?? "")")
                     } else if (filterOption.options[filterOption.choosenValue!] ).displayName == "No" {
-                        choosen = ("\(choosen), 🔍 Not \(filterOption.name ?? "")")
+                        choosen = ("\(choosen), 🔎 Not \(filterOption.name ?? "")")
                     } else {
-                        choosen = ("\(choosen), 🔍 \(filterOption.name ?? "") : \(String(describing: filterOption.options[filterOption.choosenValue!] .displayName!))")
+                        choosen = ("\(choosen), 🔎 \(filterOption.name ?? "") : \(String(describing: filterOption.options[filterOption.choosenValue!] .displayName!))")
                     }
                 }
             }
@@ -410,7 +412,7 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
                 if (!colapsedOpt) {
                     cell.ListValue.text = opt?.getDisplayValues()
                 } else {
-                    cell.ListValue.text = getChoosenValues(section: catClassification(rawValue: indexPath.section - 1)!)
+                    cell.ListValue.attributedText = setEmojicaLabel(text: getChoosenValues(section: catClassification(rawValue: indexPath.section - 1)!), size: cell.ListValue.font.pointSize)
                 }
                 cell.ListValue.isUserInteractionEnabled = true
                 if (opt?.imported)! {

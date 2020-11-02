@@ -12,6 +12,6 @@ class ToolCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ToolIcon: UILabel!
     
     func configure(tool: Tool) {
-        ToolIcon.text = tool.icon
+        ToolIcon.attributedText = setEmojicaLabel(text: tool.icon, size: 64.0)
     }
 }

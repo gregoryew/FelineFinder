@@ -119,13 +119,14 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
 
             if breedSelected[ Int(breed.BreedID)] {
                 cell.BreedImage.layer.borderWidth = 5
-                cell.BreedImage.layer.borderColor = breedColors?[Int(breed.BreedID)].cgColor
-                cell.BreedNameLabel.backgroundColor = breedColors?[Int(breed.BreedID)]
-                cell.BreedFitPercentageLabel.backgroundColor = breedColors?[Int(breed.BreedID)]
-                cell.backgroundColor = breedColors?[Int(breed.BreedID)]
+                cell.BreedImage.layer.borderColor = breedColors?[Int(breed.BreedID - 1)].cgColor
+                cell.BreedNameLabel.backgroundColor = breedColors?[Int(breed.BreedID - 1)]
+                cell.BreedFitPercentageLabel.backgroundColor = breedColors?[Int(breed.BreedID - 1)]
+                cell.contentView.backgroundColor = breedColors?[Int(breed.BreedID - 1)]
             } else {
                 cell.BreedImage.layer.borderWidth = 0
                 cell.BreedImage.layer.borderColor = UIColor.clear.cgColor
+                cell.contentView.backgroundColor = UIColor.black
                 cell.BreedNameLabel.backgroundColor = UIColor.clear
                 cell.BreedFitPercentageLabel.backgroundColor = UIColor.clear
             }
@@ -169,27 +170,15 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
 
     func assignRandomColors() -> [UIColor] {
         var temp = [UIColor]()
-        for _ in 0..<12 {
-            temp.append(UIColor(red: CGFloat(arc4random_uniform(255))/255.0, green: 0, blue: 0, alpha: 1))
+        let increment = Int(16777215 / 65)
+        for index in stride(from: 0, to: 16777215, by: increment) {
+            temp.append(UIColor(hexString: String(format:"%02X", index)))
         }
-        for _ in 0..<12 {
-            temp.append(UIColor(red: 0, green: CGFloat(arc4random_uniform(255))/255.0, blue: 0, alpha: 1))
-        }
-        for _ in 0..<12 {
-            temp.append(UIColor(red: 0, green: 0, blue: CGFloat(arc4random_uniform(255))/255.0, alpha: 1))
-        }
-        for _ in 0..<12 {
-            temp.append(UIColor(red: CGFloat(arc4random_uniform(255))/255.0, green: CGFloat(arc4random_uniform(255))/255.0, blue: 0, alpha: 1))
-        }
-        for _ in 0..<12 {
-            temp.append(UIColor(red: CGFloat(arc4random_uniform(255))/255.0, green: 0, blue: CGFloat(arc4random_uniform(255))/255.0, alpha: 1))
-        }
-        for _ in 0..<12 {
-            temp.append(UIColor(red: 0, green: CGFloat(arc4random_uniform(255))/255.0, blue: CGFloat(arc4random_uniform(255))/255.0, alpha: 1))
-        }
+        /*
         for _ in 0...65 {
             temp.swapAt(Int(arc4random_uniform(65)), Int(arc4random_uniform(65)))
         }
+        */
         return temp
     }
     

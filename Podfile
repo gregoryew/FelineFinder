@@ -15,4 +15,6 @@ target 'Feline Finder' do
       pod "URBSegmentedControl"
       pod 'Charts'
       pod 'SkeletonView'
+      pod 'Emojica'
+      pod 'MarqueeLabel'
 end

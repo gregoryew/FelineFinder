@@ -114,14 +114,6 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             self?.petsFailed(notification: notification)
         }
         
-        observer4 = nc.addObserver(forName: imageProberFailedMessage, object:nil, queue:nil) { [weak self] notification in
-            self?.imagesFailed(notification: notification)
-        }
-
-        observer5 = nc.addObserver(forName: imageProberLoadedMessage, object:nil, queue:nil) { [weak self] notification in
-            self?.imagesLoaded(notification: notification)
-        }
-        
         MainTV.dataSource = self
         MainTV.delegate = self
         MainTV.prefetchDataSource = self
@@ -139,6 +131,8 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         MainTV.separatorStyle = .none
         self.MainTV.rowHeight = UITableView.automaticDimension
         MainTV.estimatedRowHeight = 560
+        
+        SearchButton.setAttributedTitle(setEmojicaLabel(text: "🔎", size: SearchButton.titleLabel!.font.pointSize), for: .normal)
 
     }
     
@@ -274,59 +268,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             self.refreshControl.endRefreshing()
         }
     }
-    
-    func imagesLoaded(notification:Notification) -> Void {
-        print("petLoaded notification")
         
-        guard let userInfo = notification.userInfo,
-              let p = userInfo["petList"] as? RescuePetsAPI5
-        else {
-                print("No userInfo found in notification")
-                return
-        }
-        
-        pets = p
-
-        self.pets?.loading = false
-        
-        guard let newIndexPathsToReload = userInfo["newIndexPathsToReload"] as? [IndexPath] else {
-          DispatchQueue.main.async { [unowned self] in
-            totalRows = pets?.foundRows ?? 0
-            self.MainTV.reloadData()
-            selectedImages = [Int](repeating: 0, count: totalRows)
-            isFetchInProgress = false
-            self.refreshControl.endRefreshing()
-          }
-          return
-        }
-        
-        DispatchQueue.main.async { [unowned self] in
-            let indexPathsForVisibleRows = MainTV.indexPathsForVisibleRows ?? []
-            let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(newIndexPathsToReload)
-            let indexPathsToReload = Array(indexPathsIntersection)
-            self.MainTV.reloadRows(at: indexPathsToReload, with: .automatic)
-            isFetchInProgress = false
-            self.refreshControl.endRefreshing()
-        }
-    }
-
-    func imagesFailed(notification: Notification) -> Void {
-        guard let userInfo = notification.userInfo,
-              let reason = userInfo["error"] as? String
-        else {
-                print("No userInfo found in notification")
-                return
-        }
-
-        DispatchQueue.main.async { [unowned self] in
-            self.refreshControl.endRefreshing()
-            let title = "Warning"
-            let action = UIAlertAction(title: "OK", style: .default)
-            displayAlert(with: title , message: reason, actions: [action])
-            isFetchInProgress = false
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
@@ -399,103 +341,6 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
         }
         return totalRow
     }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-        /*
-        var t = 0
-        if let p = self.pets {
-            if p.loading || self.pets!.distances.count == 0 {
-                t = 1
-            }
-            else {
-                t = self.titles.count
-            }
-        }
-        return t
-        */
-    }
-    
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let ytv = currentlyPlayingYouTubeVideoView {
-            if !(MainTV.indexPathsForVisibleRows?.contains(IndexPath(row: ytv.tag, section: 0)))! {
-                ytv.stop()
-                ytv.isHidden = true
-                currentlyPlayingYouTubeVideoView = nil
-            }
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if FavoriteBtn.isSelected && totalRows > 0 {
-            return totalRows
-        } else {
-            return totalRows + 1
-        }
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isFavorite = FavoriteBtn.isSelected
-        let FavoriteCount = Favorites.count
-        var numberOfRows = 0
-        if isFavorite == true && totalRows > 0 {
-            numberOfRows = totalRows
-        } else {
-            numberOfRows = totalRows + 1
-        }
-        if (numberOfRows == indexPath.row + 1 && isFavorite == false) || (isFavorite == true && totalRows == 0) {
-            let cell = MainTV.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath) as! EmptyTableViewCell
-            if (isFetchInProgress == false || isFavorite == true) {
-                if totalRows == 0 {
-                    if isFavorite == true {
-                        cell.MessageLabel.text = "Add Some Favorites"
-                    } else {
-                        cell.MessageLabel.text = "Sorry nothing found.  I can search once a day for it if you tap here."
-                    }
-                } else if numberOfRows == indexPath.row + 1 {
-                    cell.MessageLabel.text = "End of Results.  If you didn't find what you want tap here."
-                }
-            } else if (isFetchInProgress == true && isFavorite == false) {
-                cell.MessageLabel.text = "Please Wait While Cats Are Loading..."
-            }
-
-            //cell.configure(fetching: isFetchInProgress, numberOfRows: numberOfRows, currentRow: indexPath.row, IsFavoriteMode: FavoriteBtn.isSelected)
-            return cell
-        } else {
-            let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
-            
-            cell.backgroundView = UIView(backgroundColor: .clear)
-            cell.backgroundView?.addSeparator()
-
-            cell.selectedBackgroundView = UIView(backgroundColor: .blue)
-            cell.selectedBackgroundView?.addSeparator()
-            
-            if isLoadingCell(for: indexPath) {
-                cell.configure(pd: .none, sh: .none, sourceView: self.view)
-            } else {
-                cell.configure(pd: self.pets![indexPath.row], sh: globalShelterCache[self.pets![indexPath.row].shelterID], sourceView: self.view)
-            }
-            cell.tag = indexPath.row
-            return cell
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
-        if self.pets!.foundRows < indexPath.row {return}
-        let petData = self.pets![indexPath.row]
-        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
-        FelineDetail.pet = petData
-        FelineDetail.petID = petData.petID
-        FelineDetail.petName = petData.name
-        FelineDetail.breedName = globalBreed!.BreedName
-        FelineDetail.modalPresentationStyle = .custom
-        FelineDetail.transitioningDelegate = self
-        scrollPos = indexPath
-        whichTab = 2
-        //present(FelineDetail, animated: true, completion: nil)
-    }
-
 }
 
 extension MainTabAdoptableCats: UITableViewDataSourcePrefetching {
@@ -532,13 +377,6 @@ private extension MainTabAdoptableCats {
     }
     return indexPath.row > pets!.Pets.count
   }
-/*
-  func visibleIndexPathsToReload(intersecting indexPaths: [IndexPath]) -> [IndexPath] {
-    let indexPathsForVisibleRows = MainTV.indexPathsForVisibleRows ?? []
-    let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(indexPaths)
-    return Array(indexPathsIntersection)
-  }
-*/
 }
 
 private extension UIView {
@@ -580,5 +418,98 @@ class CustomView: UIView
             context.addLine(to: CGPoint(x: bounds.width, y: bounds.height))
             context.strokePath()
         }
+    }
+}
+
+extension MainTabAdoptableCats: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "mainCell"
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if FavoriteBtn.isSelected && totalRows > 0 {
+            return totalRows
+        } else {
+            return totalRows + 1
+        }
+    }
+}
+
+extension MainTabAdoptableCats: SkeletonTableViewDelegate {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let ytv = currentlyPlayingYouTubeVideoView {
+            if !(MainTV.indexPathsForVisibleRows?.contains(IndexPath(row: ytv.tag, section: 0)))! {
+                ytv.stop()
+                ytv.isHidden = true
+                currentlyPlayingYouTubeVideoView = nil
+            }
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let isFavorite = FavoriteBtn.isSelected
+        var numberOfRows = 0
+        if isFavorite == true && totalRows > 0 {
+            numberOfRows = totalRows
+        } else {
+            numberOfRows = totalRows + 1
+        }
+        if (numberOfRows == indexPath.row + 1 && isFavorite == false) || (isFavorite == true && totalRows == 0) {
+            let cell = MainTV.dequeueReusableCell(withIdentifier: "emptyCell", for: indexPath) as! EmptyTableViewCell
+            if (isFetchInProgress == false || isFavorite == true) {
+                if totalRows == 0 {
+                    if isFavorite == true {
+                        cell.MessageLabel.text = "Add Some Favorites"
+                    } else {
+                        cell.MessageLabel.text = "Sorry nothing found.  I can search once a day for it if you tap here."
+                    }
+                } else if numberOfRows == indexPath.row + 1 {
+                    cell.MessageLabel.text = "End of Results.  If you didn't find what you want tap here."
+                }
+            } else if (isFetchInProgress == true && isFavorite == false) {
+                cell.MessageLabel.text = "Please Wait While Cats Are Loading..."
+            }
+
+            //cell.configure(fetching: isFetchInProgress, numberOfRows: numberOfRows, currentRow: indexPath.row, IsFavoriteMode: FavoriteBtn.isSelected)
+            return cell
+        } else {
+            let cell = MainTV.dequeueReusableCell(withIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsMainTVCell
+            
+            cell.backgroundView = UIView(backgroundColor: .clear)
+            cell.backgroundView?.addSeparator()
+
+            cell.selectedBackgroundView = UIView(backgroundColor: .blue)
+            cell.selectedBackgroundView?.addSeparator()
+            
+            if isLoadingCell(for: indexPath) {
+                cell.startSkeletonAnimation()
+                cell.configure(pd: .none, sh: .none, sourceView: self.view)
+            } else {
+                cell.stopSkeletonAnimation()
+                cell.configure(pd: self.pets![indexPath.row], sh: globalShelterCache[self.pets![indexPath.row].shelterID], sourceView: self.view)
+            }
+            cell.tag = indexPath.row
+            return cell
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
+        if self.pets!.foundRows < indexPath.row {return}
+        let petData = self.pets![indexPath.row]
+        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
+        FelineDetail.pet = petData
+        FelineDetail.petID = petData.petID
+        FelineDetail.petName = petData.name
+        FelineDetail.breedName = globalBreed!.BreedName
+        FelineDetail.modalPresentationStyle = .custom
+        FelineDetail.transitioningDelegate = self
+        scrollPos = indexPath
+        whichTab = 2
+        //present(FelineDetail, animated: true, completion: nil)
     }
 }
