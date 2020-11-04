@@ -94,8 +94,8 @@
             filePath = "Feline Finder/MainTabAdoptableCatsMainTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "configure(pd:sh:sourceView:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -462,8 +462,8 @@
             filePath = "Feline Finder/MainTabAdoptableCatsMainTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "curlRightAnimation(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -478,8 +478,8 @@
             filePath = "Feline Finder/MainTabAdoptableCatsMainTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "curlLeftAnimation(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +494,8 @@
             filePath = "Feline Finder/MainTabAdoptableCatsMainTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
             landmarkName = "indexChanged(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -702,8 +702,8 @@
             filePath = "Feline Finder/MainTabAdoptableCatsMainTVCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>
@@ -718,8 +718,8 @@
             filePath = "Feline Finder/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -734,25 +734,9 @@
             filePath = "Feline Finder/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FBECA6A8-EBB4-4811-8C6D-1F345F462090"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Feline Finder/MainTabFitViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
-            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -766,8 +750,8 @@
             filePath = "Feline Finder/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -782,8 +766,8 @@
             filePath = "Feline Finder/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "199"
+            endingLineNumber = "199"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -830,9 +814,325 @@
             filePath = "Feline Finder/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "assignRandomColors()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5820124C-0900-4299-835E-CB9C6ED42173"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/MainTabFitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3335354-B562-45EA-BD34-6D8538604D52"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/MainTabFitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "52843567-4D4D-4EB0-B477-60942A3614B4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/MainTabFitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "tableView(_:heightForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "65A94DE6-DD5E-4DD5-A761-7D5CD8C9DE64"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/MainTabFitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "21AF2C9F-631E-4AAD-865D-C59D76CB9D0C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/MainTabFitViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA5192DB-DD3B-4463-BB01-EFD5C4B7718F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/FitQuestionSliderTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "configure(question:answer:breedEntries:breedNamesParam:breedPositionParams:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/FitQuestionSliderTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "answerChanged(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4 - 7d03e1e4d52f8850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Feline_Finder.FitQuestionSliderTableViewCell.answerChanged(Any) -&gt; ()"
+                  moduleName = "Feline Finder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gregoryew/Library/Mobile%20Documents/com~apple~CloudDocs/Desktop/Stuff/Desktop%20-%20MacBook%20Pro%20(6)/CatFinder/Feline%20Finder/Feline%20Finder/FitQuestionSliderTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "44">
+               </Location>
+               <Location
+                  uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4 - 7d03e1e4d52f8850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Feline_Finder.FitQuestionSliderTableViewCell.answerChanged(Any) -&gt; ()"
+                  moduleName = "Feline Finder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gregoryew/Library/Mobile%20Documents/com~apple~CloudDocs/Desktop/Stuff/Desktop%20-%20MacBook%20Pro%20(6)/CatFinder/Feline%20Finder/Feline%20Finder/FitQuestionSliderTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "248">
+               </Location>
+               <Location
+                  uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4 - 7d03e1e4d52f8850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Feline_Finder.FitQuestionSliderTableViewCell.answerChanged(Any) -&gt; ()"
+                  moduleName = "Feline Finder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gregoryew/Library/Mobile%20Documents/com~apple~CloudDocs/Desktop/Stuff/Desktop%20-%20MacBook%20Pro%20(6)/CatFinder/Feline%20Finder/Feline%20Finder/FitQuestionSliderTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "524">
+               </Location>
+               <Location
+                  uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4 - 7d03e1e4d52f8850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Feline_Finder.FitQuestionSliderTableViewCell.answerChanged(Any) -&gt; ()"
+                  moduleName = "Feline Finder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gregoryew/Library/Mobile%20Documents/com~apple~CloudDocs/Desktop/Stuff/Desktop%20-%20MacBook%20Pro%20(6)/CatFinder/Feline%20Finder/Feline%20Finder/FitQuestionSliderTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "768">
+               </Location>
+               <Location
+                  uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4 - 7d03e1e4d52f8850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Feline_Finder.FitQuestionSliderTableViewCell.answerChanged(Any) -&gt; ()"
+                  moduleName = "Feline Finder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gregoryew/Library/Mobile%20Documents/com~apple~CloudDocs/Desktop/Stuff/Desktop%20-%20MacBook%20Pro%20(6)/CatFinder/Feline%20Finder/Feline%20Finder/FitQuestionSliderTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1012">
+               </Location>
+               <Location
+                  uuid = "DDBFA0A3-17BD-4870-835B-A1B662890AE4 - 7d03e1e4d52f8850"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Feline_Finder.FitQuestionSliderTableViewCell.answerChanged(Any) -&gt; ()"
+                  moduleName = "Feline Finder"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/gregoryew/Library/Mobile%20Documents/com~apple~CloudDocs/Desktop/Stuff/Desktop%20-%20MacBook%20Pro%20(6)/CatFinder/Feline%20Finder/Feline%20Finder/FitQuestionSliderTableViewCell.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "1256">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82DA7D7B-9A67-4705-A0A9-67749564B0B1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/BreedStats.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "calcMatches(responses:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "548A14F3-642A-49A3-8A30-AA81BC97235E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/BreedStats.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "calcMatches(responses:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E17C18F-1A51-4CAE-BFF4-20CE1E1BC2E7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/BreedStats.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "283"
+            endingLineNumber = "283"
+            landmarkName = "calcMatches(responses:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDC1FA46-6718-4209-9F98-534FEAF95294"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/FitQuestionSliderTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "configure(question:answer:breedEntries:breedNamesParam:breedPositionParams:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31F98377-D058-4CE5-BD5B-24009E756161"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/FitQuestionSliderTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "219"
+            endingLineNumber = "219"
+            landmarkName = "stringForValue(_:axis:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4FC6017D-E320-4F9B-9A7A-2BB74FDB86D5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/FitQuestionSliderTableViewCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "FitQuestionSliderTableViewCell"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "656054C2-7276-4337-BA75-3695DE019F46"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Feline Finder/MainTabAdoptableCatsMainTVCell.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "configure(pd:sh:sourceView:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

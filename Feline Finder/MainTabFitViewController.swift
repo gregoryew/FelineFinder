@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Charts
 
 protocol calcStats {
     func answerChanged(question: Int, answer: Int)
+    func scrollBreeds(index: Int)
 }
 
 class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
@@ -24,12 +26,16 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     var breedPercentages: [Double] = []
     var selectedBreedID: Int = 1
     var selectedBreedIndexPath: Int = 1
+    var breedTraitValues: [Int: [BarChartDataEntry]] = [:]
+    var breedsInChart = [Int]()
+    let colors = ChartColorTemplates.colorful()
     
     let BREED_TV = 1
     let QUESTION_TV = 2
     
     var breedColors: [UIColor]?
     var breedSelected = [Bool](repeating: false, count: 66)
+    var scrollPosition: UITableView.ScrollPosition = .middle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +58,6 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         breedStats.getBreedStatListForAllBreeds()
         initializeResponses()
-        breedColors = assignRandomColors()
     }
     
     func initializeResponses() {
@@ -77,15 +82,27 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         breeds.sort { (Breed1, Breed2) -> Bool in
             //return (breedPercentages[Int(Breed1.BreedID) - 1], Breed1.BreedName) > (breedPercentages[Int(Breed2.BreedID) - 1], Breed2.BreedName)
-            return (Breed1.Percentage, Breed2.BreedName) > (Breed2.Percentage, Breed1.BreedName)
+            return (self.breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (self.breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
         }
+        questionSelected = IndexPath(row: question, section: 0)
+        scrollPosition = .middle
         DispatchQueue.main.async(execute: {
+            /*
             var paths = [IndexPath].init(repeating: IndexPath(row: 0, section: 0), count: self.breeds.count)
             for i in 0..<paths.count {
                 paths[i].row = i
             }
             self.BreedTableView.reloadRows(at: paths, with: .middle)
+            */
+            self.BreedTableView.reloadData()
+            self.QuestionsTableView.reloadData()
+            //self.QuestionsTableView.scrollToRow(at: <#T##IndexPath#>, at: <#T##UITableView.ScrollPosition#>, animated: <#T##Bool#>)
+            //self.QuestionsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         })
+    }
+    
+    func scrollBreeds(index: Int) {
+        self.BreedTableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,16 +116,69 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             return questionList.count
         }
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView.tag == QUESTION_TV {
+            if indexPath.row < 8 {
+                return CGFloat(78 + (breedsInChart.count > 0 ? 50 : 0) + (breedsInChart.count * 45))
+            } else {
+                return CGFloat(81)
+            }
+        } else {
+            return CGFloat(120)
+        }
+    }
+    
+    var questionSelected = IndexPath(row: 0, section: 0)
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView.tag == BREED_TV {
             selectedBreedID = Int(breeds[indexPath.row].BreedID)
-            breedSelected[selectedBreedID] = !breedSelected[selectedBreedID]
+            if !breedSelected[selectedBreedID] {
+                if breedsInChart.count == colors.count {return}
+                for i in 0...7 {
+                    if breedTraitValues[i] == nil {
+                        breedTraitValues[i] = []
+                    }
+                    let count = breedTraitValues[i]!.count + 1
+                    breedTraitValues[i]!.append(BarChartDataEntry(x: Double(count), y: Double(breedStats.allBreedStats[selectedBreedID]![i].Percent)))
+                }
+                breedsInChart.append(selectedBreedID)
+                breedSelected[selectedBreedID] = !breedSelected[selectedBreedID]
+            } else {
+                var pos = -1
+                for i in 0..<breedsInChart.count {
+                    if breedsInChart[i] == selectedBreedID {
+                        pos = i
+                        break
+                    }
+                }
+                if pos > -1 {
+                    breedsInChart.remove(at: pos)
+                    for i in 0..<questionList.count - 2 {
+                        for j in (pos)...(breedsInChart.count) {
+                            breedTraitValues[i]?[j].x -= 1
+                        }
+                        breedTraitValues[i]?.remove(at: pos)
+                    }
+                    breedSelected[selectedBreedID] = !breedSelected[selectedBreedID]
+                }
+            }
+            breeds.sort { (Breed1, Breed2) -> Bool in
+                //return (breedPercentages[Int(Breed1.BreedID) - 1], Breed1.BreedName) > (breedPercentages[Int(Breed2.BreedID) - 1], Breed2.BreedName)
+                return (self.breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (self.breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
+            }
             DispatchQueue.main.async {
-                self.BreedTableView.reloadRows(at: [indexPath], with: .none)
+                self.BreedTableView.reloadData()
                 self.QuestionsTableView.reloadData()
+                self.QuestionsTableView.scrollToRow(at: self.questionSelected, at: self.scrollPosition, animated: false)
             }
         }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        questionSelected = QuestionsTableView.indexPathsForVisibleRows?.first ?? IndexPath(row: 0, section: 0)
+        scrollPosition = .top
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,18 +187,27 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
 
             let breed = breeds[indexPath.row]
 
-            if breedSelected[ Int(breed.BreedID)] {
+            var pos = -1
+            for i in 0..<breedsInChart.count {
+                if breedsInChart[i] == breed.BreedID {
+                    pos = i
+                    break
+                }
+            }
+            
+            if pos > -1 {
                 cell.BreedImage.layer.borderWidth = 5
-                cell.BreedImage.layer.borderColor = breedColors?[Int(breed.BreedID - 1)].cgColor
-                cell.BreedNameLabel.backgroundColor = breedColors?[Int(breed.BreedID - 1)]
-                cell.BreedFitPercentageLabel.backgroundColor = breedColors?[Int(breed.BreedID - 1)]
-                cell.contentView.backgroundColor = breedColors?[Int(breed.BreedID - 1)]
+                let selectedColor = colors[pos]
+                cell.BreedImage.layer.borderColor = selectedColor.cgColor
+                cell.BreedNameLabel.backgroundColor = selectedColor
+                cell.BreedFitPercentageLabel.backgroundColor = selectedColor
+                cell.contentView.backgroundColor = selectedColor
             } else {
                 cell.BreedImage.layer.borderWidth = 0
                 cell.BreedImage.layer.borderColor = UIColor.clear.cgColor
-                cell.contentView.backgroundColor = UIColor.black
                 cell.BreedNameLabel.backgroundColor = UIColor.clear
                 cell.BreedFitPercentageLabel.backgroundColor = UIColor.clear
+                cell.contentView.backgroundColor = UIColor.black
             }
             
             cell.configure(breed: breed)
@@ -142,16 +221,24 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
 
                 cell.tag = indexPath.row
                 cell.delegate = self
-                var breedName: String?
-                var value: Int?
-                if selectedBreedIndexPath < breeds.count {
-                    breedName = breeds[selectedBreedIndexPath].BreedName
-                    value = Int(breedStats.allBreedStats[selectedBreedID]![indexPath.row].Percent) ?? 0
-                } else {
-                    breedName = ""
-                    value = 0
+                var breedNames = [""]
+                var breedPositions = [Int]()
+                for i in 0..<breedsInChart.count {
+                    var pos = -1
+                    for j in 0..<breeds.count {
+                        if breeds[j].BreedID == breedsInChart[i] {
+                            pos = j
+                            break
+                        }
+                    }
+                    if pos > -1 {
+                        breedNames.append(breeds[pos].BreedName)
+                        breedPositions.append(pos)
+                    }
                 }
-                cell.configure(question: question, breedName: breedName ?? "", traitValue: value ?? 0)
+                let answer = responses[indexPath.row].descriptionAnswer == "Doesn't Matter" ? 0 : responses[indexPath.row].percentAnswer
+                let answerValue = Float(Double(answer) / Double(question.getAnswer().HighRange))
+                cell.configure(question: question, answer: answerValue, breedEntries: breedTraitValues[indexPath.row] ?? [], breedNamesParam: breedNames, breedPositionParams: breedPositions)
                                 
                 return cell
             } else {

@@ -52,7 +52,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="FavoritesList" id="xNa-t2-ZjI" customClass="FavoritesViewController" customModule="Feline_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="100" sectionHeaderHeight="18" sectionFooterHeight="18" id="Ifx-bw-CXv">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -1871,7 +1871,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="560"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2ce-q9-ska" customClass="DynamicImageView" customModule="Feline_Finder" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ce-q9-ska" customClass="DynamicImageView" customModule="Feline_Finder" customModuleProvider="target">
                                                     <rect key="frame" x="207" y="10" width="0.0" height="290"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -2024,13 +2024,13 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                     </constraints>
                                                     <collectionViewLayout key="collectionViewLayout" id="Yjc-y8-4BT" customClass="HorizontalLayoutVaryingWidths" customModule="Feline_Finder" customModuleProvider="target"/>
                                                     <cells>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" reuseIdentifier="subCell" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-xg-jCo" customClass="MainTabAdoptableCatsSubCVCell" customModule="Feline_Finder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" fixedFrame="YES" reuseIdentifier="subCell" translatesAutoresizingMaskIntoConstraints="NO" id="tRF-xg-jCo" customClass="MainTabAdoptableCatsSubCVCell" customModule="Feline_Finder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="25" width="50" height="50"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZO-iD-OUe">
                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2FH-cQ-ZHL" customClass="DynamicImageView" customModule="Feline_Finder" customModuleProvider="target">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2FH-cQ-ZHL" customClass="DynamicImageView" customModule="Feline_Finder" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="0.0" width="0.0" height="100"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
@@ -2062,7 +2062,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                                 <outlet property="subCatImage" destination="2FH-cQ-ZHL" id="JV1-VY-ocJ"/>
                                                             </connections>
                                                         </collectionViewCell>
-                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="toolCell" translatesAutoresizingMaskIntoConstraints="NO" id="MCg-CZ-Gwz" customClass="ToolCollectionViewCell" customModule="Feline_Finder" customModuleProvider="target">
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="toolCell" translatesAutoresizingMaskIntoConstraints="NO" id="MCg-CZ-Gwz" customClass="ToolCollectionViewCell" customModule="Feline_Finder" customModuleProvider="target">
                                                             <rect key="frame" x="60" y="0.0" width="70" height="100"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nI-Mx-Dfd">
@@ -2158,7 +2158,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                             <outlet property="YouTubeVideo" destination="tDN-Yo-3jM" id="VuG-8g-6MQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="Vt9-ZY-nQu" customClass="EmptyTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="emptyCell" rowHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="Vt9-ZY-nQu" customClass="EmptyTableViewCell" customModule="Feline_Finder" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="588" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vt9-ZY-nQu" id="XT6-fF-xyZ">
@@ -3485,30 +3485,21 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                         <action selector="helpTapped:" destination="1Rw-Ud-AhC" eventType="touchUpInside" id="0V7-x2-l2H"/>
                                                     </connections>
                                                 </button>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNB-Mp-cI9" customClass="HorizontalBarChartView" customModule="Charts">
-                                                    <rect key="frame" x="14" y="81" width="286" height="30"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="eNB-Mp-cI9" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leading" constant="14" id="17E-sz-YOC"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="2jL-to-2Qo" secondAttribute="trailing" constant="0.67000000000000004" id="2Ds-WX-iJh"/>
                                                 <constraint firstItem="XTV-FL-jON" firstAttribute="top" secondItem="FSh-uA-PaJ" secondAttribute="top" constant="13" id="2sC-Al-VB4"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="top" secondItem="2jL-to-2Qo" secondAttribute="bottom" constant="4.3300000000000001" id="6NS-gY-V41"/>
                                                 <constraint firstItem="2jL-to-2Qo" firstAttribute="top" secondItem="FSh-uA-PaJ" secondAttribute="topMargin" constant="1" id="72X-Uk-EnW"/>
-                                                <constraint firstItem="eNB-Mp-cI9" firstAttribute="top" secondItem="jGy-VV-hCa" secondAttribute="bottom" constant="11" id="BQ2-m4-6gs"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="trailing" secondItem="FSh-uA-PaJ" secondAttribute="trailingMargin" id="Dha-Yk-m3E"/>
                                                 <constraint firstItem="XTV-FL-jON" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leading" constant="15" id="SbL-iC-RFB"/>
                                                 <constraint firstItem="2jL-to-2Qo" firstAttribute="leading" secondItem="XTV-FL-jON" secondAttribute="trailing" constant="8" symbolic="YES" id="SkP-p7-rjT"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="leading" secondItem="FSh-uA-PaJ" secondAttribute="leadingMargin" id="XWh-zV-FyF"/>
-                                                <constraint firstAttribute="bottom" secondItem="eNB-Mp-cI9" secondAttribute="bottom" constant="7" id="o7l-X2-dFl"/>
                                                 <constraint firstItem="jGy-VV-hCa" firstAttribute="top" secondItem="XTV-FL-jON" secondAttribute="bottom" constant="7" id="tya-ug-xjM"/>
-                                                <constraint firstAttribute="trailing" secondItem="eNB-Mp-cI9" secondAttribute="trailing" constant="14" id="uwm-Lp-ETR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="AnswerSlider" destination="jGy-VV-hCa" id="xsI-Cz-xCf"/>
-                                            <outlet property="BreedStatValue" destination="eNB-Mp-cI9" id="R4r-QB-nAm"/>
                                             <outlet property="HelpButton" destination="2jL-to-2Qo" id="Xcs-rC-FE5"/>
                                             <outlet property="QuestionLabel" destination="XTV-FL-jON" id="Vg8-ot-7fK"/>
                                         </connections>
@@ -3602,7 +3593,7 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                         <constraint firstAttribute="height" constant="100" id="JGK-m2-xOW"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Abyssinian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2U-J2-u53">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Abyssinian" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E2U-J2-u53" customClass="MarqueeLabel" customModule="MarqueeLabel">
                                                     <rect key="frame" x="37" y="100" width="63" height="20"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
@@ -3623,17 +3614,33 @@ Thanks to the members of PhillyCocoa for their great help and support.</string>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vrw-7o-Yma">
+                                                    <rect key="frame" x="70" y="72" width="25" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="7Ay-rA-beb"/>
+                                                        <constraint firstAttribute="width" constant="25" id="mhO-QY-xm7"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="BreedInfoTapped:" destination="4ul-kv-CuZ" eventType="touchUpInside" id="vY8-sq-9S8"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="4jz-9f-M42" firstAttribute="leading" secondItem="Mr9-Ws-h9w" secondAttribute="leading" constant="5" id="5ym-ck-Kbj"/>
                                                 <constraint firstAttribute="bottom" secondItem="4jz-9f-M42" secondAttribute="bottom" id="Blq-ZD-bwV"/>
                                                 <constraint firstItem="4Zj-dR-xMv" firstAttribute="leading" secondItem="Mr9-Ws-h9w" secondAttribute="leading" id="I0O-LK-6wD"/>
+                                                <constraint firstAttribute="bottom" secondItem="Vrw-7o-Yma" secondAttribute="bottom" constant="24" id="SN5-0y-yZD"/>
                                                 <constraint firstItem="E2U-J2-u53" firstAttribute="leading" secondItem="4jz-9f-M42" secondAttribute="trailing" constant="5" id="Sp7-N7-Lps"/>
                                                 <constraint firstItem="E2U-J2-u53" firstAttribute="top" secondItem="4Zj-dR-xMv" secondAttribute="bottom" id="ay7-Qd-Sg8"/>
                                                 <constraint firstItem="4jz-9f-M42" firstAttribute="top" secondItem="4Zj-dR-xMv" secondAttribute="bottom" id="cOR-wX-0Kw"/>
                                                 <constraint firstAttribute="bottom" secondItem="4Zj-dR-xMv" secondAttribute="bottom" constant="20" symbolic="YES" id="gpk-eq-my8"/>
                                                 <constraint firstAttribute="trailing" secondItem="4Zj-dR-xMv" secondAttribute="trailing" id="hFo-BK-F8Q"/>
                                                 <constraint firstItem="4Zj-dR-xMv" firstAttribute="top" secondItem="Mr9-Ws-h9w" secondAttribute="top" id="kv6-tT-4JR"/>
+                                                <constraint firstAttribute="trailing" secondItem="Vrw-7o-Yma" secondAttribute="trailing" constant="5" id="lQF-Vk-gZB"/>
                                                 <constraint firstAttribute="bottom" secondItem="E2U-J2-u53" secondAttribute="bottom" id="niL-C3-AMm"/>
                                                 <constraint firstAttribute="trailing" secondItem="E2U-J2-u53" secondAttribute="trailing" id="tix-WY-Hk6"/>
                                             </constraints>
@@ -4347,10 +4354,11 @@ Cg
         <designable name="0fd-TB-1fb">
             <size key="intrinsicContentSize" width="30" height="20.333333333333332"/>
         </designable>
-        <designable name="2FH-cQ-ZHL"/>
-        <designable name="2ce-q9-ska"/>
         <designable name="9tX-Fw-kUg">
             <size key="intrinsicContentSize" width="80.666666666666671" height="20.333333333333332"/>
+        </designable>
+        <designable name="E2U-J2-u53">
+            <size key="intrinsicContentSize" width="51.666666666666664" height="12"/>
         </designable>
         <designable name="jkG-Y4-R9h">
             <size key="intrinsicContentSize" width="97.666666666666671" height="20.333333333333332"/>

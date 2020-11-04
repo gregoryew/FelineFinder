@@ -281,13 +281,13 @@ class BreedStatList {
             var sum: Double = 0
             var count: Int = 0
             for b in 0..<bs!.count {
-                if (responses[b].percentAnswer > 0) || (responses[b].percentAnswer == -1 && responses[b].descriptionAnswer != "") {
+                if (responses[b].percentAnswer > 0) || (responses[b].percentAnswer == -1) {
                     if responses[b].percentAnswer == -1 {
-                        if bs![b].Value == responses[b].descriptionAnswer || responses[b].descriptionAnswer == "Any" {
+                        if (bs![b].Value == responses[b].descriptionAnswer) || (responses[b].descriptionAnswer == "Doesn't Matter") || (responses[b].descriptionAnswer == "Any") {
                             sum += 1.0
                         }
                     } else {
-                        sum += 1.0 - (abs(Double(responses[b].percentAnswer) - Double(bs![b].Percent)) / Double(bs![b].Percent))
+                        sum += 1.0 - (abs(Double(responses[b].percentAnswer) - Double(bs![b].Percent)) / 5.0)
                     }
                     count += 1
                 }

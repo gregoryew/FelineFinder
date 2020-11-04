@@ -65,17 +65,22 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
  
             //self.contentView.stopSkeletonAnimation()
             
-            ToolChooserControl = URBSegmentedControl.init(titles: ["🐱", "💬"])
+            var icons = [UIImage]()
+            icons.append(UIImage(named: "cat-icon")!)
+            icons.append(UIImage(named: "speechBalloon")!)
+            ToolChooserControl = URBSegmentedControl.init(icons: icons)
 
             ToolChooserControl?.segmentViewLayout = .vertical
             ToolChooserControl?.layoutOrientation = .vertical
-            
-            ToolsChooser.addSubview(ToolChooserControl!)
-            
+            ToolChooserControl?.imageEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0);
+            ToolChooserControl?.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0);
+
             ToolChooserControl?.frame = ToolsChooser.bounds
             
             ToolChooserControl?.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
-            
+
+            ToolsChooser.addSubview(ToolChooserControl!)
+
             self.petData = p
 
             tools = Tools(pet: p, shelter: s, sourceView: sourceView)

@@ -61,6 +61,7 @@ class FitQuestionSegmentTableViewCell: UITableViewCell {
             answers.append("Average")
             answers.append("Big")
         }
+        selectionStyle = .none
         //for answer in question.Choices {
         //    answers.append(answer.Name)
         //}

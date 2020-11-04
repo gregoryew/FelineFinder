@@ -14,6 +14,12 @@ class FitBreedTableViewCell: UITableViewCell {
     @IBOutlet weak var BreedNameLabel: UILabel!
     @IBOutlet weak var BreedFitPercentageLabel: UILabel!
     
+    var breedID: Int = -1
+    
+    @IBAction func BreedInfoTapped(_ sender: UIButton) {
+        print("********** Breed ID = \(breedID)")
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,6 +37,8 @@ class FitBreedTableViewCell: UITableViewCell {
         BreedFitPercentageLabel.text = "\(String(format: "%.0f", round(breed.Percentage * 100)))%"
         
         BreedImage.image = UIImage(named: breed.PictureHeadShotName)
+        
+        breedID = Int(breed.BreedID)
     }
 
 }
