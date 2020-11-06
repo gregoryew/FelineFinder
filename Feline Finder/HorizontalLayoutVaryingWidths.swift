@@ -65,6 +65,7 @@ class HorizontalLayoutVaryingWidths: UICollectionViewLayout {
   
   override func prepare() {
     cache.removeAll()
+    if delegate == nil {return}
     if cache.isEmpty {
       var yOffsets = [CGFloat]()
       for row in 0..<numberOfRows {

@@ -293,10 +293,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
                             print("Ooops! Something went wrong: \(error)")
                         }
                     }
+                    DatabaseManager.sharedInstance.dbQueue!.close()
                     try filemanager.moveItem(atPath: docsPathDB, toPath: destinationPath2 as String)
                     let fileForCopy = Bundle.main.path(forResource: "CatFinder",ofType:"db")
                     do {
-                        DatabaseManager.sharedInstance.dbQueue!.close()
+                        //DatabaseManager.sharedInstance.dbQueue!.close()
                         try filemanager.copyItem(atPath: fileForCopy!,toPath:destinationPath as String)
                         DatabaseManager.sharedInstance.dbQueue = FMDatabaseQueue(path: destinationPath as String)
                     } catch {

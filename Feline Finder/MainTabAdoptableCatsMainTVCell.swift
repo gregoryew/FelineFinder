@@ -72,8 +72,8 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
 
             ToolChooserControl?.segmentViewLayout = .vertical
             ToolChooserControl?.layoutOrientation = .vertical
-            ToolChooserControl?.imageEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0);
-            ToolChooserControl?.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0);
+            ToolChooserControl?.imageEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 0.0);
+            ToolChooserControl?.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 5.0);
 
             ToolChooserControl?.frame = ToolsChooser.bounds
             
@@ -551,6 +551,7 @@ class DynamicImageView: UIImageView {
             if let image = self.image {
                 let ratio = fixedHeight / image.size.height
                 s.width = image.size.width * ratio - 10
+                s.height = fixedHeight
             }
         } else if fixedWidth > 0 && fixedHeight <= 0 {
             s.width = fixedWidth

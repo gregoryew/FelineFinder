@@ -80,6 +80,8 @@
 		46F49B7D1F259A3000B49068 /* SurveyManagePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */; };
 		46FA94031F8E3F89004C255E /* LocationManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46FA94021F8E3F89004C255E /* LocationManager2.swift */; };
 		83A458D44C691928FDC43D8E /* Pods_Feline_Finder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EC26284065956E851429474 /* Pods_Feline_Finder.framework */; };
+		C500B8402553B26E0080153E /* MainTabBreedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500B83F2553B26E0080153E /* MainTabBreedCollectionViewCell.swift */; };
+		C500B8432553B3270080153E /* MainTabBreedToolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500B8422553B3270080153E /* MainTabBreedToolCollectionViewCell.swift */; };
 		C5045DB11B9155C200A6663C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5045DB01B9155C200A6663C /* Utilities.swift */; };
 		C50CD18125290DAD007FA052 /* MainTabAdoptableCats.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CD18025290DAD007FA052 /* MainTabAdoptableCats.swift */; };
 		C50CD18B25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50CD18A25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift */; };
@@ -199,6 +201,8 @@
 		C5D294F02540427C009419B9 /* ToolCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */; };
 		C5D294F325404B44009419B9 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D294F225404B42009419B9 /* Tools.swift */; };
 		C5D5515E25490ECB00DF57C5 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D5515D25490ECB00DF57C5 /* EmptyTableViewCell.swift */; };
+		C5D96C6B25531DE000BF1DAE /* MainTabBreedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D96C6A25531DE000BF1DAE /* MainTabBreedViewController.swift */; };
+		C5D96C7C25532D5900BF1DAE /* MainTabBreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D96C7B25532D5900BF1DAE /* MainTabBreedTableViewCell.swift */; };
 		C5DA433F1B33ADAF00CF7283 /* Breeders.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DA433E1B33ADAF00CF7283 /* Breeders.m */; };
 		C5EF950C2552C27D001FE7AA /* 1f4ac.png in Resources */ = {isa = PBXBuildFile; fileRef = C5EF950B2552C27C001FE7AA /* 1f4ac.png */; };
 		C5FB6EA11B2132EC007FFA36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5FB6EA01B2132EC007FFA36 /* AppDelegate.swift */; };
@@ -294,6 +298,8 @@
 		46F49B7C1F259A3000B49068 /* SurveyManagePageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyManagePageViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		46FA94021F8E3F89004C255E /* LocationManager2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager2.swift; sourceTree = "<group>"; };
 		6EC26284065956E851429474 /* Pods_Feline_Finder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Feline_Finder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C500B83F2553B26E0080153E /* MainTabBreedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBreedCollectionViewCell.swift; sourceTree = "<group>"; };
+		C500B8422553B3270080153E /* MainTabBreedToolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBreedToolCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5045DB01B9155C200A6663C /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C50CD18025290DAD007FA052 /* MainTabAdoptableCats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCats.swift; sourceTree = "<group>"; };
 		C50CD18A25290FE8007FA052 /* MainTabAdoptableCatsMainTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsMainTVCell.swift; sourceTree = "<group>"; };
@@ -424,6 +430,8 @@
 		C5D294EF2540426B009419B9 /* ToolCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5D294F225404B42009419B9 /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		C5D5515D25490ECB00DF57C5 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		C5D96C6A25531DE000BF1DAE /* MainTabBreedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBreedViewController.swift; sourceTree = "<group>"; };
+		C5D96C7B25532D5900BF1DAE /* MainTabBreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBreedTableViewCell.swift; sourceTree = "<group>"; };
 		C5DA433E1B33ADAF00CF7283 /* Breeders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Breeders.m; sourceTree = "<group>"; };
 		C5DA43441B343A8A00CF7283 /* Breeders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Breeders.h; sourceTree = "<group>"; };
 		C5EF950B2552C27C001FE7AA /* 1f4ac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1f4ac.png; sourceTree = "<group>"; };
@@ -742,6 +750,7 @@
 				C5FB6EA41B2132EC007FFA36 /* DetailViewController.swift */,
 				C5933B1C1D6D3C4F00CFD62E /* ADVSegmentedControl.swift */,
 				C5FB6EA61B2132EC007FFA36 /* Main.storyboard */,
+				C5D96C6A25531DE000BF1DAE /* MainTabBreedViewController.swift */,
 				C57028B4253D644F000ED749 /* FitQuestionSliderTableViewCell.swift */,
 				C57028B1253CF176000ED749 /* SelectedItemTableViewCell.swift */,
 				C50CD18025290DAD007FA052 /* MainTabAdoptableCats.swift */,
@@ -806,6 +815,9 @@
 				C5D294F225404B42009419B9 /* Tools.swift */,
 				C522D73C2548C3F700DF7063 /* common extensions.swift */,
 				C5D5515D25490ECB00DF57C5 /* EmptyTableViewCell.swift */,
+				C5D96C7B25532D5900BF1DAE /* MainTabBreedTableViewCell.swift */,
+				C500B83F2553B26E0080153E /* MainTabBreedCollectionViewCell.swift */,
+				C500B8422553B3270080153E /* MainTabBreedToolCollectionViewCell.swift */,
 			);
 			name = Purrfect4U;
 			path = "Feline Finder";
@@ -1103,6 +1115,7 @@
 				C539DECE1B51740000B631B8 /* FavoritesViewController.swift in Sources */,
 				464B49741F1BCEAB00C62491 /* BreedInfoDescriptionViewController.swift in Sources */,
 				46241D4C1E0704D100997D4C /* AdoptableCatsViewController.swift in Sources */,
+				C5D96C6B25531DE000BF1DAE /* MainTabBreedViewController.swift in Sources */,
 				46E7EC311E5163980041666F /* AdoptableCatsViewTabController.swift in Sources */,
 				46AECC451F06F2D600793464 /* BreedInfoViewController.swift in Sources */,
 				4649DB051F36144E007FE6AB /* SurveySummaryViewController.swift in Sources */,
@@ -1149,6 +1162,7 @@
 				46B454C31F74A17700E0390F /* RescuePetsAPI2.swift in Sources */,
 				C58D21251B4902E6008E1B0B /* PetFinderViewDetailController.swift in Sources */,
 				C585DB95254110510075501C /* RescueSheltersAPI3.swift in Sources */,
+				C500B8402553B26E0080153E /* MainTabBreedCollectionViewCell.swift in Sources */,
 				C539DEE01B52486900B631B8 /* SavedSearches.swift in Sources */,
 				46B6BF371F3A754600A8E5B0 /* SurveyBaseViewController.swift in Sources */,
 				C50CD18125290DAD007FA052 /* MainTabAdoptableCats.swift in Sources */,
@@ -1171,6 +1185,7 @@
 				C5943B031D83AB4D0088DE4D /* FilterOptionsListCustomCellView.swift in Sources */,
 				C5FB6EF11B213474007FFA36 /* FMDatabasePool.m in Sources */,
 				466FCC5D1F36B9B000539B43 /* SurveyMatchesTableViewController.swift in Sources */,
+				C500B8432553B3270080153E /* MainTabBreedToolCollectionViewCell.swift in Sources */,
 				4663A91A1F36E70F00742A4B /* SurveyMatchesTableViewCell.swift in Sources */,
 				C57028B2253CF176000ED749 /* SelectedItemTableViewCell.swift in Sources */,
 				4692C5D81E764D7F00B83494 /* WKYTPlayerView.m in Sources */,
@@ -1210,6 +1225,7 @@
 				C5FB6EF71B213567007FFA36 /* BreedList.swift in Sources */,
 				C51EE1C71D7B7F5900747D8C /* YouTubeViewController.swift in Sources */,
 				C576B64B253E2B59008DC111 /* FitDialogViewController.swift in Sources */,
+				C5D96C7C25532D5900BF1DAE /* MainTabBreedTableViewCell.swift in Sources */,
 				C5755F9E1BC02CB30023F353 /* RSURLRequest.swift in Sources */,
 				C59AC442252E45E40016F523 /* URLRequest.swift in Sources */,
 				467737441F3C810200883F42 /* BreedInfoGalleryPhotoAPI.swift in Sources */,
@@ -1385,6 +1401,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 99;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
@@ -1394,7 +1411,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
 				PROVISIONING_PROFILE = "";
@@ -1419,6 +1436,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 99;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DISABLE_PUSH_NOTIFICATIONS=1";
 				INFOPLIST_FILE = "Feline Finder/Info.plist";
@@ -1428,7 +1446,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				MARKETING_VERSION = 4.1;
+				MARKETING_VERSION = 4.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.gregorysiosgames.catapp;
 				PRODUCT_NAME = "Feline Finder";
 				PROVISIONING_PROFILE = "";

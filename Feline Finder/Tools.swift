@@ -18,12 +18,18 @@ class Tool {
     
     var pet: Pet?
     var shelter: shelter?
+    var breed: Breed?
     var sourceView: UIView?
     var sourceViewController: UIViewController?
 
     init(pet: Pet, shelter: shelter, sourceView: UIView) {
         self.pet = pet
         self.shelter = shelter
+        self.sourceView = sourceView
+    }
+    
+    init(breed: Breed, sourceView: UIView) {
+        self.breed = breed
         self.sourceView = sourceView
     }
 
@@ -125,6 +131,12 @@ class descriptionTool: Tool { //, scrolledView {
         icon = "📄"
         cellType = .tool
     }
+
+    override init(breed: Breed, sourceView: UIView) {
+        super.init(breed: breed, sourceView: sourceView)
+        icon = "📄"
+        cellType = .tool
+    }
     
     override func isVisible(mode: Mode) -> Bool {
         visible = super.isVisible(mode: mode)
@@ -137,26 +149,34 @@ class descriptionTool: Tool { //, scrolledView {
     }
 
     var blurEffectView: UIVisualEffectView!
-    var wv: UIWebView!
-    
+    var wv: WKWebView!
+        
     func diplayDescription() {
         if let sv = sourceView {
             UIView.transition(with: sv, duration: 0.5, options: .transitionFlipFromLeft , animations: { [self] in
                 //Do the data reload here
-            let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
-            blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = sv.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            sv.addSubview(blurEffectView)
-            wv = UIWebView(frame: sv.bounds)
-            let description2 = generateDescription()
-            wv.isOpaque = false
-            wv.backgroundColor = UIColor.clear
-            let path = Bundle.main.bundlePath;
-            let sBaseURL = URL(fileURLWithPath: path);
-            wv.loadHTMLString(description2, baseURL: sBaseURL)
-            sv.addSubview(wv)
-            
+            wv = WKWebView(frame: sv.bounds)
+            var description2 = ""
+            if pet != nil {
+                let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+                blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = sv.bounds
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                sv.addSubview(blurEffectView)
+                description2 = generatePetDescription()
+                wv.isOpaque = false
+                wv.backgroundColor = UIColor.clear
+                let path = Bundle.main.bundlePath;
+                let sBaseURL = URL(fileURLWithPath: path);
+                sv.addSubview(wv)
+                wv.loadHTMLString(description2, baseURL: sBaseURL)
+            } else {
+                sv.addSubview(wv)
+                if let url = URL(string: breed!.BreedHTMLURL) {
+                    let request = URLRequest(url: url)
+                    wv.load(request)
+                }
+            }
             sourceViewController!.view.addSubview(sideBar)
             sideBar.frame = CGRect(x: sourceViewController!.view.frame.width - 60, y: 50, width: 60, height: 30)
             sourceViewController!.view.bringSubviewToFront(sideBar)
@@ -200,12 +220,14 @@ class descriptionTool: Tool { //, scrolledView {
         UIView.transition(with: sourceView!, duration: 0.5, options: .transitionFlipFromRight , animations: { [self] in
             //Do the data reload here
             sideBar.removeFromSuperview()
-            blurEffectView.removeFromSuperview()
+            if pet != nil  {
+                blurEffectView.removeFromSuperview()
+            }
             wv.removeFromSuperview()
         }, completion: nil)
     }
     
-    func generateDescription() -> String {
+    func generatePetDescription() -> String {
         var htmlString = ""
         if let pet = pet, let shelter = shelter {
         var b: String = ""
@@ -277,15 +299,6 @@ class descriptionTool: Tool { //, scrolledView {
         var headerContent: String = "<tr><td style=\"background-color:#8AC007\">Basics:</td><td>\(b) • \(pet.age) • \(pet.sex) • \(pet.size)</td></tr>"
         headerContent = "\(headerContent)<tr><td style=\"background-color:#8AC007\">Options:</td><td>\(o)</td></tr>"
         
-        var tableWidth = 0
-        if UIDevice().type == Model.iPhone5 || UIDevice().type == Model.iPhone5C || UIDevice().type == Model.iPhone5S {
-            tableWidth = 300
-        } else if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
-            tableWidth = 360
-        } else {
-            tableWidth = 700
-        }
-        
         /*
         var born = ""
         if p.birthdate != "" {
@@ -307,21 +320,53 @@ class descriptionTool: Tool { //, scrolledView {
             options += "<span style='color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:30px;'>😺</span>&nbsp;\(pet.size)</br></br>"
         }
         
-        //320px
-        var width: String?
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            width = "640px"
-        } else {
-            width = "320px"
-        }
-        
         //let dateFormatter = DateFormatter()
         //dateFormatter.dateFormat = "MM/dd/yyyy"
         //let d = dateFormatter.string(from: p.lastUpdated)
         
-            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #66ff33} a.visited, a.hover {color: #1abcde;} </style></header><body><center><table width=\"\(tableWidth)\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><h3>\(pet.name)</h3></br><h3><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(width!)'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
+            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #66ff33} a.visited, a.hover {color: #1abcde;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><h3>\(pet.name)</h3></br><h3><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
         }
         return htmlString
+    }
+    
+    func generateBreedDescription() -> String {
+        if let b = breed {
+            let myURLString = b.BreedHTMLURL
+            guard let myURL = URL(string: myURLString) else {
+                print("Error: \(myURLString) doesn't seem to be a valid URL")
+                return ""
+            }
+
+            do {
+                let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
+                return myHTMLString
+            } catch let error {
+                print("Error: \(error)")
+                return ""
+            }
+        } else {
+            return ""
+        }
+    }
+    
+    func width() -> String {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return "640px"
+        } else {
+            return "320px"
+        }
+    }
+    
+    func tableWidth() -> Int {
+        var tableWidth = 0
+        if UIDevice().type == Model.iPhone5 || UIDevice().type == Model.iPhone5C || UIDevice().type == Model.iPhone5S {
+            tableWidth = 300
+        } else if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
+            tableWidth = 360
+        } else {
+            tableWidth = 700
+        }
+        return tableWidth
     }
 }
 
@@ -540,9 +585,14 @@ class statsTool: Tool {
         icon = "📊"
         cellType = .tool
     }
+    override init(breed: Breed, sourceView: UIView) {
+        super.init(breed: breed, sourceView: sourceView)
+        icon = "📊"
+        cellType = .tool
+    }
     override func isVisible(mode: Mode) -> Bool {
         visible = super.isVisible(mode: mode)
-        return false
+        return true
     }
     override func performAction() {
         super.performAction()
@@ -557,6 +607,14 @@ class imageTool: Tool {
         self.thumbNail = thumbNail
         self.photo = photo
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
+        icon = "🖼️"
+        cellType = .image
+    }
+
+    init(breed: Breed, sourceView: UIView, thumbNail: picture2, photo: picture2) {
+        self.thumbNail = thumbNail
+        self.photo = photo
+        super.init(breed: breed, sourceView: sourceView)
         icon = "🖼️"
         cellType = .image
     }
@@ -577,6 +635,13 @@ class youTubeTool: Tool {
     init(pet: Pet, shelter: shelter, sourceView: UIView, video: video) {
         self.video = video
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
+        icon = "🎞️"
+        cellType = .video
+    }
+
+    init(breed: Breed, sourceView: UIView, video: video) {
+        self.video = video
+        super.init(breed: breed, sourceView: sourceView)
         icon = "🎞️"
         cellType = .video
     }
@@ -606,9 +671,11 @@ enum CellType: String {
 class Tools: Sequence, IteratorProtocol {
     typealias Element = Tool
     
-    private var list = [Tool]()
-    private var tools = [Tool]()
+    var list = [Tool]()
+    var tools = [Tool]()
     private var currentIndex: Int = 0
+    private var breed: Breed?
+    private var sourceView: UIView?
     
     var mode = Mode.media {
         didSet {
@@ -641,6 +708,32 @@ class Tools: Sequence, IteratorProtocol {
                                     shelter: shelter, sourceView: sourceView, video: video))
         }
         
+        tools = getTools()
+    }
+
+    init(breed: Breed, sourceView: UIView, obj: NSObject) {
+        list = []
+        list.append(descriptionTool(breed: breed, sourceView: sourceView))
+        list.append(statsTool(breed: breed, sourceView: sourceView))
+        self.breed = breed
+        self.sourceView = sourceView
+                
+        switch YouTubeAPI.getYouTubeVideos2(playList: breed.YouTubePlayListID) {
+        case .failure(let err):
+            Utilities.displayAlert("Network Error", errorMessage: err.localizedDescription)
+        case .success(let data):
+            var count = 0
+            for vid in data! {
+                count += 1
+                self.list.append(youTubeTool(breed: breed, sourceView: sourceView, video: video(i: String(count), o: String(count), t: vid.pictureURL, v: vid.videoID, u: "")))
+            }
+        }
+
+        tools = getTools()
+    }
+
+    func reloadData() {
+        tools = []
         tools = getTools()
     }
     

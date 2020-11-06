@@ -11,7 +11,6 @@ import Charts
 
 protocol calcStats {
     func answerChanged(question: Int, answer: Int)
-    func scrollBreeds(index: Int)
 }
 
 class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
@@ -100,11 +99,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             //self.QuestionsTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         })
     }
-    
-    func scrollBreeds(index: Int) {
-        self.BreedTableView.scrollToRow(at: IndexPath(row: index, section: 0), at: .top, animated: true)
-    }
-    
+        
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
