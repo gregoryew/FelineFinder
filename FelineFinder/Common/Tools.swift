@@ -51,7 +51,7 @@ class Tool {
 class directionsTool: Tool {
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "🌎"
+        icon = "Directions"
         cellType = .tool
     }
     
@@ -375,7 +375,7 @@ class emailTool: Tool {
     var emailAddress = [String]()
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "📧"
+        icon = "Email"
         cellType = .tool
     }
     override func isVisible(mode: Mode) -> Bool {
@@ -416,7 +416,7 @@ class telephoneTool: Tool {
     
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "☎️"
+        icon = "Call"
         cellType = .tool
     }
     
@@ -495,7 +495,7 @@ class shareTool: Tool {
     
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "📤"
+        icon = "Share"
         cellType = .tool
     }
     

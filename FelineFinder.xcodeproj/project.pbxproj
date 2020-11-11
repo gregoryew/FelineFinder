@@ -108,6 +108,8 @@
 		C57E6210255BE43300120018 /* CoolTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C57E620B255BE43200120018 /* CoolTableViewController.m */; };
 		C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = C57E620D255BE43300120018 /* CustomCellBackground.m */; };
 		C57E6212255BE43300120018 /* main_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C57E620E255BE43300120018 /* main_bg.jpg */; };
+		C57E6220255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E621F255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift */; };
+		C57E6223255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E6222255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -231,6 +233,8 @@
 		C57E620C255BE43200120018 /* CustomFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFooter.h; sourceTree = "<group>"; };
 		C57E620D255BE43300120018 /* CustomCellBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellBackground.m; sourceTree = "<group>"; };
 		C57E620E255BE43300120018 /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
+		C57E621F255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsCollectionViewViewController.swift; sourceTree = "<group>"; };
+		C57E6222255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +315,8 @@
 				C57E61EA255BDF4E00120018 /* ToolCollectionViewCell.swift */,
 				C57E6193255BB90200120018 /* MainTabAdoptableCatsMainTVCell.swift */,
 				C57E6191255BB90100120018 /* MainTabAdoptableCatsSubCVCell.swift */,
+				C57E621F255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift */,
+				C57E6222255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift */,
 			);
 			path = AdoptACat;
 			sourceTree = "<group>";
@@ -697,6 +703,7 @@
 				C57E5E0F255BB4F400120018 /* CMMapLauncher.m in Sources */,
 				C57E5E38255BB58100120018 /* DownloadManager.swift in Sources */,
 				C57E61A1255BB92100120018 /* FitQuestionSegmentTableViewCell.swift in Sources */,
+				C57E6223255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift in Sources */,
 				C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */,
 				C57E6200255BE35E00120018 /* CustomHeader.m in Sources */,
 				C57E5E29255BB58100120018 /* YouTubeAPI.swift in Sources */,
@@ -736,6 +743,7 @@
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
 				C57E6184255BB7BA00120018 /* Result.swift in Sources */,
+				C57E6220255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift in Sources */,
 				C57E6166255BB73700120018 /* FMDatabaseQueue.m in Sources */,
 				C57E5E35255BB58100120018 /* FelineFinderBasePets.swift in Sources */,
 				C57E6210255BE43300120018 /* CoolTableViewController.m in Sources */,

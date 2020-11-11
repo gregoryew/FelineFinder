@@ -21,8 +21,6 @@ class TableViewWorkAround: UITableView {
     }
 }
 
-var selectedImages: [Int] = []
-
 class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate, AlertDisplayer, MFMailComposeViewControllerDelegate {
     
     private let refreshControl = UIRefreshControl()
