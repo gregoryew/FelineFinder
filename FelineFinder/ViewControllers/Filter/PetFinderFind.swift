@@ -9,7 +9,6 @@
 import Foundation
 import BetterSegmentedControl
 
-let listReturned = Notification.Name(rawValue: "listReturned")
 var observer3: Any?
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
@@ -201,9 +200,10 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToPetFinderList" {
-            (segue.destination as! PetFinderViewController).breed = breed
-        } else if segue.identifier == "chooseFilterOptions" {
+        //if segue.identifier == "goToPetFinderList" {
+        //    (segue.destination as! PetFinderViewController).breed = breed
+        //} else
+        if segue.identifier == "chooseFilterOptions" {
             (segue.destination as! FilterOptionsListTableViewController).filterOpt = opt
         }
     }

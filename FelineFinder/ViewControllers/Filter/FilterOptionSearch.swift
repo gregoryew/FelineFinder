@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 class FilterOptionsSearchTableCell: UITableViewCell {
-    @IBOutlet weak var searchButton: CoolButton!
+    @IBOutlet weak var searchButton: UIButton!
 }

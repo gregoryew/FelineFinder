@@ -10,47 +10,23 @@ import Foundation
 //import TransitionTreasury
 //import TransitionAnimation
 import UIKit
-import Emojica
+import WebKit
 
 extension UIViewController {
     func setEmojicaLabel(text: String, size: CGFloat = 32.0, fontName: String = "") -> NSAttributedString {
-        if fontName == "" {
-            let emojica = Emojica(font: UIFont.systemFont(ofSize: size))
-            emojica.imageSet = .default
-            return emojica.convert(string: text)
-        } else {
-            let emojica = Emojica(font: UIFont.init(name: fontName, size: size)!)
-            emojica.imageSet = .default
-            return emojica.convert(string: text)
-        }
+        return NSAttributedString(string: text)
     }
 }
 
 extension UICollectionViewCell {
     func setEmojicaLabel(text: String, size: CGFloat = 32.0, fontName: String = "") -> NSAttributedString {
-        if fontName == "" {
-            let emojica = Emojica(font: UIFont.systemFont(ofSize: size))
-            emojica.imageSet = .default
-            return emojica.convert(string: text)
-        } else {
-            let emojica = Emojica(font: UIFont.init(name: fontName, size: size)!)
-            emojica.imageSet = .default
-            return emojica.convert(string: text)
-        }
-    }
+        return NSAttributedString(string: text)
+   }
 }
 
 extension UITableViewCell {
     func setEmojicaLabel(text: String, size: CGFloat = 32.0, fontName: String = "") -> NSAttributedString {
-        if fontName == "" {
-            let emojica = Emojica(font: UIFont.systemFont(ofSize: size))
-            emojica.imageSet = .default
-            return emojica.convert(string: text)
-        } else {
-            let emojica = Emojica(font: UIFont.init(name: fontName, size: size)!)
-            emojica.imageSet = .default
-            return emojica.convert(string: text)
-        }
+        return NSAttributedString(string: text)
     }
 }
 
@@ -237,7 +213,6 @@ var viewPoppedFromTabBarToBreeds = false
 var globalBreed: Breed?
 var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false
-var videoPlayer: WKYTPlayerView? = WKYTPlayerView()
 var firstTime: Bool = false
 
 
@@ -587,9 +562,11 @@ public extension Date {
     }
 }
 
-
+var questionList: QuestionList = QuestionList()
 
 let INITIAL_DATE = Date.setToDateTime(dateString: "1900-01-01")
 let ALL_BREEDS = "All Breeds"
 let FAVORITES = "FAVORITES"
 
+let filterReturned = Notification.Name(rawValue: "filterReturned")
+let listReturned = Notification.Name(rawValue: "listReturned")

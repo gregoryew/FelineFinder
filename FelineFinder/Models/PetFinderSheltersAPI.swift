@@ -9,6 +9,7 @@
 import Foundation
 
 class PetFinderShelterList: ShelterList {
+/*
     override func loadSingleShelter(_ shelterID: String, completion: @escaping (shelter) -> Void) -> Void {
         super.loadSingleShelter(shelterID, completion: completion)
         /*
@@ -123,6 +124,7 @@ class PetFinderShelterList: ShelterList {
 
         return shelter(i: id, n: name, a1: address1, a2: address2, c: city, s: state, z: zipCode, lat: latitude!, lng: longitude!, c2: country, p: phone, f: fax, e: email)
     }
+ */
 }
 
 struct ShelterTags {

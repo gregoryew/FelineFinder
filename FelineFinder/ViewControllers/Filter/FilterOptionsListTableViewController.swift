@@ -362,6 +362,7 @@ class FilterOptionsListTableViewController: UITableViewController {
         return true
     }
     
+    /*
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = CustomHeader()
         header.lightColor = headerLightColor
@@ -373,5 +374,6 @@ class FilterOptionsListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
+    */
 
 }

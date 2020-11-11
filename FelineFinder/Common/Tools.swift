@@ -10,6 +10,7 @@ import Foundation
 import MessageUI
 import MapKit
 import Social
+import WebKit
 
 class Tool {
     var icon = ""
@@ -718,7 +719,7 @@ class Tools: Sequence, IteratorProtocol {
         self.breed = breed
         self.sourceView = sourceView
                 
-        switch YouTubeAPI.getYouTubeVideos2(playList: breed.YouTubePlayListID) {
+        switch YouTubeAPI.getYouTubeVideos(playList: breed.YouTubePlayListID) {
         case .failure(let err):
             Utilities.displayAlert("Network Error", errorMessage: err.localizedDescription)
         case .success(let data):

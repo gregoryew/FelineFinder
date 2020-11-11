@@ -8,6 +8,18 @@
 
 import Foundation
 
+struct breedPicture {
+    var Name = ""
+    var PictureURL = ""
+    var PetID = ""
+    
+    init (name: String, picURL: String, petID: String) {
+        Name = name
+        PictureURL = picURL
+        PetID = petID
+    }
+}
+
 struct Breed {
     var BreedID: Int32
     var BreedName = ""

@@ -209,6 +209,7 @@ final class DownloadManager {
     }
     
     static func loadYouTubePlayList(playListID: String, obj: NSObject) {
+        /*
         YouTubeAPI().getYouTubeVideos(playList: playListID) { (PlayList, Error) in
             if Error == nil {
                 let nc = NotificationCenter.default
@@ -219,13 +220,16 @@ final class DownloadManager {
                 Utilities.displayAlert("YouTube Playlist Load Error", errorMessage: Error.debugDescription)
             }
         }
+        */
     }
     
      static func loadPetPictures(breed: Breed) {
+        /*
         BreedInfoGalleryPhotoAPI().loadPhotos(bn: breed) { (breedPictures) in
             let nc = NotificationCenter.default
             nc.post(name: breedPicturesLoadedMessage, object: nil, userInfo: ["breedPictures": breedPictures])
         }
+        */
     }
         
     static private func calculateIndexPathsToReload(priorCount: Int, newCount: Int) -> [IndexPath] {

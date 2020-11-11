@@ -9,9 +9,7 @@
 import Foundation
 import FaveButton
 import SDWebImage
-import URBSegmentedControl
 import YouTubePlayer
-import SkeletonView
 
 extension UIView {
     func findViewController() -> UIViewController? {
@@ -37,7 +35,6 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
     @IBOutlet weak var FavoriteButton:
         FaveButton!
     @IBOutlet weak var ToolsChooser: UIView!
-    var ToolChooserControl: URBSegmentedControl?
     
     @IBOutlet weak var YouTubeVideo: YouTubePlayerView!
     
@@ -68,18 +65,6 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             var icons = [UIImage]()
             icons.append(UIImage(named: "cat-icon")!)
             icons.append(UIImage(named: "speechBalloon")!)
-            ToolChooserControl = URBSegmentedControl.init(icons: icons)
-
-            ToolChooserControl?.segmentViewLayout = .vertical
-            ToolChooserControl?.layoutOrientation = .vertical
-            ToolChooserControl?.imageEdgeInsets = UIEdgeInsets(top: 5.0, left: 5.0, bottom: 5.0, right: 0.0);
-            ToolChooserControl?.contentEdgeInsets = UIEdgeInsets(top: 5.0, left: 0.0, bottom: 5.0, right: 5.0);
-
-            ToolChooserControl?.frame = ToolsChooser.bounds
-            
-            ToolChooserControl?.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
-
-            ToolsChooser.addSubview(ToolChooserControl!)
 
             self.petData = p
 
@@ -92,13 +77,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             mediaCount = tools.images().count + tools.youTubeVidoes().count
             
             setup()
-            
-            if tools.count() < 2 {
-                self.tools.mode = .tools
-                setup()
-                ToolChooserControl?.selectedSegmentIndex = 1
-            }
-            
+                        
             FavoriteButton.isSelected = Favorites.isFavorite(petData.petID, dataSource: .RescueGroup)
             
             YouTubeVideo.delegate = self
@@ -222,16 +201,7 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
             
         }
     }
-    
-    @objc func indexChanged(_ sender: URBSegmentedControl, _ index: Int) {
-        if ToolChooserControl?.selectedSegmentIndex == 0 {
-            tools.mode = .media
-        } else {
-            tools.mode = .tools
-        }
-        setup()
-    }
-    
+        
     @IBAction func favoriteTapped(_ sender: Any) {
         if FavoriteButton.isSelected {
             Favorites.addFavorite(petData.petID)
@@ -244,7 +214,6 @@ class MainTabAdoptableCatsMainTVCell: UITableViewCell, UICollectionViewDelegate,
         super .prepareForReuse()
         self.backgroundColor = UIColor.clear
         self.MainCatImage.backgroundColor = UIColor.clear
-        self.ToolChooserControl?.selectedSegmentIndex = 0
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

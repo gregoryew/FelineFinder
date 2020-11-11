@@ -11,7 +11,6 @@ import SDWebImage
 import MessageUI
 import FaveButton
 import YouTubePlayer
-import SkeletonView
 
 class TableViewWorkAround: UITableView {
     override func layoutSubviews() {
@@ -421,11 +420,7 @@ class CustomView: UIView
     }
 }
 
-extension MainTabAdoptableCats: SkeletonTableViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "mainCell"
-    }
-    
+extension MainTabAdoptableCats {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -439,7 +434,7 @@ extension MainTabAdoptableCats: SkeletonTableViewDataSource {
     }
 }
 
-extension MainTabAdoptableCats: SkeletonTableViewDelegate {
+extension MainTabAdoptableCats {
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let ytv = currentlyPlayingYouTubeVideoView {
             if !(MainTV.indexPathsForVisibleRows?.contains(IndexPath(row: ytv.tag, section: 0)))! {
@@ -486,10 +481,8 @@ extension MainTabAdoptableCats: SkeletonTableViewDelegate {
             cell.selectedBackgroundView?.addSeparator()
             
             if isLoadingCell(for: indexPath) {
-                cell.startSkeletonAnimation()
                 cell.configure(pd: .none, sh: .none, sourceView: self.view)
             } else {
-                cell.stopSkeletonAnimation()
                 cell.configure(pd: self.pets![indexPath.row], sh: globalShelterCache[self.pets![indexPath.row].shelterID], sourceView: self.view)
             }
             cell.tag = indexPath.row
@@ -497,11 +490,12 @@ extension MainTabAdoptableCats: SkeletonTableViewDelegate {
         }
     }
 
+    /*
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //let petData = self.pets!.distances[titles[indexPath.section]]![indexPath.row]
         if self.pets!.foundRows < indexPath.row {return}
         let petData = self.pets![indexPath.row]
-        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! CatDetailViewController
+        let FelineDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptableCatsDetail") as! MainTabAdoptableCats
         FelineDetail.pet = petData
         FelineDetail.petID = petData.petID
         FelineDetail.petName = petData.name
@@ -512,4 +506,6 @@ extension MainTabAdoptableCats: SkeletonTableViewDelegate {
         whichTab = 2
         //present(FelineDetail, animated: true, completion: nil)
     }
+    */
+    
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class listOptionV5 {
+class listOption {
     var displayName: String?
     var search: String?
     var value: Int?
@@ -25,14 +25,14 @@ class filterOption {
     let fieldName: String?
     let display: Bool?
     let list: Bool?
-    let classification: catClassificationV5
+    let classification: catClassification
     var sequence: Int = 0
     var options: [listOption] = []
     var choosenListValues:[Int] = []
     var imported: Bool = false
     var filterType: FilterType
     
-    init (n: String, f: String, d: Bool, c: catClassificationV5, o: [listOption], ft: FilterType) {
+    init (n: String, f: String, d: Bool, c: catClassification, o: [listOption], ft: FilterType) {
         name = n
         fieldName = f
         options = o
@@ -43,7 +43,7 @@ class filterOption {
         self.filterType = ft
     }
     
-    init (n: String, f: String, d: Bool, c: catClassificationV5, l: Bool, o: [listOption], ft: FilterType) {
+    init (n: String, f: String, d: Bool, c: catClassification, l: Bool, o: [listOption], ft: FilterType) {
         name = n
         fieldName = f
         options = o
@@ -96,7 +96,7 @@ class filterOption {
     }
 }
 
-enum catClassificationV5: Int {
+enum catClassification: Int {
     case saves
     case breed
     case sort

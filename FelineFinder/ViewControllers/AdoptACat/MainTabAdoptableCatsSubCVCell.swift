@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SkeletonView
 
 class MainTabAdoptableCatsSubCVCell: UICollectionViewCell {
     
