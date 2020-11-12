@@ -204,7 +204,7 @@ final class DownloadManager {
             nc.post(name:petsLoadedMessage,
                     object: nil,
                     userInfo: info)
-            isFetchInProgress = false
+            //isFetchInProgress = false
         }
     }
     

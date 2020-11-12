@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         //let defaults = UserDefaults.standard
         
         //if defaults.bool(forKey: "hideTitleScreen") == false {
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "IntroViewController")
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         /*

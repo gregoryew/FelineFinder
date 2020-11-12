@@ -322,6 +322,44 @@ public extension UIDevice {
     }
 }
 
+@IBDesignable
+class DynamicImageView: UIImageView {
+
+    @IBInspectable var fixedWidth: CGFloat = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    @IBInspectable var fixedHeight: CGFloat = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        var s = CGSize.zero
+        if fixedWidth > 0 && fixedHeight > 0 {
+            s.width = fixedWidth
+            s.height = fixedHeight
+        } else if fixedWidth <= 0 && fixedHeight > 0 {
+            if let image = self.image {
+                let ratio = fixedHeight / image.size.height
+                s.width = image.size.width * ratio - 10
+                s.height = fixedHeight
+            }
+        } else if fixedWidth > 0 && fixedHeight <= 0 {
+            s.width = fixedWidth
+            if let image = self.image {
+                let ratio = fixedWidth / image.size.width
+                s.height = image.size.height * ratio
+            }
+        } else {
+            s = image?.size ?? .zero
+        }
+        return s
+    }
+}
+
 class CustomSegue: UIStoryboardSegue {
     override func perform() {
         //self.sourceViewController.presentViewController(self.destinationViewController as! UIViewController, animated: false, completion: nil)
@@ -559,6 +597,18 @@ public extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = formatString
         return dateFormatter.date(from: dateString)!
+    }
+}
+
+extension UIView {
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
     }
 }
 

@@ -141,7 +141,7 @@ class descriptionTool: Tool { //, scrolledView {
     
     override func isVisible(mode: Mode) -> Bool {
         visible = super.isVisible(mode: mode)
-        return true
+        return false
     }
     
     override func performAction() {
@@ -593,7 +593,7 @@ class statsTool: Tool {
     }
     override func isVisible(mode: Mode) -> Bool {
         visible = super.isVisible(mode: mode)
-        return true
+        return false
     }
     override func performAction() {
         super.performAction()
@@ -730,11 +730,6 @@ class Tools: Sequence, IteratorProtocol {
             }
         }
 
-        tools = getTools()
-    }
-
-    func reloadData() {
-        tools = []
         tools = getTools()
     }
     

@@ -18,15 +18,15 @@ class MainTabAdoptableCatsCollectionViewCell: UICollectionViewCell {
     
     func configure(pd: Pet?) {
         if let pd = pd {
-            if let imgURL = URL(string: pd.getImage(0, size: "pnt")) {
+            if let imgURL = URL(string: pd.getImage(1, size: "pnt")) {
             self.photo.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority, completed: nil)
             } else {
                 self.photo.image = UIImage(named: "NoCatImage")
             }
             
-            name.text = pd.name
+            name.text = pd.name + " "
             
-            breed.text = pd.breeds.first
+            breed.text = pd.breeds.first ?? "" + " "
             
             var options = [String]()
             if pd.status != "" {
@@ -41,7 +41,7 @@ class MainTabAdoptableCatsCollectionViewCell: UICollectionViewCell {
             if pd.size != "" {
                 options.append(pd.size)
             }
-            Stats.text = options.joined(separator: " | ")
+            Stats.text = options.joined(separator: " | ") + " "
             
             var location = [String]()
             if pd.location != "" {
@@ -50,7 +50,7 @@ class MainTabAdoptableCatsCollectionViewCell: UICollectionViewCell {
             if pd.distance != 0 {
                 location.append("\(pd.distance) Miles")
             }
-            self.location.text = location.joined(separator: " - ")
+            self.location.text = location.joined(separator: " - ") + " "
         }
     }
     

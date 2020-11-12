@@ -34,7 +34,7 @@ extension ZoomAnimationViewController: UIViewControllerAnimatedTransitioning {
     
     private func getFrom(using transitionContext: UIViewControllerContextTransitioning) -> ZoomAnimationViewController {
         if transitionContext.viewController(forKey: .from) is UITabBarController {
-            let tab = transitionContext.viewController(forKey: .from) as! MainTabBarControllerViewController
+            let tab = transitionContext.viewController(forKey: .from) as! UITabBarController
             return tab.selectedViewController as! ZoomAnimationViewController
         } else {
             return transitionContext.viewController(forKey: .from) as! ZoomAnimationViewController

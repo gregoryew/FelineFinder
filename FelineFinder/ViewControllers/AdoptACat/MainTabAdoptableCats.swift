@@ -223,7 +223,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             let title = "Warning"
             let action = UIAlertAction(title: "OK", style: .default)
             displayAlert(with: title , message: reason, actions: [action])
-            isFetchInProgress = false
+            //isFetchInProgress = false
         }
     }
     
@@ -250,7 +250,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             totalRows = pets?.foundRows ?? 0
             self.MainTV.reloadData()
             selectedImages = [Int](repeating: 0, count: totalRows)
-            isFetchInProgress = false
+            //isFetchInProgress = false
             self.refreshControl.endRefreshing()
           }
           return
@@ -261,7 +261,7 @@ class MainTabAdoptableCats: ZoomAnimationViewController, UITableViewDelegate, UI
             let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(newIndexPathsToReload)
             let indexPathsToReload = Array(indexPathsIntersection)
             self.MainTV.reloadRows(at: indexPathsToReload, with: .automatic)
-            isFetchInProgress = false
+            //isFetchInProgress = false
             self.refreshControl.endRefreshing()
         }
     }
@@ -444,6 +444,7 @@ extension MainTabAdoptableCats {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+/*
         let isFavorite = FavoriteBtn.isSelected
         var numberOfRows = 0
         if isFavorite == true && totalRows > 0 {
@@ -486,6 +487,8 @@ extension MainTabAdoptableCats {
             cell.tag = indexPath.row
             return cell
         }
+*/
+        return UITableViewCell()
     }
 
     /*

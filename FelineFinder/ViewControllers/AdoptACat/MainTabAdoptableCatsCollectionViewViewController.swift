@@ -9,7 +9,7 @@ import UIKit
 
 var selectedImages: [Int] = []
 
-class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDataSourcePrefetching, CLLocationManagerDelegate, AlertDisplayer {
+class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
 
     @IBOutlet weak var SearchBar: UISearchBar!
     @IBOutlet weak var SortMenu: UILabel!
@@ -20,8 +20,6 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
     @IBOutlet weak var CancelButton: UIButton!
     
     @IBOutlet weak var AdoptableCatCollectionView: UICollectionView!
-    
-    var PetList = [Pet]()
     
     private let refreshControl = UIRefreshControl()
     
@@ -68,9 +66,10 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
             self?.petsFailed(notification: notification)
         }
         
-        AdoptableCatCollectionView.dataSource = self
+        AdoptableCatCollectionView.isPrefetchingEnabled = true
         AdoptableCatCollectionView.delegate = self
         AdoptableCatCollectionView.prefetchDataSource = self
+
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.requestWhenInUseAuthorization()
@@ -87,7 +86,6 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
         let keyStore = NSUbiquitousKeyValueStore()
         zipCode = keyStore.string(forKey: "zipCode") ?? ""
         if zipCode != "" {
-            //self.setFilterDisplay()
             self.pets?.loading = true
             DownloadManager.loadPetList(reset: true)
             return
@@ -103,7 +101,6 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
             }
             
             zipCode = placemark?.postalCode ?? "19106"
-            //self.setFilterDisplay()
             DownloadManager.loadPetList(reset: true)
         }
     }
@@ -137,12 +134,10 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
                 self.present(alert3, animated: true, completion: nil)
                 zipCode = "66952"
                 self.pets?.loading = true
-                //self.setFilterDisplay()
                 DispatchQueue.main.async {
                     self.AdoptableCatCollectionView.reloadData()
                 }
                 DownloadManager.loadPetList(reset: true)
-                //self.setupReloadAndScroll()
             }
         }))
         
@@ -178,8 +173,6 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
         }
         
         pets = p
-        
-        //DownloadManager.sizeImages(pets: p)
 
         self.pets?.loading = false
         
@@ -257,18 +250,6 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
         return totalRow
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        <#code#>
-    }
-    
     @IBAction func CancelButtonTapped(_ sender: Any) {
     }
     
@@ -281,6 +262,18 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
     @IBAction func ListViewTapped(_ sender: Any) {
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptDetail") as! MainTabAdoptableCatsDetailViewController
+        
+        details.modalPresentationStyle = .custom
+        details.transitioningDelegate = self
+        
+        details.pet = self.pets!.Pets[indexPath.item]
+        
+        present(details, animated: true, completion: nil)
+    }
+    
     @IBAction func FilterButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
@@ -288,9 +281,8 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
     }
 }
 
-extension MainTabAdoptableCatsCollectionViewViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        if isFetchInProgress {return}
+extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewDataSourcePrefetching {
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
             DownloadManager.loadPetList(reset: false)
         }
@@ -304,48 +296,42 @@ extension MainTabAdoptableCatsCollectionViewViewController: UITableViewDataSourc
             AdoptableCatCollectionView.reloadData()
             return
         }
-
-            let indexPathsForVisibleRows = AdoptableCatCollectionView.indexPathsForVisibleItems 
+        let indexPathsForVisibleRows = AdoptableCatCollectionView.indexPathsForVisibleItems
         let indexPathsIntersection = Set(indexPathsForVisibleRows).intersection(newIndexPathsToReload)
         let indexPathsToReload = Array(indexPathsIntersection)
             AdoptableCatCollectionView.reloadItems(at: indexPathsToReload)
         }
     }
-}
-
-private extension MainTabAdoptableCatsCollectionViewViewController {
-  func isLoadingCell(for indexPath: IndexPath) -> Bool {
-    if indexPath.row > pets!.Pets.count {
-        print ("isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
-    } else {
-        print ("NOT isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
+    
+    func isLoadingCell(for indexPath: IndexPath) -> Bool {
+        if isFetchInProgress {return false}
+      if indexPath.row >= pets!.Pets.count {
+          print ("isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
+          DownloadManager.loadPetList(reset: false)
+      } else {
+          print ("NOT isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
+      }
+      return indexPath.row >= pets!.Pets.count
     }
-    return indexPath.row > pets!.Pets.count
-  }
 }
 
 extension MainTabAdoptableCatsCollectionViewViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let numberOfRows = 0
-        if (numberOfRows == indexPath.row + 1) {
-            if let sectionHeader = AdoptableCatCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "emptyCell", for: indexPath) as? EmptyTableViewCell{
-                if (isFetchInProgress == false) {
-                    if totalRows == 0 {
-                            sectionHeader.MessageButton.setTitle("Sorry nothing found.  I can search once a day for it if you tap here.", for: .normal)
-                        } else if numberOfRows == indexPath.row + 1 {
-                            sectionHeader.MessageButton.setTitle("End of Results.  If you didn't find what you want tap here.", for: .normal)
-                        }
-                } else if (isFetchInProgress == true) {
-                    sectionHeader.MessageButton.setTitle("Please Wait While Cats Are Loading...", for: .normal)
-                }
-                return sectionHeader
+        let sectionHeader = AdoptableCatCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "emptyCell", for: indexPath) as? EmptyTableViewCell
+        if (isFetchInProgress == false) {
+            if totalRows == 0 {
+                sectionHeader?.MessageButton.setTitle("Sorry nothing found.  I can search once a day for it if you tap here.", for: .normal)
+            } else if pets!.Pets.count == indexPath.row + 1 {
+                sectionHeader?.MessageButton.setTitle("End of Results.  If you didn't find what you want tap here.", for: .normal)
             }
+        } else if (isFetchInProgress == true) {
+            sectionHeader?.MessageButton.setTitle( "Please Wait While Cats Are Loading...", for: .normal)
         }
+        return sectionHeader ?? UICollectionReusableView()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = AdoptableCatCollectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsCollectionViewCell
-                    
         if isLoadingCell(for: indexPath) {
             cell.configure(pd: nil)
         } else {
@@ -353,5 +339,9 @@ extension MainTabAdoptableCatsCollectionViewViewController {
         }
         cell.tag = indexPath.row
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return totalRows
     }
 }
