@@ -149,7 +149,7 @@ class MainTabAdoptableCatsDetailViewController: ZoomAnimationViewController, UIC
             return cell
         case detailCollectionViewTypes.media.rawValue:
             let cell = mediaToolBar.dequeueReusableCell(withReuseIdentifier: "mediaCell", for: indexPath) as! mediaCell
-            cell.configure(mediaTool: media[indexPath.item])
+            cell.configure(mediaTool: media[indexPath.item], isSelected: true)
             return cell
         default: return UICollectionViewCell()
         }

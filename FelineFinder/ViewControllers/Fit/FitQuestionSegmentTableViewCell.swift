@@ -10,7 +10,6 @@ import UIKit
 import BetterSegmentedControl
 
 class FitQuestionSegmentTableViewCell: UITableViewCell {
-
     @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var HelpButton: UIButton!
     @IBOutlet weak var AnswerSegment: BetterSegmentedControl!
@@ -44,7 +43,7 @@ class FitQuestionSegmentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(question: Question) {
+    func configure(question: Question, answer: String) {
         QuestionLabel.text = question.Name
         var answers:[String] = []
         if question.Name == "Hair Type" {
@@ -55,6 +54,14 @@ class FitQuestionSegmentTableViewCell: UITableViewCell {
             answers.append("Med")
             answers.append("Long")
             //answers.append("S/L")
+        } else if question.Name == "Build" {
+            answers.append("Any")
+            answers.append("Oriental")
+            answers.append("Foreign")
+            answers.append("Semi-Foreign")
+            answers.append("Semi-Coby")
+            answers.append("Cobby")
+            answers.append("Substantial")
         } else {
             answers.append("Any")
             answers.append("Small")
@@ -62,18 +69,23 @@ class FitQuestionSegmentTableViewCell: UITableViewCell {
             answers.append("Big")
         }
         selectionStyle = .none
-        //for answer in question.Choices {
-        //    answers.append(answer.Name)
-        //}
         AnswerSegment.segments = LabelSegment.segments(withTitles: answers,
                                                                  normalFont: UIFont(name: "HelveticaNeue-Light", size: 12.0)!,
                                                                  normalTextColor: .white,
                                                                  selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 12.0)!,
                                                                  selectedTextColor: .black)
-
+        
+        
+        var index = answers.firstIndex { (ans) -> Bool in
+            return ans == answer || (ans == "Any" && answer == "Doesn\'t Matter")
+        }
+        
+        if answer == "Hairless" {index = 1}
+        if answer == "Medium" {index = 4}
+        if answer == "Long Hair" {index = 5}
+        if answer == "Biggish" {index = 3}
+        
+        self.AnswerSegment.setIndex(index!)
         self.question = question
     }
-
-    
-    
 }

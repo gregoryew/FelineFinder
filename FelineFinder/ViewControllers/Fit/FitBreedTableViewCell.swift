@@ -9,12 +9,10 @@
 import UIKit
 
 class FitBreedTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var BreedImage: UIImageView!
-    @IBOutlet weak var BreedNameLabel: UILabel!
-    @IBOutlet weak var BreedFitPercentageLabel: UILabel!
     
+    @IBOutlet weak var BreedImage: UIImageView!
     var breedID: Int = -1
+    @IBOutlet weak var BreedNameLabel: UILabel!
     
     @IBAction func BreedInfoTapped(_ sender: UIButton) {
         print("********** Breed ID = \(breedID)")
@@ -32,9 +30,7 @@ class FitBreedTableViewCell: UITableViewCell {
     }
     
     func configure(breed: Breed) {
-        BreedNameLabel.text = breed.BreedName
-
-        BreedFitPercentageLabel.text = "\(String(format: "%.0f", round(breed.Percentage * 100)))%"
+        BreedNameLabel.text = "\(String(format: "%.0f", round(breed.Percentage * 100)))% \( breed.BreedName)"
         
         BreedImage.image = UIImage(named: breed.PictureHeadShotName)
         

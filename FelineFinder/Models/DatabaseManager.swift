@@ -304,7 +304,7 @@ class DatabaseManager {
             var querySQL = ""
             
             if percentageMatch == -1 {
-                querySQL = "SELECT BreedID, TraitShortDesc, c from BreedTraitStats where BreedID = ?"
+                querySQL = "SELECT BreedID, TraitShortDesc, c, isPercentage from BreedTraitStats where BreedID = ?"
             } else {
                 querySQL = "SELECT BreedID, TraitShortDesc, c, l, h from BreedTraitValuesViewAnswers where BreedID = ?"
             }
@@ -317,6 +317,7 @@ class DatabaseManager {
                     let i = results.int(forColumn: "BreedID")
                     let d = results.string(forColumn: "TraitShortDesc")
                     let p = results.double(forColumn: "c")
+                    let isPercentage = results.bool(forColumn: "isPercentager")
                     var l: Double
                     var h: Double
                     var v: String
@@ -328,7 +329,7 @@ class DatabaseManager {
                         l = 0
                         h = 0
                     }
-                    let breedStat = BreedStats(id: i, desc: d!, percent: p, lowRange: l, highRange: h, value: v);
+                    let breedStat = BreedStats(id: i, desc: d!, percent: p, lowRange: l, highRange: h, value: v, isPercentage: isPercentage);
                     breedStats.append(breedStat);
                 }
             

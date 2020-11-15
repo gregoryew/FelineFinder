@@ -15,13 +15,15 @@ struct BreedStats {
     let LowRange: Double
     let HighRange: Double
     let Value: String
-    init(id: Int32, desc: String, percent: Double, lowRange: Double, highRange: Double, value: String) {
+    let isPercentage: Bool
+    init(id: Int32, desc: String, percent: Double, lowRange: Double, highRange: Double, value: String, isPercentage: Bool) {
         BreedID = id
         TraitShortDesc = desc
         Percent = percent
         LowRange = lowRange
         HighRange = highRange
         Value = value
+        self.isPercentage = isPercentage
     }
     static func getDescription(_ d: String, p: Double) -> String {
         var v: String = ""
@@ -183,7 +185,7 @@ class BreedStatList {
             var querySQL: String = ""
             
             if percentageMatch == -1 {
-                querySQL = "SELECT BreedID, TraitShortDesc, c from BreedTraitStats where BreedID = ?"
+                querySQL = "SELECT BreedID, TraitShortDesc, c, isPercentage from BreedTraitStats where BreedID = ?"
             } else {
                 querySQL = "SELECT BreedID, TraitShortDesc, c, l, h from BreedTraitValuesViewAnswers where BreedID = ?"
             }
@@ -202,6 +204,7 @@ class BreedStatList {
                 var l: Double
                 var h: Double
                 var v: String
+                var isPercentage: Bool
                 v = getDescription(d!, p: p!)
                 if percentageMatch != -1 {
                     l = results!.double(forColumn: "l")
@@ -210,7 +213,8 @@ class BreedStatList {
                     l = 0
                     h = 0
                 }
-                let breedStat = BreedStats(id: i!, desc: d!, percent: Double(p!), lowRange: l, highRange: h, value: v);
+                isPercentage = results!.bool(forColumn: "isPercentage")
+                let breedStat = BreedStats(id: i!, desc: d!, percent: Double(p!), lowRange: l, highRange: h, value: v, isPercentage: isPercentage);
                 breedStats.append(breedStat);
                 if !breedIDs.contains(Int(i!)) {breedIDs.append(Int(i!))}
             }
@@ -235,7 +239,7 @@ class BreedStatList {
         if (contactDB?.open())! {
             breedStats = [];
             
-            let querySQL = "SELECT BreedID, TraitID, TraitShortDesc, BreedTraitValue from BreedTraitAll order by BreedID, TraitOrder"
+            let querySQL = "SELECT BreedID, TraitID, TraitShortDesc, BreedTraitValue, isPercentage from BreedTraitAll order by BreedID, TraitOrder"
             
             let results: FMResultSet? = contactDB?.executeQuery(querySQL,
                 withArgumentsIn: [])
@@ -249,9 +253,10 @@ class BreedStatList {
                 let traitID = results?.int(forColumn: "TraitID")
                 let traitDesc = results?.string(forColumn: "TraitShortDesc")
                 let breedTraitValue = results?.int(forColumn: "BreedTraitValue")
+                let isPercentage = results?.string(forColumn: "isPercentage")
                 var v: String = ""
                 v = getDescriptionAll(traitDesc!, p: Double(breedTraitValue!))
-                let breedStat = BreedStats(id: i!, desc: traitDesc!, percent: Double(breedTraitValue!), lowRange: 0, highRange: 0, value: v);
+                let breedStat = BreedStats(id: i!, desc: traitDesc!, percent: Double(breedTraitValue!), lowRange: 0, highRange: 0, value: v, isPercentage: isPercentage == "yes");
                 if allBreedStats.keys.contains(Int(i!)){
                     allBreedStats[Int(i!)]?.append(breedStat)
                 } else {
@@ -275,7 +280,7 @@ class BreedStatList {
     }
     
     func calcMatches(responses: [response]) -> [Double] {
-        var results = [Double](repeating: 0, count: (breedIDs.max() ?? 0))
+        var results = [Double](repeating: 0, count: 67)
         for breedID in breedIDs {
             let bs = allBreedStats[breedID]
             var sum: Double = 0
