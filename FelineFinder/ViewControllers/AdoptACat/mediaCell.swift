@@ -18,18 +18,17 @@ class mediaCell: UICollectionViewCell {
     }
     
     func configure(mediaTool: Tool, isSelected: Bool) {
-        img.alpha = isSelected ? 1 : 0.5
+        img.alpha = 0.5
         if mediaTool is imageTool {
             if let thumbNail = mediaTool as? imageTool, let imgURL = URL(string: thumbNail.thumbNail.URL) {
-                img.sd_setHighlightedImage(with: imgURL, options: .highPriority, completed: nil)
+                img.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: .highPriority, completed: nil)
             }
         } else if mediaTool is youTubeTool {
             if let thumbNail = mediaTool as? youTubeTool, let imgURL = URL(string: thumbNail.video.urlThumbnail) {
-                img.sd_setHighlightedImage(with: imgURL, options: .highPriority, completed: nil)
+                img.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: .highPriority, completed: nil)
             }
         }
-        print("Image Tool Frame = \(img.frame)")
-        let backgroundImage = UIImageView(frame: contentView.bounds)
+        let backgroundImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
         backgroundImage.backgroundColor = UIColor.black
         self.contentView.addSubview(backgroundImage)
         self.contentView.sendSubviewToBack(backgroundImage)

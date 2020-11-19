@@ -9,7 +9,9 @@ import UIKit
 
 var selectedImages: [Int] = []
 
-class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
+var selectedImage: UIImageView!
+
+class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
 
     @IBOutlet weak var SearchBar: UISearchBar!
     @IBOutlet weak var SortMenu: UILabel!
@@ -39,6 +41,8 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
     var observer3: Any!
     
     var totalRows = 0
+    
+    let transition = PopAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -264,15 +268,32 @@ class MainTabAdoptableCatsCollectionViewViewController: ZoomAnimationViewControl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let cell = collectionView.cellForItem(at: indexPath) as! MainTabAdoptableCatsCollectionViewCell
+        
+        selectedImage = UIImageView(frame: cell.frame)
+        selectedImage.image = cell.photo.image
+        
         let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptDetail") as! MainTabAdoptableCatsDetailViewController
-        
-        details.modalPresentationStyle = .custom
-        details.transitioningDelegate = self
-        
+
         details.pet = self.pets!.Pets[indexPath.item]
         
+        details.modalPresentationStyle = .overFullScreen
+        
+        details.transitioningDelegate = self
+        
         present(details, animated: true, completion: nil)
+
     }
+    
+    /*
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+      super.viewWillTransition(to: size, with: coordinator)
+      coordinator.animate(alongsideTransition: { context in
+        self.bgImage.alpha = (size.width>size.height) ? 0.25 : 0.55
+        self.positionListItems()
+      }, completion: nil)
+    }
+    */
     
     @IBAction func FilterButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
@@ -315,6 +336,23 @@ extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewData
     }
 }
 
+extension MainTabAdoptableCatsCollectionViewViewController: UIViewControllerTransitioningDelegate {
+  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.originFrame = selectedImage.frame
+    //!.superview!.convert(selectedImage!.frame, to: nil)
+
+    transition.presenting = true
+    selectedImage!.isHidden = false
+
+    return transition
+  }
+
+  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    transition.presenting = false
+    return transition
+  }
+}
+
 extension MainTabAdoptableCatsCollectionViewViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let sectionHeader = AdoptableCatCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "emptyCell", for: indexPath) as? EmptyTableViewCell
@@ -343,5 +381,17 @@ extension MainTabAdoptableCatsCollectionViewViewController {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalRows
+    }
+}
+
+extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var size = view.frame.size.width - (10 * 3)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            size /= 6
+        } else {
+            size /= 2
+        }
+        return CGSize(width: size, height: size * 1.3)
     }
 }

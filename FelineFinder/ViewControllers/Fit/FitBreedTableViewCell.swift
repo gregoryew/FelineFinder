@@ -13,6 +13,7 @@ class FitBreedTableViewCell: UITableViewCell {
     @IBOutlet weak var BreedImage: UIImageView!
     var breedID: Int = -1
     @IBOutlet weak var BreedNameLabel: UILabel!
+    @IBOutlet weak var BreedCellView: UIView!
     
     @IBAction func BreedInfoTapped(_ sender: UIButton) {
         print("********** Breed ID = \(breedID)")

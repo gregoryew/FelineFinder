@@ -12,6 +12,9 @@ protocol MultiRowGradientLayoutDelegate: AnyObject {
     func collectionView(
       _ collectionView: UICollectionView,
       widthForTextAtIndexPath indexPath: IndexPath) -> CGFloat
+    func collectionView(
+      _ collectionView: UICollectionView,
+      maxHeight: CGFloat)
 }
 
 class MultiRowGradientAttributes: UICollectionViewLayoutAttributes {
@@ -56,8 +59,8 @@ class MultiRowGradientLayout: UICollectionViewLayout {
     }
     
   override func prepare() {
-    //cache.removeAll()
-    if delegate == nil {return}
+    print("Segment Prepare Begin")
+    cache.removeAll()
     if cache.isEmpty {
         var yOffsets = [CGFloat]()
         var xOffsets = [CGFloat]()
@@ -97,6 +100,8 @@ class MultiRowGradientLayout: UICollectionViewLayout {
                 }
             }
         }
+        delegate.collectionView(collectionView!, maxHeight: (yOffsets.last ?? 0) + columnHeight)
+        print("Segment Prepare End")
      }
   }
   

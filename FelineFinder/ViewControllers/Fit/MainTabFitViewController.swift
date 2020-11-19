@@ -12,6 +12,8 @@ protocol calcStats {
     func answerChanged(question: Int, answer: Int)
 }
 
+var rowH = [CGFloat](repeating: 0, count: 15)
+
 class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
     
     @IBOutlet weak var QuestionsTableViews: UITableView!
@@ -28,13 +30,13 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedBreedID: Int = 1
     var breedTraitValues: [Int: [PercentBarView]] = [:]
     var breedColors: [UIColor]?
-    var breedSelected = [Bool](repeating: false, count: 68)
+    var breedSelected = [Bool](repeating: false, count: 69)
     var scrollPosition: UITableView.ScrollPosition = .middle
     var breeds = [Breed]()
     var breedPercentages = [Double]()
     var gradients = [CGGradient]()
     var colors = [UIColor]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         BreedTableView.dataSource = self
@@ -49,7 +51,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
             self.breeds = breeds
-            self.breedPercentages = [Double](repeating: 0, count: 67)
+            self.breedPercentages = [Double](repeating: 0, count: 69)
             DispatchQueue.main.async(execute: {
                 self.BreedTableView.reloadData()
                 self.QuestionsTableViews.reloadData()
@@ -80,7 +82,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
 
         guard breeds.count > 0 else {return}
-
+        
         breedPercentages = breedStats.calcMatches(responses: responses)
 
         guard breedPercentages.count > 0 else {return}
@@ -114,13 +116,18 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == QUESTION_TV {
+            print("Height For Row At")
             if breedStats.allBreedStats[1]![indexPath.row].isPercentage {
                 return CGFloat(118 + (breedsInChartInfo.count > 0 ? 10 : 0) + (breedsInChartInfo.count * 30))
             } else {
-                return CGFloat(81)
+                if rowH.count <= 0 || rowH.count < (indexPath.item - 1) || (rowH[indexPath.item] == 0){
+                    return 200
+                } else {
+                    return rowH[indexPath.item] + 10
+                }
             }
         } else {
-            return CGFloat(166)
+            return CGFloat(150)
         }
     }
     
@@ -137,7 +144,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
                 guard index ?? -1 >= 0 && index ?? -1 < breeds.count else {return}
                 var percents = [CGFloat]()
                 for i in 0..<questionList.count {
-                    if breedStats.allBreedStats[1]![indexPath.row].isPercentage {
+                    if breedStats.allBreedStats[1]![i].isPercentage {
                         percents.append(CGFloat(breedStats.allBreedStats[selectedBreedID]![i].Percent) / CGFloat(5.0))
                     }
                 }
@@ -176,9 +183,9 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             let breed = breeds[indexPath.row]
             
             if let color = breedsInChartInfo.getBreed(id: Int(breed.BreedID))?.color {
-                cell.contentView.backgroundColor = color
+                cell.BreedCellView.backgroundColor = color
             } else {
-                cell.contentView.backgroundColor = UIColor.white
+                cell.BreedCellView.backgroundColor = UIColor.white
             }
 
             cell.configure(breed: breed)
@@ -204,9 +211,56 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
                 let question = questionList[indexPath.row]
                 
                 cell.tag = indexPath.row
-                cell.delegate = self
-                cell.configure(question: question, answer: answer)
+                cell.segmentedCollectionView.tag = indexPath.row
+                
+                var answers = [String]()
+                switch question.Name {
+                case "Hair Type":
+                    answers.append("Any")
+                    answers.append("Hairless")
+                    answers.append("Short")
+                    answers.append("Rex")
+                    answers.append("Medium")
+                    answers.append("Long Hair")
+                    break
+                case "Build":
+                    answers.append("Any")
+                    answers.append("Oriental")
+                    answers.append("Foreign")
+                    answers.append("Semi-Foreign")
+                    answers.append("Semi-Coby")
+                    answers.append("Cobby")
+                    answers.append("Substantial")
+                    break
+                case "Size":
+                    answers.append("Any")
+                    answers.append("Small")
+                    answers.append("Average")
+                    answers.append("Biggish")
+                    break
+                case "Zodicat":
+                    answers.append("Any")
+                    answers.append("♒ Aquarius (Jan 20 - Feb 18)")
+                    answers.append("♓ Pisces (Feb 19 - March 20)")
+                    answers.append("♈ Aries (March 21 - Apr 19)")
+                    answers.append("♉ Taurus (Apr 20 - May 20)")
+                    answers.append("♊ Gemini (May 21 - Jun 20)")
+                    answers.append("♋ Cancer (Jun 21 - July 22)")
+                    answers.append("♌ Leo (July 23 - Aug 22)")
+                    answers.append("♍ Virgo (Aug 23 - Sep 22)")
+                    answers.append("♎ Libra (Sep 23 - Oct 22)")
+                    answers.append("♏ Scorpio (Oct 23 - Nov 21)")
+                    answers.append("♐ Sagittarius (Nov 22 - Dec 21)")
+                    answers.append("♑ Capricorn (Dec 22 - Jan 19)")
+                    break
+                default: answers = []
+                }
 
+                print("segment tag = \(cell.segmentedCollectionView.tag) tag = \(cell.tag) question = \(question.Name) count = \(answers.count)")
+                
+                cell.delegate = self
+                cell.configure(question: question, answer: answer, answers: answers)
+                
                 return cell
             }
         }

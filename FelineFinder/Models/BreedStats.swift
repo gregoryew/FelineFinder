@@ -62,6 +62,22 @@ struct BreedStats {
             case 3: v = "Outdoor"
             default: v = ""
             }
+        case "Zodicat":
+            switch p {
+            case 1: v = "♒ Aquarius (Jan 20 - Feb 18)"
+            case 2: v = "♓ Pisces (Feb 19 - March 20)"
+            case 3: v = "♈ Aries (March 21 - Apr 19)"
+            case 4: v = "♉ Taurus (Apr 20 - May 20)"
+            case 5: v = "♊ Gemini (May 21 - Jun 20)"
+            case 6: v = "♋ Cancer (Jun 21 - July 22)"
+            case 7: v = "♌ Leo (July 23 - Aug 22)"
+            case 8: v = "♍ Virgo (Aug 23 - Sep 22)"
+            case 9: v = "♎ Libra (Sep 23 - Oct 22)"
+            case 10: v = "♏ Scorpio (Oct 23 - Nov 21)"
+            case 11: v = "♐ Sagittarius (Nov 22 - Dec 21)"
+            case 12: v = "♑ Capricorn (Dec 22 - Jan 19)"
+            default: v = ""
+            }
         default: v = ""
         }
         return v
@@ -120,6 +136,22 @@ class BreedStatList {
             case 3: v = "Outdoor"
             default: v = ""
             }
+        case "Zodicat":
+            switch p {
+            case 1: v = "♒ Aquarius (Jan 20 - Feb 18)"
+            case 2: v = "♓ Pisces (Feb 19 - March 20)"
+            case 3: v = "♈ Aries (March 21 - Apr 19)"
+            case 4: v = "♉ Taurus (Apr 20 - May 20)"
+            case 5: v = "♊ Gemini (May 21 - Jun 20)"
+            case 6: v = "♋ Cancer (Jun 21 - July 22)"
+            case 7: v = "♌ Leo (July 23 - Aug 22)"
+            case 8: v = "♍ Virgo (Aug 23 - Sep 22)"
+            case 9: v = "♎ Libra (Sep 23 - Oct 22)"
+            case 10: v = "♏ Scorpio (Oct 23 - Nov 21)"
+            case 11: v = "♐ Sagittarius (Nov 22 - Dec 21)"
+            case 12: v = "♑ Capricorn (Dec 22 - Jan 19)"
+            default: v = ""
+            }
         default: v = ""
         }
         return v
@@ -160,6 +192,22 @@ class BreedStatList {
             case 1: v = "Indoor"
             case 2: v = "Both"
             case 3: v = "Outdoor"
+            default: v = ""
+            }
+        case "Zodicat":
+            switch p {
+            case 1: v = "♒ Aquarius (Jan 20 - Feb 18)"
+            case 2: v = "♓ Pisces (Feb 19 - March 20)"
+            case 3: v = "♈ Aries (March 21 - Apr 19)"
+            case 4: v = "♉ Taurus (Apr 20 - May 20)"
+            case 5: v = "♊ Gemini (May 21 - Jun 20)"
+            case 6: v = "♋ Cancer (Jun 21 - July 22)"
+            case 7: v = "♌ Leo (July 23 - Aug 22)"
+            case 8: v = "♍ Virgo (Aug 23 - Sep 22)"
+            case 9: v = "♎ Libra (Sep 23 - Oct 22)"
+            case 10: v = "♏ Scorpio (Oct 23 - Nov 21)"
+            case 11: v = "♐ Sagittarius (Nov 22 - Dec 21)"
+            case 12: v = "♑ Capricorn (Dec 22 - Jan 19)"
             default: v = ""
             }
         default: v = ""
@@ -280,7 +328,7 @@ class BreedStatList {
     }
     
     func calcMatches(responses: [response]) -> [Double] {
-        var results = [Double](repeating: 0, count: 67)
+        var results = [Double](repeating: 0, count: 69)
         for breedID in breedIDs {
             let bs = allBreedStats[breedID]
             var sum: Double = 0
@@ -288,13 +336,13 @@ class BreedStatList {
             for b in 0..<bs!.count {
                 if (responses[b].percentAnswer > 0) || (responses[b].percentAnswer == -1) {
                     if responses[b].percentAnswer == -1 {
-                        if (bs![b].Value == responses[b].descriptionAnswer) || (responses[b].descriptionAnswer == "Doesn't Matter") || (responses[b].descriptionAnswer == "Any") {
+                        if (bs![b].Value == responses[b].descriptionAnswer) { //|| (responses[b].descriptionAnswer == "Doesn't Matter") || (responses[b].descriptionAnswer == "Any") {
                             sum += 1.0
                         }
                     } else {
                         sum += 1.0 - (abs(Double(responses[b].percentAnswer) - Double(bs![b].Percent)) / 5.0)
                     }
-                    count += 1
+                    if (responses[b].descriptionAnswer != "Doesn't Matter") && (responses[b].descriptionAnswer != "Any") {count += 1}
                 }
             }
             if sum == 0 {

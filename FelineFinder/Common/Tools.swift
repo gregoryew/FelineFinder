@@ -14,6 +14,7 @@ import WebKit
 
 class Tool {
     var icon = ""
+    var title = ""
     var visible = true
     var cellType: CellType = .tool
     
@@ -51,7 +52,8 @@ class Tool {
 class directionsTool: Tool {
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "Directions"
+        icon = "Tool_Directions"
+        title = "Directions"
         cellType = .tool
     }
     
@@ -130,6 +132,7 @@ class descriptionTool: Tool { //, scrolledView {
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "📄"
+        title = "Text"
         cellType = .tool
     }
 
@@ -375,7 +378,8 @@ class emailTool: Tool {
     var emailAddress = [String]()
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "Email"
+        icon = "Tool_Email"
+        title = "Email"
         cellType = .tool
     }
     override func isVisible(mode: Mode) -> Bool {
@@ -416,7 +420,8 @@ class telephoneTool: Tool {
     
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "Call"
+        icon = "Tool_Call"
+        title = "Call"
         cellType = .tool
     }
     
@@ -495,7 +500,8 @@ class shareTool: Tool {
     
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
-        icon = "Share"
+        icon = "Tool_Share"
+        title = "Share"
         cellType = .tool
     }
     
@@ -584,6 +590,7 @@ class statsTool: Tool {
     override init(pet: Pet, shelter: shelter, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "📊"
+        title = "Stats"
         cellType = .tool
     }
     override init(breed: Breed, sourceView: UIView) {
@@ -609,6 +616,7 @@ class imageTool: Tool {
         self.photo = photo
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "🖼️"
+        title = "Photo"
         cellType = .image
     }
 
@@ -637,6 +645,7 @@ class youTubeTool: Tool {
         self.video = video
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "🎞️"
+        title = "Video"
         cellType = .video
     }
 

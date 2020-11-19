@@ -15,7 +15,7 @@ enum detailCollectionViewTypes: Int {
     case media = 2
 }
 
-class MainTabAdoptableCatsDetailViewController: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate {
+class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControllerTransitioningDelegate, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var heart: FaveButton!
@@ -23,13 +23,19 @@ class MainTabAdoptableCatsDetailViewController: ZoomAnimationViewController, UIC
     @IBOutlet weak var breed: UILabel!
     @IBOutlet weak var stats: UILabel!
     @IBOutlet weak var location: UILabel!
+
     @IBOutlet weak var toolsToolBar: UICollectionView!
+    @IBOutlet weak var toolbarWidth: NSLayoutConstraint!
+
     @IBOutlet weak var mediaToolBar: UICollectionView!
+    @IBOutlet weak var mediaToolbarWidth: NSLayoutConstraint!
+    
     @IBOutlet weak var descriptionWK: WKWebView!
     
     var pet: Pet!
     var tools: Tools!
     var media: Tools!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,11 +88,29 @@ class MainTabAdoptableCatsDetailViewController: ZoomAnimationViewController, UIC
         toolslayout.cellPadding = 2.5
         toolslayout.columnHeight = 65
         
+        toolbarWidth.constant = CGFloat(tools.count() * 65)
+        
         mediaToolBar.tag = detailCollectionViewTypes.media.rawValue
         media.mode = .media
         mediaToolBar.dataSource = self
         mediaToolBar.delegate = self
-
+        
+        var mediaWidth: CGFloat = 0.0
+        for m in media {
+            if m.cellType == .image {
+                let photo = m as! imageTool
+                let ratio = CGFloat(100.0) / CGFloat(photo.thumbNail.height)
+                mediaWidth += CGFloat(photo.thumbNail.width) * ratio
+            } else if m.cellType == .video {
+                mediaWidth += 133
+            }
+        }
+        if CGFloat(mediaWidth) < view.frame.width {
+             mediaToolbarWidth.constant = CGFloat(mediaWidth)
+        } else {
+            mediaToolbarWidth.constant = view.frame.width
+        }
+        
         let medialayout = mediaToolBar.collectionViewLayout as! HorizontalLayoutVaryingWidths
         medialayout.delegate = self
         medialayout.numberOfRows = 1
@@ -109,7 +133,9 @@ class MainTabAdoptableCatsDetailViewController: ZoomAnimationViewController, UIC
         }
     }
     
-    @IBAction func backButtonTapped(_ sender: Any) {
+    @IBAction func backButtonTapped(_ sender: Any)
+    {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func ListIconTapped(_ sender: Any) {

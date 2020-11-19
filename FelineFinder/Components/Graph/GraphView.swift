@@ -49,5 +49,9 @@ class GraphView: UIView {
           addSubview(bars[i])
             bars[i].frame = CGRect(x: 0, y: Int(i * (Int(25))), width: Int(frame.size.width - 34), height: 20)
         }
+        
+        if let lastBar = bars.last {
+            frame.size.height = lastBar.frame.maxY + 10
+        }
     }
 }

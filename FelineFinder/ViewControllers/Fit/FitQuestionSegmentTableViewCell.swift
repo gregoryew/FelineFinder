@@ -7,12 +7,16 @@
 //
 
 import UIKit
+import CoreFoundation
 import BetterSegmentedControl
 
-class FitQuestionSegmentTableViewCell: UITableViewCell {
+var priorSelectedAnswers = [Int](repeating: -1, count: 16)
+
+class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var QuestionLabel: UILabel!
     @IBOutlet weak var HelpButton: UIButton!
-    @IBOutlet weak var AnswerSegment: BetterSegmentedControl!
+    
+    @IBOutlet weak var segmentedCollectionView: UICollectionView!
     
     @IBAction func helpTapped(_ sender: Any) {
         let fitDialogVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FitDialog") as! FitDialogViewController
@@ -25,9 +29,7 @@ class FitQuestionSegmentTableViewCell: UITableViewCell {
         }
     }
     
-    @IBAction func answerSegmentChanged(_ sender: Any) {
-        delegate?.answerChanged(question: tag, answer: AnswerSegment.index)
-    }
+    
     
     var delegate: calcStats?
     var question: Question?
@@ -43,49 +45,106 @@ class FitQuestionSegmentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(question: Question, answer: String) {
-        QuestionLabel.text = question.Name
-        var answers:[String] = []
-        if question.Name == "Hair Type" {
-            answers.append("Any")
-            answers.append("None")
-            answers.append("Short")
-            answers.append("Rex")
-            answers.append("Med")
-            answers.append("Long")
-            //answers.append("S/L")
-        } else if question.Name == "Build" {
-            answers.append("Any")
-            answers.append("Oriental")
-            answers.append("Foreign")
-            answers.append("Semi-Foreign")
-            answers.append("Semi-Coby")
-            answers.append("Cobby")
-            answers.append("Substantial")
-        } else {
-            answers.append("Any")
-            answers.append("Small")
-            answers.append("Average")
-            answers.append("Big")
+    var answers: [String] = []
+    var index: Int?
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        answers = []
+        question = nil
+        delegate = nil
+    }
+    
+    func configure(question: Question, answer: String, answers answersParam: [String]) {
+        if tag != segmentedCollectionView.tag {
+            return
         }
+        
+        self.answers = answersParam
+        
+        QuestionLabel.text = question.Name
+        
+        print("collectionTag = \(self.segmentedCollectionView.tag) tag = \(tag) name = \(question.Name) count=\(answers.count) answer=\(answer) answers=\(answers)")
+        
         selectionStyle = .none
-        AnswerSegment.segments = LabelSegment.segments(withTitles: answers,
-                                                                 normalFont: UIFont(name: "HelveticaNeue-Light", size: 12.0)!,
-                                                                 normalTextColor: .white,
-                                                                 selectedFont: UIFont(name: "HelveticaNeue-Bold", size: 12.0)!,
-                                                                 selectedTextColor: .black)
         
-        
-        var index = answers.firstIndex { (ans) -> Bool in
+        index = answers.firstIndex { (ans) -> Bool in
             return ans == answer || (ans == "Any" && answer == "Doesn\'t Matter")
         }
-        
-        if answer == "Hairless" {index = 1}
-        if answer == "Medium" {index = 4}
-        if answer == "Long Hair" {index = 5}
-        if answer == "Biggish" {index = 3}
-        
-        self.AnswerSegment.setIndex(index!)
+                
         self.question = question
+        
+        segmentedCollectionView.delegate = self
+        segmentedCollectionView.dataSource = self
+        let layout = segmentedCollectionView.collectionViewLayout as! MultiRowGradientLayout
+        layout.delegate = self
+        layout.cellPadding = 2.5
+        
+        DispatchQueue.main.async(execute: {
+            if priorSelectedAnswers[self.tag] == -1 {
+                self.segmentedCollectionView.reloadData()
+                priorSelectedAnswers[self.tag] = 0
+            } else {
+                if self.index != priorSelectedAnswers[self.tag] {
+                    //print("segment config priorCell=\(priorSelectedAnswers[self.tag]) currentCell = \(self.index)")
+                    self.segmentedCollectionView.reloadItems(at: [IndexPath(item: priorSelectedAnswers[self.tag], section: 0), IndexPath(item: self.index ?? 0, section: 0)])
+                    priorSelectedAnswers[self.tag] = self.index!
+                }
+            }
+        })
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, widthForTextAtIndexPath indexPath: IndexPath) -> CGFloat {
+        return self.answers[indexPath.item].SizeOf(UIFont.systemFont(ofSize: 15)).width + 10
+    }
+    
+   func collectionView( _ collectionView: UICollectionView, maxHeight: CGFloat) {
+        print("maxHeight tag = \(tag) maxHeight=\(maxHeight)")
+        rowH[tag] = maxHeight + 50.0
+   }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("tag = \(tag) collectionTag = \(collectionView.tag) name=\(question?.Name) count = \(answers.count) answers = \(answers)")
+        return answers.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        index = indexPath.row
+        delegate?.answerChanged(question: tag, answer: index!)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        print("tag = \(collectionView.tag)  collectionTag = \(collectionView.tag)  cellForItemAt = \(indexPath.row)")
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SegmentCollectionViewCell
+        cell.configure(text: answers[indexPath.row], isSelected: index == indexPath.row)
+        return cell
+    }
+}
+
+extension String {
+    func SizeOf(_ font: UIFont) -> CGSize {
+        let size = self.size(withAttributes: [NSAttributedString.Key.font: font])
+        let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        return frame.scaleLinear(amount: 1.0).size
+    }
+    
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return String(self[fromIndex...])
+    }
+
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return String(self[..<toIndex])
+    }
+
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return String(self[startIndex..<endIndex])
     }
 }

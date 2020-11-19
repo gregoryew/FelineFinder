@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		121B5DF966C286A163AFF1F5 /* Pods_FelineFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */; };
+		C5179BA325647D84005EC381 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5179BA225647D84005EC381 /* PopAnimator.swift */; };
 		C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1AC8255EC61F00167D15 /* Toolbar.swift */; };
 		C51E1ACE255EC63600167D15 /* PercentBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1ACB255EC63500167D15 /* PercentBarView.swift */; };
 		C51E1ACF255EC63600167D15 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1ACC255EC63600167D15 /* GraphView.swift */; };
@@ -35,7 +36,7 @@
 		C57E5DF9255BB49A00120018 /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE8255BB49600120018 /* autonomy.gif */; };
 		C57E5DFA255BB49A00120018 /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE9255BB49700120018 /* grooming.gif */; };
 		C57E5DFB255BB49A00120018 /* hair2.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEA255BB49700120018 /* hair2.gif */; };
-		C57E5DFC255BB49A00120018 /* attachment_to_people.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEB255BB49700120018 /* attachment_to_people.gif */; };
+		C57E5DFC255BB49A00120018 /* size.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEB255BB49700120018 /* size.gif */; };
 		C57E5DFD255BB49A00120018 /* smartcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEC255BB49700120018 /* smartcat.gif */; };
 		C57E5DFE255BB49A00120018 /* catpaws.png in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DED255BB49700120018 /* catpaws.png */; };
 		C57E5DFF255BB49A00120018 /* catpaws2.png in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEE255BB49800120018 /* catpaws2.png */; };
@@ -120,6 +121,7 @@
 		C57E6220255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E621F255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift */; };
 		C57E6223255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E6222255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift */; };
 		C57E6228255C228E00120018 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE3255BB44200120018 /* CatFinder.db */; };
+		C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */; };
 		C5E1907925607EAB00A885A9 /* BreedsInChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */; };
 /* End PBXBuildFile section */
 
@@ -127,6 +129,7 @@
 		71F68C1D049D00694F9F0FD2 /* Pods-FelineFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FelineFinder.release.xcconfig"; path = "Target Support Files/Pods-FelineFinder/Pods-FelineFinder.release.xcconfig"; sourceTree = "<group>"; };
 		8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FelineFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7C8A351FB4D2372B8F6BAF /* Pods-FelineFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FelineFinder.debug.xcconfig"; path = "Target Support Files/Pods-FelineFinder/Pods-FelineFinder.debug.xcconfig"; sourceTree = "<group>"; };
+		C5179BA225647D84005EC381 /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		C51E1AC8255EC61F00167D15 /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		C51E1ACB255EC63500167D15 /* PercentBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentBarView.swift; sourceTree = "<group>"; };
 		C51E1ACC255EC63600167D15 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
@@ -158,7 +161,7 @@
 		C57E5DE8255BB49600120018 /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
 		C57E5DE9255BB49700120018 /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
 		C57E5DEA255BB49700120018 /* hair2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair2.gif; sourceTree = "<group>"; };
-		C57E5DEB255BB49700120018 /* attachment_to_people.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = attachment_to_people.gif; sourceTree = "<group>"; };
+		C57E5DEB255BB49700120018 /* size.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = size.gif; sourceTree = "<group>"; };
 		C57E5DEC255BB49700120018 /* smartcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = smartcat.gif; sourceTree = "<group>"; };
 		C57E5DED255BB49700120018 /* catpaws.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catpaws.png; sourceTree = "<group>"; };
 		C57E5DEE255BB49800120018 /* catpaws2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catpaws2.png; sourceTree = "<group>"; };
@@ -255,6 +258,7 @@
 		C57E620E255BE43300120018 /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
 		C57E621F255C06FE00120018 /* MainTabAdoptableCatsCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsCollectionViewViewController.swift; sourceTree = "<group>"; };
 		C57E6222255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsInChartInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -287,9 +291,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C5179BA125647D72005EC381 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				C5179BA225647D84005EC381 /* PopAnimator.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
 		C51E1AC4255EC5BE00167D15 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C5179BA125647D72005EC381 /* Transitions */,
 				C51E1AC7255EC5E800167D15 /* ToolbarMenu */,
 				C51E1AC6255EC5D300167D15 /* SegmentLayout */,
 				C51E1AC5255EC5C700167D15 /* Graph */,
@@ -402,6 +415,7 @@
 				C57E619C255BB92100120018 /* FitQuestionSegmentTableViewCell.swift */,
 				C57E619A255BB92000120018 /* FitQuestionSliderTableViewCell.swift */,
 				C57E619B255BB92100120018 /* MainTabFitViewController.swift */,
+				C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */,
 			);
 			path = Fit;
 			sourceTree = "<group>";
@@ -529,7 +543,7 @@
 		C57E5DE6255BB47400120018 /* QuestionGIFs */ = {
 			isa = PBXGroup;
 			children = (
-				C57E5DEB255BB49700120018 /* attachment_to_people.gif */,
+				C57E5DEB255BB49700120018 /* size.gif */,
 				C57E5DE8255BB49600120018 /* autonomy.gif */,
 				C57E5DED255BB49700120018 /* catpaws.png */,
 				C57E5DEE255BB49800120018 /* catpaws2.png */,
@@ -676,7 +690,7 @@
 				C57E6212255BE43300120018 /* main_bg.jpg in Resources */,
 				C57E5E04255BB49A00120018 /* energy_level.gif in Resources */,
 				C57E5DF8255BB49A00120018 /* good_with_children.gif in Resources */,
-				C57E5DFC255BB49A00120018 /* attachment_to_people.gif in Resources */,
+				C57E5DFC255BB49A00120018 /* size.gif in Resources */,
 				C57E5DF9255BB49A00120018 /* autonomy.gif in Resources */,
 				C57E5E05255BB49A00120018 /* talkative.gif in Resources */,
 				C57E5E03255BB49A00120018 /* Fun_Loving.gif in Resources */,
@@ -746,6 +760,7 @@
 				C57E61FB255BE1F300120018 /* PetFinderFind.swift in Sources */,
 				C57E617E255BB7BA00120018 /* PagedModeratorResponse.swift in Sources */,
 				C57E618C255BB8E300120018 /* MainTabBreedViewController.swift in Sources */,
+				C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */,
 				C57E61D4255BDAB000120018 /* SelectedItemTableViewCell.swift in Sources */,
 				C57E61A9255BB94900120018 /* FilterOptionSearch.swift in Sources */,
 				C57E6185255BB7BA00120018 /* URLRequest.swift in Sources */,
@@ -788,6 +803,7 @@
 				C57E619F255BB92100120018 /* FitQuestionSliderTableViewCell.swift in Sources */,
 				C57E6182255BB7BA00120018 /* DataResponseError.swift in Sources */,
 				C57E5E2C255BB58100120018 /* FelineFinderBaseSheltersAPI.swift in Sources */,
+				C5179BA325647D84005EC381 /* PopAnimator.swift in Sources */,
 				C51E1ACF255EC63600167D15 /* GraphView.swift in Sources */,
 				C57E61AD255BB94900120018 /* FilterOptionsSegmentedCustomCellView.swift in Sources */,
 				C57E61A0255BB92100120018 /* MainTabFitViewController.swift in Sources */,
@@ -982,7 +998,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1007,7 +1023,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
