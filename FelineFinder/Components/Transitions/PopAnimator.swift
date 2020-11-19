@@ -61,7 +61,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             toVC.photo.alpha = 0
             toVC.PetName.alpha = 0
             toVC.breed.alpha = 0
-            toVC.heart.alpha = 0
+            //toVC.heart.alpha = 0
             toVC.location.alpha = 0
             toVC.mediaToolBar.alpha = 0
             toVC.stats.alpha = 0
@@ -111,7 +111,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                             toVC.photo.alpha = 1
                             toVC.PetName.alpha = 1
                             toVC.breed.alpha = 1
-                            toVC.heart.alpha = 1
+                            //toVC.heart.alpha = 1
                             toVC.location.alpha = 1
                             toVC.mediaToolBar.alpha = 1
                             toVC.stats.alpha = 1

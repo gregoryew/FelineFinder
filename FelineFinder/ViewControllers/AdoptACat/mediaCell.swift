@@ -28,7 +28,7 @@ class mediaCell: UICollectionViewCell {
                 img.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: .highPriority, completed: nil)
             }
         }
-        let backgroundImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 1000, height: 1000))
+        let backgroundImage = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
         backgroundImage.backgroundColor = UIColor.black
         self.contentView.addSubview(backgroundImage)
         self.contentView.sendSubviewToBack(backgroundImage)
