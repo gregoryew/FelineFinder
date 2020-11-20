@@ -328,7 +328,7 @@ class descriptionTool: Tool { //, scrolledView {
         //dateFormatter.dateFormat = "MM/dd/yyyy"
         //let d = dateFormatter.string(from: p.lastUpdated)
         
-            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:18px;} h2 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} h3 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:10px;} a { color: #66ff33} a.visited, a.hover {color: #1abcde;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><h3>\(pet.name)</h3></br><h3><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
+            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:22px;} h2 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:24px;} h3 {color: #66ff33; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:26px;} h4 {color: white; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:14px;} a { color: #66ff33} a.visited, a.hover {color: #1abcde;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><h3>\(pet.name)</h3></br><h3><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
         }
         return htmlString
     }
@@ -357,7 +357,7 @@ class descriptionTool: Tool { //, scrolledView {
         if UIDevice.current.userInterfaceIdiom == .pad {
             return "640px"
         } else {
-            return "320px"
+            return "900px"
         }
     }
     
@@ -366,7 +366,7 @@ class descriptionTool: Tool { //, scrolledView {
         if UIDevice().type == Model.iPhone5 || UIDevice().type == Model.iPhone5C || UIDevice().type == Model.iPhone5S {
             tableWidth = 300
         } else if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
-            tableWidth = 360
+            tableWidth = 900 //360
         } else {
             tableWidth = 700
         }
