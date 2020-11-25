@@ -12,8 +12,6 @@ protocol calcStats {
     func answerChanged(question: Int, answer: Int)
 }
 
-var rowH = [CGFloat](repeating: 0, count: 15)
-
 class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
     
     @IBOutlet weak var QuestionsTableViews: UITableView!
@@ -91,7 +89,6 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             breeds[i].Percentage = breedPercentages[Int(breeds[i].BreedID) - 1]
         }
         breeds.sort { (Breed1, Breed2) -> Bool in
-            //return (breedPercentages[Int(Breed1.BreedID) - 1], Breed1.BreedName) > (breedPercentages[Int(Breed2.BreedID) - 1], Breed2.BreedName)
             return (self.breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (self.breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
         }
         questionSelected = IndexPath(row: question, section: 0)
@@ -116,7 +113,6 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView.tag == QUESTION_TV {
-            print("Height For Row At")
             if breedStats.allBreedStats[1]![indexPath.row].isPercentage {
                 return CGFloat(118 + (breedsInChartInfo.count > 0 ? 10 : 0) + (breedsInChartInfo.count * 30))
             } else {
@@ -255,8 +251,6 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
                     break
                 default: answers = []
                 }
-
-                print("segment tag = \(cell.segmentedCollectionView.tag) tag = \(cell.tag) question = \(question.Name) count = \(answers.count)")
                 
                 cell.delegate = self
                 cell.configure(question: question, answer: answer, answers: answers)
@@ -277,3 +271,5 @@ extension MainTabFitViewController: UIPopoverPresentationControllerDelegate {
         super.present(viewControllerToPresent, animated: flag, completion: completion)
     }
 }
+
+var rowH = [CGFloat](repeating: 0, count: 15)

@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreFoundation
-import BetterSegmentedControl
 
 var priorSelectedAnswers = [Int](repeating: -1, count: 16)
 

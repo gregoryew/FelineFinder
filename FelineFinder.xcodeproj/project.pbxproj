@@ -18,6 +18,9 @@
 		C57BE7F9255C707500C89D76 /* MainTabAdoptableCatsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE7F8255C707500C89D76 /* MainTabAdoptableCatsDetailViewController.swift */; };
 		C57BE807255C96AD00C89D76 /* toolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE806255C96AD00C89D76 /* toolCell.swift */; };
 		C57BE80A255C96C900C89D76 /* mediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE809255C96C900C89D76 /* mediaCell.swift */; };
+		C57D50DC256DD19E00D0842B /* MainBreedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D50DB256DD19E00D0842B /* MainBreedCollectionViewController.swift */; };
+		C57D50DF256DDC1400D0842B /* MainBreedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D50DE256DDC1400D0842B /* MainBreedCollectionViewCell.swift */; };
+		C57D50E2256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D50E1256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift */; };
 		C57E573B255BAF9B00120018 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E573A255BAF9B00120018 /* SceneDelegate.swift */; };
 		C57E573D255BAF9B00120018 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E573C255BAF9B00120018 /* ViewController.swift */; };
 		C57E5740255BAF9B00120018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57E573E255BAF9B00120018 /* Main.storyboard */; };
@@ -140,6 +143,9 @@
 		C57BE7F8255C707500C89D76 /* MainTabAdoptableCatsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabAdoptableCatsDetailViewController.swift; sourceTree = "<group>"; };
 		C57BE806255C96AD00C89D76 /* toolCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toolCell.swift; sourceTree = "<group>"; };
 		C57BE809255C96C900C89D76 /* mediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mediaCell.swift; sourceTree = "<group>"; };
+		C57D50DB256DD19E00D0842B /* MainBreedCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBreedCollectionViewController.swift; sourceTree = "<group>"; };
+		C57D50DE256DDC1400D0842B /* MainBreedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBreedCollectionViewCell.swift; sourceTree = "<group>"; };
+		C57D50E1256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedSectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		C57E5735255BAF9B00120018 /* FelineFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FelineFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C57E573A255BAF9B00120018 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C57E573C255BAF9B00120018 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -403,6 +409,9 @@
 				C57E6189255BB8E200120018 /* MainTabBreedTableViewCell.swift */,
 				C57E618B255BB8E300120018 /* MainTabBreedToolCollectionViewCell.swift */,
 				C57E6188255BB8E200120018 /* MainTabBreedViewController.swift */,
+				C57D50DB256DD19E00D0842B /* MainBreedCollectionViewController.swift */,
+				C57D50DE256DDC1400D0842B /* MainBreedCollectionViewCell.swift */,
+				C57D50E1256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift */,
 			);
 			path = Breeds;
 			sourceTree = "<group>";
@@ -785,6 +794,7 @@
 				C57BE807255C96AD00C89D76 /* toolCell.swift in Sources */,
 				C57E61A1255BB92100120018 /* FitQuestionSegmentTableViewCell.swift in Sources */,
 				C57E6223255C072B00120018 /* MainTabAdoptableCatsCollectionViewCell.swift in Sources */,
+				C57D50DC256DD19E00D0842B /* MainBreedCollectionViewController.swift in Sources */,
 				C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */,
 				C57E6200255BE35E00120018 /* CustomHeader.m in Sources */,
 				C57E5E29255BB58100120018 /* YouTubeAPI.swift in Sources */,
@@ -794,6 +804,7 @@
 				C57E5E2E255BB58100120018 /* FilteringOptions.swift in Sources */,
 				C57E6170255BB78E00120018 /* AppDelegate.swift in Sources */,
 				C57E6194255BB90200120018 /* MainTabAdoptableCatsSubCVCell.swift in Sources */,
+				C57D50DF256DDC1400D0842B /* MainBreedCollectionViewCell.swift in Sources */,
 				C57E61EC255BDF4E00120018 /* ToolCollectionViewCell.swift in Sources */,
 				C57E61AA255BB94900120018 /* FilterOptionsListCustomCellView.swift in Sources */,
 				C57E61AC255BB94900120018 /* FilterOptionsListTableViewController.swift in Sources */,
@@ -814,6 +825,7 @@
 				C57E61C3255BBB0900120018 /* EmptyTableViewCell.swift in Sources */,
 				C57E61D8255BDB1E00120018 /* MainTabBarViewController.swift in Sources */,
 				C57E619E255BB92100120018 /* FitBreedTableViewCell.swift in Sources */,
+				C57D50E2256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift in Sources */,
 				C57E5E2B255BB58100120018 /* PetFinderSheltersAPI.swift in Sources */,
 				C51E1AD4255EC66500167D15 /* GradientCollectionViewCell.swift in Sources */,
 				C57E5DDE255BB43600120018 /* RSUtilities.swift in Sources */,
