@@ -9,6 +9,8 @@ import UIKit
 
 class BreedInfoViewController: UIViewController {
 
+    var breed: Breed?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

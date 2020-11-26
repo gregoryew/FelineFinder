@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol toolBar {
+    func menuItemChoosen(option: Int)
+}
+
 class Toolbar: UIView {
     var tools = [UIImageView]()
     var inset = CGFloat(10)
@@ -14,6 +18,7 @@ class Toolbar: UIView {
     var menuOpen: Bool = false
     var originalY = CGFloat(0)
     var xOffset = CGFloat(10)
+    var delegate: toolBar!
     
     override init(frame: CGRect) {
       super.init(frame: frame)
@@ -27,12 +32,12 @@ class Toolbar: UIView {
     
     private func setupView() {
         backgroundColor = .clear
-        tools.append(UIImageView(image: UIImage(named: "Tool_Info")))
-        tools.append(UIImageView(image: UIImage(named: "Tool_Stats")))
-        tools.append(UIImageView(image: UIImage(named: "Tool_Photos")))
         tools.append(UIImageView(image: UIImage(named: "Tool_Video")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Photo")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Stats")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Info")))
                 
-        menuIcon = UIImageView(image: UIImage(named: "Tool_MenuInactive"))
+        menuIcon = UIImageView(image: UIImage(named: "Tool_Menu_Inactive"))
         menuIcon.contentMode = .scaleAspectFill
         menuIcon.frame.origin = CGPoint(x: 5, y: self.bounds.maxY - self.bounds.height)
         addSubview(menuIcon)
@@ -41,7 +46,7 @@ class Toolbar: UIView {
         for tool in tools {
             addSubview(tool)
             sendSubviewToBack(tool)
-            tool.bounds = menuIcon.bounds
+            tool.frame = menuIcon.frame
         }
 
         self.isUserInteractionEnabled = true
@@ -68,7 +73,7 @@ class Toolbar: UIView {
     }
 
     @objc func handleItemTap(_ sender: UITapGestureRecognizer? = nil) {
-        print("Tapped on icon \(String(describing: sender?.view?.tag))")
+        delegate.menuItemChoosen(option: (sender?.view!.tag)!)
         menuIcon.image = tools[sender!.view!.tag].image
         self.closeMenu()
         menuOpen = false
@@ -94,7 +99,7 @@ class Toolbar: UIView {
             for tool in self.tools {
                 tool.frame.origin = CGPoint(x: 5, y: 0)
             }
-            self.frame = CGRect(x: self.frame.minX, y: self.originalY, width: self.menuIcon.frame.width, height: self.menuIcon.frame.height)
+            self.frame = CGRect(x: self.frame.minX, y: self.originalY, width: self.menuIcon.frame.width + 12, height: self.menuIcon.frame.height)
             self.menuIcon.frame.origin = CGPoint(x: 5, y: 0)
             self.setNeedsDisplay()
         }, completion: nil)
@@ -103,6 +108,8 @@ class Toolbar: UIView {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
 
+        if !menuOpen {return}
+        
         //// Group
         //// Oval Drawing
         let ovalPath = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: rect.width, height: 85))

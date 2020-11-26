@@ -9,6 +9,8 @@ import UIKit
 
 class BreedPhotosViewController: UIViewController {
 
+    var breed: Breed?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
