@@ -28,6 +28,7 @@
 		C57D50F8256ED58100D0842B /* BreedVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D50F7256ED58100D0842B /* BreedVideosViewController.swift */; };
 		C57D50FF256ED61700D0842B /* BreedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D50FE256ED61700D0842B /* BreedDetailViewController.swift */; };
 		C57D5110256EFB1700D0842B /* Breed Photos Full.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57D510F256EFB1600D0842B /* Breed Photos Full.xcassets */; };
+		C57D511D256FC5C800D0842B /* BreedVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57D511C256FC5C700D0842B /* BreedVideoCollectionViewCell.swift */; };
 		C57E573B255BAF9B00120018 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E573A255BAF9B00120018 /* SceneDelegate.swift */; };
 		C57E573D255BAF9B00120018 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E573C255BAF9B00120018 /* ViewController.swift */; };
 		C57E5740255BAF9B00120018 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C57E573E255BAF9B00120018 /* Main.storyboard */; };
@@ -160,6 +161,7 @@
 		C57D50F7256ED58100D0842B /* BreedVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedVideosViewController.swift; sourceTree = "<group>"; };
 		C57D50FE256ED61700D0842B /* BreedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedDetailViewController.swift; sourceTree = "<group>"; };
 		C57D510F256EFB1600D0842B /* Breed Photos Full.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Breed Photos Full.xcassets"; sourceTree = "<group>"; };
+		C57D511C256FC5C700D0842B /* BreedVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C57E5735255BAF9B00120018 /* FelineFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FelineFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C57E573A255BAF9B00120018 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C57E573C255BAF9B00120018 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 			isa = PBXGroup;
 			children = (
 				C57D50F7256ED58100D0842B /* BreedVideosViewController.swift */,
+				C57D511C256FC5C700D0842B /* BreedVideoCollectionViewCell.swift */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -886,6 +889,7 @@
 				C57E6165255BB73700120018 /* FMDatabasePool.m in Sources */,
 				C57E5E32255BB58100120018 /* SavedSearches.swift in Sources */,
 				C57E5E31255BB58100120018 /* RescuePetsAPI.swift in Sources */,
+				C57D511D256FC5C800D0842B /* BreedVideoCollectionViewCell.swift in Sources */,
 				C57E617C255BB7BA00120018 /* RescuePetsAPI5.swift in Sources */,
 				C57E61C3255BBB0900120018 /* EmptyTableViewCell.swift in Sources */,
 				C57E61D8255BDB1E00120018 /* MainTabBarViewController.swift in Sources */,

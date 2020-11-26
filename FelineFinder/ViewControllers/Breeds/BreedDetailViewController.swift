@@ -123,16 +123,19 @@ class BreedDetailViewController: UIViewController, toolBar {
         }
         
         switch option {
-        case 0:
-            add(asChildViewController: infoViewController)
-        case 1:
-            add(asChildViewController: statsViewController)
-        case 2:
-            add(asChildViewController: photosViewController)
         case 3:
+            add(asChildViewController: infoViewController)
+        case 2:
+            add(asChildViewController: statsViewController)
+        case 1:
+            add(asChildViewController: photosViewController)
+        case 0:
             add(asChildViewController: videosViewController)
         default: break
         }
     }
     
+    @IBAction func BackTapped(_ sender: Any) {
+        dismiss(animated: false, completion: nil)
+    }
 }

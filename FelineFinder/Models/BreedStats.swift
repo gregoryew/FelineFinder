@@ -96,7 +96,7 @@ struct response {
 }
 
 class BreedStatList {
-    var breedStats = [BreedStats]()
+    public var breedStats = [BreedStats]()
     var allBreedStats: [Int: [BreedStats]] = [:]
     
     func getDescription(_ d: String, p: Double) -> String {
@@ -261,7 +261,7 @@ class BreedStatList {
                     l = 0
                     h = 0
                 }
-                isPercentage = results!.bool(forColumn: "isPercentage")
+                isPercentage = results!.string(forColumn: "isPercentage") == "yes"
                 let breedStat = BreedStats(id: i!, desc: d!, percent: Double(p!), lowRange: l, highRange: h, value: v, isPercentage: isPercentage);
                 breedStats.append(breedStat);
                 if !breedIDs.contains(Int(i!)) {breedIDs.append(Int(i!))}

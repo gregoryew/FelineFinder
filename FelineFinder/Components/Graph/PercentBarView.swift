@@ -113,6 +113,39 @@ extension UIColor {
     static let darkOrange = UIColor.orange //UIColor(red: 0.694, green: 0.196, blue: 0.329, alpha: 1.000)
     static let lightOrange = UIColor.yellow //UIColor(red: 1.000, green: 0.573, blue: 0.282, alpha: 1.000)
     static let orangeGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkOrange.cgColor, lightOrange.cgColor] as CFArray, locations: [0, 1])!
+
+    //Breed Trait Stats
+    static let lightGray = UIColor(hexString: "545454", alpha: 1.0)
+    static let darkBlack = UIColor(hexString: "000000", alpha: 1.0)
+    static let grayGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkBlack.cgColor, lightGray.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightPurple = UIColor(hexString: "5354FD", alpha: 1.0)
+    static let darkPurple = UIColor(hexString: "0500A8", alpha: 1.0)
+    static let purpleGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkPurple.cgColor, lightPurple.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightGreen3 = UIColor(hexString: "53FD54", alpha: 1.0)
+    static let darkGreen3 = UIColor(hexString: "04A800", alpha: 1.0)
+    static let green3Gradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkGreen3.cgColor, lightGreen3.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightSkyBlue = UIColor(hexString: "54FEFE", alpha: 1.0)
+    static let darkSkyBlue = UIColor(hexString: "00A9A8", alpha: 1.0)
+    static let skyBlueGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkSkyBlue.cgColor, lightSkyBlue.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightBrickRed = UIColor(hexString: "FD5453", alpha: 1.0)
+    static let darkBrickRed = UIColor(hexString: "A80100", alpha: 1.0)
+    static let brickRedGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkBrickRed.cgColor, lightBrickRed.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightMagenta = UIColor(hexString: "FE53FD", alpha: 1.0)
+    static let darkMagenta = UIColor(hexString: "A801A8", alpha: 1.0)
+    static let magentaGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkMagenta.cgColor, lightMagenta.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightYellowBrick = UIColor(hexString: "FDFC53", alpha: 1.0)
+    static let darkBrown = UIColor(hexString: "A85400", alpha: 1.0)
+    static let brownGradient = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkBrown.cgColor, lightYellowBrick.cgColor] as CFArray, locations: [0, 1])!
+
+    static let lightGray2 = UIColor(hexString: "545454", alpha: 1.0)
+    static let darkGray = UIColor(hexString: "83769C", alpha: 1.0)
+    static let grayGradient2 = CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: [darkGray.cgColor, lightGray2.cgColor] as CFArray, locations: [0, 1])!
 }
 
 //Outrun Color Palette

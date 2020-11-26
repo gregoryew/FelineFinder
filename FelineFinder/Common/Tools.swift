@@ -721,7 +721,7 @@ class Tools: Sequence, IteratorProtocol {
         tools = getTools()
     }
 
-    init(breed: Breed, sourceView: UIView, obj: NSObject) {
+    init(breed: Breed, sourceView: UIView, obj: NSObject?) {
         list = []
         list.append(descriptionTool(breed: breed, sourceView: sourceView))
         list.append(statsTool(breed: breed, sourceView: sourceView))
