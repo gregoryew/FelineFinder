@@ -14,8 +14,11 @@ class MainBreedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var BreedImage: UIImageView!
     
     func configure(breed: Breed) {
-        self.BreedNameLabel.text = breed.BreedName
-        //self.BreedImage.image = UIImage(named: breed.PictureHeadShotName)
-        self.BreedImage.image = UIImage(named: "Cartoon Devon Rex")
+        self.BreedNameLabel.text = breed.BreedName + " "
+        if let img = UIImage(named: "Cartoon \(breed.BreedName)") {
+            self.BreedImage.image = img
+        } else {
+            self.BreedImage.image = UIImage(named: "Cartoon Devon Rex")
+        }
     }
 }

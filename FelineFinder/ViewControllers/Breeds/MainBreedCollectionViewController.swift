@@ -77,4 +77,10 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
 
         return headerView
    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
+        breedDetail.breed = self.breedGroups[breedLetters[indexPath.section]]![indexPath.item]
+        present(breedDetail, animated: false, completion: nil)
+    }
 }

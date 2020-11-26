@@ -27,12 +27,12 @@ class Toolbar: UIView {
     
     private func setupView() {
         backgroundColor = .clear
-        tools.append(UIImageView(image: UIImage(named: "info")))
-        tools.append(UIImageView(image: UIImage(named: "graph")))
-        tools.append(UIImageView(image: UIImage(named: "photos")))
-        tools.append(UIImageView(image: UIImage(named: "videos")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Info")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Stats")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Photos")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Video")))
                 
-        menuIcon = UIImageView(image: UIImage(named: "popup"))
+        menuIcon = UIImageView(image: UIImage(named: "Tool_MenuInactive"))
         menuIcon.contentMode = .scaleAspectFill
         menuIcon.frame.origin = CGPoint(x: 5, y: self.bounds.maxY - self.bounds.height)
         addSubview(menuIcon)
