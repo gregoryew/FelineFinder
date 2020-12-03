@@ -5,7 +5,7 @@
 //  Created by Gregory Williams on 11/4/20.
 //  Copyright © 2020 Gregory Williams. All rights reserved.
 //
-
+/*
 import UIKit
 
 class MainTabBreedToolCollectionViewCell: UICollectionViewCell {
@@ -15,3 +15,4 @@ class MainTabBreedToolCollectionViewCell: UICollectionViewCell {
         ToolIcon.attributedText = setEmojicaLabel(text: tool.icon, size: 64.0)
     }
 }
+*/

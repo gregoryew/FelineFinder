@@ -12,7 +12,7 @@ class BreedStatsViewController: UIViewController {
     var breed: Breed?
     @IBOutlet weak var statGraphView: GraphView!
     
-    let GRADIENTS = [UIColor.greenGradient, UIColor.pinkGradient, UIColor.blueGradient, UIColor.yellowGradient, UIColor.orangeGradient, UIColor.grayGradient, UIColor.purpleGradient, UIColor.green3Gradient, UIColor.skyBlueGradient, UIColor.brickRedGradient, UIColor.magentaGradient, UIColor.brownGradient, UIColor.grayGradient2, UIColor.pinkGradient, UIColor.orangeGradient]
+    let GRADIENTS = [UIColor.greenGradient, UIColor.pinkGradient, UIColor.blueGradient, UIColor.yellowGradient, UIColor.orangeGradient, UIColor.blueGradient, UIColor.purpleGradient, UIColor.green3Gradient, UIColor.skyBlueGradient, UIColor.brickRedGradient, UIColor.magentaGradient, UIColor.brownGradient, UIColor.yellowGradient, UIColor.pinkGradient, UIColor.orangeGradient]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,11 @@ class BreedStatsViewController: UIViewController {
                 percentBar.gradient = GRADIENTS[i]
                 percentBar.percentToFill = CGFloat(stat.Percent) / 100.0
             } else {
-                percentBar.title = "\(stat.TraitShortDesc):  \(stat.Value)"
+                if stat.TraitShortDesc == "Zodicat" {
+                    percentBar.title = "\(stat.Value)"
+                } else {
+                    percentBar.title = "\(stat.TraitShortDesc):  \(stat.Value)"
+                }
                 percentBar.gradient = GRADIENTS[i]
                 percentBar.percentToFill = 1.0
             }

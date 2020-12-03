@@ -11,6 +11,7 @@ import MessageUI
 import MapKit
 import Social
 import WebKit
+import CMMapLauncher
 
 class Tool {
     var icon = ""
@@ -24,7 +25,7 @@ class Tool {
     var sourceView: UIView?
     var sourceViewController: UIViewController?
 
-    init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         self.pet = pet
         self.shelter = shelter
         self.sourceView = sourceView
@@ -50,7 +51,7 @@ class Tool {
 }
 
 class directionsTool: Tool {
-    override init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "Tool_Directions"
         title = "Directions"
@@ -129,7 +130,7 @@ class descriptionTool: Tool { //, scrolledView {
     
     var description = ""
 
-    override init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "📄"
         title = "Text"
@@ -376,7 +377,7 @@ class descriptionTool: Tool { //, scrolledView {
 
 class emailTool: Tool {
     var emailAddress = [String]()
-    override init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "Tool_Email"
         title = "Email"
@@ -418,7 +419,7 @@ class emailTool: Tool {
 class telephoneTool: Tool {
     var phoneNumber = ""
     
-    override init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "Tool_Call"
         title = "Call"
@@ -498,7 +499,7 @@ class shareTool: Tool {
     var vc: UIActivityViewController?
     var loaded: Bool = false
     
-    override init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "Tool_Share"
         title = "Share"
@@ -587,7 +588,7 @@ class shareTool: Tool {
 }
 
 class statsTool: Tool {
-    override init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
         icon = "📊"
         title = "Stats"
@@ -611,7 +612,7 @@ class imageTool: Tool {
     var thumbNail: picture2
     var photo: picture2
 
-    init(pet: Pet, shelter: shelter, sourceView: UIView, thumbNail: picture2, photo: picture2) {
+    init(pet: Pet, shelter: shelter?, sourceView: UIView, thumbNail: picture2, photo: picture2) {
         self.thumbNail = thumbNail
         self.photo = photo
         super.init(pet: pet, shelter: shelter, sourceView: sourceView)
@@ -736,6 +737,18 @@ class Tools: Sequence, IteratorProtocol {
             for vid in data! {
                 count += 1
                 self.list.append(youTubeTool(breed: breed, sourceView: sourceView, video: video(i: String(count), o: String(count), t: vid.pictureURL, v: vid.videoID, u: "")))
+            }
+        }
+        
+        switch RescueGroups().getPets(zipCode: zipCode, breed: breed) {
+        case .failure(let err):
+            Utilities.displayAlert("Network Error", errorMessage: err.localizedDescription)
+        case .success(let data):
+            for pet in data! {
+                if let thumbNail = pet.getAllImagesObjectsOfACertainSize("pn").first, let large = pet.getAllImagesObjectsOfACertainSize("x").first {
+                    let imgTool = imageTool(pet: pet, shelter: nil, sourceView: sourceView, thumbNail: thumbNail, photo: large)
+                    self.list.append(imgTool)
+                }
             }
         }
 

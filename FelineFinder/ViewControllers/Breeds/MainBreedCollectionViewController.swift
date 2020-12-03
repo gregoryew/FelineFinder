@@ -8,12 +8,14 @@
 import UIKit
 import BDKCollectionIndexView
 
-class MainBreedCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class MainBreedCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
 
     @IBOutlet weak var BreedCollectionView: UICollectionView!
     @IBOutlet weak var breedIndexView: BDKCollectionIndexView!
-
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     var breeds = [Breed]()
+    var filteredBreeds: [Breed] = []
     var breedGroups: [String: [Breed]] = [:]
     var breedLetters = [String]()
     
@@ -21,6 +23,7 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
         super.viewDidLoad()
         DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
             self.breeds = breeds
+            self.filteredBreeds = breeds
             DispatchQueue.main.async(execute: {
                 self.setupIndex()
                 let indexView = BDKCollectionIndexView(frame: self.breedIndexView.frame, indexTitles: nil)
@@ -30,6 +33,8 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
                 self.view.bringSubviewToFront(indexView!)
                 indexView!.indexTitles = self.breedLetters
                 self.BreedCollectionView.reloadData()
+                
+                self.searchBar.delegate = self
             })
         }
     }
@@ -37,7 +42,7 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
     func setupIndex() {
         breedGroups = [:]
         breedLetters = []
-        for breed in breeds {
+        for breed in filteredBreeds {
             breedGroups[String(breed.BreedName.prefix(1)), default: []].append(breed)
         }
         breedLetters = breedGroups.keys.sorted()
@@ -62,7 +67,7 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
         cell.configure(breed: self.breedGroups[breedLetters[indexPath.section]]![indexPath.item])
         return cell
     }
-    
+        
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return breedLetters.count
     }
@@ -83,5 +88,20 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
         breedDetail.modalPresentationStyle = .fullScreen
         breedDetail.breed = self.breedGroups[breedLetters[indexPath.section]]![indexPath.item]
         present(breedDetail, animated: false, completion: nil)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    
+        if searchText != "" {
+            filteredBreeds = breeds.filter { (breed: Breed) -> Bool in
+                return breed.BreedName.lowercased().contains(searchText.lowercased())
+            }
+        } else {
+            filteredBreeds = breeds
+        }
+        
+        setupIndex()
+        
+        self.BreedCollectionView.reloadData()
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CMMapLauncher
 
 var selectedImages: [Int] = []
 
@@ -285,16 +286,6 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
 
     }
     
-    /*
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-      super.viewWillTransition(to: size, with: coordinator)
-      coordinator.animate(alongsideTransition: { context in
-        self.bgImage.alpha = (size.width>size.height) ? 0.25 : 0.55
-        self.positionListItems()
-      }, completion: nil)
-    }
-    */
-    
     @IBAction func FilterButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
@@ -339,7 +330,6 @@ extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewData
 extension MainTabAdoptableCatsCollectionViewViewController: UIViewControllerTransitioningDelegate {
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     transition.originFrame = selectedImage.frame
-    //!.superview!.convert(selectedImage!.frame, to: nil)
 
     transition.presenting = true
     selectedImage!.isHidden = false
