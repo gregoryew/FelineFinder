@@ -144,7 +144,7 @@ class DatabaseManager {
         var rb: Dictionary<String, String> = [:]
         var breedName: String = ""
         var breedID: String = ""
-        let json = ["apikey":"0doJkmYU","objectType":"animalBreeds","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1000", "resultSort": "breedName", "resultOrder": "asc", "filters": [["fieldName": "breedSpecies", "operation": "equals", "criteria": "cat"]], "fields": ["breedID","breedName","breedSpecies","breedSpeciesID"]]] as [String : Any]
+        let json = ["apikey": RescueGroupsKey,"objectType":"animalBreeds","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1000", "resultSort": "breedName", "resultOrder": "asc", "filters": [["fieldName": "breedSpecies", "operation": "equals", "criteria": "cat"]], "fields": ["breedID","breedName","breedSpecies","breedSpeciesID"]]] as [String : Any]
         do {
             
             let jsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)

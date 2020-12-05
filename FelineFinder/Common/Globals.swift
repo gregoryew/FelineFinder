@@ -97,60 +97,10 @@ class AppMisc {
     static let USER_ID = NSUUID().uuidString.replacingOccurrences(of: "-", with: "_")
 }
 
-/*
-enum DemoPresent {
-    case CIZoom(transImage: transitionImage)
-}
-*/
- 
-/*
-extension DemoPresent: TransitionAnimationable {
-    func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
-        switch self {
-        case let .CIZoom(transitionImage) :
-            return CIZoomAnimation(transImage: transitionImage)
-        }
-    }
-}
-
-enum DemoTransition {
-    case FadePush
-    case TwitterPresent
-    case SlideTabBar
-    case CIZoom(transImage: transitionImage)
-    case Flip
-    case Slide(direction: DIRECTION)
-    //case Zoom(startingRect: CGRect, endingRect: CGRect)
-}
-*/
-
 enum FilterType {
     case Simple
     case Advanced
 }
-
-/*
-extension DemoTransition: TransitionAnimationable {
-    func transitionAnimation() -> TRViewControllerAnimatedTransitioning {
-        switch self {
-        case .FadePush:
-            return FadeTransitionAnimation()
-        case .TwitterPresent :
-            return TwitterTransitionAnimation()
-        case .SlideTabBar :
-            return SlideTransitionAnimation()
-        case let .CIZoom(transitionImage) :
-            return CIZoomAnimation(transImage: transitionImage)
-        case .Flip :
-            return FlipAnimation()
-        case let .Slide(dir) :
-            return SlideAnimation(direction: dir)
-        //case let .Zoom(startingRect, endingRect):
-        //    return ZoomAnimation(startingRect: startingRect, endingRect: endingRect)
-        }
-    }
-}
-*/
 
 extension UIImage {
     var isPortrait:  Bool    { return size.height > size.width }
@@ -214,20 +164,6 @@ var globalBreed: Breed?
 var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false
 var firstTime: Bool = false
-
-
-
-// 1. Declare outside class definition (or in its own file).
-// 2. UIKit must be included in file where this code is added.
-// 3. Extends UIDevice class, thus is available anywhere in app.
-//
-// Usage example:
-//
-//    if UIDevice().type == .simulator {
-//       print("You're running on the simulator... boring!")
-//    } else {
-//       print("Wow! Running on a \(UIDevice().type.rawValue)")
-//    }
 
 typealias filter = Dictionary<String, Any>
 
@@ -422,55 +358,29 @@ extension UIView {
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
     }
+    
+    func findViewController() -> UIViewController? {
+        if let nextResponder = self.next as? UIViewController {
+            return nextResponder
+        } else if let nextResponder = self.next as? UIView {
+            return nextResponder.findViewController()
+        } else {
+            return nil
+        }
+    }
 }
 
-extension UILabel {
-    /*
-    func addTrailing(with trailingText: String, moreText: String, moreTextFont: UIFont, moreTextColor: UIColor) {
-        let readMoreText: String = moreText
-        
-        let lengthForVisibleString: Int = self.vissibleTextLength()
-        let mutableString: String = self.text!
-        var trimmedString: String? = (mutableString as NSString).replacingCharacters(in: NSRange(location: lengthForVisibleString, length: ((self.text?.characters.count)! - lengthForVisibleString)), with: "")
-        let readMoreLength: Int = (readMoreText.characters.count)
-        let trimmedForReadMore: String = (trimmedString! as NSString).replacingCharacters(in: NSRange(location: ((trimmedString?.characters.count ?? 0) - readMoreLength), length: readMoreLength), with: "")
-        //let answerAttributed = NSMutableAttributedString(string: trimmedForReadMore, attributes: [NSFontAttributeName: self.font])
-        //let readMoreAttributed = NSMutableAttributedString(string: moreText, attributes: [NSFontAttributeName: moreTextFont, NSForegroundColorAttributeName: moreTextColor])
-        //answerAttributed.append(readMoreAttributed)
-        //self.attributedText = answerAttributed
-        self.text = trimmedForReadMore + readMoreText
+// Put this piece of code anywhere you like
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
-    */
     
-    /*
-    func vissibleTextLength() -> Int {
-        let font: UIFont = self.font
-        let mode: NSLineBreakMode = self.lineBreakMode
-        let labelWidth: CGFloat = self.frame.size.width
-        let labelHeight: CGFloat = self.frame.size.height
-        let sizeConstraint = CGSize(width: labelWidth, height: CGFloat.greatestFiniteMagnitude)
-        
-        let attributes: [AnyHashable: Any] = [NSAttributedStringKey.font: font]
-        let attributedText = NSAttributedString(string: self.text!, attributes: attributes as? [String : Any])
-        let boundingRect: CGRect = attributedText.boundingRect(with: sizeConstraint, options: .usesLineFragmentOrigin, context: nil)
-        
-        if boundingRect.size.height > labelHeight {
-            var index: Int = 0
-            var prev: Int = 0
-            let characterSet = CharacterSet.whitespacesAndNewlines
-            repeat {
-                prev = index
-                if mode == NSLineBreakMode.byCharWrapping {
-                    index += 1
-                } else {
-                    index = (self.text! as NSString).rangeOfCharacter(from: characterSet, options: [], range: NSRange(location: index + 1, length: self.text!.characters.count - index - 1)).location
-                }
-            } while index != NSNotFound && index < self.text!.characters.count && (self.text! as NSString).substring(to: index).boundingRect(with: sizeConstraint, options: .usesLineFragmentOrigin, attributes: attributes as? [String : Any], context: nil).size.height <= labelHeight
-            return prev
-        }
-        return self.text!.characters.count
-}
-*/
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension String {
@@ -582,16 +492,34 @@ public extension Date {
     }
 }
 
-extension UIView {
-    func findViewController() -> UIViewController? {
-        if let nextResponder = self.next as? UIViewController {
-            return nextResponder
-        } else if let nextResponder = self.next as? UIView {
-            return nextResponder.findViewController()
-        } else {
-            return nil
-        }
+var RescueGroupsKey: String {
+  get {
+    // 1
+    guard let filePath = Bundle.main.path(forResource: "FelineFinder-Info", ofType: "plist") else {
+      fatalError("Couldn't find file 'FelineFinder-Info.plist'.")
     }
+    // 2
+    let plist = NSDictionary(contentsOfFile: filePath)
+    guard let value = plist?.object(forKey: "RescueGroupsAPI") as? String else {
+      fatalError("Couldn't find key 'RescueGroupsAPI' in 'FelineFinder-Info.plist'.")
+    }
+    return value
+  }
+}
+
+var YouTubeAPIKey: String {
+  get {
+    // 1
+    guard let filePath = Bundle.main.path(forResource: "FelineFinder-Info", ofType: "plist") else {
+      fatalError("Couldn't find file 'FelineFinder-Info.plist'.")
+    }
+    // 2
+    let plist = NSDictionary(contentsOfFile: filePath)
+    guard let value = plist?.object(forKey: "YouTubeAPI") as? String else {
+      fatalError("Couldn't find key 'YouTubeAPI' in 'FelineFinder-Info.plist'.")
+    }
+    return value
+  }
 }
 
 var questionList: QuestionList = QuestionList()

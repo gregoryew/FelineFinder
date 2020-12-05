@@ -23,7 +23,7 @@ class RescueGroupShelterList: ShelterList {
             }
         }
 
-        let json = ["apikey":"0doJkmYU","objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
+        let json = ["apikey":RescueGroupsKey,"objectType":"orgs","objectAction":"publicSearch", "search": ["resultStart": "0", "resultLimit":"1", "resultSort": "orgID", "resultOrder": "asc", "filters": [["fieldName": "orgID", "operation": "equals", "criteria": shelterID]], "fields": ["orgID","orgName","orgAddress","orgCity","orgState","orgLocation","orgCountry","orgPhone","orgFax","orgEmail"]]] as [String : Any]
 
         do {
             

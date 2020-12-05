@@ -16,6 +16,9 @@ class MainTabAdoptableCatsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var Stats: UILabel!
     @IBOutlet weak var location: UILabel!
     
+    @IBOutlet weak var heartImage: UIButton!
+    @IBOutlet weak var videoImage: UIButton!
+    
     func configure(pd: Pet?) {
         if let pd = pd {
             if let imgURL = URL(string: pd.getImage(1, size: "pnt")) {
@@ -23,6 +26,9 @@ class MainTabAdoptableCatsCollectionViewCell: UICollectionViewCell {
             } else {
                 self.photo.image = UIImage(named: "NoCatImage")
             }
+            
+            heartImage.isHidden = !Favorites.isFavorite(pd.petID, dataSource: .RescueGroup)
+            videoImage.isHidden = pd.videos.count == 0
             
             name.text = pd.name + " "
             

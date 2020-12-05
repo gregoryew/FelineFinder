@@ -51,8 +51,6 @@ struct youtubeapi: Decodable {
     var items: [item]?
 }
 
-let youTubeAPIKey = "AIzaSyAncgYuV4FLT8ScN8K2Tp5oZQBHXVdFTgw"
-
 class YouTubeAPI {
     
     var status = ""
@@ -78,7 +76,7 @@ class YouTubeAPI {
     }
     
     static func getYouTubeVideos(playList: String) -> Result<[YouTubeVideo]?, NetworkError> {
-        let path =  "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,status&maxResults=49&playlistId=\(playList)&key=\(youTubeAPIKey)"
+        let path =  "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,status&maxResults=49&playlistId=\(playList)&key=\(YouTubeAPIKey)"
 
         guard let _ = URL(string: path) else {
             return .failure(.url)

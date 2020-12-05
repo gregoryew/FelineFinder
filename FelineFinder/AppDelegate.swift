@@ -12,27 +12,14 @@ import SystemConfiguration
 import FMDB
 //import PushNotifications
 //import UserNotifications
-
+    
 @UIApplicationMain
-
 class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerDelegate {
 
     var window: UIWindow?
     var warningShown: Bool = false
         
     //let pushNotifications = PushNotifications.shared
-    /*
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if viewController is BreedInfoDetailViewController {
-            if let newVC = tabBarController.storyboard?.instantiateViewController(withIdentifier: "BreedInfoDetail2") {
-                tabBarController.present(newVC, animated: true)
-                return false
-            }
-        }
-
-        return true
-    }
-    */
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
@@ -56,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         pathToFile()
         
         //zipCode = UserDefaults.standard.string(forKey: "zipCode") ?? ""
+
         zipCode = ""
         
         let rescueGroupsLastQueriedString = UserDefaults.standard.string(forKey: "rescueGroupsLastQueriedString") ?? ""

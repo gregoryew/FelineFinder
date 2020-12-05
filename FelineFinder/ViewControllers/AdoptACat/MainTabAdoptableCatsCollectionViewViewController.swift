@@ -380,12 +380,21 @@ extension MainTabAdoptableCatsCollectionViewViewController {
 
 extension MainTabAdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        let width = CGFloat((view.frame.size.width - (10 * 3)) / 2)
-        let img = self.pets![indexPath.row].getAllImagesObjectsOfACertainSize("x").first
-        let ratio: CGFloat = CGFloat(width) / CGFloat(img?.width ?? 1)
-        let height = CGFloat((img?.height ?? 0) + 180) * (ratio + 0.10)
-        if width == 0 || height == 0 {print("0 Width or Height detected")}
-        return height
+        
+        if let pets = pets {
+            guard indexPath.row < pets.count
+            else {return 400}
+            
+            let width = CGFloat((view.frame.size.width - (10 * 3)) / 2)
+            let img = self.pets![indexPath.row].getAllImagesObjectsOfACertainSize("x").first
+            let ratio: CGFloat = CGFloat(width) / CGFloat(img?.width ?? 1)
+            var height = CGFloat((img?.height ?? 0) + 180) * (ratio + 0.10)
+            height = min(400, height)
+            if width == 0 || height == 0 {print("0 Width or Height detected")}
+                return height }
+        else {
+            return 400
+        }
     }
 }
 

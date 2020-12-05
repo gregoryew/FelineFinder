@@ -21,6 +21,7 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
             self.breeds = breeds
             self.filteredBreeds = breeds

@@ -102,6 +102,7 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         showBreedDetail(breed: breed!)
         toolbar.delegate = self
         searchBar.delegate = self

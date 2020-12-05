@@ -16,7 +16,7 @@ final class RescuePetsAPI5: PetList {
     var page = 1
     
     private lazy var baseURL: String = {
-        return "https://api.rescuegroups.org/v5/public/animals/search/available?fields[animals]=id,name,breedPrimary,ageGroup,sex,updatedDate,birthDate,availableDate,sizeGroup,descriptionHtml,descriptionText,status&limit=25"
+        return "https://api.rescuegroups.org/v5/public/animals/search/available?sort=animals.distance&fields[animals]=id,name,breedPrimary,ageGroup,sex,updatedDate,birthDate,availableDate,sizeGroup,descriptionHtml,descriptionText,status&limit=25"
     }()
     
     var session: URLSession!
@@ -48,7 +48,7 @@ final class RescuePetsAPI5: PetList {
 
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("0doJkmYU", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(RescueGroupsKey, forHTTPHeaderField: "Authorization")
         
         let jsonData = try! JSONSerialization.data(withJSONObject: json, options: [])
         
@@ -90,13 +90,15 @@ final class RescuePetsAPI5: PetList {
                     
                     let cityState = self.getCityState(id: cat.id ?? "")
                 
-                    var p = Pet(pID: cat.id ?? "", n: cat.name ?? "", b: breed, m: false, a: cat.ageGroup ?? "", s: cat.sex ?? "", s2: cat.sizeGroup ?? "", o: [], d: cat.descriptionText ?? "", m2: pictures, v: videos, s3: organizationID ?? "", z: "", dis: -1, stat: stat, bd: cat.birthDate ?? "", upd: upd, adoptionFee: "NA" , location: cityState)
+                    var p = Pet(pID: cat.id ?? "", n: cat.name ?? "", b: breed, m: false, a: cat.ageGroup ?? "", s: cat.sex ?? "", s2: cat.sizeGroup ?? "", o: [], d: cat.descriptionText ?? "", m2: pictures, v: videos, s3: organizationID ?? "", z: "", dis: cat.distance ?? -1, stat: stat, bd: cat.birthDate ?? "", upd: upd, adoptionFee: "NA" , location: cityState)
                     p.descriptionHtml = cat.descriptionHtml ?? ""
                     pets2.append(p)
                 }
             }
             }
             
+            //Rescue Groups has fixed the distance sort error so this is not needed
+            /*
             pets2 = self.lookupOrgZips(pets: pets2)
             DatabaseManager.sharedInstance.fetchDistancesFromZipCode (pets2) { (zC) -> Void in
                 for i in 0..<pets2.count {
@@ -115,7 +117,18 @@ final class RescuePetsAPI5: PetList {
                 self.isLoading = false
                 completion(Result.success(self))
             }
-                        
+            */
+
+            self.page += 1
+            if reset {
+                self.Pets = pets2
+            } else {
+                self.Pets.append(contentsOf: pets2)
+            }
+            
+            self.isLoading = false
+            completion(Result.success(self))
+
         }).resume()
     }
     

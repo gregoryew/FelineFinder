@@ -47,7 +47,7 @@ class RescueGroups {
 
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/vnd.api+json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("0doJkmYU", forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(RescueGroupsKey, forHTTPHeaderField: "Authorization")
         
         var filters: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
         filters.append(["fieldName": "animals.breedPrimaryId", "operation": "equals", "criteria": breed.RescueBreedID])

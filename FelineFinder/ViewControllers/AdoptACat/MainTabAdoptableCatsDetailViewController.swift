@@ -9,16 +9,17 @@ import UIKit
 import FaveButton
 import WebKit
 import SDWebImage
+import MessageUI
 
 enum detailCollectionViewTypes: Int {
     case tools = 1
     case media = 2
 }
 
-class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControllerTransitioningDelegate, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate, UIScrollViewDelegate {
+class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControllerTransitioningDelegate, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
     
     @IBOutlet weak var photo: UIImageView!
-    //@IBOutlet weak var heart: FaveButton!
+    @IBOutlet weak var heart: FaveButton!
     @IBOutlet weak var PetName: UILabel!
     @IBOutlet weak var breed: UILabel!
     @IBOutlet weak var stats: UILabel!
@@ -43,6 +44,8 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
     var media: Tools!
     
     private var scrollView = UIScrollView()
+    
+    var selectedPhoto = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,11 +132,23 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
         let sBaseURL = URL(fileURLWithPath: path);
         let description2 = (tools.list[0] as! descriptionTool).generatePetDescription()
         descriptionWK.loadHTMLString(description2, baseURL: sBaseURL)
-
+        
+        mediaToolBar.selectItem(at: IndexPath(item: selectedPhoto, section: 0), animated: false, scrollPosition: .left)
+    }
+    
+    @IBAction func heartTapped(_ sender: Any) {
+        if heart.isSelected {
+            Favorites.addFavorite(pet.petID)
+        } else {
+            Favorites.removeFavorite(pet.petID, dataSource: .RescueGroup)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        heart.isSelected = Favorites.isFavorite(pet.petID, dataSource: .RescueGroup)
+        
         setupScrollView()
         scrollView.addSubview(self.contentView)
         scrollView.delegate = self
@@ -155,6 +170,15 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
              contentLayoutGuide.bottomAnchor),
             contentView.heightAnchor.constraint(equalTo: contentLayoutGuide.heightAnchor)
         ])
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        Favorites.storeIDs()
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
     private func setupScrollView() {
@@ -203,10 +227,7 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
     
     @IBAction func filterTapped(_ sender: Any) {
     }
-    
-    @IBAction func heartTapped(_ sender: Any) {
-    }
-    
+        
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -235,7 +256,7 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
             return cell
         case detailCollectionViewTypes.media.rawValue:
             let cell = mediaToolBar.dequeueReusableCell(withReuseIdentifier: "mediaCell", for: indexPath) as! mediaCell
-            cell.configure(mediaTool: media[indexPath.item], isSelected: true)
+            cell.configure(mediaTool: media[indexPath.item], isSelected: indexPath.item == selectedPhoto)
             return cell
         default: return UICollectionViewCell()
         }
@@ -243,10 +264,20 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch collectionView.tag {
-        case detailCollectionViewTypes.tools.rawValue:
+        case
+            detailCollectionViewTypes.tools.rawValue:
             tools[indexPath.item].performAction()
-        case detailCollectionViewTypes.media.rawValue:
-            media[indexPath.item].performAction()
+        case
+            detailCollectionViewTypes.media.rawValue:
+            let photoURL: URL?
+            if media[indexPath.item] is imageTool {
+                photoURL = URL(string: (media[indexPath.item] as! imageTool).photo.URL)
+            } else {
+                photoURL = URL(string: (media[indexPath.item] as! youTubeTool).video.urlThumbnail)
+                media[indexPath.item].performAction()
+            }
+            photo.sd_setImage(with: photoURL, placeholderImage: UIImage(named: "NoCatImage"), completed: nil)
+            selectedPhoto = indexPath.item
         default: break
         }
     }
@@ -277,7 +308,7 @@ extension MainTabAdoptableCatsDetailViewController : WKNavigationDelegate {
         if complete != nil {
             let height = webView.scrollView.contentSize.height
             self.descriptionWKHeight.constant = height
-            //self.contentViewHeight.constant = height + (self.mediaToolBar.frame.maxY)
+            self.contentView.frame.size.height = height + (self.mediaToolBar.frame.maxY)
             print("height of webView is: \(height)")
             self.view.setNeedsLayout()
         }

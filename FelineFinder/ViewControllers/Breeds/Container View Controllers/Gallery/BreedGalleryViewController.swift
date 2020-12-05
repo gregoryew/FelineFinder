@@ -72,15 +72,11 @@ class BreedGalleryViewController: UIViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.tag == VIDEOSCV {
+            youTubeVideos[indexPath.item].performAction()
         } else {
             let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptDetail") as! MainTabAdoptableCatsDetailViewController
-
             details.pet = self.images[indexPath.item].pet
-            
             details.modalPresentationStyle = .overFullScreen
-            
-            //details.transitioningDelegate = self
-            
             present(details, animated: true, completion: nil)
         }
     }
