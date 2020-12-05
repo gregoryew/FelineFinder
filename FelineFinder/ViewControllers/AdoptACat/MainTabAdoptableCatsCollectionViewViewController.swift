@@ -74,7 +74,11 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         AdoptableCatCollectionView.isPrefetchingEnabled = true
         AdoptableCatCollectionView.delegate = self
         AdoptableCatCollectionView.prefetchDataSource = self
-
+        
+        let layout = PinterestLayout()
+        layout.delegate = self
+        self.AdoptableCatCollectionView.collectionViewLayout = layout
+        
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.requestWhenInUseAuthorization()
@@ -374,6 +378,18 @@ extension MainTabAdoptableCatsCollectionViewViewController {
     }
 }
 
+extension MainTabAdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+        let width = CGFloat((view.frame.size.width - (10 * 3)) / 2)
+        let img = self.pets![indexPath.row].getAllImagesObjectsOfACertainSize("x").first
+        let ratio: CGFloat = CGFloat(width) / CGFloat(img?.width ?? 1)
+        let height = CGFloat((img?.height ?? 0) + 180) * (ratio + 0.10)
+        if width == 0 || height == 0 {print("0 Width or Height detected")}
+        return height
+    }
+}
+
+/*
 extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         var size = view.frame.size.width - (10 * 3)
@@ -385,3 +401,4 @@ extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewDele
         return CGSize(width: size, height: size * 1.3)
     }
 }
+*/

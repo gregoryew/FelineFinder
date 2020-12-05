@@ -117,6 +117,7 @@
 		C5F9C65E2577935A00861A76 /* BreedGalleryPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C65D2577935A00861A76 /* BreedGalleryPet.swift */; };
 		C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C6B22578FB9A00861A76 /* RSUtilities.swift */; };
 		C5F9C7C12579056800861A76 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C7C02579056800861A76 /* SceneDelegate.swift */; };
+		C5F9C8CF257916DE00861A76 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C8CE257916DE00861A76 /* PinterestLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +241,7 @@
 		C5F9C65D2577935A00861A76 /* BreedGalleryPet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedGalleryPet.swift; sourceTree = "<group>"; };
 		C5F9C6B22578FB9A00861A76 /* RSUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSUtilities.swift; sourceTree = "<group>"; };
 		C5F9C7C02579056800861A76 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		C5F9C8CE257916DE00861A76 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,12 +284,12 @@
 		C51E1AC4255EC5BE00167D15 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C5F9C8CD2579165500861A76 /* Custom Layouts */,
 				C57E5E1F255BB57E00120018 /* Favorites.swift */,
 				C57E5E28255BB58100120018 /* Utilities.swift */,
 				C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */,
 				C5179BA125647D72005EC381 /* Transitions */,
 				C51E1AC7255EC5E800167D15 /* ToolbarMenu */,
-				C51E1AC6255EC5D300167D15 /* SegmentLayout */,
 				C51E1AC5255EC5C700167D15 /* Graph */,
 			);
 			path = Components;
@@ -475,7 +477,6 @@
 				C57E61B0255BB9DD00120018 /* Globals.swift */,
 				C57E5769255BB28B00120018 /* CatLogoLayer.swift */,
 				C57E5763255BB26F00120018 /* ZoomViewControler.swift */,
-				C57E61B9255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -610,6 +611,16 @@
 				C57E5E1A255BB57D00120018 /* SavedSearches.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		C5F9C8CD2579165500861A76 /* Custom Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				C57E61B9255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift */,
+				C51E1AC6255EC5D300167D15 /* SegmentLayout */,
+				C5F9C8CE257916DE00861A76 /* PinterestLayout.swift */,
+			);
+			path = "Custom Layouts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -814,6 +825,7 @@
 				C57E61DB255BDB5A00120018 /* RescueSheltersAPI.swift in Sources */,
 				C57E5E3E255BB58100120018 /* Utilities.swift in Sources */,
 				C57E5E37255BB58100120018 /* DatabaseManager.swift in Sources */,
+				C5F9C8CF257916DE00861A76 /* PinterestLayout.swift in Sources */,
 				C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */,
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
