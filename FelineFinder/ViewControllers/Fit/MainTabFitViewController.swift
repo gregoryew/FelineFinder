@@ -8,6 +8,8 @@
 
 import UIKit
 
+var breedSelected = [Bool](repeating: false, count: 69)
+
 protocol calcStats {
     func answerChanged(question: Int, answer: Int)
 }
@@ -28,7 +30,6 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     var selectedBreedID: Int = 1
     var breedTraitValues: [Int: [PercentBarView]] = [:]
     var breedColors: [UIColor]?
-    var breedSelected = [Bool](repeating: false, count: 69)
     var scrollPosition: UITableView.ScrollPosition = .middle
     var breeds = [Breed]()
     var breedPercentages = [Double]()
@@ -89,7 +90,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             breeds[i].Percentage = breedPercentages[Int(breeds[i].BreedID) - 1]
         }
         breeds.sort { (Breed1, Breed2) -> Bool in
-            return (self.breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (self.breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
+            return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
         }
         questionSelected = IndexPath(row: question, section: 0)
         scrollPosition = .middle
@@ -123,7 +124,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
                 }
             }
         } else {
-            return CGFloat(150)
+            return CGFloat(177)
         }
     }
     
@@ -160,7 +161,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             breedSelected[selectedBreedID] = !breedSelected[selectedBreedID]
         }
         breeds.sort { (Breed1, Breed2) -> Bool in
-            return (self.breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (self.breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
+            return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
         }
         DispatchQueue.main.async {
             self.BreedTableView.reloadData()

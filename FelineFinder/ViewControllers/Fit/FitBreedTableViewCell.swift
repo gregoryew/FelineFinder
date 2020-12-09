@@ -14,7 +14,8 @@ class FitBreedTableViewCell: UITableViewCell {
     var breed: Breed!
     @IBOutlet weak var BreedNameLabel: UILabel!
     @IBOutlet weak var BreedCellView: UIView!
-        
+    @IBOutlet weak var SelectButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +28,8 @@ class FitBreedTableViewCell: UITableViewCell {
     }
     
     func configure(breed: Breed) {
+        SelectButton.setTitle(breedSelected[Int(breed.BreedID)] ? "Deselect" : "Select", for: .normal)
+        
         BreedNameLabel.text = "\(String(format: "%.0f", round(breed.Percentage * 100)))% \( breed.BreedName)"
         
         if let photo = UIImage(named: "Cartoon \(breed.BreedName)") {
@@ -34,6 +37,7 @@ class FitBreedTableViewCell: UITableViewCell {
         } else {
             BreedImage.image = UIImage(named: "Cartoon Domestic Short Hair")
         }
+        
         self.breed = breed
     }
 
@@ -41,7 +45,7 @@ class FitBreedTableViewCell: UITableViewCell {
         let vc = self.findViewController() as! MainTabFitViewController
         vc.hiliteBreed(selectedBreedID: Int(breed.BreedID))
     }
-        
+    
     @IBAction func BreedInfoTapped(_ sender: UIButton) {
         let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
         breedDetail.modalPresentationStyle = .fullScreen

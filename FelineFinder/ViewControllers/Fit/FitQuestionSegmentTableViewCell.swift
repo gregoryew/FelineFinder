@@ -28,8 +28,6 @@ class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDe
         }
     }
     
-    
-    
     var delegate: calcStats?
     var question: Question?
     
@@ -90,6 +88,7 @@ class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDe
                     priorSelectedAnswers[self.tag] = self.index!
                 }
             }
+            self.segmentedCollectionView.reloadData()
         })
     }
     
