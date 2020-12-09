@@ -123,16 +123,18 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             //let viewToShow = storyboard.instantiateViewController(withIdentifier: "AdoptList") as! MainTabAdoptableCatsCollectionViewViewController
             var vcs = [UIViewController]()
-            vcs.append((containerView.viewWithTag(222)?.findViewController())!)
+            let vc = containerView.viewWithTag(222)?.findViewController()
             containerView.viewWithTag(222)?.removeFromSuperview()
-            vcs.append(contentsOf: toVC.viewControllers![1...toVC.viewControllers!.count - 1])
+            vcs.append(contentsOf: toVC.viewControllers![0...1])
+            vcs.append(vc!)
+            vcs.append(toVC.viewControllers![3])
             self.dismissCompletion?()
             transitionContext.completeTransition(true)
-            vcs[0].view.isHidden = false
-            vcs[0].view.alpha = 1
+            vcs[2].view.isHidden = false
+            vcs[2].view.alpha = 1
             toVC.setViewControllers(vcs, animated: false)
             toVC.selectedIndex = 1
-            toVC.selectedIndex = 0
+            toVC.selectedIndex = 2
         }
       })
     }

@@ -151,6 +151,7 @@ class PetList {
     var resultStart: Int = 0
     var resultLimit: Int = 0
     var foundRows: Int = 0
+    var totalRows: Int = 0
 
     init() {
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -169,7 +170,7 @@ class PetList {
     }
     
     var count: Int {
-        return Pets.count
+        return totalRows
     }
     
     func loadSinglePet(_ petID: String, completion: @escaping (Pet) -> Void) -> Void {
@@ -177,10 +178,9 @@ class PetList {
     
     subscript(index: Int) -> Pet {
         get {
-            if Pets.count > index {
+            if totalRows > index {
                 return Pets[index]
-            }
-            else {
+            } else {
                 return Pet(pID: "", n: "", b: [], m: false, a: "", s: "", s2: "", o: [], d: "", html: "", m2: [], s3: "", z: "", dis: 0, adoptionFee: "", location: "")
             }
         }
@@ -260,7 +260,6 @@ class PetList {
     }
     
     private func calculateDaysBetweenTwoDates(start: Date, end: Date) -> Int {
-        
         let currentCalendar = Calendar.current
         guard let start = currentCalendar.ordinality(of: .day, in: .era, for: start) else {
             return 0

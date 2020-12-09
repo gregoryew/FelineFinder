@@ -125,7 +125,8 @@ final class RescuePetsAPI5: PetList {
             } else {
                 self.Pets.append(contentsOf: pets2)
             }
-            
+            self.totalRows = self.Pets.count
+
             self.isLoading = false
             completion(Result.success(self))
 

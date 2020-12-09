@@ -7,6 +7,7 @@
 
 import UIKit
 import CMMapLauncher
+import PopMenu
 
 var selectedImages: [Int] = []
 
@@ -14,13 +15,10 @@ var selectedImage: UIImageView!
 
 class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
 
-    @IBOutlet weak var SearchBar: UISearchBar!
     @IBOutlet weak var SortMenu: UILabel!
     @IBOutlet weak var SortAscendingButton: UIButton!
     @IBOutlet weak var SortDescendingButton: UIButton!
-    @IBOutlet weak var ListViewButton: UIButton!
     @IBOutlet weak var FilterButton: UIButton!
-    @IBOutlet weak var CancelButton: UIButton!
     
     @IBOutlet weak var AdoptableCatCollectionView: UICollectionView!
     
@@ -258,19 +256,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         }
         return totalRow
     }
-    
-    @IBAction func CancelButtonTapped(_ sender: Any) {
-    }
-    
-    @IBAction func SortAscendingTapped(_ sender: Any) {
-    }
-    
-    @IBAction func SortDescendingTapped(_ sender: Any) {
-    }
-    
-    @IBAction func ListViewTapped(_ sender: Any) {
-    }
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! MainTabAdoptableCatsCollectionViewCell
@@ -289,7 +275,24 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         present(details, animated: true, completion: nil)
 
     }
+
+    @IBAction func sortMenuTapped(_ sender: Any) {
+/*
+        func presentMenu() {
+            let menuViewController = PopMenuViewController(actions: [
+                PopMenuDefaultAction(title: "Best Matches", image: UIImage(named: "sortiing-reversed-numerical")),
+                PopMenuDefaultAction(title: "Alphabetical", image: UIImage(named: "sorting-alphabetical"))])
+            present(menuViewController, animated: true, completion: nil)
+        }
+*/
+    }
     
+    @IBAction func SortAscendingTapped(_ sender: Any) {
+    }
+    
+    @IBAction func SortDescendingTapped(_ sender: Any) {
+    }
+
     @IBAction func FilterButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
@@ -380,15 +383,17 @@ extension MainTabAdoptableCatsCollectionViewViewController {
 
 extension MainTabAdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
-        
         if let pets = pets {
-            guard indexPath.row < pets.count
+            guard indexPath.row < pets.count && indexPath.row >= 0
             else {return 400}
             
             let width = CGFloat((view.frame.size.width - (10 * 3)) / 2)
-            let img = self.pets![indexPath.row].getAllImagesObjectsOfACertainSize("x").first
-            let ratio: CGFloat = CGFloat(width) / CGFloat(img?.width ?? 1)
-            var height = CGFloat((img?.height ?? 0) + 180) * (ratio + 0.10)
+            let img = self.pets![indexPath.row].getAllImagesObjectsOfACertainSize("x")
+            if img.isEmpty {
+                return 400
+            }
+            let ratio: CGFloat = CGFloat(width) / CGFloat(img.first?.width ?? 1)
+            var height = CGFloat((img.first?.height ?? 0) + 180) * (ratio + 0.10)
             height = min(400, height)
             if width == 0 || height == 0 {print("0 Width or Height detected")}
                 return height }

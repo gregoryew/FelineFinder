@@ -25,50 +25,59 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
     var childContainerExpanded = false
     var originalRect: CGRect!
     
-    private lazy var infoViewController: BreedInfoViewController = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    private var infoViewController:BreedInfoViewController {
+        if(_infoViewController == nil) {
+            // Load Storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "BreedInfo") as! BreedInfoViewController
+            // Instantiate View Controller
+            _infoViewController = storyboard.instantiateViewController(withIdentifier: "BreedInfo") as? BreedInfoViewController
 
-        viewController.breed = breed
-        
-        // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
+            _infoViewController!.breed = breed
+            
+            // Add View Controller as Child View Controller
+            self.add(asChildViewController: _infoViewController!)
+        }
+        return _infoViewController!
+    }
 
-        return viewController
-    }()
-    
-    private lazy var statsViewController: BreedStatsViewController = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+    var _infoViewController:BreedInfoViewController?
 
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "BreedStats") as! BreedStatsViewController
+    var statsViewController:BreedStatsViewController {
+        if(_statsViewController == nil) {
+            // Load Storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
-        viewController.breed = breed
-        
-        // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
+            // Instantiate View Controller
+            _statsViewController = storyboard.instantiateViewController(withIdentifier: "BreedStats") as? BreedStatsViewController
 
-        return viewController
-    }()
-    
-    private lazy var galleryViewController: BreedGalleryViewController = {
-        // Load Storyboard
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            _statsViewController!.breed = breed
+            
+            // Add View Controller as Child View Controller
+            self.add(asChildViewController: _statsViewController!)
+        }
+        return _statsViewController!
+    }
 
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "BreedGallery") as! BreedGalleryViewController
+    var _statsViewController:BreedStatsViewController?
 
-        viewController.breed = breed
-        
-        // Add View Controller as Child View Controller
-        self.add(asChildViewController: viewController)
+    var galleryViewController:BreedGalleryViewController {
+        if(_galleryViewController == nil) {
+            // Load Storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
-        return viewController
-    }()
+            // Instantiate View Controller
+            _galleryViewController = storyboard.instantiateViewController(withIdentifier: "BreedGallery") as? BreedGalleryViewController
+
+            _galleryViewController!.breed = breed
+            
+            // Add View Controller as Child View Controller
+            self.add(asChildViewController: _galleryViewController!)
+        }
+        return _galleryViewController!
+    }
+
+    var _galleryViewController:BreedGalleryViewController?
     
     private func add(asChildViewController viewController: UIViewController) {
         // Add Child View Controller
@@ -114,8 +123,9 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
     }
 
     func showBreedDetail(breed: Breed) {
-        breedPhoto.image = UIImage(named: breed.FullSizedPicture ?? "NoCatImage")
+        breedPhoto.image = UIImage(named: breed.FullSizedPicture)
         breedName.text = breed.BreedName
+        self.breed = breed
     }
     
     override func viewDidLayoutSubviews() {
@@ -165,6 +175,10 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
             filteredBreeds = breeds.filter { (breed: Breed) -> Bool in
                 return breed.BreedName.lowercased().contains(searchText.lowercased())
             }
+            _infoViewController = nil
+            _statsViewController = nil
+            _galleryViewController = nil
+            
             if priorChildViewController != nil {
                 remove(asChildViewController: priorChildViewController!)
             }

@@ -555,27 +555,18 @@ class shareTool: Tool {
                             self.vc = UIActivityViewController(activityItems: imageCache + ["About \(self.pet!.name)\r\n\(self.pet!.description) \(address) \r\n\r\nContact Info\r\n\(self.shelter!.email)\r\n\(self.shelter!.phone)" ], applicationActivities: [])
                             //presentViewController(vc!, animated: true, completion: nil)
                             if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
-                                self.sourceViewController!.present(self.vc!, animated: true, completion: nil)
+                                self.sourceView?.findViewController()!.present(self.vc!, animated: true, completion: nil)
                                 self.loaded = false
-                            }
-                            else {
-                                //let _: UIPopoverController = UIPopoverController(contentViewController: self.vc!)
-                                //popup.present(from: self.ShareButton, permittedArrowDirections: .up, animated: true)
-                                //popup.presentfrom: inPopoverFromRect(CGRectMake(self.view.frame.size.width / 2, self.view.frame.size.height / 4, 0, 0), inView: self.view, permittedArrowDirections:
-                                //UIPopoverArrowDirection.Any, animated: true)
-                                
-                                self.vc?.modalPresentationStyle = UIModalPresentationStyle.popover
-                                if let popoverController = self.vc?.popoverPresentationController {
-                                    popoverController.delegate = self.sourceViewController! as? UIPopoverPresentationControllerDelegate
-                                    popoverController.sourceView = self.vc?.view
-                                    popoverController.sourceRect = (self.vc?.view.bounds)!
-                                    popoverController.permittedArrowDirections = UIPopoverArrowDirection.any
+                            } else {
+                                let ac = UIActivityViewController(activityItems: imageCache + ["About \(self.pet!.name)\r\n\(self.pet!.description) \(address) \r\n\r\nContact Info\r\n\(self.shelter!.email)\r\n\(self.shelter!.phone)" ], applicationActivities: nil)
+                                if let popOver = ac.popoverPresentationController {
+                                    popOver.sourceView = self.sourceView
+                                    let vc = self.sourceView?.findViewController() as! MainTabAdoptableCatsDetailViewController
+                                    popOver.sourceRect = CGRect(x: (self.sourceView!.frame.width / 2) - 100, y: (self.sourceView!.frame.height / 2) - 100, width: 200, height: 200)
+                                    vc.present(ac, animated: true)
                                 }
-                                self.sourceViewController!.present(self.vc!, animated: true)
-                                
                                 self.loaded = false
                             }
-                            self.loaded = true
                         })
                     }
                 } else {

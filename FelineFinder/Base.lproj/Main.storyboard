@@ -389,26 +389,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMa-hY-W7D">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="34"/>
                                 <subviews>
-                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ngt-x1-9qe">
-                                        <rect key="frame" x="8" y="7" width="120" height="20"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="zr2-P8-5gH"/>
-                                        </constraints>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Best Matches ^">
-                                                <attributes>
-                                                    <color key="NSColor" red="0.57414853570000002" green="0.57416242360000003" blue="0.57415497299999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
-                                        <color key="highlightedColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zsY-5Y-G71">
-                                        <rect key="frame" x="384" y="1.6666666666666679" width="22" height="31.000000000000004"/>
+                                        <rect key="frame" x="377" y="1.6666666666666679" width="22" height="31.000000000000004"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="Zuc-EJ-rwp"/>
                                             <constraint firstAttribute="height" constant="31" id="wBy-i9-2VQ"/>
@@ -419,7 +401,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOT-Ej-2zW">
-                                        <rect key="frame" x="362" y="7" width="14" height="20"/>
+                                        <rect key="frame" x="346" y="7" width="14" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="TFL-gB-K6L"/>
                                             <constraint firstAttribute="width" constant="14" id="aU8-9n-XXw"/>
@@ -429,16 +411,27 @@
                                             <action selector="SortAscendingTapped:" destination="qOb-vH-oFd" eventType="touchUpInside" id="Yhy-Of-pd0"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zru-hp-wW6">
+                                        <rect key="frame" x="24" y="2" width="107" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="B8Y-Kf-L44"/>
+                                        </constraints>
+                                        <state key="normal" title="Best Matches ^"/>
+                                        <connections>
+                                            <action selector="sortMenuTapped:" destination="qOb-vH-oFd" eventType="touchUpInside" id="4X3-83-8wj"/>
+                                            <action selector="sortMenuTapped:" destination="zab-Vy-SOW" eventType="touchUpInside" id="ixh-IL-vMD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Ngt-x1-9qe" firstAttribute="centerY" secondItem="vMa-hY-W7D" secondAttribute="centerY" id="7V8-4V-Kcj"/>
-                                    <constraint firstItem="zsY-5Y-G71" firstAttribute="leading" secondItem="LOT-Ej-2zW" secondAttribute="trailing" constant="8" symbolic="YES" id="C0w-IF-Xao"/>
-                                    <constraint firstItem="Ngt-x1-9qe" firstAttribute="leading" secondItem="vMa-hY-W7D" secondAttribute="leading" constant="8" id="Is1-pQ-rTN"/>
+                                    <constraint firstItem="Zru-hp-wW6" firstAttribute="top" secondItem="vMa-hY-W7D" secondAttribute="top" constant="2" id="25q-h5-zdA"/>
+                                    <constraint firstItem="Zru-hp-wW6" firstAttribute="leading" secondItem="vMa-hY-W7D" secondAttribute="leading" constant="24" id="2LW-o3-8Kt"/>
+                                    <constraint firstItem="zsY-5Y-G71" firstAttribute="leading" secondItem="LOT-Ej-2zW" secondAttribute="trailing" constant="17" id="C0w-IF-Xao"/>
                                     <constraint firstItem="zsY-5Y-G71" firstAttribute="centerY" secondItem="vMa-hY-W7D" secondAttribute="centerY" id="Rr6-9g-UMK"/>
                                     <constraint firstAttribute="height" constant="34" id="f4r-rQ-Xca"/>
                                     <constraint firstItem="LOT-Ej-2zW" firstAttribute="centerY" secondItem="vMa-hY-W7D" secondAttribute="centerY" id="lNl-bP-7fu"/>
-                                    <constraint firstAttribute="trailing" secondItem="zsY-5Y-G71" secondAttribute="trailing" constant="8" id="tY5-JZ-gFC"/>
+                                    <constraint firstAttribute="trailing" secondItem="zsY-5Y-G71" secondAttribute="trailing" constant="15" id="tY5-JZ-gFC"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dGm-kW-1m9">
@@ -624,10 +617,10 @@
                         <outlet property="AdoptableCatCollectionView" destination="dGm-kW-1m9" id="DDy-r7-6Mm"/>
                         <outlet property="FilterButton" destination="zsY-5Y-G71" id="3mU-W4-yc5"/>
                         <outlet property="SortAscendingButton" destination="LOT-Ej-2zW" id="lAd-UG-V4Y"/>
-                        <outlet property="SortMenu" destination="Ngt-x1-9qe" id="KwM-04-q2d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKu-KI-ePI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="zab-Vy-SOW" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="424.63768115942031" y="-918.75000000000011"/>
         </scene>
