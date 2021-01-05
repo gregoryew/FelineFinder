@@ -1600,7 +1600,7 @@
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cartoon Abyssinian" translatesAutoresizingMaskIntoConstraints="NO" id="aeD-sP-VaY">
-                                                    <rect key="frame" x="5" y="8" width="160" height="129"/>
+                                                    <rect key="frame" x="5" y="15" width="160" height="129"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="160" id="URH-U7-W4t"/>
@@ -1608,7 +1608,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNE-bJ-in9" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                    <rect key="frame" x="8" y="138" width="154" height="19"/>
+                                                    <rect key="frame" x="8" y="134" width="154" height="19"/>
                                                     <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1619,8 +1619,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="kJI-e5-Oht" secondAttribute="bottom" id="IIH-gX-51E"/>
                                                 <constraint firstAttribute="trailing" secondItem="kJI-e5-Oht" secondAttribute="trailing" id="K8J-w0-YLs"/>
-                                                <constraint firstItem="aeD-sP-VaY" firstAttribute="top" secondItem="x1N-sT-7mJ" secondAttribute="top" constant="8" id="aLH-gW-cTi"/>
-                                                <constraint firstAttribute="bottom" secondItem="BNE-bJ-in9" secondAttribute="bottom" constant="13" id="fpz-zZ-zpy"/>
+                                                <constraint firstItem="aeD-sP-VaY" firstAttribute="top" secondItem="x1N-sT-7mJ" secondAttribute="top" constant="15" id="aLH-gW-cTi"/>
+                                                <constraint firstAttribute="bottom" secondItem="BNE-bJ-in9" secondAttribute="bottom" constant="17" id="fpz-zZ-zpy"/>
                                                 <constraint firstItem="BNE-bJ-in9" firstAttribute="leading" secondItem="x1N-sT-7mJ" secondAttribute="leading" constant="8" id="kiR-0v-ML9"/>
                                                 <constraint firstAttribute="trailing" secondItem="BNE-bJ-in9" secondAttribute="trailing" constant="8" id="mD5-gO-mHg"/>
                                                 <constraint firstItem="kJI-e5-Oht" firstAttribute="leading" secondItem="x1N-sT-7mJ" secondAttribute="leading" id="v8g-LJ-Cbw"/>
