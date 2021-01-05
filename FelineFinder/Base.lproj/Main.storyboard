@@ -1243,6 +1243,9 @@
                                             <constraint firstAttribute="width" constant="44" id="uGo-yi-yWt"/>
                                         </constraints>
                                         <state key="normal" image="heart"/>
+                                        <connections>
+                                            <action selector="heartTapped:" destination="Ymv-1Z-umn" eventType="touchUpInside" id="d56-h0-LPo"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1270,6 +1273,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Adopt" image="MainTabAdopt" selectedImage="MainTabAdoptUp" id="qoi-QC-lvI"/>
                     <connections>
+                        <outlet property="heart" destination="bFr-2x-wbA" id="ghD-b6-ddV"/>
                         <outlet property="tableView" destination="4kb-ar-rIr" id="fkw-Pp-DoK"/>
                     </connections>
                 </viewController>
@@ -1341,7 +1345,7 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZfJ-6H-2ta" customClass="Toolbar" customModule="FelineFinder" customModuleProvider="target">
-                                        <rect key="frame" x="315" y="187" width="48" height="45"/>
+                                        <rect key="frame" x="315" y="186" width="48" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>

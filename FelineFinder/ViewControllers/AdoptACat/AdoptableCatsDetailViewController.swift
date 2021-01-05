@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import FaveButton
 
 class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, descriptionChanged {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var heart: FaveButton!
     
     var pet: Pet!
     
@@ -19,6 +21,7 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        heart.isSelected = Favorites.isFavorite(pet.petID, dataSource: .RescueGroup)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +69,14 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
                 self.tableView.reloadData()
                 self.view.layoutSubviews()
             })
+        }
+    }
+    
+    @IBAction func heartTapped(_ sender: Any) {
+        if heart.isSelected {
+            Favorites.addFavorite(pet.petID)
+        } else {
+            Favorites.removeFavorite(pet.petID, dataSource: .RescueGroup)
         }
     }
 }

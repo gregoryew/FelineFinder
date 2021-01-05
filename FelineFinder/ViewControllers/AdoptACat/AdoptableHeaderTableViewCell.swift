@@ -19,7 +19,6 @@ enum detailCollectionViewTypes: Int {
 class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var photo: UIImageView!
-    @IBOutlet weak var heart: FaveButton!
     @IBOutlet weak var PetName: UILabel!
     @IBOutlet weak var breed: UILabel!
     @IBOutlet weak var stats: UILabel!
@@ -128,16 +127,6 @@ class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, U
         
         mediaToolBar.selectItem(at: IndexPath(item: selectedPhoto, section: 0), animated: false, scrollPosition: .left)
 
-        heart.isSelected = Favorites.isFavorite(pet.petID, dataSource: .RescueGroup)
-
-    }
-
-    @IBAction func heartTapped(_ sender: Any) {
-        if heart.isSelected {
-            Favorites.addFavorite(pet.petID)
-        } else {
-            Favorites.removeFavorite(pet.petID, dataSource: .RescueGroup)
-        }
     }
         
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
