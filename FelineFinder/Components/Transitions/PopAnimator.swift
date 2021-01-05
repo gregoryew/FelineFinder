@@ -21,7 +21,7 @@
  */
 
 import UIKit
-
+/*
 class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
 
     let duration = 0.5
@@ -56,7 +56,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         if presenting {
             
-            let toVC = transitionContext.viewController(forKey: .to) as! MainTabAdoptableCatsDetailViewController
+            let toVC = transitionContext.viewController(forKey: .to) as! AdoptableCatsDetailViewController
             
             toVC.photo.alpha = 0
             toVC.PetName.alpha = 0
@@ -103,7 +103,7 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
       }, completion: { _ in
         if self.presenting {
             //containerView.viewWithTag(101)?.removeFromSuperview()
-            let toVC = transitionContext.viewController(forKey: .to) as! MainTabAdoptableCatsDetailViewController
+            let toVC = transitionContext.viewController(forKey: .to) as! AdoptableCatsDetailViewController
             toVC.photo.alpha = 1
         
             UIView.animate(withDuration: 0.25, delay:0.0,
@@ -120,22 +120,25 @@ class PopAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             selectedImage.isHidden = true
             transitionContext.completeTransition(true)
         } else {
-            //let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            //let viewToShow = storyboard.instantiateViewController(withIdentifier: "AdoptList") as! MainTabAdoptableCatsCollectionViewViewController
+            /*
             var vcs = [UIViewController]()
             let vc = containerView.viewWithTag(222)?.findViewController()
             containerView.viewWithTag(222)?.removeFromSuperview()
             vcs.append(contentsOf: toVC.viewControllers![0...1])
             vcs.append(vc!)
             vcs.append(toVC.viewControllers![3])
+            */
             self.dismissCompletion?()
             transitionContext.completeTransition(true)
+            /*
             vcs[2].view.isHidden = false
             vcs[2].view.alpha = 1
             toVC.setViewControllers(vcs, animated: false)
             toVC.selectedIndex = 1
             toVC.selectedIndex = 2
+            */
         }
       })
     }
 }
+*/

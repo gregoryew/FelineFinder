@@ -13,7 +13,7 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
+class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
 
     @IBOutlet weak var SortMenu: UILabel!
     @IBOutlet weak var SortAscendingButton: UIButton!
@@ -41,32 +41,47 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
     
     var totalRows = 0
     
-    let transition = PopAnimator()
+    //let transition = PopAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add Refresh Control to Table View
+
+        Favorites.LoadFavorites()
+
         if #available(iOS 10.0, *) {
             AdoptableCatCollectionView.refreshControl = refreshControl
         } else {
             AdoptableCatCollectionView.addSubview(refreshControl)
         }
         
+        self.view.tag = ADOPTABLE_CATS_VC
+        
         // Configure Refresh Control
         refreshControl.addTarget(self, action: #selector(refreshPetData(_:)), for: .valueChanged)
         
         let nc = NotificationCenter.default
         
-        observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
-            self?.petsLoaded(notification: notification)
-        }
-                
-        observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
-            self?.retrieveData()
-        }
-        
-        observer3 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
-            self?.petsFailed(notification: notification)
+        if self.view.tag == FAVORITES_VC {
+            observer = nc.addObserver(forName:favoritesLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsLoaded(notification: notification)
+            }
+            
+            observer3 = nc.addObserver(forName:favoritesFailedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsFailed(notification: notification)
+            }
+        } else {
+            observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsLoaded(notification: notification)
+            }
+                    
+            observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
+                self?.retrieveData()
+            }
+            
+            observer3 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsFailed(notification: notification)
+            }
         }
         
         AdoptableCatCollectionView.isPrefetchingEnabled = true
@@ -84,9 +99,21 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         pets = RescuePetsAPI5()
     }
     
+    func downloadData(reset: Bool) {
+        if self.view.tag == ADOPTABLE_CATS_VC {
+            DownloadManager.loadPetList(reset: reset)
+        } else {
+            DownloadManager.loadFavorites(reset: reset)
+        }
+    }
+    
     @objc private func refreshPetData(_ sender: Any) {
         PetFinderBreeds.removeValue(forKey: globalBreed!.BreedName)
-        DownloadManager.loadPetList(reset: true)
+        downloadData(reset: true)
+    }
+    
+    deinit {
+        print("Deinit Collection")
     }
     
     func getZipCode() {
@@ -94,7 +121,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         zipCode = keyStore.string(forKey: "zipCode") ?? ""
         if zipCode != "" {
             self.pets?.loading = true
-            DownloadManager.loadPetList(reset: true)
+            downloadData(reset: true)
             return
         }
         
@@ -108,7 +135,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
             }
             
             zipCode = placemark?.postalCode ?? "19106"
-            DownloadManager.loadPetList(reset: true)
+            self.downloadData(reset: true)
         }
     }
 
@@ -133,7 +160,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
                 DispatchQueue.main.async {
                     self.AdoptableCatCollectionView.reloadData()
                 }
-                DownloadManager.loadPetList(reset: true)
+                self.downloadData(reset: true)
                 //self.setupReloadAndScroll()
             } else {
                 let alert3 = UIAlertController(title: "Error", message: "You have not allowed Feline Finder to know where you are located so it cannot find cats which are closest to you.  The zip code has been set to the middle of the US population.  Zip code 66952.  You can change it from the find screen.  You can allow the app to use location services again by fliping the switch for Feline Finder in the iOS app system preferences.", preferredStyle: .alert)
@@ -144,7 +171,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
                 DispatchQueue.main.async {
                     self.AdoptableCatCollectionView.reloadData()
                 }
-                DownloadManager.loadPetList(reset: true)
+                self.downloadData(reset: true)
             }
         }))
         
@@ -171,6 +198,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         
     func petsLoaded(notification:Notification) -> Void {
         print("petLoaded notification")
+        print("TAG = \(self.view.tag == FAVORITES_VC ? "FAVORITES" : "ADOPT")")
         
         guard let userInfo = notification.userInfo,
               let p = userInfo["petList"] as? RescuePetsAPI5
@@ -212,9 +240,8 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
             getZipCode()
         } else {
             self.pets?.loading = true
-            DownloadManager.loadPetList(reset: true)
+            downloadData(reset: true)
         }
-        Favorites.LoadFavorites(tv: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -225,7 +252,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
     @objc func retrieveData() {
         if viewPopped {
             self.pets?.dateCreated = INITIAL_DATE
-            DownloadManager.loadPetList(reset: true)
+            downloadData(reset: true)
             viewPopped = false
         }
         DispatchQueue.main.async { [unowned self] in
@@ -241,7 +268,7 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         
     func Refresh() {
         self.pets?.loading = true
-        DownloadManager.loadPetList()
+        downloadData(reset: true)
     }
         
     func totalRows(_ p: PetList) -> Int {
@@ -259,20 +286,20 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
         
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItem(at: indexPath) as! MainTabAdoptableCatsCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as! AdoptableCatsCollectionViewCell
         
         selectedImage = UIImageView(frame: cell.frame)
         selectedImage.image = cell.photo.image
         
-        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptDetail") as! MainTabAdoptableCatsDetailViewController
+        let details = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "AdoptDetail") as! AdoptableCatsDetailViewController
 
         details.pet = self.pets!.Pets[indexPath.item]
         
-        details.modalPresentationStyle = .overFullScreen
+        details.modalPresentationStyle = .fullScreen
         
-        details.transitioningDelegate = self
+        //details.transitioningDelegate = self
         
-        present(details, animated: true, completion: nil)
+        present(details, animated: false, completion: nil)
 
     }
 
@@ -300,10 +327,10 @@ class MainTabAdoptableCatsCollectionViewViewController: UIViewController, UIColl
     }
 }
 
-extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewDataSourcePrefetching {
+extension AdoptableCatsCollectionViewViewController: UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
         if indexPaths.contains(where: isLoadingCell) {
-            DownloadManager.loadPetList(reset: false)
+            downloadData(reset: false)
         }
     }
   
@@ -326,7 +353,7 @@ extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewData
         if isFetchInProgress {return false}
       if indexPath.row >= pets!.Pets.count {
           print ("isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
-          DownloadManager.loadPetList(reset: false)
+          downloadData(reset: false)
       } else {
           print ("NOT isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
       }
@@ -334,6 +361,7 @@ extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewData
     }
 }
 
+/*
 extension MainTabAdoptableCatsCollectionViewViewController: UIViewControllerTransitioningDelegate {
   func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     transition.originFrame = selectedImage.frame
@@ -349,8 +377,9 @@ extension MainTabAdoptableCatsCollectionViewViewController: UIViewControllerTran
     return transition
   }
 }
+*/
 
-extension MainTabAdoptableCatsCollectionViewViewController {
+extension AdoptableCatsCollectionViewViewController {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let sectionHeader = AdoptableCatCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "emptyCell", for: indexPath) as? EmptyTableViewCell
         if (isFetchInProgress == false) {
@@ -366,7 +395,7 @@ extension MainTabAdoptableCatsCollectionViewViewController {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = AdoptableCatCollectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! MainTabAdoptableCatsCollectionViewCell
+        let cell = AdoptableCatCollectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! AdoptableCatsCollectionViewCell
         if isLoadingCell(for: indexPath) {
             cell.configure(pd: nil)
         } else {
@@ -381,7 +410,7 @@ extension MainTabAdoptableCatsCollectionViewViewController {
     }
 }
 
-extension MainTabAdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
+extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         if let pets = pets {
             guard indexPath.row < pets.count && indexPath.row >= 0
@@ -396,8 +425,8 @@ extension MainTabAdoptableCatsCollectionViewViewController: PinterestLayoutDeleg
             var height = CGFloat((img.first?.height ?? 0) + 180) * (ratio + 0.10)
             height = min(400, height)
             if width == 0 || height == 0 {print("0 Width or Height detected")}
-                return height }
-        else {
+            return height
+        } else {
             return 400
         }
     }

@@ -1,8 +1,8 @@
 //
-//  MainTabAdoptableCatsDetailViewController.swift
+//  AdoptHeaderTableViewCell.swift
 //  FelineFinder
 //
-//  Created by Gregory Williams on 11/11/20.
+//  Created by Gregory Williams on 1/3/21.
 //
 
 import UIKit
@@ -16,8 +16,8 @@ enum detailCollectionViewTypes: Int {
     case media = 2
 }
 
-class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControllerTransitioningDelegate, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate, UIScrollViewDelegate, MFMailComposeViewControllerDelegate {
-    
+class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, HorizontalLayoutVaryingWidthsLayoutDelegate, MFMailComposeViewControllerDelegate {
+
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var heart: FaveButton!
     @IBOutlet weak var PetName: UILabel!
@@ -31,27 +31,27 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
     @IBOutlet weak var mediaToolBar: UICollectionView!
     @IBOutlet weak var mediaToolbarWidth: NSLayoutConstraint!
     
-    @IBOutlet weak var descriptionWK: WKWebView!
-    
-    @IBOutlet weak var contentView: UIView!
-    
-    @IBOutlet weak var topMenu: UIView!
-    
-    @IBOutlet weak var descriptionWKHeight: NSLayoutConstraint!
-
     var pet: Pet!
     var tools: Tools!
     var media: Tools!
     
-    private var scrollView = UIScrollView()
-    
     var selectedPhoto = 0
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
 
-        tools = Tools.init(pet: self.pet, shelter: globalShelterCache[self.pet.shelterID]!, sourceView: self.view)
-        media = Tools.init(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!, sourceView: self.view)
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    func setup(pet: Pet) {
+        self.pet = pet
+        tools = Tools.init(pet: self.pet, shelter: globalShelterCache[self.pet.shelterID]!, sourceView: self.contentView)
+        media = Tools.init(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!, sourceView: self.contentView)
         
         if let imgURL = URL(string: pet.getImage(1, size: "x")) {
         self.photo.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority, completed: nil)
@@ -115,10 +115,10 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
                 mediaWidth += 133
             }
         }
-        if CGFloat(mediaWidth) < view.frame.width {
+        if CGFloat(mediaWidth) < self.contentView.frame.width {
              mediaToolbarWidth.constant = CGFloat(mediaWidth)
         } else {
-            mediaToolbarWidth.constant = view.frame.width
+            mediaToolbarWidth.constant = self.contentView.frame.width
         }
         
         let medialayout = mediaToolBar.collectionViewLayout as! HorizontalLayoutVaryingWidths
@@ -126,16 +126,12 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
         medialayout.numberOfRows = 1
         medialayout.cellPadding = 2.5
         
-        descriptionWK.navigationDelegate = self
-
-        let path = Bundle.main.bundlePath;
-        let sBaseURL = URL(fileURLWithPath: path);
-        let description2 = (tools.list[0] as! descriptionTool).generatePetDescription()
-        descriptionWK.loadHTMLString(description2, baseURL: sBaseURL)
-        
         mediaToolBar.selectItem(at: IndexPath(item: selectedPhoto, section: 0), animated: false, scrollPosition: .left)
+
+        heart.isSelected = Favorites.isFavorite(pet.petID, dataSource: .RescueGroup)
+
     }
-    
+
     @IBAction func heartTapped(_ sender: Any) {
         if heart.isSelected {
             Favorites.addFavorite(pet.petID)
@@ -143,64 +139,11 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
             Favorites.removeFavorite(pet.petID, dataSource: .RescueGroup)
         }
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        heart.isSelected = Favorites.isFavorite(pet.petID, dataSource: .RescueGroup)
-        
-        setupScrollView()
-        scrollView.addSubview(self.contentView)
-        scrollView.delegate = self
-        
-        let contentLayoutGuide = scrollView.contentLayoutGuide
-         
-        NSLayoutConstraint.activate([
-           //3
-            view.widthAnchor.constraint(equalTo:
-             contentView.widthAnchor),
-            contentView.leadingAnchor.constraint(equalTo:
-             contentLayoutGuide.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo:
-             contentLayoutGuide.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo:
-             contentLayoutGuide.topAnchor),
-           //4
-            contentView.bottomAnchor.constraint(equalTo:
-             contentLayoutGuide.bottomAnchor),
-            contentView.heightAnchor.constraint(equalTo: contentLayoutGuide.heightAnchor)
-        ])
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        Favorites.storeIDs()
-    }
-    
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
+        controller.dismiss(animated: false, completion: nil)
     }
-    
-    private func setupScrollView() {
-      //1
-      scrollView.translatesAutoresizingMaskIntoConstraints = false
-      view.addSubview(scrollView)
-        
-      //2
-      NSLayoutConstraint.activate([
-        scrollView.widthAnchor.constraint(equalTo: self.view.widthAnchor),
-        scrollView.heightAnchor.constraint(equalToConstant: (self.view.frame.height - topMenu.frame.height)),
-        scrollView.leadingAnchor.constraint(equalTo:
-          view.leadingAnchor),
-        scrollView.trailingAnchor.constraint(equalTo:
-          view.trailingAnchor),
-        scrollView.topAnchor.constraint(equalTo: topMenu.bottomAnchor),
-        self.contentView.bottomAnchor.constraint(equalTo: self.descriptionWK.bottomAnchor),
-        //scrollView.bottomAnchor.constraint(equalTo:
-        //                                    self.contentView.bottomAnchor)
-      ])
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, widthForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         switch collectionView.tag {
         case detailCollectionViewTypes.tools.rawValue:
@@ -215,11 +158,6 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
             }
         default: return 0
         }
-    }
-    
-    @IBAction func backButtonTapped(_ sender: Any)
-    {
-        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func ListIconTapped(_ sender: Any) {
@@ -280,38 +218,5 @@ class MainTabAdoptableCatsDetailViewController: UIViewController, UIViewControll
             selectedPhoto = indexPath.item
         default: break
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super .viewDidLayoutSubviews()
-        //self.scrollView.contentSize = CGSize(width: self.view.frame.size.width, height: 550 + (self.mediaToolBar.frame.maxY))
-    }
-}
-
-extension MainTabAdoptableCatsDetailViewController : WKNavigationDelegate {
-/*
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        // Handel Dynamic Height For Webview Loads with HTML
-       // Most important to reset webview height to any desired height i prefer 1 or 0
-        webView.frame.size.height = 1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-        // here get height constant and assign new height in it
-            if let constraint = (webView.constraints.filter{$0.firstAttribute == .height}.first) {
-                constraint.constant = webView.scrollView.contentSize.height
-            }
-        }
-    }
- */
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-      webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
-
-        if complete != nil {
-            let height = webView.scrollView.contentSize.height
-            self.descriptionWKHeight.constant = height
-            self.contentView.frame.size.height = height + (self.mediaToolBar.frame.maxY)
-            print("height of webView is: \(height)")
-            self.view.setNeedsLayout()
-        }
-      })
     }
 }

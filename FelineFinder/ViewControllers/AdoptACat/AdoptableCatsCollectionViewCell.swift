@@ -8,7 +8,7 @@
 import UIKit
 import SDWebImage
 
-class MainTabAdoptableCatsCollectionViewCell: UICollectionViewCell {
+class AdoptableCatsCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var name: UILabel!

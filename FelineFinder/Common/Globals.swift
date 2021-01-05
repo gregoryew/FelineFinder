@@ -523,11 +523,28 @@ var YouTubeAPIKey: String {
   }
 }
 
+extension UITextField {
+    func setIcon(_ image: UIImage) {
+        let iconView = UIImageView(frame:
+                      CGRect(x: 10, y: 5, width: 20, height: 20))
+        iconView.image = image
+        let iconContainerView: UIView = UIView(frame:
+                      CGRect(x: 20, y: 0, width: 30, height: 30))
+        iconContainerView.addSubview(iconView)
+        leftView = iconContainerView
+        leftViewMode = .always
+    }
+}
+
 var questionList: QuestionList = QuestionList()
+var Favorites = FavoritesList()
 
 let INITIAL_DATE = Date.setToDateTime(dateString: "1900-01-01")
 let ALL_BREEDS = "All Breeds"
 let FAVORITES = "FAVORITES"
+
+let ADOPTABLE_CATS_VC = 1
+let FAVORITES_VC = 2
 
 let filterReturned = Notification.Name(rawValue: "filterReturned")
 let listReturned = Notification.Name(rawValue: "listReturned")

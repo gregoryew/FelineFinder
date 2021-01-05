@@ -17,6 +17,8 @@ let petsFailedMessage = Notification.Name(rawValue:"petsFailed")
 let youTubePlayListLoadedMessage = Notification.Name(rawValue:"youTubePlayListLoaded")
 let breedPicturesLoadedMessage = Notification.Name(rawValue:"breedPicturesLoaded")
 let breedLoadToolbar = Notification.Name(rawValue:"breedLoadToolbar")
+let favoritesLoadedMessage = Notification.Name(rawValue:"favoritesLoaded")
+let favoritesFailedMessage = Notification.Name(rawValue:"favoritesFailed")
 
 var isFetchInProgress = false
 
@@ -96,7 +98,7 @@ final class DownloadManager {
                         userInfo: ["error": error.reason])
             case .success(let response):
                 let petList = response as PetList
-                PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+                PetFinderBreeds[(globalBreed?.BreedName)! + "_FAVORITES"] = pets
                 var info = [String: Any]()
                 info["petList"] = pets
                 if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
@@ -112,7 +114,7 @@ final class DownloadManager {
         
         var pets: RescuePetsAPI5!
         
-        if let p = PetFinderBreeds[(globalBreed?.BreedName)!]
+        if let p = PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"]
         {
             pets = p as? RescuePetsAPI5
         } else {
@@ -136,7 +138,7 @@ final class DownloadManager {
                             userInfo: ["error": error.reason])
                 case .success(let response):
                     let petList = response as PetList
-                    PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+                    PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"] = pets
                     var info = [String: Any]()
                     info["petList"] = pets
                     if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
@@ -147,7 +149,7 @@ final class DownloadManager {
                 }
             }
         } else {
-            PetFinderBreeds[(globalBreed?.BreedName)!] = pets
+            PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"] = pets
             var info = [String: Any]()
             info["petList"] = pets
             if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: pets.count)}

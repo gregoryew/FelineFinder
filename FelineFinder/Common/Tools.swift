@@ -561,7 +561,7 @@ class shareTool: Tool {
                                 let ac = UIActivityViewController(activityItems: imageCache + ["About \(self.pet!.name)\r\n\(self.pet!.description) \(address) \r\n\r\nContact Info\r\n\(self.shelter!.email)\r\n\(self.shelter!.phone)" ], applicationActivities: nil)
                                 if let popOver = ac.popoverPresentationController {
                                     popOver.sourceView = self.sourceView
-                                    let vc = self.sourceView?.findViewController() as! MainTabAdoptableCatsDetailViewController
+                                    let vc = self.sourceView?.findViewController() as! AdoptableCatsDetailViewController
                                     popOver.sourceRect = CGRect(x: (self.sourceView!.frame.width / 2) - 100, y: (self.sourceView!.frame.height / 2) - 100, width: 200, height: 200)
                                     vc.present(ac, animated: true)
                                 }

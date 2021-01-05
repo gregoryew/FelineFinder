@@ -53,34 +53,32 @@ class FavoritesList {
         return catIDs.contains(petID)
     }
     
-    func LoadFavorites(tv: UITableView?) {
+    func LoadFavorites() {
         loaded = false
         
         if (Utilities.isNetworkAvailable() == false) {
             return
         }
                 
-        loadIDs()
+        catIDs = loadIDs()
         
-        var tempIDs = [String]()
         var i = 0
         while i < catIDs.count {
             if catIDs[i].hasSuffix("_PetFinder") ||  catIDs[i].hasSuffix("_RescueGroup") {
-                tempIDs.append(catIDs[i].components(separatedBy: "_")[0])
-            } else {
-                tempIDs.append(catIDs[i])
+                catIDs[i] = catIDs[i].components(separatedBy: "_")[0]
             }
             i += 1
         }
-        catIDs = tempIDs
+        
+        loaded = true
     }
     
-    func loadIDs() {
+    func loadIDs() -> [String] {
         let keyStore = NSUbiquitousKeyValueStore()
         if let id = keyStore.array(forKey: "FavoriteIDs") {
-            catIDs = id as! [String]
+            return id as! [String]
         } else {
-            return
+            return []
         }
     }
     

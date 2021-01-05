@@ -52,9 +52,6 @@ struct youtubeapi: Decodable {
 }
 
 class YouTubeAPI {
-    
-    var status = ""
-    var task: URLSessionTask?
         
     static func makeAPICall(url: String) -> Result<Data?, NetworkError> {
         guard let url = URL(string: url) else {
