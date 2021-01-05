@@ -1293,17 +1293,18 @@
                                 <rect key="frame" x="0.0" y="54" width="414" height="682"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ee-4V-lQL">
-                                <rect key="frame" x="366" y="2" width="50" height="50"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icq-pw-PwJ">
+                                <rect key="frame" x="339" y="15" width="60" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="G5w-HZ-kn2"/>
-                                    <constraint firstAttribute="height" constant="50" id="JAS-fX-2jU"/>
+                                    <constraint firstAttribute="width" constant="60" id="i3i-Md-NIr"/>
+                                    <constraint firstAttribute="height" constant="41" id="j4F-EG-YuR"/>
                                 </constraints>
-                                <state key="normal" image="close"/>
-                                <state key="highlighted" image="close hilited"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="Close">
+                                    <color key="titleColor" systemColor="systemBlueColor"/>
+                                </state>
                                 <connections>
-                                    <action selector="clloseTapped:" destination="CZX-RI-1eB" eventType="touchUpInside" id="qpR-eY-gUN"/>
+                                    <action selector="clloseTapped:" destination="CZX-RI-1eB" eventType="touchUpInside" id="mSl-zd-qLL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1311,12 +1312,12 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="icq-pw-PwJ" firstAttribute="top" secondItem="flQ-he-jQ7" secondAttribute="top" constant="15" id="7Jw-6n-tBw"/>
                             <constraint firstItem="2ko-Br-63X" firstAttribute="leading" secondItem="flQ-he-jQ7" secondAttribute="leading" id="9Ow-yU-Pnv"/>
                             <constraint firstItem="2ko-Br-63X" firstAttribute="bottom" secondItem="flQ-he-jQ7" secondAttribute="bottom" id="E2K-mA-L1u"/>
                             <constraint firstItem="2ko-Br-63X" firstAttribute="top" secondItem="flQ-he-jQ7" secondAttribute="top" constant="50" id="UNS-Op-Zxv"/>
                             <constraint firstItem="2ko-Br-63X" firstAttribute="trailing" secondItem="flQ-he-jQ7" secondAttribute="trailing" id="Y3Q-fv-kg7"/>
-                            <constraint firstItem="5ee-4V-lQL" firstAttribute="trailing" secondItem="flQ-he-jQ7" secondAttribute="trailing" constant="2" id="YR2-9w-a56"/>
-                            <constraint firstItem="5ee-4V-lQL" firstAttribute="top" secondItem="flQ-he-jQ7" secondAttribute="top" constant="2" id="lGO-eT-pBQ"/>
+                            <constraint firstItem="flQ-he-jQ7" firstAttribute="trailing" secondItem="icq-pw-PwJ" secondAttribute="trailing" constant="15" id="jGW-Nh-zCL"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1965,8 +1966,6 @@
         <image name="MainTabSurveyUp" width="25" height="25"/>
         <image name="VideoAvailableIcon" width="25" height="25"/>
         <image name="border2" width="64" height="60"/>
-        <image name="close" width="50" height="50"/>
-        <image name="close hilited" width="50" height="50"/>
         <image name="filter" width="50" height="50"/>
         <image name="heart" width="128" height="128"/>
         <image name="icons8-toggle-expand-screen" width="50" height="50"/>
