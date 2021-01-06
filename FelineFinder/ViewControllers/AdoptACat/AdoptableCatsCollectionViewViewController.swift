@@ -96,7 +96,7 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         self.AdoptableCatCollectionView.collectionViewLayout = layout
         
         locationManager?.delegate = self
-        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+//        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
         locationManager?.requestWhenInUseAuthorization()
          
         pets = RescuePetsAPI5()

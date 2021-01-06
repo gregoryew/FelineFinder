@@ -73,6 +73,13 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
+        breedDetail.modalPresentationStyle = .fullScreen
+        breedDetail.breed = breeds[indexPath.row]
+        self.present(breedDetail, animated: false, completion: nil)
+    }
+    
     func answerChanged(question: Int, answer: Int) {
         if breedStats.allBreedStats[1]![question].isPercentage {
             responses[question].percentAnswer = answer

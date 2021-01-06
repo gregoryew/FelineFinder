@@ -28,7 +28,6 @@ class FitBreedTableViewCell: UITableViewCell {
     }
     
     func configure(breed: Breed) {
-        SelectButton.setTitle(breedSelected[Int(breed.BreedID)] ? "Deselect" : "Select", for: .normal)
         
         BreedNameLabel.text = "\(String(format: "%.0f", round(breed.Percentage * 100)))% \( breed.BreedName)"
         
@@ -45,12 +44,4 @@ class FitBreedTableViewCell: UITableViewCell {
         let vc = self.findViewController() as! MainTabFitViewController
         vc.hiliteBreed(selectedBreedID: Int(breed.BreedID))
     }
-    
-    @IBAction func BreedInfoTapped(_ sender: UIButton) {
-        let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
-        breedDetail.modalPresentationStyle = .fullScreen
-        breedDetail.breed = self.breed
-        self.findViewController()!.present(breedDetail, animated: false, completion: nil)
-    }
-
 }

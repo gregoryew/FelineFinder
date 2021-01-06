@@ -521,32 +521,14 @@
                                                     <rect key="frame" x="5" y="5" width="105" height="166"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L6W-6Z-ZiH">
-                                                            <rect key="frame" x="0.0" y="121.66666666666667" width="105" height="22.333333333333329"/>
+                                                            <rect key="frame" x="0.0" y="121.66666666666667" width="105" height="44.333333333333329"/>
                                                             <color key="backgroundColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                            <state key="normal" title="Select">
+                                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                                            <state key="normal" title="Stats">
                                                                 <color key="titleColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="hiliteBreed:" destination="sDL-TQ-QBr" eventType="touchUpInside" id="Ux9-bS-16Z"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C5j-jt-sCt">
-                                                            <rect key="frame" x="0.0" y="144" width="105" height="22"/>
-                                                            <color key="backgroundColor" systemColor="systemBlueColor"/>
-                                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                                            <state key="normal" title="Details">
-                                                                <color key="titleColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="BreedInfoTapped:" destination="sDL-TQ-QBr" eventType="touchUpInside" id="nDu-94-I2K"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nz7-cv-apt">
-                                                            <rect key="frame" x="8" y="144" width="15" height="22"/>
-                                                            <state key="normal" image="Fit_info"/>
-                                                            <connections>
-                                                                <action selector="BreedInfoTapped:" destination="sDL-TQ-QBr" eventType="touchUpInside" id="NVH-md-4XB"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="44h-EM-wqF">
@@ -575,32 +557,31 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhP-qc-byh">
-                                                            <rect key="frame" x="5" y="121.33333333333326" width="18" height="21.999999999999986"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" image="FitArrow"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhP-qc-byh">
+                                                            <rect key="frame" x="8" y="132" width="18" height="22"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="22" id="Dkl-aQ-HdJ"/>
+                                                                <constraint firstAttribute="width" constant="18" id="oNZ-68-pcH"/>
+                                                            </constraints>
+                                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <state key="normal" image="bar graph"/>
                                                             <connections>
-                                                                <action selector="hiliteBreed:" destination="sDL-TQ-QBr" eventType="touchUpInside" id="Dau-qb-6rs"/>
+                                                                <action selector="hiliteBreed:" destination="sDL-TQ-QBr" eventType="touchUpInside" id="Nb9-7r-4Fp"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="L6W-6Z-ZiH" secondAttribute="trailing" id="1Zw-Et-NUm"/>
-                                                        <constraint firstAttribute="bottom" secondItem="C5j-jt-sCt" secondAttribute="bottom" id="2nN-Sl-BG5"/>
                                                         <constraint firstItem="txq-VQ-VOw" firstAttribute="top" secondItem="9zD-Zq-VAs" secondAttribute="top" id="4BG-Jz-GXx"/>
                                                         <constraint firstItem="L6W-6Z-ZiH" firstAttribute="leading" secondItem="9zD-Zq-VAs" secondAttribute="leading" id="5e4-CC-l2k"/>
-                                                        <constraint firstItem="C5j-jt-sCt" firstAttribute="top" secondItem="L6W-6Z-ZiH" secondAttribute="bottom" id="EKO-aT-9C7"/>
                                                         <constraint firstItem="44h-EM-wqF" firstAttribute="top" secondItem="txq-VQ-VOw" secondAttribute="bottom" constant="1.6699999999999999" id="HFc-yL-IQR"/>
                                                         <constraint firstItem="txq-VQ-VOw" firstAttribute="leading" secondItem="9zD-Zq-VAs" secondAttribute="leading" id="NuJ-d4-prZ"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rhP-qc-byh" secondAttribute="bottom" constant="12" id="OIE-WN-sH2"/>
                                                         <constraint firstAttribute="trailing" secondItem="txq-VQ-VOw" secondAttribute="trailing" id="P9C-qp-JVu"/>
                                                         <constraint firstItem="44h-EM-wqF" firstAttribute="leading" secondItem="9zD-Zq-VAs" secondAttribute="leading" constant="5" id="Sfn-vE-4ke"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Nz7-cv-apt" secondAttribute="trailing" constant="82" id="bnX-nv-rsd"/>
-                                                        <constraint firstAttribute="bottom" secondItem="L6W-6Z-ZiH" secondAttribute="bottom" constant="22.000000000000284" id="chV-uM-feQ"/>
-                                                        <constraint firstItem="C5j-jt-sCt" firstAttribute="leading" secondItem="9zD-Zq-VAs" secondAttribute="leading" id="lwl-wJ-hyQ"/>
-                                                        <constraint firstAttribute="trailing" secondItem="C5j-jt-sCt" secondAttribute="trailing" id="rsU-0n-cej"/>
-                                                        <constraint firstItem="Nz7-cv-apt" firstAttribute="leading" secondItem="9zD-Zq-VAs" secondAttribute="leading" constant="8" id="tfI-r7-6th"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Nz7-cv-apt" secondAttribute="bottom" id="ugQ-M0-iZY"/>
+                                                        <constraint firstAttribute="bottom" secondItem="L6W-6Z-ZiH" secondAttribute="bottom" id="chV-uM-feQ"/>
+                                                        <constraint firstItem="rhP-qc-byh" firstAttribute="leading" secondItem="9zD-Zq-VAs" secondAttribute="leading" constant="8" id="j24-bz-nTg"/>
                                                         <constraint firstItem="L6W-6Z-ZiH" firstAttribute="top" secondItem="44h-EM-wqF" secondAttribute="bottom" constant="5.9999999999998437" id="wdi-Bj-fP0"/>
                                                         <constraint firstAttribute="trailing" secondItem="44h-EM-wqF" secondAttribute="trailing" constant="5" id="wvD-qa-CEg"/>
                                                     </constraints>
@@ -661,7 +642,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqt-uj-xmN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="471" y="1066"/>
+            <point key="canvasLocation" x="469.56521739130437" y="1065.4891304347827"/>
         </scene>
         <!--Adopt-->
         <scene sceneID="6BA-vO-rTu">
@@ -1953,8 +1934,6 @@
     <resources>
         <image name="AdoptHeart" width="44" height="38"/>
         <image name="Cartoon Abyssinian" width="85.333335876464844" height="85.333335876464844"/>
-        <image name="FitArrow" width="15" height="15"/>
-        <image name="Fit_info" width="15" height="15"/>
         <image name="Knob" width="26.333333969116211" height="26.333333969116211"/>
         <image name="MainTabAdopt" width="25" height="25"/>
         <image name="MainTabAdoptUp" width="25" height="25"/>
@@ -1965,6 +1944,7 @@
         <image name="MainTabSurvey" width="25" height="25"/>
         <image name="MainTabSurveyUp" width="25" height="25"/>
         <image name="VideoAvailableIcon" width="25" height="25"/>
+        <image name="bar graph" width="48" height="48"/>
         <image name="border2" width="64" height="60"/>
         <image name="filter" width="50" height="50"/>
         <image name="heart" width="128" height="128"/>
