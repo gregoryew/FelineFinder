@@ -304,9 +304,19 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
 
     }
     
+    //When tapped will bring up the filter search
+    //Pass query to search screen
+    //Next set search daily to yes
+    //Finally present dialog asking user to modify filter
+    //And save and the system will search daily
+    //Until the user sets the offline search to no and saves
+    @IBAction func OfflineSearchTapped(_ sender: Any) {
+        let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
+        self.present(PetFinderFind, animated: true, completion: nil)
+    }
+    
     @IBAction func FilterButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
-        PetFinderFind.breed = globalBreed
         self.present(PetFinderFind, animated: true, completion: nil)
     }
     

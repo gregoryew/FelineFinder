@@ -99,7 +99,6 @@
 		C57E61B7255BBA9C00120018 /* LocationManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61B6255BBA9C00120018 /* LocationManager2.swift */; };
 		C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61B9255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift */; };
 		C57E61BD255BBAED00120018 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61BC255BBAED00120018 /* Tools.swift */; };
-		C57E61C3255BBB0900120018 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61C2255BBB0900120018 /* EmptyTableViewCell.swift */; };
 		C57E61C8255BBDC000120018 /* BreedHeadshots.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57E61C7255BBDC000120018 /* BreedHeadshots.xcassets */; };
 		C57E61D4255BDAB000120018 /* OldSelectedItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61D3255BDAB000120018 /* OldSelectedItemTableViewCell.swift */; };
 		C57E61D8255BDB1E00120018 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61D7255BDB1E00120018 /* MainTabBarViewController.swift */; };
@@ -225,7 +224,6 @@
 		C57E61B6255BBA9C00120018 /* LocationManager2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager2.swift; sourceTree = "<group>"; };
 		C57E61B9255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutVaryingWidths.swift; sourceTree = "<group>"; };
 		C57E61BC255BBAED00120018 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		C57E61C2255BBB0900120018 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		C57E61C7255BBDC000120018 /* BreedHeadshots.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BreedHeadshots.xcassets; sourceTree = "<group>"; };
 		C57E61D3255BDAB000120018 /* OldSelectedItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldSelectedItemTableViewCell.swift; sourceTree = "<group>"; };
 		C57E61D7255BDB1E00120018 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
@@ -419,7 +417,6 @@
 		C57E5758255BB18B00120018 /* AdoptACat */ = {
 			isa = PBXGroup;
 			children = (
-				C57E61C2255BBB0900120018 /* EmptyTableViewCell.swift */,
 				C57E6192255BB90200120018 /* OldMainTabAdoptableCats.swift */,
 				C57E61EA255BDF4E00120018 /* OldToolCollectionViewCell.swift */,
 				C57E6193255BB90200120018 /* OldMainTabAdoptableCatsMainTVCell.swift */,
@@ -843,7 +840,6 @@
 				C57D511D256FC5C800D0842B /* BreedVideoCollectionViewCell.swift in Sources */,
 				C51CBD4A25817299006B2D12 /* FavoritesViewController.swift in Sources */,
 				C57E617C255BB7BA00120018 /* RescuePetsAPI5.swift in Sources */,
-				C57E61C3255BBB0900120018 /* EmptyTableViewCell.swift in Sources */,
 				C57E61D8255BDB1E00120018 /* MainTabBarViewController.swift in Sources */,
 				C57E619E255BB92100120018 /* FitBreedTableViewCell.swift in Sources */,
 				C57D50E2256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift in Sources */,
