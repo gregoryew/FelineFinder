@@ -295,9 +295,7 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
 
         details.pet = self.pets!.Pets[indexPath.item]
         
-        details.modalPresentationStyle = .fullScreen
-        
-        //details.transitioningDelegate = self
+        details.modalPresentationStyle = .automatic
         
         present(details, animated: false, completion: nil)
 
