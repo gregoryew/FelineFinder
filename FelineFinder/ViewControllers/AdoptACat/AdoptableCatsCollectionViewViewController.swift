@@ -8,6 +8,7 @@
 import UIKit
 import CMMapLauncher
 import PopMenu
+import DZNEmptyDataSet
 
 var selectedImages: [Int] = []
 
@@ -87,6 +88,8 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         AdoptableCatCollectionView.isPrefetchingEnabled = true
         AdoptableCatCollectionView.delegate = self
         AdoptableCatCollectionView.prefetchDataSource = self
+        AdoptableCatCollectionView.emptyDataSetDelegate = self
+        AdoptableCatCollectionView.emptyDataSetSource = self
         
         let layout = PinterestLayout()
         layout.delegate = self
@@ -377,39 +380,7 @@ extension AdoptableCatsCollectionViewViewController: UICollectionViewDataSourceP
     }
 }
 
-/*
-extension MainTabAdoptableCatsCollectionViewViewController: UIViewControllerTransitioningDelegate {
-  func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    transition.originFrame = selectedImage.frame
-
-    transition.presenting = true
-    selectedImage!.isHidden = false
-
-    return transition
-  }
-
-  func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-    transition.presenting = false
-    return transition
-  }
-}
-*/
-
 extension AdoptableCatsCollectionViewViewController {
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let sectionHeader = AdoptableCatCollectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "emptyCell", for: indexPath) as? EmptyTableViewCell
-        if (isFetchInProgress == false) {
-            if totalRows == 0 {
-                sectionHeader?.MessageButton.setTitle("Sorry nothing found.  I can search once a day for it if you tap here.", for: .normal)
-            } else if pets!.Pets.count == indexPath.row + 1 {
-                sectionHeader?.MessageButton.setTitle("End of Results.  If you didn't find what you want tap here.", for: .normal)
-            }
-        } else if (isFetchInProgress == true) {
-            sectionHeader?.MessageButton.setTitle( "Please Wait While Cats Are Loading...", for: .normal)
-        }
-        return sectionHeader ?? UICollectionReusableView()
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = AdoptableCatCollectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! AdoptableCatsCollectionViewCell
         if isLoadingCell(for: indexPath) {
@@ -424,8 +395,24 @@ extension AdoptableCatsCollectionViewViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalRows
     }
+}
+
+extension AdoptableCatsCollectionViewViewController: DZNEmptyDataSetDelegate, DZNEmptyDataSetSource {
+
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return UIImage(named: "cat")
+    }
     
-    
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        if (isFetchInProgress == false) {
+            if totalRows == 0 {
+                return NSAttributedString(string: "Sorry nothing found.  I can search once a day for it if you tap the search icon above.")
+            }
+        } else if (isFetchInProgress == true) {
+            return NSAttributedString(string: "Please Wait While Cats Are Loading...")
+        }
+        return NSAttributedString(string: "")
+    }
 }
 
 extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate  {
@@ -448,6 +435,4 @@ extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate  {
             return 400
         }
     }
-    
-    
 }
