@@ -25,6 +25,19 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
     var childContainerExpanded = false
     var originalRect: CGRect!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        showBreedDetail(breed: breed!)
+        toolbar.delegate = self
+        searchBar.delegate = self
+        DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
+            self.breeds = breeds
+            self.filteredBreeds = breeds
+        }
+        self.menuItemChoosen(option: 2)
+    }
+    
     private var infoViewController:BreedInfoViewController {
         if(_infoViewController == nil) {
             // Load Storyboard
@@ -109,19 +122,6 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
         viewController.removeFromParent()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        hideKeyboardWhenTappedAround()
-        showBreedDetail(breed: breed!)
-        toolbar.delegate = self
-        searchBar.delegate = self
-        DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
-            self.breeds = breeds
-            self.filteredBreeds = breeds
-        }
-        self.menuItemChoosen(option: 2)
-    }
-
     func showBreedDetail(breed: Breed) {
         breedPhoto.image = UIImage(named: breed.FullSizedPicture)
         breedName.text = breed.BreedName

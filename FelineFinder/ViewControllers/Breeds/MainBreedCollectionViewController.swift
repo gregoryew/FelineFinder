@@ -8,7 +8,7 @@
 import UIKit
 import BDKCollectionIndexView
 
-class MainBreedCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
+class MainBreedCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var BreedCollectionView: UICollectionView!
     @IBOutlet weak var breedIndexView: BDKCollectionIndexView!
@@ -33,11 +33,22 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
                 self.view.addSubview(indexView!)
                 self.view.bringSubviewToFront(indexView!)
                 indexView!.indexTitles = self.breedLetters
+                                
                 self.BreedCollectionView.reloadData()
                 
                 self.searchBar.delegate = self
             })
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as?
+            MainBreedCollectionViewCell {
+            return cell.Border.frame.inset(by: UIEdgeInsets(top: 2.5, left: 2.5, bottom: 2.5, right: 2.5)).size
+        }
+        
+        return CGSize(width: 0, height: 0)
     }
     
     func setupIndex() {

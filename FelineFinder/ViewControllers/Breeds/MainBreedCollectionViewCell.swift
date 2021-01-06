@@ -12,6 +12,7 @@ import MarqueeLabel
 class MainBreedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var BreedNameLabel: MarqueeLabel!
     @IBOutlet weak var BreedImage: UIImageView!
+    @IBOutlet weak var Border: UIImageView!
     
     func configure(breed: Breed) {
         self.BreedNameLabel.text = breed.BreedName + " "
