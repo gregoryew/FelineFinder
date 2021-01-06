@@ -693,7 +693,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Sort By: Breed Name"/>
                                         <connections>
-                                            <action selector="sortMenuTapped:" destination="qOb-vH-oFd" eventType="touchUpInside" id="4X3-83-8wj"/>
+                                            <action selector="SortMenuTapped:" destination="qOb-vH-oFd" eventType="touchUpInside" id="ZNr-zc-r3f"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -882,6 +882,7 @@
                     <connections>
                         <outlet property="AdoptableCatCollectionView" destination="dGm-kW-1m9" id="DDy-r7-6Mm"/>
                         <outlet property="FilterButton" destination="zsY-5Y-G71" id="3mU-W4-yc5"/>
+                        <outlet property="SortMenu" destination="Zru-hp-wW6" id="eJN-va-dEZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKu-KI-ePI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -941,10 +942,10 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="584"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxU-7E-LCs">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxU-7E-LCs">
                                                             <rect key="frame" x="0.0" y="0.0" width="414" height="596"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-fb-cKy" customClass="DynamicImageView" customModule="FelineFinder" customModuleProvider="target">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-fb-cKy" customClass="DynamicImageView" customModule="FelineFinder" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="300"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -959,7 +960,7 @@
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
                                                                 </imageView>
-                                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rB-vS-F5m">
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rB-vS-F5m">
                                                                     <rect key="frame" x="0.0" y="310" width="414" height="176"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id7-VA-UI6">
@@ -1093,7 +1094,7 @@
                                                                         <constraint firstAttribute="trailing" secondItem="cZK-wi-JE8" secondAttribute="trailing" id="jIT-3z-ORy"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7US-La-KdM">
+                                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7US-La-KdM">
                                                                     <rect key="frame" x="0.0" y="496" width="414" height="100"/>
                                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                     <constraints>
@@ -1655,7 +1656,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G8N-SP-NuR">
-                                            <rect key="frame" x="8.0000000000000018" y="10.666666666666664" width="16.666666666666671" height="29"/>
+                                            <rect key="frame" x="20" y="10.666666666666664" width="16.666666666666671" height="29"/>
                                             <attributedString key="attributedText">
                                                 <fragment content="A">
                                                     <attributes>
@@ -1672,7 +1673,7 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G8N-SP-NuR" secondAttribute="trailing" constant="20" symbolic="YES" id="3jm-UA-no7"/>
                                         <constraint firstItem="G8N-SP-NuR" firstAttribute="centerY" secondItem="dx7-a7-n3n" secondAttribute="centerY" id="CV9-UI-mT6"/>
-                                        <constraint firstItem="G8N-SP-NuR" firstAttribute="leading" secondItem="dx7-a7-n3n" secondAttribute="leading" constant="8" id="j1h-mb-WOr"/>
+                                        <constraint firstItem="G8N-SP-NuR" firstAttribute="leading" secondItem="dx7-a7-n3n" secondAttribute="leading" constant="20" id="j1h-mb-WOr"/>
                                     </constraints>
                                     <connections>
                                         <outlet property="SectionLetterLabel" destination="G8N-SP-NuR" id="KSP-hs-eDK"/>
@@ -1701,6 +1702,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="Sort By: Breed Name"/>
                                         <connections>
+                                            <action selector="sortMenuTapped:" destination="3yq-Bi-Lfx" eventType="touchUpInside" id="Au1-Nq-nDD"/>
                                             <action selector="sortMenuTapped:" destination="zab-Vy-SOW" eventType="touchUpInside" id="Tn0-7x-nEi"/>
                                             <action selector="sortMenuTapped:" destination="qOb-vH-oFd" eventType="touchUpInside" id="bMc-Tp-bUM"/>
                                         </connections>
@@ -1738,6 +1740,7 @@
                         <outlet property="BreedCollectionView" destination="HOf-Ey-l4H" id="bTk-Zg-7KR"/>
                         <outlet property="breedIndexView" destination="kdQ-n6-0Kp" id="Gck-Lc-JtH"/>
                         <outlet property="searchBar" destination="aWw-nT-Js5" id="tCR-FB-4Tk"/>
+                        <outlet property="sortMenu" destination="1Y8-N6-wk8" id="fjS-U7-fle"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOX-pd-pRE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1916,18 +1919,24 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="39g-LI-X33"/>
         <designable name="8xR-AM-cSv">
             <size key="intrinsicContentSize" width="99" height="30"/>
         </designable>
         <designable name="BNE-bJ-in9">
             <size key="intrinsicContentSize" width="39.333333333333336" height="18.666666666666668"/>
         </designable>
+        <designable name="Ckv-1w-Ska">
+            <size key="intrinsicContentSize" width="195" height="0.0"/>
+        </designable>
         <designable name="SFD-dS-GU7">
             <size key="intrinsicContentSize" width="90" height="30"/>
         </designable>
+        <designable name="SN6-fb-cKy"/>
         <designable name="WN0-0b-p7G">
             <size key="intrinsicContentSize" width="37" height="17.666666666666668"/>
         </designable>
+        <designable name="aYa-YC-vtl"/>
         <designable name="fpj-Oo-Jd3">
             <size key="intrinsicContentSize" width="32" height="15.333333333333334"/>
         </designable>
@@ -1936,6 +1945,9 @@
         </designable>
         <designable name="jqB-46-eml">
             <size key="intrinsicContentSize" width="49" height="23.333333333333332"/>
+        </designable>
+        <designable name="y6s-73-kXv">
+            <size key="intrinsicContentSize" width="-1" height="58.333333333333329"/>
         </designable>
     </designables>
     <resources>

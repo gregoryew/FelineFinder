@@ -7,12 +7,16 @@
 
 import UIKit
 import BDKCollectionIndexView
+import PopMenu
 
 class MainBreedCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var BreedCollectionView: UICollectionView!
     @IBOutlet weak var breedIndexView: BDKCollectionIndexView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var sortMenu: UIButton!
+    
+    var popMenu: PopMenuViewController? = nil
     
     var breeds = [Breed]()
     var filteredBreeds: [Breed] = []
@@ -115,5 +119,40 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
         setupIndex()
         
         self.BreedCollectionView.reloadData()
+    }
+}
+
+extension MainBreedCollectionViewController: PopMenuViewControllerDelegate {
+    func popMenuCustomSize() -> PopMenuViewController {
+        let action1 = PopMenuDefaultAction(title: "Breed Name", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        let action2 = PopMenuDefaultAction(title: "Best Match", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+
+        let actions = [
+            action1,
+            action2
+        ]
+        
+        let popMenu = PopMenuViewController(actions: actions)
+        
+        popMenu.appearance.popMenuColor.backgroundColor = .solid(fill: .white)
+        
+        return popMenu
+    }
+
+    func popMenuDidSelectItem(_ popMenuViewController: PopMenuViewController, at index: Int) {
+        sortMenu.setTitle("Sort By: " + popMenuViewController.actions[index].title!, for: .normal)
+    }
+
+    @IBAction func sortMenuTapped(_ sender: Any) {
+        popMenu = popMenuCustomSize()
+        popMenu?.shouldDismissOnSelection = true
+        popMenu?.delegate = self
+        var origin = sortMenu.frame.origin
+        origin.x = (sortMenu.frame.origin.x + sortMenu.frame.width) -  (popMenu?.contentFrame.width)!
+        origin.y = sortMenu.frame.origin.y - (popMenu?.contentFrame.height ?? sortMenu.frame.origin.y)
+        popMenu?.view.frame.origin = origin
+        if let popMenuViewController = popMenu {
+            present(popMenuViewController, animated: true, completion: nil)
+        }
     }
 }

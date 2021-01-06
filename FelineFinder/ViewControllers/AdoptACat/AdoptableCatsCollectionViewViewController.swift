@@ -13,15 +13,15 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer {
+class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer,PopMenuViewControllerDelegate
+ {
 
-    @IBOutlet weak var SortMenu: UILabel!
-    @IBOutlet weak var SortAscendingButton: UIButton!
-    @IBOutlet weak var SortDescendingButton: UIButton!
+    @IBOutlet weak var SortMenu: UIButton!
     @IBOutlet weak var FilterButton: UIButton!
     
     @IBOutlet weak var AdoptableCatCollectionView: UICollectionView!
     
+    var popMenu: PopMenuViewController? = nil
     private let refreshControl = UIRefreshControl()
     
     var pets: RescuePetsAPI5?
@@ -302,28 +302,46 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         present(details, animated: false, completion: nil)
 
     }
-
-    @IBAction func sortMenuTapped(_ sender: Any) {
-/*
-        func presentMenu() {
-            let menuViewController = PopMenuViewController(actions: [
-                PopMenuDefaultAction(title: "Best Matches", image: UIImage(named: "sortiing-reversed-numerical")),
-                PopMenuDefaultAction(title: "Alphabetical", image: UIImage(named: "sorting-alphabetical"))])
-            present(menuViewController, animated: true, completion: nil)
-        }
-*/
-    }
     
-    @IBAction func SortAscendingTapped(_ sender: Any) {
-    }
-    
-    @IBAction func SortDescendingTapped(_ sender: Any) {
-    }
-
     @IBAction func FilterButtonTapped(_ sender: Any) {
         let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
         PetFinderFind.breed = globalBreed
         self.present(PetFinderFind, animated: true, completion: nil)
+    }
+    
+    func popMenuCustomSize() -> PopMenuViewController {
+        let action1 = PopMenuDefaultAction(title: "Closest", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        let action2 = PopMenuDefaultAction(title: "Newest", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+        let action3 = PopMenuDefaultAction(title: "Best Match", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
+
+        let actions = [
+            action1,
+            action2,
+            action3
+        ]
+        
+        let popMenu = PopMenuViewController(actions: actions)
+        
+        popMenu.appearance.popMenuColor.backgroundColor = .solid(fill: .white)
+        
+        return popMenu
+    }
+
+    func popMenuDidSelectItem(_ popMenuViewController: PopMenuViewController, at index: Int) {
+        SortMenu.setTitle("Sort By: " + popMenuViewController.actions[index].title!, for: .normal)
+    }
+    
+    @IBAction func SortMenuTapped(_ sender: Any) {
+        popMenu = popMenuCustomSize()
+        popMenu?.shouldDismissOnSelection = true
+        popMenu?.delegate = self
+        var origin = SortMenu.frame.origin
+        origin.x = (SortMenu.frame.origin.x + SortMenu.frame.width) -  (popMenu?.contentFrame.width)!
+        origin.y = SortMenu.frame.origin.y - (popMenu?.contentFrame.height ?? SortMenu.frame.origin.y)
+        popMenu?.view.frame.origin = origin
+        if let popMenuViewController = popMenu {
+            present(popMenuViewController, animated: true, completion: nil)
+        }
     }
 }
 
@@ -408,9 +426,11 @@ extension AdoptableCatsCollectionViewViewController {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return totalRows
     }
+    
+    
 }
 
-extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
+extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate  {
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         if let pets = pets {
             guard indexPath.row < pets.count && indexPath.row >= 0
@@ -430,18 +450,6 @@ extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate {
             return 400
         }
     }
+    
+    
 }
-
-/*
-extension MainTabAdoptableCatsCollectionViewViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var size = view.frame.size.width - (10 * 3)
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            size /= 6
-        } else {
-            size /= 2
-        }
-        return CGSize(width: size, height: size * 1.3)
-    }
-}
-*/
