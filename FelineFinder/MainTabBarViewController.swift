@@ -20,13 +20,13 @@ class MainTabBarControllerViewController: UITabBarController {
         
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let statusBarView = UIView(frame: CGRect(x:0, y:0, width:view.frame.size.width, height: UIApplication.shared.statusBarFrame.height))
+        let statusBar = UIView(frame: view.window?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
         let blurEffect = UIBlurEffect(style: .light) // Set any style you want(.light or .dark) to achieve different effect.
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = statusBarView.bounds
+        blurEffectView.frame = statusBar.bounds
         blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        statusBarView.addSubview(blurEffectView)
-        view.addSubview(statusBarView)
+        statusBar.addSubview(blurEffectView)
+        view.addSubview(statusBar)
     }
     
     override func viewWillDisappear(_ animated: Bool) {

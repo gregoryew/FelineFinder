@@ -10,9 +10,11 @@ import UIKit
 struct YouTubeVideo {
     var pictureURL = ""
     var videoID = ""
-    init (url: String, id: String) {
-        pictureURL = url
-        videoID = id
+    var title = ""
+    init (url: String, id: String, title: String) {
+        self.pictureURL = url
+        self.videoID = id
+        self.title = title
     }
 }
 
@@ -36,6 +38,7 @@ struct resourceId: Decodable {
 struct snippet: Decodable {
     var thumbnails: thumbNail?
     var resourceId: resourceId?
+    var title: String?
 }
 
 struct status: Decodable {
@@ -88,8 +91,8 @@ class YouTubeAPI {
             do {
                 let youTubeVideos = try JSONDecoder().decode(youtubeapi.self, from: data!)
                 for item in youTubeVideos.items ?? [] {
-                    if let snippet = item.snippet, let thumbnails = snippet.thumbnails, let d = thumbnails.default, let u = d.url, let r = snippet.resourceId, let vid = r.videoId {
-                    videos.append(YouTubeVideo(url: u, id: vid))
+                    if let snippet = item.snippet, let thumbnails = snippet.thumbnails, let d = thumbnails.default, let u = d.url, let r = snippet.resourceId, let vid = r.videoId, let title = snippet.title {
+                        videos.append(YouTubeVideo(url: u, id: vid, title: title))
                     }
                 }
             } catch _ {

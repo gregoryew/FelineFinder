@@ -19,8 +19,21 @@ class mediaCell: UICollectionViewCell {
         }
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        playButton = UIImageView()
+        playButton.image = UIImage(named: "Play")
+        playButton.frame.size = playButton.image!.size
+        
+        self.contentView.addSubview(playButton)
+        self.contentView.bringSubviewToFront(playButton)
+
+        playButton.center = self.contentView.center
+    }
+    
     override func prepareForReuse() {
-        playButton.removeFromSuperview()
+        playButton.isHidden = true
     }
     
     func configure(mediaTool: Tool, isSelected: Bool) {
@@ -28,19 +41,13 @@ class mediaCell: UICollectionViewCell {
         if mediaTool is imageTool {
             if let thumbNail = mediaTool as? imageTool, let imgURL = URL(string: thumbNail.thumbNail.URL) {
                 img.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: .highPriority, completed: nil)
+                playButton.isHidden = true
             }
         } else if mediaTool is youTubeTool {
             if let thumbNail = mediaTool as? youTubeTool, let imgURL = URL(string: thumbNail.video.urlThumbnail) {
                 img.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: .highPriority, completed: nil)
-                
-                playButton = UIImageView()
-                playButton.image = UIImage(named: "Play")
-                playButton.frame.size = playButton.image!.size
-                
-                self.contentView.addSubview(playButton)
-                self.contentView.bringSubviewToFront(playButton)
-
-                playButton.center = self.contentView.center
+                playButton.isHidden = false
+                playButton.frame.origin = CGPoint(x: (133 / 2) - (Int(playButton.frame.size.width) / 2), y: (100 / 2) - (Int(playButton.frame.size.height) / 2))
             }
         }
         self.isSelected = isSelected

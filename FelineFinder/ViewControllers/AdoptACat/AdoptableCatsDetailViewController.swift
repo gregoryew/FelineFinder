@@ -7,9 +7,14 @@
 
 import UIKit
 import FaveButton
+import MessageUI
 
-class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, descriptionChanged {
-    
+protocol ToolbarDelegate {
+    func createEmail(pet: Pet, shelter: shelter)
+}
+
+class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, descriptionChanged, ToolbarDelegate {
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var heart: FaveButton!
     
@@ -41,7 +46,7 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "header") as? AdoptableHeaderTableViewCell {
-                cell.setup(pet: self.pet)
+                cell.setup(pet: self.pet, self)
                 return cell
             }
         } else {
@@ -58,7 +63,7 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
         if indexPath.row == 1 {
             return CGFloat(max(100, rowHeight) + 40)
         } else {
-            return 584
+            return 596
         }
     }
     
@@ -80,3 +85,38 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
         }
     }
 }
+
+extension AdoptableCatsDetailViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: false, completion: nil)
+    }
+    
+    func createEmail(pet: Pet, shelter: shelter) {
+        if MFMailComposeViewController.canSendMail() {
+            let mailComposeViewController = configuredMailComposeViewController()
+            self.present(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let shelter = globalShelterCache[pet.shelterID]!
+        var email = shelter.email
+        if (email.lowercased().hasPrefix("emailto")) {
+            email = (shelter.email.chopPrefix(7))
+        }
+        var emailAddress = [String]()
+        emailAddress.append(email)
+        
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
+        mailComposerVC.setToRecipients(emailAddress)
+        return mailComposerVC
+    }
+
+    func showSendMailErrorAlert() {
+        Utilities.displayAlert("Could Not Send Email", errorMessage: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+    }
+}
+

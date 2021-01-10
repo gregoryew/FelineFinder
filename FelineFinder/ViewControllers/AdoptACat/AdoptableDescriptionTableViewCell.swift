@@ -20,8 +20,9 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
     func setup(pet: Pet, shelter: shelter) {
         let path = Bundle.main.bundlePath;
         let sBaseURL = URL(fileURLWithPath: path);
-        descriptionWK.navigationDelegate = self
-        descriptionWK.loadHTMLString(generatePetDescription(pet: pet, shelter: shelter), baseURL: sBaseURL)
+        descriptionWK?.navigationDelegate = self
+        descriptionWK?.loadHTMLString(generatePetDescription(pet: pet, shelter: shelter), baseURL: sBaseURL)
+        selectionStyle = .none
     }
     
     func generatePetDescription(pet: Pet, shelter: shelter) -> String {
@@ -134,13 +135,13 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
     
     func tableWidth() -> Int {
         var tableWidth = 0
-        if UIDevice().type == Model.iPhone5 || UIDevice().type == Model.iPhone5C || UIDevice().type == Model.iPhone5S {
-            tableWidth = 300
-        } else if UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone {
+        
+        if ( UIDevice.current.model.range(of: "iPad") != nil){
             tableWidth = 900 //360
         } else {
             tableWidth = 700
         }
+
         return tableWidth
     }
 }

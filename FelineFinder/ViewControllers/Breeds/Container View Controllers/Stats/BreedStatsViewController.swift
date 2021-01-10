@@ -17,7 +17,7 @@ class BreedStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var breedStats = BreedStatList()
+        let breedStats = BreedStatList()
         breedStats.getBreedStatList(Int(breed!.BreedID), percentageMatch: -1)
         var bars = [PercentBarView]()
         var i = 0

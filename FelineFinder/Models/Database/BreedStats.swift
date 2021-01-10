@@ -299,7 +299,7 @@ class BreedStatList {
             
             while results?.next() == true {
                 let i = results?.int(forColumn: "BreedID")
-                let traitID = results?.int(forColumn: "TraitID")
+                let _ = results?.int(forColumn: "TraitID")
                 let traitDesc = results?.string(forColumn: "TraitShortDesc")
                 let breedTraitValue = results?.int(forColumn: "BreedTraitValue")
                 let isPercentage = results?.string(forColumn: "isPercentage")

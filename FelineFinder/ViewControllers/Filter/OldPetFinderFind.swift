@@ -47,7 +47,7 @@ extension UITableView {
 }
 
 class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
-    
+/*
     deinit {
         print ("PetFinderFindViewController deinit")
     }
@@ -531,5 +531,5 @@ class PetFinderFindViewController: UITableViewController, UITextFieldDelegate {
         })
         // Pull any data from the view controller which initiated the unwind segue.
     }
-
+*/
 }

@@ -14,7 +14,7 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer,PopMenuViewControllerDelegate
+class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer, PopMenuViewControllerDelegate
  {
 
     @IBOutlet weak var SortMenu: UIButton!
@@ -200,8 +200,6 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     }
         
     func petsLoaded(notification:Notification) -> Void {
-        print("petLoaded notification")
-        print("TAG = \(self.view.tag == FAVORITES_VC ? "FAVORITES" : "ADOPT")")
         
         guard let userInfo = notification.userInfo,
               let p = userInfo["petList"] as? RescuePetsAPI5

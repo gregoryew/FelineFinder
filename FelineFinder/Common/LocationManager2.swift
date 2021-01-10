@@ -325,6 +325,8 @@ class LocationManager2: NSObject,CLLocationManagerDelegate {
         case .notDetermined:
             self.locationManager?.requestWhenInUseAuthorization()
             break
+        @unknown default:
+            fatalError("Unknow Error Getting Location")
         }
     }
     

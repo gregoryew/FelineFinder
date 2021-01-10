@@ -118,7 +118,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
     */
     
     @objc func ubiquitousKeyValueStoreDidChange() {
-        Favorites.loadIDs()
+        let _ = Favorites.loadIDs()
         let nc = NotificationCenter.default
         nc.post(name:NSNotification.Name(rawValue: "reloadFavorites"),
                 object: nil,

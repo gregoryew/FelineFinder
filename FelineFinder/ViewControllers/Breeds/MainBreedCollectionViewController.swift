@@ -45,15 +45,18 @@ class MainBreedCollectionViewController: UIViewController, UICollectionViewDeleg
         }
     }
     
+    /*
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
+                
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as?
             MainBreedCollectionViewCell {
+            guard cell.Border.frame != CGRect.zero else {return CGSize.zero}
             return cell.Border.frame.inset(by: UIEdgeInsets(top: 2.5, left: 2.5, bottom: 2.5, right: 2.5)).size
         }
         
-        return CGSize(width: 0, height: 0)
+        return CGSize.zero
     }
+    */
     
     func setupIndex() {
         breedGroups = [:]

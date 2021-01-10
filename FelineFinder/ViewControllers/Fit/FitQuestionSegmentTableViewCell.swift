@@ -102,7 +102,6 @@ class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDe
    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("tag = \(tag) collectionTag = \(collectionView.tag) name=\(question?.Name) count = \(answers.count) answers = \(answers)")
         return answers.count
     }
     

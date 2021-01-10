@@ -47,11 +47,11 @@ class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, U
         // Configure the view for the selected state
     }
     
-    func setup(pet: Pet) {
+    func setup(pet: Pet, _ vc: ToolbarDelegate) {
         self.pet = pet
-        tools = Tools.init(pet: self.pet, shelter: globalShelterCache[self.pet.shelterID]!, sourceView: self.contentView)
-        media = Tools.init(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!, sourceView: self.contentView)
-        
+        tools = Tools.init(pet: self.pet, shelter: globalShelterCache[self.pet.shelterID]!, sourceView: self.contentView.superview!, delegate: vc)
+        media = Tools.init(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!, sourceView: self.contentView.superview!, delegate: vc)
+ 
         if let imgURL = URL(string: pet.getImage(1, size: "x")) {
         self.photo.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority, completed: nil)
         } else {
@@ -127,6 +127,7 @@ class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, U
         
         mediaToolBar.selectItem(at: IndexPath(item: selectedPhoto, section: 0), animated: false, scrollPosition: .left)
 
+        selectionStyle = .none
     }
         
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

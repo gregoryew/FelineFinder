@@ -29,12 +29,14 @@ struct video: Codable {
     var urlThumbnail: String
     var videoID: String
     var videoUrl: String
-    init (i: String, o: String, t: String, v: String, u: String) {
+    var title: String?
+    init (i: String, o: String, t: String, v: String, u: String, title: String? = "") {
         mediaID = i
         mediaOrder = o
         urlThumbnail = t
         videoID = v
         videoUrl = u
+        self.title = title
     }
 }
 

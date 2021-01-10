@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import MessageUI
 import MapKit
 import Social
 import WebKit
@@ -24,8 +23,16 @@ class Tool {
     var breed: Breed?
     var sourceView: UIView?
     var sourceViewController: UIViewController?
-
+    var delegate: ToolbarDelegate?
+    
     init(pet: Pet, shelter: shelter?, sourceView: UIView) {
+        self.pet = pet
+        self.shelter = shelter
+        self.sourceView = sourceView
+    }
+    
+    init(pet: Pet, shelter: shelter?, sourceView: UIView, delegate: ToolbarDelegate) {
+        self.delegate = delegate
         self.pet = pet
         self.shelter = shelter
         self.sourceView = sourceView
@@ -233,6 +240,9 @@ class descriptionTool: Tool { //, scrolledView {
     }
     
     func generatePetDescription() -> String {
+        return ""
+    }
+        /*
         var htmlString = ""
         if let pet = pet, let shelter = shelter {
         var b: String = ""
@@ -373,12 +383,13 @@ class descriptionTool: Tool { //, scrolledView {
         }
         return tableWidth
     }
+    */
 }
 
 class emailTool: Tool {
     var emailAddress = [String]()
-    override init(pet: Pet, shelter: shelter?, sourceView: UIView) {
-        super.init(pet: pet, shelter: shelter, sourceView: sourceView)
+    override init(pet: Pet, shelter: shelter?, sourceView: UIView, delegate: ToolbarDelegate) {
+        super.init(pet: pet, shelter: shelter, sourceView: sourceView, delegate: delegate)
         icon = "Tool_Email"
         title = "Email"
         cellType = .tool
@@ -392,27 +403,7 @@ class emailTool: Tool {
         sendEmail()
     }
     func sendEmail() {
-        var email = shelter?.email
-        if (email?.lowercased().hasPrefix("emailto"))! {
-            email = (shelter?.email.chopPrefix(7))!
-        }
-        emailAddress = [String]()
-        emailAddress.append(email!)
-        let mailComposeViewController = configuredMailComposeViewController()
-        if MFMailComposeViewController.canSendMail() {
-            sourceViewController!.present(mailComposeViewController, animated: true, completion: nil)
-        } else {
-            self.showSendMailErrorAlert()
-        }
-    }
-    func configuredMailComposeViewController() -> MFMailComposeViewController {
-        let mailComposerVC = MFMailComposeViewController()
-        mailComposerVC.mailComposeDelegate = (sourceViewController! as! MFMailComposeViewControllerDelegate) // Extremely important to set the --mailComposeDelegate-- property, NOT the --delegate-- property
-        mailComposerVC.setToRecipients(emailAddress)
-        return mailComposerVC
-    }
-    func showSendMailErrorAlert() {
-        Utilities.displayAlert("Could Not Send Email", errorMessage: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+        delegate?.createEmail(pet: pet!, shelter: shelter!)
     }
 }
 
@@ -680,6 +671,7 @@ class Tools: Sequence, IteratorProtocol {
     
     var list = [Tool]()
     var tools = [Tool]()
+    var delegate: ToolbarDelegate?
     private var currentIndex: Int = 0
     private var breed: Breed?
     private var sourceView: UIView?
@@ -691,10 +683,10 @@ class Tools: Sequence, IteratorProtocol {
         }
     }
     
-    init(pet: Pet, shelter: shelter, sourceView: UIView) {
+    init(pet: Pet, shelter: shelter, sourceView: UIView, delegate: ToolbarDelegate) {
         list = []
         list.append(descriptionTool(pet: pet, shelter: shelter, sourceView: sourceView))
-        list.append(emailTool(pet: pet, shelter: shelter, sourceView: sourceView))
+        list.append(emailTool(pet: pet, shelter: shelter, sourceView: sourceView, delegate: delegate))
         list.append(shareTool(pet: pet, shelter: shelter, sourceView: sourceView))
         list.append(directionsTool(pet: pet, shelter: shelter, sourceView: sourceView))
         list.append(telephoneTool(pet: pet, shelter: shelter, sourceView: sourceView))
@@ -732,10 +724,11 @@ class Tools: Sequence, IteratorProtocol {
             var count = 0
             for vid in data! {
                 count += 1
-                self.list.append(youTubeTool(breed: breed, sourceView: sourceView, video: video(i: String(count), o: String(count), t: vid.pictureURL, v: vid.videoID, u: "")))
+                self.list.append(youTubeTool(breed: breed, sourceView: sourceView, video: video(i: String(count), o: String(count), t: vid.pictureURL, v: vid.videoID, u: "", title: vid.title)))
             }
         }
         
+        /*
         switch RescueGroups().getPets(zipCode: zipCode, breed: breed) {
         case .failure(let err):
             Utilities.displayAlert("Network Error", errorMessage: err.localizedDescription)
@@ -747,13 +740,14 @@ class Tools: Sequence, IteratorProtocol {
                 }
             }
         }
-
+        */
+ 
         tools = getTools()
     }
     
     func getTools() -> [Tool] {
-        var tools = [Tool]()
-        for item in list {
+        tools = [Tool]()
+        for item in self.list {
             if item.isVisible(mode: mode) {
                 tools.append(item)
             }
