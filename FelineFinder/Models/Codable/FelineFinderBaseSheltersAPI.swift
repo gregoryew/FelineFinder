@@ -25,7 +25,9 @@ struct shelter {
     let phone: String
     let fax: String
     let email: String
-    init (i: String, n: String, a1: String, a2: String, c: String, s: String, z: String, lat: Double, lng:Double, c2: String, p: String, f: String, e: String) {
+    let adoptionUrl: String
+    let url: String
+    init (i: String, n: String, a1: String, a2: String, c: String, s: String, z: String, lat: Double, lng:Double, c2: String, p: String, f: String, e: String, aw: String, url: String) {
         id = i
         name = n
         address1 = a1
@@ -39,6 +41,8 @@ struct shelter {
         phone = p
         fax = f
         email = e
+        adoptionUrl = aw
+        self.url = url
     }
 }
 

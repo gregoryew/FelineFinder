@@ -129,7 +129,7 @@ class RescueGroups {
         for i in 0..<included.count {
             if let sh_a = included[i].attributes {
                 if included[i].type == "orgs" {
-                    globalShelterCache[included[i].id ?? ""] = shelter(i: "\(included[i].id ?? "")", n: sh_a.name ?? "", a1: sh_a.street ?? "", a2: "", c: sh_a.city ?? "", s: sh_a.state ?? "", z: sh_a.postalcode ?? "", lat: sh_a.lat ?? 0, lng: sh_a.lon ?? 0, c2: sh_a.country ?? "", p: sh_a.phone ?? "", f: sh_a.facebookUrl ?? "", e: sh_a.email ?? "")
+                    globalShelterCache[included[i].id ?? ""] = shelter(i: "\(included[i].id ?? "")", n: sh_a.name ?? "", a1: sh_a.street ?? "", a2: "", c: sh_a.city ?? "", s: sh_a.state ?? "", z: sh_a.postalcode ?? "", lat: sh_a.lat ?? 0, lng: sh_a.lon ?? 0, c2: sh_a.country ?? "", p: sh_a.phone ?? "", f: sh_a.facebookUrl ?? "", e: sh_a.email ?? "", aw: sh_a.adoptionUrl ?? "", url: sh_a.url ?? "")
                 }
             }
         }

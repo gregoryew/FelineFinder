@@ -314,7 +314,7 @@
             <objects>
                 <viewController storyboardIdentifier="Fit" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7TM-P4-xDj" customClass="MainTabFitViewController" customModule="FelineFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cU5-av-dH2">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oLi-l9-J3Q">
@@ -446,8 +446,10 @@
                                                     <collectionViewLayout key="collectionViewLayout" id="Chm-na-nB7" customClass="MultiRowGradientLayout" customModule="FelineFinder"/>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="niT-EX-bnk" customClass="SegmentCollectionViewCell" customModule="FelineFinder" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="mh7-xH-Q73">
+                                                                <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qqg-4t-lcX">
@@ -904,7 +906,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="600"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxU-7E-LCs">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxU-7E-LCs">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="608"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-fb-cKy" customClass="DynamicImageView" customModule="FelineFinder" customModuleProvider="target">
@@ -1139,7 +1141,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="maR-hc-mBH">
-                                                    <rect key="frame" x="20" y="20" width="330" height="88"/>
+                                                    <rect key="frame" x="20" y="31" width="330" height="77"/>
                                                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <wkWebViewConfiguration key="configuration">
                                                         <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
@@ -1149,7 +1151,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="maR-hc-mBH" secondAttribute="trailing" constant="40" id="5cu-i2-Pfa"/>
-                                                <constraint firstItem="maR-hc-mBH" firstAttribute="top" secondItem="jcN-nF-s8q" secondAttribute="top" constant="20" id="66j-cV-Ggd"/>
+                                                <constraint firstItem="maR-hc-mBH" firstAttribute="top" secondItem="jcN-nF-s8q" secondAttribute="topMargin" constant="20" id="EFe-jk-xcS"/>
                                                 <constraint firstItem="maR-hc-mBH" firstAttribute="leading" secondItem="jcN-nF-s8q" secondAttribute="leading" constant="20" id="Qc8-V2-Cm4"/>
                                                 <constraint firstAttribute="bottom" secondItem="maR-hc-mBH" secondAttribute="bottom" constant="20" id="RXA-v1-oXC"/>
                                             </constraints>
@@ -1295,7 +1297,7 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZfJ-6H-2ta" customClass="Toolbar" customModule="FelineFinder" customModuleProvider="target">
-                                        <rect key="frame" x="292" y="186" width="48" height="45"/>
+                                        <rect key="frame" x="290" y="186" width="48" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -1704,31 +1706,47 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7DA-q2-e8J">
-                                <rect key="frame" x="0.0" y="0.0" width="374" height="457"/>
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="413"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <wkWebViewConfiguration key="configuration">
                                     <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h33-sH-d2n">
+                                <rect key="frame" x="0.0" y="413" width="374" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="FU0-Xd-sKh"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" id="xnx-7w-lio"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="xGb-b4-uf2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="h33-sH-d2n" firstAttribute="bottom" secondItem="xGb-b4-uf2" secondAttribute="bottom" id="18S-OW-YVN"/>
+                            <constraint firstItem="h33-sH-d2n" firstAttribute="leading" secondItem="REp-Tk-fin" secondAttribute="leading" id="2uK-Po-rRE"/>
+                            <constraint firstItem="7DA-q2-e8J" firstAttribute="top" secondItem="REp-Tk-fin" secondAttribute="top" id="MHh-z6-kjf"/>
                             <constraint firstAttribute="trailing" secondItem="7DA-q2-e8J" secondAttribute="trailing" id="Mc6-b7-iGy"/>
+                            <constraint firstItem="h33-sH-d2n" firstAttribute="top" secondItem="7DA-q2-e8J" secondAttribute="bottom" id="OWX-bM-epg"/>
+                            <constraint firstItem="7DA-q2-e8J" firstAttribute="leading" secondItem="xGb-b4-uf2" secondAttribute="leading" id="X23-Kx-zrP"/>
+                            <constraint firstItem="xGb-b4-uf2" firstAttribute="trailing" secondItem="h33-sH-d2n" secondAttribute="trailing" id="aND-wY-mVk"/>
                             <constraint firstItem="7DA-q2-e8J" firstAttribute="leading" secondItem="REp-Tk-fin" secondAttribute="leading" id="dHe-DB-qb9"/>
-                            <constraint firstAttribute="bottom" secondItem="7DA-q2-e8J" secondAttribute="bottom" id="n1i-in-nqd"/>
+                            <constraint firstItem="7DA-q2-e8J" firstAttribute="trailing" secondItem="xGb-b4-uf2" secondAttribute="trailing" id="nrV-Ym-g16"/>
                             <constraint firstItem="7DA-q2-e8J" firstAttribute="top" secondItem="REp-Tk-fin" secondAttribute="top" id="vri-Sk-bAg"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="374" height="457"/>
                     <connections>
+                        <outlet property="toolbar" destination="h33-sH-d2n" id="xxz-le-ecg"/>
                         <outlet property="wv" destination="7DA-q2-e8J" id="j1f-XI-FBK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzQ-uy-U52" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1715.9420289855075" y="-383.55978260869568"/>
+            <point key="canvasLocation" x="1715.3846153846152" y="-384.24170616113742"/>
         </scene>
         <!--Breed Stats View Controller-->
         <scene sceneID="Hxx-EE-EDc">
@@ -1738,28 +1756,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="374" height="457"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkw-rZ-APM" customClass="GraphView" customModule="FelineFinder" customModuleProvider="target">
-                                <rect key="frame" x="20" y="64" width="334" height="373"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9rF-jq-3uO">
+                                <rect key="frame" x="0.0" y="0.0" width="374" height="457"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="383" id="3Zn-Y1-cN2" customClass="StatsTableViewCell" customModule="FelineFinder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="383"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Zn-Y1-cN2" id="Yzy-9f-ght">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="383"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dLJ-hV-5et" customClass="GraphView" customModule="FelineFinder" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="383"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="dLJ-hV-5et" secondAttribute="trailing" id="Ek3-Ld-pZO"/>
+                                                <constraint firstItem="dLJ-hV-5et" firstAttribute="leading" secondItem="Yzy-9f-ght" secondAttribute="leading" id="R8P-c2-Sjy"/>
+                                                <constraint firstAttribute="bottom" secondItem="dLJ-hV-5et" secondAttribute="bottom" id="wjm-Ap-Q2V"/>
+                                                <constraint firstItem="dLJ-hV-5et" firstAttribute="top" secondItem="Yzy-9f-ght" secondAttribute="top" id="zGZ-l2-GT7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3P7-ov-oYQ"/>
                         <color key="backgroundColor" red="0.90588241820000004" green="0.90588241820000004" blue="0.90588241820000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="3P7-ov-oYQ" firstAttribute="trailing" secondItem="Zkw-rZ-APM" secondAttribute="trailing" constant="20" id="3Je-qw-sW2"/>
-                            <constraint firstItem="3P7-ov-oYQ" firstAttribute="bottom" secondItem="Zkw-rZ-APM" secondAttribute="bottom" constant="20" id="DIS-1f-bPp"/>
-                            <constraint firstItem="Zkw-rZ-APM" firstAttribute="top" secondItem="3P7-ov-oYQ" secondAttribute="top" constant="20" id="Mnq-Dt-vLN"/>
-                            <constraint firstItem="Zkw-rZ-APM" firstAttribute="leading" secondItem="3P7-ov-oYQ" secondAttribute="leading" constant="20" id="hsZ-0y-HXt"/>
+                            <constraint firstItem="9rF-jq-3uO" firstAttribute="leading" secondItem="3P7-ov-oYQ" secondAttribute="leading" id="WD3-eJ-C1r"/>
+                            <constraint firstItem="9rF-jq-3uO" firstAttribute="bottom" secondItem="3P7-ov-oYQ" secondAttribute="bottom" id="bef-Qq-ESJ"/>
+                            <constraint firstItem="9rF-jq-3uO" firstAttribute="trailing" secondItem="3P7-ov-oYQ" secondAttribute="trailing" id="qUC-tO-n7l"/>
+                            <constraint firstItem="9rF-jq-3uO" firstAttribute="top" secondItem="5cB-3u-pdo" secondAttribute="top" id="z1K-A4-aEa"/>
                         </constraints>
                     </view>
                     <size key="freeformSize" width="374" height="457"/>
                     <connections>
-                        <outlet property="statGraphView" destination="Zkw-rZ-APM" id="7im-TO-7Rx"/>
+                        <outlet property="tableView" destination="9rF-jq-3uO" id="egN-RW-qiZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z3A-Uz-vhk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2286.9565217391305" y="-384.37500000000006"/>
+            <point key="canvasLocation" x="2286.1538461538462" y="-384.95260663507105"/>
         </scene>
         <!--Breed Gallery View Controller-->
         <scene sceneID="Ksg-rp-SQ9">
@@ -1779,7 +1819,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="YouTubeCell" translatesAutoresizingMaskIntoConstraints="NO" id="Akb-WU-b0Y" customClass="BreedVideoCollectionViewCell" customModule="FelineFinder" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="YouTubeCell" translatesAutoresizingMaskIntoConstraints="NO" id="Akb-WU-b0Y" customClass="BreedVideoCollectionViewCell" customModule="FelineFinder" customModuleProvider="target">
                                         <rect key="frame" x="-0.66666666666666663" y="0.0" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7J9-fl-Lyc">

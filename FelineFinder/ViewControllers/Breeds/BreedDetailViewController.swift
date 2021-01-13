@@ -63,11 +63,11 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
 
             // Instantiate View Controller
             _statsViewController = storyboard.instantiateViewController(withIdentifier: "BreedStats") as? BreedStatsViewController
-
-            _statsViewController!.breed = breed
             
             // Add View Controller as Child View Controller
             self.add(asChildViewController: _statsViewController!)
+            
+            _statsViewController!.setup(breed: breed!)
         }
         return _statsViewController!
     }

@@ -7,6 +7,8 @@
 
 import UIKit
 import WebKit
+import SafariServices
+import MessageUI
 
 protocol descriptionChanged {
     func heightChanged(heigth: Int)
@@ -14,15 +16,77 @@ protocol descriptionChanged {
 
 class AdoptableDescriptionTableViewCell: UITableViewCell {
     @IBOutlet var descriptionWK: WKWebView!
-    
+    @IBOutlet weak var toolbar: UIToolbar!
+
     var delegate: descriptionChanged!
     
+    var pet: Pet!
+    var shelter: shelter!
+    
     func setup(pet: Pet, shelter: shelter) {
+        self.pet = pet
+        self.shelter = shelter
         let path = Bundle.main.bundlePath;
         let sBaseURL = URL(fileURLWithPath: path);
         descriptionWK?.navigationDelegate = self
         descriptionWK?.loadHTMLString(generatePetDescription(pet: pet, shelter: shelter), baseURL: sBaseURL)
         selectionStyle = .none
+        disableScrollView(self.descriptionWK)
+    }
+    
+    func disableScrollView(_ view: UIView) {
+        (view as? UIScrollView)?.isScrollEnabled = false
+        view.subviews.forEach { disableScrollView($0) }
+    }
+    
+    private func sendEmail() {
+        guard let vc = findViewController() as? AdoptableCatsDetailViewController else {return}
+        if MFMailComposeViewController.canSendMail() {
+            let email = MFMailComposeViewController()
+            email.mailComposeDelegate = vc
+            email.setSubject("Requesting Adoption Information For \(pet.name)")
+            email.setToRecipients([self.shelter.email])
+            vc.present(email, animated: true)
+        } else {
+            // show failure alert
+            let alertController = UIAlertController(title: "No email account",
+                                                    message: "Please configure email account first.",
+                                                    preferredStyle: .alert)
+            let actionOk = UIAlertAction(title: "OK",
+                                         style: .default,
+                                         handler: nil)
+            alertController.addAction(actionOk)
+            vc.present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        if navigationAction.navigationType == .linkActivated {
+            guard let url = navigationAction.request.url else {
+                print("Link is not a url")
+                decisionHandler(.allow)
+                return
+            }
+            if url.absoluteString.hasPrefix("file:") {
+                print("Open link locally")
+                decisionHandler(.allow)
+            } else if let url = navigationAction.request.url, let _ = navigationAction.request.url?.host, let vc = findViewController(), UIApplication.shared.canOpenURL(url) {
+                    decisionHandler(.cancel)
+                    let safariViewController = SFSafariViewController(url: url)
+                    vc.present(safariViewController, animated: true, completion: nil)
+                    return
+            } else if url.absoluteString.hasPrefix("mailto:") {
+                print("Send email locally")
+                sendEmail()
+                decisionHandler(.allow)
+            } else {
+                print("Open link locally")
+                decisionHandler(.allow)
+            }
+        } else {
+            print("not a user click")
+            decisionHandler(.allow)
+        }
     }
     
     func generatePetDescription(pet: Pet, shelter: shelter) -> String {

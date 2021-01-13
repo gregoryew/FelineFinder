@@ -19,6 +19,9 @@ struct RescueShelterAPI2: Codable {
     var orgPhone: String?
     var orgFax: String?
     var orgEmail: String?
+    var orgWebsite: String?
+    var orgAdoptionUrl: String?
+    var orgUrl: String?
 }
 
 struct RescueSheltersAPI2: Codable {

@@ -13,14 +13,14 @@ protocol ToolbarDelegate {
     func createEmail(pet: Pet, shelter: shelter)
 }
 
+var rowHeight = 100
+
 class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, descriptionChanged, ToolbarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var heart: FaveButton!
     
     var pet: Pet!
-    
-    var rowHeight = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +36,7 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
     
     @IBAction func backButtonTapped(_ sender: Any)
     {
+        rowHeight = 0
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     

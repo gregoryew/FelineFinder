@@ -115,6 +115,7 @@
 		C57E6223255C072B00120018 /* AdoptableCatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */; };
 		C57E6228255C228E00120018 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE3255BB44200120018 /* CatFinder.db */; };
 		C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */; };
+		C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
 		C5DB5A1E257B126C00B112F4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */; };
 		C5E1907925607EAB00A885A9 /* BreedsInChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */; };
@@ -244,6 +245,7 @@
 		C57E621F255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewViewController.swift; sourceTree = "<group>"; };
 		C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsInChartInfo.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				C57D50F1256ED55000D0842B /* BreedStatsViewController.swift */,
+				C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */,
 			);
 			path = Stats;
 			sourceTree = "<group>";
@@ -847,6 +850,7 @@
 				C51E1AD4255EC66500167D15 /* GradientCollectionViewCell.swift in Sources */,
 				C57E5E36255BB58100120018 /* Favorites.swift in Sources */,
 				C530481E25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift in Sources */,
+				C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */,
 				C57D50F2256ED55000D0842B /* BreedStatsViewController.swift in Sources */,
 				C57E5E3B255BB58100120018 /* Questions.swift in Sources */,
 				C51E1AD5255EC66500167D15 /* MultiRowGradientLayout.swift in Sources */,

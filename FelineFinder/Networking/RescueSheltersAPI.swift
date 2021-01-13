@@ -108,6 +108,8 @@ class RescueGroupShelterList: ShelterList {
         var phone: String = ""
         var fax: String = ""
         var email: String = ""
+        var adoptionUrl: String = ""
+        var url: String = ""
         
         if let dict = s as? [String: AnyObject] {
             for (key, data) in dict {
@@ -123,6 +125,8 @@ class RescueGroupShelterList: ShelterList {
                 case "orgPhone": phone = vaidateValue(data)
                 case "orgFax": fax = vaidateValue(data)
                 case "orgEmail": email = vaidateValue(data)
+                case "orgAdoptionUrl": adoptionUrl = vaidateValue(data)
+                case "orgUrl": url = vaidateValue(data)
                 default: break
                 }
             }
@@ -130,7 +134,7 @@ class RescueGroupShelterList: ShelterList {
         
         if zipCode == "" {zipCode = zipCode2}
         
-        return shelter(i: id, n: name, a1: address1, a2: address2, c: city, s: state, z: zipCode, lat: latitude, lng: longitude, c2: country, p: phone, f: fax, e: email)
+        return shelter(i: id, n: name, a1: address1, a2: address2, c: city, s: state, z: zipCode, lat: latitude, lng: longitude, c2: country, p: phone, f: fax, e: email, aw: adoptionUrl, url: url)
     }
 }
 
