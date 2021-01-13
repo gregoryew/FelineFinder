@@ -232,7 +232,12 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
                     answers.append("Semi-Foreign")
                     answers.append("Semi-Coby")
                     answers.append("Cobby")
-                    answers.append("Substantial")
+                    answers.append("Drawf")
+                    answers.append("Large")
+                    answers.append("Medium")
+                    answers.append("Moderate")
+                    answers.append("Normal")
+                    answers.append("Small")
                     break
                 case "Size":
                     answers.append("Any")

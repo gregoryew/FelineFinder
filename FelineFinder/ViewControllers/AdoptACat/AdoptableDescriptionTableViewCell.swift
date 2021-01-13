@@ -16,7 +16,6 @@ protocol descriptionChanged {
 
 class AdoptableDescriptionTableViewCell: UITableViewCell {
     @IBOutlet var descriptionWK: WKWebView!
-    @IBOutlet weak var toolbar: UIToolbar!
 
     var delegate: descriptionChanged!
     
@@ -39,13 +38,13 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
         view.subviews.forEach { disableScrollView($0) }
     }
     
-    private func sendEmail() {
+    private func sendEmail(address: String?) {
         guard let vc = findViewController() as? AdoptableCatsDetailViewController else {return}
         if MFMailComposeViewController.canSendMail() {
             let email = MFMailComposeViewController()
             email.mailComposeDelegate = vc
             email.setSubject("Requesting Adoption Information For \(pet.name)")
-            email.setToRecipients([self.shelter.email])
+            email.setToRecipients([address ?? self.shelter.email])
             vc.present(email, animated: true)
         } else {
             // show failure alert
@@ -77,7 +76,7 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
                     return
             } else if url.absoluteString.hasPrefix("mailto:") {
                 print("Send email locally")
-                sendEmail()
+                sendEmail(address: url.absoluteString.chopPrefix("mailto:".count))
                 decisionHandler(.allow)
             } else {
                 print("Open link locally")
@@ -185,7 +184,7 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
         //dateFormatter.dateFormat = "MM/dd/yyyy"
         //let d = dateFormatter.string(from: p.lastUpdated)
         
-            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:24px;} h2 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:36px;} h3 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:28px;} h4 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} a { color: #66ff33} a.visited, a.hover {color: blue;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><h3><center><b>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
+            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:24px;} h2 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:36px;} h3 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:28px;} h4 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} a { color: blue} a.visited {color: grey;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><b><h2>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
         return htmlString
     }
     

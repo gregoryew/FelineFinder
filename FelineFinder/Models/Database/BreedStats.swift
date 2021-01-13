@@ -36,7 +36,12 @@ struct BreedStats {
             case 3: v = "Semi-Foreign"
             case 4: v = "Semi-Coby"
             case 5: v = "Cobby"
-            case 6: v = "Substantial"
+            case 6: v = "Drawf"
+            case 7: v = "Large"
+            case 8: v = "Medium"
+            case 9: v = "Moderate"
+            case 10: v = "Normal"
+            case 11: v = "Small"
             default: v = ""
             }
         case "Type of Hair":
@@ -110,7 +115,12 @@ class BreedStatList {
             case 3: v = "Semi-Foreign"
             case 4: v = "Semi-Coby"
             case 5: v = "Cobby"
-            case 6: v = "Substantial"
+            case 6: v = "Drawf"
+            case 7: v = "Large"
+            case 8: v = "Medium"
+            case 9: v = "Moderate"
+            case 10: v = "Normal"
+            case 11: v = "Small"
             default: v = ""
             }
         case "Type of Hair":
@@ -168,7 +178,12 @@ class BreedStatList {
             case 3: v = "Semi-Foreign"
             case 4: v = "Semi-Coby"
             case 5: v = "Cobby"
-            case 6: v = "Substantial"
+            case 6: v = "Drawf"
+            case 7: v = "Large"
+            case 8: v = "Medium"
+            case 9: v = "Moderate"
+            case 10: v = "Normal"
+            case 11: v = "Small"
             default: v = ""
             }
         case "Type of Hair":
@@ -185,7 +200,7 @@ class BreedStatList {
             switch p {
             case 1: v = "Small"
             case 2: v = "Average"
-            case 3: v = "Big"
+            case 3: v = "Biggish"
             default: v = ""
             }
         case "In/Outdoors":
