@@ -95,7 +95,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         }
         */
         
-        filterOptions.load(nil)
+        //filterOptions.load(nil)
         
         //self.pushNotifications.register(instanceId: "a1ec1d97-a842-4f3d-998b-bdda0c65e066")
         //registerForPushNotifications()
@@ -123,6 +123,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         nc.post(name:NSNotification.Name(rawValue: "reloadFavorites"),
                 object: nil,
                 userInfo:nil)
+        FitValues.loadValues()
     }
     
 /*
@@ -325,8 +326,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
  */
     
     func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        if FitValues.count > 0 {
+            FitValues.storeIDs()
+        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {

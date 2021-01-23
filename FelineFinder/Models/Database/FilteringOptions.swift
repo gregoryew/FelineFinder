@@ -135,11 +135,13 @@ class filterOptionsListV5 {
 
             self.classify()
             
+            /*
             if (tv != nil) {
                 DispatchQueue.main.async(execute: {
                     tv?.reloadData()
                 })
             }
+            */
         }
         
         //breed
@@ -166,12 +168,13 @@ class filterOptionsListV5 {
             self.filteringOptions.append(filterOption(n: "Not These", f: "breedPrimaryIdNot", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
             
             self.classify()
-
+/*
             if (tv != nil) {
                 DispatchQueue.main.async(execute: {
                     tv?.reloadData()
                 })
             }
+*/
         }
         
         

@@ -60,6 +60,10 @@ class MultiRowGradientLayout: UICollectionViewLayout {
     
   override func prepare() {
     print("Segment Prepare Begin")
+    
+    guard contentWidth > 0
+    else {return}
+    
     cache.removeAll()
     if cache.isEmpty {
         var yOffsets = [CGFloat]()
@@ -72,12 +76,12 @@ class MultiRowGradientLayout: UICollectionViewLayout {
             yOffsets.append(CGFloat(row) * columnHeight)
             xOffsets.append(0)
             var nextWidth = CGFloat(0.0)
-            while (item2 < itemCount) && (xOffsets[row] + nextWidth < collectionView?.bounds.width ?? 0) {
+            while (item2 < itemCount) && (xOffsets[row] + nextWidth < contentWidth) {
                 item2 += 1
                 let indexPath = IndexPath(item: item2, section: 0)
                 let width2 = delegate.collectionView(collectionView!, widthForTextAtIndexPath: indexPath) + 10
                 
-                if (item2 == itemCount) && (xOffsets[row] + width2 > collectionView?.bounds.width ?? 0) {
+                if (item2 == itemCount) && (xOffsets[row] + width2 > contentWidth) {
                     row += 1
                     yOffsets.append(CGFloat(row) * columnHeight)
                     xOffsets.append(0)

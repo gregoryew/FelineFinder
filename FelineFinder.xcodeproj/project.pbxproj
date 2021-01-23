@@ -16,8 +16,13 @@
 		C51E1AD0255EC63600167D15 /* GraphXAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1ACD255EC63600167D15 /* GraphXAxisView.swift */; };
 		C51E1AD4255EC66500167D15 /* GradientCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1AD2255EC66500167D15 /* GradientCollectionViewCell.swift */; };
 		C51E1AD5255EC66500167D15 /* MultiRowGradientLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1AD3255EC66500167D15 /* MultiRowGradientLayout.swift */; };
+		C52C82BD25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82BC25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift */; };
+		C52C82C025AFAB29006633CD /* FilterOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82BF25AFAB29006633CD /* FilterOptionTableViewCell.swift */; };
+		C52C82C325AFB124006633CD /* OptionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82C225AFB124006633CD /* OptionLabelCell.swift */; };
+		C52C82C625AFB1AA006633CD /* OptionValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82C525AFB1AA006633CD /* OptionValueCell.swift */; };
 		C530481E25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C530481D25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift */; };
 		C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C530482025A255C10071A32C /* AdoptableDescriptionTableViewCell.swift */; };
+		C566D47F25AFF3520087412F /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566D47E25AFF3520087412F /* TextFieldWithImage.swift */; };
 		C56E7047257BB67A00AAD927 /* FelineFinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */; };
 		C57BE7F9255C707500C89D76 /* AdoptableCatsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE7F8255C707500C89D76 /* AdoptableCatsDetailViewController.swift */; };
 		C57BE807255C96AD00C89D76 /* toolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE806255C96AD00C89D76 /* toolCell.swift */; };
@@ -91,7 +96,7 @@
 		C57E61A1255BB92100120018 /* FitQuestionSegmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E619C255BB92100120018 /* FitQuestionSegmentTableViewCell.swift */; };
 		C57E61A9255BB94900120018 /* OldFilterOptionSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A3255BB94800120018 /* OldFilterOptionSearch.swift */; };
 		C57E61AA255BB94900120018 /* OldFilterOptionsListCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A4255BB94800120018 /* OldFilterOptionsListCustomCellView.swift */; };
-		C57E61AB255BB94900120018 /* OldPetFilterOptionsZipCodeCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A5255BB94800120018 /* OldPetFilterOptionsZipCodeCustomCellView.swift */; };
+		C57E61AB255BB94900120018 /* FilterOptionsZipCodeTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A5255BB94800120018 /* FilterOptionsZipCodeTableCell.swift */; };
 		C57E61AC255BB94900120018 /* OldFilterOptionsListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A6255BB94800120018 /* OldFilterOptionsListTableViewController.swift */; };
 		C57E61AD255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A7255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift */; };
 		C57E61AE255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A8255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift */; };
@@ -115,7 +120,9 @@
 		C57E6223255C072B00120018 /* AdoptableCatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */; };
 		C57E6228255C228E00120018 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE3255BB44200120018 /* CatFinder.db */; };
 		C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */; };
+		C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DAF725BB958100F3B13C /* GradientButton.swift */; };
 		C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */; };
+		C5B2D23E25AF17F20001A83F /* FitValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2D23D25AF17F20001A83F /* FitValues.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
 		C5DB5A1E257B126C00B112F4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */; };
 		C5E1907925607EAB00A885A9 /* BreedsInChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */; };
@@ -138,8 +145,13 @@
 		C51E1ACD255EC63600167D15 /* GraphXAxisView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphXAxisView.swift; sourceTree = "<group>"; };
 		C51E1AD2255EC66500167D15 /* GradientCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51E1AD3255EC66500167D15 /* MultiRowGradientLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiRowGradientLayout.swift; sourceTree = "<group>"; };
+		C52C82BC25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionLabelTableViewCell.swift; sourceTree = "<group>"; };
+		C52C82BF25AFAB29006633CD /* FilterOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionTableViewCell.swift; sourceTree = "<group>"; };
+		C52C82C225AFB124006633CD /* OptionLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionLabelCell.swift; sourceTree = "<group>"; };
+		C52C82C525AFB1AA006633CD /* OptionValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionValueCell.swift; sourceTree = "<group>"; };
 		C530481D25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		C530482025A255C10071A32C /* AdoptableDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		C566D47E25AFF3520087412F /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FelineFinder-Info.plist"; sourceTree = "<group>"; };
 		C57BE7E9255C327900C89D76 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C57BE7F8255C707500C89D76 /* AdoptableCatsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsDetailViewController.swift; sourceTree = "<group>"; };
@@ -217,7 +229,7 @@
 		C57E619C255BB92100120018 /* FitQuestionSegmentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FitQuestionSegmentTableViewCell.swift; sourceTree = "<group>"; };
 		C57E61A3255BB94800120018 /* OldFilterOptionSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionSearch.swift; sourceTree = "<group>"; };
 		C57E61A4255BB94800120018 /* OldFilterOptionsListCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionsListCustomCellView.swift; sourceTree = "<group>"; };
-		C57E61A5255BB94800120018 /* OldPetFilterOptionsZipCodeCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldPetFilterOptionsZipCodeCustomCellView.swift; sourceTree = "<group>"; };
+		C57E61A5255BB94800120018 /* FilterOptionsZipCodeTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterOptionsZipCodeTableCell.swift; sourceTree = "<group>"; };
 		C57E61A6255BB94800120018 /* OldFilterOptionsListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionsListTableViewController.swift; sourceTree = "<group>"; };
 		C57E61A7255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionsSegmentedCustomCellView.swift; sourceTree = "<group>"; };
 		C57E61A8255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionsBreedCustomCellView.swift; sourceTree = "<group>"; };
@@ -245,7 +257,9 @@
 		C57E621F255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewViewController.swift; sourceTree = "<group>"; };
 		C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
+		C5A2DAF725BB958100F3B13C /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
+		C5B2D23D25AF17F20001A83F /* FitValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitValues.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsInChartInfo.swift; sourceTree = "<group>"; };
@@ -301,6 +315,7 @@
 				C57E5E1F255BB57E00120018 /* Favorites.swift */,
 				C57E5E28255BB58100120018 /* Utilities.swift */,
 				C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */,
+				C5B2D23D25AF17F20001A83F /* FitValues.swift */,
 				C5179BA125647D72005EC381 /* Transitions */,
 				C51E1AC7255EC5E800167D15 /* ToolbarMenu */,
 				C51E1AC5255EC5C700167D15 /* Graph */,
@@ -321,6 +336,7 @@
 		C51E1AC6255EC5D300167D15 /* SegmentLayout */ = {
 			isa = PBXGroup;
 			children = (
+				C5A2DAF725BB958100F3B13C /* GradientButton.swift */,
 				C51E1AD2255EC66500167D15 /* GradientCollectionViewCell.swift */,
 				C51E1AD3255EC66500167D15 /* MultiRowGradientLayout.swift */,
 			);
@@ -333,6 +349,31 @@
 				C51E1AC8255EC61F00167D15 /* Toolbar.swift */,
 			);
 			path = ToolbarMenu;
+			sourceTree = "<group>";
+		};
+		C566D47A25AFF2150087412F /* Old Filter Code */ = {
+			isa = PBXGroup;
+			children = (
+				C57E61FA255BE1F300120018 /* OldPetFinderFind.swift */,
+				C57E61A8255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift */,
+				C57E61A3255BB94800120018 /* OldFilterOptionSearch.swift */,
+				C57E61A4255BB94800120018 /* OldFilterOptionsListCustomCellView.swift */,
+				C57E61A6255BB94800120018 /* OldFilterOptionsListTableViewController.swift */,
+				C57E61A7255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift */,
+				C57E61D3255BDAB000120018 /* OldSelectedItemTableViewCell.swift */,
+			);
+			path = "Old Filter Code";
+			sourceTree = "<group>";
+		};
+		C566D47C25AFF24B0087412F /* Old Adopt Code */ = {
+			isa = PBXGroup;
+			children = (
+				C57E6192255BB90200120018 /* OldMainTabAdoptableCats.swift */,
+				C57E61EA255BDF4E00120018 /* OldToolCollectionViewCell.swift */,
+				C57E6193255BB90200120018 /* OldMainTabAdoptableCatsMainTVCell.swift */,
+				C57E6191255BB90100120018 /* OldMainTabAdoptableCatsSubCVCell.swift */,
+			);
+			path = "Old Adopt Code";
 			sourceTree = "<group>";
 		};
 		C57D50E7256ED4B500D0842B /* Container View Controllers */ = {
@@ -420,10 +461,7 @@
 		C57E5758255BB18B00120018 /* AdoptACat */ = {
 			isa = PBXGroup;
 			children = (
-				C57E6192255BB90200120018 /* OldMainTabAdoptableCats.swift */,
-				C57E61EA255BDF4E00120018 /* OldToolCollectionViewCell.swift */,
-				C57E6193255BB90200120018 /* OldMainTabAdoptableCatsMainTVCell.swift */,
-				C57E6191255BB90100120018 /* OldMainTabAdoptableCatsSubCVCell.swift */,
+				C566D47C25AFF24B0087412F /* Old Adopt Code */,
 				C57BE806255C96AD00C89D76 /* toolCell.swift */,
 				C57BE809255C96C900C89D76 /* mediaCell.swift */,
 				C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */,
@@ -475,15 +513,14 @@
 		C57E575E255BB1B400120018 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
-				C57E61FA255BE1F300120018 /* OldPetFinderFind.swift */,
-				C57E61A8255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift */,
-				C57E61A3255BB94800120018 /* OldFilterOptionSearch.swift */,
-				C57E61A4255BB94800120018 /* OldFilterOptionsListCustomCellView.swift */,
-				C57E61A6255BB94800120018 /* OldFilterOptionsListTableViewController.swift */,
-				C57E61A7255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift */,
-				C57E61A5255BB94800120018 /* OldPetFilterOptionsZipCodeCustomCellView.swift */,
-				C57E61D3255BDAB000120018 /* OldSelectedItemTableViewCell.swift */,
+				C566D47A25AFF2150087412F /* Old Filter Code */,
 				C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */,
+				C52C82BC25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift */,
+				C52C82BF25AFAB29006633CD /* FilterOptionTableViewCell.swift */,
+				C57E61A5255BB94800120018 /* FilterOptionsZipCodeTableCell.swift */,
+				C52C82C225AFB124006633CD /* OptionLabelCell.swift */,
+				C52C82C525AFB1AA006633CD /* OptionValueCell.swift */,
+				C566D47E25AFF3520087412F /* TextFieldWithImage.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -792,6 +829,7 @@
 				C57E61FB255BE1F300120018 /* OldPetFinderFind.swift in Sources */,
 				C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */,
 				C57E617E255BB7BA00120018 /* PagedModeratorResponse.swift in Sources */,
+				C52C82C325AFB124006633CD /* OptionLabelCell.swift in Sources */,
 				C5F9C7C12579056800861A76 /* SceneDelegate.swift in Sources */,
 				C57E618C255BB8E300120018 /* MainTabBreedViewController.swift in Sources */,
 				C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */,
@@ -806,13 +844,15 @@
 				C57E6206255BE41500120018 /* Common.m in Sources */,
 				C57E61AE255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift in Sources */,
 				C57E5E2F255BB58100120018 /* BreedStats.swift in Sources */,
+				C566D47F25AFF3520087412F /* TextFieldWithImage.swift in Sources */,
 				C57BE80A255C96C900C89D76 /* mediaCell.swift in Sources */,
 				C5DB5A1E257B126C00B112F4 /* YouTubeViewController.swift in Sources */,
-				C57E61AB255BB94900120018 /* OldPetFilterOptionsZipCodeCustomCellView.swift in Sources */,
+				C57E61AB255BB94900120018 /* FilterOptionsZipCodeTableCell.swift in Sources */,
 				C57E576A255BB28B00120018 /* CatLogoLayer.swift in Sources */,
 				C57E619D255BB92100120018 /* FitDialogViewController.swift in Sources */,
 				C57E5E38255BB58100120018 /* DownloadManager.swift in Sources */,
 				C57BE807255C96AD00C89D76 /* toolCell.swift in Sources */,
+				C52C82C025AFAB29006633CD /* FilterOptionTableViewCell.swift in Sources */,
 				C57E61A1255BB92100120018 /* FitQuestionSegmentTableViewCell.swift in Sources */,
 				C57E6223255C072B00120018 /* AdoptableCatsCollectionViewCell.swift in Sources */,
 				C57D50DC256DD19E00D0842B /* MainBreedCollectionViewController.swift in Sources */,
@@ -843,6 +883,7 @@
 				C57D511D256FC5C800D0842B /* BreedVideoCollectionViewCell.swift in Sources */,
 				C51CBD4A25817299006B2D12 /* FavoritesViewController.swift in Sources */,
 				C57E617C255BB7BA00120018 /* RescuePetsAPI5.swift in Sources */,
+				C52C82BD25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift in Sources */,
 				C57E61D8255BDB1E00120018 /* MainTabBarViewController.swift in Sources */,
 				C57E619E255BB92100120018 /* FitBreedTableViewCell.swift in Sources */,
 				C57D50E2256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift in Sources */,
@@ -864,9 +905,11 @@
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
 				C57E6184255BB7BA00120018 /* Result.swift in Sources */,
 				C57E6220255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift in Sources */,
+				C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */,
 				C57BE7F9255C707500C89D76 /* AdoptableCatsDetailViewController.swift in Sources */,
 				C57E5E35255BB58100120018 /* FelineFinderBasePets.swift in Sources */,
 				C57E6210255BE43300120018 /* CoolTableViewController.m in Sources */,
+				C5B2D23E25AF17F20001A83F /* FitValues.swift in Sources */,
 				C57E618D255BB8E300120018 /* MainTabBreedTableViewCell.swift in Sources */,
 				C57E620F255BE43300120018 /* CustomFooter.m in Sources */,
 				C57E618F255BB8E300120018 /* MainTabBreedToolCollectionViewCell.swift in Sources */,
@@ -875,6 +918,7 @@
 				C57E5E2D255BB58100120018 /* RescuePetsAPI2.swift in Sources */,
 				C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */,
 				C57E618E255BB8E300120018 /* MainTabBreedCollectionViewCell.swift in Sources */,
+				C52C82C625AFB1AA006633CD /* OptionValueCell.swift in Sources */,
 				C57E6195255BB90200120018 /* OldMainTabAdoptableCats.swift in Sources */,
 				C57D50F8256ED58100D0842B /* BreedGalleryViewController.swift in Sources */,
 				C57E5E39255BB58100120018 /* BreedList.swift in Sources */,
@@ -1029,7 +1073,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FelineFinder/FelineFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1055,7 +1099,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FelineFinder/FelineFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

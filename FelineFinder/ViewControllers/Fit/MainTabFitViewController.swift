@@ -52,23 +52,38 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             self.breeds = breeds
             self.breedPercentages = [Double](repeating: 0, count: 69)
             DispatchQueue.main.async(execute: {
-                self.BreedTableView.reloadData()
-                self.QuestionsTableViews.reloadData()
+                self.calcAnswers(question: 0)
             })
         }
-        breedStats.getBreedStatListForAllBreeds()
-        initializeResponses()
-        
+        self.breedStats.getBreedStatListForAllBreeds()
+        self.initializeResponses()
+
         gradients = GRADIENTS
         colors = COLORS
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        FitValues.storeIDs()
+    }
+    
     func initializeResponses() {
+        if FitValues.count == 0 {
+            FitValues.clear()
+            FitValues.loadValues()
+        }
         for q in 0..<questionList.count {
             if breedStats.allBreedStats[1]![q].isPercentage {
-                responses.append(response(id: Int(questionList[q].QuestionID), p: 0, d: ""))
+                responses.append(response(id: Int(questionList[q].QuestionID), p: FitValues[q], d: ""))
+                //responses.append(response(id: Int(questionList[q].QuestionID), p: 0, d: ""))
             } else {
-                responses.append(response(id: Int(questionList[q].QuestionID), p: -1, d: "Any"))
+                var p = -1
+                var desc = "Any"
+                if FitValues[q] > 0 {
+                    p = FitValues[q]
+                    desc = questionList[q].Choices[p].Name
+                }
+                responses.append(response(id: Int(questionList[q].QuestionID), p: p, d: desc))
             }
         }
     }
@@ -81,12 +96,24 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func answerChanged(question: Int, answer: Int) {
+
+        FitValues[question] = answer
+
         if breedStats.allBreedStats[1]![question].isPercentage {
             responses[question].percentAnswer = answer
         } else {
-            responses[question].descriptionAnswer = questionList[question].Choices[answer].Name
+            if questionList[question].Choices[answer].Name == "Doesn\'t Matter" {
+                responses[question].descriptionAnswer = "Any"
+                responses[question].percentAnswer = -1
+            } else {
+                responses[question].descriptionAnswer = questionList[question].Choices[answer].Name
+            }
         }
+        
+        calcAnswers(question: question)
+    }
 
+    func calcAnswers(question: Int) {
         guard breeds.count > 0 else {return}
         
         breedPercentages = breedStats.calcMatches(responses: responses)
@@ -106,7 +133,7 @@ class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableVi
             self.QuestionsTableViews.reloadData()
         })
     }
-        
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
