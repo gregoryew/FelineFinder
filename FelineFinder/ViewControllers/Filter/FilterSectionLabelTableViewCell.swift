@@ -10,7 +10,8 @@ import UIKit
 
 class FilterSectionLabelTableViewCell: UITableViewCell {
     var label: UILabel!
-    var arrow: UILabel!
+    var arrow: UIView!
+    var arrowImg: UIImageView!
     var section = 0
     var tableView: UITableView?
     
@@ -18,7 +19,11 @@ class FilterSectionLabelTableViewCell: UITableViewCell {
         self.section = section
         self.tableView = tableView
         let title = titleForHeaderInSection(section: section)
-        self.arrow = UILabel(frame: CGRect(x: contentView.frame.size.width - 45, y: 2, width: 35, height: 44))
+        self.arrow = UIView()
+        self.arrow.constraints(size: CGSize(width: 25, height: 44))
+        arrowImg = UIImageView()
+        arrowImg.center = self.arrow.center
+        arrow.addSubview(arrowImg)
         contentView.addSubview(arrow)
         
         if section >= 4 {
@@ -27,13 +32,15 @@ class FilterSectionLabelTableViewCell: UITableViewCell {
                 action: #selector(headerTapped(_:))
             )
             addGestureRecognizer(tapGestureRecognizer)
+            self.arrowImg.constraints(size: CGSize(width: 15, height: 15))
+            arrowImg.image = UIImage(named: colapsed[section - 4] ? "filter_arrow_right" : "filter_arrow_down")
+            arrowImg.contentMode = .scaleToFill
+            arrowImg.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
             arrow.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-            arrow.textColor = #colorLiteral(red: 0.5058823529, green: 0.5058823529, blue: 0.5058823529, alpha: 1)
-            arrow.text = (colapsed[section - 4] ? "➡️" : "⬇️")
             tag = section
         }
         
-        self.label = UILabel(frame: CGRect(x: 0, y: 2, width: contentView.frame.width - 45, height: 44))
+        self.label = UILabel(frame: CGRect(x: 0, y: 2, width: contentView.frame.width - 25, height: 44))
         contentView.addSubview(label)
         label.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
         label.textColor = #colorLiteral(red: 0.6235294118, green: 0.6235294118, blue: 0.6235294118, alpha: 1)
@@ -43,14 +50,14 @@ class FilterSectionLabelTableViewCell: UITableViewCell {
         
         self.label.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: self.arrow.leadingAnchor)
         self.arrow.constraints(top: contentView.topAnchor, leading: label.trailingAnchor, bottom: contentView.bottomAnchor, trailing: self.contentView.trailingAnchor)
+        self.arrowImg.constraints(centerX: self.arrow.centerXAnchor, centerY: self.arrow.centerYAnchor)
     }
     
     @objc func headerTapped(_ sender: UITapGestureRecognizer?) {
         guard let section = sender?.view?.tag else { return }
 
         if section >= 4 {
-            arrow.text = (colapsed[section - 4] ? "➡️" : "⬇️")
-            arrow.attributedText = setEmojicaLabel(text: arrow.text ?? "", size: arrow.font.pointSize, fontName: arrow.font.fontName)
+            arrowImg.image = UIImage(named: colapsed[section - 4] ? "filter_arrow_right" : "filter_arrow_down")
             colapsed[section - 4] = !colapsed[section - 4]
             DispatchQueue.main.async(execute: {
                 self.tableView?.reloadData()
@@ -87,13 +94,13 @@ class FilterSectionLabelTableViewCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        if let context = UIGraphicsGetCurrentContext() {
-        let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 10, y: 1))
-        bezierPath.addLine(to: CGPoint(x: rect.size.width, y: 1))
-        UIColor.lightGray.setStroke()
-        bezierPath.lineWidth = 1
-        bezierPath.stroke()
+        if let _ = UIGraphicsGetCurrentContext() {
+            let bezierPath = UIBezierPath()
+            bezierPath.move(to: CGPoint(x: 10, y: 1))
+            bezierPath.addLine(to: CGPoint(x: rect.size.width, y: 1))
+            UIColor.lightGray.setStroke()
+            bezierPath.lineWidth = 1
+            bezierPath.stroke()
         }
     }
 }

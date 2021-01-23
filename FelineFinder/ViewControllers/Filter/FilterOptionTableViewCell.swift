@@ -72,7 +72,7 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
             return value.SizeOf(UIFont.systemFont(ofSize: 16)).width + 20
         } else {
             value = self.option.options[indexPath.item - 1].displayName!
-            return value.SizeOf(UIFont.systemFont(ofSize: 16)).width + 10
+            return value.SizeOf(UIFont.systemFont(ofSize: 16)).width + 20
         }
     }
     

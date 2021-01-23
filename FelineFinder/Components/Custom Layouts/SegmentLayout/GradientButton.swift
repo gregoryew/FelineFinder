@@ -44,4 +44,5 @@ public class GradientButton: UIButton {
         super.layoutSublayers(of: layer)
         gradientLayer.frame = bounds
     }
+    
 }

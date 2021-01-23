@@ -9,18 +9,18 @@ import UIKit
 
 class GradientCollectionViewCell: UICollectionViewCell {
     
-    var button: GradientButton!
+    var button: ValueButton!
 
     func configure(text2: String) {
-        button = GradientButton()
-        button.topGradientColor = UIColor.lightGreen
-        button.bottomGradientColor = UIColor.darkGreen
-        button.cornerRadius = 5
+        button = ValueButton()
         contentView.addSubview(button)
         self.button.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.textColor = UIColor.clear
         button.setTitle(text2, for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+    }
+    
+    override func prepareForReuse() {
+        self.contentView.subviews.forEach({ $0.removeFromSuperview() })
     }
 }
 
