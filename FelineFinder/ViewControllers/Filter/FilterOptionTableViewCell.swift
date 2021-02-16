@@ -7,12 +7,20 @@
 
 import UIKit
 
+protocol Options {
+    func answerChanged(indexPath: IndexPath, answer: Int)
+}
+
 class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, MultiRowGradientLayoutDelegate {
     
+    var delegate: Options!
+    
     var optionCollectionView: UICollectionView!
+    var titleLabel: UILabel!
     
     var option: filterOption!
     var indexPath = IndexPath(row: 0, section: 0)
+    var optionStates = [Bool]()
     
     override func prepareForReuse() {
         self.contentView.subviews.forEach({ $0.removeFromSuperview() })
@@ -22,17 +30,23 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         self.option = option
         self.indexPath = indexPath
         
+        titleLabel = UILabel()
+        titleLabel.text = option.name ?? ""
+        contentView.addSubview(titleLabel)
+        titleLabel.frame.origin = CGPoint(x: 30, y: 0)
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.frame.size.width = 90
+        titleLabel.numberOfLines = 0
+        titleLabel.sizeToFit()
+        titleLabel.constraints(size: CGSize(width: 90, height: titleLabel.frame.height + 5))
+        titleLabel.baselineAdjustment = .alignCenters
+        
         let layout = MultiRowGradientLayout()
-        optionCollectionView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
+        optionCollectionView = UICollectionView(frame: CGRect(x: titleLabel.frame.width, y: 0, width: contentView.frame.width - titleLabel.frame.width, height: contentView.frame.height), collectionViewLayout: layout)
         contentView.addSubview(optionCollectionView)
-        self.optionCollectionView.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
         optionCollectionView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         optionCollectionView.delegate = self
         optionCollectionView.dataSource = self
-        
-        optionCollectionView.register(
-            OptionLabelCell.self,
-            forCellWithReuseIdentifier: "label")
         
         optionCollectionView.register(
             OptionValueCell.self,
@@ -41,43 +55,36 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         layout.delegate = self
         layout.columnHeight = 35
         
+        optionCollectionView.constraints(top: contentView.topAnchor, leading: titleLabel.trailingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
+        titleLabel.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, trailing: optionCollectionView.leadingAnchor, padding: UIEdgeInsets(top: 5, left: 30, bottom: 5, right: 10))
+        
         DispatchQueue.main.async(execute: {
             self.optionCollectionView.reloadData()
         })
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.option.optionsArray().count + 1
+        return self.option.optionsArray().count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 0 {
-            if let cell = optionCollectionView.dequeueReusableCell(withReuseIdentifier: "label", for: indexPath) as? OptionLabelCell {
-                cell.configure(label: self.option.name ?? "")
-                return  cell
-            }
-        } else {
-            if let cell = optionCollectionView.dequeueReusableCell(withReuseIdentifier: "option", for: indexPath) as? OptionValueCell {
-                cell.configure(text2: self.option.options[indexPath.item - 1].displayName ?? "")
-                return  cell
-            }
+        if let cell = optionCollectionView.dequeueReusableCell(withReuseIdentifier: "option", for: indexPath) as? OptionValueCell {
+            let choosen = answers[self.indexPath.section, self.indexPath.row].firstIndex(of: indexPath.row)
+            cell.configure(text: self.option.options[indexPath.item].displayName ?? "", indexPath: indexPath, choosen: (choosen != nil))
+            return  cell
         }
         return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, widthForTextAtIndexPath indexPath: IndexPath) -> CGFloat {
-        var value = ""
-        if indexPath.row == 0 {
-            value = self.option.name!
-            return value.SizeOf(UIFont.systemFont(ofSize: 16)).width + 20
-        } else {
-            value = self.option.options[indexPath.item - 1].displayName!
-            return value.SizeOf(UIFont.systemFont(ofSize: 16)).width + 20
-        }
+        return self.option.options[indexPath.item].displayName!.SizeOf(UIFont.systemFont(ofSize: 16)).width + 20
     }
     
     func collectionView(_ collectionView: UICollectionView, maxHeight: CGFloat) {
         self.optionCollectionView.frame.size.height = maxHeight
-        rowHeights[indexPath.section, indexPath.row] = maxHeight
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate.answerChanged(indexPath: self.indexPath, answer: indexPath.row)
     }
 }

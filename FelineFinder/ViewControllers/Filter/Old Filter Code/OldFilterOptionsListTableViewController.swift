@@ -56,7 +56,7 @@ class FilterOptionsListTableViewController: UITableViewController {
     
     @IBAction func ClearTapped(_ sender: Any) {
         filterOpt?.choosenListValues = []
-        DispatchQueue.main.async {
+         
             self.tableView.reloadData()
         }
     }

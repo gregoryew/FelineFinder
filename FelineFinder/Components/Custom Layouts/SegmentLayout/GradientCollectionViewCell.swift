@@ -9,14 +9,15 @@ import UIKit
 
 class GradientCollectionViewCell: UICollectionViewCell {
     
-    var button: ValueButton!
+    var label: ValueLabel!
 
-    func configure(text2: String) {
-        button = ValueButton()
-        contentView.addSubview(button)
-        self.button.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
-        button.titleLabel?.textColor = UIColor.clear
-        button.setTitle(text2, for: .normal)
+    func configure(text: String, indexPath: IndexPath, choosen: Bool) {
+        label = ValueLabel()
+        contentView.addSubview(label)
+        self.label.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
+        label.textColor = UIColor.clear
+        label.choosen = choosen
+        label.text = text
     }
     
     override func prepareForReuse() {

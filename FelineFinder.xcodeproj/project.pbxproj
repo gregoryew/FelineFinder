@@ -121,7 +121,7 @@
 		C57E6228255C228E00120018 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE3255BB44200120018 /* CatFinder.db */; };
 		C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */; };
 		C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DAF725BB958100F3B13C /* GradientButton.swift */; };
-		C5A2DB1A25BCCEB600F3B13C /* ValueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DB1925BCCEB500F3B13C /* ValueButton.swift */; };
+		C5A2DB1A25BCCEB600F3B13C /* ValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */; };
 		C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */; };
 		C5B2D23E25AF17F20001A83F /* FitValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2D23D25AF17F20001A83F /* FitValues.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
@@ -259,7 +259,7 @@
 		C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewCell.swift; sourceTree = "<group>"; };
 		C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5A2DAF725BB958100F3B13C /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
-		C5A2DB1925BCCEB500F3B13C /* ValueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueButton.swift; sourceTree = "<group>"; };
+		C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLabel.swift; sourceTree = "<group>"; };
 		C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		C5B2D23D25AF17F20001A83F /* FitValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitValues.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -341,7 +341,7 @@
 				C5A2DAF725BB958100F3B13C /* GradientButton.swift */,
 				C51E1AD2255EC66500167D15 /* GradientCollectionViewCell.swift */,
 				C51E1AD3255EC66500167D15 /* MultiRowGradientLayout.swift */,
-				C5A2DB1925BCCEB500F3B13C /* ValueButton.swift */,
+				C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */,
 			);
 			path = SegmentLayout;
 			sourceTree = "<group>";
@@ -870,7 +870,7 @@
 				C57E6194255BB90200120018 /* OldMainTabAdoptableCatsSubCVCell.swift in Sources */,
 				C57D50DF256DDC1400D0842B /* MainBreedCollectionViewCell.swift in Sources */,
 				C57E61EC255BDF4E00120018 /* OldToolCollectionViewCell.swift in Sources */,
-				C5A2DB1A25BCCEB600F3B13C /* ValueButton.swift in Sources */,
+				C5A2DB1A25BCCEB600F3B13C /* ValueLabel.swift in Sources */,
 				C57E61AA255BB94900120018 /* OldFilterOptionsListCustomCellView.swift in Sources */,
 				C57E61AC255BB94900120018 /* OldFilterOptionsListTableViewController.swift in Sources */,
 				C51E1ACE255EC63600167D15 /* PercentBarView.swift in Sources */,

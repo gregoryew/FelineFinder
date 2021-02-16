@@ -9,14 +9,14 @@ import UIKit
 
 var rowHeights:Matrix<CGFloat> = Matrix(rows: 8, columns: 20,defaultValue:0)
 var colapsed = [false,false,false,false,false]
+var answers:Matrix<[Int]>!
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Options {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var filterTypeSegControl: UISegmentedControl!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,18 +38,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }}
         }
         
-        configureTableView()
+        answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
         
+        configureTableView()
+                
         filterOptions.load(self.tableView)
     }
-
-/*
-    override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.async(execute: {
-            self.tableView.reloadData()
-        })
-    }
-*/
     
     private func configureTableView() {
         tableView.allowsSelection = false
@@ -86,106 +80,39 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        if section == 0 {
-            if filterOptions.savesOption != nil {
-                return 1
-            } else {
-                return 0
-            }
-        } else if section == 1 {  //Breed
-            if filterOptions.breedOption != nil {
-                return 0
-            } else {
-                return 0
-            }
-        } else if section == 2 {
-            return 1
-        } else {
-            switch section {
-            case 3:
-                return filterOptions.sortByList.count
-            case 4:
-                if filterType == FilterType.Simple {
-                    print("Basic \(filterOptions.basicList.count)")
-                    return colapsed[0] ? 1 : filterOptions.basicList.count
-                } else {
-                    print("adminList \(filterOptions.adminList.count)")
-                    return colapsed[0] ? 1 : filterOptions.adminList.count
-                }
-            case 5:
-                return colapsed[1] ? 1 : filterOptions.compatibilityList.count
-            case 6:
-                return colapsed[2] ? 1 :filterOptions.personalityList.count
-            case 7:
-                return colapsed[3] ? 1 :filterOptions.physicalList.count
-            default:
-                return 0
-            }
-        }
+        return filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var opt: filterOption?
-        var colapsedOpt = false
-
-        if indexPath.section > 3 {
-            colapsedOpt = colapsed[indexPath.section - 4]
-            if colapsedOpt {
-               let catClass = catClassification(rawValue: indexPath.section - 1)
-               let opt1 = [listOption(displayName: "Test \(indexPath.section - 3)", search: "", value: 0)]
-               opt = filterOption(n: "Chosen", f: "Chosen", d: true, c: catClass!, l: true, o: opt1, ft: FilterType.Simple)
-            }
-        }
+        let section = indexPath.section
+        let catClass = catClassification(rawValue: section)
         
-        if (!colapsedOpt) {
-            switch indexPath.section {
-            case 0:
-                opt = filterOptions.savesOption
-            case 1:
-                if indexPath.row == 0 {
-                    opt = filterOptions.breedOption
-                } else {
-                    opt = filterOptions.notBreedOption
-                }
-            case 3:
-                opt = filterOptions.sortByList[indexPath.row]
-            case 4:
-                if filterType == FilterType.Simple {
-                    opt = filterOptions.basicList[indexPath.row]
-                } else {
-                    opt = filterOptions.adminList[indexPath.row]
-                }
-            case 5:
-                opt = filterOptions.compatibilityList[indexPath.row]
-            case 6:
-                opt = filterOptions.personalityList[indexPath.row]
-            case 7:
-                opt = filterOptions.physicalList[indexPath.row]
-            default:
-                break
-            }
-        }
+        opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
         
-        if indexPath.section == 0 { //Saved Searches
+        switch catClass {
+        case .saves:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as? FilterOptionTableViewCell {
                 cell.configure(option: opt!, indexPath: indexPath)
                 return cell
             }
-        } else if indexPath.section == 1 { //Breeds
+        case .breed:
+            break
             /*
             if let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as? FilterOptionTableViewCell {
                 cell.configure(option: opt!, indexPath: indexPath)
                 return cell
             }
             */
-        } else if indexPath.section == 2 { //Zip Code
+        case .zipCode:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCode", for: indexPath) as? FilterOptionsZipCodeTableCell {
                 cell.configure(zipCode: zipCode)
                 return cell
             }
-        } else { //Anything else
+        default:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as? FilterOptionTableViewCell {
+                cell.delegate = self
                 cell.configure(option: opt!, indexPath: indexPath)
                 return cell
             }
@@ -194,19 +121,87 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return UITableViewCell()
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section > 2 {
-            return max(rowHeights[indexPath.section, indexPath.row], 35)
+        let section = indexPath.section
+        var nextWidth = CGFloat(0.0)
+        var width2 = CGFloat(0)
+        if section > 2 {
+            if rowHeights[section, indexPath.row] == 0 {
+                let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
+                let contentWidth = tableView.frame.width - 130
+                let columnHeight: CGFloat = 50
+                var yOffsets = [CGFloat]()
+                var xOffsets = [CGFloat]()
+                var row = -1
+                var item2 = 0
+                let itemCount = opt.options.count
+                while item2 < itemCount {
+                    row += 1
+                    yOffsets.append(CGFloat(row) * columnHeight)
+                    xOffsets.append(0)
+                    nextWidth = CGFloat(0.0)
+                    while (item2 < itemCount) && (xOffsets[row] + nextWidth < contentWidth) {
+                        width2 = (opt.options[item2].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 30
+                        
+                        if (item2 == itemCount) && (xOffsets[row] + width2 > contentWidth) {
+                            row += 1
+                            yOffsets.append(CGFloat(row) * columnHeight)
+                            xOffsets.append(0)
+                            nextWidth = CGFloat(0.0)
+                        }
+
+                        xOffsets[row] = xOffsets[row] + width2
+                        if item2 < itemCount - 1 {
+                            nextWidth = (opt.options[item2 + 1].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 30
+                        } else {
+                            nextWidth = 0
+                        }
+                        item2 += 1
+                    }
+                }
+                rowHeights[indexPath.section, indexPath.row] = (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
+                return rowHeights[indexPath.section, indexPath.row]
+            } else {
+                return rowHeights[indexPath.section, indexPath.row]
+            }
         } else {
             return 35
         }
+    }
+    
+    func answerChanged(indexPath: IndexPath, answer: Int) {
+        let section = indexPath.section
+        let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
+        if (opt.list ?? false) && (opt.options[answer].displayName != "Any") {
+            if let _ = answers[indexPath.section, indexPath.row].firstIndex(of: answer) {
+                answers[indexPath.section, indexPath.row].remove(object: answer)
+            } else {
+                if (answers[indexPath.section, indexPath.row].count > 0) && (opt.options[answers[indexPath.section, indexPath.row].last ?? 0].displayName == "Any") {
+                    answers[indexPath.section, indexPath.row].removeLast()
+                }
+                answers[indexPath.section, indexPath.row].append(answer)
+            }
+        } else {
+            answers[indexPath.section, indexPath.row].removeAll()
+            answers[indexPath.section, indexPath.row].append(answer)
+        }
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
+    }
+    
+    @IBAction func showResultsTapped(_ sender: Any) {
+        DispatchQueue.main.async(execute: {
+            let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+            globalBreed = breed
+            PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"] = nil
+            self.dismiss(animated: false, completion: nil)
+            DownloadManager.loadPetList(reset: true)
+        })
     }
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ValueButton: UIButton {
+class ValueLabel: UILabel {
 
     var choosen: Bool = false {
         didSet {self.draw(self.frame)}
@@ -29,7 +29,7 @@ class ValueButton: UIButton {
         //// Text Drawing
         //let textRect = CGRect(x: 4, y: 7, width: 151, height: 25)
         let textRect = rect
-            let textTextContent = NSString(string: titleLabel?.text ?? "")
+            let textTextContent = NSString(string: text ?? "")
         let textStyle = NSMutableParagraphStyle()
         textStyle.alignment = .center
 

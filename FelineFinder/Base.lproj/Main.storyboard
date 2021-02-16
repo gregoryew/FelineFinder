@@ -201,6 +201,9 @@
                                                 <color key="value" red="0.97647058823529409" green="0.83921568627450982" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="showResultsTapped:" destination="3E7-nw-e80" eventType="touchUpInside" id="8iy-nC-lNS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -242,7 +245,6 @@
                     <connections>
                         <outlet property="filterTypeSegControl" destination="XL5-pd-2ei" id="VbD-Ql-SYu"/>
                         <outlet property="saveButton" destination="SFD-dS-GU7" id="egp-wH-drx"/>
-                        <outlet property="searchButton" destination="8xR-AM-cSv" id="5VP-Hx-oc0"/>
                         <outlet property="tableView" destination="yMq-pY-jqv" id="Sgm-Pe-y91"/>
                     </connections>
                 </viewController>
@@ -847,10 +849,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="600"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxU-7E-LCs">
+                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yxU-7E-LCs">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="608"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-fb-cKy" customClass="DynamicImageView" customModule="FelineFinder" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SN6-fb-cKy" customClass="DynamicImageView" customModule="FelineFinder" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="300"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
@@ -865,7 +867,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4rB-vS-F5m">
+                                                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4rB-vS-F5m">
                                                             <rect key="frame" x="0.0" y="310" width="390" height="183"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="id7-VA-UI6">
@@ -999,7 +1001,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="cZK-wi-JE8" secondAttribute="trailing" id="jIT-3z-ORy"/>
                                                             </constraints>
                                                         </view>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7US-La-KdM">
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7US-La-KdM">
                                                             <rect key="frame" x="0.0" y="503" width="390" height="105"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                             <constraints>
@@ -1819,24 +1821,18 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="39g-LI-X33"/>
         <designable name="8xR-AM-cSv">
             <size key="intrinsicContentSize" width="99" height="30"/>
         </designable>
         <designable name="BNE-bJ-in9">
             <size key="intrinsicContentSize" width="39.333333333333336" height="18.666666666666668"/>
         </designable>
-        <designable name="Ckv-1w-Ska">
-            <size key="intrinsicContentSize" width="195" height="0.0"/>
-        </designable>
         <designable name="SFD-dS-GU7">
             <size key="intrinsicContentSize" width="90" height="30"/>
         </designable>
-        <designable name="SN6-fb-cKy"/>
         <designable name="WN0-0b-p7G">
             <size key="intrinsicContentSize" width="37" height="17.666666666666668"/>
         </designable>
-        <designable name="aYa-YC-vtl"/>
         <designable name="fpj-Oo-Jd3">
             <size key="intrinsicContentSize" width="32" height="15.333333333333334"/>
         </designable>

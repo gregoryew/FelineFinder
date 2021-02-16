@@ -232,7 +232,21 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
             self.refreshControl.endRefreshing()
         }
     }
-        
+
+/*
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+        globalBreed = breed
+        if zipCode == "" {
+            getZipCode()
+        } else {
+            self.pets?.loading = true
+            downloadData(reset: true)
+        }
+    }
+ */
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");

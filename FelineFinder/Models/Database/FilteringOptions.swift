@@ -99,6 +99,7 @@ class filterOption {
 enum catClassification: Int {
     case saves
     case breed
+    case zipCode
     case sort
     case admin
     case compatibility
@@ -134,14 +135,6 @@ class filterOptionsListV5 {
             self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: true, o: self.saves, ft: FilterType.Advanced))
 
             self.classify()
-            
-            /*
-            if (tv != nil) {
-                DispatchQueue.main.async(execute: {
-                    tv?.reloadData()
-                })
-            }
-            */
         }
         
         //breed
@@ -168,13 +161,6 @@ class filterOptionsListV5 {
             self.filteringOptions.append(filterOption(n: "Not These", f: "breedPrimaryIdNot", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
             
             self.classify()
-/*
-            if (tv != nil) {
-                DispatchQueue.main.async(execute: {
-                    tv?.reloadData()
-                })
-            }
-*/
         }
         
         
@@ -311,89 +297,78 @@ class filterOptionsListV5 {
     
     func getFilters() -> [filter] {
         var filters: [filter] = []
+        var filterCount = [Int](repeating: 0, count: 8)
         for o in filteringOptions {
-            if o.classification == .saves {continue}
-            if o.fieldName == "sortBy" {
-                if o.choosenValue! == 0 {
-                    sortFilter = "animals.updatedDate"
-                } else {
-                    sortFilter = "animals.distance"
+            let section = o.classification.rawValue
+            let answer = answers[section, filterCount[section]]
+            filterCount[section] += 1
+            if answer.count > 0 {
+                if o.classification == .saves {continue}
+                if o.fieldName == "sortBy" {
+                    if answer.last! == 0 {
+                        sortFilter = "animals.updatedDate"
+                    } else {
+                        sortFilter = "animals.distance"
+                    }
+                    continue
                 }
-                continue
-            }
-            if o.list == true {
                 var choosenValues: [String] = []
-                for c in o.choosenListValues {
-                    var i = 1
-                    for opt in o.options {
-                        if c == opt.value && i != o.options.count {
-                            choosenValues.append(opt.search!)
-                        }
-                        i += 1
+                if o.list ?? false {
+                    for i in 0..<answer.count {
+                        choosenValues.append(o.options[answer[i]].search ?? " ")
                     }
-                }
-                if o.name == "Not These" { //Breeds to filter out
-                    if choosenValues.count != 0 {filters.append(["fieldName": "animals.breedPrimaryId", "operation": "notequals", "criteria": choosenValues])}
+                    if o.name == "Not These" { //Breeds to filter out
+                        if choosenValues.count != 0 {filters.append(["fieldName": "animals.breedPrimaryId", "operation": "notequals", "criteria": choosenValues])}
+                    } else {
+                        if choosenValues.count != 0 {filters.append(["fieldName": "animals." + o.fieldName!, "operation": "equals", "criteria": choosenValues])}
+                    }
                 } else {
-                    if choosenValues.count != 0 {filters.append(["fieldName": "animals." + o.fieldName!, "operation": "equals", "criteria": choosenValues])}
-                }
-            } else {
-                if (o.choosenValue == o.options.count - 1 || o.choosenValue == -1) {
-                    if o.fieldName == "animals.distance" {
-                        distance = "4000" //If any distance choosen then default to largest value
-                    } else if o.fieldName == "date" {
-                        updated = Date()
-                    }
-                } else if o.choosenValue != o.options.count - 1 && o.choosenValue != -1 {
-                    for opt in o.options {
-                        if opt.value == o.choosenValue {
-                            if o.fieldName == "distance" {
-                                distance = opt.search!
-                            } else if o.fieldName == "Find Type" {
-                              continue
-                            } else if o.fieldName == "date" {
-                                var minus = DateComponents()
-                                switch o.choosenValue! {
-                                case 0: //Day
-                                    minus.day = -1
-                                case 1: //Week
-                                    minus.day = -7
-                                case 2: //Month
-                                    minus.month = -1
-                                case 3: //Year
-                                    minus.year = -1
-                                default:
-                                    minus.year = -1
-                                }
-                                
-                                let userCalendar = Calendar.current
-                                
-                                updated = userCalendar.date(byAdding: minus, to: Date())!
-                                
-                                /*
-                                if o.choosenValue! != 3 {
-                                    updated = userCalendar.date(byAdding: minus, to: Date())!
+                    if answer.count == 0 || o.options[answer.last!].displayName == "Any" {
+                        if o.fieldName == "distance" {
+                            distance = "4000" //If any distance choosen then default to largest value
+                        } else if o.fieldName == "date" {
+                            updated = Date()
+                        } else {
+                            
+                        }
+                    } else if answer.count > 0 && o.options[answer.last!].displayName != "Any" {
+                        let opt = o.options[answer.last!]
+                        if o.fieldName == "distance" {
+                            distance = opt.search!
+                        } else if o.fieldName == "Find Type" {
+                          continue
+                        } else if o.fieldName == "date" {
+                            var minus = DateComponents()
+                            switch answer.last! {
+                            case 0: //Day
+                                minus.day = -1
+                            case 1: //Week
+                                minus.day = -7
+                            case 2: //Month
+                                minus.month = -1
+                            case 3: //Year
+                                minus.year = -1
+                            default:
+                                minus.year = -1
+                            }
+                            
+                            let userCalendar = Calendar.current
+                            
+                            updated = userCalendar.date(byAdding: minus, to: Date())!
+                            
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                            let d = dateFormatter.string(from: updated).chopSuffix(5) + "Z"
+                            
+                            filters.append(["fieldName": "animals.updatedDate", "operation": "greaterthan", "criteria": d])
+                        } else {
+                            if (opt.search != "") {
+                                if opt.search == "Yes" {
+                                    filters.append(["fieldName": "animals." + o.fieldName!, "operation": "equals", "criteria": "true"])
+                                } else if opt.search == "No" {
+                                    filters.append(["fieldName": "animals." + o.fieldName!, "operation": "notequals", "criteria": "true"])
                                 } else {
-                                    updated = rescueGroupsLastQueried
-                                    rescueGroupsLastQueried = Date()
-                                    UserDefaults.standard.set(rescueGroupsLastQueried, forKey: "rescueGroupsLastQueriedString")
-                                }
-                                */
-                                
-                                let dateFormatter = DateFormatter()
-                                dateFormatter.dateFormat = "MM/dd/yyyy"
-                                let d = dateFormatter.string(from: updated)
-                                
-                                filters.append(["fieldName": "animals.updatedDate", "operation": "greaterthan", "criteria": d])
-                            } else {
-                                if (opt.search != "") {
-                                    if opt.search == "Yes" {
-                                        filters.append(["fieldName": "animals." + o.fieldName!, "operation": "equals", "criteria": true])
-                                    } else if opt.search == "No" {
-                                        filters.append(["fieldName": "animals." + o.fieldName!, "operation": "notequals", "criteria": true])
-                                    } else {
-                                        filters.append(["fieldName": "animals." + o.fieldName!, "operation": "equals", "criteria": opt.search!])
-                                    }
+                                    filters.append(["fieldName": "animals." + o.fieldName!, "operation": "equals", "criteria": opt.search!])
                                 }
                             }
                         }
@@ -407,8 +382,6 @@ class filterOptionsListV5 {
     func storeFilters(_ saveID: Int, saveName: String) {
         DatabaseManager.sharedInstance.saveFilterOptions(saveID, name: saveName, filterOptions: self)
     }
-    
-    //func retrieveSavedFilterValues(_ savedID: Int, filterOptions: filterOptionsList, choosenListValues: [Int]) {
 
     func retrieveSavedFilterValues(_ savedID: Int, filterOptions: filterOptionsListV5) {
         DatabaseManager.sharedInstance.fetchFFilterOptions(savedID, filterOptions: filterOptions, completion: {(filterOption) -> Void in
@@ -457,6 +430,41 @@ class filterOptionsListV5 {
         }
         if display == "" {display = "None"}
         return display
+    }
+    
+    func getList(section: Int, colapsed: Bool) -> [filterOption] {
+        let catClass = catClassification(rawValue: section)
+        
+        if section > 3 {
+            if colapsed {
+               let opt1 = [listOption(displayName: "Test \(section - 3)", search: "", value: 0)]
+               return [filterOption(n: "Chosen", f: "Chosen", d: true, c: catClass!, l: true, o: opt1, ft: FilterType.Simple)]
+            }
+        }
+        
+        switch catClass {
+        case .saves:
+            return [filterOptions.savesOption!]
+        case .breed:
+            return []
+            //return filterOptions.notBreedOption
+        case .sort:
+            return filterOptions.sortByList
+        case .admin:
+            if filterType == FilterType.Simple {
+                return filterOptions.basicList
+            } else {
+                return filterOptions.adminList
+            }
+        case .compatibility:
+            return filterOptions.compatibilityList
+        case .personality:
+            return filterOptions.personalityList
+        case .physical:
+            return filterOptions.physicalList
+        default:
+            return []
+        }
     }
     
     func setFilter(name: String, value: [Int]) {
