@@ -704,6 +704,18 @@ class DatabaseManager {
             }
         }
     }
+
+    func deleteAllFilterOptions() -> Void {
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
+            if (!(db?.executeStatements("DELETE FROM PetListFilterDetails"))!) {
+                self.presentDBErrorMessage((db?.lastErrorMessage())!)
+            }
+            if (!(db?.executeStatements("DELETE FROM PetListFilter"))!) {
+                self.presentDBErrorMessage((db?.lastErrorMessage())!)
+            }
+        }
+    }
+
     
     func fetchFilterOptions(_ completion: @escaping (_ filterNames: [(FilterID: Int, FilterName: String)]) -> Void) {
         
@@ -776,22 +788,20 @@ class DatabaseManager {
                 if (!(db?.executeUpdate("DELETE FROM PetListFilterDetails WHERE FilterID = ?", withArgumentsIn: [oldNameID]))!){
                     self.presentDBErrorMessage((db?.lastErrorMessage())!)
                 }
-                if (!(db?.executeUpdate("DELETE FROM PetListFilter WHERE FilterNameID = ?", withArgumentsIn: [oldNameID]))!) {
+                NameID = oldNameID
+            } else {
+                if (!(db?.executeUpdate("INSERT INTO PetListFilter (Name) VALUES (?)", withArgumentsIn: [name]))!) {
                     self.presentDBErrorMessage((db?.lastErrorMessage())!)
                 }
-            }
-            if (!(db?.executeUpdate("INSERT INTO PetListFilter (Name) VALUES (?)", withArgumentsIn: [name]))!) {
-                self.presentDBErrorMessage((db?.lastErrorMessage())!)
-            }
-            if let results = db?.executeQuery("SELECT MAX(FilterNameID) MaxNameID FROM PetListFilter", withArgumentsIn: []) {
-                while results.next() == true {
-                    NameID = Int(results.int(forColumn: "MaxNameID"))
+                if let results = db?.executeQuery("SELECT MAX(FilterNameID) MaxNameID FROM PetListFilter", withArgumentsIn: []) {
+                    while results.next() == true {
+                        NameID = Int(results.int(forColumn: "MaxNameID"))
+                    }
+                    results.close()
                 }
-                results.close()
             }
             for o in filterOptions.filteringOptions {
                 var FilterValue: String = ""
-                if o.classification == .saves {o.choosenListValues.append(NameID)}
                 if o.list == true {
                     FilterValue = o.choosenListValues.map{String($0)}.joined(separator: ",")
                 } else {

@@ -9,10 +9,16 @@ import UIKit
 
 protocol Options {
     func answerChanged(indexPath: IndexPath, answer: Int)
+    func deleteSave(save: Int)
 }
 
-class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, MultiRowGradientLayoutDelegate {
-    
+enum cellKind {
+    case regular
+    case deleteable
+}
+
+class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICollectionViewDataSource, MultiRowGradientLayoutDelegate, deleteSave {
+
     var delegate: Options!
     
     var optionCollectionView: UICollectionView!
@@ -68,16 +74,22 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = optionCollectionView.dequeueReusableCell(withReuseIdentifier: "option", for: indexPath) as? OptionValueCell {
+        if let cell = optionCollectionView.dequeueReusableCell(withReuseIdentifier: "option", for: indexPath) as? GradientCollectionViewCell {
             let choosen = answers[self.indexPath.section, self.indexPath.row].firstIndex(of: indexPath.row)
-            cell.configure(text: self.option.options[indexPath.item].displayName ?? "", indexPath: indexPath, choosen: (choosen != nil))
+            let kind = self.indexPath.section == 0 ? cellKind.deleteable : cellKind.regular
+            if choosen != nil {
+                print("DISPLAY NAME = \(String(describing: self.option.options[indexPath.item].displayName))")
+                print("CHOOSE = \(String(describing: choosen))")
+            }
+            cell.configure(text: self.option.options[indexPath.item].displayName ?? "", indexPath: indexPath, choosen: (choosen != nil), kind: kind, tag: Int(self.option.options[indexPath.row].search ?? "-1") ?? -1)
+            cell.delegate = self
             return  cell
         }
         return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, widthForTextAtIndexPath indexPath: IndexPath) -> CGFloat {
-        return self.option.options[indexPath.item].displayName!.SizeOf(UIFont.systemFont(ofSize: 16)).width + 20
+        return self.option.options[indexPath.item].displayName!.SizeOf(UIFont.systemFont(ofSize: 16)).width + 40
     }
     
     func collectionView(_ collectionView: UICollectionView, maxHeight: CGFloat) {
@@ -86,5 +98,9 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate.answerChanged(indexPath: self.indexPath, answer: indexPath.row)
+    }
+    
+    func delete(save: Int) {
+        delegate.deleteSave(save: save)
     }
 }

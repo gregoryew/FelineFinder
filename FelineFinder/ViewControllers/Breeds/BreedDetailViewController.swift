@@ -142,12 +142,19 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
         }
         
         switch option {
-        case 2:
+        case 3:
             add(asChildViewController: infoViewController)
-        case 1:
+        case 2:
             add(asChildViewController: statsViewController)
-        case 0:
+        case 1:
             add(asChildViewController: galleryViewController)
+        case 0:
+            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+
+            // Instantiate View Controller
+            guard let adopt = storyboard.instantiateViewController(withIdentifier: "AdoptList") as? AdoptableCatsCollectionViewViewController else { return }
+
+            self.present(adopt, animated: true, completion: nil)
         default: break
         }
     }

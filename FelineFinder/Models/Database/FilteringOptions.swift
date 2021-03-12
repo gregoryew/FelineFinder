@@ -122,6 +122,10 @@ class filterOptionsListV5 {
     var sortByList: [filterOption] = []
     var basicList: [filterOption] = []
     func load(_ tv: UITableView?) {
+        if tv == nil {
+            filterOptions.filteringOptions.removeAll()
+            saves.removeAll()
+        }
         if filteringOptions.count > 0 {return}
 
         var saveList: [(FilterID: Int, FilterName: String)] = []
@@ -132,15 +136,21 @@ class filterOptionsListV5 {
                 self.saves.append(listOption(displayName: s.FilterName, search: String(s.FilterID), value: i))
                 i += 1
             }
-            self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: true, o: self.saves, ft: FilterType.Advanced))
+            self.filteringOptions.append(filterOption(n: "Saved Searches", f: " Saved Searches", d: false, c:.saves, l: false, o: self.saves, ft: FilterType.Advanced))
 
             self.classify()
         }
         
         //breed
+        self.breedChoices = []
+        self.breedChoices.append(listOption(displayName: "Add...", search: "0", value: self.breedChoices.count))
+        self.filteringOptions.append(filterOption(n: "Breed", f: "breedPrimaryId", d: true, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
+
+        /*
         var breedsList: Dictionary<String, [Breed]> = [:]
         DatabaseManager.sharedInstance.fetchBreeds(false) { (breeds) -> Void in
             breedsList = breeds
+            self.breedChoices = []
             var i = 0
             let titles: [String] = breedsList.keys.sorted{$0 < $1}
             for t in titles {
@@ -162,7 +172,7 @@ class filterOptionsListV5 {
             
             self.classify()
         }
-        
+        */
         
         //sort
         filteringOptions.append(filterOption(n: "Sort By", f: "sortBy", d: false, c:.sort, o: [listOption(displayName: "Most Recent", search: "No", value: 1), listOption(displayName: "Distance", search: "distance", value: 0)], ft: FilterType.Advanced))
@@ -256,7 +266,7 @@ class filterOptionsListV5 {
         
             classify()
     }
-    
+        
     func classify() {
         var s = 0
         adminList = []

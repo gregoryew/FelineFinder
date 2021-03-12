@@ -36,6 +36,7 @@ class Toolbar: UIView {
         backgroundColor = .clear
         //tools.append(UIImageView(image: UIImage(named: "Tool_Video")))
         tools.append(UIImageView(image: UIImage(named: "Tool_Cat")))
+        tools.append(UIImageView(image: UIImage(named: "Tool_Video")))
         tools.append(UIImageView(image: UIImage(named: "Tool_Stats")))
         tools.append(UIImageView(image: UIImage(named: "Tool_Info")))
                 

@@ -9,40 +9,26 @@ import UIKit
 
 var rowHeights:Matrix<CGFloat> = Matrix(rows: 8, columns: 20,defaultValue:0)
 var colapsed = [false,false,false,false,false]
-var answers:Matrix<[Int]>!
+var answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
 
 class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Options {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var filterTypeSegControl: UISegmentedControl!
+    
+    var observer3: Any!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let nc = NotificationCenter.default
-        observer3 = nc.addObserver(forName:listReturned, object:nil, queue:nil) { [weak self] notification in
-            if let sourceViewController = notification.object as? FilterOptionsListTableViewController {
-            //let sourceViewController = sender.source as! FilterOptionsListTableViewController
-            var i = 0
-                if sourceViewController.filterOpt?.classification == .saves {
-                    if (sourceViewController.filterOpt?.choosenValue)! >= 0 {
-                        filterOptions.retrieveSavedFilterValues((sourceViewController.filterOpt?.choosenValue)!, filterOptions: filterOptions) //, choosenListValues: (sourceViewController.filterOpt?.choosenListValues)!)
-                }
-            }
-            for o in filterOptions.filteringOptions {
-                if sourceViewController.filterOpt?.name == o.name {
-                    filterOptions.filteringOptions[i].choosenListValues = (sourceViewController.filterOpt?.choosenListValues)!
-                }
-                i += 1
-            }}
-        }
-        
-        answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
         
         configureTableView()
                 
         filterOptions.load(self.tableView)
+                
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
     
     private func configureTableView() {
@@ -94,17 +80,16 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         switch catClass {
         case .saves:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as? FilterOptionTableViewCell {
+                cell.delegate = self
                 cell.configure(option: opt!, indexPath: indexPath)
                 return cell
             }
         case .breed:
-            break
-            /*
             if let cell = tableView.dequeueReusableCell(withIdentifier: "list", for: indexPath) as? FilterOptionTableViewCell {
+                cell.delegate = self
                 cell.configure(option: opt!, indexPath: indexPath)
                 return cell
             }
-            */
         case .zipCode:
             if let cell = tableView.dequeueReusableCell(withIdentifier: "zipCode", for: indexPath) as? FilterOptionsZipCodeTableCell {
                 cell.configure(zipCode: zipCode)
@@ -129,45 +114,45 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let section = indexPath.section
         var nextWidth = CGFloat(0.0)
         var width2 = CGFloat(0)
-        if section > 2 {
-            if rowHeights[section, indexPath.row] == 0 {
-                let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
-                let contentWidth = tableView.frame.width - 130
-                let columnHeight: CGFloat = 50
-                var yOffsets = [CGFloat]()
-                var xOffsets = [CGFloat]()
-                var row = -1
-                var item2 = 0
-                let itemCount = opt.options.count
-                while item2 < itemCount {
-                    row += 1
-                    yOffsets.append(CGFloat(row) * columnHeight)
-                    xOffsets.append(0)
-                    nextWidth = CGFloat(0.0)
-                    while (item2 < itemCount) && (xOffsets[row] + nextWidth < contentWidth) {
-                        width2 = (opt.options[item2].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 30
-                        
-                        if (item2 == itemCount) && (xOffsets[row] + width2 > contentWidth) {
-                            row += 1
-                            yOffsets.append(CGFloat(row) * columnHeight)
-                            xOffsets.append(0)
-                            nextWidth = CGFloat(0.0)
-                        }
-
-                        xOffsets[row] = xOffsets[row] + width2
-                        if item2 < itemCount - 1 {
-                            nextWidth = (opt.options[item2 + 1].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 30
-                        } else {
-                            nextWidth = 0
-                        }
-                        item2 += 1
+        if section > 2 || section == 0 {
+            let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
+            let contentWidth = tableView.frame.width - 130
+            let columnHeight: CGFloat = 50
+            var yOffsets = [CGFloat]()
+            var xOffsets = [CGFloat]()
+            var row = -1
+            var item2 = 0
+            let itemCount = opt.options.count
+            while item2 < itemCount {
+                row += 1
+                yOffsets.append(CGFloat(row) * columnHeight)
+                xOffsets.append(0)
+                nextWidth = CGFloat(0.0)
+                while (item2 < itemCount) && (xOffsets[row] + nextWidth < contentWidth) {
+                    width2 = (opt.options[item2].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 50
+                    
+                    if (item2 == itemCount) && (xOffsets[row] + width2 > contentWidth) {
+                        row += 1
+                        yOffsets.append(CGFloat(row) * columnHeight)
+                        xOffsets.append(0)
+                        nextWidth = CGFloat(0.0)
                     }
+
+                    xOffsets[row] = xOffsets[row] + width2
+                    if item2 < itemCount - 1 {
+                        nextWidth = (opt.options[item2 + 1].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 50
+                    } else {
+                        nextWidth = 0
+                    }
+                    item2 += 1
                 }
-                rowHeights[indexPath.section, indexPath.row] = (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
-                return rowHeights[indexPath.section, indexPath.row]
-            } else {
-                return rowHeights[indexPath.section, indexPath.row]
             }
+            return (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
+                //rowHeights[indexPath.section, indexPath.row] = (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
+                //return rowHeights[indexPath.section, indexPath.row]
+            //} else {
+            //    return rowHeights[indexPath.section, indexPath.row]
+            //}
         } else {
             return 35
         }
@@ -189,9 +174,145 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             answers[indexPath.section, indexPath.row].removeAll()
             answers[indexPath.section, indexPath.row].append(answer)
         }
+        if opt.classification == .breed {
+            if answer == filterOptions.filteringOptions[1].options.count - 1 {
+                let breedsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedsViewController") as! BreedsViewController
+                breedsVC.modalPresentationStyle = .automatic
+                if let viewController = self.getOwningViewController() {
+                    //fitDialogVC.image = question?.ImageName ?? ""
+                    viewController.present(breedsVC, animated: false, completion: nil)
+                }
+            }
+        } else if opt.classification == .saves {
+            filterOptions.retrieveSavedFilterValues(Int(opt.options[answer].search ?? "0")!, filterOptions: filterOptions)
+            filterOptions.classify()
+            answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+            var prevSection: catClassification = .saves
+            var currentItem = 0
+            for o in filterOptions.filteringOptions {
+                if o.classification == .saves {
+                    answers[catClassification.saves.rawValue, 0].append(answer)
+                } else {
+                    if prevSection != o.classification {
+                        currentItem = 0
+                        prevSection = o.classification
+                    } else {
+                        currentItem += 1
+                    }
+                    if o.list == false {
+                        answers[o.classification.rawValue, currentItem].append(o.choosenValue ?? 0)
+                    } else {
+                        answers[o.classification.rawValue, currentItem].append(contentsOf: o.choosenListValues)
+                    }
+                }
+            }
+        }
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
+    }
+    
+    func deleteSave(save: Int) {
+        let alert = UIAlertController(title: "Delete Save?", message: "Do you want to delete this saved filter?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+            filterOptions.deleteSavedFilterValues(save)
+            filterOptions.filteringOptions[0].options.removeAll { (listOption) -> Bool in
+                Int(listOption.search ?? "0")! == save
+            }
+            if filterOptions.filteringOptions[0].options.count > 0 {
+                answers[0, 0].removeAll()
+                answers[0, 0].append(filterOptions.filteringOptions[0].options.count - 1)
+            }
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
+        }))
+
+        // 4. Cancel
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+        // 5. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @IBAction func saveFilterTapped(_ sender: Any) {
+        //1. Create the alert controller.
+        let alert = UIAlertController(title: "Save Filter As", message: "Enter a save name", preferredStyle: .alert)
+
+        //2. Add the text field. You can configure it however you need.
+        alert.addTextField { (textField) in
+            if filterOptions.filteringOptions[0].choosenValue != nil {
+                let name = filterOptions.filteringOptions[0].options.filter { (listOption) -> Bool in
+                    if answers[0, 0].count > 0 {
+                        return Int(listOption.search ?? "0")! == Int(filterOptions.filteringOptions[0].options[answers[0, 0][0]].search ?? "0")!
+                    } else {
+                        return false
+                    }
+                }
+                if name.count > 0 {
+                    textField.text = name[0].displayName
+                } else {
+                    textField.text = ""
+                }
+            }
+            textField.placeholder = "Name"
+        }
+
+        // 3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let savedName = alert?.textFields![0].text ?? "Saved Filter"
+            var prevSection: catClassification = .saves
+            var currentItem = 0
+            for o in filterOptions.filteringOptions {
+                if o.classification != .saves {
+                    if prevSection != o.classification {
+                        currentItem = 0
+                        prevSection = o.classification
+                    } else {
+                        currentItem += 1
+                    }
+                    if o.list == false {
+                        if answers[o.classification.rawValue, currentItem].count > 0 {
+                            o.choosenValue = answers[o.classification.rawValue, currentItem][0]
+                        }
+                    } else {
+                        o.choosenListValues = []
+                        o.choosenListValues.append(contentsOf: answers[o.classification.rawValue, currentItem])
+                    }
+                }
+            }
+            let exists = filterOptions.filteringOptions[0].options.filter { (listOption) -> Bool in
+                listOption.displayName == savedName
+            }
+            if exists.count > 0 {
+                let alert2 = UIAlertController(title: "Overwrite?", message: "\(savedName) already exists.  Do you want me to overwrite that save?", preferredStyle: .alert)
+                alert2.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                    filterOptions.storeFilters(Int(exists[0].search ?? "0")!, saveName: savedName)
+                }))
+                
+                // 4. Cancel
+                alert2.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+                // 5. Present the alert.
+                self.present(alert2, animated: true, completion: nil)
+            } else {
+                filterOptions.storeFilters(0, saveName: savedName)
+                let lo = listOption(displayName: savedName, search: String(NameID), value: NameID)
+                filterOptions.filteringOptions[0].options.append(lo)
+                answers[0, 0].removeAll()
+                answers[0, 0].append(filterOptions.filteringOptions[0].options.count - 1)
+                DispatchQueue.main.async(execute: {
+                    self.tableView.reloadData()
+                })
+            }
+        }))
+
+        // 4. Cancel
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+
+        // 5. Present the alert.
+        self.present(alert, animated: true, completion: nil)
+        
     }
     
     @IBAction func showResultsTapped(_ sender: Any) {
@@ -203,5 +324,4 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             DownloadManager.loadPetList(reset: true)
         })
     }
-    
 }

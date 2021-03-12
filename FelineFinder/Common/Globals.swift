@@ -185,7 +185,7 @@ var rescueGroupsLastQueried = Date()
 var viewPopped = false
 var viewPoppedFromTabBarToBreeds = false
 var globalBreed: Breed?
-var sourceViewController: FilterOptionsListTableViewController?
+//var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false
 var firstTime: Bool = false
 

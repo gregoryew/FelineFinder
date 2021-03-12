@@ -35,10 +35,10 @@ class ValueLabel: UILabel {
 
         let textFontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17.5), NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.paragraphStyle: textStyle]
 
-        let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width, height: CGFloat.infinity), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height
+        let textTextHeight: CGFloat = textTextContent.boundingRect(with: CGSize(width: textRect.width - 20, height: CGFloat.infinity), options: NSStringDrawingOptions.usesLineFragmentOrigin, attributes: textFontAttributes, context: nil).size.height
             context.saveGState()
             context.clip(to: textRect)
-            textTextContent.draw(in: CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width, height: textTextHeight), withAttributes: textFontAttributes)
+            textTextContent.draw(in: CGRect(x: textRect.minX, y: textRect.minY + (textRect.height - textTextHeight) / 2, width: textRect.width - 20, height: textTextHeight), withAttributes: textFontAttributes)
             context.restoreGState()
         }
     }

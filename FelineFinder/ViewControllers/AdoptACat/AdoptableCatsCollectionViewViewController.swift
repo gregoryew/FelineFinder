@@ -14,8 +14,8 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer, PopMenuViewControllerDelegate
- {
+class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate
+{
 
     @IBOutlet weak var SortMenu: UIButton!
     @IBOutlet weak var FilterButton: UIButton!
@@ -312,8 +312,15 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         
         details.modalPresentationStyle = .automatic
         
+        details.delegate = self
+        
         present(details, animated: false, completion: nil)
 
+    }
+    
+    func closeAdoptDetailVC(_ adoptVC: AdoptableCatsDetailViewController) {
+        rowHeight = 0
+        dismiss(animated: true)
     }
     
     //When tapped will bring up the filter search
@@ -323,13 +330,13 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     //And save and the system will search daily
     //Until the user sets the offline search to no and saves
     @IBAction func OfflineSearchTapped(_ sender: Any) {
-        let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
-        self.present(PetFinderFind, animated: true, completion: nil)
+        //let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
+        //self.present(PetFinderFind, animated: true, completion: nil)
     }
     
     @IBAction func FilterButtonTapped(_ sender: Any) {
-        let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
-        self.present(PetFinderFind, animated: true, completion: nil)
+        //let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
+        //self.present(PetFinderFind, animated: true, completion: nil)
     }
     
     func popMenuCustomSize() -> PopMenuViewController {

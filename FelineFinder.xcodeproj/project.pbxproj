@@ -22,6 +22,8 @@
 		C52C82C625AFB1AA006633CD /* OptionValueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82C525AFB1AA006633CD /* OptionValueCell.swift */; };
 		C530481E25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C530481D25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift */; };
 		C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C530482025A255C10071A32C /* AdoptableDescriptionTableViewCell.swift */; };
+		C53DCE6525FAF8DB004011EC /* BreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE6425FAF8DB004011EC /* BreedsViewController.swift */; };
+		C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */; };
 		C566D47F25AFF3520087412F /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566D47E25AFF3520087412F /* TextFieldWithImage.swift */; };
 		C56E7047257BB67A00AAD927 /* FelineFinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */; };
 		C57BE7F9255C707500C89D76 /* AdoptableCatsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE7F8255C707500C89D76 /* AdoptableCatsDetailViewController.swift */; };
@@ -152,6 +154,8 @@
 		C52C82C525AFB1AA006633CD /* OptionValueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionValueCell.swift; sourceTree = "<group>"; };
 		C530481D25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		C530482025A255C10071A32C /* AdoptableDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		C53DCE6425FAF8DB004011EC /* BreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsViewController.swift; sourceTree = "<group>"; };
+		C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTableViewCell.swift; sourceTree = "<group>"; };
 		C566D47E25AFF3520087412F /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FelineFinder-Info.plist"; sourceTree = "<group>"; };
 		C57BE7E9255C327900C89D76 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -524,6 +528,8 @@
 				C52C82C225AFB124006633CD /* OptionLabelCell.swift */,
 				C52C82C525AFB1AA006633CD /* OptionValueCell.swift */,
 				C566D47E25AFF3520087412F /* TextFieldWithImage.swift */,
+				C53DCE6425FAF8DB004011EC /* BreedsViewController.swift */,
+				C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -829,6 +835,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */,
 				C57E61FB255BE1F300120018 /* OldPetFinderFind.swift in Sources */,
 				C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */,
 				C57E617E255BB7BA00120018 /* PagedModeratorResponse.swift in Sources */,
@@ -842,6 +849,7 @@
 				C57E61BD255BBAED00120018 /* Tools.swift in Sources */,
 				C57E617D255BB7BA00120018 /* ModeratorRequest.swift in Sources */,
 				C57D50FF256ED61700D0842B /* BreedDetailViewController.swift in Sources */,
+				C53DCE6525FAF8DB004011EC /* BreedsViewController.swift in Sources */,
 				C57E6196255BB90200120018 /* OldMainTabAdoptableCatsMainTVCell.swift in Sources */,
 				C57E61B7255BBA9C00120018 /* LocationManager2.swift in Sources */,
 				C57E6206255BE41500120018 /* Common.m in Sources */,

@@ -7,17 +7,34 @@
 
 import UIKit
 
+protocol deleteSave {
+    func delete(save: Int)
+}
+
 class GradientCollectionViewCell: UICollectionViewCell {
     
     var label: ValueLabel!
+    var deleteButton: UIButton!
+    var delegate: deleteSave!
 
-    func configure(text: String, indexPath: IndexPath, choosen: Bool) {
+    func configure(text: String, indexPath: IndexPath, choosen: Bool, kind: cellKind, tag: Int) {
         label = ValueLabel()
         contentView.addSubview(label)
-        self.label.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
         label.textColor = UIColor.clear
         label.choosen = choosen
         label.text = text
+        self.label.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
+        if kind == .deleteable {
+            deleteButton  = UIButton(type: .close)
+            deleteButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+            deleteButton.tag = tag
+            contentView.addSubview(deleteButton)
+            deleteButton.constraints(top: label.topAnchor, bottom: label.bottomAnchor, trailing: label.trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), size: CGSize(width: 15, height: label.frame.size.height))
+        }
+    }
+    
+    @objc func buttonAction(sender: UIButton!) {
+        delegate.delete(save: sender.tag)
     }
     
     override func prepareForReuse() {

@@ -13,10 +13,16 @@ protocol ToolbarDelegate {
     func createEmail(pet: Pet, shelter: shelter)
 }
 
+protocol adoptableCatsViewControllerDelegate: class {
+    func closeAdoptDetailVC(_ adoptVC: AdoptableCatsDetailViewController)
+}
+
 var rowHeight = 100
 
 class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, descriptionChanged, ToolbarDelegate {
 
+    weak var delegate: adoptableCatsViewControllerDelegate?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var heart: FaveButton!
     
@@ -36,8 +42,7 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
     
     @IBAction func backButtonTapped(_ sender: Any)
     {
-        rowHeight = 0
-        presentingViewController?.dismiss(animated: true, completion: nil)
+        delegate?.closeAdoptDetailVC(self)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,6 +90,12 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
             Favorites.removeFavorite(pet.petID, dataSource: .RescueGroup)
         }
     }
+    
+    @IBAction func deleteSavedFilters(_ sender: Any) {
+        DatabaseManager.sharedInstance.deleteAllFilterOptions()
+        filterOptions.load(nil)
+    }
+    
 }
 
 extension AdoptableCatsDetailViewController: MFMailComposeViewControllerDelegate {

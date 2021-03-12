@@ -5,7 +5,7 @@
 //  Created by Gregory Williams on 9/9/16.
 //  Copyright © 2016 Gregory Williams. All rights reserved.
 //
-
+/*
 import Foundation
 import UIKit
 //import Alamofire
@@ -377,3 +377,4 @@ class FilterOptionsListTableViewController: UITableViewController {
     */
 
 }
+*/

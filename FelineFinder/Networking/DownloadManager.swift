@@ -48,7 +48,7 @@ final class DownloadManager {
     }
     
     static func generatePetsJSON(filtered: Bool = true, filters filtersParam: [[String: Any]]) -> [String : [String : Any]] {
-       var filters: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
+        var filters: [[String: Any]] = [["fieldName": "species.singular", "operation": "equals", "criteria": "cat"]]
         
         if filtered {
             filters.append(contentsOf: filterOptions.getFilters())
