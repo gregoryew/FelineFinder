@@ -12,24 +12,22 @@ class BreedTableViewCell: UITableViewCell {
     @IBOutlet weak var BreedLabel: UILabel!
     
     override func prepareForReuse() {
-        self.prepareForReuse()
         self.BreedImage.image = nil
-        self.BreedImage.alpha = 0.35
+        self.BreedImage.alpha = 0.33
         self.BreedLabel.text = ""
     }
     
     func configure(breed: BreedListItem) {
         self.BreedImage.image = UIImage(named: breed.breedImageName)
-        setSelected(breed.selected, animated: false)
+        choosen(selected[tag])
         self.BreedLabel.text = breed.breedName
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        self.setSelected(selected, animated: animated)
+    func choosen(_ selected: Bool) {
         if selected {
             self.BreedImage.alpha = 1
         } else {
-            self.BreedImage.alpha = 0.35
+            self.BreedImage.alpha = 0.33
         }
     }
 }

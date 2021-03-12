@@ -143,7 +143,7 @@ class filterOptionsListV5 {
         
         //breed
         self.breedChoices = []
-        self.breedChoices.append(listOption(displayName: "Add...", search: "0", value: self.breedChoices.count))
+        self.breedChoices.append(listOption(displayName: "Add...", search: "0", value: 1))
         self.filteringOptions.append(filterOption(n: "Breed", f: "breedPrimaryId", d: true, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
 
         /*
@@ -324,9 +324,9 @@ class filterOptionsListV5 {
                 }
                 var choosenValues: [String] = []
                 if o.list ?? false {
-                    for i in 0..<answer.count {
-                        choosenValues.append(o.options[answer[i]].search ?? " ")
+                    for i in 0..<answer.count { choosenValues.append(o.options[answer[i]].search ?? " ")
                     }
+                    if o.classification == .breed {choosenValues.removeLast()}
                     if o.name == "Not These" { //Breeds to filter out
                         if choosenValues.count != 0 {filters.append(["fieldName": "animals.breedPrimaryId", "operation": "notequals", "criteria": choosenValues])}
                     } else {
@@ -456,7 +456,7 @@ class filterOptionsListV5 {
         case .saves:
             return [filterOptions.savesOption!]
         case .breed:
-            return []
+            return [filterOptions.breedOption!]
             //return filterOptions.notBreedOption
         case .sort:
             return filterOptions.sortByList

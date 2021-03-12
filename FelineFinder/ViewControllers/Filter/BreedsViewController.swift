@@ -7,22 +7,31 @@
 
 import UIKit
 
+protocol breedDisplay {
+    func dismissed(vc: UIViewController)
+}
+
 struct BreedListItem {
     let breedName: String
     let breedImageName: String
-    var selected: Bool = false
-    init (breedName: String, breedImageName: String, selected: Bool) {
+    let breedID: Int
+    init (breedName: String, breedImageName: String,
+          breedID: Int) {
         self.breedName = breedName
         self.breedImageName = breedImageName
-        self.selected = false
+        self.breedID = breedID
     }
 }
+
+var selected: [Bool] = []
 
 class BreedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var backButton: UIButton!
+    
+    var delegate: breedDisplay?
     
     var breedChoices: [BreedListItem] = []
     
@@ -40,12 +49,15 @@ class BreedsViewController: UIViewController, UITableViewDataSource, UITableView
                 var j = 0
                 while j < data!.count {
                     let b = data![j]
-                    self.breedChoices.append(BreedListItem(breedName: b.BreedName, breedImageName: "Cartoon \(b.BreedName)",
-                        selected: false))
+                    self.breedChoices.append(BreedListItem(breedName: b.BreedName, breedImageName: "Cartoon \(b.BreedName)", breedID: Int(b.RescueBreedID) ?? 0))
                     i += 1
                     j += 1
                 }
             }
+            if selected.count == 0 {selected = [Bool](repeating: false, count: self.breedChoices.count)}
+            DispatchQueue.main.async(execute: {
+                self.tableView.reloadData()
+            })
         }
 
         tableView.dataSource = self
@@ -58,10 +70,37 @@ class BreedsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "BreedCell") as? BreedTableViewCell {
+            cell.tag = indexPath.row
             cell.configure(breed: breedChoices[indexPath.row])
             return cell
         }
         return tableView.dequeueReusableCell(withIdentifier: "BreedCell") as! BreedTableViewCell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selected[indexPath.row] = !selected[indexPath.row]
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    @IBAction func selectedTapped(_ sender: Any) {
+        var breedIDs: [Int] = []
+        var breeds: [listOption] = []
+        var count = 0
+        for i in 0..<selected.count {
+            if selected[i] {
+                breedIDs.append(count)
+                breeds.append(listOption(displayName: breedChoices[i].breedName, search: String(breedChoices[i].breedID), value: 0))
+                count += 1
+            }
+        }
+        breedIDs.append(0)
+        breeds.append(listOption(displayName: "Add...", search: "0", value: 1))
+
+        answers[1, 0].removeAll()
+        answers[1, 0].append(contentsOf: breedIDs)
+        filterOptions.filteringOptions[1].options.removeAll()
+        filterOptions.filteringOptions[1].options.append(contentsOf: breeds)
+        delegate?.dismissed(vc: self)
     }
     
 }

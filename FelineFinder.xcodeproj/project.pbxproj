@@ -24,6 +24,7 @@
 		C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C530482025A255C10071A32C /* AdoptableDescriptionTableViewCell.swift */; };
 		C53DCE6525FAF8DB004011EC /* BreedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE6425FAF8DB004011EC /* BreedsViewController.swift */; };
 		C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */; };
+		C53DCE8825FBFC51004011EC /* SearchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE8725FBFC50004011EC /* SearchTimer.swift */; };
 		C566D47F25AFF3520087412F /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566D47E25AFF3520087412F /* TextFieldWithImage.swift */; };
 		C56E7047257BB67A00AAD927 /* FelineFinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */; };
 		C57BE7F9255C707500C89D76 /* AdoptableCatsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE7F8255C707500C89D76 /* AdoptableCatsDetailViewController.swift */; };
@@ -156,6 +157,7 @@
 		C530482025A255C10071A32C /* AdoptableDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		C53DCE6425FAF8DB004011EC /* BreedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsViewController.swift; sourceTree = "<group>"; };
 		C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTableViewCell.swift; sourceTree = "<group>"; };
+		C53DCE8725FBFC50004011EC /* SearchTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTimer.swift; sourceTree = "<group>"; };
 		C566D47E25AFF3520087412F /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
 		C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FelineFinder-Info.plist"; sourceTree = "<group>"; };
 		C57BE7E9255C327900C89D76 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				C5179BA125647D72005EC381 /* Transitions */,
 				C51E1AC7255EC5E800167D15 /* ToolbarMenu */,
 				C51E1AC5255EC5C700167D15 /* Graph */,
+				C53DCE8725FBFC50004011EC /* SearchTimer.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -915,6 +918,7 @@
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
 				C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */,
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
+				C53DCE8825FBFC51004011EC /* SearchTimer.swift in Sources */,
 				C57E6184255BB7BA00120018 /* Result.swift in Sources */,
 				C57E6220255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift in Sources */,
 				C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */,

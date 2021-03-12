@@ -14,13 +14,19 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate
+protocol AdoptionDismiss {
+    func AdoptionDismiss(vc: UIViewController)
+    func Setup() -> String
+}
+
+class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate,
+    FilterDismiss
 {
 
     @IBOutlet weak var SortMenu: UIButton!
     @IBOutlet weak var FilterButton: UIButton!
-    
     @IBOutlet weak var AdoptableCatCollectionView: UICollectionView!
+    @IBOutlet weak var CloseButton: UIButton!
     
     var popMenu: PopMenuViewController? = nil
     private let refreshControl = UIRefreshControl()
@@ -41,6 +47,8 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     var observer3: Any!
     
     var totalRows = 0
+    
+    var delegate: AdoptionDismiss?
     
     //let transition = PopAnimator()
     
@@ -100,6 +108,14 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         locationManager?.requestWhenInUseAuthorization()
          
         pets = RescuePetsAPI5()
+        
+        if delegate != nil {
+            self.SortMenu.setTitle(delegate?.Setup(), for: .normal)
+            self.CloseButton.isHidden = false
+        } else {
+            self.CloseButton.isHidden = true
+            self.SortMenu.setTitle("", for: .normal)
+        }
     }
     
     func downloadData(reset: Bool) {
@@ -117,6 +133,10 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     
     deinit {
         print("Deinit Collection")
+    }
+    
+    @IBAction func closeTapped(_ sender: Any) {
+        delegate?.AdoptionDismiss(vc: self)
     }
     
     func getZipCode() {
@@ -335,10 +355,23 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     }
     
     @IBAction func FilterButtonTapped(_ sender: Any) {
-        //let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
-        //self.present(PetFinderFind, animated: true, completion: nil)
+        let FilterViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Filter") as! FilterViewController
+        FilterViewController.modalPresentationStyle = .formSheet
+        FilterViewController.delegate = self
+        self.present(FilterViewController, animated: true, completion: nil)
     }
     
+    func FilterDismiss(vc: UIViewController) {
+        DispatchQueue.main.async(execute: {
+            let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+            globalBreed = breed
+            PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"] = nil
+            vc.dismiss(animated: false, completion: nil)
+            DownloadManager.loadPetList(reset: true)
+        })
+    }
+    
+    /*
     func popMenuCustomSize() -> PopMenuViewController {
         let action1 = PopMenuDefaultAction(title: "Closest", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
         let action2 = PopMenuDefaultAction(title: "Newest", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
@@ -373,6 +406,7 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
             present(popMenuViewController, animated: true, completion: nil)
         }
     }
+    */
 }
 
 extension AdoptableCatsCollectionViewViewController: UICollectionViewDataSourcePrefetching {
@@ -464,4 +498,6 @@ extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate  {
             return 400
         }
     }
+    
+    
 }

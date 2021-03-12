@@ -7,7 +7,8 @@
 
 import UIKit
 
-class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate {
+class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate, AdoptionDismiss {
+    
     @IBOutlet weak var breedPhoto: UIImageView!
     @IBOutlet weak var breedName: UILabel!
     @IBOutlet weak var toolbar: Toolbar!
@@ -24,6 +25,8 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
     var priorChildViewController: UIViewController?
     var childContainerExpanded = false
     var originalRect: CGRect!
+    var currentChild = 0
+    var priorBreed: Breed?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +140,9 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
     func menuItemChoosen(option: Int) {
         //toolbar.frame = self.originalRect
         
-        if priorChildViewController != nil {
+        if option != 0 {currentChild = option}
+        
+        if priorChildViewController != nil && option != 0 {
             remove(asChildViewController: priorChildViewController!)
         }
         
@@ -154,9 +159,19 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
             // Instantiate View Controller
             guard let adopt = storyboard.instantiateViewController(withIdentifier: "AdoptList") as? AdoptableCatsCollectionViewViewController else { return }
 
+            adopt.delegate = self
+
             self.present(adopt, animated: true, completion: nil)
         default: break
         }
+    }
+    
+    func Setup() -> String {
+        return breed?.BreedName ?? ""
+    }
+    
+    func AdoptionDismiss(vc: UIViewController) {
+        vc.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func BackTapped(_ sender: Any) {
@@ -175,24 +190,22 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate 
             }
         }
     }
-    
+        
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-    
         if searchText != "" {
             filteredBreeds = breeds.filter { (breed: Breed) -> Bool in
                 return breed.BreedName.lowercased().contains(searchText.lowercased())
             }
-            _infoViewController = nil
-            _statsViewController = nil
-            _galleryViewController = nil
-            
-            if priorChildViewController != nil {
-                remove(asChildViewController: priorChildViewController!)
-            }
         } else {
             filteredBreeds = [breed!]
         }
-        
         showBreedDetail(breed: (filteredBreeds.first ?? breed)!)
+        if priorBreed?.BreedID != breed?.BreedID {
+            priorBreed = breed
+            _infoViewController = nil
+            _statsViewController = nil
+            _galleryViewController = nil
+            menuItemChoosen(option: currentChild)
+        }
     }
 }

@@ -7,17 +7,24 @@
 
 import UIKit
 
+protocol FilterDismiss {
+    func FilterDismiss(vc: UIViewController)
+}
+
 var rowHeights:Matrix<CGFloat> = Matrix(rows: 8, columns: 20,defaultValue:0)
 var colapsed = [false,false,false,false,false]
 var answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Options {
+class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Options, breedDisplay {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var filterTypeSegControl: UISegmentedControl!
     
     var observer3: Any!
+    
+    var delegate: FilterDismiss!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +32,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         configureTableView()
                 
         filterOptions.load(self.tableView)
-                
+        
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
@@ -114,7 +121,8 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let section = indexPath.section
         var nextWidth = CGFloat(0.0)
         var width2 = CGFloat(0)
-        if section > 2 || section == 0 {
+        //var col = 0
+        if section != 2 {
             let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
             let contentWidth = tableView.frame.width - 130
             let columnHeight: CGFloat = 50
@@ -125,15 +133,16 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let itemCount = opt.options.count
             while item2 < itemCount {
                 row += 1
-                yOffsets.append(CGFloat(row) * columnHeight)
+                yOffsets.append(CGFloat(row) * (columnHeight - 10))
                 xOffsets.append(0)
                 nextWidth = CGFloat(0.0)
-                while (item2 < itemCount) && (xOffsets[row] + nextWidth < contentWidth) {
+                while (item2 < itemCount) && (xOffsets[row] + nextWidth < contentWidth)
+                {
                     width2 = (opt.options[item2].displayName?.SizeOf(UIFont.systemFont(ofSize: 16)).width ?? 0) + 50
                     
                     if (item2 == itemCount) && (xOffsets[row] + width2 > contentWidth) {
                         row += 1
-                        yOffsets.append(CGFloat(row) * columnHeight)
+                        //yOffsets.append(CGFloat(row) * columnHeight)
                         xOffsets.append(0)
                         nextWidth = CGFloat(0.0)
                     }
@@ -148,11 +157,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
             return (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
-                //rowHeights[indexPath.section, indexPath.row] = (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
-                //return rowHeights[indexPath.section, indexPath.row]
-            //} else {
-            //    return rowHeights[indexPath.section, indexPath.row]
-            //}
         } else {
             return 35
         }
@@ -177,11 +181,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if opt.classification == .breed {
             if answer == filterOptions.filteringOptions[1].options.count - 1 {
                 let breedsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedsViewController") as! BreedsViewController
-                breedsVC.modalPresentationStyle = .automatic
-                if let viewController = self.getOwningViewController() {
+                breedsVC.modalPresentationStyle = .formSheet
+                breedsVC.delegate = self
                     //fitDialogVC.image = question?.ImageName ?? ""
-                    viewController.present(breedsVC, animated: false, completion: nil)
-                }
+                self.present(breedsVC, animated: false, completion: nil)
             }
         } else if opt.classification == .saves {
             filterOptions.retrieveSavedFilterValues(Int(opt.options[answer].search ?? "0")!, filterOptions: filterOptions)
@@ -207,6 +210,13 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         }
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
+    }
+    
+    func dismissed(vc: UIViewController) {
+        vc.dismiss(animated: false, completion: nil)
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
@@ -316,12 +326,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func showResultsTapped(_ sender: Any) {
-        DispatchQueue.main.async(execute: {
-            let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
-            globalBreed = breed
-            PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"] = nil
-            self.dismiss(animated: false, completion: nil)
-            DownloadManager.loadPetList(reset: true)
-        })
+        delegate.FilterDismiss(vc: self)
     }
 }
