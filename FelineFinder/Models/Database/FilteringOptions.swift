@@ -140,13 +140,18 @@ class filterOptionsListV5 {
 
             self.classify()
         }
-        
-        //breed
-        self.breedChoices = []
-        self.breedChoices.append(listOption(displayName: "Add...", search: "0", value: 1))
-        self.filteringOptions.append(filterOption(n: "Breed", f: "breedPrimaryId", d: true, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
 
         /*
+            self.breedChoices.append(listOption(displayName: "Any", search: "0", value: self.breedChoices.count))
+            
+            self.filteringOptions.append(filterOption(n: "Breed", f: "breedPrimaryId", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
+            
+            self.filteringOptions.append(filterOption(n: "Not These", f: "breedPrimaryIdNot", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
+            
+            self.classify()
+        }
+        */
+        
         var breedsList: Dictionary<String, [Breed]> = [:]
         DatabaseManager.sharedInstance.fetchBreeds(false) { (breeds) -> Void in
             breedsList = breeds
@@ -163,17 +168,10 @@ class filterOptionsListV5 {
                     j += 1
                 }
             }
-            
-            self.breedChoices.append(listOption(displayName: "Any", search: "0", value: self.breedChoices.count))
-            
-            self.filteringOptions.append(filterOption(n: "Breed", f: "breedPrimaryId", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
-            
-            self.filteringOptions.append(filterOption(n: "Not These", f: "breedPrimaryIdNot", d: false, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
-            
-            self.classify()
         }
-        */
-        
+                
+        filteringOptions.append(filterOption(n: "Breed", f: "breedPrimaryId", d: true, c:.breed, l: true, o: self.breedChoices, ft: FilterType.Advanced))
+        filteringOptions[1].options.append(listOption(displayName: "Add...", search: "0", value: 1))
         //sort
         filteringOptions.append(filterOption(n: "Sort By", f: "sortBy", d: false, c:.sort, o: [listOption(displayName: "Most Recent", search: "No", value: 1), listOption(displayName: "Distance", search: "distance", value: 0)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [listOption(displayName: "5", search: "5", value: 0), listOption(displayName: "20", search: "20", value: 1), listOption(displayName: "50", search: "50", value: 2), listOption(displayName: "100", search: "100", value: 3), listOption(displayName: "200", search: "200", value: 4), listOption(displayName: "Any", search: "Any", value: 5)], ft: FilterType.Advanced))
@@ -182,7 +180,6 @@ class filterOptionsListV5 {
         filteringOptions.append(filterOption(n: "While Your Away", f: "While Your Away", d: false, c:.sort, o: [listOption(displayName: "Search Daily?", search: "", value: 1), listOption(displayName: "Don't Search?", search: "", value: 0)], ft: FilterType.Advanced))
         //filteringOptions.append(filterOption(n: "Only With Videos?", f: "Only With Videos", d: false, c:.sort, o: [(displayName: "Yes", search: "Yes", value: 0), (displayName: "No", search: "No", value: 1)], ft: FilterType.Advanced))
 
-        
         //admin
         filteringOptions.append(filterOption(n: "Adoption pending", f: "isAdoptionPending", d: false, c:.admin, o: [listOption(displayName: "Yes", search: "Yes", value: 0),listOption(displayName: "No", search: "No", value: 1), listOption(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Courtesy Listing", f: "isCourtesyListing", d: false, c:.admin, o: [listOption(displayName: "Yes", search: "Yes", value: 0),listOption(displayName: "No", search: "No", value: 1), listOption(displayName: "Any", search: "Any", value: 2)], ft: FilterType.Advanced))
@@ -324,9 +321,12 @@ class filterOptionsListV5 {
                 }
                 var choosenValues: [String] = []
                 if o.list ?? false {
-                    for i in 0..<answer.count { choosenValues.append(o.options[answer[i]].search ?? " ")
+                    if o.classification == .breed {
+                        choosenValues = o.choosenListValues.map{String($0)}
+                    } else {
+                        for i in 0..<answer.count { choosenValues.append(o.options[answer[i]].search ?? " ")
+                        }
                     }
-                    if o.classification == .breed {choosenValues.removeLast()}
                     if o.name == "Not These" { //Breeds to filter out
                         if choosenValues.count != 0 {filters.append(["fieldName": "animals.breedPrimaryId", "operation": "notequals", "criteria": choosenValues])}
                     } else {
@@ -388,7 +388,7 @@ class filterOptionsListV5 {
         }
         return filters
     }
-    
+        
     func storeFilters(_ saveID: Int, saveName: String) {
         DatabaseManager.sharedInstance.saveFilterOptions(saveID, name: saveName, filterOptions: self)
     }
@@ -404,8 +404,23 @@ class filterOptionsListV5 {
                     filterType = FilterType.Simple
                 }
             }
-            })
+            self.setupBreeds()
+        })
     }
+    
+    func setupBreeds() {
+        var breedOptions: [listOption] = []
+        let choices = filterOptions.filteringOptions[1].choosenListValues
+        for choice in choices {
+            breedOptions.append(filterOptions.breedChoices.first(where: { (listOption) -> Bool in
+                listOption.search! == String(choice)
+            }) ?? listOption(displayName: "Bad", search: "0", value: 1))
+        }
+        breedOptions.append(listOption(displayName: "Add...", search: "0", value: 1))
+        filterOptions.filteringOptions[1].options.removeAll()
+        filterOptions.filteringOptions[1].options.append(contentsOf: breedOptions)
+    }
+
     
     func deleteSavedFilterValues(_ savedID: Int) {
         DatabaseManager.sharedInstance.deleteFilterOptions(savedID: savedID)
@@ -458,6 +473,8 @@ class filterOptionsListV5 {
         case .breed:
             return [filterOptions.breedOption!]
             //return filterOptions.notBreedOption
+        case .zipCode:
+            return [filterOptions.filteringOptions[2]]
         case .sort:
             return filterOptions.sortByList
         case .admin:

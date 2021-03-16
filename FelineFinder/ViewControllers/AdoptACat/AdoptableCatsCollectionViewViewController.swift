@@ -9,6 +9,7 @@ import UIKit
 import CMMapLauncher
 import PopMenu
 import DZNEmptyDataSet
+import WhereAmI
 
 var selectedImages: [Int] = []
 
@@ -19,7 +20,7 @@ protocol AdoptionDismiss {
     func Setup() -> String
 }
 
-class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, CLLocationManagerDelegate, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate,
+class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate,
     FilterDismiss
 {
 
@@ -28,13 +29,10 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     @IBOutlet weak var AdoptableCatCollectionView: UICollectionView!
     @IBOutlet weak var CloseButton: UIButton!
     
-    var popMenu: PopMenuViewController? = nil
     private let refreshControl = UIRefreshControl()
     
     var pets: RescuePetsAPI5?
     var zipCodes: Dictionary<String, zipCoordinates> = [:]
-    var currentLocation : CLLocation!
-    var locationManager: CLLocationManager? = CLLocationManager()
     
     var tempBreedName = ""
     var tempTitleLabel = ""
@@ -103,10 +101,8 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         layout.delegate = self
         self.AdoptableCatCollectionView.collectionViewLayout = layout
         
-        locationManager?.delegate = self
-//        locationManager?.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager?.requestWhenInUseAuthorization()
-         
+        getZipCode()
+        
         pets = RescuePetsAPI5()
         
         if delegate != nil {
@@ -144,21 +140,39 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
         zipCode = keyStore.string(forKey: "zipCode") ?? ""
         if zipCode != "" {
             self.pets?.loading = true
+            let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+            globalBreed = breed
             downloadData(reset: true)
             return
         }
         
-        LocationManager2.sharedInstance.getCurrentReverseGeoCodedLocation { (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
-            if error != nil {
-                self.askForZipCode()
-                return
-            }
-            guard location != nil else {
-                return
-            }
-            
-            zipCode = placemark?.postalCode ?? "19106"
+        if (!WhereAmI.userHasBeenPromptedForLocationUse()) {
+            WhereAmI.sharedInstance.askLocationAuthorization({ [unowned self] (locationIsAuthorized) -> Void in
+                    coreLocation()
+            });
+        } else {
+            coreLocation()
+        }
+    }
+    
+    func coreLocation() {
+        whatIsThisPlace { (response) -> Void in
+          switch response {
+          case .success(let placemark):
+            zipCode = placemark.postalCode ?? "66952"
+            let keyStore = NSUbiquitousKeyValueStore()
+            keyStore.set(zipCode, forKey: "zipCode")
+            self.pets?.loading = true
+            let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+            globalBreed = breed
             self.downloadData(reset: true)
+          case .placeNotFound:
+            self.askForZipCode()
+          case .failure:
+            self.askForZipCode()
+          case .unauthorized:
+            self.askForZipCode()
+          }
         }
     }
 
@@ -239,6 +253,12 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
             selectedImages = [Int](repeating: 0, count: totalRows)
             isFetchInProgress = false
             self.refreshControl.endRefreshing()
+            self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            if view.tag == ADOPTABLE_CATS_VC {
+                self.SortMenu.setTitle("\(totalRows) Cats. Zip: \(zipCode)", for: .normal)
+            } else if view.tag == FAVORITES_VC {
+                self.SortMenu.setTitle  ("\(totalRows) Favorites.", for: .normal)
+            }
           }
           return
         }
@@ -340,7 +360,14 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     
     func closeAdoptDetailVC(_ adoptVC: AdoptableCatsDetailViewController) {
         rowHeight = 0
-        dismiss(animated: true)
+        adoptVC.dismiss(animated: true)
+        if view.tag == FAVORITES_VC {
+            DownloadManager.loadFavorites(reset: true)
+        } else {
+            DispatchQueue.main.async {
+                self.AdoptableCatCollectionView.reloadData()
+            }
+        }
     }
     
     //When tapped will bring up the filter search

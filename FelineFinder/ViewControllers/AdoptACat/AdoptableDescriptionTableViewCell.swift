@@ -10,32 +10,39 @@ import WebKit
 import SafariServices
 import MessageUI
 
-protocol descriptionChanged {
-    func heightChanged(heigth: Int)
-}
+var webViewHeight:CGFloat = 0 // WKWEbview height
 
 class AdoptableDescriptionTableViewCell: UITableViewCell {
-    @IBOutlet var descriptionWK: WKWebView!
+    @IBOutlet var container: UIView!
 
-    var delegate: descriptionChanged!
-    
+    lazy var descriptionWK:WKWebView = {
+        let configuration = WKWebViewConfiguration()
+        configuration.dataDetectorTypes = [.all]
+        return WKWebView(frame: CGRect.zero, configuration: configuration)
+    }()
     var pet: Pet!
     var shelter: shelter!
+    var isWebViewAdded:Bool = false
+    private var webView: WKWebView?
+    var loaded = false
     
     func setup(pet: Pet, shelter: shelter) {
         self.pet = pet
         self.shelter = shelter
         let path = Bundle.main.bundlePath;
         let sBaseURL = URL(fileURLWithPath: path);
-        descriptionWK?.navigationDelegate = self
-        descriptionWK?.loadHTMLString(generatePetDescription(pet: pet, shelter: shelter), baseURL: sBaseURL)
+        
+        descriptionWK.navigationDelegate = self
+        
+        descriptionWK.scrollView.isScrollEnabled = false
+        descriptionWK.scrollView.bounces = false
+        descriptionWK.isUserInteractionEnabled = true
+        descriptionWK.contentMode = .scaleToFill
+        if !loaded {
+            descriptionWK.loadHTMLString(generatePetDescription(pet: pet, shelter: shelter), baseURL: sBaseURL)
+            loaded = true
+        }
         selectionStyle = .none
-        disableScrollView(self.descriptionWK)
-    }
-    
-    func disableScrollView(_ view: UIView) {
-        (view as? UIScrollView)?.isScrollEnabled = false
-        view.subviews.forEach { disableScrollView($0) }
     }
     
     private func sendEmail(address: String?) {
@@ -184,7 +191,7 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
         //dateFormatter.dateFormat = "MM/dd/yyyy"
         //let d = dateFormatter.string(from: p.lastUpdated)
         
-            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:24px;} h2 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:36px;} h3 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:28px;} h4 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} a { color: blue} a.visited {color: grey;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><b><h2>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
+            htmlString = "<!DOCTYPE html><html><header><style> li {margin-top: 30px;border:1px solid grey;} li:first-child {margin-top:0;} h1 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:40px;} h2 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:40px;} h3 {color: blue; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:28px;} h4 {color: black; FONT-FAMILY:Arial,Helvetica,sans-serif; FONT-SIZE:20px;} a { color: blue} a.visited {color: grey;} </style></header><body><center><table width=\"\(self.tableWidth())\"><tr><td width=\"100%\"><table width=\"100%\"><tr><td><center><b><h2>GENERAL INFORMATION</b></h3></center><h2></td></tr></table><h1>\(options)\(o)</br></h1><table><tr><td><center><h2>CONTACT</h2></center><h1>\(shelter.name)</br>\(shelter.address1)</br>\(c), \(shelter.state) \(shelter.zipCode)</h1></td></tr><tr><td><h2><center>DESCRIPTION</center></h2><div style='overflow-y:visible; overflow-x:scroll; width:\(self.width())'><h1><p style=\"word-wrap: break-word;\">\(pet.descriptionHtml)</p></h1></div></td></tr><tr><td></td></tr><tr><td><h2><center>DISCLAIMER</center></h2><h4>PLEASE READ: Information regarding adoptable pets is provided by the adoption organization and is neither checked for accuracy or completeness nor guaranteed to be accurate or complete.  The health or status and behavior of any pet found, adopted through, or listed on the Feline Finder app are the sole responsibility of the adoption organization listing the same and/or the adopting party, and by using this service, the adopting party releases Feline Finder and Gregory Edward Williams, from any and all liability arising out of or in any way connected with the adoption of a pet listed on the Feline Finder app.</h4></td></tr></table></center></body></html>"
         return htmlString
     }
     
@@ -207,14 +214,37 @@ class AdoptableDescriptionTableViewCell: UITableViewCell {
 
         return tableWidth
     }
+    
+    func addWebView() {
+        if self.webView == nil {
+            if !isWebViewAdded  {
+                DispatchQueue.main.async {
+                    self.isWebViewAdded = true
+                    self.container.addSubview(self.descriptionWK)
+                    self.descriptionWK.translatesAutoresizingMaskIntoConstraints = false
+                    self.descriptionWK.topAnchor.constraint(equalTo: self.container.topAnchor, constant: 0).isActive = true
+                    self.descriptionWK.bottomAnchor.constraint(equalTo: self.container.bottomAnchor, constant: 0).isActive = true
+                    self.descriptionWK.leadingAnchor.constraint(equalTo: self.container.leadingAnchor, constant: 0).isActive = true
+                    self.descriptionWK.trailingAnchor.constraint(equalTo: self.container.trailingAnchor, constant: 0).isActive = true
+                }
+            }
+        }
+    }
+
 }
 
 extension AdoptableDescriptionTableViewCell : WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         webView.evaluateJavaScript("document.readyState", completionHandler: { (complete, error) in
            if complete != nil {
-            self.delegate.heightChanged(heigth: Int(webView.scrollView.contentSize.height))
-            self.contentView.setNeedsLayout()
+              webView.evaluateJavaScript("document.documentElement.scrollHeight", completionHandler: { (height, error) in
+                guard let heightT = height as? CGFloat else { return }
+                DispatchQueue.main.async {
+                    webViewHeight = heightT
+                    webView.invalidateIntrinsicContentSize()
+                    (self.superview as? UITableView)!.reloadData()
+                }
+            })
            }
         })
     }

@@ -8,6 +8,7 @@
 import UIKit
 import FaveButton
 import MessageUI
+import WebKit
 
 protocol ToolbarDelegate {
     func createEmail(pet: Pet, shelter: shelter)
@@ -19,7 +20,7 @@ protocol adoptableCatsViewControllerDelegate: class {
 
 var rowHeight = 100
 
-class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, descriptionChanged, ToolbarDelegate {
+class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ToolbarDelegate {
 
     weak var delegate: adoptableCatsViewControllerDelegate?
     
@@ -33,6 +34,7 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
         tableView.delegate = self
         tableView.dataSource = self
         heart.isSelected = Favorites.isFavorite(pet.petID, dataSource: .RescueGroup)
+        tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,9 +57,10 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
                 cell.setup(pet: self.pet, self)
                 return cell
             }
-        } else {
+        } else if indexPath.row == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "description") as? AdoptableDescriptionTableViewCell {
-                cell.delegate = self
+                cell.addWebView()
+                cell.selectionStyle = .none
                 cell.setup(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!)
                 return cell
             }
@@ -67,19 +70,9 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 {
-            return CGFloat(max(100, rowHeight) + 40)
+            return webViewHeight
         } else {
-            return 596
-        }
-    }
-    
-    func heightChanged(heigth: Int) {
-        if rowHeight != heigth {
-            rowHeight = heigth
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-                self.view.layoutSubviews()
-            })
+            return 608
         }
     }
     

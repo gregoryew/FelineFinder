@@ -25,11 +25,14 @@ class GradientCollectionViewCell: UICollectionViewCell {
         label.text = text
         self.label.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
         if kind == .deleteable {
-            deleteButton  = UIButton(type: .close)
+            deleteButton  = UIButton(type: .custom)
+            if let img = UIImage(named: "filter_cross") {
+                deleteButton.setImage(img, for: .normal)
+            }
             deleteButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
             deleteButton.tag = tag
             contentView.addSubview(deleteButton)
-            deleteButton.constraints(top: label.topAnchor, bottom: label.bottomAnchor, trailing: label.trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), size: CGSize(width: 15, height: label.frame.size.height))
+            deleteButton.constraints(top: label.topAnchor, bottom: label.bottomAnchor, trailing: label.trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), size: CGSize(width: 20, height: label.frame.size.height))
         }
     }
     

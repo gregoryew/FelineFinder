@@ -85,11 +85,13 @@ class BreedsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func selectedTapped(_ sender: Any) {
         var breedIDs: [Int] = []
         var breeds: [listOption] = []
+        var choosenValues: [Int] = []
         var count = 0
         for i in 0..<selected.count {
             if selected[i] {
                 breedIDs.append(count)
                 breeds.append(listOption(displayName: breedChoices[i].breedName, search: String(breedChoices[i].breedID), value: 0))
+                choosenValues.append(breedChoices[i].breedID)
                 count += 1
             }
         }
@@ -100,6 +102,8 @@ class BreedsViewController: UIViewController, UITableViewDataSource, UITableView
         answers[1, 0].append(contentsOf: breedIDs)
         filterOptions.filteringOptions[1].options.removeAll()
         filterOptions.filteringOptions[1].options.append(contentsOf: breeds)
+        filterOptions.filteringOptions[1].choosenListValues.removeAll()
+        filterOptions.filteringOptions[1].choosenListValues.append(contentsOf: choosenValues)
         delegate?.dismissed(vc: self)
     }
     

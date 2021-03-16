@@ -104,7 +104,6 @@
 		C57E61AD255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A7255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift */; };
 		C57E61AE255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61A8255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift */; };
 		C57E61B1255BB9DD00120018 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61B0255BB9DD00120018 /* Globals.swift */; };
-		C57E61B7255BBA9C00120018 /* LocationManager2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61B6255BBA9C00120018 /* LocationManager2.swift */; };
 		C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61B9255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift */; };
 		C57E61BD255BBAED00120018 /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E61BC255BBAED00120018 /* Tools.swift */; };
 		C57E61C8255BBDC000120018 /* BreedHeadshots.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C57E61C7255BBDC000120018 /* BreedHeadshots.xcassets */; };
@@ -241,7 +240,6 @@
 		C57E61A7255BB94900120018 /* OldFilterOptionsSegmentedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionsSegmentedCustomCellView.swift; sourceTree = "<group>"; };
 		C57E61A8255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldFilterOptionsBreedCustomCellView.swift; sourceTree = "<group>"; };
 		C57E61B0255BB9DD00120018 /* Globals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
-		C57E61B6255BBA9C00120018 /* LocationManager2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager2.swift; sourceTree = "<group>"; };
 		C57E61B9255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLayoutVaryingWidths.swift; sourceTree = "<group>"; };
 		C57E61BC255BBAED00120018 /* Tools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		C57E61C7255BBDC000120018 /* BreedHeadshots.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = BreedHeadshots.xcassets; sourceTree = "<group>"; };
@@ -541,7 +539,6 @@
 			isa = PBXGroup;
 			children = (
 				C57E61BC255BBAED00120018 /* Tools.swift */,
-				C57E61B6255BBA9C00120018 /* LocationManager2.swift */,
 				C57E61B0255BB9DD00120018 /* Globals.swift */,
 				C57E5769255BB28B00120018 /* CatLogoLayer.swift */,
 				C57E5763255BB26F00120018 /* ZoomViewControler.swift */,
@@ -854,7 +851,6 @@
 				C57D50FF256ED61700D0842B /* BreedDetailViewController.swift in Sources */,
 				C53DCE6525FAF8DB004011EC /* BreedsViewController.swift in Sources */,
 				C57E6196255BB90200120018 /* OldMainTabAdoptableCatsMainTVCell.swift in Sources */,
-				C57E61B7255BBA9C00120018 /* LocationManager2.swift in Sources */,
 				C57E6206255BE41500120018 /* Common.m in Sources */,
 				C57E61AE255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift in Sources */,
 				C57E5E2F255BB58100120018 /* BreedStats.swift in Sources */,

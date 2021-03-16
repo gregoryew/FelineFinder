@@ -580,6 +580,16 @@ extension UIView {
         layoutAttachTrailing(to: view, margin: margin)
 
     }
+    
+    func rotate360Degrees(duration: CFTimeInterval = 3) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0.0
+        rotateAnimation.toValue = CGFloat(Double.pi * 2)
+        rotateAnimation.isRemovedOnCompletion = false
+        rotateAnimation.duration = duration
+        rotateAnimation.repeatCount=Float.infinity
+        self.layer.add(rotateAnimation, forKey: nil)
+    }
 
     // Attaches the top of the current view to the given view's top if it's a superview of the current view or to it's bottom if it's not (assuming this is then a sibling view).
     @discardableResult

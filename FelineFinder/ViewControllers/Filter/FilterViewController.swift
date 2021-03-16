@@ -30,7 +30,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         configureTableView()
-                
+        
+        hideKeyboardWhenTappedAround()
+        
         filterOptions.load(self.tableView)
         
         DispatchQueue.main.async(execute: {
@@ -158,7 +160,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return (yOffsets.last ?? 0) + columnHeight + (row > 0 ? 5 : 0)
         } else {
-            return 35
+            return 50
         }
     }
     
@@ -169,7 +171,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if let _ = answers[indexPath.section, indexPath.row].firstIndex(of: answer) {
                 answers[indexPath.section, indexPath.row].remove(object: answer)
             } else {
-                if (answers[indexPath.section, indexPath.row].count > 0) && (opt.options[answers[indexPath.section, indexPath.row].last ?? 0].displayName == "Any") {
+                if (answers[indexPath.section, indexPath.row].count > 0) && (opt.options.last!.displayName == "Any") {
                     answers[indexPath.section, indexPath.row].removeLast()
                 }
                 answers[indexPath.section, indexPath.row].append(answer)
@@ -185,6 +187,17 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 breedsVC.delegate = self
                     //fitDialogVC.image = question?.ImageName ?? ""
                 self.present(breedsVC, animated: false, completion: nil)
+                selected = [Bool](repeating: false, count: filterOptions.breedChoices.count)
+                for o in opt.options {
+                    if o.displayName != "Add..." {
+                        for i in 0..<filterOptions.breedChoices.count {
+                            if o.displayName == filterOptions.breedChoices[i].displayName {
+                                selected[i] = true
+                                break
+                            }
+                        }
+                    }
+                }
             }
         } else if opt.classification == .saves {
             filterOptions.retrieveSavedFilterValues(Int(opt.options[answer].search ?? "0")!, filterOptions: filterOptions)
@@ -214,6 +227,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             self.tableView.reloadData()
         })
     }
+    
     
     func dismissed(vc: UIViewController) {
         vc.dismiss(animated: false, completion: nil)
@@ -287,7 +301,20 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         }
                     } else {
                         o.choosenListValues = []
-                        o.choosenListValues.append(contentsOf: answers[o.classification.rawValue, currentItem])
+                        var breeds: [Int] = []
+                        if o.classification == .breed {
+                            for ans in answers[1,0] {
+                                let rescueID = filterOptions.breedChoices.filter { (listOption) -> Bool in
+                                    listOption.displayName == filterOptions.filteringOptions[1 ].options[ans].displayName
+                                }
+                                if rescueID.count > 0 {
+                                    breeds.append(Int(rescueID[0].search ?? "0") ?? 0)
+                                }
+                                o.choosenListValues.append(contentsOf: breeds)
+                            }
+                        } else {
+                            o.choosenListValues.append(contentsOf: answers[o.classification.rawValue, currentItem])
+                        }
                     }
                 }
             }
@@ -326,6 +353,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func showResultsTapped(_ sender: Any) {
-        delegate.FilterDismiss(vc: self)
+        if !DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode) {
+            let alert = UIAlertController(title: "Invalid Zipcode", message: "Please enter a valid zipcode.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            delegate.FilterDismiss(vc: self)
+        }
     }
 }
