@@ -955,9 +955,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4kb-ar-rIr">
-                                <rect key="frame" x="0.0" y="107" width="390" height="627"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4kb-ar-rIr">
+                                <rect key="frame" x="0.0" y="116" width="390" height="761"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="header" rowHeight="603" id="L1p-D8-Qh9" customClass="AdoptableHeaderTableViewCell" customModule="FelineFinder" customModuleProvider="target">
@@ -1178,8 +1177,7 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yxU-7E-LCs" firstAttribute="top" secondItem="JTZ-LI-myG" secondAttribute="top" id="W5U-J7-htT"/>
-                                                <constraint firstItem="yxU-7E-LCs" firstAttribute="top" secondItem="JTZ-LI-myG" secondAttribute="top" id="mtT-r0-c53"/>
+                                                <constraint firstItem="yxU-7E-LCs" firstAttribute="top" secondItem="JTZ-LI-myG" secondAttribute="top" id="5gy-FQ-Anf"/>
                                                 <constraint firstItem="yxU-7E-LCs" firstAttribute="leading" secondItem="JTZ-LI-myG" secondAttribute="leading" id="qrE-hl-DjY"/>
                                                 <constraint firstAttribute="trailing" secondItem="yxU-7E-LCs" secondAttribute="trailing" id="udM-PP-xfY"/>
                                             </constraints>
@@ -1203,20 +1201,36 @@
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZ4-DA-Ibl">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Owx-tv-s64">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
+                                                    <subviews>
+                                                        <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcz-C3-Ndk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
+                                                            <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <wkWebViewConfiguration key="configuration">
+                                                                <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                                                <wkPreferences key="preferences"/>
+                                                            </wkWebViewConfiguration>
+                                                        </wkWebView>
+                                                    </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="Gcz-C3-Ndk" secondAttribute="trailing" id="Ij0-hD-uag"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Gcz-C3-Ndk" secondAttribute="bottom" id="Jah-3k-U5f"/>
+                                                        <constraint firstItem="Gcz-C3-Ndk" firstAttribute="top" secondItem="Owx-tv-s64" secondAttribute="top" id="RFe-KM-VXC"/>
+                                                        <constraint firstItem="Gcz-C3-Ndk" firstAttribute="leading" secondItem="Owx-tv-s64" secondAttribute="leading" id="q0B-q5-mVn"/>
+                                                    </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="sZ4-DA-Ibl" firstAttribute="top" secondItem="jcN-nF-s8q" secondAttribute="top" id="Ey8-tt-kNJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="sZ4-DA-Ibl" secondAttribute="trailing" id="IRG-CG-XAu"/>
-                                                <constraint firstItem="sZ4-DA-Ibl" firstAttribute="leading" secondItem="jcN-nF-s8q" secondAttribute="leading" id="ch9-a4-9rL"/>
-                                                <constraint firstAttribute="bottom" secondItem="sZ4-DA-Ibl" secondAttribute="bottom" id="cl9-lF-vxx"/>
+                                                <constraint firstItem="Owx-tv-s64" firstAttribute="leading" secondItem="jcN-nF-s8q" secondAttribute="leading" id="3MS-CA-4hX"/>
+                                                <constraint firstAttribute="trailing" secondItem="Owx-tv-s64" secondAttribute="trailing" id="CZX-mu-6Oc"/>
+                                                <constraint firstItem="Owx-tv-s64" firstAttribute="top" secondItem="jcN-nF-s8q" secondAttribute="top" id="U7n-j3-920"/>
+                                                <constraint firstAttribute="bottom" secondItem="Owx-tv-s64" secondAttribute="bottom" id="Vmw-Z4-M6h"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="container" destination="sZ4-DA-Ibl" id="b64-7y-bji"/>
+                                            <outlet property="descriptionWK" destination="Gcz-C3-Ndk" id="bnO-He-6cr"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1278,12 +1292,15 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ngT-0Z-rPV" firstAttribute="leading" secondItem="wcJ-pc-gbI" secondAttribute="leading" id="0s9-de-JrV"/>
+                            <constraint firstItem="wcJ-pc-gbI" firstAttribute="bottom" secondItem="4kb-ar-rIr" secondAttribute="bottom" constant="-67" id="Uxo-Fy-nnJ"/>
                             <constraint firstItem="ngT-0Z-rPV" firstAttribute="trailing" secondItem="wcJ-pc-gbI" secondAttribute="trailing" id="ZGP-wC-TM2"/>
+                            <constraint firstItem="4kb-ar-rIr" firstAttribute="leading" secondItem="wcJ-pc-gbI" secondAttribute="leading" id="iQ9-zm-SLQ"/>
+                            <constraint firstItem="4kb-ar-rIr" firstAttribute="trailing" secondItem="wcJ-pc-gbI" secondAttribute="trailing" id="nhs-z1-ZNg"/>
+                            <constraint firstItem="4kb-ar-rIr" firstAttribute="top" secondItem="wcJ-pc-gbI" secondAttribute="top" constant="72" id="o3n-3H-l8g"/>
                             <constraint firstItem="ngT-0Z-rPV" firstAttribute="top" secondItem="wcJ-pc-gbI" secondAttribute="top" id="vcE-TE-g0h"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Adopt" image="MainTabAdopt" selectedImage="MainTabAdoptUp" id="qoi-QC-lvI"/>
-                    <size key="freeformSize" width="390" height="844"/>
                     <connections>
                         <outlet property="heart" destination="bFr-2x-wbA" id="ghD-b6-ddV"/>
                         <outlet property="tableView" destination="4kb-ar-rIr" id="fkw-Pp-DoK"/>

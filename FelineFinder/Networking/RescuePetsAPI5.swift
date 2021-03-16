@@ -92,7 +92,7 @@ final class RescuePetsAPI5: PetList {
                 
                     var p = Pet(pID: cat.id ?? "", n: cat.name ?? "", b: breed, m: false, a: cat.ageGroup ?? "", s: cat.sex ?? "", s2: cat.sizeGroup ?? "", o: [], d: cat.descriptionText ?? "", m2: pictures, v: videos, s3: organizationID ?? "", z: "", dis: cat.distance ?? -1, stat: stat, bd: cat.birthDate ?? "", upd: upd, adoptionFee: "NA" , location: cityState)
                     //p.descriptionHtml = cat.descriptionHtml ?? ""
-                    p.descriptionHtml = cat.descriptionText ?? cat.descriptionHtml ?? ""
+                    p.descriptionHtml =  cat.descriptionHtml ?? cat.descriptionText ?? ""
                     pets2.append(p)
                 }
             }

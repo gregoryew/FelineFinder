@@ -59,7 +59,6 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
             }
         } else if indexPath.row == 1 {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "description") as? AdoptableDescriptionTableViewCell {
-                cell.addWebView()
                 cell.selectionStyle = .none
                 cell.setup(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!)
                 return cell
@@ -70,7 +69,12 @@ class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, 
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 1 {
-            return webViewHeight
+            let font = UIFont(name: "ArialMT", size: 25)
+            let attributes = [NSAttributedString.Key.font: font]
+            let s = NSAttributedString(string: pet.descriptionHtml, attributes: attributes as [NSAttributedString.Key : Any])
+            let descriptionHeight = s.height(withConstrainedWidth: UIScreen.main.bounds.width)
+            let oh = pet.options.count * 30
+            return CGFloat(CGFloat((4 * 30) + oh + 1000) + descriptionHeight)
         } else {
             return 608
         }
