@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         distance = UserDefaults.standard.string(forKey: "distance") ?? ""
         
         if distance == "" {
-            distance = "4000"
+            distance = "8000"
             UserDefaults.standard.set(distance, forKey: "distance")
         }
         

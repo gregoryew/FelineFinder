@@ -20,7 +20,6 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var filterTypeSegControl: UISegmentedControl!
     
     var observer3: Any!
     
@@ -75,7 +74,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3]).count
+        return filterOptions.getList(section: section, colapsed: section < 4 ? false : colapsed[section - 4]).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,7 +83,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let section = indexPath.section
         let catClass = catClassification(rawValue: section)
         
-        opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
+        opt = filterOptions.getList(section: section, colapsed: section < 4 ? false : colapsed[section - 4])[indexPath.row]
         
         switch catClass {
         case .saves:
@@ -125,7 +124,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var width2 = CGFloat(0)
         //var col = 0
         if section != 2 {
-            let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
+            let opt = filterOptions.getList(section: section, colapsed: section < 4 ? false : colapsed[section - 4])[indexPath.row]
             let contentWidth = tableView.frame.width - 130
             let columnHeight: CGFloat = 50
             var yOffsets = [CGFloat]()
@@ -200,6 +199,10 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
         } else if opt.classification == .saves {
+            if opt.options[answer].search == "New" {
+                new()
+                return
+            }
             filterOptions.retrieveSavedFilterValues(Int(opt.options[answer].search ?? "0")!, filterOptions: filterOptions)
             filterOptions.classify()
             answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
@@ -228,6 +231,20 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
     }
     
+    func new() {
+        answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+        filterOptions.filteringOptions[1].options = []
+        filterOptions.filteringOptions[1].options.append(listOption(displayName: "Add...", search: "0", value: 1))
+        for o in filterOptions.filteringOptions {
+            o.choosenValue = o.options.count - 1
+            o.choosenListValues.removeAll()
+        }
+        filterOptions.filteringOptions[0].choosenValue = 0
+        answers[0, 0].append(0)
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
+    }
     
     func dismissed(vc: UIViewController) {
         vc.dismiss(animated: false, completion: nil)
@@ -241,11 +258,12 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
             filterOptions.deleteSavedFilterValues(save)
             filterOptions.filteringOptions[0].options.removeAll { (listOption) -> Bool in
-                Int(listOption.search ?? "0")! == save
+                (listOption.search != "New") && Int(listOption.search ?? "0")! == save
             }
             if filterOptions.filteringOptions[0].options.count > 0 {
                 answers[0, 0].removeAll()
-                answers[0, 0].append(filterOptions.filteringOptions[0].options.count - 1)
+                answers[0, 0].append(0)
+                self.new()
             }
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
@@ -267,8 +285,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alert.addTextField { (textField) in
             if filterOptions.filteringOptions[0].choosenValue != nil {
                 let name = filterOptions.filteringOptions[0].options.filter { (listOption) -> Bool in
-                    if answers[0, 0].count > 0 {
-                        return Int(listOption.search ?? "0")! == Int(filterOptions.filteringOptions[0].options[answers[0, 0][0]].search ?? "0")!
+                    if answers[0, 0].count > 0 && listOption.displayName != "New" {
+                        let search = (answers[0, 0][0] > 0 ? filterOptions.filteringOptions[0].options[answers[0, 0][0] > 0 ? answers[0, 0][0] : 0].search : "0") ?? "0"
+                        return Int(listOption.search ?? "0")! == Int(search)
                     } else {
                         return false
                     }
@@ -303,15 +322,18 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         o.choosenListValues = []
                         var breeds: [Int] = []
                         if o.classification == .breed {
-                            for ans in answers[1,0] {
+                            var bs = answers[1, 0]
+                            if bs.count > 0 && o.options.last?.displayName == "Add..." {bs.removeLast()}
+                            for b in bs {
                                 let rescueID = filterOptions.breedChoices.filter { (listOption) -> Bool in
-                                    listOption.displayName == filterOptions.filteringOptions[1 ].options[ans].displayName
+                                    (filterOptions.filteringOptions[1 ].options.count > b) && (listOption.displayName ==
+                                        filterOptions.filteringOptions[1 ].options[b].displayName)
                                 }
                                 if rescueID.count > 0 {
                                     breeds.append(Int(rescueID[0].search ?? "0") ?? 0)
                                 }
-                                o.choosenListValues.append(contentsOf: breeds)
                             }
+                            o.choosenListValues.append(contentsOf: breeds)
                         } else {
                             o.choosenListValues.append(contentsOf: answers[o.classification.rawValue, currentItem])
                         }

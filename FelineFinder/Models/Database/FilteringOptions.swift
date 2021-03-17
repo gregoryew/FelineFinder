@@ -132,6 +132,8 @@ class filterOptionsListV5 {
         DatabaseManager.sharedInstance.fetchFilterOptions() { (filterNames) -> Void in
             saveList = filterNames
             var i = 0
+            self.saves.append(listOption(displayName: "New", search: "New", value: i))
+            i += 1
             for s in saveList {
                 self.saves.append(listOption(displayName: s.FilterName, search: String(s.FilterID), value: i))
                 i += 1
@@ -176,7 +178,7 @@ class filterOptionsListV5 {
         filteringOptions.append(filterOption(n: "Sort By", f: "sortBy", d: false, c:.sort, o: [listOption(displayName: "Most Recent", search: "No", value: 1), listOption(displayName: "Distance", search: "distance", value: 0)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Distance", f: "distance", d: false, c:.sort, o: [listOption(displayName: "5", search: "5", value: 0), listOption(displayName: "20", search: "20", value: 1), listOption(displayName: "50", search: "50", value: 2), listOption(displayName: "100", search: "100", value: 3), listOption(displayName: "200", search: "200", value: 4), listOption(displayName: "Any", search: "Any", value: 5)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "Updated Since", f: "date", d: false, c:.sort, o: [listOption(displayName: "Day", search: "0", value: 0), listOption(displayName: "Week", search: "Week", value: 1), listOption(displayName: "Month", search: "Month", value: 2), listOption(displayName: "Year", search: "Year", value: 3), listOption(displayName: "Any", search: "Any", value: 4)], ft: FilterType.Advanced))
-        filteringOptions.append(filterOption(n: "Find Type", f: "Find Type", d: false, c:.sort, o: [listOption(displayName: "Simple", search: "Simple", value: 0), listOption(displayName: "Advanced", search: "Advanced", value: 1)], ft: FilterType.Advanced))
+        //filteringOptions.append(filterOption(n: "Find Type", f: "Find Type", d: false, c:.sort, o: [listOption(displayName: "Simple", search: "Simple", value: 0), listOption(displayName: "Advanced", search: "Advanced", value: 1)], ft: FilterType.Advanced))
         filteringOptions.append(filterOption(n: "While Your Away", f: "While Your Away", d: false, c:.sort, o: [listOption(displayName: "Search Daily?", search: "", value: 1), listOption(displayName: "Don't Search?", search: "", value: 0)], ft: FilterType.Advanced))
         //filteringOptions.append(filterOption(n: "Only With Videos?", f: "Only With Videos", d: false, c:.sort, o: [(displayName: "Yes", search: "Yes", value: 0), (displayName: "No", search: "No", value: 1)], ft: FilterType.Advanced))
 
@@ -335,7 +337,7 @@ class filterOptionsListV5 {
                 } else {
                     if answer.count == 0 || o.options[answer.last!].displayName == "Any" {
                         if o.fieldName == "distance" {
-                            distance = "4000" //If any distance choosen then default to largest value
+                            distance = "8000" //If any distance choosen then default to largest value
                         } else if o.fieldName == "date" {
                             updated = Date()
                         } else {
@@ -460,10 +462,33 @@ class filterOptionsListV5 {
     func getList(section: Int, colapsed: Bool) -> [filterOption] {
         let catClass = catClassification(rawValue: section)
         
+        var priorSection = catClassification.saves
+        var itemInSection = -1
+        
         if section > 3 {
             if colapsed {
-               let opt1 = [listOption(displayName: "Test \(section - 3)", search: "", value: 0)]
-               return [filterOption(n: "Chosen", f: "Chosen", d: true, c: catClass!, l: true, o: opt1, ft: FilterType.Simple)]
+                var options: [listOption] = []
+                for i in 0..<filterOptions.filteringOptions.count {
+                    if filterOptions.filteringOptions[i].classification != priorSection
+                    {
+                        itemInSection = 0
+                        priorSection = filterOptions.filteringOptions[i].classification
+                    } else {
+                        itemInSection += 1
+                    }
+                    if filterOptions.filteringOptions[i].classification != catClass || answers[catClass?.rawValue ?? 0, itemInSection].count == 0 {continue}
+                    var displayNames: [String] = []
+                    for ans in answers[catClass?.rawValue ?? 0, itemInSection] {
+                        if filterOptions.filteringOptions[i].options[ans].displayName != "Any" {displayNames.append(filterOptions.filteringOptions[i].options[ans].displayName ?? "")}
+                    }
+                    if displayNames.count > 0 {
+                        options.append(listOption(displayName: (filterOptions.filteringOptions[i].name ?? "") + ": " + displayNames.joined(separator: ","), search: "", value: 0))
+                    }
+                }
+                if options.count == 0 {
+                    options.append(listOption(displayName: "None", search: "", value: 0))
+                }
+                return [filterOption(n: "Chosen", f: "Chosen", d: true, c: catClass!, l: true, o: options, ft: FilterType.Simple)]
             }
         }
         
@@ -478,11 +503,7 @@ class filterOptionsListV5 {
         case .sort:
             return filterOptions.sortByList
         case .admin:
-            if filterType == FilterType.Simple {
-                return filterOptions.basicList
-            } else {
-                return filterOptions.adminList
-            }
+            return filterOptions.adminList
         case .compatibility:
             return filterOptions.compatibilityList
         case .personality:

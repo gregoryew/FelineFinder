@@ -124,34 +124,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oy3-7a-y5x">
-                                <rect key="frame" x="133" y="49" width="240" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="BKU-X5-OSP"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="These Breeds"/>
-                                    <segment title="Not These Breeds"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="jV9-PD-jgB"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="QMq-w9-qjl" firstAttribute="leading" secondItem="jV9-PD-jgB" secondAttribute="leading" constant="16" id="5dP-Jk-ngo"/>
-                            <constraint firstItem="oy3-7a-y5x" firstAttribute="top" secondItem="jV9-PD-jgB" secondAttribute="top" constant="5" id="KIn-rQ-etE"/>
                             <constraint firstAttribute="bottom" secondItem="5Xk-6g-gwB" secondAttribute="bottom" id="QLH-hs-sq3"/>
                             <constraint firstItem="5Xk-6g-gwB" firstAttribute="leading" secondItem="jV9-PD-jgB" secondAttribute="leading" id="TjC-dU-H9m"/>
-                            <constraint firstItem="5Xk-6g-gwB" firstAttribute="top" secondItem="oy3-7a-y5x" secondAttribute="bottom" constant="13" id="gQI-cP-BCC"/>
                             <constraint firstItem="5Xk-6g-gwB" firstAttribute="trailing" secondItem="jV9-PD-jgB" secondAttribute="trailing" id="h98-J6-BGb"/>
                             <constraint firstItem="5Xk-6g-gwB" firstAttribute="top" secondItem="QMq-w9-qjl" secondAttribute="bottom" constant="8" symbolic="YES" id="ofa-cE-hCm"/>
                             <constraint firstItem="QMq-w9-qjl" firstAttribute="top" secondItem="jV9-PD-jgB" secondAttribute="top" id="pds-Ih-5b8"/>
-                            <constraint firstItem="jV9-PD-jgB" firstAttribute="trailing" secondItem="oy3-7a-y5x" secondAttribute="trailing" constant="17" id="vs7-eH-gji"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="QMq-w9-qjl" id="IGh-Jh-u6W"/>
-                        <outlet property="segmentedControl" destination="oy3-7a-y5x" id="b0Z-Jn-eEA"/>
                         <outlet property="tableView" destination="5Xk-6g-gwB" id="fgQ-gb-zXX"/>
                     </connections>
                 </viewController>
@@ -168,7 +154,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="yMq-pY-jqv">
-                                <rect key="frame" x="0.0" y="96" width="390" height="646"/>
+                                <rect key="frame" x="0.0" y="44" width="390" height="698"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -183,41 +169,8 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="breeds" rowHeight="45" id="2fB-F9-svf">
-                                        <rect key="frame" x="0.0" y="99.333332061767578" width="390" height="45"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2fB-F9-svf" id="nlO-p5-IbN">
-                                            <rect key="frame" x="0.0" y="0.0" width="390" height="45"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="9WI-BS-UYj">
-                                                    <rect key="frame" x="291" y="5" width="94" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="IX0-Vx-9R4"/>
-                                                    </constraints>
-                                                </stepper>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55a-Kb-i90">
-                                                    <rect key="frame" x="25" y="16" width="258" height="13"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <constraints>
-                                                <constraint firstItem="55a-Kb-i90" firstAttribute="top" secondItem="nlO-p5-IbN" secondAttribute="topMargin" constant="5" id="9Ya-hP-n1d"/>
-                                                <constraint firstItem="55a-Kb-i90" firstAttribute="leading" secondItem="nlO-p5-IbN" secondAttribute="leadingMargin" constant="5" id="F7k-lT-Pf1"/>
-                                                <constraint firstAttribute="trailing" secondItem="9WI-BS-UYj" secondAttribute="trailing" constant="5" id="GtA-v2-4iJ"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="55a-Kb-i90" secondAttribute="bottom" constant="5" id="Hdf-Zl-Wdk"/>
-                                                <constraint firstAttribute="bottom" secondItem="9WI-BS-UYj" secondAttribute="bottom" constant="5" id="loh-7g-MtC"/>
-                                                <constraint firstItem="9WI-BS-UYj" firstAttribute="leading" secondItem="55a-Kb-i90" secondAttribute="trailing" constant="8" symbolic="YES" id="tIB-75-PPP"/>
-                                                <constraint firstItem="9WI-BS-UYj" firstAttribute="top" secondItem="nlO-p5-IbN" secondAttribute="top" constant="5" id="uNc-ER-7ta"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="zipCode" rowHeight="45" id="Wqp-gd-nP9" customClass="FilterOptionsZipCodeTableCell" customModule="FelineFinder" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="144.33333206176758" width="390" height="45"/>
+                                        <rect key="frame" x="0.0" y="99.333332061767578" width="390" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wqp-gd-nP9" id="SLf-lL-V6C">
                                             <rect key="frame" x="0.0" y="0.0" width="390" height="45"/>
@@ -314,44 +267,20 @@
                                     <constraint firstAttribute="trailing" secondItem="8xR-AM-cSv" secondAttribute="trailing" id="o3D-vt-7Vy"/>
                                 </constraints>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XL5-pd-2ei">
-                                <rect key="frame" x="16" y="57" width="358" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Jr9-nN-NT4"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Simple"/>
-                                    <segment title="Advanced"/>
-                                </segments>
-                            </segmentedControl>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="list" rowHeight="45" id="5Ac-CL-Hym" customClass="FilterOptionTableViewCell" customModule="FelineFinder" customModuleProvider="target">
-                                <rect key="frame" x="10" y="50" width="390" height="45"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5Ac-CL-Hym" id="1KM-kF-xK8" customClass="OptionValueCell" customModule="FelineFinder" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="45"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </tableViewCell>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mgk-rt-So6"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yMq-pY-jqv" firstAttribute="top" secondItem="XL5-pd-2ei" secondAttribute="bottom" constant="9" id="2Tz-rn-g6r"/>
                             <constraint firstItem="yMq-pY-jqv" firstAttribute="leading" secondItem="Mgk-rt-So6" secondAttribute="leading" id="7pu-pl-9cu"/>
                             <constraint firstItem="Mgk-rt-So6" firstAttribute="bottom" secondItem="w5k-8p-Jog" secondAttribute="bottom" constant="10" id="97h-JE-5Ih"/>
                             <constraint firstItem="w5k-8p-Jog" firstAttribute="top" secondItem="yMq-pY-jqv" secondAttribute="bottom" constant="8" symbolic="YES" id="PX5-R8-YmM"/>
-                            <constraint firstItem="XL5-pd-2ei" firstAttribute="top" secondItem="Mgk-rt-So6" secondAttribute="top" constant="13" id="WPs-6K-sCp"/>
                             <constraint firstItem="w5k-8p-Jog" firstAttribute="leading" secondItem="Mgk-rt-So6" secondAttribute="leading" constant="10" id="WQR-Lo-eRZ"/>
-                            <constraint firstItem="Mgk-rt-So6" firstAttribute="trailing" secondItem="XL5-pd-2ei" secondAttribute="trailing" constant="16" id="hng-cy-8zl"/>
-                            <constraint firstItem="XL5-pd-2ei" firstAttribute="leading" secondItem="Mgk-rt-So6" secondAttribute="leading" constant="16" id="kfX-Tc-lHw"/>
                             <constraint firstItem="Mgk-rt-So6" firstAttribute="trailing" secondItem="w5k-8p-Jog" secondAttribute="trailing" constant="10" id="tRq-yW-ynO"/>
+                            <constraint firstItem="yMq-pY-jqv" firstAttribute="top" secondItem="Mgk-rt-So6" secondAttribute="top" id="xPa-WQ-sZP"/>
                             <constraint firstItem="yMq-pY-jqv" firstAttribute="trailing" secondItem="Mgk-rt-So6" secondAttribute="trailing" id="zhd-XX-a9H"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="filterTypeSegControl" destination="XL5-pd-2ei" id="VbD-Ql-SYu"/>
                         <outlet property="saveButton" destination="SFD-dS-GU7" id="aqJ-AG-z4m"/>
                         <outlet property="searchButton" destination="8xR-AM-cSv" id="n5E-iO-Yb2"/>
                         <outlet property="tableView" destination="yMq-pY-jqv" id="Sgm-Pe-y91"/>

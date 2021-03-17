@@ -24,7 +24,7 @@ class GradientCollectionViewCell: UICollectionViewCell {
         label.choosen = choosen
         label.text = text
         self.label.constraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: contentView.trailingAnchor)
-        if kind == .deleteable {
+        if kind == .deleteable && text != "New" {
             deleteButton  = UIButton(type: .custom)
             if let img = UIImage(named: "filter_cross") {
                 deleteButton.setImage(img, for: .normal)

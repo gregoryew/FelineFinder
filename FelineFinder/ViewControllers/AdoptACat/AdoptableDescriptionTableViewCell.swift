@@ -75,6 +75,24 @@ class AdoptableDescriptionTableViewCell: UITableViewCell,  WKNavigationDelegate 
                 print("Send email locally")
                 sendEmail(address: url.absoluteString.chopPrefix("mailto:".count))
                 decisionHandler(.allow)
+            } else if url.absoluteString.hasPrefix("tel:") {
+                let actionSheetController: UIAlertController = UIAlertController(title: "Call \(shelter!.name)?", message: "Do you want to call \(shelter!.name) at \(shelter!.phone) now?", preferredStyle: .actionSheet)
+                
+                //Create and add the Cancel action
+                let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+                    //Just dismiss the action sheet
+                }
+                actionSheetController.addAction(cancelAction)
+                //Create and add first option action
+                let callAction: UIAlertAction = UIAlertAction(title: "Call", style: .default) { action -> Void in
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+                actionSheetController.addAction(callAction)
+                               
+                //Present the AlertController
+                self.findViewController()!.present(actionSheetController, animated: true, completion: nil)
+
+                decisionHandler(.allow)
             } else {
                 print("Open link locally")
                 decisionHandler(.allow)
@@ -180,7 +198,7 @@ class AdoptableDescriptionTableViewCell: UITableViewCell,  WKNavigationDelegate 
                                   font-size: 18px;}
                               h4 {color: black;
                                   FONT-FAMILY:Arial,Helvetica,sans-serif;
-                                  font-size: 18px;}
+                                  font-size: 12px;}
                               a { color: blue}
                               a.visited {color: grey;}
                           }

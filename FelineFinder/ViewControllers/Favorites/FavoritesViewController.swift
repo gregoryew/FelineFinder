@@ -20,6 +20,7 @@ class FavoritesViewController: UIViewController {
             _MainTabAdoptableCatsCollectionView = storyboard.instantiateViewController(withIdentifier: "AdoptList") as? AdoptableCatsCollectionViewViewController
             
             _MainTabAdoptableCatsCollectionView?.view.tag = FAVORITES_VC
+            _MainTabAdoptableCatsCollectionView?.FilterButton.isHidden = true
             
             // Add View Controller as Child View Controller
             self.add(asChildViewController: _MainTabAdoptableCatsCollectionView!)
