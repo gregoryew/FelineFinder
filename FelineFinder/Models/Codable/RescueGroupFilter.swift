@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Data: Codable {
+struct RescueGroupQuery: Codable {
     var data: DataStruct
 }
 

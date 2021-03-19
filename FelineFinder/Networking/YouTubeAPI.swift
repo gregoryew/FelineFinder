@@ -63,9 +63,9 @@ class YouTubeAPI {
         var result: Result<Data?, NetworkError>!
         
         let semaphore = DispatchSemaphore(value: 0)
-        URLSession.shared.dataTask(with: url) { (data, _, _) in
-            if let data = data {
-                result = .success(data)
+        URLSession.shared.dataTask(with: url) { (youtubedata, _, _) in
+            if let youtubedata = youtubedata {
+                result = .success(youtubedata)
             } else {
                 result = .failure(.server)
             }

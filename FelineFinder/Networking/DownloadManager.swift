@@ -76,6 +76,40 @@ final class DownloadManager {
        return json
     }
     
+    static func loadBreed(reset: Bool = false) {
+        let pets = RescuePetsAPI5()
+        
+        var json: [String: Any] = [:]
+        
+        if Favorites.catIDs.count > 0 {
+            json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
+        } else {
+            json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": "-1"]])
+        }
+        
+        let oldCount = pets.count
+        
+        pets.loadPets5(json: json, reset: reset) { result in
+            switch result {
+            case .failure(let error):
+                let nc = NotificationCenter.default
+                nc.post(name:petsFailedMessage,
+                        object: nil,
+                        userInfo: ["error": error.reason])
+            case .success(let response):
+                let petList = response as PetList
+                PetFinderBreeds[(globalBreed?.BreedName)! + "_FAVORITES"] = pets
+                var info = [String: Any]()
+                info["petList"] = pets
+                if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
+                let nc = NotificationCenter.default
+                nc.post(name:petsLoadedMessage,
+                        object: nil,
+                        userInfo: info)
+            }
+        }
+    }
+    
     static func loadFavorites(reset: Bool = false) {
         let pets = RescuePetsAPI5()
         

@@ -738,6 +738,7 @@ let FAVORITES = "FAVORITES"
 
 let ADOPTABLE_CATS_VC = 1
 let FAVORITES_VC = 2
-
+let USER_NOTIFICATION_VC = 3
+let BREEDS_DISPLAY_VC = 4
 let filterReturned = Notification.Name(rawValue: "filterReturned")
 let listReturned = Notification.Name(rawValue: "listReturned")

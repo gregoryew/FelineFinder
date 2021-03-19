@@ -15,12 +15,14 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-protocol AdoptionDismiss {
-    func AdoptionDismiss(vc: UIViewController)
-    func Setup() -> String
+protocol Adoption {
+    func Dismiss(vc: UIViewController)
+    func Setup()
+    func Download(reset: Bool)
+    func GetTitle() -> String
 }
 
-class AdoptableCatsCollectionViewViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate,
+class AdoptableCatsCollectionViewViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, adoptableCatsViewControllerDelegate,
     FilterDismiss
 {
 
@@ -42,11 +44,10 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     var times = 0
     var observer : Any!
     var observer2: Any!
-    var observer3: Any!
     
     var totalRows = 0
     
-    var delegate: AdoptionDismiss?
+    var delegate: Adoption?
     
     //let transition = PopAnimator()
     
@@ -62,33 +63,17 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
             AdoptableCatCollectionView.addSubview(refreshControl)
         }
         
-        self.view.tag = ADOPTABLE_CATS_VC
-        
         // Configure Refresh Control
         refreshControl.addTarget(self, action: #selector(refreshPetData(_:)), for: .valueChanged)
         
         let nc = NotificationCenter.default
         
-        if self.view.tag == FAVORITES_VC {
-            observer = nc.addObserver(forName:favoritesLoadedMessage, object:nil, queue:nil) { [weak self] notification in
-                self?.petsLoaded(notification: notification)
-            }
-            
-            observer3 = nc.addObserver(forName:favoritesFailedMessage, object:nil, queue:nil) { [weak self] notification in
-                self?.petsFailed(notification: notification)
-            }
-        } else {
-            observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
-                self?.petsLoaded(notification: notification)
-            }
-                    
-            observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
-                self?.retrieveData()
-            }
-            
-            observer3 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
-                self?.petsFailed(notification: notification)
-            }
+        observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.petsLoaded(notification: notification)
+        }
+                
+        observer2 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
+            self?.petsFailed(notification: notification)
         }
         
         AdoptableCatCollectionView.isPrefetchingEnabled = true
@@ -106,8 +91,9 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
         pets = RescuePetsAPI5()
         
         if delegate != nil {
-            self.SortMenu.setTitle(delegate?.Setup(), for: .normal)
-            self.CloseButton.isHidden = false
+            delegate?.Setup()
+            //self.SortMenu.setTitle(delegate?.GetTitle(), for: .normal)
+            //self.CloseButton.isHidden = false
         } else {
             self.CloseButton.isHidden = true
             self.SortMenu.setTitle("", for: .normal)
@@ -115,11 +101,7 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     }
     
     func downloadData(reset: Bool) {
-        if self.view.tag == ADOPTABLE_CATS_VC {
-            DownloadManager.loadPetList(reset: reset)
-        } else {
-            DownloadManager.loadFavorites(reset: reset)
-        }
+        delegate?.Download(reset: reset)
     }
     
     @objc private func refreshPetData(_ sender: Any) {
@@ -254,11 +236,20 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
             isFetchInProgress = false
             self.refreshControl.endRefreshing()
             self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-            if view.tag == ADOPTABLE_CATS_VC {
+            self.SortMenu.setTitle(delegate?.GetTitle(), for: .normal)
+            /*
+            switch view.tag {
+            case ADOPTABLE_CATS_VC:
                 self.SortMenu.setTitle("\(totalRows) Cats. Zip: \(zipCode)", for: .normal)
-            } else if view.tag == FAVORITES_VC {
-                self.SortMenu.setTitle  ("\(totalRows) Favorites.", for: .normal)
+            case FAVORITES_VC:
+                self.SortMenu.setTitle("\(totalRows) Favorites.", for: .normal)
+            case BREEDS_DISPLAY_VC:
+                self.SortMenu.setTitle(globalBreed?.BreedName, for: .normal)
+            case USER_NOTIFICATION_VC:
+                self.SortMenu.setTitle("\(totalRows) Cats Found.", for: .normal)
+            default: break
             }
+            */
           }
           return
         }
@@ -271,30 +262,6 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
             isFetchInProgress = false
             self.refreshControl.endRefreshing()
         }
-    }
-
-/*
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
-        globalBreed = breed
-        if zipCode == "" {
-            getZipCode()
-        } else {
-            self.pets?.loading = true
-            downloadData(reset: true)
-        }
-    }
- */
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        print("*************** DID APPEAR ***********")
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        print("*************** DID DISAPPEAR ***********")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -369,10 +336,9 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     }
     
     func closeAdoptDetailVC(_ adoptVC: AdoptableCatsDetailViewController) {
-        rowHeight = 0
         adoptVC.dismiss(animated: true)
-        if view.tag == FAVORITES_VC {
-            DownloadManager.loadFavorites(reset: true)
+        if delegate != nil {
+            delegate?.Download(reset: true)
         } else {
             DispatchQueue.main.async {
                 self.AdoptableCatCollectionView.reloadData()
@@ -407,43 +373,6 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
             DownloadManager.loadPetList(reset: true)
         })
     }
-    
-    /*
-    func popMenuCustomSize() -> PopMenuViewController {
-        let action1 = PopMenuDefaultAction(title: "Closest", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
-        let action2 = PopMenuDefaultAction(title: "Newest", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
-        let action3 = PopMenuDefaultAction(title: "Best Match", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
-
-        let actions = [
-            action1,
-            action2,
-            action3
-        ]
-        
-        let popMenu = PopMenuViewController(actions: actions)
-        
-        popMenu.appearance.popMenuColor.backgroundColor = .solid(fill: .white)
-        
-        return popMenu
-    }
-
-    func popMenuDidSelectItem(_ popMenuViewController: PopMenuViewController, at index: Int) {
-        SortMenu.setTitle("Sort By: " + popMenuViewController.actions[index].title!, for: .normal)
-    }
-    
-    @IBAction func SortMenuTapped(_ sender: Any) {
-        popMenu = popMenuCustomSize()
-        popMenu?.shouldDismissOnSelection = true
-        popMenu?.delegate = self
-        var origin = SortMenu.frame.origin
-        origin.x = (SortMenu.frame.origin.x + SortMenu.frame.width) -  (popMenu?.contentFrame.width)!
-        origin.y = SortMenu.frame.origin.y - (popMenu?.contentFrame.height ?? SortMenu.frame.origin.y)
-        popMenu?.view.frame.origin = origin
-        if let popMenuViewController = popMenu {
-            present(popMenuViewController, animated: true, completion: nil)
-        }
-    }
-    */
 }
 
 extension AdoptableCatsCollectionViewViewController: UICollectionViewDataSourcePrefetching {
@@ -469,7 +398,7 @@ extension AdoptableCatsCollectionViewViewController: UICollectionViewDataSourceP
     }
     
     func isLoadingCell(for indexPath: IndexPath) -> Bool {
-        if isFetchInProgress {return false}
+      if isFetchInProgress {return false}
       if indexPath.row >= pets!.Pets.count {
           print ("isLoadingCell row = \(indexPath.row) count = \(pets!.Pets.count)")
           downloadData(reset: false)
@@ -535,6 +464,4 @@ extension AdoptableCatsCollectionViewViewController: PinterestLayoutDelegate  {
             return 400
         }
     }
-    
-    
 }
