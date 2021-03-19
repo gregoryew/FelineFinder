@@ -188,6 +188,10 @@ var globalBreed: Breed?
 //var sourceViewController: FilterOptionsListTableViewController?
 var titleLabelsAlreadyDisplayed = false
 var firstTime: Bool = false
+var displayResults: Bool = false
+var resultsQueryName: String = ""
+
+var userID: UUID?
 
 typealias filter = Dictionary<String, Any>
 

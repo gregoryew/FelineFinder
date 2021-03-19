@@ -25,7 +25,7 @@ struct BreedListItem {
 
 var selected: [Bool] = []
 
-class BreedsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class BreedsViewController: ParentViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!

@@ -20,7 +20,7 @@ protocol AdoptionDismiss {
     func Setup() -> String
 }
 
-class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate,
+class AdoptableCatsCollectionViewViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, PopMenuViewControllerDelegate, adoptableCatsViewControllerDelegate,
     FilterDismiss
 {
 
@@ -287,6 +287,16 @@ class AdoptableCatsCollectionViewViewController: UIViewController, UICollectionV
     }
  */
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("*************** DID APPEAR ***********")
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("*************** DID DISAPPEAR ***********")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");

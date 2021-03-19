@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate, AdoptionDismiss {
+class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDelegate {
     
     @IBOutlet weak var breedPhoto: UIImageView!
     @IBOutlet weak var breedName: UILabel!
@@ -154,23 +154,45 @@ class BreedDetailViewController: UIViewController, toolBar, UISearchBarDelegate,
         case 1:
             add(asChildViewController: galleryViewController)
         case 0:
+            
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
 
             // Instantiate View Controller
             guard let adopt = storyboard.instantiateViewController(withIdentifier: "AdoptList") as? AdoptableCatsCollectionViewViewController else { return }
 
+            answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+            if filterOptions.filteringOptions.count > 0 {
+                filterOptions.filteringOptions[1].options = []
+                filterOptions.filteringOptions[1].options.append(listOption(displayName: "Add...", search: "0", value: 1))
+                for o in filterOptions.filteringOptions {
+                    o.choosenValue = o.options.count - 1
+                    o.choosenListValues.removeAll()
+                }
+                filterOptions.filteringOptions[0].choosenValue = 0
+                answers[0, 0].append(0)
+            } else {
+                filterOptions.load(nil)
+                filterOptions.filteringOptions[1].options.removeAll()
+            }
+            
+            filterOptions.filteringOptions[1].options.append(listOption(displayName: self.breed?.BreedName, search: self.breed?.RescueBreedID, value: 0))
+            filterOptions.filteringOptions[1].options.append(listOption(displayName: "Add...", search: "0", value: 1))
+            answers[1, 0].removeAll()
+            answers[1, 0].append(Int(self.breed?.RescueBreedID ?? "0") ?? 0)
+            
             adopt.delegate = self
 
             self.present(adopt, animated: true, completion: nil)
+            DownloadManager.loadPetList(reset: true)
         default: break
         }
     }
     
-    func Setup() -> String {
+    override func Setup() -> String {
         return breed?.BreedName ?? ""
     }
     
-    func AdoptionDismiss(vc: UIViewController) {
+    override func AdoptionDismiss(vc: UIViewController) {
         vc.dismiss(animated: false, completion: nil)
     }
     

@@ -9,7 +9,7 @@ import UIKit
 import BDKCollectionIndexView
 import PopMenu
 
-class MainBreedCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
+class MainBreedCollectionViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var BreedCollectionView: UICollectionView!
     @IBOutlet weak var breedIndexView: BDKCollectionIndexView!

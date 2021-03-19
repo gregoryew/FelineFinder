@@ -14,7 +14,7 @@ protocol calcStats {
     func answerChanged(question: Int, answer: Int)
 }
 
-class MainTabFitViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
+class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
     
     @IBOutlet weak var QuestionsTableViews: UITableView!
     @IBOutlet weak var BreedTableView: UITableView!

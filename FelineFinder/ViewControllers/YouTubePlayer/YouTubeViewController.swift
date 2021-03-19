@@ -8,7 +8,7 @@
 import UIKit
 import YouTubePlayer
 
-class YouTubeViewController: UIViewController, YouTubePlayerDelegate {
+class YouTubeViewController: ParentViewController, YouTubePlayerDelegate {
     
     var youTubeVideoID: String = ""
     

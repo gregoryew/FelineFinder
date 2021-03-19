@@ -126,9 +126,16 @@
 		C5A2DB1A25BCCEB600F3B13C /* ValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */; };
 		C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */; };
 		C5B2D23E25AF17F20001A83F /* FitValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2D23D25AF17F20001A83F /* FitValues.swift */; };
+		C5B87E582603BF44004906BF /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B87E572603BF44004906BF /* ParentViewController.swift */; };
+		C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B87E6A26045252004906BF /* RescueGroupFilter.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
 		C5DB5A1E257B126C00B112F4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */; };
 		C5E1907925607EAB00A885A9 /* BreedsInChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */; };
+		C5E930792601A600005A0E90 /* OfflineQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E930782601A600005A0E90 /* OfflineQuery.swift */; };
+		C5E9307C2601A769005A0E90 /* OfflineQueryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9307B2601A769005A0E90 /* OfflineQueryAPI.swift */; };
+		C5E9307F2601E05A005A0E90 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9307E2601E05A005A0E90 /* User.swift */; };
+		C5E930842602713B005A0E90 /* NotificationsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E930832602713B005A0E90 /* NotificationsDelegate.swift */; };
+		C5E93088260274FD005A0E90 /* ApnsUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E93087260274FD005A0E90 /* ApnsUploads.swift */; };
 		C5F9C65A25778B5000861A76 /* BreedPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C65925778B5000861A76 /* BreedPhotoCollectionViewCell.swift */; };
 		C5F9C65E2577935A00861A76 /* BreedGalleryPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C65D2577935A00861A76 /* BreedGalleryPet.swift */; };
 		C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C6B22578FB9A00861A76 /* RSUtilities.swift */; };
@@ -266,9 +273,16 @@
 		C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLabel.swift; sourceTree = "<group>"; };
 		C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		C5B2D23D25AF17F20001A83F /* FitValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitValues.swift; sourceTree = "<group>"; };
+		C5B87E572603BF44004906BF /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
+		C5B87E6A26045252004906BF /* RescueGroupFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueGroupFilter.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
 		C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsInChartInfo.swift; sourceTree = "<group>"; };
+		C5E930782601A600005A0E90 /* OfflineQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQuery.swift; sourceTree = "<group>"; };
+		C5E9307B2601A769005A0E90 /* OfflineQueryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQueryAPI.swift; sourceTree = "<group>"; };
+		C5E9307E2601E05A005A0E90 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C5E930832602713B005A0E90 /* NotificationsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsDelegate.swift; sourceTree = "<group>"; };
+		C5E93087260274FD005A0E90 /* ApnsUploads.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnsUploads.swift; sourceTree = "<group>"; };
 		C5F0CB242581A5C60070490E /* FelineFinder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FelineFinder.entitlements; sourceTree = "<group>"; };
 		C5F9C65925778B5000861A76 /* BreedPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5F9C65D2577935A00861A76 /* BreedGalleryPet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedGalleryPet.swift; sourceTree = "<group>"; };
@@ -317,6 +331,7 @@
 		C51E1AC4255EC5BE00167D15 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C5E93086260274DA005A0E90 /* Apns */,
 				C5F9C8CD2579165500861A76 /* Custom Layouts */,
 				C57E5E1F255BB57E00120018 /* Favorites.swift */,
 				C57E5E28255BB58100120018 /* Utilities.swift */,
@@ -570,6 +585,7 @@
 				C57E617B255BB7BA00120018 /* URLRequest.swift */,
 				C57E5E11255BB57B00120018 /* YouTubeAPI.swift */,
 				C57E5E21255BB57F00120018 /* DownloadManager.swift */,
+				C5E9307B2601A769005A0E90 /* OfflineQueryAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -633,6 +649,7 @@
 				C57E575C255BB1A300120018 /* Fit */,
 				C57E575A255BB19A00120018 /* Breeds */,
 				C57E5758255BB18B00120018 /* AdoptACat */,
+				C5B87E572603BF44004906BF /* ParentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -663,6 +680,15 @@
 			path = YouTubePlayer;
 			sourceTree = "<group>";
 		};
+		C5E93086260274DA005A0E90 /* Apns */ = {
+			isa = PBXGroup;
+			children = (
+				C5E930832602713B005A0E90 /* NotificationsDelegate.swift */,
+				C5E93087260274FD005A0E90 /* ApnsUploads.swift */,
+			);
+			path = Apns;
+			sourceTree = "<group>";
+		};
 		C5F9C6712578F89400861A76 /* Codable */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +697,9 @@
 				C57E5E24255BB58000120018 /* PetImage.swift */,
 				C57E5E15255BB57C00120018 /* RescuePetsAPI2.swift */,
 				C57E5E27255BB58000120018 /* RescueSheltersAPI2.swift */,
+				C5E930782601A600005A0E90 /* OfflineQuery.swift */,
+				C5E9307E2601E05A005A0E90 /* User.swift */,
+				C5B87E6A26045252004906BF /* RescueGroupFilter.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -838,6 +867,7 @@
 				C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */,
 				C57E61FB255BE1F300120018 /* OldPetFinderFind.swift in Sources */,
 				C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */,
+				C5E930842602713B005A0E90 /* NotificationsDelegate.swift in Sources */,
 				C57E617E255BB7BA00120018 /* PagedModeratorResponse.swift in Sources */,
 				C52C82C325AFB124006633CD /* OptionLabelCell.swift in Sources */,
 				C5F9C7C12579056800861A76 /* SceneDelegate.swift in Sources */,
@@ -869,6 +899,8 @@
 				C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */,
 				C57E6200255BE35E00120018 /* CustomHeader.m in Sources */,
 				C57E5E29255BB58100120018 /* YouTubeAPI.swift in Sources */,
+				C5E93088260274FD005A0E90 /* ApnsUploads.swift in Sources */,
+				C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */,
 				C57E5E3A255BB58100120018 /* PetImage.swift in Sources */,
 				C57E5E2E255BB58100120018 /* FilteringOptions.swift in Sources */,
 				C57E6170255BB78E00120018 /* AppDelegate.swift in Sources */,
@@ -892,6 +924,7 @@
 				C57E61A0255BB92100120018 /* MainTabFitViewController.swift in Sources */,
 				C57E5E32255BB58100120018 /* SavedSearches.swift in Sources */,
 				C57D511D256FC5C800D0842B /* BreedVideoCollectionViewCell.swift in Sources */,
+				C5E930792601A600005A0E90 /* OfflineQuery.swift in Sources */,
 				C51CBD4A25817299006B2D12 /* FavoritesViewController.swift in Sources */,
 				C57E617C255BB7BA00120018 /* RescuePetsAPI5.swift in Sources */,
 				C52C82BD25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift in Sources */,
@@ -902,6 +935,8 @@
 				C51E1AD4255EC66500167D15 /* GradientCollectionViewCell.swift in Sources */,
 				C57E5E36255BB58100120018 /* Favorites.swift in Sources */,
 				C530481E25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift in Sources */,
+				C5B87E582603BF44004906BF /* ParentViewController.swift in Sources */,
+				C5E9307F2601E05A005A0E90 /* User.swift in Sources */,
 				C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */,
 				C57D50F2256ED55000D0842B /* BreedStatsViewController.swift in Sources */,
 				C57E5E3B255BB58100120018 /* Questions.swift in Sources */,
@@ -913,6 +948,7 @@
 				C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */,
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
 				C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */,
+				C5E9307C2601A769005A0E90 /* OfflineQueryAPI.swift in Sources */,
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
 				C53DCE8825FBFC51004011EC /* SearchTimer.swift in Sources */,
 				C57E6184255BB7BA00120018 /* Result.swift in Sources */,

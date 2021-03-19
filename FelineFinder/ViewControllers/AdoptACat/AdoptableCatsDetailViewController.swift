@@ -20,7 +20,7 @@ protocol adoptableCatsViewControllerDelegate: class {
 
 var rowHeight = 100
 
-class AdoptableCatsDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ToolbarDelegate {
+class AdoptableCatsDetailViewController: ParentViewController, UITableViewDelegate, UITableViewDataSource, ToolbarDelegate {
 
     weak var delegate: adoptableCatsViewControllerDelegate?
     

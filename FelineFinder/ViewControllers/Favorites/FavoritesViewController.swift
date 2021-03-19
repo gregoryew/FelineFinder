@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class FavoritesViewController: ParentViewController {
     
     @IBOutlet weak var favoritesContainerView: UIView!
     

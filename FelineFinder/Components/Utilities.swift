@@ -36,22 +36,14 @@ class Utilities {
     class func displayAlert(_ errorTitle: String, errorMessage: String) {
         //If host is not reachable, display a UIAlertController informing the user
         let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertController.Style.alert)
-            
+        
         //Add alert action
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-            
+    
         //Present alert
         AppDelegate().sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
-    
-    class func apiKey() -> String {
-        return "351841a21611f1d4dd8d9eba5a1ecc7a"
-    }
-    
-    class func petFinderAPIURL() -> String {
-        return "http://api.petfinder.com"
-    }
-    
+        
     class func stringify(json: Any, prettyPrinted: Bool = false) -> String {
         var options: JSONSerialization.WritingOptions = []
         if prettyPrinted {

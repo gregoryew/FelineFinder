@@ -15,7 +15,7 @@ var rowHeights:Matrix<CGFloat> = Matrix(rows: 8, columns: 20,defaultValue:0)
 var colapsed = [false,false,false,false,false]
 var answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
 
-class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, Options, breedDisplay {
+class FilterViewController: ParentViewController, UITableViewDelegate, UITableViewDataSource, Options, breedDisplay {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
@@ -321,7 +321,9 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     } else {
                         o.choosenListValues = []
                         var breeds: [Int] = []
-                        if o.classification == .breed {
+                        if o.classification == .sort {
+                            
+                        } else if o.classification == .breed {
                             var bs = answers[1, 0]
                             if bs.count > 0 && o.options.last?.displayName == "Add..." {bs.removeLast()}
                             for b in bs {
@@ -347,6 +349,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 let alert2 = UIAlertController(title: "Overwrite?", message: "\(savedName) already exists.  Do you want me to overwrite that save?", preferredStyle: .alert)
                 alert2.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
                     filterOptions.storeFilters(Int(exists[0].search ?? "0")!, saveName: savedName)
+                    self.uploadFilter(name: savedName)
                 }))
                 
                 // 4. Cancel
@@ -356,6 +359,7 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 self.present(alert2, animated: true, completion: nil)
             } else {
                 filterOptions.storeFilters(0, saveName: savedName)
+                self.uploadFilter(name: savedName)
                 let lo = listOption(displayName: savedName, search: String(NameID), value: NameID)
                 filterOptions.filteringOptions[0].options.append(lo)
                 answers[0, 0].removeAll()
@@ -372,6 +376,34 @@ class FilterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // 5. Present the alert.
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    func uploadFilter(name: String) {
+        let query = DownloadManager.generatePetsJSON(filtered: true, filters: [])
+        let offlineQuery = OfflineQuery(userID: userID!, name: name, created: Date(), query: query)
+        
+        let offlineQueryRequest = OfflineQueryRequest(resourceString: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/search")
+        
+        offlineQueryRequest.save(offlineQuery, completion: { result in
+            switch result {
+            case .success(_):
+                self.displayAlert("Saved Offline Query", message: "The query has been saved offline and will be run once a day until you tell it not to.  If a match is found you will be notified by a user notification.")
+            case .failure(let error):
+                self.displayAlert("Error Saving Offline Query", message: "There has been an error saving the query for offline search.  The error is \(error).")
+            }
+        })
+    }
+    
+    func displayAlert(_ title: String, message: String) {
+        DispatchQueue.main.async(execute: {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+            
+            //Add alert action
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        
+            //Present alert
+            self.present(alert, animated: true, completion: nil)
+        })
     }
     
     @IBAction func showResultsTapped(_ sender: Any) {

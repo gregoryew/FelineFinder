@@ -10,41 +10,34 @@ import UIKit
 import Foundation
 import SystemConfiguration
 import FMDB
-//import PushNotifications
-//import UserNotifications
+import CoreData
     
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerDelegate {
-
+class AppDelegate: UIResponder { //}, UITabBarControllerDelegate {
     var window: UIWindow?
-    var warningShown: Bool = false
-        
-    //let pushNotifications = PushNotifications.shared
-    
+    let notificationDelegate = NotificationDelegate()
+    lazy var persistentContainer: NSPersistentContainer = {
+      let container = NSPersistentContainer(name: "PushNotifications")
+      container.loadPersistentStores(completionHandler: { (_, error) in
+        if let error = error as NSError? {
+          fatalError("Unresolved error \(error), \(error.userInfo)")
+        }
+      })
+
+      return container
+    }()
+}
+
+extension AppDelegate: UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        //UINavigationBar.appearance().barTintColor = UIColor.blue //UIColor(red: 1/255, green: 168/255, blue: 188/255, alpha: 1)
-        //UINavigationBar.appearance().tintColor = UIColor.white
-        //UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
-        //UINavigationBar.appearance().isTranslucent = false
-        
-        // set up your background color view
-        //let colorView = UIView()
-        ///colorView.backgroundColor = UIColor.lightGray
-        
-        // use UITableViewCell.appearance() to configure
-        // the default appearance of all UITableViewCells in your app
-        ///UITableViewCell.appearance().selectedBackgroundView = colorView
-        
-        ///UITabBar.appearance().barTintColor = UIColor.white
-        
-        //setStatusBarBackgroundColor(color: UIColor(red:0.537, green:0.412, blue:0.761, alpha:1.0))
-        
-        // Override point for customization after application launch.
-        pathToFile()
-        
-        //zipCode = UserDefaults.standard.string(forKey: "zipCode") ?? ""
 
         zipCode = ""
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
         
         let rescueGroupsLastQueriedString = UserDefaults.standard.string(forKey: "rescueGroupsLastQueriedString") ?? ""
         
@@ -69,54 +62,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
             distance = "8000"
             UserDefaults.standard.set(distance, forKey: "distance")
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(AppDelegate.rotated), name: UIDevice.orientationDidChangeNotification, object: nil)
   
         let kvStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default;
         let notificationsCenter: NotificationCenter = NotificationCenter.default
         notificationsCenter.addObserver(self, selector: #selector(AppDelegate.ubiquitousKeyValueStoreDidChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: kvStore)
         kvStore.synchronize()
-
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-            
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        //let defaults = UserDefaults.standard
-        
-        //if defaults.bool(forKey: "hideTitleScreen") == false {
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
-        /*
+        let keyStore = NSUbiquitousKeyValueStore()
+        if let id = keyStore.string(forKey: "UserID") {
+            userID = UUID(uuidString: id as String)
         } else {
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "MainTabViewController")
-            self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
+            userID = UUID()
+            keyStore.set(userID?.uuidString, forKey: "UserID")
         }
-        */
-        
-        //filterOptions.load(nil)
-        
-        //self.pushNotifications.register(instanceId: "a1ec1d97-a842-4f3d-998b-bdda0c65e066")
-        //registerForPushNotifications()
+                    
+        registerForPushNotifications(application: application)
+
         return true
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        /*self.pushNotifications.registerDeviceToken(deviceToken) {
-            print("subscribed")
-            self.pushNotifications.subscribe(interest: "hello") // + AppMisc.USER_ID)
-        }
-        */
+    func saveUser(userID: UUID, token: String) {
+        let userQuery = User(userId: userID, token: token)
+        
+        let offlineQueryRequest = OfflineQueryRequest(resourceString: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/user")
+        
+        offlineQueryRequest.saveUserId(userQuery, completion: { result in
+            switch result {
+            case .success(_):
+                print("success")
+            case .failure(let error):
+                print("There has been an error saving the user object.  The error is \(error).")
+            }
+        })
     }
-    
-    /*
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("*************MESSAGE")
-        print(userInfo)
-    }
-    */
-    
+        
     @objc func ubiquitousKeyValueStoreDidChange() {
         let _ = Favorites.loadIDs()
         let nc = NotificationCenter.default
@@ -126,30 +105,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         FitValues.loadValues()
     }
     
-/*
-    func setStatusBarBackgroundColor(color: UIColor) {
-        
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        
-        statusBar.backgroundColor = color
-    }
- 
-*/
     func sharedInstance() -> AppDelegate{
         return UIApplication.shared.delegate as! AppDelegate
-    }
-    
-    @objc func rotated()
-    {
-        if(UIDevice.current.orientation.isLandscape)
-        {
-            //println("landscape")
-        }
-        
-        if(UIDevice.current.orientation.isPortrait)
-        {
-            //println("Portrait")
-        }
     }
     
     func pathToFile(){
@@ -311,20 +268,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         let build = dictionary["CFBundleVersion"] as! String
         return "\(version) build \(build)"
     }
-    
-    /*
-    func showWarning() {
-        if warningShown == false {
-            let alert = UIAlertView()
-            alert.title = "Alert"
-            alert.message = "This App is provided as is without any guarantees or warranty.  In association with the production Gregory Edward Williams makes no warranties of any kind, either express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, of title, or of noninfringment of third party rights.  Use of the product by a user is at the user's risk."
-            alert.addButtonWithTitle("Understood")
-            alert.show()
-            warningShown = true
-        }
-    }
- */
-    
+        
     func applicationWillResignActive(_ application: UIApplication) {
         if FitValues.count > 0 {
             FitValues.storeIDs()
@@ -340,14 +284,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        warningShown = false
+    func applicationWillTerminate(_ application: UIApplication) {
+      let context = persistentContainer.viewContext
+      guard context.hasChanges else { return }
+
+      do {
+        try context.save()
+      } catch {
+        let nserror = error as NSError
+        fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+      }
     }
 
-    func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-/*
     func registerForPushNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
@@ -371,19 +319,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate { //}, UITabBarControllerD
     
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let tokenParts = deviceToken.map { data -> String in
-            return String(format: "%02.2hhx", data)
-        }
-        
-        let token = tokenParts.joined()
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        saveUser(userID: userID!, token: token)
         print("Device Token: \(token)")
     }
     
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void)
+    {
+        completionHandler([.banner, .list, .sound])
+    }
+        
     func application(_ application: UIApplication,
                      didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
     }
-  */
 }
-//var details: BreedInfoDetailViewController = (UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedInfoDetail2") as? BreedInfoDetailViewController)!
-
