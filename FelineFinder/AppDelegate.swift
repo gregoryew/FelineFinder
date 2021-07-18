@@ -31,6 +31,8 @@ class AppDelegate: UIResponder { //}, UITabBarControllerDelegate {
 extension AppDelegate: UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        pathToFile()
+        
         zipCode = ""
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -75,7 +77,7 @@ extension AppDelegate: UIApplicationDelegate {
             userID = UUID()
             keyStore.set(userID?.uuidString, forKey: "UserID")
         }
-                    
+        
         registerForPushNotifications(application: application)
 
         return true

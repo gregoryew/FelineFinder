@@ -15,11 +15,12 @@ var selectedImages: [Int] = []
 
 var selectedImage: UIImageView!
 
-protocol Adoption {
+var loadingFavorites = false
+
+protocol AdoptionDelegate {
     func Dismiss(vc: UIViewController)
-    func Setup()
     func Download(reset: Bool)
-    func GetTitle() -> String
+    func GetTitle(totalRows: Int) -> String
 }
 
 class AdoptableCatsCollectionViewViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, adoptableCatsViewControllerDelegate,
@@ -44,10 +45,11 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     var times = 0
     var observer : Any!
     var observer2: Any!
+    var observer3: Any!
     
     var totalRows = 0
     
-    var delegate: Adoption?
+    var delegate: AdoptionDelegate?
     
     //let transition = PopAnimator()
     
@@ -68,14 +70,28 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
         
         let nc = NotificationCenter.default
         
-        observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
-            self?.petsLoaded(notification: notification)
+        if loadingFavorites {
+            observer = nc.addObserver(forName:favoritesLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsLoaded(notification: notification)
+            }
+            
+            observer3 = nc.addObserver(forName:favoritesFailedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsFailed(notification: notification)
+            }
+        } else {
+            observer = nc.addObserver(forName:petsLoadedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsLoaded(notification: notification)
+            }
+                    
+            observer2 = nc.addObserver(forName:filterReturned, object:nil, queue:nil) { [weak self] notification in
+                self?.retrieveData()
+            }
+            
+            observer3 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
+                self?.petsFailed(notification: notification)
+            }
         }
-                
-        observer2 = nc.addObserver(forName:petsFailedMessage, object:nil, queue:nil) { [weak self] notification in
-            self?.petsFailed(notification: notification)
-        }
-        
+            
         AdoptableCatCollectionView.isPrefetchingEnabled = true
         AdoptableCatCollectionView.delegate = self
         AdoptableCatCollectionView.prefetchDataSource = self
@@ -91,9 +107,7 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
         pets = RescuePetsAPI5()
         
         if delegate != nil {
-            delegate?.Setup()
-            //self.SortMenu.setTitle(delegate?.GetTitle(), for: .normal)
-            //self.CloseButton.isHidden = false
+            self.CloseButton.isHidden = false
         } else {
             self.CloseButton.isHidden = true
             self.SortMenu.setTitle("", for: .normal)
@@ -101,7 +115,11 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     }
     
     func downloadData(reset: Bool) {
-        delegate?.Download(reset: reset)
+        if delegate != nil {
+            delegate?.Download(reset: reset)
+        } else {
+            DownloadManager.loadPetList(reset: reset)
+        }
     }
     
     @objc private func refreshPetData(_ sender: Any) {
@@ -114,7 +132,7 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     }
     
     @IBAction func closeTapped(_ sender: Any) {
-        delegate?.AdoptionDismiss(vc: self)
+        delegate?.Dismiss(vc: self)
     }
     
     func getZipCode() {
@@ -227,7 +245,7 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
         pets = p
 
         self.pets?.loading = false
-        
+                
         guard let newIndexPathsToReload = userInfo["newIndexPathsToReload"] as? [IndexPath] else {
           DispatchQueue.main.async { [unowned self] in
             totalRows = pets?.foundRows ?? 0
@@ -235,21 +253,15 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
             selectedImages = [Int](repeating: 0, count: totalRows)
             isFetchInProgress = false
             self.refreshControl.endRefreshing()
-            self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
-            self.SortMenu.setTitle(delegate?.GetTitle(), for: .normal)
-            /*
-            switch view.tag {
-            case ADOPTABLE_CATS_VC:
+            //self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+            if delegate != nil {
+                self.SortMenu.setTitle(delegate?.GetTitle(totalRows: totalRows), for: .normal)
+            } else {
                 self.SortMenu.setTitle("\(totalRows) Cats. Zip: \(zipCode)", for: .normal)
-            case FAVORITES_VC:
-                self.SortMenu.setTitle("\(totalRows) Favorites.", for: .normal)
-            case BREEDS_DISPLAY_VC:
-                self.SortMenu.setTitle(globalBreed?.BreedName, for: .normal)
-            case USER_NOTIFICATION_VC:
-                self.SortMenu.setTitle("\(totalRows) Cats Found.", for: .normal)
-            default: break
             }
-            */
+            
+            isFetchInProgress = false
+            self.AdoptableCatCollectionView.reloadData()
           }
           return
         }
@@ -289,7 +301,7 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
         }
         DispatchQueue.main.async { [unowned self] in
             self.AdoptableCatCollectionView.reloadData()
-            if totalRows > 0 {self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)}
+            if totalRows > 0 {self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)}
         }
     }
     
@@ -370,6 +382,7 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
             globalBreed = breed
             PetFinderBreeds[(globalBreed?.BreedName)! + "_ADOPT"] = nil
             vc.dismiss(animated: false, completion: nil)
+            self.AdoptableCatCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             DownloadManager.loadPetList(reset: true)
         })
     }
@@ -437,8 +450,8 @@ extension AdoptableCatsCollectionViewViewController: DZNEmptyDataSetDelegate, DZ
             if totalRows == 0 {
                 return NSAttributedString(string: "Sorry nothing found.  I can search once a day for it if you tap the search icon above.")
             }
-        } else if (isFetchInProgress == true) {
-            return NSAttributedString(string: "Please Wait While Cats Are Loading...")
+            } else if (isFetchInProgress == true) {
+                return NSAttributedString(string: "Please Wait While Cats Are Loading...")
         }
         return NSAttributedString(string: "")
     }

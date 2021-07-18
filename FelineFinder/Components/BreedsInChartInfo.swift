@@ -13,20 +13,22 @@ struct breedInChartInfo {
     var title: String?
     var gradient: CGGradient?
     var color: UIColor?
+    var imageName: String?
     
-    init(id: Int, title: String, gradient: CGGradient, color: UIColor, percents: [CGFloat]) {
+    init(id: Int, title: String, gradient: CGGradient, color: UIColor, percents: [CGFloat], imageName: String) {
         self.breedID = id
         self.percents = percents
         self.title = title
         self.gradient = gradient
         self.color = color
+        self.imageName = imageName
     }
 }
 
 class BreedsInChartInfo {
     var breeds = [breedInChartInfo]()
-    func addBreed (id: Int, percents: [CGFloat], title: String, gradient: CGGradient, color: UIColor) {
-        breeds.append(breedInChartInfo(id: id, title: title, gradient: gradient, color: color, percents: percents))
+    func addBreed (id: Int, percents: [CGFloat], title: String, gradient: CGGradient, color: UIColor, imageName: String) {
+        breeds.append(breedInChartInfo(id: id, title: title, gradient: gradient, color: color, percents: percents, imageName: imageName))
     }
     func removeBreed(id: Int) {
         breeds.removeAll { (breed) -> Bool in

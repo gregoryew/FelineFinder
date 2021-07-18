@@ -71,4 +71,40 @@ struct OfflineQueryRequest {
             completion(.failure(.encodingProblem))
         }
     }
+    
+    func loadOfflineQuery(queryID: String, completion: @escaping(Result<[String:Any], OfflineQueryAPIError>) -> Void) {
+        do {
+            var urlRequest = URLRequest(url: resourceURL)
+            urlRequest.httpMethod = "GET"
+            
+            let dataTask = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+                guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200, let data = data else {
+                    completion(.failure(.decodingProblem))
+                    return
+                }
+                
+                do {
+                    // make sure this JSON is in the format we expect
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
+                        completion(.success(json))
+                    }
+                } catch {
+                    completion(.failure(.decodingProblem))
+                }
+            }
+            dataTask.resume()
+        }
+    }
+    
+    func convertStringToDictionary(text: String) -> [String:AnyObject]? {
+       if let data = text.data(using: .utf8) {
+           do {
+               let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:AnyObject]
+               return json
+           } catch {
+               print("Something went wrong")
+           }
+       }
+       return nil
+   }
 }

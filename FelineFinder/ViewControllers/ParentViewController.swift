@@ -24,7 +24,7 @@ extension UIApplication {
     }
 }
 
-class ParentViewController: UIViewController, AdoptionDismiss {
+class ParentViewController: UIViewController, AdoptionDelegate {
     
     func AdoptionDismiss(vc: UIViewController) {
         vc.dismiss(animated: false, completion: nil)
@@ -50,5 +50,17 @@ class ParentViewController: UIViewController, AdoptionDismiss {
             vc.modalPresentationStyle = .formSheet
             UIApplication.topViewController()!.present(vc, animated: false, completion: nil)
         }
+    }
+    
+    func Dismiss(vc: UIViewController) {
+        vc.dismiss(animated: false, completion: nil)
+    }
+
+    func Download(reset: Bool) {
+        DownloadManager.loadOfflineSearch(reset: reset, queryID: queryID)
+    }
+
+    func GetTitle(totalRows: Int) -> String {
+        return String(totalRows) + " cats found"
     }
 }

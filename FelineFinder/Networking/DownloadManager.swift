@@ -76,19 +76,25 @@ final class DownloadManager {
        return json
     }
     
-    static func loadBreed(reset: Bool = false) {
-        let pets = RescuePetsAPI5()
+    static func loadPets(ofBreed breed: Breed, reset: Bool) {
+        var pets: RescuePetsAPI5!
         
-        var json: [String: Any] = [:]
-        
-        if Favorites.catIDs.count > 0 {
-            json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": Favorites.catIDs]])
+        if let p = PetFinderBreeds[(globalBreed?.BreedName)! + "_BREED"]
+        {
+            pets = p as? RescuePetsAPI5
         } else {
-            json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": "-1"]])
+            pets = RescuePetsAPI5()
         }
         
-        let oldCount = pets.count
+        var oldCount = 0
+        if !reset {
+            oldCount = pets.count
+        }
+
+        var json: [String: Any] = [:]
         
+        json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.breedPrimaryId", "operation": "equal", "criteria": breed.RescueBreedID]])
+                
         pets.loadPets5(json: json, reset: reset) { result in
             switch result {
             case .failure(let error):
@@ -98,7 +104,7 @@ final class DownloadManager {
                         userInfo: ["error": error.reason])
             case .success(let response):
                 let petList = response as PetList
-                PetFinderBreeds[(globalBreed?.BreedName)! + "_FAVORITES"] = pets
+                PetFinderBreeds[(globalBreed?.BreedName)! + "_BREED"] = pets
                 var info = [String: Any]()
                 info["petList"] = pets
                 if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
@@ -110,8 +116,54 @@ final class DownloadManager {
         }
     }
     
+    static func loadOfflineSearch(reset: Bool = false, queryID: String) {
+        
+        var pets: RescuePetsAPI5!
+        
+        if let p = PetFinderBreeds[(globalBreed?.BreedName)! + "_NOTIFICATION"]
+        {
+            pets = p as? RescuePetsAPI5
+        } else {
+            pets = RescuePetsAPI5()
+        }
+        
+        var oldCount = 0
+        if !reset {
+            oldCount = pets.count
+        }
+
+        let offlineQueryRequest = OfflineQueryRequest(resourceString: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/search/" + queryID)
+        
+        offlineQueryRequest.loadOfflineQuery(queryID: queryID, completion: { result in
+            switch result {
+            case .success(let OfflineQuery):
+                pets.loadPets5(json: OfflineQuery, reset: reset) { result in
+                    switch result {
+                    case .failure(let error):
+                        let nc = NotificationCenter.default
+                        nc.post(name:petsFailedMessage,
+                                object: nil,
+                                userInfo: ["error": error.reason])
+                    case .success(let response):
+                        let petList = response as PetList
+                        PetFinderBreeds[(globalBreed?.BreedName)! + "_NOTIFICATION"] = pets
+                        var info = [String: Any]()
+                        info["petList"] = pets
+                        if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
+                        let nc = NotificationCenter.default
+                        nc.post(name:petsLoadedMessage,
+                                object: nil,
+                                userInfo: info)
+                    }
+                }
+            case .failure(let error):
+                print("There has been an error saving the user object.  The error is \(error).")
+            }
+        })
+    }
+    
     static func loadFavorites(reset: Bool = false) {
-        let pets = RescuePetsAPI5()
+        let pets: RescuePetsAPI5!
         
         var json: [String: Any] = [:]
         
@@ -121,13 +173,23 @@ final class DownloadManager {
             json = generatePetsJSON(filtered: false, filters: [["fieldName": "animals.id", "operation": "equal", "criteria": "-1"]])
         }
         
-        let oldCount = pets.count
+        if let p = PetFinderBreeds[(globalBreed?.BreedName)! + "_FAVORITES"]
+        {
+            pets = p as? RescuePetsAPI5
+        } else {
+            pets = RescuePetsAPI5()
+        }
         
+        var oldCount = 0
+        if !reset {
+            oldCount = pets.count
+        }
+
         pets.loadPets5(json: json, reset: reset) { result in
             switch result {
             case .failure(let error):
                 let nc = NotificationCenter.default
-                nc.post(name:petsFailedMessage,
+                nc.post(name:favoritesFailedMessage,
                         object: nil,
                         userInfo: ["error": error.reason])
             case .success(let response):
@@ -137,7 +199,7 @@ final class DownloadManager {
                 info["petList"] = pets
                 if oldCount > 0 {info["newIndexPathsToReload"] = calculateIndexPathsToReload(priorCount: oldCount, newCount: petList.count)}
                 let nc = NotificationCenter.default
-                nc.post(name:petsLoadedMessage,
+                nc.post(name:favoritesLoadedMessage,
                         object: nil,
                         userInfo: info)
             }

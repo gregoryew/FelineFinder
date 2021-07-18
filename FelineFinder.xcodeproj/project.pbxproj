@@ -16,6 +16,10 @@
 		C51E1AD0255EC63600167D15 /* GraphXAxisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1ACD255EC63600167D15 /* GraphXAxisView.swift */; };
 		C51E1AD4255EC66500167D15 /* GradientCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1AD2255EC66500167D15 /* GradientCollectionViewCell.swift */; };
 		C51E1AD5255EC66500167D15 /* MultiRowGradientLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1AD3255EC66500167D15 /* MultiRowGradientLayout.swift */; };
+		C528F511265608BB00F49BF5 /* PaginationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528F50E265608BB00F49BF5 /* PaginationView.swift */; };
+		C528F512265608BB00F49BF5 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528F50F265608BB00F49BF5 /* CardView.swift */; };
+		C528F513265608BB00F49BF5 /* CardStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528F510265608BB00F49BF5 /* CardStackView.swift */; };
+		C528F51526560A9B00F49BF5 /* BreedCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C528F51426560A9B00F49BF5 /* BreedCardsViewController.swift */; };
 		C52C82BD25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82BC25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift */; };
 		C52C82C025AFAB29006633CD /* FilterOptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82BF25AFAB29006633CD /* FilterOptionTableViewCell.swift */; };
 		C52C82C325AFB124006633CD /* OptionLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52C82C225AFB124006633CD /* OptionLabelCell.swift */; };
@@ -155,6 +159,10 @@
 		C51E1ACD255EC63600167D15 /* GraphXAxisView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphXAxisView.swift; sourceTree = "<group>"; };
 		C51E1AD2255EC66500167D15 /* GradientCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientCollectionViewCell.swift; sourceTree = "<group>"; };
 		C51E1AD3255EC66500167D15 /* MultiRowGradientLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiRowGradientLayout.swift; sourceTree = "<group>"; };
+		C528F50E265608BB00F49BF5 /* PaginationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaginationView.swift; sourceTree = "<group>"; };
+		C528F50F265608BB00F49BF5 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		C528F510265608BB00F49BF5 /* CardStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardStackView.swift; sourceTree = "<group>"; };
+		C528F51426560A9B00F49BF5 /* BreedCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreedCardsViewController.swift; sourceTree = "<group>"; };
 		C52C82BC25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionLabelTableViewCell.swift; sourceTree = "<group>"; };
 		C52C82BF25AFAB29006633CD /* FilterOptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptionTableViewCell.swift; sourceTree = "<group>"; };
 		C52C82C225AFB124006633CD /* OptionLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionLabelCell.swift; sourceTree = "<group>"; };
@@ -374,6 +382,16 @@
 			path = ToolbarMenu;
 			sourceTree = "<group>";
 		};
+		C528F50D2656074E00F49BF5 /* BreedCard Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C528F510265608BB00F49BF5 /* CardStackView.swift */,
+				C528F50F265608BB00F49BF5 /* CardView.swift */,
+				C528F50E265608BB00F49BF5 /* PaginationView.swift */,
+			);
+			path = "BreedCard Classes";
+			sourceTree = "<group>";
+		};
 		C566D47A25AFF2150087412F /* Old Filter Code */ = {
 			isa = PBXGroup;
 			children = (
@@ -499,6 +517,8 @@
 		C57E575A255BB19A00120018 /* Breeds */ = {
 			isa = PBXGroup;
 			children = (
+				C528F51426560A9B00F49BF5 /* BreedCardsViewController.swift */,
+				C528F50D2656074E00F49BF5 /* BreedCard Classes */,
 				C57D50E7256ED4B500D0842B /* Container View Controllers */,
 				C57E618A255BB8E300120018 /* MainTabBreedCollectionViewCell.swift */,
 				C57E6189255BB8E200120018 /* MainTabBreedTableViewCell.swift */,
@@ -864,6 +884,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C528F511265608BB00F49BF5 /* PaginationView.swift in Sources */,
 				C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */,
 				C57E61FB255BE1F300120018 /* OldPetFinderFind.swift in Sources */,
 				C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */,
@@ -881,6 +902,7 @@
 				C57D50FF256ED61700D0842B /* BreedDetailViewController.swift in Sources */,
 				C53DCE6525FAF8DB004011EC /* BreedsViewController.swift in Sources */,
 				C57E6196255BB90200120018 /* OldMainTabAdoptableCatsMainTVCell.swift in Sources */,
+				C528F51526560A9B00F49BF5 /* BreedCardsViewController.swift in Sources */,
 				C57E6206255BE41500120018 /* Common.m in Sources */,
 				C57E61AE255BB94900120018 /* OldFilterOptionsBreedCustomCellView.swift in Sources */,
 				C57E5E2F255BB58100120018 /* BreedStats.swift in Sources */,
@@ -898,6 +920,7 @@
 				C57D50DC256DD19E00D0842B /* MainBreedCollectionViewController.swift in Sources */,
 				C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */,
 				C57E6200255BE35E00120018 /* CustomHeader.m in Sources */,
+				C528F513265608BB00F49BF5 /* CardStackView.swift in Sources */,
 				C57E5E29255BB58100120018 /* YouTubeAPI.swift in Sources */,
 				C5E93088260274FD005A0E90 /* ApnsUploads.swift in Sources */,
 				C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */,
@@ -948,6 +971,7 @@
 				C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */,
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
 				C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */,
+				C528F512265608BB00F49BF5 /* CardView.swift in Sources */,
 				C5E9307C2601A769005A0E90 /* OfflineQueryAPI.swift in Sources */,
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
 				C53DCE8825FBFC51004011EC /* SearchTimer.swift in Sources */,
@@ -1121,7 +1145,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FelineFinder/FelineFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1147,7 +1171,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FelineFinder/FelineFinder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -8,7 +8,6 @@
 import UIKit
 
 class FavoritesViewController: ParentViewController {
-    
     @IBOutlet weak var favoritesContainerView: UIView!
     
     private var MainTabAdoptableCatsCollectionView:AdoptableCatsCollectionViewViewController {
@@ -21,6 +20,8 @@ class FavoritesViewController: ParentViewController {
             
             _MainTabAdoptableCatsCollectionView?.view.tag = FAVORITES_VC
             _MainTabAdoptableCatsCollectionView?.FilterButton.isHidden = true
+        
+            self.MainTabAdoptableCatsCollectionView.delegate = self
             
             // Add View Controller as Child View Controller
             self.add(asChildViewController: _MainTabAdoptableCatsCollectionView!)
@@ -42,7 +43,7 @@ class FavoritesViewController: ParentViewController {
         favoritesContainerView.autoresizingMask = [.flexibleWidth]
         
         MainTabAdoptableCatsCollectionView.view.frame = CGRect(x: 0, y: 0, width: favoritesContainerView.frame.width, height: favoritesContainerView.frame.height)
-
+        
         // Notify Child View Controller
         viewController.didMove(toParent: self)
         
@@ -50,6 +51,21 @@ class FavoritesViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadingFavorites = true
         add(asChildViewController: MainTabAdoptableCatsCollectionView)
+        loadingFavorites = false
     }
+    
+    //This should never be called because favorites is only on the main tab view controller
+    override func Dismiss(vc: UIViewController) {
+    }
+    
+    override func Download(reset: Bool) {
+        DownloadManager.loadFavorites(reset: reset)
+    }
+    
+    override func GetTitle(totalRows: Int) -> String {
+        return "\(totalRows) Favorites."
+    }
+
 }

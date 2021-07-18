@@ -29,9 +29,12 @@
 import UIKit
 import UserNotifications
 
+var queryID: String = ""
+
 final class NotificationDelegate: NSObject,
-                                  UNUserNotificationCenterDelegate {
-  
+                                  UNUserNotificationCenterDelegate,
+                                  AdoptionDelegate {
+    
   func userNotificationCenter(
     _ center: UNUserNotificationCenter,
     willPresent notification: UNNotification,
@@ -39,12 +42,25 @@ final class NotificationDelegate: NSObject,
     @escaping (UNNotificationPresentationOptions) -> Void) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let vc = storyboard.instantiateViewController(withIdentifier: "AdoptList") as! AdoptableCatsCollectionViewViewController
-    //vc.delegate = self
+    vc.delegate = self
+    queryID = notification.request.content.userInfo["queryID"] as! String
     vc.modalPresentationStyle = .formSheet
     UIApplication.topViewController()!.present(vc, animated: false, completion: nil)
     completionHandler([.banner, .sound, .badge])
   }
     
+    func Dismiss(vc: UIViewController) {
+        vc.dismiss(animated: false, completion: nil)
+    }
+
+    func Download(reset: Bool) {
+        DownloadManager.loadOfflineSearch(reset: reset, queryID: queryID)
+    }
+
+    func GetTitle(totalRows: Int) -> String {
+        return String(totalRows) + " cats found"
+    }
+
   func userNotificationCenter(
     _ center: UNUserNotificationCenter,
     didReceive response: UNNotificationResponse,
@@ -61,7 +77,8 @@ final class NotificationDelegate: NSObject,
 
     // Perform actions here
     let payload = response.notification.request.content
-
+    queryID = payload.userInfo["queryID"].value as! String
+    
     displayResults = true
   }
 }

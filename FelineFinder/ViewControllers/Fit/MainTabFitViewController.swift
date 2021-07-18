@@ -18,6 +18,24 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
     
     @IBOutlet weak var QuestionsTableViews: UITableView!
     @IBOutlet weak var BreedTableView: UITableView!
+    @IBOutlet weak var PeruseButton: UIButton!
+    
+    @IBAction func peruseButtonTapped(_ sender: Any) {
+        let breedCards = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedCards") as! BreedCardsViewController
+        breedCards.modalPresentationStyle = .fullScreen
+        var selectedBreeds = [Breed]()
+        for breedChart in breedsInChartInfo.breeds {
+            selectedBreeds.append(breeds.first(where: { Breed in
+                return Breed.BreedID == breedChart.breedID!
+            })!)
+        }
+        if selectedBreeds.count == 0 {
+            PeruseButton.shake()
+            return
+        }
+        breedCards.breeds = selectedBreeds
+        self.present(breedCards, animated: false, completion: nil)
+    }
     
     let BREED_TV = 1
     let QUESTION_TV = 2
@@ -183,8 +201,12 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
                 }
             }
             let color = colors.popLast()
+            if color == nil {
+                BreedTableView.shake()
+                return
+            }
             let gradient = gradients.popLast()
-            breedsInChartInfo.addBreed(id: selectedBreedID, percents: percents, title: breeds[index!].BreedName, gradient: gradient!, color: color!)
+            breedsInChartInfo.addBreed(id: selectedBreedID, percents: percents, title: breeds[index!].BreedName, gradient: gradient!, color: color!, imageName: breeds[index!].FullSizedPicture)
             breedSelected[selectedBreedID] = !breedSelected[selectedBreedID]
         } else {
             if let breed = breedsInChartInfo.getBreed(id: selectedBreedID) {
@@ -196,6 +218,13 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
         }
         breeds.sort { (Breed1, Breed2) -> Bool in
             return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
+        }
+        if breedsInChartInfo.count == 0 {
+            PeruseButton.setTitleColor(UIColor.lightGray, for: .normal)
+            PeruseButton.backgroundColor = UIColor.systemGray
+        } else {
+            PeruseButton.setTitleColor(UIColor.white, for: .normal)
+            PeruseButton.backgroundColor = UIColor.green
         }
         DispatchQueue.main.async {
             self.BreedTableView.reloadData()

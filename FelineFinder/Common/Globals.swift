@@ -7,8 +7,6 @@
 //
 
 import Foundation
-//import TransitionTreasury
-//import TransitionAnimation
 import UIKit
 import WebKit
 
@@ -350,6 +348,32 @@ class CustomSegue: UIStoryboardSegue {
 }
 
 extension UIView {
+    
+    func shake() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 0.6
+        animation.values = [-20, 20, -20, 20, -10, 10, -5, 5, 0]
+        self.layer.add(animation, forKey: "shake")
+    }
+
+    func dragAcross() {
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.duration = 1
+        animation.values = [0, 200]
+        self.layer.add(animation, forKey: "drag")
+        
+        UIView.transition(with: self, duration: 1,
+          options: [.curveEaseOut],
+          animations: {
+            self.alpha = 0
+          },
+          completion: { _ in
+            self.isHidden = true
+          }
+        )
+    }
     
     @IBInspectable var shadow: Bool {
         get {
