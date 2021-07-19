@@ -1323,11 +1323,6 @@
                                             <constraint firstAttribute="height" constant="185" id="XlZ-Xs-PXy"/>
                                         </constraints>
                                     </imageView>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZfJ-6H-2ta" customClass="Toolbar" customModule="FelineFinder" customModuleProvider="target">
-                                        <rect key="frame" x="290" y="186" width="48" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.88235294117647056" green="0.88235294117647056" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJq-BH-1gC">
                                         <rect key="frame" x="8" y="193" width="104.33333333333333" height="38"/>
                                         <attributedString key="attributedText">
@@ -1356,28 +1351,80 @@
                                 <rect key="frame" x="20" y="350" width="350" height="431"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBo-y6-pdS">
-                                        <rect key="frame" x="0.0" y="30" width="350" height="401"/>
+                                        <rect key="frame" x="0.0" y="54" width="350" height="377"/>
                                     </containerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4Q-9V-NCL">
-                                        <rect key="frame" x="316" y="-1" width="30" height="30"/>
+                                        <rect key="frame" x="302" y="4" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="deP-7r-yv2"/>
-                                            <constraint firstAttribute="height" constant="30" id="wLD-k9-U11"/>
+                                            <constraint firstAttribute="width" constant="44" id="deP-7r-yv2"/>
+                                            <constraint firstAttribute="height" constant="44" id="wLD-k9-U11"/>
                                         </constraints>
                                         <state key="normal" image="icons8-toggle-expand-screen"/>
                                         <connections>
                                             <action selector="expandCollapseTapped:" destination="9Ba-HI-70b" eventType="touchUpInside" id="Or1-Su-Izk"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="43I-K4-0XC">
+                                        <rect key="frame" x="5" y="4" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="Eg3-be-rd9"/>
+                                            <constraint firstAttribute="height" constant="44" id="x8D-GJ-VD1"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Tool_Cat"/>
+                                        <connections>
+                                            <action selector="catButtonTapped:" destination="9Ba-HI-70b" eventType="touchUpInside" id="pao-gf-U8m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67G-Kw-pQm">
+                                        <rect key="frame" x="54" y="4" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="VRo-7C-kVB"/>
+                                            <constraint firstAttribute="width" constant="44" id="qU7-hT-fbs"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Tool_Video"/>
+                                        <connections>
+                                            <action selector="videoButtonTapped:" destination="9Ba-HI-70b" eventType="touchUpInside" id="soN-uz-kEn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48I-if-WUa">
+                                        <rect key="frame" x="102" y="4" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="E5B-nh-cUM"/>
+                                            <constraint firstAttribute="height" constant="44" id="brS-C8-Nae"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Tool_Stats"/>
+                                        <connections>
+                                            <action selector="statsButtonTapped:" destination="9Ba-HI-70b" eventType="touchUpInside" id="GbP-2D-FrF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ycO-fi-pPC">
+                                        <rect key="frame" x="152" y="4" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="3Fu-qh-ess"/>
+                                            <constraint firstAttribute="width" constant="44" id="GBb-v1-C0U"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="Tool_Info"/>
+                                        <connections>
+                                            <action selector="infoButtonTapped:" destination="9Ba-HI-70b" eventType="touchUpInside" id="ETO-yN-1eo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="KBo-y6-pdS" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="30" id="2xi-Ov-slC"/>
+                                    <constraint firstItem="ycO-fi-pPC" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="4" id="1Ts-Ij-RvT"/>
+                                    <constraint firstItem="KBo-y6-pdS" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="54" id="2xi-Ov-slC"/>
+                                    <constraint firstItem="48I-if-WUa" firstAttribute="leading" secondItem="67G-Kw-pQm" secondAttribute="trailing" constant="4" id="6yc-dy-OFg"/>
+                                    <constraint firstItem="ycO-fi-pPC" firstAttribute="leading" secondItem="48I-if-WUa" secondAttribute="trailing" constant="6" id="CDl-in-3jj"/>
+                                    <constraint firstItem="67G-Kw-pQm" firstAttribute="leading" secondItem="43I-K4-0XC" secondAttribute="trailing" constant="5" id="K8x-Qc-HX3"/>
                                     <constraint firstAttribute="bottom" secondItem="KBo-y6-pdS" secondAttribute="bottom" id="L1a-gQ-ZNf"/>
-                                    <constraint firstItem="k4Q-9V-NCL" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="-1" id="R6I-Te-uL9"/>
+                                    <constraint firstItem="k4Q-9V-NCL" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="4" id="R6I-Te-uL9"/>
                                     <constraint firstItem="KBo-y6-pdS" firstAttribute="leading" secondItem="6i0-Yu-Qtz" secondAttribute="leading" id="Vh8-Y7-xJN"/>
                                     <constraint firstAttribute="trailing" secondItem="k4Q-9V-NCL" secondAttribute="trailing" constant="4" id="Wo3-m8-lp6"/>
+                                    <constraint firstItem="43I-K4-0XC" firstAttribute="leading" secondItem="6i0-Yu-Qtz" secondAttribute="leading" constant="5" id="bkZ-hi-QEk"/>
+                                    <constraint firstItem="67G-Kw-pQm" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="4" id="kfd-Kp-5lu"/>
                                     <constraint firstAttribute="trailing" secondItem="KBo-y6-pdS" secondAttribute="trailing" id="udm-Rk-Alb"/>
+                                    <constraint firstItem="48I-if-WUa" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="4" id="xqa-ZE-anW"/>
+                                    <constraint firstItem="43I-K4-0XC" firstAttribute="top" secondItem="6i0-Yu-Qtz" secondAttribute="top" constant="4" id="zfd-nk-AVg"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y4a-hA-pi0">
@@ -1433,16 +1480,19 @@
                         <outlet property="ChildContainerHeight" destination="zXx-Mx-B4b" id="gha-nI-Z0D"/>
                         <outlet property="breedName" destination="CJq-BH-1gC" id="xND-94-zRe"/>
                         <outlet property="breedPhoto" destination="cXt-Iw-7Uc" id="KJM-mw-xcY"/>
+                        <outlet property="catButton" destination="43I-K4-0XC" id="9oG-ok-hOf"/>
                         <outlet property="childContainerView" destination="KBo-y6-pdS" id="dIy-MA-Koa"/>
                         <outlet property="childView" destination="6i0-Yu-Qtz" id="z9o-wk-Zhy"/>
                         <outlet property="expandCollapseButton" destination="k4Q-9V-NCL" id="qly-as-UkP"/>
+                        <outlet property="infoButton" destination="ycO-fi-pPC" id="xnT-2i-PeS"/>
                         <outlet property="searchBar" destination="BCF-jd-suI" id="bsK-bg-YK9"/>
-                        <outlet property="toolbar" destination="ZfJ-6H-2ta" id="d4O-uO-Yqw"/>
+                        <outlet property="statsButton" destination="48I-if-WUa" id="Hsl-p6-XaD"/>
+                        <outlet property="videoButton" destination="67G-Kw-pQm" id="XIR-67-8v5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2zy-Hg-sbv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1098.5507246376812" y="-264.13043478260869"/>
+            <point key="canvasLocation" x="1098.4615384615383" y="-264.45497630331755"/>
         </scene>
         <!--Fit Dialog View Controller-->
         <scene sceneID="IKd-YQ-h2g">
@@ -1980,6 +2030,10 @@
         <image name="MainTabHeartUp" width="25" height="25"/>
         <image name="MainTabSurvey" width="25" height="25"/>
         <image name="MainTabSurveyUp" width="25" height="25"/>
+        <image name="Tool_Cat" width="50" height="50"/>
+        <image name="Tool_Info" width="38.666667938232422" height="38.666667938232422"/>
+        <image name="Tool_Stats" width="38.666667938232422" height="38.666667938232422"/>
+        <image name="Tool_Video" width="38.666667938232422" height="38.666667938232422"/>
         <image name="VideoAvailableIcon" width="25" height="25"/>
         <image name="border2" width="64" height="60"/>
         <image name="filter" width="50" height="50"/>

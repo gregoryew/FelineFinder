@@ -7,15 +7,19 @@
 
 import UIKit
 
-class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDelegate {
+class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
 
     @IBOutlet weak var breedPhoto: UIImageView!
     @IBOutlet weak var breedName: UILabel!
-    @IBOutlet weak var toolbar: Toolbar!
     @IBOutlet weak var childContainerView: UIView!
     @IBOutlet weak var expandCollapseButton: UIButton!
     @IBOutlet weak var childView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var catButton: UIButton!
+    @IBOutlet weak var videoButton: UIButton!
+    @IBOutlet weak var statsButton: UIButton!
+    @IBOutlet weak var infoButton: UIButton!
     
     @IBOutlet weak var ChildContainerHeight: NSLayoutConstraint!
     
@@ -28,17 +32,41 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
     var currentChild = 0
     var priorBreed: Breed?
     
+    var tools: [(btn: UIButton, images: [String])] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         showBreedDetail(breed: breed!)
-        toolbar.delegate = self
         searchBar.delegate = self
         DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
             self.breeds = breeds
             self.filteredBreeds = breeds
         }
+        
+        tools = [(btn: catButton, images: ["Tool_Cat", "Tool_Filled_Cat"]),
+                 (btn: videoButton, images: ["Tool_Video", "Tool_Filled_Video"]),
+                 (btn: statsButton, images: ["Tool_Stats", "Tool_Filled_Stats"]),
+                 (btn: infoButton, images: ["Tool_Info", "Tool_Filled_Info"])]
+
         self.menuItemChoosen(option: 2)
+
+    }
+    
+    @IBAction func catButtonTapped(_ sender: Any) {
+        menuItemChoosen(option: 0)
+    }
+    
+    @IBAction func videoButtonTapped(_ sender: Any) {
+        menuItemChoosen(option: 1)
+    }
+    
+    @IBAction func statsButtonTapped(_ sender: Any) {
+        menuItemChoosen(option: 2)
+    }
+    
+    @IBAction func infoButtonTapped(_ sender: Any) {
+        menuItemChoosen(option: 3)
     }
     
     private var infoViewController:BreedInfoViewController {
@@ -52,7 +80,7 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
             _infoViewController!.breed = breed
             
             // Add View Controller as Child View Controller
-            self.add(asChildViewController: _infoViewController!)
+            self.add(asChildViewController: _infoViewController!, option: 3)
         }
         return _infoViewController!
     }
@@ -68,7 +96,7 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
             _statsViewController = storyboard.instantiateViewController(withIdentifier: "BreedStats") as? BreedStatsViewController
             
             // Add View Controller as Child View Controller
-            self.add(asChildViewController: _statsViewController!)
+            self.add(asChildViewController: _statsViewController!, option: 2)
             
             _statsViewController!.setup(breed: breed!)
         }
@@ -88,14 +116,14 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
             _galleryViewController!.breed = breed
             
             // Add View Controller as Child View Controller
-            self.add(asChildViewController: _galleryViewController!)
+            self.add(asChildViewController: _galleryViewController!, option: 1)
         }
         return _galleryViewController!
     }
 
     var _galleryViewController:BreedGalleryViewController?
     
-    private func add(asChildViewController viewController: UIViewController) {
+    private func add(asChildViewController viewController: UIViewController, option: Int) {
         // Add Child View Controller
         addChild(viewController)
         
@@ -110,7 +138,7 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
 
         // Notify Child View Controller
         viewController.didMove(toParent: self)
-        
+                
         priorChildViewController = viewController
     }
     
@@ -131,15 +159,7 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
         self.breed = breed
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        //toolbar.frame = CGRect(x: view.frame.maxX - (2 * toolbar.frame.width) - 13, y: toolbar.frame.minY, width: toolbar.frame.width, height: toolbar.frame.height)
-        originalRect = toolbar.frame
-    }
-    
     func menuItemChoosen(option: Int) {
-        //toolbar.frame = self.originalRect
-        
         if option != 0 {currentChild = option}
         
         if priorChildViewController != nil && option != 0 {
@@ -148,11 +168,11 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
         
         switch option {
         case 3:
-            add(asChildViewController: infoViewController)
+            add(asChildViewController: infoViewController, option: option)
         case 2:
-            add(asChildViewController: statsViewController)
+            add(asChildViewController: statsViewController, option: option)
         case 1:
-            add(asChildViewController: galleryViewController)
+            add(asChildViewController: galleryViewController, option: option)
         case 0:
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             // Instantiate View Controller
@@ -161,6 +181,12 @@ class BreedDetailViewController: ParentViewController, toolBar, UISearchBarDeleg
             self.present(adoptVC, animated: true, completion: nil)
         default: break
         }
+
+        for tool in tools {
+            tool.btn.setImage(UIImage(named:tool.images[0]), for: .normal)
+        }
+        tools[currentChild].btn.setImage(UIImage(named:tools[currentChild].images[1]), for: .normal)
+        
     }
     
     override func Dismiss(vc: UIViewController) {
