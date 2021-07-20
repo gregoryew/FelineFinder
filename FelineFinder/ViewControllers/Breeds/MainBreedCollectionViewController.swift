@@ -61,8 +61,14 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     func setupIndex() {
         breedGroups = [:]
         breedLetters = []
-        for breed in filteredBreeds {
-            breedGroups[String(breed.BreedName.prefix(1)), default: []].append(breed)
+        if choosenBreedSortOption == .name {
+            for breed in filteredBreeds {
+                breedGroups[String(breed.BreedName.prefix(1)), default: []].append(breed)
+            }
+        } else {
+            for breed in filteredBreeds {
+                breedGroups[String(breed.BreedName.prefix(1)), default: []].append(breed)
+            }
         }
         breedLetters = breedGroups.keys.sorted()
     }
@@ -144,6 +150,14 @@ extension MainBreedCollectionViewController: PopMenuViewControllerDelegate {
 
     func popMenuDidSelectItem(_ popMenuViewController: PopMenuViewController, at index: Int) {
         sortMenu.setTitle("Sort By: " + popMenuViewController.actions[index].title!, for: .normal)
+        if let title = popMenuViewController.actions[index].title {
+            switch title {
+            case "Breed Name": choosenBreedSortOption = .name
+            case "Best Match": choosenBreedSortOption = .match
+            default: break
+            }
+            setupIndex()
+        }
     }
 
     @IBAction func sortMenuTapped(_ sender: Any) {

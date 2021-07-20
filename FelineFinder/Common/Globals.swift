@@ -101,6 +101,12 @@ enum FilterType {
     case Advanced
 }
 
+enum sortOptions {
+    case name
+    case match
+}
+var choosenBreedSortOption = sortOptions.name
+
 struct Matrix<T> {
     let rows: Int, columns: Int
     var grid: [T]

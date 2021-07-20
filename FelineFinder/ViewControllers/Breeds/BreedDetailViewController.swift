@@ -198,7 +198,10 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     }
     
     override func GetTitle(totalRows TotalRows: Int) -> String {
-        return String(TotalRows) + " of " + (breed?.BreedName ?? "") + " breed"
+        if TotalRows == 0 {
+            return " No " + (breed?.BreedName ?? "") + " Found."
+        }
+        return " " + String(TotalRows) + " " + (breed?.BreedName ?? "")
     }
     
     @IBAction func BackTapped(_ sender: Any) {
