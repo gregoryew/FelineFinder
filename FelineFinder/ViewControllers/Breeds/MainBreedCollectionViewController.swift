@@ -18,7 +18,7 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     
     var popMenu: PopMenuViewController? = nil
     
-    var breeds = [Breed]()
+    var breedsLocal = [Breed]()
     var filteredBreeds: [Breed] = []
     var breedGroups: [String: [Breed]] = [:]
     var breedLetters = [String]()
@@ -26,9 +26,11 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
-            self.breeds = breeds
-            self.filteredBreeds = breeds
+        let layout = BreedCollectionView.collectionViewLayout as? UICollectionViewFlowLayout // casting is required because UICollectionViewLayout doesn't offer header pin. Its feature of UICollectionViewFlowLayout
+        layout?.sectionHeadersPinToVisibleBounds = true
+        DatabaseManager.sharedInstance.fetchBreedsFit { (breedsParam) -> Void in
+            self.breedsLocal = breedsParam
+            self.filteredBreeds = breedsParam
             DispatchQueue.main.async(execute: {
                 self.setupIndex()
                 let indexView = BDKCollectionIndexView(frame: self.breedIndexView.frame, indexTitles: nil)
@@ -44,6 +46,15 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
             })
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setupIndex()
+    }
+    
+    func scrollToIndex(index:Int) {
+        self.BreedCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: false)
+     }
     
     /*
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -61,16 +72,36 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     func setupIndex() {
         breedGroups = [:]
         breedLetters = []
+        var c = 0
         if choosenBreedSortOption == .name {
             for breed in filteredBreeds {
                 breedGroups[String(breed.BreedName.prefix(1)), default: []].append(breed)
             }
         } else {
             for breed in filteredBreeds {
-                breedGroups[String(breed.BreedName.prefix(1)), default: []].append(breed)
+                let breedLocal = breeds.filter({ breedParam in
+                    return breedParam.BreedID == breed.BreedID
+                })
+                var category: match = .purrfect
+                switch breedLocal[0].Percentage {
+                case 0..<0.2: category = .bad
+                case 0.2..<0.4: category = .poor
+                case 0.4..<0.6: category = .maybe
+                case 0.6..<0.8: category = .good
+                case 0.8..<1: category = .great
+                case 1: category = .purrfect
+                default: break
+                }
+                c += 1
+                print("\(c) \(category)")
+                breedGroups[String(category.rawValue), default: []].append(breed)
             }
         }
         breedLetters = breedGroups.keys.sorted()
+        DispatchQueue.main.async(execute: {
+            self.BreedCollectionView.reloadData()
+            self.scrollToIndex(index: 0)
+        })
     }
     
     @objc func indexViewValueChanged(sender: BDKCollectionIndexView) {
@@ -118,11 +149,11 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
     
         if searchText != "" {
-            filteredBreeds = breeds.filter { (breed: Breed) -> Bool in
+            filteredBreeds = breedsLocal.filter { (breed: Breed) -> Bool in
                 return breed.BreedName.lowercased().contains(searchText.lowercased())
             }
         } else {
-            filteredBreeds = breeds
+            filteredBreeds = breedsLocal
         }
         
         setupIndex()
@@ -157,6 +188,7 @@ extension MainBreedCollectionViewController: PopMenuViewControllerDelegate {
             default: break
             }
             setupIndex()
+            scrollToIndex(index: 0)
         }
     }
 

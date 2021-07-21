@@ -23,13 +23,20 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     
     @IBOutlet weak var ChildContainerHeight: NSLayoutConstraint!
     
+    enum menuOptions: Int {
+    case cats = 0
+    case video = 1
+    case stats = 2
+    case info = 3
+    }
+    
     var breeds = [Breed]()
     var filteredBreeds: [Breed] = []
     var breed: Breed?
     var priorChildViewController: UIViewController?
     var childContainerExpanded = false
     var originalRect: CGRect!
-    var currentChild = 0
+    var currentChild = menuOptions.cats
     var priorBreed: Breed?
     
     var tools: [(btn: UIButton, images: [String])] = []
@@ -49,24 +56,24 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
                  (btn: statsButton, images: ["Tool_Stats", "Tool_Filled_Stats"]),
                  (btn: infoButton, images: ["Tool_Info", "Tool_Filled_Info"])]
 
-        self.menuItemChoosen(option: 2)
+        self.menuItemChoosen(option: .info)
 
     }
     
     @IBAction func catButtonTapped(_ sender: Any) {
-        menuItemChoosen(option: 0)
+        menuItemChoosen(option: .cats)
     }
     
     @IBAction func videoButtonTapped(_ sender: Any) {
-        menuItemChoosen(option: 1)
+        menuItemChoosen(option: .video)
     }
     
     @IBAction func statsButtonTapped(_ sender: Any) {
-        menuItemChoosen(option: 2)
+        menuItemChoosen(option: .stats)
     }
     
     @IBAction func infoButtonTapped(_ sender: Any) {
-        menuItemChoosen(option: 3)
+        menuItemChoosen(option: .info)
     }
     
     private var infoViewController:BreedInfoViewController {
@@ -80,7 +87,7 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
             _infoViewController!.breed = breed
             
             // Add View Controller as Child View Controller
-            self.add(asChildViewController: _infoViewController!, option: 3)
+            self.add(asChildViewController: _infoViewController!, option: .info)
         }
         return _infoViewController!
     }
@@ -96,7 +103,7 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
             _statsViewController = storyboard.instantiateViewController(withIdentifier: "BreedStats") as? BreedStatsViewController
             
             // Add View Controller as Child View Controller
-            self.add(asChildViewController: _statsViewController!, option: 2)
+            self.add(asChildViewController: _statsViewController!, option: .stats)
             
             _statsViewController!.setup(breed: breed!)
         }
@@ -116,14 +123,14 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
             _galleryViewController!.breed = breed
             
             // Add View Controller as Child View Controller
-            self.add(asChildViewController: _galleryViewController!, option: 1)
+            self.add(asChildViewController: _galleryViewController!, option: .video)
         }
         return _galleryViewController!
     }
 
     var _galleryViewController:BreedGalleryViewController?
     
-    private func add(asChildViewController viewController: UIViewController, option: Int) {
+    private func add(asChildViewController viewController: UIViewController, option: menuOptions) {
         // Add Child View Controller
         addChild(viewController)
         
@@ -159,33 +166,32 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
         self.breed = breed
     }
     
-    func menuItemChoosen(option: Int) {
-        if option != 0 {currentChild = option}
+    func menuItemChoosen(option: menuOptions) {
+        if option != .cats {currentChild = option}
         
-        if priorChildViewController != nil && option != 0 {
+        if priorChildViewController != nil && option != .cats {
             remove(asChildViewController: priorChildViewController!)
         }
         
         switch option {
-        case 3:
+        case .info:
             add(asChildViewController: infoViewController, option: option)
-        case 2:
+        case .stats:
             add(asChildViewController: statsViewController, option: option)
-        case 1:
+        case .video:
             add(asChildViewController: galleryViewController, option: option)
-        case 0:
+        case .cats:
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             // Instantiate View Controller
             guard let adoptVC = storyboard.instantiateViewController(withIdentifier: "AdoptList") as? AdoptableCatsCollectionViewViewController else { return }
             adoptVC.delegate = self
             self.present(adoptVC, animated: true, completion: nil)
-        default: break
         }
 
         for tool in tools {
             tool.btn.setImage(UIImage(named:tool.images[0]), for: .normal)
         }
-        tools[currentChild].btn.setImage(UIImage(named:tools[currentChild].images[1]), for: .normal)
+        tools[currentChild.rawValue].btn.setImage(UIImage(named:tools[currentChild.rawValue].images[1]), for: .normal)
         
     }
     

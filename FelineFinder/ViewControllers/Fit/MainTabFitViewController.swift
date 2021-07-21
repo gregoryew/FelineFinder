@@ -49,7 +49,6 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
     var breedTraitValues: [Int: [PercentBarView]] = [:]
     var breedColors: [UIColor]?
     var scrollPosition: UITableView.ScrollPosition = .middle
-    var breeds = [Breed]()
     var breedPercentages = [Double]()
     var gradients = [CGGradient]()
     var colors = [UIColor]()
@@ -66,8 +65,8 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
             questionList = QuestionList()
             questionList.getQuestions()
         }
-        DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
-            self.breeds = breeds
+        DatabaseManager.sharedInstance.fetchBreedsFit { (breedsParam) -> Void in
+            breeds = breedsParam
             self.breedPercentages = [Double](repeating: 0, count: 69)
             DispatchQueue.main.async(execute: {
                 self.calcAnswers(question: 0)

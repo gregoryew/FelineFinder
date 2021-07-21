@@ -12,6 +12,18 @@ class BreedSectionHeaderCollectionReusableView: UICollectionReusableView {
     @IBOutlet weak var SectionLetterLabel: UILabel!
     
     func configure(letter: String) {
-        SectionLetterLabel.text = letter
+        if choosenBreedSortOption == .name {
+            SectionLetterLabel.text = letter
+        } else {
+            switch letter {
+            case "1": SectionLetterLabel.text = "Purrfect Match"
+            case "2": SectionLetterLabel.text = "Great Match"
+            case "3": SectionLetterLabel.text = "Good Match"
+            case "4": SectionLetterLabel.text = "Maybe Match"
+            case "5": SectionLetterLabel.text = "Poor Match"
+            case "6": SectionLetterLabel.text = "Bad Match"
+            default: SectionLetterLabel.text = "ERROR"
+            }
+        }
     }
 }

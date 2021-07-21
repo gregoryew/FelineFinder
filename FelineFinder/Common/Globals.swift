@@ -57,6 +57,7 @@ extension UIColor {
         return String(format:"#%06x", rgb)
     }
 }
+
 @IBDesignable
 class TopIconButton: UIButton {
     override func layoutSubviews() {
@@ -88,7 +89,6 @@ class TopIconButton: UIButton {
         self.titleLabel!.frame = titleLabelFrame;
         self.titleLabel!.textAlignment = .center
     }
-    
 }
 
 class AppMisc {
@@ -106,6 +106,17 @@ enum sortOptions {
     case match
 }
 var choosenBreedSortOption = sortOptions.name
+
+enum match: Int {
+    case purrfect = 1
+    case great = 2
+    case good = 3
+    case maybe = 4
+    case poor = 5
+    case bad = 6
+}
+
+var breeds = [Breed]()
 
 struct Matrix<T> {
     let rows: Int, columns: Int
