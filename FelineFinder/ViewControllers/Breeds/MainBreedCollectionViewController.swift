@@ -142,7 +142,8 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
         breedDetail.modalPresentationStyle = .fullScreen
-        breedDetail.breed = self.breedGroups[breedLetters[indexPath.section]]![indexPath.item]
+        breed = self.breedGroups[breedLetters[indexPath.section]]![indexPath.item]
+        updateFilterBreeds(breedsParam: [breed!])
         present(breedDetail, animated: false, completion: nil)
     }
     

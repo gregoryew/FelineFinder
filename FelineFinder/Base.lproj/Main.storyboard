@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZA8-UO-n8h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4iD-yl-hoS">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
@@ -34,10 +34,36 @@
             </objects>
             <point key="canvasLocation" x="424.63768115942031" y="385.59782608695656"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Splash Screen View Controller-->
+        <scene sceneID="E9W-OK-QCF">
+            <objects>
+                <viewController id="4iD-yl-hoS" customClass="SplashScreenViewController" customModule="FelineFinder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AXe-Hh-Rqt">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Launch" translatesAutoresizingMaskIntoConstraints="NO" id="ZUh-WP-rJx">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wK6-9s-chj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZUh-WP-rJx" firstAttribute="top" secondItem="AXe-Hh-Rqt" secondAttribute="top" id="0hM-Fz-wH3"/>
+                            <constraint firstItem="ZUh-WP-rJx" firstAttribute="leading" secondItem="wK6-9s-chj" secondAttribute="leading" id="afs-wP-h41"/>
+                            <constraint firstAttribute="bottom" secondItem="ZUh-WP-rJx" secondAttribute="bottom" id="dex-M9-J09"/>
+                            <constraint firstItem="ZUh-WP-rJx" firstAttribute="trailing" secondItem="wK6-9s-chj" secondAttribute="trailing" id="sV0-nw-4Qm"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rCn-os-upC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1382" y="40"/>
+        </scene>
+        <!--Main Tab Bar Controller View Controller-->
         <scene sceneID="HPT-NK-3j9">
             <objects>
-                <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZA8-UO-n8h" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="ZA8-UO-n8h" customClass="MainTabBarControllerViewController" customModule="FelineFinder" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZYB-eL-YV8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -2022,6 +2048,7 @@
         <image name="Cartoon Abyssinian" width="85.333335876464844" height="85.333335876464844"/>
         <image name="Cartoon Extra-Toes Cat (Hemingway Polydactyl)" width="256" height="256"/>
         <image name="Knob" width="26.333333969116211" height="26.333333969116211"/>
+        <image name="Launch" width="1125" height="2436"/>
         <image name="MainTabAdopt" width="25" height="25"/>
         <image name="MainTabAdoptUp" width="25" height="25"/>
         <image name="MainTabBreeds" width="25" height="25"/>

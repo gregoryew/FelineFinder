@@ -32,7 +32,6 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     
     var breeds = [Breed]()
     var filteredBreeds: [Breed] = []
-    var breed: Breed?
     var priorChildViewController: UIViewController?
     var childContainerExpanded = false
     var originalRect: CGRect!
@@ -44,7 +43,7 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        showBreedDetail(breed: breed!)
+        showBreedDetail(breedParam: breed!)
         searchBar.delegate = self
         DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
             self.breeds = breeds
@@ -160,10 +159,10 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
         viewController.removeFromParent()
     }
     
-    func showBreedDetail(breed: Breed) {
-        breedPhoto.image = UIImage(named: breed.FullSizedPicture)
-        breedName.text = breed.BreedName
-        self.breed = breed
+    func showBreedDetail(breedParam: Breed) {
+        breedPhoto.image = UIImage(named: breedParam.FullSizedPicture)
+        breedName.text = breedParam.BreedName
+        breed = breedParam
     }
     
     func menuItemChoosen(option: menuOptions) {
@@ -205,9 +204,9 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     
     override func GetTitle(totalRows TotalRows: Int) -> String {
         if TotalRows == 0 {
-            return " No " + (breed?.BreedName ?? "") + " Found."
+            return " No " + (breed?.BreedName ?? "Cats") + " Found."
         }
-        return " " + String(TotalRows) + " " + (breed?.BreedName ?? "")
+        return " " + String(TotalRows) + " " + ((breed?.BreedName ?? "Cats") + " Zip: \(zipCode)")
     }
     
     @IBAction func BackTapped(_ sender: Any) {
@@ -235,7 +234,7 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
         } else {
             filteredBreeds = [breed!]
         }
-        showBreedDetail(breed: (filteredBreeds.first ?? breed)!)
+        showBreedDetail(breedParam: (filteredBreeds.first ?? breed)!)
         if priorBreed?.BreedID != breed?.BreedID {
             priorBreed = breed
             _infoViewController = nil

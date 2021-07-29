@@ -118,6 +118,8 @@ enum match: Int {
 
 var breeds = [Breed]()
 
+var anyFitOptionsSelected = false
+
 struct Matrix<T> {
     let rows: Int, columns: Int
     var grid: [T]
@@ -772,6 +774,8 @@ extension UIView {
 var questionList: QuestionList = QuestionList()
 var Favorites = FavoritesList()
 var FitValues = FitValueList()
+var OfflineSearch = false
+var breed: Breed?
 
 let INITIAL_DATE = Date.setToDateTime(dateString: "1900-01-01")
 let ALL_BREEDS = "All Breeds"
@@ -783,3 +787,26 @@ let USER_NOTIFICATION_VC = 3
 let BREEDS_DISPLAY_VC = 4
 let filterReturned = Notification.Name(rawValue: "filterReturned")
 let listReturned = Notification.Name(rawValue: "listReturned")
+
+func updateFilterBreeds(breedsParam: [Breed]) {
+    var breedIDs: [Int] = []
+    var breeds: [listOption] = []
+    var choosenValues: [Int] = []
+    var count = 0
+    for breed in breedsParam {
+        breedIDs.append(count)
+        breeds.append(listOption(displayName: breed.BreedName, search: String(breed.BreedID), value: 0))
+        choosenValues.append(Int(breed.BreedID))
+        count += 1
+    }
+    breedIDs.append(0)
+    breeds.append(listOption(displayName: "Add...", search: "0", value: 1))
+
+    answers[1, 0].removeAll()
+    answers[1, 0].append(contentsOf: breedIDs)
+    filterOptions.load(nil)
+    filterOptions.filteringOptions[1].options.removeAll()
+    filterOptions.filteringOptions[1].options.append(contentsOf: breeds)
+    filterOptions.filteringOptions[1].choosenListValues.removeAll()
+    filterOptions.filteringOptions[1].choosenListValues.append(contentsOf: choosenValues)
+}

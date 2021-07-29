@@ -6,6 +6,15 @@
 //
 
 import UIKit
+import StoreKit
+
+enum AppStoreReviewManager {
+  static func requestReviewIfAppropriate() {
+    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+        SKStoreReviewController.requestReview(in: scene)
+    }
+  }
+}
 
 class FavoritesViewController: ParentViewController {
     @IBOutlet weak var favoritesContainerView: UIView!
@@ -54,6 +63,7 @@ class FavoritesViewController: ParentViewController {
         loadingFavorites = true
         add(asChildViewController: MainTabAdoptableCatsCollectionView)
         loadingFavorites = false
+        AppStoreReviewManager.requestReviewIfAppropriate()
     }
     
     //This should never be called because favorites is only on the main tab view controller

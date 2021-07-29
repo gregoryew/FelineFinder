@@ -125,6 +125,7 @@
 		C57E6220255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E621F255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift */; };
 		C57E6223255C072B00120018 /* AdoptableCatsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */; };
 		C57E6228255C228E00120018 /* CatFinder.db in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE3255BB44200120018 /* CatFinder.db */; };
+		C5878FAC26AE09E00032F461 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5878FAB26AE09E00032F461 /* SplashScreen.swift */; };
 		C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */; };
 		C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DAF725BB958100F3B13C /* GradientButton.swift */; };
 		C5A2DB1A25BCCEB600F3B13C /* ValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */; };
@@ -276,6 +277,7 @@
 		C57E620E255BE43300120018 /* main_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_bg.jpg; sourceTree = "<group>"; };
 		C57E621F255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewViewController.swift; sourceTree = "<group>"; };
 		C57E6222255C072B00120018 /* AdoptableCatsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsCollectionViewCell.swift; sourceTree = "<group>"; };
+		C5878FAB26AE09E00032F461 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5A2DAF725BB958100F3B13C /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLabel.swift; sourceTree = "<group>"; };
@@ -670,6 +672,7 @@
 				C57E575A255BB19A00120018 /* Breeds */,
 				C57E5758255BB18B00120018 /* AdoptACat */,
 				C5B87E572603BF44004906BF /* ParentViewController.swift */,
+				C5878FAB26AE09E00032F461 /* SplashScreen.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -956,6 +959,7 @@
 				C57D50E2256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift in Sources */,
 				C5F9C65A25778B5000861A76 /* BreedPhotoCollectionViewCell.swift in Sources */,
 				C51E1AD4255EC66500167D15 /* GradientCollectionViewCell.swift in Sources */,
+				C5878FAC26AE09E00032F461 /* SplashScreen.swift in Sources */,
 				C57E5E36255BB58100120018 /* Favorites.swift in Sources */,
 				C530481E25A2533B0071A32C /* AdoptableHeaderTableViewCell.swift in Sources */,
 				C5B87E582603BF44004906BF /* ParentViewController.swift in Sources */,

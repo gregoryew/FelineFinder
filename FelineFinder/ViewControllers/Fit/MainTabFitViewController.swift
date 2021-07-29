@@ -33,6 +33,9 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
             PeruseButton.shake()
             return
         }
+        
+        updateFilterBreeds(breedsParam: breeds)
+        
         breedCards.breeds = selectedBreeds
         self.present(breedCards, animated: false, completion: nil)
     }
@@ -77,16 +80,15 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
 
         gradients = GRADIENTS
         colors = COLORS
+        
+        DispatchQueue.main.async(execute: {
+            self.BreedTableView.reloadData()
+            self.QuestionsTableViews.reloadData()
+        })
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        FitValues.storeIDs()
-    }
-    
+        
     func initializeResponses() {
         if FitValues.count == 0 {
-            FitValues.clear()
             FitValues.loadValues()
         }
         for q in 0..<questionList.count {
@@ -108,13 +110,15 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
         breedDetail.modalPresentationStyle = .fullScreen
-        breedDetail.breed = breeds[indexPath.row]
+        breed = breeds[indexPath.row]
+        updateFilterBreeds(breedsParam: [breed!])
         self.present(breedDetail, animated: false, completion: nil)
     }
     
     func answerChanged(question: Int, answer: Int) {
 
         FitValues[question] = answer
+        FitValues.storeIDs()
 
         if breedStats.allBreedStats[1]![question].isPercentage {
             responses[question].percentAnswer = answer
@@ -126,6 +130,13 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
                 responses[question].descriptionAnswer = questionList[question].Choices[answer].Name
             }
         }
+        
+        anyFitOptionsSelected = false
+        for i in 0..<FitValues.count {
+            if FitValues[i] != 0 {
+                anyFitOptionsSelected = true
+            }
+       }
         
         calcAnswers(question: question)
     }

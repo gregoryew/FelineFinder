@@ -23,7 +23,7 @@ protocol AdoptionDelegate {
     func GetTitle(totalRows: Int) -> String
 }
 
-class AdoptableCatsCollectionViewViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, adoptableCatsViewControllerDelegate,
+class AdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UICollectionViewDelegate, UICollectionViewDataSource, AlertDisplayer, adoptableCatsViewControllerDelegate,
     FilterDismiss
 {
 
@@ -365,8 +365,11 @@ class AdoptableCatsCollectionViewViewController: ParentViewController, UICollect
     //And save and the system will search daily
     //Until the user sets the offline search to no and saves
     @IBAction func OfflineSearchTapped(_ sender: Any) {
-        //let PetFinderFind = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PetFinderFind") as! PetFinderFindViewController
-        //self.present(PetFinderFind, animated: true, completion: nil)
+        OfflineSearch = true
+        let FilterViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "Filter") as! FilterViewController
+        FilterViewController.modalPresentationStyle = .formSheet
+        FilterViewController.delegate = self
+        self.present(FilterViewController, animated: true, completion: nil)
     }
     
     @IBAction func FilterButtonTapped(_ sender: Any) {

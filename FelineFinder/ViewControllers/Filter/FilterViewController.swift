@@ -33,10 +33,32 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
         hideKeyboardWhenTappedAround()
         
         filterOptions.load(self.tableView)
-        
+                
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
         })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if OfflineSearch {
+            answerChanged(indexPath: IndexPath(row: 3, section: 3), answer: 0)
+            
+            let defaultAction = UIAlertAction(title: "Ok",
+                                 style: .default) { (action) in
+             // Respond to user selection of the action.
+            }
+            
+            // Create and configure the alert controller.
+            let alert = UIAlertController(title: "Daily Search",
+                  message: "You have choosen to save your current filter as a daily search.  This feature sets the while your away filter to seach daily.  Please review the current filter options make any changes and click save.  Then the system will search daily and notify you when a match is found.  To turn off this feature tap the \"Don't Search\" option for the \"While Your Away\" filter below and tap save.  Alternatively you can delete this filter by tapping the x after its name in saved filters after you save it.",
+                  preferredStyle: .alert)
+            alert.addAction(defaultAction)
+                 
+            self.present(alert, animated: true) {
+                OfflineSearch = false
+            }
+        }
     }
     
     private func configureTableView() {
@@ -197,6 +219,7 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
                         }
                     }
                 }
+                breed = nil
             }
         } else if opt.classification == .saves {
             if opt.options[answer].search == "New" {

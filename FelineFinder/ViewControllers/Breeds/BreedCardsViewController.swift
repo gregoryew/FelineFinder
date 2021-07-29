@@ -105,7 +105,7 @@ class BreedCardsViewController: UIViewController {
     @objc func viewTapped(_ sender:UIButton!) {
         let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
         breedDetail.modalPresentationStyle = .fullScreen
-        breedDetail.breed = breeds[currentIndex]
+        breed = breeds[currentIndex]
         self.present(breedDetail, animated: false, completion: nil)
     }
     
