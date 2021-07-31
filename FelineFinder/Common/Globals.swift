@@ -772,10 +772,62 @@ extension UIView {
 }
 
 var questionList: QuestionList = QuestionList()
+var responses: [response] = []
+var breedStats = BreedStatList()
 var Favorites = FavoritesList()
 var FitValues = FitValueList()
 var OfflineSearch = false
 var breed: Breed?
+var currentQuestion: Int = 0
+
+func initializeResponses() {
+    if FitValues.count == 0 {
+        FitValues.loadValues()
+    }
+    for q in 0..<questionList.count {
+        if breedStats.allBreedStats[1]![q].isPercentage {
+            responses.append(response(id: Int(questionList[q].QuestionID), p: FitValues[q], d: ""))
+            //responses.append(response(id: Int(questionList[q].QuestionID), p: 0, d: ""))
+        } else {
+            var p = -1
+            var desc = "Any"
+            if FitValues[q] > 0 {
+                p = FitValues[q]
+                desc = questionList[q].Choices[p].Name
+            }
+            responses.append(response(id: Int(questionList[q].QuestionID), p: p, d: desc))
+        }
+    }
+}
+
+func answerChangedGlobal(question: Int, answer: Int) {
+
+    FitValues[question] = answer
+    FitValues.storeIDs()
+
+    if breedStats.allBreedStats[1]![question].isPercentage {
+        responses[question].percentAnswer = answer
+    } else {
+        if questionList[question].Choices[answer].Name == "Doesn\'t Matter" {
+            responses[question].descriptionAnswer = "Any"
+            responses[question].percentAnswer = -1
+        } else {
+            responses[question].descriptionAnswer = questionList[question].Choices[answer].Name
+        }
+        for i in 0..<questionList[question].Choices.count {
+            questionList[question].Choices[i].Answer = false
+        }
+        questionList[question].Choices[answer].Answer = true
+    }
+    
+    anyFitOptionsSelected = false
+    for i in 0..<FitValues.count {
+        if FitValues[i] != 0 {
+            anyFitOptionsSelected = true
+        }
+    }
+    
+}
 
 let INITIAL_DATE = Date.setToDateTime(dateString: "1900-01-01")
 let ALL_BREEDS = "All Breeds"

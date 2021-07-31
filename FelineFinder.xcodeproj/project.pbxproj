@@ -30,6 +30,8 @@
 		C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */; };
 		C53DCE8825FBFC51004011EC /* SearchTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DCE8725FBFC50004011EC /* SearchTimer.swift */; };
 		C566D47F25AFF3520087412F /* TextFieldWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C566D47E25AFF3520087412F /* TextFieldWithImage.swift */; };
+		C56BD72126B30AA700E0E63D /* SurveyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BD72026B30AA700E0E63D /* SurveyPageViewController.swift */; };
+		C56BD72426B315EB00E0E63D /* QuestionScaleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56BD72326B315EB00E0E63D /* QuestionScaleViewController.swift */; };
 		C56E7047257BB67A00AAD927 /* FelineFinder-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */; };
 		C57BE7F9255C707500C89D76 /* AdoptableCatsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE7F8255C707500C89D76 /* AdoptableCatsDetailViewController.swift */; };
 		C57BE807255C96AD00C89D76 /* toolCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57BE806255C96AD00C89D76 /* toolCell.swift */; };
@@ -131,6 +133,10 @@
 		C5A2DB1A25BCCEB600F3B13C /* ValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */; };
 		C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */; };
 		C5B2D23E25AF17F20001A83F /* FitValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2D23D25AF17F20001A83F /* FitValues.swift */; };
+		C5B3F87A26B3480400EBA0B3 /* BaseQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3F87926B3480400EBA0B3 /* BaseQuestionViewController.swift */; };
+		C5B3F87C26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3F87B26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift */; };
+		C5B3F87E26B3653A00EBA0B3 /* QuestionPics.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5B3F87D26B3653A00EBA0B3 /* QuestionPics.xcassets */; };
+		C5B3F88026B36CF100EBA0B3 /* QuestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3F87F26B36CF100EBA0B3 /* QuestionCollectionViewCell.swift */; };
 		C5B87E582603BF44004906BF /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B87E572603BF44004906BF /* ParentViewController.swift */; };
 		C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B87E6A26045252004906BF /* RescueGroupFilter.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
@@ -174,6 +180,8 @@
 		C53DCE7525FAFCBA004011EC /* BreedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedTableViewCell.swift; sourceTree = "<group>"; };
 		C53DCE8725FBFC50004011EC /* SearchTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTimer.swift; sourceTree = "<group>"; };
 		C566D47E25AFF3520087412F /* TextFieldWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithImage.swift; sourceTree = "<group>"; };
+		C56BD72026B30AA700E0E63D /* SurveyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPageViewController.swift; sourceTree = "<group>"; };
+		C56BD72326B315EB00E0E63D /* QuestionScaleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionScaleViewController.swift; sourceTree = "<group>"; };
 		C56E7046257BB67A00AAD927 /* FelineFinder-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FelineFinder-Info.plist"; sourceTree = "<group>"; };
 		C57BE7E9255C327900C89D76 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C57BE7F8255C707500C89D76 /* AdoptableCatsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdoptableCatsDetailViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +291,10 @@
 		C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLabel.swift; sourceTree = "<group>"; };
 		C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		C5B2D23D25AF17F20001A83F /* FitValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitValues.swift; sourceTree = "<group>"; };
+		C5B3F87926B3480400EBA0B3 /* BaseQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionViewController.swift; sourceTree = "<group>"; };
+		C5B3F87B26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCollectionViewController.swift; sourceTree = "<group>"; };
+		C5B3F87D26B3653A00EBA0B3 /* QuestionPics.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = QuestionPics.xcassets; sourceTree = "<group>"; };
+		C5B3F87F26B36CF100EBA0B3 /* QuestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5B87E572603BF44004906BF /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		C5B87E6A26045252004906BF /* RescueGroupFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueGroupFilter.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
@@ -419,6 +431,32 @@
 			path = "Old Adopt Code";
 			sourceTree = "<group>";
 		};
+		C56BD71F26B309E300E0E63D /* Fit */ = {
+			isa = PBXGroup;
+			children = (
+				C57E619A255BB92000120018 /* FitQuestionSliderTableViewCell.swift */,
+				C57E619B255BB92100120018 /* MainTabFitViewController.swift */,
+				C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */,
+				C57E6199255BB92000120018 /* FitBreedTableViewCell.swift */,
+				C57E6198255BB92000120018 /* FitDialogViewController.swift */,
+				C57E619C255BB92100120018 /* FitQuestionSegmentTableViewCell.swift */,
+			);
+			path = Fit;
+			sourceTree = "<group>";
+		};
+		C56BD72226B30AB900E0E63D /* Survey */ = {
+			isa = PBXGroup;
+			children = (
+				C56BD72026B30AA700E0E63D /* SurveyPageViewController.swift */,
+				C56BD72326B315EB00E0E63D /* QuestionScaleViewController.swift */,
+				C5B3F87926B3480400EBA0B3 /* BaseQuestionViewController.swift */,
+				C5B3F87B26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift */,
+				C5B3F87F26B36CF100EBA0B3 /* QuestionCollectionViewCell.swift */,
+			);
+			indentWidth = 3;
+			path = Survey;
+			sourceTree = "<group>";
+		};
 		C57D50E7256ED4B500D0842B /* Container View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,6 +529,7 @@
 				C57E61D7255BDB1E00120018 /* MainTabBarViewController.swift */,
 				C57E573E255BAF9B00120018 /* Main.storyboard */,
 				C57BE7E9255C327900C89D76 /* Info.plist */,
+				C5B3F87D26B3653A00EBA0B3 /* QuestionPics.xcassets */,
 				C57E5741255BAF9D00120018 /* Assets.xcassets */,
 				C57E61C7255BBDC000120018 /* BreedHeadshots.xcassets */,
 				C57E5743255BAF9D00120018 /* LaunchScreen.storyboard */,
@@ -534,17 +573,13 @@
 			path = Breeds;
 			sourceTree = "<group>";
 		};
-		C57E575C255BB1A300120018 /* Fit */ = {
+		C57E575C255BB1A300120018 /* Survey and Fit */ = {
 			isa = PBXGroup;
 			children = (
-				C57E6199255BB92000120018 /* FitBreedTableViewCell.swift */,
-				C57E6198255BB92000120018 /* FitDialogViewController.swift */,
-				C57E619C255BB92100120018 /* FitQuestionSegmentTableViewCell.swift */,
-				C57E619A255BB92000120018 /* FitQuestionSliderTableViewCell.swift */,
-				C57E619B255BB92100120018 /* MainTabFitViewController.swift */,
-				C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */,
+				C56BD71F26B309E300E0E63D /* Fit */,
+				C56BD72226B30AB900E0E63D /* Survey */,
 			);
-			path = Fit;
+			path = "Survey and Fit";
 			sourceTree = "<group>";
 		};
 		C57E575D255BB1AA00120018 /* Favorites */ = {
@@ -668,7 +703,7 @@
 				C5DB5A1C257B124500B112F4 /* YouTubePlayer */,
 				C57E575E255BB1B400120018 /* Filter */,
 				C57E575D255BB1AA00120018 /* Favorites */,
-				C57E575C255BB1A300120018 /* Fit */,
+				C57E575C255BB1A300120018 /* Survey and Fit */,
 				C57E575A255BB19A00120018 /* Breeds */,
 				C57E5758255BB18B00120018 /* AdoptACat */,
 				C5B87E572603BF44004906BF /* ParentViewController.swift */,
@@ -812,6 +847,7 @@
 				C57E5DFD255BB49A00120018 /* smartcat.gif in Resources */,
 				C57E5745255BAF9D00120018 /* LaunchScreen.storyboard in Resources */,
 				C57E5E01255BB49A00120018 /* welcome_cat.gif in Resources */,
+				C5B3F87E26B3653A00EBA0B3 /* QuestionPics.xcassets in Resources */,
 				C57E5E02255BB49A00120018 /* good_with_pets.gif in Resources */,
 				C57E5742255BAF9D00120018 /* Assets.xcassets in Resources */,
 				C57D5110256EFB1700D0842B /* Breed Photos Full.xcassets in Resources */,
@@ -891,6 +927,7 @@
 				C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */,
 				C57E61FB255BE1F300120018 /* OldPetFinderFind.swift in Sources */,
 				C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */,
+				C5B3F88026B36CF100EBA0B3 /* QuestionCollectionViewCell.swift in Sources */,
 				C5E930842602713B005A0E90 /* NotificationsDelegate.swift in Sources */,
 				C57E617E255BB7BA00120018 /* PagedModeratorResponse.swift in Sources */,
 				C52C82C325AFB124006633CD /* OptionLabelCell.swift in Sources */,
@@ -918,12 +955,15 @@
 				C57E5E38255BB58100120018 /* DownloadManager.swift in Sources */,
 				C57BE807255C96AD00C89D76 /* toolCell.swift in Sources */,
 				C52C82C025AFAB29006633CD /* FilterOptionTableViewCell.swift in Sources */,
+				C5B3F87C26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift in Sources */,
 				C57E61A1255BB92100120018 /* FitQuestionSegmentTableViewCell.swift in Sources */,
+				C56BD72126B30AA700E0E63D /* SurveyPageViewController.swift in Sources */,
 				C57E6223255C072B00120018 /* AdoptableCatsCollectionViewCell.swift in Sources */,
 				C57D50DC256DD19E00D0842B /* MainBreedCollectionViewController.swift in Sources */,
 				C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */,
 				C57E6200255BE35E00120018 /* CustomHeader.m in Sources */,
 				C528F513265608BB00F49BF5 /* CardStackView.swift in Sources */,
+				C56BD72426B315EB00E0E63D /* QuestionScaleViewController.swift in Sources */,
 				C57E5E29255BB58100120018 /* YouTubeAPI.swift in Sources */,
 				C5E93088260274FD005A0E90 /* ApnsUploads.swift in Sources */,
 				C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */,
@@ -974,6 +1014,7 @@
 				C5F9C8CF257916DE00861A76 /* PinterestLayout.swift in Sources */,
 				C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */,
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
+				C5B3F87A26B3480400EBA0B3 /* BaseQuestionViewController.swift in Sources */,
 				C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */,
 				C528F512265608BB00F49BF5 /* CardView.swift in Sources */,
 				C5E9307C2601A769005A0E90 /* OfflineQueryAPI.swift in Sources */,

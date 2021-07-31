@@ -8,6 +8,7 @@
 
 import UIKit
 import MultiSlider
+import SDWebImage
 
 extension UIResponder {
   

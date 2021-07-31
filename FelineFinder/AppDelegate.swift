@@ -64,7 +64,7 @@ extension AppDelegate: UIApplicationDelegate {
             distance = "8000"
             UserDefaults.standard.set(distance, forKey: "distance")
         }
-  
+          
         let kvStore: NSUbiquitousKeyValueStore = NSUbiquitousKeyValueStore.default;
         let notificationsCenter: NotificationCenter = NotificationCenter.default
         notificationsCenter.addObserver(self, selector: #selector(AppDelegate.ubiquitousKeyValueStoreDidChange), name: NSUbiquitousKeyValueStore.didChangeExternallyNotification, object: kvStore)
@@ -79,7 +79,7 @@ extension AppDelegate: UIApplicationDelegate {
         }
         
         registerForPushNotifications(application: application)
-
+        
         return true
     }
     
