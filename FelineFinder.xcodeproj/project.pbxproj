@@ -447,7 +447,6 @@
 		C56BD72226B30AB900E0E63D /* Survey */ = {
 			isa = PBXGroup;
 			children = (
-				C56BD72026B30AA700E0E63D /* SurveyPageViewController.swift */,
 				C56BD72326B315EB00E0E63D /* QuestionScaleViewController.swift */,
 				C5B3F87926B3480400EBA0B3 /* BaseQuestionViewController.swift */,
 				C5B3F87B26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift */,
@@ -576,6 +575,7 @@
 		C57E575C255BB1A300120018 /* Survey and Fit */ = {
 			isa = PBXGroup;
 			children = (
+				C56BD72026B30AA700E0E63D /* SurveyPageViewController.swift */,
 				C56BD71F26B309E300E0E63D /* Fit */,
 				C56BD72226B30AB900E0E63D /* Survey */,
 			);

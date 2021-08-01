@@ -42,13 +42,11 @@ class FitQuestionSliderTableViewCell: UITableViewCell {
     var breedPositions = [Int]()
     
     @IBAction func helpTapped(_ sender: Any) {
-        let fitDialogVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FitDialog") as! FitDialogViewController
-        fitDialogVC.modalPresentationStyle = .formSheet
-        if let viewController = self.getOwningViewController() {
-            fitDialogVC.titleString = question?.Name ?? ""
-            fitDialogVC.message = question?.Description ?? ""
-            fitDialogVC.image = question?.ImageName ?? ""
-            viewController.present(fitDialogVC, animated: false, completion: nil)
+        if let vc = self.getOwningViewController() as? MainTabFitViewController {
+            let index = questionList.Questions.firstIndex { Question in
+                return Question.Name == question?.Name ?? ""
+            }
+            vc.gotoPage(page: index!)
         }
     }
     

@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol PageObservation: AnyObject {
+        func getParentPageViewController(parentRef: SurveyPageViewController)
+    }
+
 class SurveyPageViewController: UIPageViewController {
     var pages = [BaseQuestionViewController]()
     
@@ -33,10 +37,34 @@ class SurveyPageViewController: UIPageViewController {
             questionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SurveyScaleQuestion") as! QuestionScaleViewController
          }
          if let vc = questionVC {
+            let child1WithParent = vc
+            child1WithParent.getParentPageViewController(parentRef: self)
             vc.Question = question
             vc.Number = i
             pages.append(vc)
          }
+      }
+      
+      DatabaseManager.sharedInstance.fetchBreedsFit { (breedsParam) -> Void in
+            breeds = breedsParam
+      }
+    
+      breedPercentages = [Double](repeating: 0, count: 69)
+      for i in 0..<breeds.count {
+        breeds[i].Percentage = breedPercentages[Int(breeds[i].BreedID) - 1]
+        
+      }
+        
+      breeds.sort { (Breed1, Breed2) -> Bool in
+        return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
+      }
+        
+      let surveyVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "Fit") as? MainTabFitViewController
+        let child1WithParent = surveyVC!
+      child1WithParent.getParentPageViewController(parentRef: self)
+      if let vc = surveyVC
+      {
+        pages.append(vc)
       }
      
       setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
@@ -62,18 +90,22 @@ extension SurveyPageViewController: UIPageViewControllerDataSource {
 
         let currentIndex = pages.firstIndex(of: viewController as! BaseQuestionViewController)!
         
-        // This math will make the pages wrap around
-        let previousIndex = abs((currentIndex - 1) % pages.count)
-        return pages[previousIndex]
+        if currentIndex > 0 && currentIndex < pages.count - 1 {
+            return pages[currentIndex - 1]
+        } else {
+            return nil
+        }
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 
         let currentIndex = pages.firstIndex(of: viewController as! BaseQuestionViewController)!
         
-        // This math will make the pages wrap around
-        let nextIndex = abs((currentIndex + 1) % pages.count)
-        return pages[nextIndex]
+        if currentIndex < pages.count - 1 {
+            return pages[currentIndex + 1]
+        } else {
+            return nil
+        }
     }
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {

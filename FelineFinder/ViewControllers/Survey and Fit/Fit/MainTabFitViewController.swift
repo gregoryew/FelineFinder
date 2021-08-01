@@ -14,7 +14,7 @@ protocol calcStats {
     func answerChanged(question: Int, answer: Int)
 }
 
-class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
+class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
     
     @IBOutlet weak var QuestionsTableViews: UITableView!
     @IBOutlet weak var BreedTableView: UITableView!
@@ -39,7 +39,7 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
         breedCards.breeds = selectedBreeds
         self.present(breedCards, animated: false, completion: nil)
     }
-    
+        
     let BREED_TV = 1
     let QUESTION_TV = 2
     let COLORS = [UIColor.lightGreen, UIColor.lightPink, UIColor.lightBlue, UIColor.lightYellow, UIColor.darkOrange]
@@ -50,7 +50,6 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
     var breedTraitValues: [Int: [PercentBarView]] = [:]
     var breedColors: [UIColor]?
     var scrollPosition: UITableView.ScrollPosition = .middle
-    var breedPercentages = [Double]()
     var gradients = [CGGradient]()
     var colors = [UIColor]()
     
@@ -62,18 +61,13 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
         QuestionsTableViews.dataSource = self
         QuestionsTableViews.delegate = self
         QuestionsTableViews.tag = QUESTION_TV
-        
-        DatabaseManager.sharedInstance.fetchBreedsFit { (breedsParam) -> Void in
-            breeds = breedsParam
-            self.breedPercentages = [Double](repeating: 0, count: 69)
-            DispatchQueue.main.async(execute: {
-                self.calcAnswers(question: 0)
-            })
-        }
-
         gradients = GRADIENTS
         colors = COLORS
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super .viewDidAppear(animated)
+        calcAnswers(question: 0)
         DispatchQueue.main.async(execute: {
             self.BreedTableView.reloadData()
             self.QuestionsTableViews.reloadData()
@@ -81,11 +75,13 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
-        breedDetail.modalPresentationStyle = .fullScreen
-        breed = breeds[indexPath.row]
-        updateFilterBreeds(breedsParam: [breed!])
-        self.present(breedDetail, animated: false, completion: nil)
+        if tableView.tag == BREED_TV {
+            let breedDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "breedDetail") as! BreedDetailViewController
+            breedDetail.modalPresentationStyle = .fullScreen
+            breed = breeds[indexPath.row]
+            updateFilterBreeds(breedsParam: [breed!])
+            self.present(breedDetail, animated: false, completion: nil)
+        }
     }
     
     func answerChanged(question: Int, answer: Int) {
@@ -95,8 +91,6 @@ class MainTabFitViewController: ParentViewController, UITableViewDelegate, UITab
 
     func calcAnswers(question: Int) {
         guard breeds.count > 0 else {return}
-        
-        breedPercentages = breedStats.calcMatches(responses: responses)
 
         guard breedPercentages.count > 0 else {return}
 

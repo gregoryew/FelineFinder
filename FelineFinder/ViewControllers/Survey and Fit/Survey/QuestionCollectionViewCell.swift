@@ -14,10 +14,14 @@ class QuestionCollectionViewCell: UICollectionViewCell {
 
    func configure(Number: Int) {
       let currentQuestion = questionList[Number]
-      title.text = currentQuestion.Choices[self.tag].Name
-      var imageName = "Doesn't Matter"
+      if currentQuestion.Choices[self.tag].Name == "Doesn't Matter" {
+         title.text = "Any"
+      } else {
+         title.text = currentQuestion.Choices[self.tag].Name
+      }
+      var imageName = "Any"
 
-      if title.text == "Doesn't Matter" || title.text == "Long Hair" || title.text == "Short/Long Hair" {
+      if title.text == "Any" || title.text == "Long Hair" || title.text == "Short/Long Hair" {
          if title.text == "Short/Long Hair" {
             imageName = "Short Long"
          } else {
@@ -51,6 +55,9 @@ class QuestionCollectionViewCell: UICollectionViewCell {
       }
       (self.findViewController() as! QuestionCollectionViewController).questionAnswer.text = questionList[currentQuestion].Choices[self.tag].Name + " Selected"
       answerChangedGlobal(question: currentQuestion, answer: self.tag)
+      if self.tag == previousAnswer {
+         questionList[currentQuestion].Choices[previousAnswer].Answer = false
+      }
       changeImage(question: questionList[currentQuestion])
       DispatchQueue.main.async(
          execute: {

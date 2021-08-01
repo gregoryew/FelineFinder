@@ -771,6 +771,8 @@ extension UIView {
     }
 }
 
+var previouslySelectedBreed = IndexPath(item: 0, section: 0)
+
 var questionList: QuestionList = QuestionList()
 var responses: [response] = []
 var breedStats = BreedStatList()
@@ -779,6 +781,7 @@ var FitValues = FitValueList()
 var OfflineSearch = false
 var breed: Breed?
 var currentQuestion: Int = 0
+var breedPercentages = [Double]()
 
 func initializeResponses() {
     if FitValues.count == 0 {
@@ -802,6 +805,8 @@ func initializeResponses() {
 
 func answerChangedGlobal(question: Int, answer: Int) {
 
+    previouslySelectedBreed = IndexPath(item: 0, section: 0)
+    
     FitValues[question] = answer
     FitValues.storeIDs()
 
@@ -817,8 +822,8 @@ func answerChangedGlobal(question: Int, answer: Int) {
         for i in 0..<questionList[question].Choices.count {
             questionList[question].Choices[i].Answer = false
         }
-        questionList[question].Choices[answer].Answer = true
     }
+    questionList[question].Choices[answer].Answer = true
     
     anyFitOptionsSelected = false
     for i in 0..<FitValues.count {
@@ -827,6 +832,14 @@ func answerChangedGlobal(question: Int, answer: Int) {
         }
     }
     
+    breedPercentages = breedStats.calcMatches(responses: responses)
+    
+    for i in 0..<breeds.count {
+        breeds[i].Percentage = breedPercentages[Int(breeds[i].BreedID) - 1]
+    }
+    breeds.sort { (Breed1, Breed2) -> Bool in
+        return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
+    }
 }
 
 let INITIAL_DATE = Date.setToDateTime(dateString: "1900-01-01")

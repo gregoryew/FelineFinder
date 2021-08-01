@@ -100,7 +100,7 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
         breedLetters = breedGroups.keys.sorted()
         DispatchQueue.main.async(execute: {
             self.BreedCollectionView.reloadData()
-            self.scrollToIndex(index: 0)
+            self.BreedCollectionView.scrollToItem(at: previouslySelectedBreed, at: .centeredVertically, animated: false)
         })
     }
     
@@ -144,6 +144,7 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
         breedDetail.modalPresentationStyle = .fullScreen
         breed = self.breedGroups[breedLetters[indexPath.section]]![indexPath.item]
         updateFilterBreeds(breedsParam: [breed!])
+        previouslySelectedBreed = indexPath
         present(breedDetail, animated: false, completion: nil)
     }
     

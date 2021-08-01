@@ -24,20 +24,33 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
          pageControl.currentPage = Int(question.Order)
          questionCollectionView.dataSource = self
          questionCollectionView.delegate = self
-         let q = questionList[currentQuestion]
-         var ans = ""
-         for i in 0..<q.Choices.count {
-            if q.Choices[i].Answer {
-               ans = q.Choices[i].Name + " Selected"
-            }
-         }
-         questionAnswer.text = ans
+
          DispatchQueue.main.async(execute: {
             self.questionCollectionView.reloadData()
          })
        }
    }
 
+   override func viewDidAppear(_ animated: Bool) {
+      super.viewDidAppear(animated)
+      let q = questionList[currentQuestion]
+      var ans = ""
+      var index = -1
+      for i in 0..<q.Choices.count {
+         if q.Choices[i].Answer {
+            ans = q.Choices[i].Name + " Selected"
+            index = i
+            break
+         }
+      }
+      questionCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredVertically, animated: true)
+      if ans == "Doesn\'t Matter Selected" {
+         questionAnswer.text = "Any Selected"
+      } else {
+         questionAnswer.text = ans
+      }
+   }
+   
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
       return Int(questionList[currentQuestion].Choices.count)
    }
@@ -56,4 +69,7 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
        return CGSize(width: questionCollectionView.bounds.width, height: questionCollectionView.bounds.height - 10)
    }
    
+   @IBAction func GoToScoreBoardTapppd(_ sender: Any) {
+      gotoPage(page: questionList.count)
+   }
 }

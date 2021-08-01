@@ -18,13 +18,11 @@ class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDe
     @IBOutlet weak var segmentedCollectionView: UICollectionView!
     
     @IBAction func helpTapped(_ sender: Any) {
-        let fitDialogVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "FitDialog") as! FitDialogViewController
-        fitDialogVC.modalPresentationStyle = .formSheet
-        if let viewController = self.getOwningViewController() {
-            fitDialogVC.titleString = question?.Name ?? ""
-            fitDialogVC.message = question?.Description ?? ""
-            fitDialogVC.image = question?.ImageName ?? ""
-            viewController.present(fitDialogVC, animated: false, completion: nil)
+        if let vc = self.getOwningViewController() as? MainTabFitViewController {
+            let index = questionList.Questions.firstIndex { Question in
+                return Question.Name == question?.Name ?? ""
+            }
+            vc.gotoPage(page: index!)
         }
     }
     
@@ -85,7 +83,11 @@ class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDe
                 if self.index != priorSelectedAnswers[self.tag] {
                     //print("segment config priorCell=\(priorSelectedAnswers[self.tag]) currentCell = \(self.index)")
                     self.segmentedCollectionView.reloadItems(at: [IndexPath(item: priorSelectedAnswers[self.tag], section: 0), IndexPath(item: self.index ?? 0, section: 0)])
-                    priorSelectedAnswers[self.tag] = self.index!
+                    if let i = self.index {
+                        priorSelectedAnswers[self.tag] = i
+                    } else {
+                        priorSelectedAnswers[self.tag] = 0
+                    }
                 }
             }
             self.segmentedCollectionView.reloadData()
