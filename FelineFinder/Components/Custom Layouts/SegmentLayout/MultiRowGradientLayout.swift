@@ -59,7 +59,6 @@ class MultiRowGradientLayout: UICollectionViewLayout {
     }
     
   override func prepare() {
-    print("Segment Prepare Begin")
     
     guard contentWidth > 0
     else {return}
@@ -105,7 +104,6 @@ class MultiRowGradientLayout: UICollectionViewLayout {
             }
         }
         delegate.collectionView(collectionView!, maxHeight: (yOffsets.last ?? 0) + columnHeight)
-        print("Segment Prepare End")
      }
   }
   

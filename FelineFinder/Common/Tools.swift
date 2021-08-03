@@ -48,7 +48,6 @@ class Tool {
     }
     
     func performAction() {
-        print (icon)
         if sourceViewController == nil {
             if let vc = sourceView?.findViewController() {
                 sourceViewController = vc
@@ -104,7 +103,6 @@ class directionsTool: Tool {
             let geocoder = CLGeocoder()
             geocoder.geocodeAddressString(address,completionHandler: {(placemarks, error) -> Void in
                 if let placemark = placemarks?[0] as CLPlacemark? {
-                    //println("address = \(address) corridinate = (\(placemark.location!.coordinate.latitude), \(placemark.location!.coordinate.longitude))")
                     self.getDrivingDirections(latitude: placemark.location!.coordinate.latitude, longitude: placemark.location!.coordinate.longitude, name: s.name)
                 }
                 else {
@@ -348,7 +346,6 @@ class descriptionTool: Tool { //, scrolledView {
         if let b = breed {
             let myURLString = b.BreedHTMLURL
             guard let myURL = URL(string: myURLString) else {
-                print("Error: \(myURLString) doesn't seem to be a valid URL")
                 return ""
             }
 
@@ -356,7 +353,6 @@ class descriptionTool: Tool { //, scrolledView {
                 let myHTMLString = try String(contentsOf: myURL, encoding: .ascii)
                 return myHTMLString
             } catch let error {
-                print("Error: \(error)")
                 return ""
             }
         } else {
@@ -457,7 +453,6 @@ class telephoneTool: Tool {
             str = "1\(str)"
         }
         str = "tel:\(str)"
-        //println("phone=\(str)")
         if let url = URL(string: str) {
             u = url
         } else {

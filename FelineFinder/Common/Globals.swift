@@ -367,7 +367,7 @@ class CustomSegue: UIStoryboardSegue {
 }
 
 extension UIView {
-    
+        
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
@@ -566,7 +566,6 @@ public extension Collection {
             let jsonData = try JSONSerialization.data(withJSONObject: self, options: [.prettyPrinted])
             return String(data: jsonData, encoding: .utf8) ?? "{}"
         } catch {
-            print("json serialization error: \(error)")
             return "{}"
         }
     }
@@ -786,7 +785,12 @@ var breedPercentages = [Double]()
 func initializeResponses() {
     if FitValues.count == 0 {
         FitValues.loadValues()
+        let valueExists = FitValues.values.first(where: { value in
+            return value > 0
+        })
+        anyFitOptionsSelected = (valueExists ?? 0) > 0
     }
+    responses.removeAll()
     for q in 0..<questionList.count {
         if breedStats.allBreedStats[1]![q].isPercentage {
             responses.append(response(id: Int(questionList[q].QuestionID), p: FitValues[q], d: ""))
@@ -829,6 +833,7 @@ func answerChangedGlobal(question: Int, answer: Int) {
     for i in 0..<FitValues.count {
         if FitValues[i] != 0 {
             anyFitOptionsSelected = true
+            break
         }
     }
     

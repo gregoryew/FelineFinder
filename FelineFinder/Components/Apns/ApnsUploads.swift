@@ -61,24 +61,15 @@ extension AppDelegate {
       "debug": false
     ]
 
-    #if DEBUG
-    obj["debug"] = true
-    #endif
-
     var request = URLRequest(url: url)
     request.addValue("application/json",
                      forHTTPHeaderField: "Content-Type")
     request.httpMethod = "POST"
     request.httpBody = try! JSONSerialization.data(withJSONObject: obj)
 
-    #if DEBUG
-    print("Device Token: \(token)")
-
     let pretty = try! JSONSerialization.data(withJSONObject: obj,
                                              options: .prettyPrinted)
-    print(String(data: pretty, encoding: .utf8)!)
-    #endif
-
+    
     URLSession.shared.dataTask(with: request).resume()
   }
 }

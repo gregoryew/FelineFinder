@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Twinkle
 
 protocol FilterDismiss {
     func FilterDismiss(vc: UIViewController)
@@ -43,18 +44,24 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
         super.viewDidAppear(animated)
         if OfflineSearch {
             answerChanged(indexPath: IndexPath(row: 3, section: 3), answer: 0)
+                        
+            tableView.scrollToRow(at: IndexPath(item: 3, section: 3), at: .bottom, animated: true)
             
-            let defaultAction = UIAlertAction(title: "Ok",
-                                 style: .default) { (action) in
-             // Respond to user selection of the action.
-            }
+            let indexPath = IndexPath(item: 3, section: 3)
+            let cell = self.tableView.cellForRow(at: indexPath)
+            cell?.shake()
             
             // Create and configure the alert controller.
             let alert = UIAlertController(title: "Daily Search",
                   message: "You have choosen to save your current filter as a daily search.  This feature sets the while your away filter to seach daily.  Please review the current filter options make any changes and click save.  Then the system will search daily and notify you when a match is found.  To turn off this feature tap the \"Don't Search\" option for the \"While Your Away\" filter below and tap save.  Alternatively you can delete this filter by tapping the x after its name in saved filters after you save it.",
                   preferredStyle: .alert)
-            alert.addAction(defaultAction)
-                 
+            
+            let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                UIAlertAction in
+            }
+            
+            alert.addAction(okAction)
+            
             self.present(alert, animated: true) {
                 OfflineSearch = false
             }
@@ -291,7 +298,16 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
-        }))
+            let offlineQueryRequest = OfflineQueryRequest(resourceString: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/search")
+            offlineQueryRequest.deleteOfflineQuery(queryID: String(save), completion: { result in
+                    switch result {
+                    case .success(_):
+                        self.displayAlert("Deleted Offline Query", message: "The query has been deleted.")
+                    case .failure(let error):
+                        self.displayAlert("Error Deleting Offline Query", message: "There has been an error deleting the query for offline search.  The error is \(error).")
+                    }
+                })
+            }))
 
         // 4. Cancel
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
@@ -325,7 +341,7 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
         }
 
         // 3. Grab the value from the text field, and print it when the user clicks OK.
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [self, weak alert] (_) in
             let savedName = alert?.textFields![0].text ?? "Saved Filter"
             var prevSection: catClassification = .saves
             var currentItem = 0
@@ -402,6 +418,7 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     }
     
     func uploadFilter(name: String) {
+        if answers[3, 3].first != 0 {return} //If is not offline query then exit
         let query = DownloadManager.generatePetsJSON(filtered: true, filters: [])
         let offlineQuery = OfflineQuery(userID: userID!, name: name, created: Date(), query: query)
         

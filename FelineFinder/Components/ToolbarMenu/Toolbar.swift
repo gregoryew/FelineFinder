@@ -31,7 +31,6 @@ class Toolbar: UIView {
     }
     
     private func setupView() {
-        //print("setupView begin")
         //backgroundColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
         backgroundColor = .clear
         //tools.append(UIImageView(image: UIImage(named: "Tool_Video")))
@@ -63,11 +62,9 @@ class Toolbar: UIView {
             tools[i].tag = i
             tools[i].isUserInteractionEnabled = true
         }
-        //print("setupView end")
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        //print("handleTap begin")
         menuOpen = !menuOpen
         if menuOpen {
             self.openMenu()
@@ -78,13 +75,10 @@ class Toolbar: UIView {
     }
 
     @objc func handleItemTap(_ sender: UITapGestureRecognizer? = nil) {
-        //print("handleItemTap being")
         delegate.menuItemChoosen(option: (sender?.view!.tag)!)
-        //menuIcon.image = tools[sender!.view!.tag].image
         menuOpen = false
         self.closeMenu()
         self.setNeedsDisplay()
-        //print("handleItemTap end")
     }
     
     func openMenu() {
@@ -102,14 +96,12 @@ class Toolbar: UIView {
     }
 
     func closeMenu() {
-        //print("close menu begin")
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseInOut, animations: {
             for tool in self.tools {
                 tool.frame.origin = CGPoint(x: self.XOffset, y: 0)
             }
             self.menuIcon.frame.origin = CGPoint(x: self.XOffset, y: 0)
             self.frame = CGRect(x: self.frame.minX, y: self.originalY, width: self.menuIcon.frame.width + 12, height: self.menuIcon.frame.height)
-            //self.setNeedsDisplay()
         }, completion:  { (finished) in
             if finished {
                 //print("close menu end")

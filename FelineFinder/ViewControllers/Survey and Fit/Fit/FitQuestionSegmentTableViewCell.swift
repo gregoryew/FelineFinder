@@ -113,7 +113,6 @@ class FitQuestionSegmentTableViewCell: UITableViewCell, MultiRowGradientLayoutDe
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("tag = \(collectionView.tag)  collectionTag = \(collectionView.tag)  cellForItemAt = \(indexPath.row)")
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SegmentCollectionViewCell
         cell.configure(text: answers[indexPath.row], isSelected: index == indexPath.row)
         return cell

@@ -802,20 +802,17 @@ class DatabaseManager {
                 while results.next() == true {
                     let FilterName = results.string(forColumn: "FilterName")
                     let FilterValue = results.string(forColumn: "FilterValue")
-                    print("\(String(describing: FilterName))=\(String(describing: FilterValue))")
                     for o in filterOptions.filteringOptions {
                         if o.fieldName == FilterName {
                             if o.list == true {
                                 if FilterValue != "" {
                                     o.choosenListValues = (FilterValue?.components(separatedBy: ",").map{Int($0)!})!
-                                    print(o.choosenListValues)
                                 } else {
                                     o.choosenListValues = []
                                 }
                                 break
                             } else {
                                 o.choosenValue = Int(FilterValue!)
-                                print(o.choosenValue ?? 0)
                                 break
                             }
                         }

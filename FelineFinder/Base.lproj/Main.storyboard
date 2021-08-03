@@ -527,7 +527,7 @@
                                 <rect key="frame" x="274" y="44" width="116" height="766"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="177" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4Jw-lz-mYG">
-                                        <rect key="frame" x="0.0" y="45" width="116" height="721"/>
+                                        <rect key="frame" x="0.0" y="88" width="116" height="678"/>
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="sectionIndexBackgroundColor" red="0.93725490196078431" green="0.96470588235294119" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <prototypes>
@@ -628,7 +628,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlB-uU-ZtO">
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlB-uU-ZtO" customClass="GradientButton" customModule="FelineFinder" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="116" height="44"/>
                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                         <constraints>
@@ -639,21 +639,56 @@
                                         <state key="normal" title=" Peruse">
                                             <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
+                                                <color key="value" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
+                                                <color key="value" red="0.41512017557167957" green="0.63684079602912624" blue="0.35590929486037759" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="peruseButtonTapped:" destination="7TM-P4-xDj" eventType="touchUpInside" id="Abc-fg-SWS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Ds-ivm" customClass="GradientButton" customModule="FelineFinder" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44" width="116" height="44"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Y4f-v1-wrS"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Clear">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
+                                                <color key="value" systemColor="systemTealColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
+                                                <color key="value" systemColor="systemIndigoColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="clearButtonTapped:" destination="7TM-P4-xDj" eventType="touchUpInside" id="9rk-in-Edw"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="4Jw-lz-mYG" firstAttribute="top" secondItem="BlB-uU-ZtO" secondAttribute="bottom" constant="1" id="8Fp-tS-6M6"/>
                                     <constraint firstAttribute="width" constant="116" id="Bfy-zT-5E8"/>
                                     <constraint firstAttribute="trailing" secondItem="BlB-uU-ZtO" secondAttribute="trailing" id="InW-ia-f4d"/>
+                                    <constraint firstAttribute="trailing" secondItem="obG-Ds-ivm" secondAttribute="trailing" id="JRw-BT-bAV"/>
                                     <constraint firstItem="BlB-uU-ZtO" firstAttribute="top" secondItem="qvv-D6-uUd" secondAttribute="top" id="KcV-5v-Ua5"/>
                                     <constraint firstAttribute="trailing" secondItem="4Jw-lz-mYG" secondAttribute="trailing" id="QQj-AZ-w1W"/>
+                                    <constraint firstItem="obG-Ds-ivm" firstAttribute="top" secondItem="BlB-uU-ZtO" secondAttribute="bottom" id="TcE-2U-XGI"/>
                                     <constraint firstItem="4Jw-lz-mYG" firstAttribute="leading" secondItem="qvv-D6-uUd" secondAttribute="leading" id="U4O-Ow-bEX"/>
                                     <constraint firstItem="BlB-uU-ZtO" firstAttribute="leading" secondItem="qvv-D6-uUd" secondAttribute="leading" id="ku5-rG-w6q"/>
                                     <constraint firstAttribute="bottom" secondItem="4Jw-lz-mYG" secondAttribute="bottom" id="lfm-Su-tLJ"/>
+                                    <constraint firstItem="4Jw-lz-mYG" firstAttribute="top" secondItem="obG-Ds-ivm" secondAttribute="bottom" id="ni1-cU-uSZ"/>
+                                    <constraint firstItem="obG-Ds-ivm" firstAttribute="leading" secondItem="qvv-D6-uUd" secondAttribute="leading" id="qtQ-Cq-L2C"/>
+                                    <constraint firstItem="obG-Ds-ivm" firstAttribute="top" secondItem="BlB-uU-ZtO" secondAttribute="bottom" id="wYd-uI-M0v"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -673,6 +708,7 @@
                     <tabBarItem key="tabBarItem" title="Fit" image="MainTabSurvey" selectedImage="MainTabSurveyUp" id="cO7-17-jRd"/>
                     <connections>
                         <outlet property="BreedTableView" destination="4Jw-lz-mYG" id="Fu1-Q8-p9Z"/>
+                        <outlet property="ClearButon" destination="obG-Ds-ivm" id="re3-Tq-7hw"/>
                         <outlet property="PeruseButton" destination="BlB-uU-ZtO" id="7xB-Xg-ffi"/>
                         <outlet property="QuestionsTableViews" destination="oLi-l9-J3Q" id="aeO-IO-CPw"/>
                     </connections>
@@ -2347,6 +2383,9 @@
         <designable name="BNE-bJ-in9">
             <size key="intrinsicContentSize" width="39.333333333333336" height="18.666666666666668"/>
         </designable>
+        <designable name="BlB-uU-ZtO">
+            <size key="intrinsicContentSize" width="51" height="29"/>
+        </designable>
         <designable name="SFD-dS-GU7">
             <size key="intrinsicContentSize" width="90" height="30"/>
         </designable>
@@ -2361,6 +2400,9 @@
         </designable>
         <designable name="jqB-46-eml">
             <size key="intrinsicContentSize" width="49" height="23.333333333333332"/>
+        </designable>
+        <designable name="obG-Ds-ivm">
+            <size key="intrinsicContentSize" width="36" height="29"/>
         </designable>
     </designables>
     <resources>
@@ -2409,6 +2451,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
             <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

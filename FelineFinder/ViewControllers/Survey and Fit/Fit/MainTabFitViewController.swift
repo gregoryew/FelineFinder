@@ -18,7 +18,22 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
     
     @IBOutlet weak var QuestionsTableViews: UITableView!
     @IBOutlet weak var BreedTableView: UITableView!
-    @IBOutlet weak var PeruseButton: UIButton!
+    @IBOutlet weak var PeruseButton: GradientButton!
+    @IBOutlet weak var ClearButon: GradientButton!
+    
+    @IBAction func clearButtonTapped(_ sender: Any) {
+        
+        FitValues.clear()
+        FitValues.storeIDs()
+        questionList.getQuestions()
+        initializeResponses()
+        answerChangedGlobal(question: 0, answer: 0)
+        calcAnswers(question: 0)
+        DispatchQueue.main.async(execute: {
+            self.BreedTableView.reloadData()
+            self.QuestionsTableViews.reloadData()
+        })
+    }
     
     @IBAction func peruseButtonTapped(_ sender: Any) {
         let breedCards = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedCards") as! BreedCardsViewController
@@ -34,7 +49,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
             return
         }
         
-        updateFilterBreeds(breedsParam: breeds)
+        updateFilterBreeds(breedsParam: selectedBreeds)
         
         breedCards.breeds = selectedBreeds
         self.present(breedCards, animated: false, completion: nil)
