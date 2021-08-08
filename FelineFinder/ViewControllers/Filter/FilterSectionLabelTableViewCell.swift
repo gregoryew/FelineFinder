@@ -16,6 +16,7 @@ class FilterSectionLabelTableViewCell: UITableViewCell {
     var tableView: UITableView?
     
     func config(section: Int, tableView: UITableView) {
+        self.selectionStyle = .none
         self.section = section
         self.tableView = tableView
         let title = titleForHeaderInSection(section: section)

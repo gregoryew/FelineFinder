@@ -20,7 +20,7 @@ class FilterOptionsZipCodeTableCell: UITableViewCell, textFieldButtons, UITextFi
         ZipCodeTextbox.delegate = self
         ZipCodeTextbox.setupLeftImage(imageName: "filter_target")
         ZipCodeTextbox.setupRightImage(imageName: "filter_cross")
-
+        self.selectionStyle = .none
     }
     
     func leftButtonTapped() {

@@ -35,7 +35,7 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
     func configure(option: filterOption, indexPath: IndexPath) {
         self.option = option
         self.indexPath = indexPath
-        
+        self.selectionStyle = .none
         titleLabel = UILabel()
         titleLabel.text = option.name ?? ""
         contentView.addSubview(titleLabel)
