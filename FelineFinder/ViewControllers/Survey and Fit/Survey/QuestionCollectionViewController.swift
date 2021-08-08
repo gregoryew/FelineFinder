@@ -15,6 +15,9 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
    @IBOutlet var questionCollectionView: UICollectionView!
    @IBOutlet var pageControl: UIPageControl!
    
+   var indexPath = IndexPath(item: 0, section: 0)
+   var ans = ""
+   
    override func configure() {
        super.configure()
        if let question = Question {
@@ -33,18 +36,11 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
 
    override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
-      let q = questionList[currentQuestion]
-      var ans = ""
-      var index = -1
-      for i in 0..<q.Choices.count {
-         if q.Choices[i].Answer {
-            ans = q.Choices[i].Name + " Selected"
-            index = i
-            break
-         }
+      debugPrint("IndexPath=\(indexPath)")
+      DispatchQueue.main.async {
+         self.questionCollectionView.scrollToItem(at: self.indexPath, at: .centeredVertically, animated: true)
       }
-      questionCollectionView.scrollToItem(at: IndexPath(item: index, section: 0), at: .centeredVertically, animated: true)
-      if ans == "Doesn\'t Matter Selected" {
+      if ans == "Doesn\'t Matter Selected" || ans == "Any"  || ans == "" {
          questionAnswer.text = "Any Selected"
       } else {
          questionAnswer.text = ans

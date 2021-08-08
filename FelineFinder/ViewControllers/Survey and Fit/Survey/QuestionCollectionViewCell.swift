@@ -45,7 +45,9 @@ class QuestionCollectionViewCell: UICollectionViewCell {
    }
    
    @IBAction func changeAnswer() {
-      currentQuestion = (self.findViewController() as! QuestionCollectionViewController).Number
+      let vc = self.findViewController() as! QuestionCollectionViewController
+      currentQuestion = vc.Number
+      
       var previousAnswer = -1
       for i in 0..<questionList[currentQuestion].Choices.count {
          if questionList[currentQuestion].Choices[i].Answer == true {
@@ -53,7 +55,9 @@ class QuestionCollectionViewCell: UICollectionViewCell {
             break
          }
       }
-      (self.findViewController() as! QuestionCollectionViewController).questionAnswer.text = questionList[currentQuestion].Choices[self.tag].Name + " Selected"
+      vc.indexPath = IndexPath(item: self.tag, section: 0)
+      vc.questionAnswer.text = questionList[currentQuestion].Choices[self.tag].Name + " Selected"
+      vc.ans = vc.questionAnswer.text ?? ""
       answerChangedGlobal(question: currentQuestion, answer: self.tag)
       if self.tag == previousAnswer {
          questionList[currentQuestion].Choices[previousAnswer].Answer = false
