@@ -77,10 +77,6 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         if let cell = optionCollectionView.dequeueReusableCell(withReuseIdentifier: "option", for: indexPath) as? GradientCollectionViewCell {
             let choosen = answers[self.indexPath.section, self.indexPath.row].firstIndex(of: indexPath.row)
             let kind = self.indexPath.section == 0 ? cellKind.deleteable : cellKind.regular
-            if choosen != nil {
-                print("DISPLAY NAME = \(String(describing: self.option.options[indexPath.item].displayName))")
-                print("CHOOSE = \(String(describing: choosen))")
-            }
             cell.configure(text: self.option.options[indexPath.item].displayName ?? "", indexPath: indexPath, choosen: (choosen != nil), kind: kind, tag: Int(self.option.options[indexPath.row].search ?? "-1") ?? -1)
             cell.delegate = self
             return  cell

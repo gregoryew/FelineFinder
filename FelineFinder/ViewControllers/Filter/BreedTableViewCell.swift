@@ -21,7 +21,6 @@ class BreedTableViewCell: UITableViewCell {
         self.BreedImage.image = UIImage(named: breed.breedImageName)
         choosen(selected[tag])
         self.BreedLabel.text = breed.breedName
-        self.selectionStyle = .none
     }
     
     func choosen(_ selected: Bool) {

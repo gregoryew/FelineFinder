@@ -199,18 +199,20 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     func answerChanged(indexPath: IndexPath, answer: Int) {
         let section = indexPath.section
         let opt = filterOptions.getList(section: section, colapsed: section < 3 ? false : colapsed[section - 3])[indexPath.row]
-        if (opt.list ?? false) && (opt.options[answer].displayName != "Any") {
-            if let _ = answers[indexPath.section, indexPath.row].firstIndex(of: answer) {
-                answers[indexPath.section, indexPath.row].remove(object: answer)
-            } else {
-                if (answers[indexPath.section, indexPath.row].count > 0) && (opt.options.last!.displayName == "Any") {
-                    answers[indexPath.section, indexPath.row].removeLast()
+        if opt.classification != .breed {
+            if (opt.list ?? false) && (opt.options[answer].displayName != "Any") {
+                if let _ = answers[indexPath.section, indexPath.row].firstIndex(of: answer) {
+                    answers[indexPath.section, indexPath.row].remove(object: answer)
+                } else {
+                    if (answers[indexPath.section, indexPath.row].count > 0) && (opt.options.last!.displayName == "Any") {
+                        answers[indexPath.section, indexPath.row].removeLast()
+                    }
+                    answers[indexPath.section, indexPath.row].append(answer)
                 }
+            } else {
+                answers[indexPath.section, indexPath.row].removeAll()
                 answers[indexPath.section, indexPath.row].append(answer)
             }
-        } else {
-            answers[indexPath.section, indexPath.row].removeAll()
-            answers[indexPath.section, indexPath.row].append(answer)
         }
         if opt.classification == .breed {
             if answer == filterOptions.filteringOptions[1].options.count - 1 {
