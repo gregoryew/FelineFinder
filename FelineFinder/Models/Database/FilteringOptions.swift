@@ -424,9 +424,13 @@ class filterOptionsListV5 {
     }
 
     
-    func deleteSavedFilterValues(_ savedID: Int) {
-        DatabaseManager.sharedInstance.deleteFilterOptions(savedID: savedID)
-        filterOptions.filteringOptions[0].options = filterOptions.filteringOptions[0].options.filter{$0.search != String(savedID)}
+    func deleteSavedFilterValues(_ saveName: String) {
+        if let opt = filterOptions.saves.first(where: { listOption in
+            return listOption.displayName == saveName
+        }) {
+            DatabaseManager.sharedInstance.deleteFilterOptions(savedID: Int(opt.search ?? "-1") ?? -1)
+        }
+        filterOptions.filteringOptions[0].options = filterOptions.filteringOptions[0].options.filter{$0.displayName != saveName}
         //filterOptions.reset()
     }
     

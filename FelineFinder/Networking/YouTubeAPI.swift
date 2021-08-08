@@ -18,11 +18,6 @@ struct YouTubeVideo {
     }
 }
 
-enum NetworkError: Error {
-    case url
-    case server
-}
-
 struct defaults: Decodable {
     var url: String?
 }
@@ -54,35 +49,21 @@ struct youtubeapi: Decodable {
     var items: [item]?
 }
 
+enum NetworkErr: Error {
+    case url
+    case server
+}
+
 class YouTubeAPI {
-        
-    static func makeAPICall(url: String) -> Result<Data?, NetworkError> {
-        guard let url = URL(string: url) else {
-            return .failure(.url)
-        }
-        var result: Result<Data?, NetworkError>!
-        
-        let semaphore = DispatchSemaphore(value: 0)
-        URLSession.shared.dataTask(with: url) { (youtubedata, _, _) in
-            if let youtubedata = youtubedata {
-                result = .success(youtubedata)
-            } else {
-                result = .failure(.server)
-            }
-            semaphore.signal()
-        }.resume()
-        _ = semaphore.wait(wallTimeout: .distantFuture)
-        return result
-    }
-    
-    static func getYouTubeVideos(playList: String) -> Result<[YouTubeVideo]?, NetworkError> {
+            
+    static func getYouTubeVideos(playList: String) -> Result<[YouTubeVideo]?, NetworkErr> {
         let path =  "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet,status&maxResults=49&playlistId=\(playList)&key=\(YouTubeAPIKey)"
 
         guard let _ = URL(string: path) else {
             return .failure(.url)
         }
         
-        switch makeAPICall(url: path) {
+        switch URLSession.makeAPICall(url: path) {
         case .failure(let err):
             return .failure(err)
         case .success(let data):

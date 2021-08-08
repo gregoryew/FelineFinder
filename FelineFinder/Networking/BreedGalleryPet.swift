@@ -30,7 +30,7 @@ class RescueGroups {
         self.session = session
     }
     
-    func getPets(zipCode: String, breed: Breed) -> Result<[Pet]?, NetworkError> {
+    func getPets(zipCode: String, breed: Breed) -> Result<[Pet]?, NetworkErr> {
         let path = "https://api.rescuegroups.org/v5/public/animals/search/available?fields[animals]=id,breedPrimaryID&limit=25"
 
         var pets2 = [Pet]()

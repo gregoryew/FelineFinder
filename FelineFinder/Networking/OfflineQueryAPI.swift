@@ -16,7 +16,7 @@ enum OfflineQueryAPIError: Error {
 struct OfflineQueryRequest {
     let resourceURL: URL
     
-    init(resourceString: String) {
+    init(resourceString: String = "") {
         guard let resourceURL = URL(string: resourceString) else {fatalError()}
         self.resourceURL = resourceURL
     }
@@ -96,7 +96,28 @@ struct OfflineQueryRequest {
         }
     }
 
-    func deleteOfflineQuery(queryID: String, completion: @escaping(Result<[String:Any], OfflineQueryAPIError>) -> Void) {
+    static func deleteOfflineQuery(saveName: String) -> Result<String?, NetworkErr> {
+
+        let name = saveName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)
+        
+        let query = "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/search/delete/\(name ?? "")"
+        
+        guard let _ = URL(string: query) else {
+            return .failure(.url)
+        }
+        
+        switch URLSession.makeAPICall(url: query) {
+        case .failure(let err):
+            return .failure(err)
+        case .success(let data):
+            return .success(String(data: data!, encoding: .utf8))
+        }
+    }
+
+    
+/*
+    func deleteOfflineQuery(saveName: String, completion: @escaping(Result<[String:Any], OfflineQueryAPIError>) -> Void) {
+
         do {
             var urlRequest = URLRequest(url: URL(string: resourceURL.path + "?id=\(queryID)")!)
             urlRequest.httpMethod = "DELETE"
@@ -119,6 +140,7 @@ struct OfflineQueryRequest {
             dataTask.resume()
         }
     }
+*/
 
     func convertStringToDictionary(text: String) -> [String:AnyObject]? {
        if let data = text.data(using: .utf8) {

@@ -25,6 +25,8 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     var observer3: Any!
     
     var delegate: FilterDismiss!
+    
+    var offlineSearchOn: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,8 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if OfflineSearch {
+            new()
+            
             answerChanged(indexPath: IndexPath(row: 3, section: 3), answer: 0)
                         
             tableView.scrollToRow(at: IndexPath(item: 3, section: 3), at: .bottom, animated: true)
@@ -229,6 +233,10 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
                 breed = nil
             }
         } else if opt.classification == .saves {
+            if opt.options.count - 1 < answer {
+                new()
+                return
+            }
             if opt.options[answer].search == "New" {
                 new()
                 return
@@ -255,6 +263,7 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
+            offlineSearchOn = answers[3, 3].first == 0
         }
         DispatchQueue.main.async(execute: {
             self.tableView.reloadData()
@@ -262,12 +271,19 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     }
     
     func new() {
-        answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+        if answers[3, 3].first == 0 {
+            answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+            answers[3, 3].append(0)
+        } else {
+            answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+        }
         filterOptions.filteringOptions[1].options = []
         filterOptions.filteringOptions[1].options.append(listOption(displayName: "Add...", search: "0", value: 1))
         for o in filterOptions.filteringOptions {
-            o.choosenValue = o.options.count - 1
-            o.choosenListValues.removeAll()
+            if o.name != "While Your Away" {
+                o.choosenValue = o.options.count - 1
+                o.choosenListValues.removeAll()
+            }
         }
         filterOptions.filteringOptions[0].choosenValue = 0
         answers[0, 0].append(0)
@@ -283,37 +299,35 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
         })
     }
     
-    func deleteSave(save: Int) {
+    func promptDeleteSave(save saveName: String) {
         let alert = UIAlertController(title: "Delete Save?", message: "Do you want to delete this saved filter?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-            filterOptions.deleteSavedFilterValues(save)
-            filterOptions.filteringOptions[0].options.removeAll { (listOption) -> Bool in
-                (listOption.search != "New") && Int(listOption.search ?? "0")! == save
-            }
-            if filterOptions.filteringOptions[0].options.count > 0 {
-                answers[0, 0].removeAll()
-                answers[0, 0].append(0)
-                self.new()
-            }
-            DispatchQueue.main.async(execute: {
-                self.tableView.reloadData()
-            })
-            let offlineQueryRequest = OfflineQueryRequest(resourceString: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/search")
-            offlineQueryRequest.deleteOfflineQuery(queryID: String(save), completion: { result in
-                    switch result {
-                    case .success(_):
-                        self.displayAlert("Deleted Offline Query", message: "The query has been deleted.")
-                    case .failure(let error):
-                        self.displayAlert("Error Deleting Offline Query", message: "There has been an error deleting the query for offline search.  The error is \(error).")
-                    }
-                })
-            }))
-
-        // 4. Cancel
+        
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (actionSheetController) -> Void in
+            filterOptions.deleteSavedFilterValues(saveName)
+            filterOptions.filteringOptions[0].options.removeAll { (listOption) -> Bool in
+                (listOption.search != "New") && listOption.displayName ?? "" == saveName
+            }
+            self.deleteSave(save: saveName, prompt: true)
+            self.new()
+        }))
 
-        // 5. Present the alert.
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteSave(save: String, prompt: Bool = false) {
+        switch OfflineQueryRequest.deleteOfflineQuery(saveName: save) {
+            case .success(_):
+                if prompt {
+                    self.displayAlert("No Longer Search Daily", message: "System While No Longer Search Daily For This Query.")
+                }
+            case .failure(let error):
+                self.displayAlert("Error Deleting Offline Query", message: "There has been an error deleting the query for offline search.  The error is \(error).")
+        }
+        DispatchQueue.main.async(execute: {
+            self.tableView.reloadData()
+        })
     }
     
     @IBAction func saveFilterTapped(_ sender: Any) {
@@ -381,24 +395,26 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
                     }
                 }
             }
-            let exists = filterOptions.filteringOptions[0].options.filter { (listOption) -> Bool in
-                listOption.displayName == savedName
+            let saveOption = filterOptions.filteringOptions[0].options.filter { (listOption) -> Bool in
+                return listOption.displayName == savedName
             }
-            if exists.count > 0 {
+            if saveOption.count > 0 {
                 let alert2 = UIAlertController(title: "Overwrite?", message: "\(savedName) already exists.  Do you want me to overwrite that save?", preferredStyle: .alert)
+                
                 alert2.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
-                    filterOptions.storeFilters(Int(exists[0].search ?? "0")!, saveName: savedName)
-                    self.uploadFilter(name: savedName)
+                    filterOptions.storeFilters(Int(saveOption[0].search ?? "0")!, saveName: savedName)
+                    self.deleteSave(save: savedName)
+                    //If while your away is set to search daily then upload the query to the server
+                    if answers[3, 3].first == 0 {self.uploadFilter(name: savedName)}
                 }))
                 
-                // 4. Cancel
                 alert2.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
 
-                // 5. Present the alert.
                 self.present(alert2, animated: true, completion: nil)
             } else {
                 filterOptions.storeFilters(0, saveName: savedName)
-                self.uploadFilter(name: savedName)
+                //If while your away is set to search daily then upload the query to the server
+                if answers[3, 3].first == 0 {self.uploadFilter(name: savedName)}
                 let lo = listOption(displayName: savedName, search: String(NameID), value: NameID)
                 filterOptions.filteringOptions[0].options.append(lo)
                 answers[0, 0].removeAll()
@@ -421,9 +437,8 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
         if answers[3, 3].first != 0 {return} //If is not offline query then exit
         let query = DownloadManager.generatePetsJSON(filtered: true, filters: [])
         let offlineQuery = OfflineQuery(userID: userID!, name: name, created: Date(), query: query)
-        
         let offlineQueryRequest = OfflineQueryRequest(resourceString: "https://feline-finder-server-5-4a4nx.ondigitalocean.app/api/search")
-        
+        deleteSave(save: name)
         offlineQueryRequest.save(offlineQuery, completion: { result in
             switch result {
             case .success(_):

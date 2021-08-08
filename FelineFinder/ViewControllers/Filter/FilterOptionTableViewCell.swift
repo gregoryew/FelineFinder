@@ -9,7 +9,7 @@ import UIKit
 
 protocol Options {
     func answerChanged(indexPath: IndexPath, answer: Int)
-    func deleteSave(save: Int)
+    func promptDeleteSave(save: String)
 }
 
 enum cellKind {
@@ -100,7 +100,7 @@ class FilterOptionTableViewCell: UITableViewCell, UICollectionViewDelegate, UICo
         delegate.answerChanged(indexPath: self.indexPath, answer: indexPath.row)
     }
     
-    func delete(save: Int) {
-        delegate.deleteSave(save: save)
+    func delete(save: String) {
+        delegate.promptDeleteSave(save: save)
     }
 }

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol deleteSave {
-    func delete(save: Int)
+    func delete(save: String)
 }
 
 class GradientCollectionViewCell: UICollectionViewCell {
@@ -30,14 +30,15 @@ class GradientCollectionViewCell: UICollectionViewCell {
                 deleteButton.setImage(img, for: .normal)
             }
             deleteButton.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-            deleteButton.tag = tag
             contentView.addSubview(deleteButton)
             deleteButton.constraints(top: label.topAnchor, bottom: label.bottomAnchor, trailing: label.trailingAnchor, padding: UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5), size: CGSize(width: 20, height: label.frame.size.height))
         }
     }
     
     @objc func buttonAction(sender: UIButton!) {
-        delegate.delete(save: sender.tag)
+        if let l = label.text {
+            delegate.delete(save: l)
+        }
     }
     
     override func prepareForReuse() {

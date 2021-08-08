@@ -10,6 +10,41 @@ import Foundation
 import UIKit
 import WebKit
 
+extension String {
+    func utf8DecodedString()-> String {
+        let data = self.data(using: .utf8)
+        let message = String(data: data!, encoding: .nonLossyASCII) ?? ""
+        return message
+    }
+    
+    func utf8EncodedString()-> String {
+        let messageData = self.data(using: .nonLossyASCII)
+        let text = String(data: messageData!, encoding: .utf8) ?? ""
+        return text
+    }
+}
+
+extension URLSession {
+    static func makeAPICall(url: String) -> Result<Data?, NetworkErr> {
+        guard let url = URL(string: url) else {
+            return .failure(.url)
+        }
+        var result: Result<Data?, NetworkErr>!
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: url) { (youtubedata, _, _) in
+            if let youtubedata = youtubedata {
+                result = .success(youtubedata)
+            } else {
+                result = .failure(.server)
+            }
+            semaphore.signal()
+        }.resume()
+        _ = semaphore.wait(wallTimeout: .distantFuture)
+        return result
+    }
+}
+
 extension UIViewController {
     func setEmojicaLabel(text: String, size: CGFloat = 32.0, fontName: String = "") -> NSAttributedString {
         return NSAttributedString(string: text)
