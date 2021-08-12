@@ -11,12 +11,20 @@ import SDWebImage
 
 class QuestionScaleViewController: BaseQuestionViewController {
 
-    @IBOutlet var questionTitleLabel: UILabel!
-    @IBOutlet var questionDescriptionLabel: UILabel!
-    @IBOutlet var scale: BetterSegmentedControl!
-    @IBOutlet var scaleDescriptionLabel: UILabel!
-    @IBOutlet var questionAnimatedControl: SDAnimatedImageView!
-    @IBOutlet var pageControl: UIPageControl!
+   @IBOutlet var questionTitleLabel: UILabel!
+   @IBOutlet var questionDescriptionLabel: UILabel!
+   @IBOutlet var scale: BetterSegmentedControl!
+   @IBOutlet var scaleDescriptionLabel: UILabel!
+   @IBOutlet var questionAnimatedControl: SDAnimatedImageView!
+   @IBOutlet weak var ClearCacheTapped: UIButton!
+   
+   @IBAction func ClearCache(_ sender: Any) {
+      let allKeys = NSUbiquitousKeyValueStore.default.dictionaryRepresentation.keys
+      for key in allKeys {
+          NSUbiquitousKeyValueStore.default.removeObject(forKey: key)
+      }
+      NSUbiquitousKeyValueStore.default.synchronize()
+   }
    
     override func configure() {
         super.configure()
@@ -40,7 +48,6 @@ class QuestionScaleViewController: BaseQuestionViewController {
          let animatedImage = SDAnimatedImage(named: question.ImageName + ".gif")
          scaleDescriptionLabel.text = Question?.Choices[0].Name
          questionAnimatedControl.image = animatedImage
-         pageControl.currentPage = Int(question.Order) - 1
         }
     }
    

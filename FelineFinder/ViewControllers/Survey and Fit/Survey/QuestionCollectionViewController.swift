@@ -13,7 +13,6 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
    @IBOutlet var questionDescriptionLabel: UILabel!
    @IBOutlet var questionAnswer: UILabel!
    @IBOutlet var questionCollectionView: UICollectionView!
-   @IBOutlet var pageControl: UIPageControl!
    
    var indexPath = IndexPath(item: 0, section: 0)
    var ans = ""
@@ -24,7 +23,6 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
          currentQuestion = Number
          questionTitleLabel.text = question.Name
          questionDescriptionLabel.text = question.Description
-         pageControl.currentPage = Int(question.Order)
          questionCollectionView.dataSource = self
          questionCollectionView.delegate = self
 
@@ -33,7 +31,7 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
          })
        }
    }
-
+   
    override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       debugPrint("IndexPath=\(indexPath)")
@@ -62,7 +60,12 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
    }
    
    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-       return CGSize(width: questionCollectionView.bounds.width, height: questionCollectionView.bounds.height - 10)
+
+      if (questionCollectionView.bounds.height - 10 <= 0) {
+         return CGSize(width: 0, height: 0)
+      } else {
+         return CGSize(width: questionCollectionView.bounds.width, height: questionCollectionView.bounds.height - 10)
+      }
    }
    
    @IBAction func GoToScoreBoardTapppd(_ sender: Any) {
