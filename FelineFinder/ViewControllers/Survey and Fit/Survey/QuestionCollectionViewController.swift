@@ -9,10 +9,11 @@ import UIKit
 
 class QuestionCollectionViewController: BaseQuestionViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
    
-   @IBOutlet var questionTitleLabel: UILabel!
-   @IBOutlet var questionDescriptionLabel: UILabel!
-   @IBOutlet var questionAnswer: UILabel!
-   @IBOutlet var questionCollectionView: UICollectionView!
+   @IBOutlet weak var questionTitleLabel: UILabel!
+   @IBOutlet weak var questionDescriptionLabel: UILabel!
+   @IBOutlet weak var questionAnswer: UILabel!
+   @IBOutlet weak var questionCollectionView: UICollectionView!
+   @IBOutlet weak var QuestionLabel: UILabel!
    
    var indexPath = IndexPath(item: 0, section: 0)
    var ans = ""
@@ -25,7 +26,8 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
          questionDescriptionLabel.text = question.Description
          questionCollectionView.dataSource = self
          questionCollectionView.delegate = self
-
+         QuestionLabel.text = "Question \(currentQuestion + 1) out of \(questionList.count)"
+         
          DispatchQueue.main.async(execute: {
             self.questionCollectionView.reloadData()
          })
@@ -70,5 +72,10 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
    
    @IBAction func GoToScoreBoardTapppd(_ sender: Any) {
       gotoPage(page: questionList.count)
+   }
+   
+   @IBAction func NextTappedInside(_ sender: Any) {
+      currentQuestion += 1
+      gotoPage(page: currentQuestion)
    }
 }

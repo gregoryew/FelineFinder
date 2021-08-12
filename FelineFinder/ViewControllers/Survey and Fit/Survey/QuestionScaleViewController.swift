@@ -16,8 +16,15 @@ class QuestionScaleViewController: BaseQuestionViewController {
    @IBOutlet var scale: BetterSegmentedControl!
    @IBOutlet var scaleDescriptionLabel: UILabel!
    @IBOutlet var questionAnimatedControl: SDAnimatedImageView!
-   @IBOutlet weak var ClearCacheTapped: UIButton!
+   @IBOutlet weak var NextButton: GradientButton!
+   @IBOutlet weak var QuestionLablel: UILabel!
+
+   @IBAction func NextTappedInside(_ sender: Any) {
+      currentQuestion += 1
+      gotoPage(page: currentQuestion)
+   }
    
+   /*
    @IBAction func ClearCache(_ sender: Any) {
       let allKeys = NSUbiquitousKeyValueStore.default.dictionaryRepresentation.keys
       for key in allKeys {
@@ -25,6 +32,7 @@ class QuestionScaleViewController: BaseQuestionViewController {
       }
       NSUbiquitousKeyValueStore.default.synchronize()
    }
+   */
    
     override func configure() {
         super.configure()
@@ -48,6 +56,7 @@ class QuestionScaleViewController: BaseQuestionViewController {
          let animatedImage = SDAnimatedImage(named: question.ImageName + ".gif")
          scaleDescriptionLabel.text = Question?.Choices[0].Name
          questionAnimatedControl.image = animatedImage
+         QuestionLablel.text = "Question \(currentQuestion + 1) out of \(questionList.count)"
         }
     }
    

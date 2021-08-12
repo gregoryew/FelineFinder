@@ -22,7 +22,6 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
     @IBOutlet weak var ClearButon: GradientButton!
     
     @IBAction func clearButtonTapped(_ sender: Any) {
-        
         FitValues.clear()
         FitValues.storeIDs()
         questionList.getQuestions()
@@ -112,6 +111,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
         for i in 0..<breeds.count {
             breeds[i].Percentage = breedPercentages[Int(breeds[i].BreedID) - 1]
         }
+        
         breeds.sort { (Breed1, Breed2) -> Bool in
             return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
         }

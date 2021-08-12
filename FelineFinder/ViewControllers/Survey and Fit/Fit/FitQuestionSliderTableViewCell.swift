@@ -46,7 +46,8 @@ class FitQuestionSliderTableViewCell: UITableViewCell {
             let index = questionList.Questions.firstIndex { Question in
                 return Question.Name == question?.Name ?? ""
             }
-            vc.gotoPage(page: index!)
+            currentQuestion = index!
+            vc.gotoPage(page: currentQuestion)
         }
     }
     
