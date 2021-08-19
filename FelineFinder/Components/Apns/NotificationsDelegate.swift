@@ -46,7 +46,11 @@ final class NotificationDelegate: NSObject,
     queryID = notification.request.content.userInfo["queryID"] as! String
     vc.modalPresentationStyle = .formSheet
     UIApplication.topViewController()!.present(vc, animated: false, completion: nil)
-    completionHandler([.banner, .sound, .badge])
+    if #available(iOS 14.0, *) {
+        completionHandler([.banner, .sound, .badge])
+    } else {
+        completionHandler([.sound, .badge])
+    }
   }
     
     func Dismiss(vc: UIViewController) {

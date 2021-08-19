@@ -73,7 +73,7 @@ class FilterOptionsZipCodeTableCell: UITableViewCell, textFieldButtons, UITextFi
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == ZipCodeTextbox {
-            if range.location > 4 {
+            if range.location > 6 {
                 return false
             }
         }

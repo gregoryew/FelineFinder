@@ -332,7 +332,11 @@ extension AppDelegate: UIApplicationDelegate {
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void)
     {
-        completionHandler([.banner, .list, .sound])
+        if #available(iOS 14.0, *) {
+            completionHandler([.banner, .list, .sound])
+        } else {
+            completionHandler([.alert,.sound])
+        }
     }
         
     func application(_ application: UIApplication,

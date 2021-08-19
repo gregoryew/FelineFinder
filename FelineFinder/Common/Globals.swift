@@ -644,6 +644,21 @@ var YouTubeAPIKey: String {
   }
 }
 
+var ZipWiseAPIKey: String {
+  get {
+    // 1
+    guard let filePath = Bundle.main.path(forResource: "FelineFinder-Info", ofType: "plist") else {
+      fatalError("Couldn't find file 'FelineFinder-Info.plist'.")
+    }
+    // 2
+    let plist = NSDictionary(contentsOfFile: filePath)
+    guard let value = plist?.object(forKey: "ZipWiseAPI") as? String else {
+      fatalError("Couldn't find key 'ZipWiseAPI' in 'FelineFinder-Info.plist'.")
+    }
+    return value
+  }
+}
+
 extension UITextField {
     func setIcon(_ image: UIImage) {
         let iconView = UIImageView(frame:

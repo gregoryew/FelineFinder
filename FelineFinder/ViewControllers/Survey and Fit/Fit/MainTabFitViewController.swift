@@ -16,9 +16,9 @@ protocol calcStats {
 
 class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate, UITableViewDataSource, calcStats {
     
+    @IBOutlet weak var SearchButton: GradientButton!
     @IBOutlet weak var QuestionsTableViews: UITableView!
     @IBOutlet weak var BreedTableView: UITableView!
-    @IBOutlet weak var PeruseButton: GradientButton!
     @IBOutlet weak var ClearButon: GradientButton!
     
     @IBAction func clearButtonTapped(_ sender: Any) {
@@ -34,7 +34,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
         })
     }
     
-    @IBAction func peruseButtonTapped(_ sender: Any) {
+    @IBAction func SearchButtonTapped(_ sender: Any) {
         let breedCards = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "BreedCards") as! BreedCardsViewController
         breedCards.modalPresentationStyle = .fullScreen
         var selectedBreeds = [Breed]()
@@ -44,7 +44,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
             })!)
         }
         if selectedBreeds.count == 0 {
-            PeruseButton.shake()
+            SearchButton.shake()
             return
         }
         
@@ -191,11 +191,11 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
             return (breedSelected[Int(Breed1.BreedID)] ? "1" : "0", Breed1.Percentage, Breed2.BreedName) > (breedSelected[Int(Breed2.BreedID)] ? "1": "0", Breed2.Percentage, Breed1.BreedName)
         }
         if breedsInChartInfo.count == 0 {
-            PeruseButton.setTitleColor(UIColor.lightGray, for: .normal)
-            PeruseButton.backgroundColor = UIColor.systemGray
+            SearchButton.topGradientColor = UIColor.systemGray
+            SearchButton.bottomGradientColor = UIColor.systemGray
         } else {
-            PeruseButton.setTitleColor(UIColor.white, for: .normal)
-            PeruseButton.backgroundColor = UIColor.green
+            SearchButton.topGradientColor = UIColor.darkGreen
+            SearchButton.bottomGradientColor = UIColor.lightGreen
         }
         DispatchQueue.main.async {
             self.BreedTableView.reloadData()

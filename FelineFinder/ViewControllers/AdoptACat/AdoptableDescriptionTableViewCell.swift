@@ -12,7 +12,7 @@ import MessageUI
 
 var webViewHeight:CGFloat = 0 // WKWEbview height
 
-class AdoptableDescriptionTableViewCell: UITableViewCell,  WKNavigationDelegate {
+class AdoptableDescriptionTableViewCell: UITableViewCell, WKNavigationDelegate, UIScrollViewDelegate {
     @IBOutlet weak var descriptionWK: WKWebView!
     
     var pet: Pet!
@@ -25,14 +25,26 @@ class AdoptableDescriptionTableViewCell: UITableViewCell,  WKNavigationDelegate 
         let path = Bundle.main.bundlePath;
         let sBaseURL = URL(fileURLWithPath: path);
         
-        descriptionWK.scrollView.isScrollEnabled = false
+        descriptionWK.scrollView.isScrollEnabled = true
         descriptionWK.scrollView.bounces = false
-        descriptionWK.isUserInteractionEnabled = true
-        descriptionWK.contentMode = .scaleToFill
+        //descriptionWK.isUserInteractionEnabled = true
+        //descriptionWK.contentMode = .scaleToFill
         descriptionWK.navigationDelegate = self
+        
+        descriptionWK.scrollView.isScrollEnabled = true
+        descriptionWK.scrollView.bounces = false
+        descriptionWK.allowsBackForwardNavigationGestures = false
+        descriptionWK.contentMode = .scaleAspectFit
+//  Set the WKWebView scroll view delegate
+        descriptionWK.scrollView.delegate = self
+        
         selectionStyle = .none
         
         descriptionWK.loadHTMLString(generatePetDescription(pet: pet, shelter: shelter), baseURL: sBaseURL)
+    }
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return self
     }
     
     private func sendEmail(address: String?) {
@@ -55,7 +67,7 @@ class AdoptableDescriptionTableViewCell: UITableViewCell,  WKNavigationDelegate 
             vc.present(alertController, animated: true, completion: nil)
         }
     }
-    
+        
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
             guard let url = navigationAction.request.url else {

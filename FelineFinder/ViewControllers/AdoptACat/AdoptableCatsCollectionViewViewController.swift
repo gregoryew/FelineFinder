@@ -188,8 +188,8 @@ class AdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UI
         alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             (btn) in
             let textField = alert2.textFields![0] // Force unwrapping because we know it exists.
-            zipCode = (textField.text)!
-            if DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode) {
+            if DatabaseManager.sharedInstance.validateZipCode(localZipCode: (textField.text)!) {
+                zipCode = (textField.text)!
                 let keyStore = NSUbiquitousKeyValueStore()
                 keyStore.set(zipCode, forKey: "zipCode")
                 self.pets?.loading = true
@@ -339,7 +339,9 @@ class AdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UI
 
         details.pet = self.pets!.Pets[indexPath.item]
         
-        details.modalPresentationStyle = .automatic
+        if #available(iOS 13.0, *) {
+            details.modalPresentationStyle = .automatic
+        }
         
         details.delegate = self
         

@@ -15,6 +15,7 @@ protocol FilterDismiss {
 var rowHeights:Matrix<CGFloat> = Matrix(rows: 8, columns: 20,defaultValue:0)
 var colapsed = [false,false,false,false,false]
 var answers = Matrix(rows: 8, columns: 20, defaultValue: [Int]())
+var filterZipCode = zipCode
 
 class FilterViewController: ParentViewController, UITableViewDelegate, UITableViewDataSource, Options, breedDisplay {
     
@@ -464,11 +465,12 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func showResultsTapped(_ sender: Any) {
-        if !DatabaseManager.sharedInstance.validateZipCode(zipCode: zipCode) {
+        if !DatabaseManager.sharedInstance.validateZipCode(localZipCode: zipCode) {
             let alert = UIAlertController(title: "Invalid Zipcode", message: "Please enter a valid zipcode.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
+            filterZipCode = zipCode
             delegate.FilterDismiss(vc: self)
         }
     }

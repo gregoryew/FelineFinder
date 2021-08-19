@@ -14,7 +14,7 @@ protocol ToolbarDelegate {
     func createEmail(pet: Pet, shelter: shelter)
 }
 
-protocol adoptableCatsViewControllerDelegate: class {
+protocol adoptableCatsViewControllerDelegate: AnyObject {
     func closeAdoptDetailVC(_ adoptVC: AdoptableCatsDetailViewController)
 }
 

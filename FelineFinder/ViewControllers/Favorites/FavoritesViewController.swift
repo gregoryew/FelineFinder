@@ -10,8 +10,16 @@ import StoreKit
 
 enum AppStoreReviewManager {
   static func requestReviewIfAppropriate() {
-    if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-        SKStoreReviewController.requestReview(in: scene)
+    if #available(iOS 13.0, *) {
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if #available(iOS 14.0, *) {
+                SKStoreReviewController.requestReview(in: scene)
+            } else {
+                SKStoreReviewController.requestReview()
+            }
+        }
+    } else {
+        // Fallback on earlier versions
     }
   }
 }

@@ -17,10 +17,15 @@ class MainTabBarControllerViewController: UITabBarController {
         let breed: Breed = Breed(id: 0, name: "All Breeds", url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
         globalBreed = breed
     }
-        
+    
+    /*
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let statusBar = UIView(frame: view.window?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+        if #available(iOS 13.0, *) {
+            let statusBar = UIView(frame: view.window?.windowScene?.statusBarManager?.statusBarFrame ?? CGRect.zero)
+        } else {
+            
+        }
         let blurEffect = UIBlurEffect(style: .light) // Set any style you want(.light or .dark) to achieve different effect.
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
         blurEffectView.frame = statusBar.bounds
@@ -28,6 +33,7 @@ class MainTabBarControllerViewController: UITabBarController {
         statusBar.addSubview(blurEffectView)
         view.addSubview(statusBar)
     }
+    */
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

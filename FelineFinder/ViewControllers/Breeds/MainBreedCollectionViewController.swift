@@ -53,7 +53,9 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     }
     
     func scrollToIndex(index:Int) {
-        self.BreedCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: false)
+        if breedLetters.count > 0 {
+            self.BreedCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: false)
+        }
      }
     
     /*
@@ -100,7 +102,9 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
         breedLetters = breedGroups.keys.sorted()
         DispatchQueue.main.async(execute: {
             self.BreedCollectionView.reloadData()
-            self.BreedCollectionView.scrollToItem(at: previouslySelectedBreed, at: .centeredVertically, animated: false)
+            if self.breedLetters.count > 0 {
+                self.BreedCollectionView.scrollToItem(at: previouslySelectedBreed, at: .centeredVertically, animated: false)
+            }
         })
     }
     

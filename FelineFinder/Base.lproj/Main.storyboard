@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4iD-yl-hoS">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -207,7 +208,7 @@
                                                     <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="postal-code"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                             <real key="value" value="20"/>
@@ -636,19 +637,19 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title=" Peruse">
-                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Search">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="topGradientColor">
-                                                <color key="value" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" systemColor="systemGray2Color"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bottomGradientColor">
-                                                <color key="value" red="0.41512017557167957" green="0.63684079602912624" blue="0.35590929486037759" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="value" systemColor="systemGray2Color"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="peruseButtonTapped:" destination="7TM-P4-xDj" eventType="touchUpInside" id="Abc-fg-SWS"/>
+                                            <action selector="SearchButtonTapped:" destination="7TM-P4-xDj" eventType="touchUpInside" id="Gx6-cx-fig"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obG-Ds-ivm" customClass="GradientButton" customModule="FelineFinder" customModuleProvider="target">
@@ -709,8 +710,8 @@
                     <connections>
                         <outlet property="BreedTableView" destination="4Jw-lz-mYG" id="Fu1-Q8-p9Z"/>
                         <outlet property="ClearButon" destination="obG-Ds-ivm" id="re3-Tq-7hw"/>
-                        <outlet property="PeruseButton" destination="BlB-uU-ZtO" id="7xB-Xg-ffi"/>
                         <outlet property="QuestionsTableViews" destination="oLi-l9-J3Q" id="aeO-IO-CPw"/>
+                        <outlet property="SearchButton" destination="BlB-uU-ZtO" id="sZT-ZT-BKv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zqt-uj-xmN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -916,18 +917,20 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zru-hp-wW6">
-                                        <rect key="frame" x="40" y="16.666666666666664" width="169" height="31"/>
+                                        <rect key="frame" x="55" y="16.666666666666664" width="169" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="B8Y-Kf-L44"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="Sort By: Breed Name"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="close" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENp-Jx-VPp">
-                                        <rect key="frame" x="0.0" y="17" width="43" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENp-Jx-VPp">
+                                        <rect key="frame" x="5" y="10" width="44" height="44"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="43" id="tvg-ma-0Wq"/>
+                                            <constraint firstAttribute="width" constant="44" id="tvg-ma-0Wq"/>
+                                            <constraint firstAttribute="height" constant="44" id="udm-na-UcR"/>
                                         </constraints>
+                                        <state key="normal" image="close"/>
                                         <connections>
                                             <action selector="closeTapped:" destination="qOb-vH-oFd" eventType="touchUpInside" id="EJk-fS-xsa"/>
                                         </connections>
@@ -936,14 +939,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="HAb-LL-Qqi" firstAttribute="top" secondItem="vMa-hY-W7D" secondAttribute="top" constant="10" id="27G-17-Edf"/>
-                                    <constraint firstItem="Zru-hp-wW6" firstAttribute="leading" secondItem="vMa-hY-W7D" secondAttribute="leading" constant="40" id="2LW-o3-8Kt"/>
+                                    <constraint firstItem="Zru-hp-wW6" firstAttribute="leading" secondItem="vMa-hY-W7D" secondAttribute="leading" constant="55" id="2LW-o3-8Kt"/>
                                     <constraint firstAttribute="trailing" secondItem="zsY-5Y-G71" secondAttribute="trailing" constant="65" id="5QI-I3-yMD"/>
                                     <constraint firstItem="ENp-Jx-VPp" firstAttribute="centerY" secondItem="vMa-hY-W7D" secondAttribute="centerY" id="9Kz-Gq-zn8"/>
                                     <constraint firstItem="zsY-5Y-G71" firstAttribute="centerY" secondItem="vMa-hY-W7D" secondAttribute="centerY" id="Uen-ao-Pk4"/>
                                     <constraint firstItem="Zru-hp-wW6" firstAttribute="centerY" secondItem="vMa-hY-W7D" secondAttribute="centerY" id="aCm-Zj-8i7"/>
                                     <constraint firstItem="zsY-5Y-G71" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zru-hp-wW6" secondAttribute="trailing" symbolic="YES" id="dO3-xl-W93"/>
                                     <constraint firstAttribute="height" constant="64" id="f4r-rQ-Xca"/>
-                                    <constraint firstItem="ENp-Jx-VPp" firstAttribute="leading" secondItem="vMa-hY-W7D" secondAttribute="leading" id="heM-WF-6Gi"/>
+                                    <constraint firstItem="ENp-Jx-VPp" firstAttribute="leading" secondItem="vMa-hY-W7D" secondAttribute="leading" constant="5" id="heM-WF-6Gi"/>
                                     <constraint firstAttribute="trailing" secondItem="HAb-LL-Qqi" secondAttribute="trailing" constant="14" id="tf4-EI-Kuk"/>
                                 </constraints>
                             </view>
@@ -1390,7 +1393,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Owx-tv-s64">
                                                     <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
                                                     <subviews>
-                                                        <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcz-C3-Ndk">
+                                                        <wkWebView clipsSubviews="YES" contentMode="left" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gcz-C3-Ndk">
                                                             <rect key="frame" x="0.0" y="0.0" width="390" height="128"/>
                                                             <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <wkWebViewConfiguration key="configuration">
@@ -2153,7 +2156,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Question 1 out of 15" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqv-mv-6el">
-                                        <rect key="frame" x="115" y="62" width="160.33333333333331" height="21"/>
+                                        <rect key="frame" x="115.00000000000001" y="62" width="160.33333333333337" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="gQK-ey-it0"/>
                                             <constraint firstAttribute="height" constant="21" id="s1X-cY-Bmg"/>
@@ -2341,7 +2344,7 @@
             <size key="intrinsicContentSize" width="39.333333333333336" height="18.666666666666668"/>
         </designable>
         <designable name="BlB-uU-ZtO">
-            <size key="intrinsicContentSize" width="51" height="29"/>
+            <size key="intrinsicContentSize" width="47" height="29"/>
         </designable>
         <designable name="GbL-DZ-s8k">
             <size key="intrinsicContentSize" width="41" height="34"/>
@@ -2386,6 +2389,7 @@
         <image name="Tool_Video" width="38.666667938232422" height="38.666667938232422"/>
         <image name="VideoAvailableIcon" width="25" height="25"/>
         <image name="border2" width="64" height="60"/>
+        <image name="close" width="50" height="50"/>
         <image name="filter" width="50" height="50"/>
         <image name="heart" width="128" height="128"/>
         <image name="icons8-toggle-expand-screen" width="50" height="50"/>
@@ -2403,6 +2407,9 @@
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
