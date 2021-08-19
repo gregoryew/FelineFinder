@@ -465,7 +465,7 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     }
     
     @IBAction func showResultsTapped(_ sender: Any) {
-        if !DatabaseManager.sharedInstance.validateZipCode(localZipCode: zipCode) {
+        if !validateZipCode(localZipCode: zipCode) {
             let alert = UIAlertController(title: "Invalid Zipcode", message: "Please enter a valid zipcode.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)

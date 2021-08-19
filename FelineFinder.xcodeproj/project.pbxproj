@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		121B5DF966C286A163AFF1F5 /* Pods_FelineFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */; };
+		C500E6B726CE26B1005FDFC3 /* ZipCodeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500E6B626CE26B1005FDFC3 /* ZipCodeAPI.swift */; };
 		C5179BA325647D84005EC381 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5179BA225647D84005EC381 /* PopAnimator.swift */; };
 		C51CBD4A25817299006B2D12 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CBD4925817299006B2D12 /* FavoritesViewController.swift */; };
 		C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51E1AC8255EC61F00167D15 /* Toolbar.swift */; };
@@ -158,6 +159,7 @@
 		71F68C1D049D00694F9F0FD2 /* Pods-FelineFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FelineFinder.release.xcconfig"; path = "Target Support Files/Pods-FelineFinder/Pods-FelineFinder.release.xcconfig"; sourceTree = "<group>"; };
 		8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FelineFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB7C8A351FB4D2372B8F6BAF /* Pods-FelineFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FelineFinder.debug.xcconfig"; path = "Target Support Files/Pods-FelineFinder/Pods-FelineFinder.debug.xcconfig"; sourceTree = "<group>"; };
+		C500E6B626CE26B1005FDFC3 /* ZipCodeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeAPI.swift; sourceTree = "<group>"; };
 		C5179BA225647D84005EC381 /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		C51CBD4925817299006B2D12 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		C51E1AC8255EC61F00167D15 /* Toolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				C5E930782601A600005A0E90 /* OfflineQuery.swift */,
 				C5E9307E2601E05A005A0E90 /* User.swift */,
 				C5B87E6A26045252004906BF /* RescueGroupFilter.swift */,
+				C500E6B626CE26B1005FDFC3 /* ZipCodeAPI.swift */,
 			);
 			path = Codable;
 			sourceTree = "<group>";
@@ -1008,6 +1011,7 @@
 				C57D50F2256ED55000D0842B /* BreedStatsViewController.swift in Sources */,
 				C57E5E3B255BB58100120018 /* Questions.swift in Sources */,
 				C51E1AD5255EC66500167D15 /* MultiRowGradientLayout.swift in Sources */,
+				C500E6B726CE26B1005FDFC3 /* ZipCodeAPI.swift in Sources */,
 				C57E61DB255BDB5A00120018 /* RescueSheltersAPI.swift in Sources */,
 				C57E5E3E255BB58100120018 /* Utilities.swift in Sources */,
 				C57E5E37255BB58100120018 /* DatabaseManager.swift in Sources */,

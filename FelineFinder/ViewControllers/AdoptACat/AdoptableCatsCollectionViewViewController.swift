@@ -188,7 +188,7 @@ class AdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UI
         alert2.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             (btn) in
             let textField = alert2.textFields![0] // Force unwrapping because we know it exists.
-            if DatabaseManager.sharedInstance.validateZipCode(localZipCode: (textField.text)!) {
+            if validateZipCode(localZipCode: (textField.text)!) {
                 zipCode = (textField.text)!
                 let keyStore = NSUbiquitousKeyValueStore()
                 keyStore.set(zipCode, forKey: "zipCode")
