@@ -45,21 +45,41 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        let keyStore = NSUbiquitousKeyValueStore()
+        
+        keyStore.removeObject(forKey: "offlineSearchMessageDisplay")
+        keyStore.synchronize()
+
+        let display: Bool = keyStore.bool(forKey: "offlineSearchMessageDisplay")
+        
         if OfflineSearch {
-            new()
-            
             answerChanged(indexPath: IndexPath(row: 3, section: 3), answer: 0)
-                        
+                    
             tableView.scrollToRow(at: IndexPath(item: 3, section: 3), at: .bottom, animated: true)
-            
+        
             let indexPath = IndexPath(item: 3, section: 3)
             let cell = self.tableView.cellForRow(at: indexPath)
             cell?.shake()
-            
+        }
+        
+        if !display {OfflineSearch = false}
+        
+        if display {
+
             // Create and configure the alert controller.
             let alert = UIAlertController(title: "Daily Search",
-                  message: "You have choosen to save your current filter as a daily search.  This feature sets the while your away filter to seach daily.  Please review the current filter options make any changes and click save.  Then the system will search daily and notify you when a match is found.  To turn off this feature tap the \"Don't Search\" option for the \"While Your Away\" filter below and tap save.  Alternatively you can delete this filter by tapping the x after its name in saved filters after you save it.",
+                  message: "You have chosen to save your current filter as a daily search.  This feature sets the while your away filter to search daily.  Please review the current filter options, make any changes and click save.  Then the system will search daily and notify you when a match is found.  To turn off this feature, tap the \"Don't Search\" option for the \"While Your Away\" filter below and tap save.  Alternatively, you can delete this filter by tapping the x after its name in saved filters after you save it.",
                   preferredStyle: .alert)
+            
+            let dontShowAction = UIAlertAction(title: "Don't Show Ever Again?", style: UIAlertAction.Style.destructive) {
+                UIAlertAction in
+                let keyStore = NSUbiquitousKeyValueStore()
+                keyStore.set(false, forKey: "offlineSearchMessageDisplay")
+                keyStore.synchronize()
+            }
+            
+            alert.addAction(dontShowAction)
             
             let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
                 UIAlertAction in
@@ -445,7 +465,39 @@ class FilterViewController: ParentViewController, UITableViewDelegate, UITableVi
         offlineQueryRequest.save(offlineQuery, completion: { result in
             switch result {
             case .success(_):
-                self.displayAlert("Saved Offline Query", message: "The query has been saved offline and will be run once a day until you tell it not to.  If a match is found you will be notified by a user notification.")
+                let keyStore = NSUbiquitousKeyValueStore()
+                
+                //keyStore.set(true, forKey: "offlineSearchMessageSaveDisplay")
+                //keyStore.removeObject(forKey: "offlineSearchMessageSaveDisplay")
+                //keyStore.synchronize()
+                
+                let dontDisplay: Bool = keyStore.bool(forKey: "offlineSearchMessageSaveDisplay")
+                if dontDisplay {break}
+                DispatchQueue.main.async {
+                    
+                    // Create and configure the alert controller.
+                    let alert = UIAlertController(title: "Saved Offline Query",
+                          message: "The query has been saved offline and will be run once a day until you tell it not to.  If a match is found, you will be notified by a user notification.",
+                          preferredStyle: .alert)
+                    
+                    let dontShowAction = UIAlertAction(title: "Don't Show Ever Again?", style: UIAlertAction.Style.destructive) {
+                        UIAlertAction in
+                        let keyStore = NSUbiquitousKeyValueStore()
+                        keyStore.set(true, forKey: "offlineSearchMessageSaveDisplay")
+                        keyStore.synchronize()
+                    }
+                    
+                    alert.addAction(dontShowAction)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) {
+                        UIAlertAction in
+                    }
+                    
+                    alert.addAction(okAction)
+                    
+                    self.present(alert, animated: true) {
+                    }
+                }
             case .failure(let error):
                 self.displayAlert("Error Saving Offline Query", message: "There has been an error saving the query for offline search.  The error is \(error).")
             }

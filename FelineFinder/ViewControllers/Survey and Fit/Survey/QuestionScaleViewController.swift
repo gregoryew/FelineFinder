@@ -24,16 +24,6 @@ class QuestionScaleViewController: BaseQuestionViewController {
       gotoPage(page: currentQuestion)
    }
    
-   /*
-   @IBAction func ClearCache(_ sender: Any) {
-      let allKeys = NSUbiquitousKeyValueStore.default.dictionaryRepresentation.keys
-      for key in allKeys {
-          NSUbiquitousKeyValueStore.default.removeObject(forKey: key)
-      }
-      NSUbiquitousKeyValueStore.default.synchronize()
-   }
-   */
-   
     override func configure() {
         super.configure()
         if let question = Question {
@@ -63,13 +53,14 @@ class QuestionScaleViewController: BaseQuestionViewController {
    override func viewDidAppear(_ animated: Bool) {
       super.viewDidAppear(animated)
       scale.setIndex(FitValues[Number])
+      changeRate(rate: FitValues[Number])
    }
 
     @objc func navigationSegmentedControlValueChanged(_ sender: BetterSegmentedControl) {
         if sender.index == 0 {
             scaleDescriptionLabel.text = "Doesn't Matter"
         } else {
-         scaleDescriptionLabel.text = Question?.Choices[Int(Question?.Choices.count ?? 6) - sender.index].Name
+        scaleDescriptionLabel.text = Question?.Choices[Int(Question?.Choices.count ?? 6) - sender.index].Name
         }
         let currentQuestion = (self.view.findViewController() as! QuestionScaleViewController).Number
         var previousAnswer = 0
@@ -79,11 +70,27 @@ class QuestionScaleViewController: BaseQuestionViewController {
               break
            }
         }
+
+      changeRate(rate: sender.index)
+      
         answerChangedGlobal(question: currentQuestion, answer: sender.index)
         if sender.index != previousAnswer {
            questionList[currentQuestion].Choices[previousAnswer].Answer = false
         }
     }
+
+   func changeRate(rate: Int) {
+      switch rate {
+      case 0: questionAnimatedControl.playbackRate = 1.00
+      case 1: questionAnimatedControl.playbackRate = 0.33
+      case 2: questionAnimatedControl.playbackRate = 0.66
+      case 3: questionAnimatedControl.playbackRate = 1.00
+      case 4: questionAnimatedControl.playbackRate = 1.33
+      case 5: questionAnimatedControl.playbackRate = 1.66
+      case 6: questionAnimatedControl.playbackRate = 2.00
+      default: questionAnimatedControl.playbackRate = 1.00
+      }
+   }
    
    @IBAction func GoToScoreBoardTapppd(_ sender: Any) {
       gotoPage(page: questionList.count)

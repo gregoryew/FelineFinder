@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import WebKit
+import SDWebImage
 
 extension String {
     func utf8DecodedString()-> String {
@@ -340,6 +341,44 @@ public extension UIDevice {
 
 @IBDesignable
 class DynamicImageView: UIImageView {
+
+    @IBInspectable var fixedWidth: CGFloat = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+    @IBInspectable var fixedHeight: CGFloat = 0 {
+        didSet {
+            invalidateIntrinsicContentSize()
+        }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        var s = CGSize.zero
+        if fixedWidth > 0 && fixedHeight > 0 {
+            s.width = fixedWidth
+            s.height = fixedHeight
+        } else if fixedWidth <= 0 && fixedHeight > 0 {
+            if let image = self.image {
+                let ratio = fixedHeight / image.size.height
+                s.width = image.size.width * ratio - 10
+                s.height = fixedHeight
+            }
+        } else if fixedWidth > 0 && fixedHeight <= 0 {
+            s.width = fixedWidth
+            if let image = self.image {
+                let ratio = fixedWidth / image.size.width
+                s.height = image.size.height * ratio
+            }
+        } else {
+            s = image?.size ?? .zero
+        }
+        return s
+    }
+}
+
+@IBDesignable
+class SDDynamicImageView: SDAnimatedImageView {
 
     @IBInspectable var fixedWidth: CGFloat = 0 {
         didSet {
