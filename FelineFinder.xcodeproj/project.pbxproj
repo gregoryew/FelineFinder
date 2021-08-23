@@ -142,7 +142,7 @@
 		C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B87E6A26045252004906BF /* RescueGroupFilter.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
 		C5DB5A1E257B126C00B112F4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */; };
-		C5DFC41426D44AD800AC01AE /* TLC.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41126D44AD700AC01AE /* TLC.gif */; };
+		C5DFC41426D44AD800AC01AE /* tlc.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41126D44AD700AC01AE /* tlc.gif */; };
 		C5DFC41526D44AD800AC01AE /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41226D44AD700AC01AE /* autonomy.gif */; };
 		C5DFC41626D44AD800AC01AE /* talkative.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41326D44AD800AC01AE /* talkative.gif */; };
 		C5E1907925607EAB00A885A9 /* BreedsInChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */; };
@@ -304,7 +304,7 @@
 		C5B87E6A26045252004906BF /* RescueGroupFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueGroupFilter.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
-		C5DFC41126D44AD700AC01AE /* TLC.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TLC.gif; sourceTree = "<group>"; };
+		C5DFC41126D44AD700AC01AE /* tlc.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = tlc.gif; sourceTree = "<group>"; };
 		C5DFC41226D44AD700AC01AE /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
 		C5DFC41326D44AD800AC01AE /* talkative.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative.gif; sourceTree = "<group>"; };
 		C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsInChartInfo.swift; sourceTree = "<group>"; };
@@ -686,7 +686,7 @@
 			children = (
 				C5DFC41226D44AD700AC01AE /* autonomy.gif */,
 				C5DFC41326D44AD800AC01AE /* talkative.gif */,
-				C5DFC41126D44AD700AC01AE /* TLC.gif */,
+				C5DFC41126D44AD700AC01AE /* tlc.gif */,
 				C57E5DEB255BB49700120018 /* size.gif */,
 				C57E5DE8255BB49600120018 /* autonomy_old.gif */,
 				C57E5DED255BB49700120018 /* catpaws.png */,
@@ -872,7 +872,7 @@
 				C57E5DF9255BB49A00120018 /* autonomy_old.gif in Resources */,
 				C5DFC41526D44AD800AC01AE /* autonomy.gif in Resources */,
 				C57E5E05255BB49A00120018 /* talkative_old.gif in Resources */,
-				C5DFC41426D44AD800AC01AE /* TLC.gif in Resources */,
+				C5DFC41426D44AD800AC01AE /* tlc.gif in Resources */,
 				C57E5E03255BB49A00120018 /* Fun_Loving.gif in Resources */,
 				C57E6228255C228E00120018 /* CatFinder.db in Resources */,
 				C57E5E00255BB49A00120018 /* petting.gif in Resources */,
