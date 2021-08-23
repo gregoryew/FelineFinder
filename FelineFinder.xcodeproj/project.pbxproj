@@ -53,7 +53,7 @@
 		C57E5764255BB26F00120018 /* ZoomViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E5763255BB26F00120018 /* ZoomViewControler.swift */; };
 		C57E576A255BB28B00120018 /* CatLogoLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57E5769255BB28B00120018 /* CatLogoLayer.swift */; };
 		C57E5DF8255BB49A00120018 /* good_with_children.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE7255BB49600120018 /* good_with_children.gif */; };
-		C57E5DF9255BB49A00120018 /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE8255BB49600120018 /* autonomy.gif */; };
+		C57E5DF9255BB49A00120018 /* autonomy_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE8255BB49600120018 /* autonomy_old.gif */; };
 		C57E5DFA255BB49A00120018 /* grooming.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DE9255BB49700120018 /* grooming.gif */; };
 		C57E5DFB255BB49A00120018 /* hair2.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEA255BB49700120018 /* hair2.gif */; };
 		C57E5DFC255BB49A00120018 /* size.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DEB255BB49700120018 /* size.gif */; };
@@ -65,7 +65,7 @@
 		C57E5E02255BB49A00120018 /* good_with_pets.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF1255BB49800120018 /* good_with_pets.gif */; };
 		C57E5E03255BB49A00120018 /* Fun_Loving.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF2255BB49900120018 /* Fun_Loving.gif */; };
 		C57E5E04255BB49A00120018 /* energy_level.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF3255BB49900120018 /* energy_level.gif */; };
-		C57E5E05255BB49A00120018 /* talkative.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF4255BB49900120018 /* talkative.gif */; };
+		C57E5E05255BB49A00120018 /* talkative_old.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF4255BB49900120018 /* talkative_old.gif */; };
 		C57E5E06255BB49A00120018 /* hair.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF5255BB49900120018 /* hair.gif */; };
 		C57E5E07255BB49A00120018 /* fitness.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF6255BB49A00120018 /* fitness.gif */; };
 		C57E5E08255BB49A00120018 /* Thinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = C57E5DF7255BB49A00120018 /* Thinking.gif */; };
@@ -142,6 +142,9 @@
 		C5B87E6B26045252004906BF /* RescueGroupFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B87E6A26045252004906BF /* RescueGroupFilter.swift */; };
 		C5D9C57825901B7B00CC6A14 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */; };
 		C5DB5A1E257B126C00B112F4 /* YouTubeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */; };
+		C5DFC41426D44AD800AC01AE /* TLC.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41126D44AD700AC01AE /* TLC.gif */; };
+		C5DFC41526D44AD800AC01AE /* autonomy.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41226D44AD700AC01AE /* autonomy.gif */; };
+		C5DFC41626D44AD800AC01AE /* talkative.gif in Resources */ = {isa = PBXBuildFile; fileRef = C5DFC41326D44AD800AC01AE /* talkative.gif */; };
 		C5E1907925607EAB00A885A9 /* BreedsInChartInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */; };
 		C5E930792601A600005A0E90 /* OfflineQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E930782601A600005A0E90 /* OfflineQuery.swift */; };
 		C5E9307C2601A769005A0E90 /* OfflineQueryAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9307B2601A769005A0E90 /* OfflineQueryAPI.swift */; };
@@ -207,7 +210,7 @@
 		C57E5769255BB28B00120018 /* CatLogoLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatLogoLayer.swift; sourceTree = "<group>"; };
 		C57E5DE3255BB44200120018 /* CatFinder.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = CatFinder.db; sourceTree = "<group>"; };
 		C57E5DE7255BB49600120018 /* good_with_children.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_children.gif; sourceTree = "<group>"; };
-		C57E5DE8255BB49600120018 /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
+		C57E5DE8255BB49600120018 /* autonomy_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy_old.gif; sourceTree = "<group>"; };
 		C57E5DE9255BB49700120018 /* grooming.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grooming.gif; sourceTree = "<group>"; };
 		C57E5DEA255BB49700120018 /* hair2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair2.gif; sourceTree = "<group>"; };
 		C57E5DEB255BB49700120018 /* size.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = size.gif; sourceTree = "<group>"; };
@@ -219,7 +222,7 @@
 		C57E5DF1255BB49800120018 /* good_with_pets.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = good_with_pets.gif; sourceTree = "<group>"; };
 		C57E5DF2255BB49900120018 /* Fun_Loving.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Fun_Loving.gif; sourceTree = "<group>"; };
 		C57E5DF3255BB49900120018 /* energy_level.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = energy_level.gif; sourceTree = "<group>"; };
-		C57E5DF4255BB49900120018 /* talkative.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative.gif; sourceTree = "<group>"; };
+		C57E5DF4255BB49900120018 /* talkative_old.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative_old.gif; sourceTree = "<group>"; };
 		C57E5DF5255BB49900120018 /* hair.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = hair.gif; sourceTree = "<group>"; };
 		C57E5DF6255BB49A00120018 /* fitness.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fitness.gif; sourceTree = "<group>"; };
 		C57E5DF7255BB49A00120018 /* Thinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Thinking.gif; sourceTree = "<group>"; };
@@ -301,6 +304,9 @@
 		C5B87E6A26045252004906BF /* RescueGroupFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RescueGroupFilter.swift; sourceTree = "<group>"; };
 		C5D9C57725901B7B00CC6A14 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		C5DB5A1D257B126C00B112F4 /* YouTubeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YouTubeViewController.swift; sourceTree = "<group>"; };
+		C5DFC41126D44AD700AC01AE /* TLC.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TLC.gif; sourceTree = "<group>"; };
+		C5DFC41226D44AD700AC01AE /* autonomy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = autonomy.gif; sourceTree = "<group>"; };
+		C5DFC41326D44AD800AC01AE /* talkative.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = talkative.gif; sourceTree = "<group>"; };
 		C5E1907825607EAB00A885A9 /* BreedsInChartInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreedsInChartInfo.swift; sourceTree = "<group>"; };
 		C5E930782601A600005A0E90 /* OfflineQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQuery.swift; sourceTree = "<group>"; };
 		C5E9307B2601A769005A0E90 /* OfflineQueryAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineQueryAPI.swift; sourceTree = "<group>"; };
@@ -678,8 +684,11 @@
 		C57E5DE6255BB47400120018 /* QuestionGIFs */ = {
 			isa = PBXGroup;
 			children = (
+				C5DFC41226D44AD700AC01AE /* autonomy.gif */,
+				C5DFC41326D44AD800AC01AE /* talkative.gif */,
+				C5DFC41126D44AD700AC01AE /* TLC.gif */,
 				C57E5DEB255BB49700120018 /* size.gif */,
-				C57E5DE8255BB49600120018 /* autonomy.gif */,
+				C57E5DE8255BB49600120018 /* autonomy_old.gif */,
 				C57E5DED255BB49700120018 /* catpaws.png */,
 				C57E5DEE255BB49800120018 /* catpaws2.png */,
 				C57E5DF3255BB49900120018 /* energy_level.gif */,
@@ -692,7 +701,7 @@
 				C57E5DEA255BB49700120018 /* hair2.gif */,
 				C57E5DEF255BB49800120018 /* petting.gif */,
 				C57E5DEC255BB49700120018 /* smartcat.gif */,
-				C57E5DF4255BB49900120018 /* talkative.gif */,
+				C57E5DF4255BB49900120018 /* talkative_old.gif */,
 				C57E5DF7255BB49A00120018 /* Thinking.gif */,
 				C57E5DF0255BB49800120018 /* welcome_cat.gif */,
 			);
@@ -849,6 +858,7 @@
 			files = (
 				C57E5DFD255BB49A00120018 /* smartcat.gif in Resources */,
 				C57E5745255BAF9D00120018 /* LaunchScreen.storyboard in Resources */,
+				C5DFC41626D44AD800AC01AE /* talkative.gif in Resources */,
 				C57E5E01255BB49A00120018 /* welcome_cat.gif in Resources */,
 				C5B3F87E26B3653A00EBA0B3 /* QuestionPics.xcassets in Resources */,
 				C57E5E02255BB49A00120018 /* good_with_pets.gif in Resources */,
@@ -859,8 +869,10 @@
 				C57E5E04255BB49A00120018 /* energy_level.gif in Resources */,
 				C57E5DF8255BB49A00120018 /* good_with_children.gif in Resources */,
 				C57E5DFC255BB49A00120018 /* size.gif in Resources */,
-				C57E5DF9255BB49A00120018 /* autonomy.gif in Resources */,
-				C57E5E05255BB49A00120018 /* talkative.gif in Resources */,
+				C57E5DF9255BB49A00120018 /* autonomy_old.gif in Resources */,
+				C5DFC41526D44AD800AC01AE /* autonomy.gif in Resources */,
+				C57E5E05255BB49A00120018 /* talkative_old.gif in Resources */,
+				C5DFC41426D44AD800AC01AE /* TLC.gif in Resources */,
 				C57E5E03255BB49A00120018 /* Fun_Loving.gif in Resources */,
 				C57E6228255C228E00120018 /* CatFinder.db in Resources */,
 				C57E5E00255BB49A00120018 /* petting.gif in Resources */,
