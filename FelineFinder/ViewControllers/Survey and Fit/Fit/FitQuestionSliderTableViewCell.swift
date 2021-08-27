@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MultiSlider
 
 extension UIResponder {
   
@@ -32,7 +31,7 @@ class FitQuestionSliderTableViewCell: UITableViewCell {
     @IBOutlet weak var BreedChart: GraphView!
     @IBOutlet weak var AnswerSliderView: UIView!
     
-    @IBOutlet weak var AnswerSlider: MultiSlider!
+    @IBOutlet weak var AnswerSlider: FFMultiSlider!
     
     var priorValue: Int = -1
     
@@ -75,6 +74,7 @@ class FitQuestionSliderTableViewCell: UITableViewCell {
         BreedChart.frame = CGRect(x: AnswerSliderView!.frame.minX, y: BreedChart.frame.minY, width: self.contentView.frame.size.width, height: BreedChart.frame.height)
         
         BreedChart.setupView()
+ 
         AnswerSlider!.value = [CGFloat(answer)]
         self.question = question
     }
