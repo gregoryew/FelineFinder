@@ -24,7 +24,7 @@ class QuestionScaleViewController: BaseQuestionViewController {
       gotoPage(page: currentQuestion)
    }
    
-    override func configure() {
+   override func configure() {
         super.configure()
         if let question = Question {
             questionTitleLabel.text = question.Name
@@ -46,7 +46,12 @@ class QuestionScaleViewController: BaseQuestionViewController {
          let animatedImage = SDAnimatedImage(named: question.ImageName + ".gif")
          scaleDescriptionLabel.text = Question?.Choices[0].Name
          questionAnimatedControl.image = animatedImage
-         QuestionLablel.text = "Question \(currentQuestion + 1) out of \(questionList.count)"
+         
+         let order = questionList.Questions.firstIndex { Question in
+            return Question.Name == question.Name
+         }
+         
+         QuestionLablel.text = "Question \((order ?? 0) + 1) out of \(questionList.count)"
         }
     }
    

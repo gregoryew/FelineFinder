@@ -70,17 +70,6 @@ class SurveyPageViewController: UIPageViewController {
       setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -91,6 +80,7 @@ extension SurveyPageViewController: UIPageViewControllerDataSource {
         let currentIndex = pages.firstIndex(of: viewController as! BaseQuestionViewController)!
         
         if currentIndex > 0 && currentIndex < pages.count - 1 {
+            currentQuestion = currentIndex - 1
             return pages[currentIndex - 1]
         } else {
             return nil
@@ -100,8 +90,9 @@ extension SurveyPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
 
         let currentIndex = pages.firstIndex(of: viewController as! BaseQuestionViewController)!
-        
+                
         if currentIndex < pages.count - 1 {
+            currentQuestion = currentIndex + 1
             return pages[currentIndex + 1]
         } else {
             return nil

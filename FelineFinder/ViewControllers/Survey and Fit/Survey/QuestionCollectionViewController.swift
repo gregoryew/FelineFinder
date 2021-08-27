@@ -26,8 +26,13 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
          questionDescriptionLabel.text = question.Description
          questionCollectionView.dataSource = self
          questionCollectionView.delegate = self
-         QuestionLabel.text = "Question \(currentQuestion + 1) out of \(questionList.count)"
+
+         let order = questionList.Questions.firstIndex { Question in
+            return Question.Name == question.Name
+         }
          
+         QuestionLabel.text = "Question \((order ?? 0) + 1) out of \(questionList.count)"
+
          DispatchQueue.main.async(execute: {
             self.questionCollectionView.reloadData()
          })

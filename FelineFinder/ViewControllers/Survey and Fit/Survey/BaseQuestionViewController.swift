@@ -18,6 +18,7 @@ class BaseQuestionViewController: UIViewController, PageObservation {
    }
    
    func gotoPage(page: Int) {
+      currentQuestion = page
        parentPageViewController.setViewControllers([parentPageViewController.pages[page]], direction: .forward, animated: true, completion: nil)
    }
    
