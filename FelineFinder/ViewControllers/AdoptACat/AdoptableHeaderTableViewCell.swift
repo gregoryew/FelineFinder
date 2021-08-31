@@ -8,7 +8,7 @@
 import UIKit
 import FaveButton
 import WebKit
-import SDWebImage
+import Kingfisher
 import MessageUI
 
 enum detailCollectionViewTypes: Int {
@@ -53,7 +53,8 @@ class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, U
         media = Tools.init(pet: self.pet, shelter: globalShelterCache[pet.shelterID]!, sourceView: self.contentView.superview!, delegate: vc)
  
         if let imgURL = URL(string: pet.getImage(1, size: "x")) {
-        self.photo.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority, completed: nil)
+            self.photo.kf.indicatorType = .activity
+            self.photo.kf.setImage(with: imgURL)
         } else {
             self.photo.image = UIImage(named: "NoCatImage")
         }
@@ -197,15 +198,24 @@ class AdoptableHeaderTableViewCell: UITableViewCell, UICollectionViewDelegate, U
             tools[indexPath.item].performAction()
         case
             detailCollectionViewTypes.media.rawValue:
-            let photoURL: URL?
             if media[indexPath.item] is imageTool {
-                photoURL = URL(string: (media[indexPath.item] as! imageTool).photo.URL)
+                if let photoURL = URL(string: (media[indexPath.item] as! imageTool).photo.URL) {
+                        self.photo.kf.indicatorType = .activity
+                        self.photo.kf.setImage(with: photoURL)
+                        selectedPhoto = indexPath.item
+                } else {
+                    self.photo.image = UIImage(named: "NoCatImage")
+                }
             } else {
-                photoURL = URL(string: (media[indexPath.item] as! youTubeTool).video.urlThumbnail)
-                media[indexPath.item].performAction()
+                if let photoURL = URL(string: (media[indexPath.item] as! youTubeTool).video.urlThumbnail) {
+                    self.photo.kf.indicatorType = .activity
+                    self.photo.kf.setImage(with: photoURL)
+                    selectedPhoto = indexPath.item
+                    media[indexPath.item].performAction()
+                } else {
+                    self.photo.image = UIImage(named: "NoCatImage")
+                }
             }
-            photo.sd_setImage(with: photoURL, placeholderImage: UIImage(named: "NoCatImage"), completed: nil)
-            selectedPhoto = indexPath.item
         default: break
         }
     }

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class AdoptableCatsCollectionViewCell: UICollectionViewCell {
     
@@ -22,7 +22,8 @@ class AdoptableCatsCollectionViewCell: UICollectionViewCell {
     func configure(pd: Pet?) {
         if let pd = pd {
             if let imgURL = URL(string: pd.getImage(1, size: "pnt")) {
-            self.photo.sd_setImage(with: imgURL, placeholderImage: UIImage(named: "NoCatImage"), options: SDWebImageOptions.highPriority, completed: nil)
+                self.photo.kf.indicatorType = .activity
+                self.photo.kf.setImage(with: imgURL)
             } else {
                 self.photo.image = UIImage(named: "NoCatImage")
             }

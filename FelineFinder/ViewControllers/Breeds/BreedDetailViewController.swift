@@ -218,7 +218,7 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
         UIView.animate(withDuration: 0.5) {
             if self.childContainerExpanded {
                 self.expandCollapseButton.setImage(UIImage(named: "icons8-toggle-collapse-screen"), for: .normal)
-                self.ChildContainerHeight.constant = 115
+                self.ChildContainerHeight.constant = 100
             } else {
                 self.expandCollapseButton.setImage(UIImage(named: "icons8-toggle-expand-screen"), for: .normal)
                 self.ChildContainerHeight.constant = 348

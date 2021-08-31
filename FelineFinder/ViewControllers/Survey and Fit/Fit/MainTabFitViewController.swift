@@ -26,6 +26,10 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
         FitValues.storeIDs()
         questionList.getQuestions()
         initializeResponses()
+        breedsInChartInfo.breeds = [breedInChartInfo]()
+        breedSelected = [Bool](repeating: false, count: 69)
+        gradients = GRADIENTS
+        colors = COLORS
         answerChangedGlobal(question: 0, answer: 0)
         calcAnswers(question: 0)
         DispatchQueue.main.async(execute: {
@@ -48,7 +52,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
             return
         }
         
-        updateFilterBreeds(breedsParam: selectedBreeds)
+        //updateFilterBreeds(breedsParam: selectedBreeds)
         
         breedCards.breeds = selectedBreeds
         self.present(breedCards, animated: false, completion: nil)
@@ -81,6 +85,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
     
     override func viewDidAppear(_ animated: Bool) {
         super .viewDidAppear(animated)
+        answerChangedGlobal(question: 0, answer: 0)
         calcAnswers(question: 0)
         DispatchQueue.main.async(execute: {
             self.BreedTableView.reloadData()

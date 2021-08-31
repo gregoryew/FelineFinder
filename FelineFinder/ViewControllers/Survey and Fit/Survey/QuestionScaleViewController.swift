@@ -76,7 +76,7 @@ class QuestionScaleViewController: BaseQuestionViewController {
            }
         }
 
-      changeRate(rate: sender.index)
+        changeRate(rate: sender.index)
       
         answerChangedGlobal(question: currentQuestion, answer: sender.index)
         if sender.index != previousAnswer {

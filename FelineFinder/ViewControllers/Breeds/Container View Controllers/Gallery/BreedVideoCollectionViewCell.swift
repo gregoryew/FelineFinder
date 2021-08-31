@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import SDWebImage
+//import SDWebImage
+import Kingfisher
 import YouTubePlayer
 
 class BreedVideoCollectionViewCell: UICollectionViewCell {
@@ -34,9 +35,14 @@ class BreedVideoCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(tool: youTubeTool) {
-        YouTubeThumbnail.sd_setImage(with: URL(string: tool.video.urlThumbnail), placeholderImage: UIImage(named: "NoCatImage"),  completed: nil)
-        playButton.isHidden = false
-        playButton.frame.origin = CGPoint(x: (133 / 2) - (Int(playButton.frame.size.width) / 2), y: (100 / 2) - (Int(playButton.frame.size.height) / 2))
-        VideoTitle.text = tool.video.title
+        if let imgURL = URL(string: tool.video.urlThumbnail) {
+            YouTubeThumbnail.kf.indicatorType = .activity
+            YouTubeThumbnail.kf.setImage(with: imgURL)
+            playButton.isHidden = false
+            playButton.frame.origin = CGPoint(x: (133 / 2) - (Int(playButton.frame.size.width) / 2), y: (100 / 2) - (Int(playButton.frame.size.height) / 2))
+            VideoTitle.text = tool.video.title
+        } else {
+            YouTubeThumbnail.image = UIImage(named: "NoCatImage")
+        }
     }
 }

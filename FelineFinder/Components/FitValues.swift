@@ -34,7 +34,10 @@ class FitValueList {
         
     func loadValues() {
         let keyStore = NSUbiquitousKeyValueStore()
-        values = keyStore.array(forKey: "fitValues") as? [Int] ?? [Int](repeating: 0, count: 15)
+        values = keyStore.array(forKey: "fitValues") as? [Int] ?? [Int](repeating: 0, count: questionList.count)
+        if values.count != questionList.count {
+            values = [Int](repeating: 0, count: questionList.count)
+        }
     }
     
     func clear() {

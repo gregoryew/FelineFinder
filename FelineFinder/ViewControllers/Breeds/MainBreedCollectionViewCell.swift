@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 import MarqueeLabel
 
 class MainBreedCollectionViewCell: UICollectionViewCell {

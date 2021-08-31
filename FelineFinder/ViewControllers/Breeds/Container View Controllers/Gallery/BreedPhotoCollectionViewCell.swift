@@ -6,17 +6,18 @@
 //
 
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class BreedPhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var catPhotoImg: UIImageView!
     
     func configure(img: imageTool) {
         print("URL = \(img.thumbNail.URL))")
-        catPhotoImg.sd_setImage(with: URL(string: img.thumbNail.URL), placeholderImage: UIImage(named: "NoCatImage"), completed: { (_, err, _, _) in
-            if err != nil {
-                print("ERROR = \(err!)")
-            }
-        })
+        if let imgURL = URL(string: img.thumbNail.URL) {
+            catPhotoImg.kf.indicatorType = .activity
+            catPhotoImg.kf.setImage(with: imgURL)
+        } else {
+            catPhotoImg.image = UIImage(named: "NoCatImage")
+        }
     }
 }
