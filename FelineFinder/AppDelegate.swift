@@ -12,7 +12,7 @@ import SystemConfiguration
 import FMDB
 import CoreData
 import Instabug
-    
+
 @UIApplicationMain
 class AppDelegate: UIResponder { //}, UITabBarControllerDelegate {
     var window: UIWindow?
@@ -33,7 +33,7 @@ extension AppDelegate: UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Instabug.start(withToken: "dafbc579501c606b557501d7da83d74d", invocationEvents: [.shake, .screenshot])
-        
+                
         pathToFile()
         
         zipCode = ""

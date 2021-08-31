@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import WhereAmI
+import SwiftLocation
 
 class FilterOptionsZipCodeTableCell: UITableViewCell, textFieldButtons, UITextFieldDelegate {
     
@@ -24,39 +24,67 @@ class FilterOptionsZipCodeTableCell: UITableViewCell, textFieldButtons, UITextFi
     }
     
     func leftButtonTapped() {
+        if Reachability.isLocationServiceEnabled() == true {
         DispatchQueue.main.async(execute: {
             self.ZipCodeTextbox.leftView?.rotate360Degrees()
         })
-        if (!WhereAmI.userHasBeenPromptedForLocationUse()) {
-            WhereAmI.sharedInstance.askLocationAuthorization({ [unowned self] (locationIsAuthorized) -> Void in
-                    coreLocation()
-            });
+
+        SwiftLocation.gpsLocationWith {
+            // configure everything about your request
+            $0.subscription = .single // continous updated until you stop it
+            $0.accuracy = .house
+            $0.activityType = .otherNavigation
+            $0.timeout = .delayed(5) // 5 seconds of timeout after auth granted
+            $0.avoidRequestAuthorization = true
+        }.then { result in // you can attach one or more subscriptions via `then`.
+            switch result {
+            case .success(let newData):
+                let service = Geocoder.Apple(lat: newData.coordinate.latitude, lng: newData.coordinate.longitude)
+                SwiftLocation.geocodeWith(service).then { result in
+                    zipCode = result.data?.first?.clPlacemark?.postalCode ?? "66952"
+                    let keyStore = NSUbiquitousKeyValueStore()
+                    keyStore.set(zipCode, forKey: "zipCode")
+                    keyStore.synchronize()
+                    DispatchQueue.main.async(execute: {
+                        self.ZipCodeTextbox.text = zipCode
+                        self.ZipCodeTextbox.leftView?.layer.removeAllAnimations()
+                    })
+                }
+            case .failure(let error):
+                zipCode = "66952"
+                let keyStore = NSUbiquitousKeyValueStore()
+                keyStore.set(zipCode, forKey: "zipCode")
+                keyStore.synchronize()
+                DispatchQueue.main.async(execute: {
+                    Utilities.displayAlert("ERROR", errorMessage: error.localizedDescription)
+                    self.ZipCodeTextbox.text = zipCode
+                    self.ZipCodeTextbox.leftView?.layer.removeAllAnimations()
+                })
+            }
+        }
         } else {
-            coreLocation()
+            let alertController = UIAlertController(title: "Location Serives Disabled", message: "Please enable location services for this app.", preferredStyle: .alert)
+
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+
+                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                     return
+                 }
+
+                 if UIApplication.shared.canOpenURL(settingsUrl) {
+                     UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                         print("Settings opened: \(success)") // Prints true
+                     })
+                 }
+             }
+             alertController.addAction(settingsAction)
+             let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+             alertController.addAction(cancelAction)
+
+            findViewController()?.present(alertController, animated: true, completion: nil)
         }
     }
-    
-    func coreLocation() {
-        whatIsThisPlace { (response) -> Void in
-          switch response {
-          case .success(let placemark):
-            zipCode = placemark.postalCode ?? "66952"
-            let keyStore = NSUbiquitousKeyValueStore()
-            keyStore.set(zipCode, forKey: "zipCode")
-            self.ZipCodeTextbox.text = zipCode
-          case .placeNotFound:
-            Utilities.displayAlert("ERROR", errorMessage: "Could not find where you are")
-          case .failure (let error):
-            Utilities.displayAlert("ERROR", errorMessage: "An Error occurred: \(error)")
-          case .unauthorized:
-            Utilities.displayAlert("ERROR", errorMessage: "You did not authorize this app to get your location")
-          }
-          DispatchQueue.main.async(execute: {
-            self.ZipCodeTextbox.leftView?.layer.removeAllAnimations()
-          })
-        }
-    }
-    
+        
     func textFieldDidEndEditing(_ textField: UITextField) {
         zipCode = ZipCodeTextbox.text!
     }

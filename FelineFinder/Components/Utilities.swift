@@ -35,13 +35,16 @@ class Utilities {
         
     class func displayAlert(_ errorTitle: String, errorMessage: String) {
         //If host is not reachable, display a UIAlertController informing the user
+        
         let alert = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: UIAlertController.Style.alert)
         
         //Add alert action
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
     
-        //Present alert
-        AppDelegate().sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: {
+            //Present alert
+            AppDelegate().sharedInstance().window?.rootViewController?.present(alert, animated: true, completion: nil)
+        })
     }
         
     class func stringify(json: Any, prettyPrinted: Bool = false) -> String {

@@ -9,7 +9,7 @@ import UIKit
 import CMMapLauncher
 import PopMenu
 import DZNEmptyDataSet
-import WhereAmI
+import SwiftLocation
 
 var selectedImages: [Int] = []
 
@@ -145,37 +145,55 @@ class AdoptableCatsCollectionViewViewController: ZoomAnimationViewController, UI
             downloadData(reset: true)
             return
         }
-        
-        if (!WhereAmI.userHasBeenPromptedForLocationUse()) {
-            WhereAmI.sharedInstance.askLocationAuthorization({ [unowned self] (locationIsAuthorized) -> Void in
-                    coreLocation()
-            });
+        if Reachability.isLocationServiceEnabled() == true {
+        SwiftLocation.gpsLocationWith {
+            // configure everything about your request
+            $0.subscription = .single // continous updated until you stop it
+            $0.accuracy = .house
+            $0.activityType = .otherNavigation
+            $0.timeout = .delayed(5) // 5 seconds of timeout after auth granted
+        }.then { result in // you can attach one or more subscriptions via `then`.
+            switch result {
+            case .success(let newData):
+                let service = Geocoder.Apple(lat: newData.coordinate.latitude, lng: newData.coordinate.longitude)
+                SwiftLocation.geocodeWith(service).then { result in
+                    zipCode = result.data?.first?.clPlacemark?.postalCode ?? "66952"
+                    let keyStore = NSUbiquitousKeyValueStore()
+                    keyStore.set(zipCode, forKey: "zipCode")
+                    keyStore.synchronize()
+                    self.pets?.loading = true
+                    let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
+                    globalBreed = breed
+                    self.downloadData(reset: true)
+                }
+            case .failure(_):
+                self.askForZipCode()
+            }
+        }
         } else {
-            coreLocation()
+            let alertController = UIAlertController(title: "Location Serives Disabled", message: "Please enable location services for this app.", preferredStyle: .alert)
+
+            let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+
+                 guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                     return
+                 }
+
+                 if UIApplication.shared.canOpenURL(settingsUrl) {
+                     UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                         print("Settings opened: \(success)") // Prints true
+                     })
+                 }
+             }
+             
+            alertController.addAction(settingsAction)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            alertController.addAction(cancelAction)
+
+            self.present(alertController, animated: true, completion: nil)
         }
     }
     
-    func coreLocation() {
-        whatIsThisPlace { (response) -> Void in
-          switch response {
-          case .success(let placemark):
-            zipCode = placemark.postalCode ?? "66952"
-            let keyStore = NSUbiquitousKeyValueStore()
-            keyStore.set(zipCode, forKey: "zipCode")
-            self.pets?.loading = true
-            let breed: Breed = Breed(id: 0, name: ALL_BREEDS, url: "", picture: "", percentMatch: 0, desc: "", fullPict: "", rbID: "", youTubeURL: "", cats101: "", playListID: "");
-            globalBreed = breed
-            self.downloadData(reset: true)
-          case .placeNotFound:
-            self.askForZipCode()
-          case .failure:
-            self.askForZipCode()
-          case .unauthorized:
-            self.askForZipCode()
-          }
-        }
-    }
-
     func askForZipCode() {
         let alert2 = UIAlertController(title: "Please Enter Zip Code", message: "Please enter a zip code for the area you want to search?", preferredStyle: .alert)
         

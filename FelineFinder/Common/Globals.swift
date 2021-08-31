@@ -10,6 +10,24 @@ import Foundation
 import UIKit
 import WebKit
 import SDWebImage
+import CoreLocation
+
+open class Reachability {
+class func isLocationServiceEnabled() -> Bool {
+    if CLLocationManager.locationServicesEnabled() {
+         switch(CLLocationManager.authorizationStatus()) {
+             case .notDetermined, .restricted, .denied:
+             return false
+             case .authorizedAlways, .authorizedWhenInUse:
+             return true
+             default:
+             return false
+         }
+    } else {
+        return false
+    }
+    }
+}
 
 extension String {
     func utf8DecodedString()-> String {
