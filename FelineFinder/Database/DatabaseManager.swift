@@ -218,18 +218,18 @@ class DatabaseManager {
     
     //Breed List
     func fetchBreeds(_ results: Bool, completion: @escaping (_ breeds: Dictionary<String, [Breed]>) -> Void) {
-        var rb:Dictionary<String, String> = [:]
-        getRescueBreedID{(rescueBreeds) -> Void in
-        rb = rescueBreeds
+        //var rb:Dictionary<String, String> = [:]
+        //getRescueBreedID{(rescueBreeds) -> Void in
+        //rb = rescueBreeds
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { [unowned self] (db: FMDatabase?) -> Void in
             
             var querySQL = ""
             
             if (results == true) {
-                querySQL = "SELECT case when c = 100 then '      Purrfect Match' when c < 100 and c >= 80 then '     Great Match' when c < 80 and c >= 60 then '    Good Match' when c < 60 and c >= 40 then '   Maybe Match' when c < 40 and c >= 20 then '  Probably Not' else ' Does Not Match' end Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, cast (c as Int) c, YouTubeURL, Cats101URL, PlayListID from BreedMatches order by c desc, BreedName"
+                querySQL = "SELECT case when c = 100 then '      Purrfect Match' when c < 100 and c >= 80 then '     Great Match' when c < 80 and c >= 60 then '    Good Match' when c < 60 and c >= 40 then '   Maybe Match' when c < 40 and c >= 20 then '  Probably Not' else ' Does Not Match' end Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, cast (c as Int) c, YouTubeURL, Cats101URL, PlayListID, RID from BreedMatches order by c desc, BreedName"
             }
             else {
-                querySQL = "SELECT substr(BreedName, 1, 1) Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID from Breed order by BreedName"
+                querySQL = "SELECT substr(BreedName, 1, 1) Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID, RID from Breed order by BreedName"
             }
             
             var breeds: Dictionary<String, [Breed]> = [:]
@@ -248,13 +248,14 @@ class DatabaseManager {
                     let youTubeURL = results.string(forColumn: "YouTubeURL")
                     let cats101URL = results.string(forColumn: "Cats101URL")
                     let playListID = results.string(forColumn: "PlayListID")
+                    let rid2 = results.string(forColumn: "RID")
                     name = name?.replacingOccurrences(of: "\n", with: "")
                     let breed: Breed?
-                    if let rID = rb[name!] {
-                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rID, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
-                    } else {
-                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: "", youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
-                    }
+                    //if let rID = rb[name!] {
+                    //breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rID, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
+                    //} else {
+                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rid2!, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
+                    //}
                     if var title = breeds[letter!] {
                         title.append(breed!)
                         breeds[letter!] = title
@@ -273,14 +274,11 @@ class DatabaseManager {
             let breedsArray = breeds
             completion(breedsArray)
         }
-        }
     }
 
     func fetchBreedsFit(completion: @escaping (_ breeds: [Breed]) -> Void) {
-        var rb:Dictionary<String, String> = [:]
-        getRescueBreedID{(rescueBreeds) -> Void in
-        rb = rescueBreeds
-        DatabaseManager.sharedInstance.dbQueue!.inDatabase { [unowned self] (db: FMDatabase?) -> Void in
+        //var rb:Dictionary<String, String> = [:]
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
             
             var querySQL = ""
             querySQL = "SELECT substr(BreedName, 1, 1) Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID from Breed order by BreedName"
@@ -302,34 +300,35 @@ class DatabaseManager {
                     let playListID = results.string(forColumn: "PlayListID")
                     name = name?.replacingOccurrences(of: "\n", with: "")
                     let breed: Breed?
+                    /*
                     if let rID = rb[name!] {
                         breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rID, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
                     } else {
+                    */
                         breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: "", youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
-                    }
+                    //}
                     breeds.append(breed!)
                 }
 
             results.close()
             } else {
-                self.presentDBErrorMessage((db?.lastErrorMessage())!)
+                presentDBErrorMessage((db?.lastErrorMessage())!)
             }
             
             completion(breeds)
-        }
         }
     }
 
     func fetchBreeds(breedIDs: [Int], completion: @escaping (_ breeds: [Breed]) -> Void) {
         var rb:Dictionary<String, String> = [:]
-        getRescueBreedID{(rescueBreeds) -> Void in
-        rb = rescueBreeds
-        DatabaseManager.sharedInstance.dbQueue!.inDatabase { [unowned self] (db: FMDatabase?) -> Void in
+        //getRescueBreedID{(rescueBreeds) -> Void in
+        //rb = rescueBreeds
+        DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
             
             let breedIDString = (breedIDs.map{String($0)}).joined(separator: ",")
             
             var querySQL = ""
-            querySQL = "SELECT BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID from Breed where BreedID in (\(breedIDString)) order by BreedName"
+            querySQL = "SELECT BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID, RID from Breed where BreedID in (\(breedIDString)) order by BreedName"
 
             var breeds = [Breed]()
             
@@ -346,13 +345,16 @@ class DatabaseManager {
                     let youTubeURL = results.string(forColumn: "YouTubeURL")
                     let cats101URL = results.string(forColumn: "Cats101URL")
                     let playListID = results.string(forColumn: "PlayListID")
+                    let RID2 = results.string(forColumn: "RID")
                     name = name?.replacingOccurrences(of: "\n", with: "")
                     let breed: Breed?
+                    /*
                     if let rID = rb[name!] {
                         breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rID, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
                     } else {
-                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: "", youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
-                    }
+                    */
+                    breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: RID2!, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
+                    //}
                     breeds.append(breed!)
                 }
 
@@ -363,7 +365,7 @@ class DatabaseManager {
             
             completion(breeds)
         }
-        }
+        //}
     }
 
     
