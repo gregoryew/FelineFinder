@@ -281,7 +281,7 @@ class DatabaseManager {
         DatabaseManager.sharedInstance.dbQueue!.inDatabase { (db: FMDatabase?) -> Void in
             
             var querySQL = ""
-            querySQL = "SELECT substr(BreedName, 1, 1) Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID from Breed order by BreedName"
+            querySQL = "SELECT substr(BreedName, 1, 1) Letter, BreedID, BreedName, BreedHTMLURL, Description, PictureHeadShotName, FullSizedPicture, YouTubeURL, Cats101URL, -1.0 c, PlayListID, RID from Breed order by BreedName"
 
             var breeds = [Breed]()
             
@@ -298,6 +298,7 @@ class DatabaseManager {
                     let youTubeURL = results.string(forColumn: "YouTubeURL")
                     let cats101URL = results.string(forColumn: "Cats101URL")
                     let playListID = results.string(forColumn: "PlayListID")
+                    let RID = results.string(forColumn: "RID")
                     name = name?.replacingOccurrences(of: "\n", with: "")
                     let breed: Breed?
                     /*
@@ -305,7 +306,7 @@ class DatabaseManager {
                         breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: rID, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
                     } else {
                     */
-                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: "", youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
+                        breed = Breed(id: id, name: name!, url: url!, picture: pict!, percentMatch: percentMatch, desc: description!, fullPict: fullpict!, rbID: RID!, youTubeURL: youTubeURL!, cats101: cats101URL!, playListID: playListID!)
                     //}
                     breeds.append(breed!)
                 }

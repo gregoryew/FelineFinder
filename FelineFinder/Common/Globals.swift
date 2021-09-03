@@ -41,7 +41,132 @@ extension String {
         let text = String(data: messageData!, encoding: .utf8) ?? ""
         return text
     }
+
+    func SizeOf(_ font: UIFont) -> CGSize {
+        let size = self.size(withAttributes: [NSAttributedString.Key.font: font])
+        let frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        return frame.scaleLinear(amount: 1.0).size
+    }
+    
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return String(self[fromIndex...])
+    }
+
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return String(self[..<toIndex])
+    }
+
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return String(self[startIndex..<endIndex])
+    }
+    
+    subscript (i: Int) -> Character {
+        let index1 = self.index(self.startIndex, offsetBy: i)
+        //let index = self.startIndex.advanceBy(i)
+        return self[index1]
+    }
+    
+    subscript (i: Int) -> String {
+        return String(self[i] as Character)
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        return mid(r.startIndex, amount: r.count - 1)
+    }
+    
+    func URLEncodedString() -> String? {
+        let customAllowedSet =  CharacterSet.urlQueryAllowed
+        let escapedString = self.addingPercentEncoding(withAllowedCharacters: customAllowedSet)
+        return escapedString
+    }
+    
+    static func queryStringFromParameters(_ parameters: Dictionary<String,String>) -> String? {
+        if (parameters.count == 0)
+        {
+            return nil
+        }
+        var queryString : String? = nil
+        for (key, value) in parameters {
+            if let encodedKey = key.URLEncodedString() {
+                if let encodedValue = value.URLEncodedString() {
+                    if queryString == nil
+                    {
+                        queryString = "?"
+                    }
+                    else
+                    {
+                        queryString! += "&"
+                    }
+                    queryString! += encodedKey + "=" + encodedValue
+                }
+            }
+        }
+        return queryString
+    }
+    
+    var isNumber : Bool {
+            get{
+                return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+        }
+    }
+    
+    // LEFT
+    // Returns the specified number of chars from the left of the string
+    // let str = "Hello"
+    // print(str.left(3))         // Hel
+    func left(_ to: Int) -> String {
+        return "\(self[..<self.index(startIndex, offsetBy: to)])"
+    }
+
+    // RIGHT
+    // Returns the specified number of chars from the right of the string
+    // let str = "Hello"
+    // print(str.left(3))         // llo
+    func right(_ from: Int) -> String {
+        return "\(self[self.index(startIndex, offsetBy: self.count-from)...])"
+    }
+
+    // MID
+    // Returns the specified number of chars from the startpoint of the string
+    // let str = "Hello"
+    // print(str.left(2,amount: 2))         // ll
+    func mid(_ from: Int, amount: Int) -> String {
+        let x = "\(self[self.index(startIndex, offsetBy: from)...])"
+        return x.left(amount)
+    }
+    
+    func chopPrefix(_ count: Int = 1) -> String {
+        return self.right(self.count - count)
+    }
+    
+    func chopSuffix(_ count: Int = 1) -> String {
+        return self.left(self.count - count)
+    }
+    
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        
+        return boundingBox.height
+    }
+    
+    func width(withConstrainedHeigth height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        
+        return boundingBox.width
+    }
+
 }
+
 
 extension URLSession {
     static func makeAPICall(url: String) -> Result<Data?, NetworkErr> {
@@ -547,92 +672,6 @@ extension UIViewController {
     }
 }
 
-extension String {
-    
-    subscript (i: Int) -> Character {
-        let index1 = self.index(self.startIndex, offsetBy: i)
-        //let index = self.startIndex.advanceBy(i)
-        return self[index1]
-    }
-    
-    subscript (i: Int) -> String {
-        return String(self[i] as Character)
-    }
-    
-    subscript (r: Range<Int>) -> String {
-        return mid(r.startIndex, amount: r.count - 1)
-    }
-    
-    func URLEncodedString() -> String? {
-        let customAllowedSet =  CharacterSet.urlQueryAllowed
-        let escapedString = self.addingPercentEncoding(withAllowedCharacters: customAllowedSet)
-        return escapedString
-    }
-    
-    static func queryStringFromParameters(_ parameters: Dictionary<String,String>) -> String? {
-        if (parameters.count == 0)
-        {
-            return nil
-        }
-        var queryString : String? = nil
-        for (key, value) in parameters {
-            if let encodedKey = key.URLEncodedString() {
-                if let encodedValue = value.URLEncodedString() {
-                    if queryString == nil
-                    {
-                        queryString = "?"
-                    }
-                    else
-                    {
-                        queryString! += "&"
-                    }
-                    queryString! += encodedKey + "=" + encodedValue
-                }
-            }
-        }
-        return queryString
-    }
-    
-    var isNumber : Bool {
-            get{
-                return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
-        }
-    }
-    
-    // LEFT
-    // Returns the specified number of chars from the left of the string
-    // let str = "Hello"
-    // print(str.left(3))         // Hel
-    func left(_ to: Int) -> String {
-        return "\(self[..<self.index(startIndex, offsetBy: to)])"
-    }
-
-    // RIGHT
-    // Returns the specified number of chars from the right of the string
-    // let str = "Hello"
-    // print(str.left(3))         // llo
-    func right(_ from: Int) -> String {
-        return "\(self[self.index(startIndex, offsetBy: self.count-from)...])"
-    }
-
-    // MID
-    // Returns the specified number of chars from the startpoint of the string
-    // let str = "Hello"
-    // print(str.left(2,amount: 2))         // ll
-    func mid(_ from: Int, amount: Int) -> String {
-        let x = "\(self[self.index(startIndex, offsetBy: from)...])"
-        return x.left(amount)
-    }
-    
-    func chopPrefix(_ count: Int = 1) -> String {
-        return self.right(self.count - count)
-    }
-    
-    func chopSuffix(_ count: Int = 1) -> String {
-        return self.left(self.count - count)
-    }
-}
-
 extension NSAttributedString {
     func height(withConstrainedWidth width: CGFloat) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
@@ -905,7 +944,7 @@ func initializeResponses() {
         } else {
             var p = -1
             var desc = "Any"
-            if FitValues[q] > 0 {
+            if FitValues[q] > 0 && FitValues[q] <  questionList[q].Choices.count {
                 p = FitValues[q]
                 desc = questionList[q].Choices[p].Name
             }
@@ -986,4 +1025,22 @@ func updateFilterBreeds(breedsParam: [Breed]) {
     filterOptions.filteringOptions[1].options.append(contentsOf: breeds)
     filterOptions.filteringOptions[1].choosenListValues.removeAll()
     filterOptions.filteringOptions[1].choosenListValues.append(contentsOf: choosenValues)
+}
+
+public func delay(bySeconds seconds: Double, dispatchLevel: DispatchLevel = .main, closure: @escaping () -> Void) {
+    let dispatchTime = DispatchTime.now() + seconds
+    dispatchLevel.dispatchQueue.asyncAfter(deadline: dispatchTime, execute: closure)
+}
+
+public enum DispatchLevel {
+    case main, userInteractive, userInitiated, utility, background
+    var dispatchQueue: DispatchQueue {
+        switch self {
+        case .main:                 return DispatchQueue.main
+        case .userInteractive:      return DispatchQueue.global(qos: .userInteractive)
+        case .userInitiated:        return DispatchQueue.global(qos: .userInitiated)
+        case .utility:              return DispatchQueue.global(qos: .utility)
+        case .background:           return DispatchQueue.global(qos: .background)
+        }
+    }
 }

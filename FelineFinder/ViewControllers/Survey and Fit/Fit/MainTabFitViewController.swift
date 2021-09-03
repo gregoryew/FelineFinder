@@ -205,8 +205,7 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
         DispatchQueue.main.async {
             self.BreedTableView.reloadData()
             self.QuestionsTableViews.reloadData()
-            self.QuestionsTableViews.scrollToRow(at: self.questionSelected, at: self.scrollPosition, animated: false)
-        
+            //self.QuestionsTableViews.scrollToRow(at: self.questionSelected, at: self.scrollPosition, animated: false)
         }
     }
 
