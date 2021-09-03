@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import DropDown
+
+enum menuOptions: Int {
+case cats = 0
+case video = 1
+case stats = 2
+case info = 3
+}
 
 class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
 
@@ -23,13 +31,6 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     
     @IBOutlet weak var ChildContainerHeight: NSLayoutConstraint!
     
-    enum menuOptions: Int {
-    case cats = 0
-    case video = 1
-    case stats = 2
-    case info = 3
-    }
-    
     var breeds = [Breed]()
     var filteredBreeds: [Breed] = []
     var priorChildViewController: UIViewController?
@@ -38,10 +39,28 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     var currentChild = menuOptions.cats
     var priorBreed: Breed?
     
+    let dropDown = DropDown()
+    
     var tools: [(btn: UIButton, images: [String])] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dropDown.anchorView = searchBar
+        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
+        dropDown.selectionAction = { [weak self] (index, item) in
+            self?.searchBar.text = item
+            self?.priorBreed = breed
+            self?._infoViewController = nil
+            self?._statsViewController = nil
+            self?._galleryViewController = nil
+            self?.filteredBreeds = self!.breeds.filter { (breed: Breed) -> Bool in
+                return breed.BreedName.lowercased().contains(item.lowercased())
+            }
+            self?.showBreedDetail(breedParam: (self?.filteredBreeds.first)!)
+            self?.menuItemChoosen(option: menuOptions(rawValue: (self?.currentChild)!.rawValue)!)
+        }
+        
         hideKeyboardWhenTappedAround()
         showBreedDetail(breedParam: breed!)
         searchBar.delegate = self
@@ -231,16 +250,13 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
             filteredBreeds = breeds.filter { (breed: Breed) -> Bool in
                 return breed.BreedName.lowercased().contains(searchText.lowercased())
             }
+            let breedNames = filteredBreeds.map { Breed in
+                return Breed.BreedName
+            }
+            dropDown.dataSource = breedNames
+            dropDown.show()
         } else {
             filteredBreeds = [breed!]
-        }
-        showBreedDetail(breedParam: (filteredBreeds.first ?? breed)!)
-        if priorBreed?.BreedID != breed?.BreedID {
-            priorBreed = breed
-            _infoViewController = nil
-            _statsViewController = nil
-            _galleryViewController = nil
-            menuItemChoosen(option: currentChild)
         }
     }
 }

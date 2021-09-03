@@ -47,6 +47,15 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
       }
       if ans == "Doesn\'t Matter Selected" || ans == "Any"  || ans == "" {
          questionAnswer.text = "Any Selected"
+         DispatchQueue.main.async(execute: {
+            let offset = self.questionCollectionView.contentOffset
+            self.questionCollectionView.setContentOffset(CGPoint(x: offset.x, y: offset.y + 200), animated: true)
+            delay(bySeconds: 0.5, dispatchLevel: .background) {
+               DispatchQueue.main.async(execute: {
+                  self.questionCollectionView.setContentOffset(offset, animated: true)
+               })
+            }
+         })
       } else {
          questionAnswer.text = ans
       }
