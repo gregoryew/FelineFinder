@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "BreedDetailViewController.menuItemChoosen(option:):BreedDetailViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainBreedCollectionViewController.setupIndex():MainBreedCollectionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "c == 65">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
