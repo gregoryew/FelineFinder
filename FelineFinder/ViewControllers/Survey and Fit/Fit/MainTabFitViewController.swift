@@ -85,11 +85,12 @@ class MainTabFitViewController: BaseQuestionViewController, UITableViewDelegate,
     
     override func viewDidAppear(_ animated: Bool) {
         super .viewDidAppear(animated)
-        answerChangedGlobal(question: 0, answer: 0)
+        //answerChangedGlobal(question: 0, answer: 0)
         calcAnswers(question: 0)
         DispatchQueue.main.async(execute: {
             self.BreedTableView.reloadData()
             self.QuestionsTableViews.reloadData()
+            (self.parent as? UIPageViewController)?.isPagingEnabled = false
         })
     }
     

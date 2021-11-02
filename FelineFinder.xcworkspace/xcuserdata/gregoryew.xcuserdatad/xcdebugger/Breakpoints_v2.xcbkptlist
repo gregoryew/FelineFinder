@@ -2683,8 +2683,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Survey/QuestionCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "collectionView(_:numberOfItemsInSection:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2699,8 +2699,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Survey/QuestionCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2763,8 +2763,8 @@
             filePath = "FelineFinder/Common/Globals.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "960"
-            endingLineNumber = "960"
+            startingLineNumber = "981"
+            endingLineNumber = "981"
             landmarkName = "answerChangedGlobal(question:answer:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -2827,8 +2827,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Survey/QuestionScaleViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "GoToScoreBoardTapppd(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2843,8 +2843,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Fit/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2891,8 +2891,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Fit/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "answerChanged(question:answer:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2923,8 +2923,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Fit/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "298"
-            endingLineNumber = "298"
+            startingLineNumber = "299"
+            endingLineNumber = "299"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2955,8 +2955,8 @@
             filePath = "FelineFinder/Common/Globals.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "958"
-            endingLineNumber = "958"
+            startingLineNumber = "979"
+            endingLineNumber = "979"
             landmarkName = "answerChangedGlobal(question:answer:)"
             landmarkType = "9">
          </BreakpointContent>
@@ -2971,8 +2971,8 @@
             filePath = "FelineFinder/ViewControllers/Survey and Fit/Fit/MainTabFitViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "228"
-            endingLineNumber = "228"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>

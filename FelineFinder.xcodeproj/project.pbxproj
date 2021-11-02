@@ -528,7 +528,6 @@
 				C5F0CB242581A5C60070490E /* FelineFinder.entitlements */,
 				C57E575F255BB1D400120018 /* Common */,
 				C51E1AC4255EC5BE00167D15 /* Components */,
-				C57E5DE5255BB46600120018 /* CommonFiles */,
 				C57E576C255BB2CA00120018 /* ObjectiveCCode */,
 				C57E5762255BB1FD00120018 /* Database */,
 				C57E5761255BB1EE00120018 /* Networking */,
@@ -625,6 +624,7 @@
 				C57E61B0255BB9DD00120018 /* Globals.swift */,
 				C57E5769255BB28B00120018 /* CatLogoLayer.swift */,
 				C57E5763255BB26F00120018 /* ZoomViewControler.swift */,
+				C57E5DE5255BB46600120018 /* CommonFiles */,
 			);
 			path = Common;
 			sourceTree = "<group>";

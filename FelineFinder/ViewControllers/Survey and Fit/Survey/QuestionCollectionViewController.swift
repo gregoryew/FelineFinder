@@ -61,6 +61,7 @@ class QuestionCollectionViewController: BaseQuestionViewController, UICollection
       } else {
          questionAnswer.text = ans
       }
+      (self.parent as? UIPageViewController)?.isPagingEnabled = true
    }
    
    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

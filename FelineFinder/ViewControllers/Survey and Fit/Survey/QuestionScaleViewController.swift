@@ -77,7 +77,10 @@ class QuestionScaleViewController: BaseQuestionViewController {
         }
 
         changeRate(rate: sender.index)
-      
+
+       debugPrint("*********choosen value = \(sender.index)")
+       debugPrint("***** Survey FitValues[0] = \(FitValues[0])")
+       
         answerChangedGlobal(question: currentQuestion, answer: sender.index)
         if sender.index != previousAnswer {
            questionList[currentQuestion].Choices[previousAnswer].Answer = false

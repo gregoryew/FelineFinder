@@ -11,7 +11,6 @@ import Foundation
 import SystemConfiguration
 import FMDB
 import CoreData
-import Instabug
 import DropDown
 
 @UIApplicationMain
@@ -35,7 +34,7 @@ extension AppDelegate: UIApplicationDelegate {
         
         DropDown.startListeningToKeyboard()
         
-        Instabug.start(withToken: "dafbc579501c606b557501d7da83d74d", invocationEvents: [.shake, .screenshot])
+        //Instabug.start(withToken: "dafbc579501c606b557501d7da83d74d", invocationEvents: [.shake, .screenshot])
                 
         pathToFile()
         
