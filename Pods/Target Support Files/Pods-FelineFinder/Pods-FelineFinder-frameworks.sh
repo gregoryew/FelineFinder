@@ -193,7 +193,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Twinkle/Twinkle.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/Instabug/Instabug.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AvailableHapticFeedback/AvailableHapticFeedback.framework"
@@ -214,7 +213,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Twinkle/Twinkle.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YouTubePlayer/YouTubePlayer.framework"
-  install_framework "${PODS_XCFRAMEWORKS_BUILD_DIR}/Instabug/Instabug.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
