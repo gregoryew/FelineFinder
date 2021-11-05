@@ -6,8 +6,6 @@
 //
 
 import UIKit
-//import BDKCollectionIndexView
-//import PopMenu
 
 class MainBreedCollectionViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -152,48 +150,47 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     }
 }
 
-/*
-extension MainBreedCollectionViewController: PopMenuViewControllerDelegate {
-    func popMenuCustomSize() -> PopMenuViewController {
-        let action1 = PopMenuDefaultAction(title: "Breed Name", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
-        let action2 = PopMenuDefaultAction(title: "Best Match", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
-
-        let actions = [
-            action1,
-            action2
-        ]
-        
-        let popMenu = PopMenuViewController(actions: actions)
-        
-        popMenu.appearance.popMenuColor.backgroundColor = .solid(fill: .white)
-        
-        return popMenu
-    }
-
-    func popMenuDidSelectItem(_ popMenuViewController: PopMenuViewController, at index: Int) {
-        sortMenu.setTitle("Sort By: " + popMenuViewController.actions[index].title!, for: .normal)
-        if let title = popMenuViewController.actions[index].title {
-            switch title {
-            case "Breed Name": choosenBreedSortOption = .name
-            case "Best Match": choosenBreedSortOption = .match
-            default: break
-            }
-            setupIndex()
-            scrollToIndex(index: 0)
+extension MainBreedCollectionViewController {
+    func popMenuDidSelectItem(index: Int) {
+        var title: String = ""
+        switch index {
+        case 0:
+            title = "Breed Name"
+            choosenBreedSortOption = .name
+        case 1:
+            title = "Best Match"
+            choosenBreedSortOption = .match
+        default: break
         }
+        sortMenu.setTitle("Sort By: \(title)", for: .normal)
+        setupIndex()
+        scrollToIndex(index: 0)
     }
 
     @IBAction func sortMenuTapped(_ sender: Any) {
-        popMenu = popMenuCustomSize()
-        popMenu?.shouldDismissOnSelection = true
-        popMenu?.delegate = self
-        var origin = sortMenu.frame.origin
-        origin.x = (sortMenu.frame.origin.x + sortMenu.frame.width) -  (popMenu?.contentFrame.width)!
-        origin.y = sortMenu.frame.origin.y - (popMenu?.contentFrame.height ?? sortMenu.frame.origin.y)
-        popMenu?.view.frame.origin = origin
-        if let popMenuViewController = popMenu {
-            present(popMenuViewController, animated: true, completion: nil)
+        let actionSheetController: UIAlertController = UIAlertController(title: "Selection", message: "Select Navigation App", preferredStyle: .actionSheet)
+        
+        let breedNamebutton = UIAlertAction(title: "Breed Name", style: .default, handler: { _ in
+            self.popMenuDidSelectItem(index: 0)
+        })
+        actionSheetController.addAction(breedNamebutton)
+        
+        let bestMatchButton = UIAlertAction(title: "Best Match", style: .default, handler: { _ in
+            self.popMenuDidSelectItem(index: 1)
+        })
+        actionSheetController.addAction(bestMatchButton)
+
+        //Create and add the Cancel action
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { action -> Void in
+            //Just dismiss the action sheet
         }
+        actionSheetController.addAction(cancelAction)
+        //Create and add first option action
+        
+        //We need to provide a popover sourceView when using it on iPad
+        actionSheetController.popoverPresentationController?.sourceView = self.view
+        
+        //Present the AlertController
+        self.present(actionSheetController, animated: true, completion: nil)
     }
 }
-*/

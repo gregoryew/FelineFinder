@@ -3083,8 +3083,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3099,8 +3099,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3115,8 +3115,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3131,8 +3131,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "scrollToIndex(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3147,8 +3147,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
             landmarkName = "setupIndex()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3365,7 +3365,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4A8B15EA-FBC0-48BF-AA45-72089FB5B870"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "FelineFinder/ViewControllers/Breeds/BreedDetailViewController.swift"
