@@ -8,7 +8,7 @@
 import UIKit
 //import SDWebImage
 import Kingfisher
-import YouTubePlayer
+//import YouTubePlayer
 
 class BreedVideoCollectionViewCell: UICollectionViewCell {
     

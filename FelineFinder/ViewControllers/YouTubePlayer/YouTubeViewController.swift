@@ -6,13 +6,13 @@
 //
 
 import UIKit
-import YouTubePlayer
+import YoutubePlayerView
 
-class YouTubeViewController: ParentViewController, YouTubePlayerDelegate {
+class YouTubeViewController: ParentViewController, YoutubePlayerViewDelegate {
     
     var youTubeVideoID: String = ""
     
-    @IBOutlet weak var YouTubeVideoPlayer: YouTubePlayerView!
+    @IBOutlet weak var YouTubeVideoPlayer: YoutubePlayerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,22 +20,23 @@ class YouTubeViewController: ParentViewController, YouTubePlayerDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.YouTubeVideoPlayer.playerVars = [
-            "playsinline": "1",
-            "controls": "0",
-            "showinfo": "0"
-            ] as YouTubePlayerView.YouTubePlayerParameters
-        YouTubeVideoPlayer.loadVideoID(youTubeVideoID)
+        let playerVars: [String: Any] = [
+            "controls": 0,
+            "modestbranding": 1,
+            "playsinline": 1,
+            "showinfo": 0
+        ]
+        YouTubeVideoPlayer.loadWithVideoId(youTubeVideoID, with: playerVars)
     }
     
-    func playerStateChanged(_ videoPlayer: YouTubePlayerView, playerState: YouTubePlayerState) {
-        if playerState == .Ended {
+    func playerView(_ playerView: YoutubePlayerView, didChangedToState state: YoutubePlayerState) {
+        if state == .ended {
             dismiss(animated: false, completion: nil)
         }
     }
     
-    func playerReady(_ videoPlayer: YouTubePlayerView) {
-        videoPlayer.play()
+    func playerViewDidBecomeReady(_ playerView: YoutubePlayerView) {
+        YouTubeVideoPlayer.play()
     }
     
     @IBAction func clloseTapped(_ sender: Any) {

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import FaveButton
+//import FaveButton
 import WebKit
 import Kingfisher
 import MessageUI

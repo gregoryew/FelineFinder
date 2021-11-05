@@ -20,9 +20,10 @@
 * THE SOFTWARE.
 */
 
-import UIKit
-import QuartzCore
+//import UIKit
+//import QuartzCore
 
+/*
 class CatLogoLayer {
   class func logoLayer() -> CAShapeLayer {
         let layer = CAShapeLayer()
@@ -111,7 +112,7 @@ class CatLogoLayer {
  }
 
 extension CGRect{
-    var center: CGPoint {
+    var center2: CGPoint {
         return CGPoint( x: self.size.width/2.0,y: self.size.height/2.0)
     }
 }
@@ -168,3 +169,4 @@ extension UIBezierPath{
         return self
     }
 }
+*/

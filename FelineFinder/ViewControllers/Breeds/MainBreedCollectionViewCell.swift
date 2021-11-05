@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MarqueeLabel
+//import MarqueeLabel
 
 class MainBreedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var BreedNameLabel: MarqueeLabel!

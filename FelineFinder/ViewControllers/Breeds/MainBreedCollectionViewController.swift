@@ -6,17 +6,16 @@
 //
 
 import UIKit
-import BDKCollectionIndexView
-import PopMenu
+//import BDKCollectionIndexView
+//import PopMenu
 
 class MainBreedCollectionViewController: ParentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var BreedCollectionView: UICollectionView!
-    @IBOutlet weak var breedIndexView: BDKCollectionIndexView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var sortMenu: UIButton!
     
-    var popMenu: PopMenuViewController? = nil
+    //var popMenu: PopMenuViewController? = nil
     
     var breedsLocal = [Breed]()
     var filteredBreeds: [Breed] = []
@@ -33,12 +32,6 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
             self.filteredBreeds = breedsParam
             DispatchQueue.main.async(execute: {
                 self.setupIndex()
-                let indexView = BDKCollectionIndexView(frame: self.breedIndexView.frame, indexTitles: nil)
-                indexView!.autoresizingMask = [.flexibleHeight, .flexibleLeftMargin]
-                indexView!.addTarget(self, action: #selector(self.indexViewValueChanged), for: .valueChanged)
-                self.view.addSubview(indexView!)
-                self.view.bringSubviewToFront(indexView!)
-                indexView!.indexTitles = self.breedLetters
                                 
                 self.BreedCollectionView.reloadData()
                 
@@ -108,15 +101,6 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
         })
     }
     
-    @objc func indexViewValueChanged(sender: BDKCollectionIndexView) {
-        let path = NSIndexPath(item: 0, section: Int(sender.currentIndex))
-        BreedCollectionView.scrollToItem(at: path as IndexPath, at: .top, animated: true)
-        // If you're using a collection view, bump the y-offset by a certain number of points
-        // because it won't otherwise account for any section headers you may have.
-        BreedCollectionView.contentOffset = CGPoint(x: BreedCollectionView.contentOffset.x,
-            y: BreedCollectionView.contentOffset.y - 45.0)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.breedGroups[breedLetters[section]]!.count
     }
@@ -168,6 +152,7 @@ class MainBreedCollectionViewController: ParentViewController, UICollectionViewD
     }
 }
 
+/*
 extension MainBreedCollectionViewController: PopMenuViewControllerDelegate {
     func popMenuCustomSize() -> PopMenuViewController {
         let action1 = PopMenuDefaultAction(title: "Breed Name", color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1))
@@ -211,3 +196,4 @@ extension MainBreedCollectionViewController: PopMenuViewControllerDelegate {
         }
     }
 }
+*/

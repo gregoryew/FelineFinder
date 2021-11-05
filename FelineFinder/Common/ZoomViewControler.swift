@@ -16,7 +16,7 @@ class ZoomAnimationViewController: UIViewController, UIViewControllerTransitioni
       return operation == .push
     }
     let animationDuration = 0.5
-    let logo = CatLogoLayer.logoLayer()
+    //let logo = CatLogoLayer.logoLayer()
 }
 
 extension ZoomAnimationViewController: UIViewControllerAnimatedTransitioning {
@@ -51,10 +51,10 @@ extension ZoomAnimationViewController: UIViewControllerAnimatedTransitioning {
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         /***** Animation *****/
-        logo.position = CGPoint(x: view.layer.bounds.size.width/2,
-          y: view.layer.bounds.size.height/2 - 30)
-        logo.fillColor = UIColor.white.cgColor
-        view.layer.addSublayer(logo)
+        //logo.position = CGPoint(x: view.layer.bounds.size.width/2,
+        //  y: view.layer.bounds.size.height/2 - 30)
+        //logo.fillColor = UIColor.white.cgColor
+        //view.layer.addSublayer(logo)
 
         let fromVC = getFrom(using: transitionContext)
         let toVC = getTo(using: transitionContext)
@@ -76,12 +76,12 @@ extension ZoomAnimationViewController: UIViewControllerAnimatedTransitioning {
             animation.isRemovedOnCompletion = false
             animation.timingFunction = CAMediaTimingFunction(name: .easeIn)
 
-            let maskLayer: CAShapeLayer = CatLogoLayer.logoLayer()
-            maskLayer.position = fromVC.logo.position
-            toVC.view.layer.mask = maskLayer
-            maskLayer.add(animation, forKey: "cat")
+            //let maskLayer: CAShapeLayer = CatLogoLayer.logoLayer()
+            //maskLayer.position = fromVC.logo.position
+            //toVC.view.layer.mask = maskLayer
+            //maskLayer.add(animation, forKey: "cat")
 
-            fromVC.logo.add(animation, forKey: nil)
+            //fromVC.logo.add(animation, forKey: nil)
 
         }, completion: { (success) in
             // IMPORTANT: Notify UIKit that the transition is complete.

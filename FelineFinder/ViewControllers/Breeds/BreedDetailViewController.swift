@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DropDown
+import RVS_AutofillTextField
 
 enum menuOptions: Int {
 case cats = 0
@@ -15,14 +15,14 @@ case stats = 2
 case info = 3
 }
 
-class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
+class BreedDetailViewController: ParentViewController, UITextFieldDelegate, RVS_AutofillTextFieldDataSource {
 
     @IBOutlet weak var breedPhoto: UIImageView!
     @IBOutlet weak var breedName: UILabel!
     @IBOutlet weak var childContainerView: UIView!
     @IBOutlet weak var expandCollapseButton: UIButton!
     @IBOutlet weak var childView: UIView!
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: RVS_AutofillTextField!
     
     @IBOutlet weak var catButton: UIButton!
     @IBOutlet weak var videoButton: UIButton!
@@ -31,42 +31,30 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
     
     @IBOutlet weak var ChildContainerHeight: NSLayoutConstraint!
     
+    var breedsArray: [String] = [String]()
     var breeds = [Breed]()
-    var filteredBreeds: [Breed] = []
     var priorChildViewController: UIViewController?
     var childContainerExpanded = false
     var originalRect: CGRect!
     var currentChild = menuOptions.cats
     var priorBreed: Breed?
     
-    let dropDown = DropDown()
+    var textDictionary: [RVS_AutofillTextFieldDataSourceType] = []
     
     var tools: [(btn: UIButton, images: [String])] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dropDown.anchorView = searchBar
-        dropDown.bottomOffset = CGPoint(x: 0, y:(dropDown.anchorView?.plainView.bounds.height)!)
-        dropDown.selectionAction = { [weak self] (index, item) in
-            self?.searchBar.text = item
-            self?.priorBreed = breed
-            self?._infoViewController = nil
-            self?._statsViewController = nil
-            self?._galleryViewController = nil
-            self?.filteredBreeds = self!.breeds.filter { (breed: Breed) -> Bool in
-                return breed.BreedName.lowercased().contains(item.lowercased())
-            }
-            self?.showBreedDetail(breedParam: (self?.filteredBreeds.first)!)
-            self?.menuItemChoosen(option: menuOptions(rawValue: (self?.currentChild)!.rawValue)!)
-        }
-        
-        hideKeyboardWhenTappedAround()
         showBreedDetail(breedParam: breed!)
         searchBar.delegate = self
+        searchBar.dataSource = self
+        searchBar.setIcon(UIImage(systemName: "magnifyingglass")!)
         DatabaseManager.sharedInstance.fetchBreedsFit { (breeds) -> Void in
+            for b in breeds {
+                self.breedsArray.append(b.BreedName)
+            }
             self.breeds = breeds
-            self.filteredBreeds = breeds
         }
         
         tools = [(btn: catButton, images: ["Tool_Cat", "Tool_Filled_Cat"]),
@@ -178,12 +166,6 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
         viewController.removeFromParent()
     }
     
-    func showBreedDetail(breedParam: Breed) {
-        breedPhoto.image = UIImage(named: breedParam.FullSizedPicture)
-        breedName.text = breedParam.BreedName
-        breed = breedParam
-    }
-    
     func menuItemChoosen(option: menuOptions) {
         if option != .cats {currentChild = option}
         
@@ -244,19 +226,45 @@ class BreedDetailViewController: ParentViewController, UISearchBarDelegate {
             }
         }
     }
-        
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText != "" {
-            filteredBreeds = breeds.filter { (breed: Breed) -> Bool in
-                return breed.BreedName.lowercased().contains(searchText.lowercased())
-            }
-            let breedNames = filteredBreeds.map { Breed in
-                return Breed.BreedName
-            }
-            dropDown.dataSource = breedNames
-            dropDown.show()
-        } else {
-            filteredBreeds = [breed!]
+}
+
+extension BreedDetailViewController: RVS_AutofillTextFieldDelegate {
+    /* ################################################################## */
+    /**
+     This is called when the user selects one of the autofill choices.
+     In this app, all we do is print to the debug console.
+     - parameter inAutofillTextField: The text field instance that the user affected.
+     - parameter selectionWasMade: The data item, with the string and the refCon.
+     */
+    func autoFillTextField(_ inAutofillTextField: RVS_AutofillTextField, selectionWasMade inSelectedItem: RVS_AutofillTextFieldDataSourceType) {
+        let b = breeds.first { Breed in
+            return Breed.BreedName == inSelectedItem.value
         }
+        showBreedDetail(breedParam: b!)
+        _infoViewController = nil
+        _statsViewController = nil
+        _galleryViewController = nil
+        menuItemChoosen(option: currentChild)
+    }
+
+    func getTextDictionaryFromThis(string: String, isCaseSensitive: Bool, isWildcardBefore: Bool, isWildcardAfter: Bool, maximumAutofillCount: Int) -> [RVS_AutofillTextFieldDataSourceType] {
+        var index = 0
+        
+        let ret: [RVS_AutofillTextFieldDataSourceType] = breedsArray.compactMap {
+            if $0.lowercased().contains(string.lowercased()) {
+                return RVS_AutofillTextFieldDataSourceType(value: $0, refCon: index)
+            }
+            index += 1
+
+            return nil
+        }
+        
+        return ret
+    }
+
+    func showBreedDetail(breedParam: Breed) {
+        breedPhoto.image = UIImage(named: breedParam.FullSizedPicture)
+        breedName.text = breedParam.BreedName
+        breed = breedParam
     }
 }

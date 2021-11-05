@@ -603,8 +603,8 @@
             filePath = "FelineFinder/Common/Tools.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "715"
-            endingLineNumber = "715"
+            startingLineNumber = "605"
+            endingLineNumber = "605"
             landmarkName = "init(breed:sourceView:obj:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -619,8 +619,8 @@
             filePath = "FelineFinder/Common/Tools.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "727"
-            endingLineNumber = "727"
+            startingLineNumber = "617"
+            endingLineNumber = "617"
             landmarkName = "init(breed:sourceView:obj:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -699,8 +699,8 @@
             filePath = "FelineFinder/Common/Tools.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "544"
-            endingLineNumber = "544"
+            startingLineNumber = "434"
+            endingLineNumber = "434"
             landmarkName = "share()"
             landmarkType = "7">
          </BreakpointContent>
@@ -715,8 +715,8 @@
             filePath = "FelineFinder/Common/Tools.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "541"
-            endingLineNumber = "541"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
             landmarkName = "share()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1019,8 +1019,8 @@
             filePath = "FelineFinder/Common/Tools.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "719"
-            endingLineNumber = "719"
+            startingLineNumber = "609"
+            endingLineNumber = "609"
             landmarkName = "init(breed:sourceView:obj:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1035,8 +1035,8 @@
             filePath = "FelineFinder/Common/Tools.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "724"
-            endingLineNumber = "724"
+            startingLineNumber = "614"
+            endingLineNumber = "614"
             landmarkName = "init(breed:sourceView:obj:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1723,9 +1723,9 @@
             filePath = "FelineFinder/ViewControllers/Breeds/BreedDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "searchBar(_:textDidChange:)"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "getTextDictionaryFromThis(string:isCaseSensitive:isWildcardBefore:isWildcardAfter:maximumAutofillCount:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2347,9 +2347,9 @@
             filePath = "FelineFinder/ViewControllers/Breeds/BreedDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "menuItemChoosen(option:)"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "GetTitle(totalRows:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3083,8 +3083,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3099,8 +3099,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3115,8 +3115,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3131,8 +3131,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
             landmarkName = "scrollToIndex(index:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3147,8 +3147,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/MainBreedCollectionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "setupIndex()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3339,8 +3339,8 @@
             filePath = "FelineFinder/ViewControllers/Breeds/BreedDetailViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -3357,6 +3357,22 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4A8B15EA-FBC0-48BF-AA45-72089FB5B870"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FelineFinder/ViewControllers/Breeds/BreedDetailViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>

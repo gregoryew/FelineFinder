@@ -6,9 +6,9 @@
 //
 
 import UIKit
-import YouTubePlayer
+import YoutubePlayerView
 
-class BreedGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, YouTubePlayerDelegate {
+class BreedGalleryViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, YoutubePlayerViewDelegate {
 
     var breed: Breed?
     var media: Tools!

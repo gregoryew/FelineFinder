@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		121B5DF966C286A163AFF1F5 /* Pods_FelineFinder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */; };
 		C500E6B726CE26B1005FDFC3 /* ZipCodeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C500E6B626CE26B1005FDFC3 /* ZipCodeAPI.swift */; };
 		C5179BA325647D84005EC381 /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5179BA225647D84005EC381 /* PopAnimator.swift */; };
 		C51CBD4A25817299006B2D12 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51CBD4925817299006B2D12 /* FavoritesViewController.swift */; };
@@ -132,6 +131,25 @@
 		C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */; };
 		C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DAF725BB958100F3B13C /* GradientButton.swift */; };
 		C5A2DB1A25BCCEB600F3B13C /* ValueLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */; };
+		C5A892D427324C090078BBBB /* YoutubePlayerView in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892D327324C090078BBBB /* YoutubePlayerView */; };
+		C5A892D727324C9A0078BBBB /* BetterSegmentedControl in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892D627324C9A0078BBBB /* BetterSegmentedControl */; };
+		C5A892DA27324CB80078BBBB /* FMDB in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892D927324CB80078BBBB /* FMDB */; };
+		C5A892DD27324CD50078BBBB /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892DC27324CD50078BBBB /* MultiSlider */; };
+		C5A892E027324CF90078BBBB /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892DF27324CF90078BBBB /* SDWebImage */; };
+		C5A892E327324DEC0078BBBB /* SwiftLocation in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892E227324DEC0078BBBB /* SwiftLocation */; };
+		C5A892E627324E090078BBBB /* CardStackView in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892E527324E090078BBBB /* CardStackView */; };
+		C5A892E927324E220078BBBB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892E827324E220078BBBB /* Kingfisher */; };
+		C5A892EC27324F550078BBBB /* DZNEmptyDataSet in Frameworks */ = {isa = PBXBuildFile; productRef = C5A892EB27324F550078BBBB /* DZNEmptyDataSet */; };
+		C5A892FA2732523D0078BBBB /* Spark.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F12732523D0078BBBB /* Spark.swift */; };
+		C5A892FB2732523D0078BBBB /* FaveIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F22732523D0078BBBB /* FaveIcon.swift */; };
+		C5A892FC2732523D0078BBBB /* FaveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F32732523D0078BBBB /* FaveButton.swift */; };
+		C5A892FD2732523D0078BBBB /* Ring.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F42732523D0078BBBB /* Ring.swift */; };
+		C5A892FE2732523D0078BBBB /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F62732523D0078BBBB /* Geometry.swift */; };
+		C5A892FF2732523D0078BBBB /* Easing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F72732523D0078BBBB /* Easing.swift */; };
+		C5A893002732523D0078BBBB /* Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F82732523D0078BBBB /* Init.swift */; };
+		C5A893012732523D0078BBBB /* Constraints+.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A892F92732523D0078BBBB /* Constraints+.swift */; };
+		C5A89308273253A10078BBBB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5A89307273253A10078BBBB /* QuartzCore.framework */; };
+		C5A8930B273254360078BBBB /* MarqueeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A8930A273254360078BBBB /* MarqueeLabel.swift */; };
 		C5AEFA3A25ABD292003F5E2B /* StatsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */; };
 		C5B2D23E25AF17F20001A83F /* FitValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B2D23D25AF17F20001A83F /* FitValues.swift */; };
 		C5B3F87A26B3480400EBA0B3 /* BaseQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B3F87926B3480400EBA0B3 /* BaseQuestionViewController.swift */; };
@@ -151,6 +169,7 @@
 		C5E9307F2601E05A005A0E90 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E9307E2601E05A005A0E90 /* User.swift */; };
 		C5E930842602713B005A0E90 /* NotificationsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E930832602713B005A0E90 /* NotificationsDelegate.swift */; };
 		C5E93088260274FD005A0E90 /* ApnsUploads.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5E93087260274FD005A0E90 /* ApnsUploads.swift */; };
+		C5F453802734D1D200731604 /* RVS-AutofillTextField in Frameworks */ = {isa = PBXBuildFile; productRef = C5F4537F2734D1D200731604 /* RVS-AutofillTextField */; };
 		C5F4FE4526D885660064CA0F /* FFMultiSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F4FE4426D885660064CA0F /* FFMultiSlider.swift */; };
 		C5F9C65A25778B5000861A76 /* BreedPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C65925778B5000861A76 /* BreedPhotoCollectionViewCell.swift */; };
 		C5F9C65E2577935A00861A76 /* BreedGalleryPet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F9C65D2577935A00861A76 /* BreedGalleryPet.swift */; };
@@ -160,9 +179,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		71F68C1D049D00694F9F0FD2 /* Pods-FelineFinder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FelineFinder.release.xcconfig"; path = "Target Support Files/Pods-FelineFinder/Pods-FelineFinder.release.xcconfig"; sourceTree = "<group>"; };
-		8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FelineFinder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB7C8A351FB4D2372B8F6BAF /* Pods-FelineFinder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FelineFinder.debug.xcconfig"; path = "Target Support Files/Pods-FelineFinder/Pods-FelineFinder.debug.xcconfig"; sourceTree = "<group>"; };
 		C500E6B626CE26B1005FDFC3 /* ZipCodeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeAPI.swift; sourceTree = "<group>"; };
 		C5179BA225647D84005EC381 /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
 		C51CBD4925817299006B2D12 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
@@ -295,6 +311,16 @@
 		C59C8DEC25624CF200044503 /* SegmentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		C5A2DAF725BB958100F3B13C /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		C5A2DB1925BCCEB500F3B13C /* ValueLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueLabel.swift; sourceTree = "<group>"; };
+		C5A892F12732523D0078BBBB /* Spark.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spark.swift; sourceTree = "<group>"; };
+		C5A892F22732523D0078BBBB /* FaveIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaveIcon.swift; sourceTree = "<group>"; };
+		C5A892F32732523D0078BBBB /* FaveButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FaveButton.swift; sourceTree = "<group>"; };
+		C5A892F42732523D0078BBBB /* Ring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ring.swift; sourceTree = "<group>"; };
+		C5A892F62732523D0078BBBB /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		C5A892F72732523D0078BBBB /* Easing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Easing.swift; sourceTree = "<group>"; };
+		C5A892F82732523D0078BBBB /* Init.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Init.swift; sourceTree = "<group>"; };
+		C5A892F92732523D0078BBBB /* Constraints+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Constraints+.swift"; sourceTree = "<group>"; };
+		C5A89307273253A10078BBBB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C5A8930A273254360078BBBB /* MarqueeLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MarqueeLabel.swift; path = "../../../../../../../Downloads/MarqueeLabel-master/Sources/MarqueeLabel.swift"; sourceTree = "<group>"; };
 		C5AEFA3925ABD292003F5E2B /* StatsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsTableViewCell.swift; sourceTree = "<group>"; };
 		C5B2D23D25AF17F20001A83F /* FitValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitValues.swift; sourceTree = "<group>"; };
 		C5B3F87926B3480400EBA0B3 /* BaseQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseQuestionViewController.swift; sourceTree = "<group>"; };
@@ -328,30 +354,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				121B5DF966C286A163AFF1F5 /* Pods_FelineFinder.framework in Frameworks */,
+				C5A89308273253A10078BBBB /* QuartzCore.framework in Frameworks */,
+				C5A892D427324C090078BBBB /* YoutubePlayerView in Frameworks */,
+				C5F453802734D1D200731604 /* RVS-AutofillTextField in Frameworks */,
+				C5A892E327324DEC0078BBBB /* SwiftLocation in Frameworks */,
+				C5A892EC27324F550078BBBB /* DZNEmptyDataSet in Frameworks */,
+				C5A892DD27324CD50078BBBB /* MultiSlider in Frameworks */,
+				C5A892DA27324CB80078BBBB /* FMDB in Frameworks */,
+				C5A892E927324E220078BBBB /* Kingfisher in Frameworks */,
+				C5A892D727324C9A0078BBBB /* BetterSegmentedControl in Frameworks */,
+				C5A892E627324E090078BBBB /* CardStackView in Frameworks */,
+				C5A892E027324CF90078BBBB /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52491F3844CB9E7E4A0C4C56 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BB7C8A351FB4D2372B8F6BAF /* Pods-FelineFinder.debug.xcconfig */,
-				71F68C1D049D00694F9F0FD2 /* Pods-FelineFinder.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		544962BD5CCD269B7C990A27 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8CF9DEF001F3F2C9D58A55E3 /* Pods_FelineFinder.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C5179BA125647D72005EC381 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +382,7 @@
 		C51E1AC4255EC5BE00167D15 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C5A892EF2732521E0078BBBB /* Used to be Pods */,
 				C5E93086260274DA005A0E90 /* Apns */,
 				C5F9C8CD2579165500861A76 /* Custom Layouts */,
 				C57E5E1F255BB57E00120018 /* Favorites.swift */,
@@ -509,8 +529,7 @@
 			children = (
 				C57E5737255BAF9B00120018 /* FelineFinder */,
 				C57E5736255BAF9B00120018 /* Products */,
-				52491F3844CB9E7E4A0C4C56 /* Pods */,
-				544962BD5CCD269B7C990A27 /* Frameworks */,
+				C5A89306273253A10078BBBB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -744,6 +763,54 @@
 			path = "Cool Table";
 			sourceTree = "<group>";
 		};
+		C5A892EF2732521E0078BBBB /* Used to be Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C5A89309273254260078BBBB /* MarqueLabel */,
+				C5A892F02732523D0078BBBB /* Source */,
+			);
+			path = "Used to be Pods";
+			sourceTree = "<group>";
+		};
+		C5A892F02732523D0078BBBB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				C5A892F12732523D0078BBBB /* Spark.swift */,
+				C5A892F22732523D0078BBBB /* FaveIcon.swift */,
+				C5A892F32732523D0078BBBB /* FaveButton.swift */,
+				C5A892F42732523D0078BBBB /* Ring.swift */,
+				C5A892F52732523D0078BBBB /* Helpers */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		C5A892F52732523D0078BBBB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C5A892F62732523D0078BBBB /* Geometry.swift */,
+				C5A892F72732523D0078BBBB /* Easing.swift */,
+				C5A892F82732523D0078BBBB /* Init.swift */,
+				C5A892F92732523D0078BBBB /* Constraints+.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C5A89306273253A10078BBBB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5A89307273253A10078BBBB /* QuartzCore.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C5A89309273254260078BBBB /* MarqueLabel */ = {
+			isa = PBXGroup;
+			children = (
+				C5A8930A273254360078BBBB /* MarqueeLabel.swift */,
+			);
+			path = MarqueLabel;
+			sourceTree = "<group>";
+		};
 		C5DB5A1C257B124500B112F4 /* YouTubePlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,17 +873,27 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C57E5749255BAF9D00120018 /* Build configuration list for PBXNativeTarget "FelineFinder" */;
 			buildPhases = (
-				411B4B289D7DB8E59ABA87D4 /* [CP] Check Pods Manifest.lock */,
 				C57E5731255BAF9B00120018 /* Sources */,
 				C57E5732255BAF9B00120018 /* Frameworks */,
 				C57E5733255BAF9B00120018 /* Resources */,
-				80B5A03F421E0F97F1363FE0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = FelineFinder;
+			packageProductDependencies = (
+				C5A892D327324C090078BBBB /* YoutubePlayerView */,
+				C5A892D627324C9A0078BBBB /* BetterSegmentedControl */,
+				C5A892D927324CB80078BBBB /* FMDB */,
+				C5A892DC27324CD50078BBBB /* MultiSlider */,
+				C5A892DF27324CF90078BBBB /* SDWebImage */,
+				C5A892E227324DEC0078BBBB /* SwiftLocation */,
+				C5A892E527324E090078BBBB /* CardStackView */,
+				C5A892E827324E220078BBBB /* Kingfisher */,
+				C5A892EB27324F550078BBBB /* DZNEmptyDataSet */,
+				C5F4537F2734D1D200731604 /* RVS-AutofillTextField */,
+			);
 			productName = FelineFinder;
 			productReference = C57E5735255BAF9B00120018 /* FelineFinder.app */;
 			productType = "com.apple.product-type.application";
@@ -845,6 +922,18 @@
 				Base,
 			);
 			mainGroup = C57E572C255BAF9B00120018;
+			packageReferences = (
+				C5A892D227324C090078BBBB /* XCRemoteSwiftPackageReference "YoutubePlayerView" */,
+				C5A892D527324C9A0078BBBB /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */,
+				C5A892D827324CB80078BBBB /* XCRemoteSwiftPackageReference "fmdb" */,
+				C5A892DB27324CD50078BBBB /* XCRemoteSwiftPackageReference "MultiSlider" */,
+				C5A892DE27324CF90078BBBB /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				C5A892E127324DEC0078BBBB /* XCRemoteSwiftPackageReference "SwiftLocation" */,
+				C5A892E427324E090078BBBB /* XCRemoteSwiftPackageReference "CardStackView" */,
+				C5A892E727324E220078BBBB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				C5A892EA27324F550078BBBB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */,
+				C5F4537E2734D1D200731604 /* XCRemoteSwiftPackageReference "RVS_AutofillTextField" */,
+			);
 			productRefGroup = C57E5736255BAF9B00120018 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -894,48 +983,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		411B4B289D7DB8E59ABA87D4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FelineFinder-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		80B5A03F421E0F97F1363FE0 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FelineFinder/Pods-FelineFinder-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FelineFinder/Pods-FelineFinder-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FelineFinder/Pods-FelineFinder-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		C57E5731255BAF9B00120018 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -946,6 +993,7 @@
 				C53DCE7625FAFCBA004011EC /* BreedTableViewCell.swift in Sources */,
 				C57E61FB255BE1F300120018 /* OldPetFinderFind.swift in Sources */,
 				C5F9C6B32578FB9A00861A76 /* RSUtilities.swift in Sources */,
+				C5A892FE2732523D0078BBBB /* Geometry.swift in Sources */,
 				C5B3F88026B36CF100EBA0B3 /* QuestionCollectionViewCell.swift in Sources */,
 				C5E930842602713B005A0E90 /* NotificationsDelegate.swift in Sources */,
 				C57E617E255BB7BA00120018 /* PagedModeratorResponse.swift in Sources */,
@@ -955,7 +1003,9 @@
 				C59C8DED25624CF200044503 /* SegmentCollectionViewCell.swift in Sources */,
 				C57E61D4255BDAB000120018 /* OldSelectedItemTableViewCell.swift in Sources */,
 				C57E61A9255BB94900120018 /* OldFilterOptionSearch.swift in Sources */,
+				C5A892FF2732523D0078BBBB /* Easing.swift in Sources */,
 				C57E6185255BB7BA00120018 /* URLRequest.swift in Sources */,
+				C5A893012732523D0078BBBB /* Constraints+.swift in Sources */,
 				C57E61BD255BBAED00120018 /* Tools.swift in Sources */,
 				C57E617D255BB7BA00120018 /* ModeratorRequest.swift in Sources */,
 				C57D50FF256ED61700D0842B /* BreedDetailViewController.swift in Sources */,
@@ -976,10 +1026,12 @@
 				C52C82C025AFAB29006633CD /* FilterOptionTableViewCell.swift in Sources */,
 				C5B3F87C26B34F0C00EBA0B3 /* QuestionCollectionViewController.swift in Sources */,
 				C57E61A1255BB92100120018 /* FitQuestionSegmentTableViewCell.swift in Sources */,
+				C5A8930B273254360078BBBB /* MarqueeLabel.swift in Sources */,
 				C56BD72126B30AA700E0E63D /* SurveyPageViewController.swift in Sources */,
 				C57E6223255C072B00120018 /* AdoptableCatsCollectionViewCell.swift in Sources */,
 				C57D50DC256DD19E00D0842B /* MainBreedCollectionViewController.swift in Sources */,
 				C57E6211255BE43300120018 /* CustomCellBackground.m in Sources */,
+				C5A892FA2732523D0078BBBB /* Spark.swift in Sources */,
 				C57E6200255BE35E00120018 /* CustomHeader.m in Sources */,
 				C528F513265608BB00F49BF5 /* CardStackView.swift in Sources */,
 				C56BD72426B315EB00E0E63D /* QuestionScaleViewController.swift in Sources */,
@@ -1013,6 +1065,7 @@
 				C51CBD4A25817299006B2D12 /* FavoritesViewController.swift in Sources */,
 				C57E617C255BB7BA00120018 /* RescuePetsAPI5.swift in Sources */,
 				C52C82BD25AFAA42006633CD /* FilterSectionLabelTableViewCell.swift in Sources */,
+				C5A892FC2732523D0078BBBB /* FaveButton.swift in Sources */,
 				C57E61D8255BDB1E00120018 /* MainTabBarViewController.swift in Sources */,
 				C57E619E255BB92100120018 /* FitBreedTableViewCell.swift in Sources */,
 				C57D50E2256DDE1B00D0842B /* BreedSectionHeaderCollectionReusableView.swift in Sources */,
@@ -1030,16 +1083,19 @@
 				C500E6B726CE26B1005FDFC3 /* ZipCodeAPI.swift in Sources */,
 				C57E61DB255BDB5A00120018 /* RescueSheltersAPI.swift in Sources */,
 				C57E5E3E255BB58100120018 /* Utilities.swift in Sources */,
+				C5A893002732523D0078BBBB /* Init.swift in Sources */,
 				C57E5E37255BB58100120018 /* DatabaseManager.swift in Sources */,
 				C5F9C8CF257916DE00861A76 /* PinterestLayout.swift in Sources */,
 				C51E1AC9255EC61F00167D15 /* Toolbar.swift in Sources */,
 				C57E5E3D255BB58100120018 /* RescueSheltersAPI2.swift in Sources */,
 				C5B3F87A26B3480400EBA0B3 /* BaseQuestionViewController.swift in Sources */,
 				C530482125A255C10071A32C /* AdoptableDescriptionTableViewCell.swift in Sources */,
+				C5A892FD2732523D0078BBBB /* Ring.swift in Sources */,
 				C528F512265608BB00F49BF5 /* CardView.swift in Sources */,
 				C5E9307C2601A769005A0E90 /* OfflineQueryAPI.swift in Sources */,
 				C57E61BA255BBAB800120018 /* HorizontalLayoutVaryingWidths.swift in Sources */,
 				C53DCE8825FBFC51004011EC /* SearchTimer.swift in Sources */,
+				C5A892FB2732523D0078BBBB /* FaveIcon.swift in Sources */,
 				C57E6184255BB7BA00120018 /* Result.swift in Sources */,
 				C57E6220255C06FE00120018 /* AdoptableCatsCollectionViewViewController.swift in Sources */,
 				C5A2DAF825BB958100F3B13C /* GradientButton.swift in Sources */,
@@ -1136,7 +1192,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1191,7 +1247,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1203,7 +1259,6 @@
 		};
 		C57E574A255BAF9D00120018 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB7C8A351FB4D2372B8F6BAF /* Pods-FelineFinder.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1213,7 +1268,7 @@
 				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1230,7 +1285,6 @@
 		};
 		C57E574B255BAF9D00120018 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 71F68C1D049D00694F9F0FD2 /* Pods-FelineFinder.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1240,7 +1294,7 @@
 				CURRENT_PROJECT_VERSION = 24;
 				DEVELOPMENT_TEAM = BVC6BMPCPP;
 				INFOPLIST_FILE = FelineFinder/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1276,6 +1330,142 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C5A892D227324C090078BBBB /* XCRemoteSwiftPackageReference "YoutubePlayerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mukeshydv/YoutubePlayerView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C5A892D527324C9A0078BBBB /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gmarm/BetterSegmentedControl";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		C5A892D827324CB80078BBBB /* XCRemoteSwiftPackageReference "fmdb" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ccgus/fmdb";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		C5A892DB27324CD50078BBBB /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C5A892DE27324CF90078BBBB /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C5A892E127324DEC0078BBBB /* XCRemoteSwiftPackageReference "SwiftLocation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftLocation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		C5A892E427324E090078BBBB /* XCRemoteSwiftPackageReference "CardStackView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gomfucius/CardStackView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C5A892E727324E220078BBBB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		C5A892EA27324F550078BBBB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dzenbot/DZNEmptyDataSet";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		C5F4537E2734D1D200731604 /* XCRemoteSwiftPackageReference "RVS_AutofillTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RiftValleySoftware/RVS_AutofillTextField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C5A892D327324C090078BBBB /* YoutubePlayerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892D227324C090078BBBB /* XCRemoteSwiftPackageReference "YoutubePlayerView" */;
+			productName = YoutubePlayerView;
+		};
+		C5A892D627324C9A0078BBBB /* BetterSegmentedControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892D527324C9A0078BBBB /* XCRemoteSwiftPackageReference "BetterSegmentedControl" */;
+			productName = BetterSegmentedControl;
+		};
+		C5A892D927324CB80078BBBB /* FMDB */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892D827324CB80078BBBB /* XCRemoteSwiftPackageReference "fmdb" */;
+			productName = FMDB;
+		};
+		C5A892DC27324CD50078BBBB /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892DB27324CD50078BBBB /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
+		};
+		C5A892DF27324CF90078BBBB /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892DE27324CF90078BBBB /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		C5A892E227324DEC0078BBBB /* SwiftLocation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892E127324DEC0078BBBB /* XCRemoteSwiftPackageReference "SwiftLocation" */;
+			productName = SwiftLocation;
+		};
+		C5A892E527324E090078BBBB /* CardStackView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892E427324E090078BBBB /* XCRemoteSwiftPackageReference "CardStackView" */;
+			productName = CardStackView;
+		};
+		C5A892E827324E220078BBBB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892E727324E220078BBBB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		C5A892EB27324F550078BBBB /* DZNEmptyDataSet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5A892EA27324F550078BBBB /* XCRemoteSwiftPackageReference "DZNEmptyDataSet" */;
+			productName = DZNEmptyDataSet;
+		};
+		C5F4537F2734D1D200731604 /* RVS-AutofillTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C5F4537E2734D1D200731604 /* XCRemoteSwiftPackageReference "RVS_AutofillTextField" */;
+			productName = "RVS-AutofillTextField";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C57E572D255BAF9B00120018 /* Project object */;
 }
